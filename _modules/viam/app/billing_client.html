@@ -126,8 +126,8 @@
 
 
 <span class="sd">        async def connect() -&gt; ViamClient:</span>
-<span class="sd">            # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
-<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            # Replace &lt;API-KEY&gt; with your API key and &lt;API-KEY-ID&gt; with your API key ID</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&lt;API-KEY&gt;, &lt;API-KEY-ID&gt;)</span>
 <span class="sd">            return await ViamClient.create_from_dial_options(dial_options)</span>
 
 
@@ -163,7 +163,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">           usage = await billing_client.get_current_month_usage(&quot;&lt;ORG-ID&gt;&quot;)</span>
+<span class="sd">           usage = await billing_client.get_current_month_usage(&lt;ORG-ID&gt;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the organization to request usage data for</span>
@@ -181,11 +181,11 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await billing_client.get_invoice_pdf(&quot;&lt;INVOICE-ID&gt;&quot;, &quot;&lt;ORG-ID&gt;&quot;, &quot;invoice.pdf&quot;)</span>
+<span class="sd">            await billing_client.get_invoice_pdf(&lt;INVOICE-ID&gt;, &lt;ORG-ID&gt;, &quot;invoice.pdf&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            invoice_id (str): the ID of the invoice being requested</span>
-<span class="sd">            org_id (str): the ID of the org to request data from</span>
+<span class="sd">            org_id (str): the ID of the organization to request data from</span>
 <span class="sd">            dest (str): the filepath to save the invoice to</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicepdf&gt;`_.</span>
@@ -198,17 +198,17 @@
                     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">chunk</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BillingClient.get_invoices_summary"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.get_invoices_summary">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_invoices_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetInvoicesSummaryResponse</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Access total outstanding balance plus invoice summaries for a given org.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Access total outstanding balance plus invoice summaries for a given organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            summary = await billing_client.get_invoices_summary(&quot;&lt;ORG-ID&gt;&quot;)</span>
+<span class="sd">            summary = await billing_client.get_invoices_summary(&lt;ORG-ID&gt;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (str): the ID of the org to request data for</span>
+<span class="sd">            org_id (str): the ID of the organization to request data for</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all org invoices</span>
+<span class="sd">            viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all organization invoices</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicessummary&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -216,17 +216,17 @@
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">GetInvoicesSummary</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BillingClient.get_org_billing_information"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.get_org_billing_information">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_org_billing_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetOrgBillingInformationResponse</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Access billing information (payment method, billing tier, etc.) for a given org.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Access billing information (payment method, billing tier, etc.) for a given organization.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            information = await billing_client.get_org_billing_information(&quot;&lt;ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (str): the ID of the org to request data for</span>
+<span class="sd">            org_id (str): the ID of the organization to request data for</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.billing.GetOrgBillingInformationResponse: the org billing information</span>
+<span class="sd">            viam.proto.app.billing.GetOrgBillingInformationResponse: the organization billing information</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/dev/reference/apis/billing-client/#getorgbillinginformation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -250,18 +250,18 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            invoice_id = await billing_client.charge_organization(</span>
-<span class="sd">                &quot;&lt;ORG-ID-TO-CHARGE&gt;&quot;,</span>
-<span class="sd">                &lt;SUBTOTAL&gt;,</span>
-<span class="sd">                &lt;TAX&gt;,</span>
-<span class="sd">                &lt;DESCRIPTION&gt;,</span>
+<span class="sd">                &lt;ORG-ID-TO-CHARGE&gt;,</span>
+<span class="sd">                9.99,</span>
+<span class="sd">                0.70,</span>
+<span class="sd">                &quot;A charge with tax.&quot;,</span>
 <span class="sd">                &lt;ORG-ID-FOR-BRANDING&gt;,</span>
-<span class="sd">                False,</span>
+<span class="sd">                True,</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id_to_charge (str): the organization to charge</span>
 <span class="sd">            subtotal (float): the subtotal amount in dollars</span>
-<span class="sd">            †ax (float): the tax amount in dollars to add to the subtotal</span>
+<span class="sd">            tax (float): the tax amount in dollars to add to the subtotal</span>
 <span class="sd">            description (str): a short description of the charge to display on the invoice PDF (must be 1000 characters or less)</span>
 <span class="sd">            org_id_for_branding (str): the organization whose branding to use in the invoice PDF and confirmation email</span>
 <span class="sd">            disable_confirmation_email (bool): whether or not to disable sending an email confirmation for the invoice</span>

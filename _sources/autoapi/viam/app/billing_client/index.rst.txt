@@ -41,8 +41,8 @@ Module Contents
 
 
        async def connect() -> ViamClient:
-           # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
-           dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+           # Replace <API-KEY> with your API key and <API-KEY-ID> with your API key ID
+           dial_options = DialOptions.with_api_key(<API-KEY>, <API-KEY-ID>)
            return await ViamClient.create_from_dial_options(dial_options)
 
 
@@ -66,7 +66,7 @@ Module Contents
 
       ::
 
-         usage = await billing_client.get_current_month_usage("<ORG-ID>")
+         usage = await billing_client.get_current_month_usage(<ORG-ID>)
 
       :param org_id: the ID of the organization to request usage data for
       :type org_id: str
@@ -86,11 +86,11 @@ Module Contents
 
       ::
 
-          await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "invoice.pdf")
+          await billing_client.get_invoice_pdf(<INVOICE-ID>, <ORG-ID>, "invoice.pdf")
 
       :param invoice_id: the ID of the invoice being requested
       :type invoice_id: str
-      :param org_id: the ID of the org to request data from
+      :param org_id: the ID of the organization to request data from
       :type org_id: str
       :param dest: the filepath to save the invoice to
       :type dest: str
@@ -103,16 +103,16 @@ Module Contents
       :async:
 
 
-      Access total outstanding balance plus invoice summaries for a given org.
+      Access total outstanding balance plus invoice summaries for a given organization.
 
       ::
 
-          summary = await billing_client.get_invoices_summary("<ORG-ID>")
+          summary = await billing_client.get_invoices_summary(<ORG-ID>)
 
-      :param org_id: the ID of the org to request data for
+      :param org_id: the ID of the organization to request data for
       :type org_id: str
 
-      :returns: the summaries of all org invoices
+      :returns: the summaries of all organization invoices
       :rtype: viam.proto.app.billing.GetInvoicesSummaryResponse
 
       For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicessummary>`_.
@@ -123,16 +123,16 @@ Module Contents
       :async:
 
 
-      Access billing information (payment method, billing tier, etc.) for a given org.
+      Access billing information (payment method, billing tier, etc.) for a given organization.
 
       ::
 
           information = await billing_client.get_org_billing_information("<ORG-ID>")
 
-      :param org_id: the ID of the org to request data for
+      :param org_id: the ID of the organization to request data for
       :type org_id: str
 
-      :returns: the org billing information
+      :returns: the organization billing information
       :rtype: viam.proto.app.billing.GetOrgBillingInformationResponse
 
       For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getorgbillinginformation>`_.
@@ -151,20 +151,20 @@ Module Contents
       ::
 
           invoice_id = await billing_client.charge_organization(
-              "<ORG-ID-TO-CHARGE>",
-              <SUBTOTAL>,
-              <TAX>,
-              <DESCRIPTION>,
+              <ORG-ID-TO-CHARGE>,
+              9.99,
+              0.70,
+              "A charge with tax.",
               <ORG-ID-FOR-BRANDING>,
-              False,
+              True,
           )
 
       :param org_id_to_charge: the organization to charge
       :type org_id_to_charge: str
       :param subtotal: the subtotal amount in dollars
       :type subtotal: float
-      :param †ax: the tax amount in dollars to add to the subtotal
-      :type †ax: float
+      :param tax: the tax amount in dollars to add to the subtotal
+      :type tax: float
       :param description: a short description of the charge to display on the invoice PDF (must be 1000 characters or less)
       :type description: str
       :param org_id_for_branding: the organization whose branding to use in the invoice PDF and confirmation email

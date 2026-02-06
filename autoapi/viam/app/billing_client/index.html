@@ -161,8 +161,8 @@
 
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
-    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
-    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="c1"># Replace &lt;API-KEY&gt; with your API key and &lt;API-KEY-ID&gt; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="o">&lt;</span><span class="n">API</span><span class="o">-</span><span class="n">KEY</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">API</span><span class="o">-</span><span class="n">KEY</span><span class="o">-</span><span class="n">ID</span><span class="o">&gt;</span><span class="p">)</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
 
 
@@ -181,7 +181,7 @@
 <dt class="sig sig-object py" id="viam.app.billing_client.BillingClient.get_current_month_usage">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_month_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/billing/index.html#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="viam.proto.app.billing.GetCurrentMonthUsageResponse"><span class="pre">viam.proto.app.billing.GetCurrentMonthUsageResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/billing_client.html#BillingClient.get_current_month_usage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.billing_client.BillingClient.get_current_month_usage" title="Permalink to this definition"></a></dt>
 <dd><p>Access data usage information for the current month for a given organization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span> <span class="o">=</span> <span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_current_month_usage</span><span class="p">(</span><span class="s2">&quot;&lt;ORG-ID&gt;&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span> <span class="o">=</span> <span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_current_month_usage</span><span class="p">(</span><span class="o">&lt;</span><span class="n">ORG</span><span class="o">-</span><span class="n">ID</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -202,14 +202,14 @@
 <dt class="sig sig-object py" id="viam.app.billing_client.BillingClient.get_invoice_pdf">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_invoice_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invoice_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/billing_client.html#BillingClient.get_invoice_pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.billing_client.BillingClient.get_invoice_pdf" title="Permalink to this definition"></a></dt>
 <dd><p>Access invoice PDF data and optionally save it to a provided file path.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_invoice_pdf</span><span class="p">(</span><span class="s2">&quot;&lt;INVOICE-ID&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;invoice.pdf&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_invoice_pdf</span><span class="p">(</span><span class="o">&lt;</span><span class="n">INVOICE</span><span class="o">-</span><span class="n">ID</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">ORG</span><span class="o">-</span><span class="n">ID</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">&quot;invoice.pdf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>invoice_id</strong> (<em>str</em>) – the ID of the invoice being requested</p></li>
-<li><p><strong>org_id</strong> (<em>str</em>) – the ID of the org to request data from</p></li>
+<li><p><strong>org_id</strong> (<em>str</em>) – the ID of the organization to request data from</p></li>
 <li><p><strong>dest</strong> (<em>str</em>) – the filepath to save the invoice to</p></li>
 </ul>
 </dd>
@@ -220,16 +220,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.billing_client.BillingClient.get_invoices_summary">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_invoices_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/billing/index.html#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse"><span class="pre">viam.proto.app.billing.GetInvoicesSummaryResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/billing_client.html#BillingClient.get_invoices_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.billing_client.BillingClient.get_invoices_summary" title="Permalink to this definition"></a></dt>
-<dd><p>Access total outstanding balance plus invoice summaries for a given org.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_invoices_summary</span><span class="p">(</span><span class="s2">&quot;&lt;ORG-ID&gt;&quot;</span><span class="p">)</span>
+<dd><p>Access total outstanding balance plus invoice summaries for a given organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_invoices_summary</span><span class="p">(</span><span class="o">&lt;</span><span class="n">ORG</span><span class="o">-</span><span class="n">ID</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – the ID of the org to request data for</p>
+<dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – the ID of the organization to request data for</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the summaries of all org invoices</p>
+<dd class="field-even"><p>the summaries of all organization invoices</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../../proto/app/billing/index.html#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse">viam.proto.app.billing.GetInvoicesSummaryResponse</a></p>
@@ -241,16 +241,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.billing_client.BillingClient.get_org_billing_information">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_org_billing_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/billing/index.html#viam.proto.app.billing.GetOrgBillingInformationResponse" title="viam.proto.app.billing.GetOrgBillingInformationResponse"><span class="pre">viam.proto.app.billing.GetOrgBillingInformationResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/billing_client.html#BillingClient.get_org_billing_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.billing_client.BillingClient.get_org_billing_information" title="Permalink to this definition"></a></dt>
-<dd><p>Access billing information (payment method, billing tier, etc.) for a given org.</p>
+<dd><p>Access billing information (payment method, billing tier, etc.) for a given organization.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">information</span> <span class="o">=</span> <span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">get_org_billing_information</span><span class="p">(</span><span class="s2">&quot;&lt;ORG-ID&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – the ID of the org to request data for</p>
+<dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – the ID of the organization to request data for</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the org billing information</p>
+<dd class="field-even"><p>the organization billing information</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../../proto/app/billing/index.html#viam.proto.app.billing.GetOrgBillingInformationResponse" title="viam.proto.app.billing.GetOrgBillingInformationResponse">viam.proto.app.billing.GetOrgBillingInformationResponse</a></p>
@@ -267,12 +267,12 @@ This function returns the invoice id once the payment intent is successfully sen
 Callers may poll the invoice for its status using the <cite>get_invoices_summary</cite> function and the returned invoice id.
 The status will be “payment_processing” if the payment is being processed, “paid” if it succeeds, or “outstanding” if it fails.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">invoice_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">charge_organization</span><span class="p">(</span>
-    <span class="s2">&quot;&lt;ORG-ID-TO-CHARGE&gt;&quot;</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="n">SUBTOTAL</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="n">TAX</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="n">DESCRIPTION</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="n">ORG</span><span class="o">-</span><span class="n">ID</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">CHARGE</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="mf">9.99</span><span class="p">,</span>
+    <span class="mf">0.70</span><span class="p">,</span>
+    <span class="s2">&quot;A charge with tax.&quot;</span><span class="p">,</span>
     <span class="o">&lt;</span><span class="n">ORG</span><span class="o">-</span><span class="n">ID</span><span class="o">-</span><span class="n">FOR</span><span class="o">-</span><span class="n">BRANDING</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="kc">False</span><span class="p">,</span>
+    <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -281,7 +281,7 @@ The status will be “payment_processing” if the payment is being processed, �
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id_to_charge</strong> (<em>str</em>) – the organization to charge</p></li>
 <li><p><strong>subtotal</strong> (<em>float</em>) – the subtotal amount in dollars</p></li>
-<li><p><strong>†ax</strong> (<em>float</em>) – the tax amount in dollars to add to the subtotal</p></li>
+<li><p><strong>tax</strong> (<em>float</em>) – the tax amount in dollars to add to the subtotal</p></li>
 <li><p><strong>description</strong> (<em>str</em>) – a short description of the charge to display on the invoice PDF (must be 1000 characters or less)</p></li>
 <li><p><strong>org_id_for_branding</strong> (<em>str</em>) – the organization whose branding to use in the invoice PDF and confirmation email</p></li>
 <li><p><strong>disable_confirmation_email</strong> (<em>bool</em>) – whether or not to disable sending an email confirmation for the invoice</p></li>
