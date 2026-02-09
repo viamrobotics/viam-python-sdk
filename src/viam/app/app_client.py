@@ -1362,7 +1362,12 @@ class AppClient:
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels, start=start, end=end
+                robot_part_id=robot_part_id,
+                filter=filter if filter else "",
+                page_token=page_token,
+                log_levels=log_levels,
+                start=start,
+                end=end,
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
