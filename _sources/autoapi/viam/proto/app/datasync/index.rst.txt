@@ -572,7 +572,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: UploadMetadata(*, part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., file_name: str = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[str] | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., mime_type: str = ...)
+.. py:class:: UploadMetadata(*, part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., file_name: str = ..., file_extension: str = ..., file_create_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_modify_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., tags: collections.abc.Iterable[str] | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., mime_type: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -657,6 +657,16 @@ Package Contents
 
 
 
+   .. py:property:: file_create_time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: file_modify_time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
@@ -664,6 +674,24 @@ Package Contents
 
    .. py:property:: dataset_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:method:: HasField(field_name: Literal['file_create_time', b'file_create_time', 'file_modify_time', b'file_modify_time']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
 
 
 
