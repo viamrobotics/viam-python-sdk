@@ -15,6 +15,10 @@ jobs:
   update-protos:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v5
         with:
