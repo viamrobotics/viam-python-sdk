@@ -6,11 +6,14 @@ from viam.media.video import CameraMimeType, NamedImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
+    GetImageRequest,
+    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
+    RenderFrameRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
@@ -27,6 +30,19 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         self.channel = channel
         self.client = CameraServiceStub(channel)
         super().__init__(name)
+
+    async def get_image(
+        self,
+        mime_type: str = "",
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[bytes, str]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
+        response: GetImageResponse = await self.client.GetImage(request, timeout=timeout, metadata=md)
+        return (response.image, response.mime_type)
 
     async def get_images(
         self,
@@ -46,6 +62,20 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata
         return imgs, resp_metadata
+
+    async def render_frame(
+        self,
+        mime_type: str = "",
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> bytes:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = RenderFrameRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
+        # RenderFrame returns HttpBody which has data field
+        response = await self.client.RenderFrame(request, timeout=timeout, metadata=md)
+        return response.data
 
     async def get_point_cloud(
         self,

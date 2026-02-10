@@ -37,6 +37,35 @@ class Camera(ComponentBase):
     Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
+    async def get_image(
+        self,
+        mime_type: str = "",
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[bytes, str]:
+        """Get the next image from the camera as raw bytes along with its MIME type.
+
+        ::
+
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
+
+            # Get image as JPEG
+            img_data, mime_type = await my_camera.get_image(mime_type="image/jpeg")
+
+        Args:
+            mime_type (str): The desired MIME type of the image (e.g., "image/jpeg", "image/png").
+                If empty, the camera will use its default format.
+
+        Returns:
+            Tuple[bytes, str]: A tuple containing the raw image data and its MIME type.
+
+        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimage>`_.
+        """
+        ...
+
+    @abc.abstractmethod
     async def get_images(
         self,
         *,
@@ -65,6 +94,35 @@ class Camera(ComponentBase):
             returned from the camera system, and the second [1] the metadata associated with this response.
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimages>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def render_frame(
+        self,
+        mime_type: str = "",
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> bytes:
+        """Render a frame from the camera as raw bytes in the specified MIME type.
+
+        ::
+
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
+
+            # Render frame as JPEG
+            frame_data = await my_camera.render_frame(mime_type="image/jpeg")
+
+        Args:
+            mime_type (str): The desired MIME type of the rendered frame (e.g., "image/jpeg", "image/png").
+                If empty, the camera will use its default format.
+
+        Returns:
+            bytes: The raw frame data.
+
+        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#renderframe>`_.
         """
         ...
 

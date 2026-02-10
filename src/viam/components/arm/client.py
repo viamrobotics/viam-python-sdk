@@ -2,8 +2,16 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.components import KinematicsReturn
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse
+from viam.components import KinematicsReturn, Mesh
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+)
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -13,6 +21,7 @@ from viam.proto.component.arm import (
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
+    MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
@@ -83,6 +92,18 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
         await self.client.MoveToJointPositions(request, timeout=timeout, metadata=md)
 
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = MoveThroughJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
+        await self.client.MoveThroughJointPositions(request, timeout=timeout, metadata=md)
+
     async def stop(
         self,
         *,
@@ -123,3 +144,11 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)
+
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = Get3DModelsRequest(name=self.name, extra=dict_to_struct(extra))
+        response: Get3DModelsResponse = await self.client.Get3DModels(request, timeout=timeout, metadata=md)
+        return response.models

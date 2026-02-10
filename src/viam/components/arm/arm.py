@@ -1,9 +1,9 @@
 import abc
-from typing import Any, Dict, Final, Optional
+from typing import Any, Dict, Final, Mapping, Optional
 
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
-from .. import KinematicsReturn
+from .. import KinematicsReturn, Mesh
 from ..component_base import ComponentBase
 from . import JointPositions, Pose
 
@@ -150,6 +150,37 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
+    async def move_through_joint_positions(
+        self,
+        positions: list[JointPositions],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Move each joint on the arm through a sequence of specified positions.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Define multiple waypoints as a list of JointPositions
+            waypoint1 = JointPositions(values=[0.0, 0.0, 0.0, 0.0, 0.0])
+            waypoint2 = JointPositions(values=[0.0, 45.0, 0.0, 0.0, 0.0])
+            waypoint3 = JointPositions(values=[0.0, 90.0, 0.0, 0.0, 0.0])
+
+            # Move the arm through each waypoint in sequence
+            await my_arm.move_through_joint_positions(positions=[waypoint1, waypoint2, waypoint3])
+
+        Args:
+            positions (list[JointPositions]): A list of ``JointPositions`` that the arm will move through sequentially.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
+        """
+        ...
+
+    @abc.abstractmethod
     async def stop(
         self,
         *,
@@ -221,5 +252,26 @@ class Arm(ComponentBase):
             If available, a third [2] value provides meshes keyed by URDF filepath.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        """
+        Get the 3D models associated with the arm.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the 3D models associated with the arm.
+            models = await my_arm.get_3d_models()
+
+        Returns:
+            Mapping[str, Mesh]: A mapping of model names to Mesh objects representing the 3D models.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
         """
         ...

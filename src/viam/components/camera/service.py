@@ -1,11 +1,13 @@
 # TODO: Update type checking based with RSDK-4089
 # pyright: reportGeneralTypeIssues=false
+from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
-from viam.errors import NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
+    GetImageRequest,
+    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
@@ -13,6 +15,7 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     Image,
+    RenderFrameRequest,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -27,13 +30,27 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
-    async def GetImage(self, stream: Stream) -> None:
-        """Deprecated: Use GetImages instead."""
-        raise NotSupportedError("GetImage is deprecated. Use GetImages instead.")
+    async def GetImage(self, stream: Stream[GetImageRequest, GetImageResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        camera = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        image_data, mime_type = await camera.get_image(
+            request.mime_type, timeout=timeout, extra=struct_to_dict(request.extra), metadata=stream.metadata
+        )
+        response = GetImageResponse(mime_type=mime_type, image=image_data)
+        await stream.send_message(response)
 
-    async def RenderFrame(self, stream: Stream) -> None:
-        """Deprecated: Use GetImages instead."""
-        raise NotSupportedError("RenderFrame is deprecated. Use GetImages instead.")
+    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        camera = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        frame_data = await camera.render_frame(
+            request.mime_type, timeout=timeout, extra=struct_to_dict(request.extra), metadata=stream.metadata
+        )
+        response = HttpBody(data=frame_data, content_type=request.mime_type if request.mime_type else "image/jpeg")
+        await stream.send_message(response)
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()

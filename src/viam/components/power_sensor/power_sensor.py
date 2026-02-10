@@ -82,6 +82,7 @@ class PowerSensor(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def get_readings(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Mapping[str, SensorReading]:

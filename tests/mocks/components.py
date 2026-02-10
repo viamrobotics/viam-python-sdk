@@ -65,6 +65,10 @@ class MockArm(Arm):
         self.is_stopped = True
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         self.geometries = GEOMETRIES
+        self.models_3d = {
+            "model1": Mesh(content_type="model/obj", mesh=b"model1_data"),
+            "model2": Mesh(content_type="model/obj", mesh=b"model2_data"),
+        }
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -102,6 +106,16 @@ class MockArm(Arm):
         self.extra = extra
         self.timeout = timeout
 
+    async def move_through_joint_positions(
+        self, positions: List[JointPositions], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        # Move through all positions, ending at the last one
+        if positions:
+            self.joint_positions = positions[-1]
+        self.is_stopped = False
+        self.extra = extra
+        self.timeout = timeout
+
     async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
         self.extra = extra
@@ -121,6 +135,13 @@ class MockArm(Arm):
         self.extra = extra
         self.timeout = timeout
         return self.geometries
+
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.models_3d
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -437,9 +458,24 @@ class MockCamera(Camera):
         self.metadata = ResponseMetadata(captured_at=ts)
         super().__init__(name)
 
+    async def get_image(
+        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[bytes, str]:
+        self.extra = extra
+        self.timeout = timeout
+        actual_mime_type = mime_type if mime_type else str(self.image.mime_type)
+        return self.image.data, actual_mime_type
+
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         self.timeout = timeout
         return [NamedImage(self.name, self.image.data, self.image.mime_type)], self.metadata
+
+    async def render_frame(
+        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> bytes:
+        self.extra = extra
+        self.timeout = timeout
+        return self.image.data
 
     async def get_point_cloud(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs

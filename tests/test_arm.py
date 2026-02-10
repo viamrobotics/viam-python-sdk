@@ -5,6 +5,8 @@ from viam.components.arm.service import ArmRPCService
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetGeometriesRequest,
     GetGeometriesResponse,
     GetKinematicsRequest,
@@ -20,6 +22,7 @@ from viam.proto.component.arm import (
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
+    MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
@@ -53,6 +56,13 @@ class TestArm:
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
 
+    async def test_move_through_joint_positions(self):
+        joint_pos_2 = JointPositions(values=[2, 4, 6])
+        joint_pos_3 = JointPositions(values=[3, 6, 9])
+        await self.arm.move_through_joint_positions([self.joint_pos, joint_pos_2, joint_pos_3])
+        # Should end up at the last position
+        assert self.arm.joint_positions == joint_pos_3
+
     async def test_stop(self):
         assert self.arm.is_stopped is False
         await self.arm.stop()
@@ -72,6 +82,13 @@ class TestArm:
     async def test_get_geometries(self):
         geometries = await self.arm.get_geometries()
         assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        models = await self.arm.get_3d_models(extra={"test": "data"})
+        assert len(models) == 2
+        assert "model1" in models
+        assert "model2" in models
+        assert self.arm.extra == {"test": "data"}
 
     async def test_do(self):
         command = {"command": "args"}
@@ -122,6 +139,16 @@ class TestService:
             response: GetJointPositionsResponse = await client.GetJointPositions(request)
             assert response.positions == self.joint_pos
 
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            joint_pos_2 = JointPositions(values=[2, 4, 6])
+            joint_pos_3 = JointPositions(values=[3, 6, 9])
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=[self.joint_pos, joint_pos_2, joint_pos_3])
+            await client.MoveThroughJointPositions(request, timeout=3.5)
+            assert self.arm.joint_positions == joint_pos_3
+            assert self.arm.timeout == loose_approx(3.5)
+
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
@@ -163,6 +190,16 @@ class TestService:
             request = GetGeometriesRequest(name=self.name)
             response: GetGeometriesResponse = await client.GetGeometries(request)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = Get3DModelsRequest(name=self.name)
+            response: Get3DModelsResponse = await client.Get3DModels(request, timeout=2.1)
+            assert len(response.models) == 2
+            assert "model1" in response.models
+            assert "model2" in response.models
+            assert self.arm.timeout == loose_approx(2.1)
 
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
@@ -208,6 +245,15 @@ class TestClient:
             jp = await client.get_joint_positions()
             assert jp == self.joint_pos
 
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            joint_pos_2 = JointPositions(values=[2, 4, 6])
+            joint_pos_3 = JointPositions(values=[3, 6, 9])
+            await client.move_through_joint_positions([self.joint_pos, joint_pos_2, joint_pos_3], timeout=2.5)
+            assert self.arm.joint_positions == joint_pos_3
+            assert self.arm.timeout == loose_approx(2.5)
+
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
@@ -236,6 +282,15 @@ class TestClient:
             client = ArmClient(self.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            models = await client.get_3d_models(timeout=3.2)
+            assert len(models) == 2
+            assert "model1" in models
+            assert "model2" in models
+            assert self.arm.timeout == loose_approx(3.2)
 
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
