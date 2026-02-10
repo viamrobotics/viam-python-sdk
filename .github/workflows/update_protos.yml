@@ -15,6 +15,10 @@ jobs:
   update-protos:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -58,17 +62,24 @@ jobs:
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
-      - name: Update Python Wrappers with OpenCode
-        uses: anomalyco/opencode/github@latest
+      - name: Install OpenCode CLI
+        run: |
+          curl -fsSL https://opencode.ai/install | bash
+          echo "$HOME/.opencode/bin" >> $GITHUB_PATH
+
+      - name: Update Python Wrappers with OpenCode CLI
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        with:
-          model: anthropic/claude-sonnet-4-20250514
-          share: false
-          prompt: |
+        run: |
+          cat > /tmp/opencode_prompt.txt << 'PROMPT_EOF'
             The protobuf definitions have been updated and compiled into Python files in `src/viam/gen/`.
 
-            Your task is to update the Python wrapper functions to reflect the changes in the gRPC service definitions.
+            ## IMPORTANT: Use git diff to identify changes
+
+            Run `git diff src/viam/gen/` to see what changed in the generated protobuf files.
+            DO NOT read through every proto file. ONLY look at the diff to understand what needs to be updated.
+
+            Based on the diff, update the corresponding Python wrapper functions to reflect ONLY the changes shown.
 
             ## Context
             This repository wraps protobuf messages and gRPC calls into native Python functions for ergonomic, Pythonic usage.
@@ -102,41 +113,19 @@ jobs:
 
             ## Your Task
 
+            1. **First, check the diff**: Run `git diff src/viam/gen/` to see what changed
+            2. **Identify affected wrappers**: Based on the diff, determine which wrapper files need updates
+            3. **Apply changes**: For ONLY the files shown in the diff:
+
             ### For Components and Services (`src/viam/components/` and `src/viam/services/`)
-            1. **Identify changes**: Compare the newly generated protobuf files in `src/viam/gen/component/` and `src/viam/gen/service/` with the existing wrapper implementations.
-
-            2. **Add new methods**: For any new RPC methods in the protobuf definitions:
-               - Add the abstract method signature to the base class
-               - Implement the client-side wrapper in `client.py`
-               - Implement the server-side wrapper in `service.py`
-               - Add tests for both client and server in the appropriate test file
-
-            3. **Update existing methods**: For any modified RPC methods:
-               - Update method signatures to match new request/response message fields
-               - Update parameter mappings and transformations
-               - Preserve the Pythonic naming (snake_case for methods, descriptive parameter names)
-               - Update tests to reflect the changes
-
-            4. **Remove obsolete methods**: For any RPC methods removed from protobuf:
-               - Remove the method from the abstract base class
-               - Remove the client-side wrapper
-               - Remove the server-side wrapper
-               - Remove the corresponding tests
+            - **New RPC methods** in the diff → Add abstract method + client wrapper + server wrapper + tests
+            - **Modified RPC methods** in the diff → Update method signatures, parameters, and tests
+            - **Removed RPC methods** in the diff → Remove from base class, client, server, and tests
 
             ### For App API Clients (`src/viam/app/`)
-            1. **Identify changes**: Compare the newly generated protobuf files in `src/viam/gen/app/` with the existing app client implementations.
-
-            2. **Add new methods**: For any new RPC methods in app service protobuf definitions:
-               - Implement the method in the appropriate `*_client.py` file (e.g., `data_client.py`, `billing_client.py`)
-               - Add tests in the corresponding test file (e.g., `tests/test_data_client.py`)
-
-            3. **Update existing methods**: For any modified RPC methods:
-               - Update method signatures and request/response handling
-               - Update the corresponding tests
-
-            4. **Remove obsolete methods**: For any RPC methods removed from protobuf:
-               - Remove the method from the client file
-               - Remove the corresponding tests
+            - **New RPC methods** in the diff → Add method to client + tests
+            - **Modified RPC methods** in the diff → Update method signatures and tests
+            - **Removed RPC methods** in the diff → Remove method and tests
 
             ## Wrapper Patterns to Follow
 
@@ -331,18 +320,23 @@ jobs:
             - Tests use mock services from `tests/mocks/services.py`
             - Tests verify request parameters by checking service attributes
 
-            ## Output
-            Do NOT create any new files. Only update existing wrapper and test files.
-            Make focused, surgical changes - only modify what's necessary for the protobuf updates.
-            Ensure all imports are updated to include new Request/Response types.
+            ## Output Requirements
+            - Do NOT create any new files. Only update existing wrapper and test files.
+            - Make focused, surgical changes - only modify what's necessary based on the git diff.
+            - Do NOT read through every proto file. Use git diff to identify changes.
+            - Ensure all imports are updated to include new Request/Response types.
+            - Follow the established patterns in the repository.
 
+            ## Verification
             After making changes, verify that:
-            - All new RPC methods have corresponding Python wrappers
-            - All updated RPC methods reflect the new message structure
-            - All removed RPC methods are deleted from wrappers
+            - All new RPC methods from the diff have corresponding Python wrappers
+            - All updated RPC methods from the diff reflect the new message structure
+            - All removed RPC methods from the diff are deleted from wrappers
             - Tests are added/updated/removed for all wrapper changes
-            - The code follows the established patterns in the repository
             - Both component/service wrappers AND app API client wrappers are updated
+          PROMPT_EOF
+
+          opencode run --model anthropic/claude-sonnet-4-5-20250929 --agent build "$(cat /tmp/opencode_prompt.txt)"
 
       - name: Format
         run: uv run make format
