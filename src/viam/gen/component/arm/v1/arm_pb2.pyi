@@ -320,18 +320,28 @@ class MoveOptions(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MAX_VEL_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
     MAX_ACC_DEGS_PER_SEC2_FIELD_NUMBER: builtins.int
+    MAX_VEL_DEGS_PER_SEC_JOINTS_FIELD_NUMBER: builtins.int
+    MAX_ACC_DEGS_PER_SEC2_JOINTS_FIELD_NUMBER: builtins.int
     max_vel_degs_per_sec: builtins.float
-    'Maximum allowable velocity of an arm joint, in degrees per second'
+    'Maximum allowable velocity of an arm joint, in degrees per second.\n    Ignored when max_vel_degs_per_sec_joints is set.\n    '
     max_acc_degs_per_sec2: builtins.float
-    'Maximum allowable acceleration of an arm joint, in degrees per second squared'
+    'Maximum allowable acceleration of an arm joint, in degrees per second squared.\n    ignored when max_acc_degs_per_sec2_joints is set.\n    '
 
-    def __init__(self, *, max_vel_degs_per_sec: builtins.float | None=..., max_acc_degs_per_sec2: builtins.float | None=...) -> None:
+    @property
+    def max_vel_degs_per_sec_joints(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        """Per-joint maximum velocity in degrees per second."""
+
+    @property
+    def max_acc_degs_per_sec2_joints(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        """Per-joint maximum acceleration in degrees per second squared."""
+
+    def __init__(self, *, max_vel_degs_per_sec: builtins.float | None=..., max_acc_degs_per_sec2: builtins.float | None=..., max_vel_degs_per_sec_joints: collections.abc.Iterable[builtins.float] | None=..., max_acc_degs_per_sec2_joints: collections.abc.Iterable[builtins.float] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']) -> None:
+    def ClearField(self, field_name: typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_acc_degs_per_sec2_joints', b'max_acc_degs_per_sec2_joints', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec', 'max_vel_degs_per_sec_joints', b'max_vel_degs_per_sec_joints']) -> None:
         ...
 
     @typing.overload
