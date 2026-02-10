@@ -415,16 +415,6 @@ class TestClient:
     async def test_update_bounding_box_to_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.update_bounding_box_to_image_by_id(
-                binary_id=BINARY_ID,
-                bbox_id="2",
-                label="label",
-                x_min_normalized=0,
-                y_min_normalized=0.1,
-                x_max_normalized=0.2,
-                y_max_normalized=0.3,
-                confidence_score=0.95,
-            )
 
             await client.update_bounding_box_to_image_by_id(
                 binary_id=BINARY_DATA_ID,

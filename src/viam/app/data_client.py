@@ -1195,7 +1195,7 @@ class DataClient:
 
     async def update_bounding_box_to_image_by_id(
         self,
-        binary_id: Union[BinaryID, str],
+        binary_id: str,
         bbox_id: str,
         label: str,
         x_min_normalized: float,
@@ -1220,9 +1220,8 @@ class DataClient:
             )
 
         Args:
-            binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to add the bounding
-                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
-                list of strings.*
+            binary_id (str): The binary data ID of the image to add the bounding
+                box to.
             bbox_id (str): The ID of the bounding box to be updated
             label (str): A label for the bounding box.
             x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
@@ -1240,28 +1239,16 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
         """
         UpdateBoundingBoxRequest()
-        if isinstance(binary_id, str):
-            UpdateBoundingBoxRequest(
-                binary_data_id=binary_id,
-                bbox_id=bbox_id,
-                label=label,
-                x_max_normalized=x_max_normalized,
-                x_min_normalized=x_min_normalized,
-                y_max_normalized=y_max_normalized,
-                y_min_normalized=y_min_normalized,
-                confidence=confidence_score,
-            )
-        else:
-            UpdateBoundingBoxRequest(
-                binary_id=binary_id,
-                bbox_id=bbox_id,
-                label=label,
-                x_max_normalized=x_max_normalized,
-                x_min_normalized=x_min_normalized,
-                y_max_normalized=y_max_normalized,
-                y_min_normalized=y_min_normalized,
-                confidence=confidence_score,
-            )
+        UpdateBoundingBoxRequest(
+            binary_data_id=binary_id,
+            bbox_id=bbox_id,
+            label=label,
+            x_max_normalized=x_max_normalized,
+            x_min_normalized=x_min_normalized,
+            y_max_normalized=y_max_normalized,
+            y_min_normalized=y_min_normalized,
+            confidence=confidence_score,
+        )
 
     async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: Union[BinaryID, str]) -> None:
         """Removes a bounding box from an image.
