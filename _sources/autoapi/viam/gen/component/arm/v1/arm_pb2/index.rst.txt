@@ -604,7 +604,7 @@ Module Contents
 
 .. py:data:: global___IsMovingResponse
 
-.. py:class:: MoveOptions(*, max_vel_degs_per_sec: float | None = ..., max_acc_degs_per_sec2: float | None = ...)
+.. py:class:: MoveOptions(*, max_vel_degs_per_sec: float | None = ..., max_acc_degs_per_sec2: float | None = ..., max_vel_degs_per_sec_joints: collections.abc.Iterable[float] | None = ..., max_acc_degs_per_sec2_joints: collections.abc.Iterable[float] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -619,13 +619,27 @@ Module Contents
    .. py:attribute:: max_vel_degs_per_sec
       :type:  float
 
-      Maximum allowable velocity of an arm joint, in degrees per second
+      Maximum allowable velocity of an arm joint, in degrees per second.
+      Ignored when max_vel_degs_per_sec_joints is set.
 
 
    .. py:attribute:: max_acc_degs_per_sec2
       :type:  float
 
-      Maximum allowable acceleration of an arm joint, in degrees per second squared
+      Maximum allowable acceleration of an arm joint, in degrees per second squared.
+      ignored when max_acc_degs_per_sec2_joints is set.
+
+
+   .. py:property:: max_vel_degs_per_sec_joints
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+      Per-joint maximum velocity in degrees per second.
+
+
+   .. py:property:: max_acc_degs_per_sec2_joints
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+      Per-joint maximum acceleration in degrees per second squared.
 
 
    .. py:method:: HasField(field_name: Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']) -> bool
