@@ -73,11 +73,11 @@ jobs:
       - name: Install OpenCode CLI
         run: |
           curl -fsSL https://opencode.ai/install | bash
-          echo "$HOME/.opencode/bin" >> $GITHUB_PATH
 
       - name: Update Python Wrappers with OpenCode CLI
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PATH: ${{ env.PATH }}:$HOME/.opencode/bin
         run: |
           cat > /tmp/opencode_prompt.txt << 'PROMPT_EOF'
             The protobuf definitions have been updated and compiled into Python files in `src/viam/gen/`.
@@ -358,8 +358,8 @@ jobs:
              - The code follows the established patterns in the repository
              - Both component/service wrappers AND app API client wrappers are updated
           PROMPT_EOF
-          
-          opencode --model anthropic/claude-sonnet-4-5-20250929 --agent build --no-share "$(cat /tmp/opencode_prompt.txt)"
+
+          opencode run --model anthropic/claude-sonnet-4-5-20250929 --agent build "$(cat /tmp/opencode_prompt.txt)"
 
       - name: Format
         run: uv run make format
