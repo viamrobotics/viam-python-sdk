@@ -73,11 +73,11 @@ jobs:
       - name: Install OpenCode CLI
         run: |
           curl -fsSL https://opencode.ai/install | bash
+          echo "$HOME/.opencode/bin" >> $GITHUB_PATH
 
       - name: Update Python Wrappers with OpenCode CLI
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PATH: ${{ env.PATH }}:$HOME/.opencode/bin
         run: |
           cat > /tmp/opencode_prompt.txt << 'PROMPT_EOF'
             The protobuf definitions have been updated and compiled into Python files in `src/viam/gen/`.
