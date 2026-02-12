@@ -1,111 +1,143 @@
+import asyncio
 import importlib
 import importlib.util
-import py_compile
 import sys
 from pathlib import Path
-from typing import List, Optional
+from unittest import mock
+from unittest.mock import AsyncMock
 
 import pytest
 
-from viam.errors import DuplicateResourceError
+from viam.module import Module
+from viam.resource.registry import Registry
+from viam.resource.types import API, Model
 
 EXAMPLES_DIR = Path(__file__).parent.parent / "examples"
 
 
-# Python doesn't build all imports automatically, so recursively check all imports, and then the imported module's import, etc...
-def verify_python_file_imports(filepath: Path, module_name: str, package_root: Optional[Path] = None) -> None:
-    # Temporarily add directory to sys.path if needed for relative imports
-    path_added = False
-    if package_root and str(package_root) not in sys.path:
-        sys.path.insert(0, str(package_root))
-        path_added = True
+def discover_examples():
+    """Discover example directories with entry points.
 
-    try:
-        if package_root:
-            # Calculate module name relative to package_root
-            rel_to_package_root = filepath.relative_to(package_root)
-
-            # Recalculate module name relative to package_root for module import
-            path_to_convert = rel_to_package_root.parent if filepath.name == "__init__.py" else rel_to_package_root.with_suffix("")
-            module_name = str(path_to_convert).replace("/", ".").replace("\\", ".")
-
-            try:
-                importlib.import_module(module_name)
-            except DuplicateResourceError:
-                # building all examples files leads to registering resources multiple times, which is expected
-                pass
-        else:
-            # For files without relative imports, load directly (no relative imports expected)
-            spec = importlib.util.spec_from_file_location(module_name, filepath)
-            if spec is None or spec.loader is None:
-                raise ImportError(f"Could not load spec for {filepath}")
-            module = importlib.util.module_from_spec(spec)
-            try:
-                spec.loader.exec_module(module)
-            except DuplicateResourceError:
-                pass
-    finally:
-        # Clean up sys.path
-        if path_added:
-            sys.path.remove(str(package_root))
+    Searches for common entry point patterns. Examples that don't match are skipped.
+    """
+    examples = []
+    for d in sorted(EXAMPLES_DIR.iterdir()):
+        if not d.is_dir():
+            continue
+        for candidate in [d / "src" / "main.py", d / "main.py", d / "module.py", d / "v1" / "server.py"]:
+            if candidate.exists():
+                examples.append((d, candidate))
+                break
+    return examples
 
 
-def get_all_python_files() -> List[Path]:
-    python_files = []
+EXAMPLES = discover_examples()
+EXAMPLE_IDS = [ex[0].name for ex in EXAMPLES]
 
-    def walk_directory(dir_path: Path) -> None:
+
+@pytest.fixture(autouse=True)
+def isolate_registry(monkeypatch):
+    """Start each test with empty registries.
+
+    This prevents DuplicateResourceError from test mocks (tests/mocks/module/) that register
+    the same APIs as the examples (e.g., acme:component:gizmo). With empty registries, the
+    example's registrations succeed and the full import chain completes.
+    Monkeypatch restores the originals after the test.
+    """
+    monkeypatch.setattr(Registry, "_APIS", {})
+    monkeypatch.setattr(Registry, "_RESOURCES", {})
+
+
+@pytest.fixture(autouse=True)
+def clean_example_modules():
+    """Remove modules added during the test from sys.modules.
+
+    Tracks modules before/after so we don't need to hardcode package names like 'src' or 'v1'.
+    """
+    before = set(sys.modules.keys())
+    yield
+    for key in set(sys.modules.keys()) - before:
+        del sys.modules[key]
+
+
+def import_file(filepath: Path, module_name: str):
+    """Import a standalone Python file by path."""
+    spec = importlib.util.spec_from_file_location(module_name, filepath)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Could not load spec for {filepath}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+class TestBuildModules:
+    @pytest.mark.parametrize("example_dir,entry_point", EXAMPLES, ids=EXAMPLE_IDS)
+    async def test_build_module(self, example_dir: Path, entry_point: Path):
+        # Entry points in subdirectories (src/, v1/) need package-style import
+        has_package = entry_point.parent != example_dir
+
+        if has_package:
+            sys.path.insert(0, str(example_dir))
+
         try:
-            for item in dir_path.iterdir():
-                if item.is_dir():
-                    walk_directory(item)
-                elif item.is_file() and item.suffix == ".py":
-                    python_files.append(item)
-        except PermissionError:
-            # Skip directories we can't access
-            pass
+            # Snapshot registry to detect new registrations
+            resources_before = set(Registry._RESOURCES.keys())
 
-    walk_directory(EXAMPLES_DIR)
-    return sorted(python_files)
+            # Import the entry point
+            mod = self._import_entry_point(example_dir, entry_point, has_package)
 
+            # If it has an async main() and uses viam Module, mock Module.from_args/start
+            # and call it. This exercises the example's real registration + module setup.
+            # We check for "Module" in vars(mod) to skip non-module examples (e.g., echo)
+            # whose main() would start a real gRPC server.
+            built_via_main = False
+            if (
+                mod is not None
+                and "Module" in vars(mod)
+                and hasattr(mod, "main")
+                and asyncio.iscoroutinefunction(mod.main)
+            ):
+                built_via_main = await self._run_mocked_main(mod.main)
 
-# Get all Python files at module load time for parametrization
-_ALL_PYTHON_FILES = get_all_python_files()
+            # If main() didn't run (no main, or non-module example),
+            # build a Module from whatever new models got registered during import.
+            if not built_via_main:
+                new_resources = set(Registry._RESOURCES.keys()) - resources_before
+                if new_resources:
+                    await self._build_module_from_registry(new_resources)
 
+            # Import client.py if it exists
+            for client_candidate in [example_dir / "client.py", example_dir / "v1" / "client.py"]:
+                if client_candidate.exists():
+                    import_file(client_candidate, f"{example_dir.name}_client")
+                    break
+        finally:
+            if has_package and str(example_dir) in sys.path:
+                sys.path.remove(str(example_dir))
 
-def get_package_root_for_file(file_path: Path) -> Optional[Path]:
-    # List of example directories that use relative imports and need their directory in sys.path
-    EXAMPLES_WITH_PACKAGES = {"complex_module", "simple_module", "server"}
+    def _import_entry_point(self, example_dir, entry_point, has_package):
+        """Import the entry point, using package import for subdirectory-based examples."""
+        if has_package:
+            module_path = ".".join(entry_point.relative_to(example_dir).with_suffix("").parts)
+            return importlib.import_module(module_path)
+        else:
+            return import_file(entry_point, f"{example_dir.name}_entry")
 
-    # Find which example the file belongs to (like complex_module vs server)
-    current = file_path.parent
-    while current.parent != EXAMPLES_DIR:
-        current = current.parent
+    async def _run_mocked_main(self, main_fn) -> bool:
+        """Mock Module.from_args/start and call main(). Returns True if successful."""
+        fake_module = Module("fake_address")
+        with mock.patch("viam.module.module.Module.from_args", return_value=fake_module):
+            with mock.patch.object(Module, "start", new_callable=AsyncMock):
+                await main_fn()
+        await fake_module.stop()
+        return True
 
-    # Return the directory if it needs sys.path support for relative imports
-    if current.name in EXAMPLES_WITH_PACKAGES:
-        return current
-
-    return None
-
-
-class TestExamplesSyntax:
-    @pytest.mark.parametrize("py_file", _ALL_PYTHON_FILES, ids=lambda p: str(p.relative_to(EXAMPLES_DIR)))
-    def test_python_file_syntax(self, py_file: Path):
-        py_compile.compile(str(py_file), doraise=True)
-
-
-class TestExamplesImports:
-    # list of all python file's path from examples dir + whether it needs to be added to sys.path for proper imports
-    _PYTHON_FILES_WITH_PATH = [(py_file, get_package_root_for_file(py_file)) for py_file in _ALL_PYTHON_FILES]
-    # create file ids for each test so you can see which file is successfully building/not building
-    _PYTHON_FILES_IDS = [str(py_file.relative_to(EXAMPLES_DIR)) for py_file in _ALL_PYTHON_FILES]
-
-    # Verify that all example Python files can be imported (checks import statements).
-    @pytest.mark.parametrize("py_file,package_root", _PYTHON_FILES_WITH_PATH, ids=_PYTHON_FILES_IDS)
-    def test_python_file_imports(self, py_file: Path, package_root: Optional[Path]):
-        relative_path = py_file.relative_to(EXAMPLES_DIR)
-        # create unique identifier for each module
-        module_name = str(relative_path).replace("/", "_").replace("\\", "_").replace(".py", "")
-
-        # package_root will be the directory to be added to path for files with relative imports or None if none
-        verify_python_file_imports(py_file, module_name, package_root=package_root)
+    async def _build_module_from_registry(self, resource_keys):
+        """Build a Module using newly registered resource models."""
+        module = Module("fake_address")
+        for key in resource_keys:
+            api_str, model_str = key.split("/")
+            api = API.from_string(api_str)
+            model = Model.from_string(model_str)
+            module.add_model_from_registry(api, model)
+        await module.stop()
