@@ -959,7 +959,7 @@ Module Contents
 
 
 
-   .. py:method:: add_bounding_box_to_image_by_id(binary_id: Union[viam.proto.app.data.BinaryID, str], label: str, x_min_normalized: float, y_min_normalized: float, x_max_normalized: float, y_max_normalized: float) -> str
+   .. py:method:: add_bounding_box_to_image_by_id(binary_id: Union[viam.proto.app.data.BinaryID, str], label: str, x_min_normalized: float, y_min_normalized: float, x_max_normalized: float, y_max_normalized: float, confidence_score: Optional[float] = None) -> str
       :async:
 
 
@@ -973,7 +973,8 @@ Module Contents
               x_min_normalized=0,
               y_min_normalized=.1,
               x_max_normalized=.2,
-              y_max_normalized=.3
+              y_max_normalized=.3,
+              confidence_score=.95
           )
 
           print(bbox_id)
@@ -992,6 +993,8 @@ Module Contents
       :type x_max_normalized: float
       :param y_max_normalized: Max Y value of the bounding box normalized from 0 to 1.
       :type y_max_normalized: float
+      :param confidence_score: Confidence level of the bounding box being correct.
+      :type confidence_score: float
 
       :raises GRPCError: If the X or Y values are outside of the [0, 1] range.
 
@@ -999,6 +1002,51 @@ Module Contents
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addboundingboxtoimagebyid>`_.
+
+
+
+   .. py:method:: update_bounding_box_to_image_by_id(binary_id: str, bbox_id: str, label: str, x_min_normalized: float, y_min_normalized: float, x_max_normalized: float, y_max_normalized: float, confidence_score: Optional[float] = None) -> None
+      :async:
+
+
+      Update a bounding box in an image.
+
+      ::
+
+          bbox_id = await data_client.update_bounding_box_to_image_by_id(
+              binary_id="<YOUR-BINARY-DATA-ID>",
+              bbox_id="2"
+              label="label",
+              x_min_normalized=0,
+              y_min_normalized=.1,
+              x_max_normalized=.2,
+              y_max_normalized=.3,
+              confidence_score=.95
+          )
+
+      :param binary_id: The binary data ID of the image to add the bounding
+                        box to.
+      :type binary_id: str
+      :param bbox_id: The ID of the bounding box to be updated
+      :type bbox_id: str
+      :param label: A label for the bounding box.
+      :type label: str
+      :param x_min_normalized: Min X value of the bounding box normalized from 0 to 1.
+      :type x_min_normalized: float
+      :param y_min_normalized: Min Y value of the bounding box normalized from 0 to 1.
+      :type y_min_normalized: float
+      :param x_max_normalized: Max X value of the bounding box normalized from 0 to 1.
+      :type x_max_normalized: float
+      :param y_max_normalized: Max Y value of the bounding box normalized from 0 to 1.
+      :type y_max_normalized: float
+      :param confidence_score: Confidence level of the bounding box being correct.
+      :type confidence_score: float
+
+      :raises GRPCError: If the X or Y values are outside of the [0, 1] range.
+
+      :returns: N/A
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
 
 
 

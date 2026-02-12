@@ -145,6 +145,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.remove_tags_from_binary_data_by_filter()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.tags_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.tags_by_filter()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id"><code class="docutils literal notranslate"><span class="pre">DataClient.add_bounding_box_to_image_by_id()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.update_bounding_box_to_image_by_id"><code class="docutils literal notranslate"><span class="pre">DataClient.update_bounding_box_to_image_by_id()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id"><code class="docutils literal notranslate"><span class="pre">DataClient.remove_bounding_box_from_image_by_id()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.bounding_box_labels_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.bounding_box_labels_by_filter()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_database_connection"><code class="docutils literal notranslate"><span class="pre">DataClient.get_database_connection()</span></code></a></li>
@@ -1205,7 +1206,7 @@ list of strings.</em></p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_bounding_box_to_image_by_id">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
 <dd><p>Add a bounding box to an image.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bbox_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_bounding_box_to_image_by_id</span><span class="p">(</span>
     <span class="n">binary_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-BINARY-DATA-ID&gt;&quot;</span><span class="p">,</span>
@@ -1213,7 +1214,8 @@ list of strings.</em></p></li>
     <span class="n">x_min_normalized</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">y_min_normalized</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
     <span class="n">x_max_normalized</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
-    <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span>
+    <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span><span class="p">,</span>
+    <span class="n">confidence_score</span><span class="o">=</span><span class="mf">.95</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">bbox_id</span><span class="p">)</span>
@@ -1230,6 +1232,7 @@ list of strings.</em></p></li>
 <li><p><strong>y_min_normalized</strong> (<em>float</em>) – Min Y value of the bounding box normalized from 0 to 1.</p></li>
 <li><p><strong>x_max_normalized</strong> (<em>float</em>) – Max X value of the bounding box normalized from 0 to 1.</p></li>
 <li><p><strong>y_max_normalized</strong> (<em>float</em>) – Max Y value of the bounding box normalized from 0 to 1.</p></li>
+<li><p><strong>confidence_score</strong> (<em>float</em>) – Confidence level of the bounding box being correct.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1243,6 +1246,46 @@ list of strings.</em></p></li>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#addboundingboxtoimagebyid">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.update_bounding_box_to_image_by_id">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.update_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.update_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
+<dd><p>Update a bounding box in an image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bbox_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">update_bounding_box_to_image_by_id</span><span class="p">(</span>
+    <span class="n">binary_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-BINARY-DATA-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">bbox_id</span><span class="o">=</span><span class="s2">&quot;2&quot;</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="n">x_min_normalized</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">y_min_normalized</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+    <span class="n">x_max_normalized</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+    <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span><span class="p">,</span>
+    <span class="n">confidence_score</span><span class="o">=</span><span class="mf">.95</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>binary_id</strong> (<em>str</em>) – The binary data ID of the image to add the bounding
+box to.</p></li>
+<li><p><strong>bbox_id</strong> (<em>str</em>) – The ID of the bounding box to be updated</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – A label for the bounding box.</p></li>
+<li><p><strong>x_min_normalized</strong> (<em>float</em>) – Min X value of the bounding box normalized from 0 to 1.</p></li>
+<li><p><strong>y_min_normalized</strong> (<em>float</em>) – Min Y value of the bounding box normalized from 0 to 1.</p></li>
+<li><p><strong>x_max_normalized</strong> (<em>float</em>) – Max X value of the bounding box normalized from 0 to 1.</p></li>
+<li><p><strong>y_max_normalized</strong> (<em>float</em>) – Max Y value of the bounding box normalized from 0 to 1.</p></li>
+<li><p><strong>confidence_score</strong> (<em>float</em>) – Confidence level of the bounding box being correct.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GRPCError</strong> – If the X or Y values are outside of the [0, 1] range.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>N/A</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid">Data Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">

@@ -103,6 +103,7 @@
     <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDResponse</span><span class="p">,</span>
+    <span class="n">UpdateBoundingBoxRequest</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">BinaryData</span><span class="p">,</span>
@@ -1220,6 +1221,7 @@
         <span class="n">y_min_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">x_max_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">y_max_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">confidence_score</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a bounding box to an image.</span>
 
@@ -1231,7 +1233,8 @@
 <span class="sd">                x_min_normalized=0,</span>
 <span class="sd">                y_min_normalized=.1,</span>
 <span class="sd">                x_max_normalized=.2,</span>
-<span class="sd">                y_max_normalized=.3</span>
+<span class="sd">                y_max_normalized=.3,</span>
+<span class="sd">                confidence_score=.95</span>
 <span class="sd">            )</span>
 
 <span class="sd">            print(bbox_id)</span>
@@ -1245,6 +1248,7 @@
 <span class="sd">            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.</span>
 <span class="sd">            x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.</span>
 <span class="sd">            y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.</span>
+<span class="sd">            confidence_score (float): Confidence level of the bounding box being correct.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If the X or Y values are outside of the [0, 1] range.</span>
@@ -1263,6 +1267,7 @@
                 <span class="n">x_min_normalized</span><span class="o">=</span><span class="n">x_min_normalized</span><span class="p">,</span>
                 <span class="n">y_max_normalized</span><span class="o">=</span><span class="n">y_max_normalized</span><span class="p">,</span>
                 <span class="n">y_min_normalized</span><span class="o">=</span><span class="n">y_min_normalized</span><span class="p">,</span>
+                <span class="n">confidence</span><span class="o">=</span><span class="n">confidence_score</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">request</span> <span class="o">=</span> <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">(</span>
@@ -1272,9 +1277,67 @@
                 <span class="n">x_min_normalized</span><span class="o">=</span><span class="n">x_min_normalized</span><span class="p">,</span>
                 <span class="n">y_max_normalized</span><span class="o">=</span><span class="n">y_max_normalized</span><span class="p">,</span>
                 <span class="n">y_min_normalized</span><span class="o">=</span><span class="n">y_min_normalized</span><span class="p">,</span>
+                <span class="n">confidence</span><span class="o">=</span><span class="n">confidence_score</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">AddBoundingBoxToImageByIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddBoundingBoxToImageByID</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">bbox_id</span></div>
+
+<div class="viewcode-block" id="DataClient.update_bounding_box_to_image_by_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.update_bounding_box_to_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_bounding_box_to_image_by_id</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">binary_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">bbox_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">x_min_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">y_min_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">x_max_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">y_max_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">confidence_score</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a bounding box in an image.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            bbox_id = await data_client.update_bounding_box_to_image_by_id(</span>
+<span class="sd">                binary_id=&quot;&lt;YOUR-BINARY-DATA-ID&gt;&quot;,</span>
+<span class="sd">                bbox_id=&quot;2&quot;</span>
+<span class="sd">                label=&quot;label&quot;,</span>
+<span class="sd">                x_min_normalized=0,</span>
+<span class="sd">                y_min_normalized=.1,</span>
+<span class="sd">                x_max_normalized=.2,</span>
+<span class="sd">                y_max_normalized=.3,</span>
+<span class="sd">                confidence_score=.95</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_id (str): The binary data ID of the image to add the bounding</span>
+<span class="sd">                box to.</span>
+<span class="sd">            bbox_id (str): The ID of the bounding box to be updated</span>
+<span class="sd">            label (str): A label for the bounding box.</span>
+<span class="sd">            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.</span>
+<span class="sd">            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.</span>
+<span class="sd">            x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.</span>
+<span class="sd">            y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.</span>
+<span class="sd">            confidence_score (float): Confidence level of the bounding box being correct.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If the X or Y values are outside of the [0, 1] range.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            N/A</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateBoundingBoxRequest</span><span class="p">(</span>
+            <span class="n">binary_data_id</span><span class="o">=</span><span class="n">binary_id</span><span class="p">,</span>
+            <span class="n">bbox_id</span><span class="o">=</span><span class="n">bbox_id</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+            <span class="n">x_max_normalized</span><span class="o">=</span><span class="n">x_max_normalized</span><span class="p">,</span>
+            <span class="n">x_min_normalized</span><span class="o">=</span><span class="n">x_min_normalized</span><span class="p">,</span>
+            <span class="n">y_max_normalized</span><span class="o">=</span><span class="n">y_max_normalized</span><span class="p">,</span>
+            <span class="n">y_min_normalized</span><span class="o">=</span><span class="n">y_min_normalized</span><span class="p">,</span>
+            <span class="n">confidence</span><span class="o">=</span><span class="n">confidence_score</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">UpdateBoundingBox</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.remove_bounding_box_from_image_by_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_bounding_box_from_image_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">binary_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes a bounding box from an image.</span>
