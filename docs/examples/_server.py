@@ -156,6 +156,8 @@ from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsResponse,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
+    UpdateBoundingBoxRequest,
+    UpdateBoundingBoxResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
@@ -291,6 +293,9 @@ class MockData(UnimplementedDataServiceBase):
         pass
 
     async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
+        pass
+
+    async def UpdateBoundingBoxToImageByID(self, stream: Stream[UpdateBoundingBoxRequest, UpdateBoundingBoxResponse]) -> None:
         pass
 
     async def RemoveBoundingBoxFromImageByID(

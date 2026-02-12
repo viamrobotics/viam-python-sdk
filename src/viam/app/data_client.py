@@ -1238,7 +1238,6 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
         """
-        UpdateBoundingBoxRequest()
         request = UpdateBoundingBoxRequest(
             binary_data_id=binary_id,
             bbox_id=bbox_id,

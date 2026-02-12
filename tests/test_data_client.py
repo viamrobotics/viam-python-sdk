@@ -426,6 +426,7 @@ class TestClient:
                 y_max_normalized=0.3,
                 confidence_score=0.95,
             )
+            assert service.updated_label == BBOX_LABEL
 
     async def test_remove_bounding_box_from_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:

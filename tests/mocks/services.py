@@ -201,6 +201,8 @@ from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
+    UpdateBoundingBoxRequest,
+    UpdateBoundingBoxResponse,
     AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
     AddTagsToBinaryDataByIDsResponse,
@@ -997,6 +999,12 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(AddBoundingBoxToImageByIDResponse(bbox_id=self.bbox_labels_response[0]))
+
+    async def UpdateBoundingBoxToImageByID(self, stream: Stream[UpdateBoundingBoxRequest, UpdateBoundingBoxResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.updated_label = request.bbox_id
+        await stream.send_message(UpdateBoundingBoxResponse())
 
     async def RemoveBoundingBoxFromImageByID(
         self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
