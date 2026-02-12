@@ -419,7 +419,7 @@ class TestClient:
             await client.update_bounding_box_to_image_by_id(
                 binary_id=BINARY_DATA_ID,
                 label="label",
-                bbox_id="2",
+                bbox_id=BBOX_LABEL,
                 x_min_normalized=0,
                 y_min_normalized=0.1,
                 x_max_normalized=0.2,
