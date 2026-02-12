@@ -1239,7 +1239,7 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
         """
         UpdateBoundingBoxRequest()
-        UpdateBoundingBoxRequest(
+        request = UpdateBoundingBoxRequest(
             binary_data_id=binary_id,
             bbox_id=bbox_id,
             label=label,
@@ -1249,6 +1249,7 @@ class DataClient:
             y_min_normalized=y_min_normalized,
             confidence=confidence_score,
         )
+        await self._data_client.UpdateBoundingBox(request, metadata=self._metadata)
 
     async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: Union[BinaryID, str]) -> None:
         """Removes a bounding box from an image.
