@@ -14,7 +14,6 @@ from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
-    UpdateBoundingBoxRequest,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryData,
@@ -68,6 +67,7 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    UpdateBoundingBoxRequest,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
