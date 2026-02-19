@@ -412,11 +412,11 @@ class TestClient:
             )
             assert bbox_label == BBOX_LABEL
 
-    async def test_update_bounding_box(self, service: MockData):
+    async def test_update_bounding_box_to_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
 
-            await client.update_bounding_box(
+            await client.update_bounding_box_to_image_by_id(
                 binary_id=BINARY_DATA_ID,
                 label="label",
                 bbox_id=BBOX_LABEL,

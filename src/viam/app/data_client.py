@@ -68,6 +68,7 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    UpdateBoundingBoxRequest,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -1144,6 +1145,7 @@ class DataClient:
                 x_min_normalized=0,
                 y_min_normalized=.1,
                 x_max_normalized=.2,
+
                 y_max_normalized=.3,
                 confidence_score=.95
             )
@@ -1192,63 +1194,6 @@ class DataClient:
             )
         response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
         return response.bbox_id
-
-    async def update_bounding_box(
-        self,
-        binary_id: str,
-        bbox_id: str,
-        label: str,
-        x_min_normalized: float,
-        y_min_normalized: float,
-        x_max_normalized: float,
-        y_max_normalized: float,
-        confidence_score: Optional[float] = None,
-    ) -> None:
-        """Update a bounding box in an image.
-
-        ::
-
-            bbox_id = await data_client.update_bounding_box(
-                binary_id="<YOUR-BINARY-DATA-ID>",
-                bbox_id="2"
-                label="label",
-                x_min_normalized=0,
-                y_min_normalized=.1,
-                x_max_normalized=.2,
-                y_max_normalized=.3,
-                confidence_score=.95
-            )
-
-        Args:
-            binary_id (str): The binary data ID of the image to add the bounding
-                box to.
-            bbox_id (str): The ID of the bounding box to be updated
-            label (str): A label for the bounding box.
-            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
-            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
-            x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.
-            y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.
-            confidence_score (float): Confidence level of the bounding box being correct.
-
-        Raises:
-            GRPCError: If the X or Y values are outside of the [0, 1] range.
-
-        Returns:
-            N/A
-
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#UpdateBoundingBox>`_.
-        """
-        request = UpdateBoundingBoxRequest(
-            binary_data_id=binary_id,
-            bbox_id=bbox_id,
-            label=label,
-            x_max_normalized=x_max_normalized,
-            x_min_normalized=x_min_normalized,
-            y_max_normalized=y_max_normalized,
-            y_min_normalized=y_min_normalized,
-            confidence=confidence_score,
-        )
-        await self._data_client.UpdateBoundingBox(request, metadata=self._metadata)
 
     async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: Union[BinaryID, str]) -> None:
         """Removes a bounding box from an image.

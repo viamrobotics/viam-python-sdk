@@ -297,9 +297,11 @@ class UploadMetadata(google.protobuf.message.Message):
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     METHOD_NAME_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
-    FILE_NAME_FIELD_NUMBER: builtins.int
     METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
+    FILE_NAME_FIELD_NUMBER: builtins.int
     FILE_EXTENSION_FIELD_NUMBER: builtins.int
+    FILE_CREATE_TIME_FIELD_NUMBER: builtins.int
+    FILE_MODIFY_TIME_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     DATASET_IDS_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -317,6 +319,14 @@ class UploadMetadata(google.protobuf.message.Message):
         ...
 
     @property
+    def file_create_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def file_modify_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
@@ -324,10 +334,13 @@ class UploadMetadata(google.protobuf.message.Message):
     def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., file_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
+    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_name: builtins.str=..., file_extension: builtins.str=..., file_create_time: google.protobuf.timestamp_pb2.Timestamp | None=..., file_modify_time: google.protobuf.timestamp_pb2.Timestamp | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'dataset_ids', b'dataset_ids', 'file_extension', b'file_extension', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'part_id', b'part_id', 'tags', b'tags', 'type', b'type']) -> None:
+    def HasField(self, field_name: typing.Literal['file_create_time', b'file_create_time', 'file_modify_time', b'file_modify_time']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'dataset_ids', b'dataset_ids', 'file_create_time', b'file_create_time', 'file_extension', b'file_extension', 'file_modify_time', b'file_modify_time', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'part_id', b'part_id', 'tags', b'tags', 'type', b'type']) -> None:
         ...
 global___UploadMetadata = UploadMetadata
 
