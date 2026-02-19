@@ -1286,7 +1286,7 @@ class AppClient:
             # Get the part's address
             address = my_robot_part.fqdn
             # Check if machine is live (last access time less than 10 sec ago)
-            if (time.time() - my_robot_part.last_access.timestamp()) <= 10000:
+            if (time.time() - my_robot_part.last_access.timestamp()) <= 10:
                 print("Machine is live.")
 
         Args:
