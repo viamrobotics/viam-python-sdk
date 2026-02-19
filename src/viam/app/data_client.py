@@ -1193,7 +1193,7 @@ class DataClient:
         response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
         return response.bbox_id
 
-    async def update_bounding_box_to_image_by_id(
+    async def update_bounding_box(
         self,
         binary_id: str,
         bbox_id: str,
@@ -1208,7 +1208,7 @@ class DataClient:
 
         ::
 
-            bbox_id = await data_client.update_bounding_box_to_image_by_id(
+            bbox_id = await data_client.update_bounding_box(
                 binary_id="<YOUR-BINARY-DATA-ID>",
                 bbox_id="2"
                 label="label",
@@ -1236,7 +1236,7 @@ class DataClient:
         Returns:
             N/A
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#UpdateBoundingBox>`_.
         """
         request = UpdateBoundingBoxRequest(
             binary_data_id=binary_id,
