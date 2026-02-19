@@ -16,7 +16,7 @@ buf: clean
 	rm -rf src/viam/gen
 	chmod +x plugin/main.py
 	uv pip install protoletariat
-	uv pip install protobuf==5.29.5
+	uv pip install protobuf==5.29.6
 	$(eval API_VERSION := $(shell grep 'API_VERSION' src/viam/version_metadata.py | awk -F '"' '{print $$2}'))
 	buf generate buf.build/viamrobotics/api:${API_VERSION}
 	buf generate buf.build/viamrobotics/goutils
