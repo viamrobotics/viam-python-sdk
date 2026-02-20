@@ -31,6 +31,7 @@ Classes
    viam.components.arm.KinematicsFileFormat
    viam.components.arm.Pose
    viam.components.arm.JointPositions
+   viam.components.arm.Arm
 
 
 Package Contents
@@ -117,5 +118,326 @@ Package Contents
 
       A list of joint positions. Rotations values are in degrees, translational values in mm.
       There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm
+
+
+.. py:class:: Arm(name: str, *, logger: Optional[logging.Logger] = None)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Arm represents a physical robot arm that exists in three-dimensional space.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   ::
+
+       from viam.components.arm import Arm
+       # To use move_to_position:
+       from viam.proto.common import Pose
+       # To use move_to_joint_positions:
+       from viam.proto.component.arm import JointPositions
+
+   For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
+
+
+   .. py:attribute:: API
+      :type:  Final
+
+      The API of the Resource
+
+
+   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.Pose
+      :abstractmethod:
+
+      :async:
+
+
+      Get the current position of the end of the arm expressed as a ``Pose``.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Get the end position of the arm as a Pose.
+          pos = await my_arm.get_end_position()
+
+      :returns: A representation of the arm's current position as a 6 DOF (six degrees of freedom) pose.
+                The ``Pose`` is composed of values for location and orientation with respect to the origin.
+                Location is expressed as distance, which is represented by x, y, and z coordinate values.
+                Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
+      :rtype: Pose
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getendposition>`_.
+
+
+
+   .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
+      :async:
+
+
+      Move the end of the arm to the Pose specified in ``pose``.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Create a Pose for the arm.
+          examplePose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
+
+          # Move your arm to the Pose.
+          await my_arm.move_to_position(pose=examplePose)
+
+      :param pose: The destination ``Pose`` for the arm. The ``Pose`` is composed of values for location and orientation
+                   with respect to the origin.
+                   Location is expressed as distance, which is represented by x, y, and z coordinate values.
+                   Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
+      :type pose: Pose
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetoposition>`_.
+
+
+
+   .. py:method:: move_to_joint_positions(positions: viam.components.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
+      :async:
+
+
+      Move each joint on the arm to the corresponding angle specified in ``positions``.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Declare a list of values with your desired rotational value for each joint on
+          # the arm. This example is for a 5dof arm.
+          degrees = [0.0, 45.0, 0.0, 0.0, 0.0]
+
+          # Declare a new JointPositions with these values.
+          jointPos = JointPositions(values=degrees)
+
+          # Move each joint of the arm to the position these values specify.
+          await my_arm.move_to_joint_positions(positions=jointPos)
+
+      :param positions: The destination ``JointPositions`` for the arm.
+      :type positions: JointPositions
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions>`_.
+
+
+
+   .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.JointPositions
+      :abstractmethod:
+
+      :async:
+
+
+      Get the JointPositions representing the current position of the arm.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Get the current position of each joint on the arm as JointPositions.
+          pos = await my_arm.get_joint_positions()
+
+      :returns: The current ``JointPositions`` for the arm.
+                ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
+                and translational values (mm).
+      :rtype: JointPositions
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
+
+
+
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
+      :async:
+
+
+      Stop all motion of the arm. It is assumed that the arm stops immediately.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Stop all motion of the arm. It is assumed that the arm stops immediately.
+          await my_arm.stop()
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#stop>`_.
+
+
+
+   .. py:method:: is_moving() -> bool
+      :abstractmethod:
+
+      :async:
+
+
+      Get if the arm is currently moving.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Stop all motion of the arm. It is assumed that the arm stops immediately.
+          await my_arm.stop()
+
+          # Print if the arm is currently moving.
+          print(await my_arm.is_moving())
+
+      :returns: Whether the arm is moving.
+      :rtype: bool
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#ismoving>`_.
+
+
+
+   .. py:method:: get_kinematics(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.KinematicsReturn
+      :abstractmethod:
+
+      :async:
+
+
+      Get the kinematics information associated with the arm.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Get the kinematics information associated with the arm.
+          kinematics = await my_arm.get_kinematics()
+
+          # Get the format of the kinematics file.
+          k_file = kinematics[0]
+
+          # Get the byte contents of the file.
+          k_bytes = kinematics[1]
+
+      :returns: A tuple containing two values; the first [0] value represents the format of the
+                file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
+                Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
+                and the second [1] value represents the byte contents of the file.
+                If available, a third [2] value provides meshes keyed by URDF filepath.
+      :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = await component.do_command(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Sequence[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = Arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
 
 
