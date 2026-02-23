@@ -1,0 +1,39 @@
+name: Claude CI Fix
+
+on:
+  workflow_run:
+    workflows: ["Test"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Failed workflow run ID (from gh run list)'
+        required: true
+      branch:
+        description: 'PR branch name (e.g., claude/SDK-123)'
+        required: true
+
+jobs:
+  call-ci-fix:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.workflow_run.conclusion == 'failure' &&
+        startsWith(github.event.workflow_run.head_branch, 'claude/')
+      )
+    # viamrobotics/claude-ci-workflows@v1.1.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@1a7decd70c0867cc5fefdfbf6e15a0116b350dd1
+    with:
+      run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
+      branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
+      install_command: make install
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'
+      team_mention: '@viamrobotics/sdk'
+      extra_prompt: |
+        - Run `uv run make format` to format code before committing.
+        - Run `uv run make lint` to check for lint issues. Fix any errors.
+      extra_system_prompt: >-
+        Bash commands in CI CANNOT use pipes, command substitution, or shell redirection.
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
