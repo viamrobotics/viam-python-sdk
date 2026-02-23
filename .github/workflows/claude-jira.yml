@@ -1,0 +1,72 @@
+name: Claude Jira Implementation
+
+# Triggered by Jira webhook via middleware that calls GitHub repository_dispatch API.
+# Expected payload:
+#   curl -X POST -H "Authorization: token $GITHUB_PAT" \
+#     https://api.github.com/repos/viamrobotics/viam-python-sdk/dispatches \
+#     -d '{
+#       "event_type": "jira-ticket",
+#       "client_payload": {
+#         "ticket_id": "SDK-123",
+#         "summary": "...",
+#         "description": "...",
+#         "task_complexity": "medium",
+#         "assignee": "John Doe",
+#         "assignee_email": "jdoe@viam.com"
+#       }
+#     }'
+
+on:
+  repository_dispatch:
+    types: [jira-ticket]
+  workflow_dispatch:
+    inputs:
+      ticket_id:
+        description: 'Jira ticket ID (e.g., SDK-123)'
+        required: true
+      summary:
+        description: 'Ticket summary'
+        required: true
+      description:
+        description: 'Ticket description'
+        required: true
+      task_complexity:
+        description: 'Task complexity: small (50 turns), medium (75), large (100)'
+        required: false
+        default: 'small'
+        type: choice
+        options:
+          - small
+          - medium
+          - large
+      assignee:
+        description: 'Atlassian display name of the responsible engineer (e.g., "John Doe")'
+        required: false
+        default: ''
+      assignee_email:
+        description: 'Atlassian email of the responsible engineer'
+        required: false
+        default: ''
+
+jobs:
+  call-jira:
+    # viamrobotics/claude-ci-workflows@v1.3.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@bcc957eb00e0711211c274afe29e798a017c756d
+    with:
+      ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
+      summary: ${{ github.event.client_payload.summary || inputs.summary }}
+      description: ${{ github.event.client_payload.description || inputs.description }}
+      install_command: make install
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
+      task_complexity: ${{ github.event.client_payload.task_complexity || inputs.task_complexity || 'small' }}
+      assignee: ${{ github.event.client_payload.assignee || inputs.assignee || '' }}
+      assignee_email: ${{ github.event.client_payload.assignee_email || inputs.assignee_email || '' }}
+      extra_prompt: |
+        - Run `uv run make format` to format code before committing.
+        - Run `uv run make lint` to check for lint issues. Fix any errors.
+      extra_system_prompt: >-
+        Bash commands in CI CANNOT use pipes, command substitution, or shell redirection.
+        Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes. Do not explore one file at a time when you can read several at once.
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}
