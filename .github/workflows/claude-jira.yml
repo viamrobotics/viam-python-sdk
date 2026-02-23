@@ -50,8 +50,8 @@ on:
 
 jobs:
   call-jira:
-    # viamrobotics/claude-ci-workflows@v1.3.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@bcc957eb00e0711211c274afe29e798a017c756d
+    # viamrobotics/claude-ci-workflows@v1.4.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@df208c3d287bad0c5f4a4b6fa4cfd74de3208497
     with:
       ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
@@ -65,8 +65,9 @@ jobs:
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
       extra_system_prompt: >-
-        Bash commands in CI CANNOT use pipes, command substitution, or shell redirection.
-        Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes. Do not explore one file at a time when you can read several at once.
+        Do NOT run make install or uv sync.
+        Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
+        Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}

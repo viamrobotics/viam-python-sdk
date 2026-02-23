@@ -21,8 +21,8 @@ jobs:
         github.event.workflow_run.conclusion == 'failure' &&
         startsWith(github.event.workflow_run.head_branch, 'claude/')
       )
-    # viamrobotics/claude-ci-workflows@v1.1.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@1a7decd70c0867cc5fefdfbf6e15a0116b350dd1
+    # viamrobotics/claude-ci-workflows@v1.4.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@df208c3d287bad0c5f4a4b6fa4cfd74de3208497
     with:
       run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
       branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
@@ -33,7 +33,8 @@ jobs:
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
       extra_system_prompt: >-
-        Bash commands in CI CANNOT use pipes, command substitution, or shell redirection.
+        Do NOT run make install or uv sync.
+        Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
