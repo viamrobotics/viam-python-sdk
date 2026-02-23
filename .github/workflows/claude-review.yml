@@ -55,8 +55,8 @@ jobs:
   auto-review:
     needs: resolve-pr
     if: needs.resolve-pr.outputs.pr_found == 'true'
-    # viamrobotics/claude-ci-workflows@v1.1.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-auto-review.yml@1a7decd70c0867cc5fefdfbf6e15a0116b350dd1
+    # viamrobotics/claude-ci-workflows@v1.4.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-auto-review.yml@df208c3d287bad0c5f4a4b6fa4cfd74de3208497
     with:
       pr_number: ${{ needs.resolve-pr.outputs.pr_number }}
       pr_title: ${{ needs.resolve-pr.outputs.pr_title }}
@@ -79,8 +79,8 @@ jobs:
         (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
         (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude'))
       )
-    # viamrobotics/claude-ci-workflows@v1.1.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-on-demand-review.yml@1a7decd70c0867cc5fefdfbf6e15a0116b350dd1
+    # viamrobotics/claude-ci-workflows@v1.4.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-on-demand-review.yml@df208c3d287bad0c5f4a4b6fa4cfd74de3208497
     with:
       install_command: make install
       allowed_tools: 'Read,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(git diff*),Bash(git log*),Bash(git status*),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr diff*),Bash(gh pr view*)'
