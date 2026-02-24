@@ -75,10 +75,21 @@ class TestService:
             cast(AsyncMock, switch.get_number_of_positions).return_value = (DEFAULT_NUMBER_OF_POSITIONS, DEFAULT_LABELS)
             client = SwitchServiceStub(channel)
             request = GetNumberOfPositionsRequest(name=switch.name, extra=dict_to_struct(DEFAULT_EXTRA))
-            await client.GetNumberOfPositions(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            response = await client.GetNumberOfPositions(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            assert response.number_of_positions == DEFAULT_NUMBER_OF_POSITIONS
+            assert list(response.labels) == DEFAULT_LABELS
             cast(AsyncMock, switch.get_number_of_positions).assert_called_once_with(
                 timeout=DEFAULT_TIMEOUT_APPROX, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA.metadata
             )
+
+    async def test_get_number_of_positions_empty_labels(self, switch: Switch, service: SwitchRPCService):
+        async with ChannelFor([service]) as channel:
+            cast(AsyncMock, switch.get_number_of_positions).return_value = (2, [])
+            client = SwitchServiceStub(channel)
+            request = GetNumberOfPositionsRequest(name=switch.name)
+            response = await client.GetNumberOfPositions(request)
+            assert response.number_of_positions == 2
+            assert list(response.labels) == []
 
     async def test_do(self, switch: Switch, service: SwitchRPCService):
         async with ChannelFor([service]) as channel:
@@ -114,10 +125,20 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             cast(AsyncMock, switch.get_number_of_positions).return_value = (DEFAULT_NUMBER_OF_POSITIONS, DEFAULT_LABELS)
             client = SwitchClient(switch.name, channel)
-            await client.get_number_of_positions(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA)
+            number_of_positions, labels = await client.get_number_of_positions(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA)
+            assert number_of_positions == DEFAULT_NUMBER_OF_POSITIONS
+            assert list(labels) == DEFAULT_LABELS
             cast(AsyncMock, switch.get_number_of_positions).assert_called_once_with(
                 timeout=DEFAULT_TIMEOUT_APPROX, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA.metadata
             )
+
+    async def test_get_number_of_positions_empty_labels(self, switch: Switch, service: SwitchRPCService):
+        async with ChannelFor([service]) as channel:
+            cast(AsyncMock, switch.get_number_of_positions).return_value = (5, [])
+            client = SwitchClient(switch.name, channel)
+            number_of_positions, labels = await client.get_number_of_positions()
+            assert number_of_positions == 5
+            assert list(labels) == []
 
     async def test_do(self, switch: Switch, service: SwitchRPCService):
         async with ChannelFor([service]) as channel:
