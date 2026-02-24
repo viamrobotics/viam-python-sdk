@@ -65,7 +65,7 @@ jobs:
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
         - Run `uv run pytest tests/<relevant_test_file> -v` to verify tests pass.
-      show_full_output: false
+      show_full_output: true
       extra_system_prompt: >-
         Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
         Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes.
