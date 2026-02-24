@@ -2447,6 +2447,7 @@ mlmodel = [
     { name = "numpy", version = "1.24.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
     { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9' and python_full_version < '3.13'" },
     { name = "numpy", version = "2.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.13'" },
+    { name = "packaging" },
 ]
 
 [package.dev-dependencies]
@@ -2475,6 +2476,7 @@ requires-dist = [
     { name = "googleapis-common-protos", specifier = ">=1.65.0" },
     { name = "grpclib", specifier = ">=0.4.7" },
     { name = "numpy", marker = "extra == 'mlmodel'" },
+    { name = "packaging", marker = "extra == 'mlmodel'" },
     { name = "protobuf", specifier = "==5.29.6" },
     { name = "pymongo", specifier = ">=4.10.1" },
     { name = "typing-extensions", specifier = ">=4.12.2" },
