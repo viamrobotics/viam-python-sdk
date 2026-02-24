@@ -233,12 +233,12 @@ class TestService:
 
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             request = PWMFrequencyRequest(name=board.name, pin="pin1", extra=dict_to_struct(extra))
-            response: PWMFrequencyResponse = await client.PWMFrequency(request, timeout=182)
+            response: PWMFrequencyResponse = await client.PWMFrequency(request, timeout=1.82)
             assert response.frequency_hz == 0
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == loose_approx(182)
+            assert pin.timeout == loose_approx(1.82)
 
     async def test_set_pwm_freq(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:

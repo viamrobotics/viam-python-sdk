@@ -116,18 +116,18 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
             request = MoveToPositionRequest(name=self.gantry.name, positions_mm=[1, 8, 2], speeds_mm_per_sec=[3, 9, 12])
-            await client.MoveToPosition(request, timeout=18.1)
+            await client.MoveToPosition(request, timeout=8.1)
             assert self.gantry.position == [1, 8, 2]
             assert self.gantry.speeds == [3, 9, 12]
-            assert self.gantry.timeout == loose_approx(18.1)
+            assert self.gantry.timeout == loose_approx(8.1)
 
     async def test_home(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
             request = HomeRequest(name=self.gantry.name)
-            response: HomeResponse = await client.Home(request, timeout=18.1)
+            response: HomeResponse = await client.Home(request, timeout=8.1)
             assert response.homed is True
-            assert self.gantry.timeout == loose_approx(18.1)
+            assert self.gantry.timeout == loose_approx(8.1)
 
     async def test_get_lengths(self):
         async with ChannelFor([self.service]) as channel:

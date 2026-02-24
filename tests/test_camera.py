@@ -124,12 +124,12 @@ class TestService:
             client = CameraServiceStub(channel)
 
             request = GetImagesRequest(name="camera")
-            response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
+            response: GetImagesResponse = await client.GetImages(request, timeout=8.1)
             raw_img = response.images[0]
             assert raw_img.mime_type == CameraMimeType.PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
-            assert camera.timeout == loose_approx(18.1)
+            assert camera.timeout == loose_approx(8.1)
 
     async def test_get_images_uses_source_name_not_resource_name(self):
         class MockCameraWithCustomSource(MockCamera):

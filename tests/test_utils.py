@@ -251,3 +251,32 @@ async def test_pointer_counter():
     counter.decrement()
 
     await task
+
+
+class TestLooseApprox:
+    """Tests that loose_approx uses absolute tolerance (50ms), not relative."""
+
+    def test_within_tolerance(self):
+        from . import loose_approx
+
+        assert 1.82 == loose_approx(1.82)
+        assert 1.84 == loose_approx(1.82)
+        assert 1.80 == loose_approx(1.82)
+
+    def test_outside_tolerance(self):
+        from . import loose_approx
+
+        assert 1.82 + 0.06 != loose_approx(1.82)
+        assert 1.82 - 0.06 != loose_approx(1.82)
+
+    def test_absolute_not_relative(self):
+        """A small value and a large value should have the same absolute tolerance."""
+        from . import loose_approx
+
+        # For a small value like 0.001, a relative tolerance of 1% would be 0.00001.
+        # With absolute tolerance of 50ms, 0.001 + 0.04 should still match.
+        assert 0.041 == loose_approx(0.001)
+
+        # For a large value like 100, a relative tolerance of 1% would be 1.0.
+        # With absolute tolerance of 50ms, 100 + 0.06 should NOT match.
+        assert 100.06 != loose_approx(100)
