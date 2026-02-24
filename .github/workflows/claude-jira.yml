@@ -50,22 +50,23 @@ on:
 
 jobs:
   call-jira:
-    # viamrobotics/claude-ci-workflows@v1.4.1
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@c303b67ff062e9f7dd762677931685f2ca421e20
+    # viamrobotics/claude-ci-workflows@v1.5.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@17b2ff869b677fef8b128c2f01fa891bf946552f
     with:
       ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
       description: ${{ github.event.client_payload.description || inputs.description }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
       task_complexity: ${{ github.event.client_payload.task_complexity || inputs.task_complexity || 'small' }}
       assignee: ${{ github.event.client_payload.assignee || inputs.assignee || '' }}
       assignee_email: ${{ github.event.client_payload.assignee_email || inputs.assignee_email || '' }}
       extra_prompt: |
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
+        - Run `uv run pytest tests/<relevant_test_file> -v` to verify tests pass.
+      show_full_output: false
       extra_system_prompt: >-
-        Do NOT run make install or uv sync.
         Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
         Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes.
     secrets:
