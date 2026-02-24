@@ -254,8 +254,6 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
     UnimplementedDataServiceBase,
-    UpdateBoundingBoxRequest,
-    UpdateBoundingBoxResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
