@@ -50,8 +50,8 @@ on:
 
 jobs:
   call-jira:
-    # viamrobotics/claude-ci-workflows@v1.5.1
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@75c4ced24fd9b04dc99e5f3525722d6c6dc0f99c
+    # viamrobotics/claude-ci-workflows@v1.5.2
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@3221ee76e88a2b009644973c84c9f1e0acd08ef3
     with:
       ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
@@ -71,4 +71,5 @@ jobs:
         Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
       SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}
