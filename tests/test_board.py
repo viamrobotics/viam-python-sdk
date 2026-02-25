@@ -364,7 +364,6 @@ class TestClient:
             pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
             pm_timedelta = timedelta(minutes=1)
             await client.set_power_mode(mode=pm_mode, duration=pm_timedelta, timeout=9.83)
-            print("timeout is", board.timeout)
             assert board.timeout == expected_grpc_timeout(9.83)
             assert board.power_mode == pm_mode
             pm_duration = Duration()
