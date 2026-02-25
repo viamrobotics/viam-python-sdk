@@ -50,8 +50,8 @@ on:
 
 jobs:
   call-jira:
-    # viamrobotics/claude-ci-workflows@v1.6.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@0657c6680fd05d91c42510be78dcfd50fc7b169c
+    # viamrobotics/claude-ci-workflows@v1.6.1
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@efc428a839b04cf3f135ad11ac0cae1e8e247aa1
     with:
       ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
@@ -69,6 +69,7 @@ jobs:
       extra_system_prompt: >-
         Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
         Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes.
+        Do NOT modify any files under .github/.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       CI_GITHUB_APP_ID: ${{ secrets.CI_GITHUB_APP_ID }}
