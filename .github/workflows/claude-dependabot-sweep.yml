@@ -1,0 +1,28 @@
+name: Claude Dependabot Sweep
+
+on:
+  schedule:
+    - cron: '0 14 * * 2' # Every Tuesday at 9 AM EST
+  workflow_dispatch:
+
+jobs:
+  sweep:
+    # viamrobotics/claude-ci-workflows@v1.9.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@41c2182579d9039d9fd30b2a2a0976008b402b8b
+    with:
+      install_command: 'pip install uv && make install'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
+      alert_severity: 'critical,high,medium'
+      extra_prompt: |
+        - This project uses `uv` for dependency management with `pyproject.toml` and `uv.lock`.
+        - To update a dependency: edit the version constraint in `pyproject.toml`, then run `uv lock` to regenerate the lockfile.
+        - Alternatively, use `uv add <package>>=<version>` to update both `pyproject.toml` and `uv.lock` in one step.
+        - Do NOT edit `uv.lock` directly — always regenerate it with `uv lock`.
+        - Run `uv run make format` to format code before committing.
+        - Run `uv run make lint` to check for lint issues. Fix any errors.
+      extra_system_prompt: >-
+        Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+      SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}
