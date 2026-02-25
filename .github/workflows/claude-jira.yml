@@ -68,8 +68,6 @@ jobs:
       show_full_output: true
       extra_system_prompt: >-
         Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
-        Conserve turns: read multiple related files in parallel, batch similar edits, and plan your full approach before making changes.
-        Do NOT modify any files under .github/.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       CI_GITHUB_APP_ID: ${{ secrets.CI_GITHUB_APP_ID }}

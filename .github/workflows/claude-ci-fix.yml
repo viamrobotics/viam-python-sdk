@@ -34,7 +34,6 @@ jobs:
         - Run `uv run make lint` to check for lint issues. Fix any errors.
       extra_system_prompt: >-
         Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
-        Do NOT modify any files under .github/.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
