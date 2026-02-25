@@ -27,7 +27,7 @@ jobs:
       run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
       branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'
       team_mention: '@viamrobotics/sdk'
       extra_prompt: |
         - Run `uv run make format` to format code before committing.

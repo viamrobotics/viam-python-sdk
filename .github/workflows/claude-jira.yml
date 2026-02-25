@@ -57,7 +57,7 @@ jobs:
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
       description: ${{ github.event.client_payload.description || inputs.description }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
       task_complexity: ${{ github.event.client_payload.task_complexity || inputs.task_complexity || 'small' }}
       assignee: ${{ github.event.client_payload.assignee || inputs.assignee || '' }}
       assignee_email: ${{ github.event.client_payload.assignee_email || inputs.assignee_email || '' }}
