@@ -7,11 +7,11 @@ on:
 
 jobs:
   sweep:
-    # viamrobotics/claude-ci-workflows@v1.10.3
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@ea8be5e20b05198dd47f8b05d85d33b5d229768b
+    # viamrobotics/claude-ci-workflows@v1.10.4
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@ee8d08cf2ea4cb3ec74e566db8c28273e1730855
     with:
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
       alert_severity: 'critical,high,medium'
       max_turns: 40
       extra_prompt: |

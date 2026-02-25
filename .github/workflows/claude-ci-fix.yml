@@ -21,13 +21,13 @@ jobs:
         github.event.workflow_run.conclusion == 'failure' &&
         startsWith(github.event.workflow_run.head_branch, 'claude/')
       )
-    # viamrobotics/claude-ci-workflows@v1.10.3
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@ea8be5e20b05198dd47f8b05d85d33b5d229768b
+    # viamrobotics/claude-ci-workflows@v1.10.4
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@ee8d08cf2ea4cb3ec74e566db8c28273e1730855
     with:
       run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
       branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'
       team_mention: '@viamrobotics/sdk'
       extra_prompt: |
         - Run `uv run make format` to format code before committing.

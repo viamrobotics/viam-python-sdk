@@ -50,14 +50,14 @@ on:
 
 jobs:
   call-jira:
-    # viamrobotics/claude-ci-workflows@v1.10.3
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@ea8be5e20b05198dd47f8b05d85d33b5d229768b
+    # viamrobotics/claude-ci-workflows@v1.10.4
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@ee8d08cf2ea4cb3ec74e566db8c28273e1730855
     with:
       ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
       description: ${{ github.event.client_payload.description || inputs.description }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*)'
       task_complexity: ${{ github.event.client_payload.task_complexity || inputs.task_complexity || 'small' }}
       assignee: ${{ github.event.client_payload.assignee || inputs.assignee || '' }}
       assignee_email: ${{ github.event.client_payload.assignee_email || inputs.assignee_email || '' }}

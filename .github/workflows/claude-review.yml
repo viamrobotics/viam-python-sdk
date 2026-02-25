@@ -55,14 +55,14 @@ jobs:
   auto-review:
     needs: resolve-pr
     if: needs.resolve-pr.outputs.pr_found == 'true'
-    # viamrobotics/claude-ci-workflows@v1.10.3
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-auto-review.yml@ea8be5e20b05198dd47f8b05d85d33b5d229768b
+    # viamrobotics/claude-ci-workflows@v1.10.4
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-auto-review.yml@ee8d08cf2ea4cb3ec74e566db8c28273e1730855
     with:
       pr_number: ${{ needs.resolve-pr.outputs.pr_number }}
       pr_title: ${{ needs.resolve-pr.outputs.pr_title }}
       branch: ${{ needs.resolve-pr.outputs.branch }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(uv run make format*),Bash(uv run make lint*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr review*),Bash(gh pr comment*),Bash(gh pr diff*),Bash(gh pr view*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr review*),Bash(gh pr comment*),Bash(gh pr diff*),Bash(gh pr view*)'
       extra_review_instructions: |
         - Ensure src/viam/gen/ was not modified.
         - If you fix issues, run `uv run make format` then `uv run make lint`.
@@ -79,8 +79,8 @@ jobs:
         (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
         (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude'))
       )
-    # viamrobotics/claude-ci-workflows@v1.10.3
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-on-demand-review.yml@ea8be5e20b05198dd47f8b05d85d33b5d229768b
+    # viamrobotics/claude-ci-workflows@v1.10.4
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-on-demand-review.yml@ee8d08cf2ea4cb3ec74e566db8c28273e1730855
     with:
       install_command: 'pip install uv && make install'
       allowed_tools: 'Read,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git status*),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr diff*),Bash(gh pr view*)'
