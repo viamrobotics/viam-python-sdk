@@ -21,8 +21,8 @@ jobs:
         github.event.workflow_run.conclusion == 'failure' &&
         startsWith(github.event.workflow_run.head_branch, 'claude/')
       )
-    # viamrobotics/claude-ci-workflows@v1.6.1
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@efc428a839b04cf3f135ad11ac0cae1e8e247aa1
+    # viamrobotics/claude-ci-workflows@v1.7.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@21198529cf3048deeea8c1d9e791e2b458b0f757
     with:
       run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
       branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
