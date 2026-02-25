@@ -12,8 +12,8 @@ jobs:
       github.repository_owner == 'viamrobotics' &&
       github.event.issue.pull_request &&
       contains(github.event.comment.body, '@claude-fix')
-    # viamrobotics/claude-ci-workflows@v1.10.1
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-pr-fix.yml@380cb677633bdc378a17da1c372cb72272636f8e
+    # viamrobotics/claude-ci-workflows@v1.10.2
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-pr-fix.yml@8cc3a93ff2acfe4db5109b435093814c19a4ff72
     with:
       install_command: 'pip install uv && make install'
       allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'

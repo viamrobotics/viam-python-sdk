@@ -7,12 +7,13 @@ on:
 
 jobs:
   sweep:
-    # viamrobotics/claude-ci-workflows@v1.10.1
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@380cb677633bdc378a17da1c372cb72272636f8e
+    # viamrobotics/claude-ci-workflows@v1.10.2
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@8cc3a93ff2acfe4db5109b435093814c19a4ff72
     with:
       install_command: 'pip install uv && make install'
       allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
       alert_severity: 'critical,high,medium'
+      max_turns: 40
       extra_prompt: |
         - This project uses `uv` for dependency management with `pyproject.toml` and `uv.lock`.
         - To update a dependency: edit the version constraint in `pyproject.toml`, then run `uv lock` to regenerate the lockfile.
