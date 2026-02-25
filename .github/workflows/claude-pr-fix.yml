@@ -1,34 +1,22 @@
-name: Claude CI Fix
+name: Claude PR Fix
 
 on:
-  workflow_run:
-    workflows: ["Test"]
-    types: [completed]
-  workflow_dispatch:
-    inputs:
-      run_id:
-        description: 'Failed workflow run ID (from gh run list)'
-        required: true
-      branch:
-        description: 'PR branch name (e.g., claude/SDK-123)'
-        required: true
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
 
 jobs:
-  call-ci-fix:
+  pr-fix:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (
-        github.event.workflow_run.conclusion == 'failure' &&
-        startsWith(github.event.workflow_run.head_branch, 'claude/')
-      )
+      github.repository_owner == 'viamrobotics' &&
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '@claude-fix')
     # viamrobotics/claude-ci-workflows@v1.9.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-ci-fix.yml@41c2182579d9039d9fd30b2a2a0976008b402b8b
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-pr-fix.yml@41c2182579d9039d9fd30b2a2a0976008b402b8b
     with:
-      run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
-      branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
       install_command: 'pip install uv && make install'
       allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *)'
-      team_mention: '@viamrobotics/sdk'
       extra_prompt: |
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
