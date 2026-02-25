@@ -7,8 +7,8 @@ on:
 
 jobs:
   sweep:
-    # viamrobotics/claude-ci-workflows@v1.10.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@807ec984ba6a6e59815174a7730aedbf24fc78b5
+    # viamrobotics/claude-ci-workflows@v1.10.1
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@380cb677633bdc378a17da1c372cb72272636f8e
     with:
       install_command: 'pip install uv && make install'
       allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
