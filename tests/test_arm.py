@@ -27,7 +27,7 @@ from viam.proto.component.arm import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockArm
 
 
@@ -130,7 +130,7 @@ class TestService:
             request = StopRequest(name=self.name)
             await client.Stop(request, timeout=4.4)
             assert self.arm.is_stopped is True
-            assert self.arm.timeout == loose_approx(4.4)
+            assert self.arm.timeout == expected_grpc_timeout(4.4)
 
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
@@ -215,7 +215,7 @@ class TestClient:
             client = ArmClient(self.name, channel)
             await client.stop(timeout=1.82)
             assert self.arm.is_stopped is True
-            assert self.arm.timeout == loose_approx(1.82)
+            assert self.arm.timeout == expected_grpc_timeout(1.82)
 
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:

@@ -6,7 +6,7 @@ from viam.proto.component.generic import GenericServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.services import MockGenericService
 
 
@@ -16,7 +16,7 @@ class TestGenericService:
     async def test_do(self):
         result = await self.generic.do_command({"command": "args"}, timeout=1.82)
         assert result == {"command": True}
-        assert self.generic.timeout == loose_approx(1.82)
+        assert self.generic.timeout == expected_grpc_timeout(1.82)
 
 
 class TestService:
@@ -34,7 +34,7 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request, timeout=4.4)
             result = struct_to_dict(response.result)
             assert result == {"command": True}
-            assert self.generic.timeout == loose_approx(4.4)
+            assert self.generic.timeout == expected_grpc_timeout(4.4)
 
 
 class TestClient:
@@ -50,4 +50,4 @@ class TestClient:
             client = GenericClient(self.name, channel)
             result = await client.do_command({"command": "args"}, timeout=7.86)
             assert result == {"command": True}
-            assert self.generic.timeout == loose_approx(7.86)
+            assert self.generic.timeout == expected_grpc_timeout(7.86)
