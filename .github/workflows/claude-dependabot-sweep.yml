@@ -7,8 +7,8 @@ on:
 
 jobs:
   sweep:
-    # viamrobotics/claude-ci-workflows@v1.9.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@41c2182579d9039d9fd30b2a2a0976008b402b8b
+    # viamrobotics/claude-ci-workflows@v1.10.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@807ec984ba6a6e59815174a7730aedbf24fc78b5
     with:
       install_command: 'pip install uv && make install'
       allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
@@ -24,5 +24,6 @@ jobs:
         Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+      CI_GITHUB_APP_ID: ${{ secrets.CI_GITHUB_APP_ID }}
+      CI_GITHUB_APP_PRIVATE_KEY: ${{ secrets.CI_GITHUB_APP_PRIVATE_KEY }}
       SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}
