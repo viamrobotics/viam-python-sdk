@@ -20,7 +20,6 @@ jobs:
           Alternatively, use `uv add <package>>=<version>` to update both `pyproject.toml` and `uv.lock` in one step.
         - For package investigation, use ONLY these Bash commands: uv pip show, uv pip index versions, uv add, uv lock.
         - Do NOT use: python3, pip (without uv prefix), curl, WebFetch, WebSearch, or uv run python3. These are not available."
-
         - Do NOT edit `uv.lock` directly — always regenerate it with `uv lock`.
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
