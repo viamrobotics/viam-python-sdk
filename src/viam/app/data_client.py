@@ -1144,7 +1144,6 @@ class DataClient:
                 x_min_normalized=0,
                 y_min_normalized=.1,
                 x_max_normalized=.2,
-
                 y_max_normalized=.3,
                 confidence_score=.95
             )

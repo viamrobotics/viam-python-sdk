@@ -201,8 +201,6 @@ from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
-    UpdateBoundingBoxRequest,
-    UpdateBoundingBoxResponse,
     AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
     AddTagsToBinaryDataByIDsResponse,
@@ -254,6 +252,8 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
     UnimplementedDataServiceBase,
+    UpdateBoundingBoxRequest,
+    UpdateBoundingBoxResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
