@@ -16,7 +16,6 @@ dependencies = [
     "protobuf==5.29.6",
     "typing-extensions>=4.12.2",
     "pymongo>=4.10.1",
-    "h2>=4.3.0 ; python_full_version >= '3.9'",
 ]
 [dependency-groups]
 dev = [
@@ -71,6 +70,11 @@ omit = [ "*/gen/*", "*/proto/*" ]
 [tool.pyright]
 include = [ "src" ]
 exclude = [ "**/gen", "**/proto" ]
+
+[tool.uv]
+constraint-dependencies = [
+    "h2>=4.3.0 ; python_version >= '3.9'",
+]
 
 [tool.ruff]
 line-length = 140

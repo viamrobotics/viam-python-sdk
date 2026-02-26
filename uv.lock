@@ -8,6 +8,9 @@ resolution-markers = [
     "python_full_version >= '3.13'",
 ]
 
+[manifest]
+constraints = [{ name = "h2", marker = "python_full_version >= '3.9'", specifier = ">=4.3.0" }]
+
 [[package]]
 name = "alabaster"
 version = "0.7.13"
@@ -2493,7 +2496,6 @@ source = { editable = "." }
 dependencies = [
     { name = "googleapis-common-protos" },
     { name = "grpclib" },
-    { name = "h2", version = "4.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "protobuf" },
     { name = "pymongo" },
     { name = "typing-extensions" },
@@ -2532,7 +2534,6 @@ dev = [
 requires-dist = [
     { name = "googleapis-common-protos", specifier = ">=1.65.0" },
     { name = "grpclib", specifier = ">=0.4.7" },
-    { name = "h2", marker = "python_full_version >= '3.9'", specifier = ">=4.3.0" },
     { name = "numpy", marker = "extra == 'mlmodel'" },
     { name = "packaging", marker = "extra == 'mlmodel'" },
     { name = "protobuf", specifier = "==5.29.6" },
