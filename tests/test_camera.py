@@ -24,7 +24,7 @@ from viam.proto.component.camera import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockCamera
 
 # ################################ NB ################################# #
@@ -107,10 +107,10 @@ class TestCamera:
         assert camera.timeout is None
 
         await camera.get_point_cloud(timeout=4.4)
-        assert camera.timeout == loose_approx(4.4)
+        assert camera.timeout == expected_grpc_timeout(4.4)
 
         await camera.get_properties(timeout=7.86)
-        assert camera.timeout == loose_approx(7.86)
+        assert camera.timeout == expected_grpc_timeout(7.86)
 
     async def test_get_geometries(self, camera: MockCamera):
         geometries = await camera.get_geometries()
@@ -129,7 +129,7 @@ class TestService:
             assert raw_img.mime_type == CameraMimeType.PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
-            assert camera.timeout == loose_approx(18.1)
+            assert camera.timeout == expected_grpc_timeout(18.1)
 
     async def test_get_images_uses_source_name_not_resource_name(self):
         class MockCameraWithCustomSource(MockCamera):
@@ -158,7 +158,7 @@ class TestService:
             request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD)
             response: GetPointCloudResponse = await client.GetPointCloud(request, timeout=7.86)
             assert response.point_cloud == point_cloud
-            assert camera.timeout == loose_approx(7.86)
+            assert camera.timeout == expected_grpc_timeout(7.86)
 
     async def test_get_properties(self, camera: MockCamera, service: CameraRPCService, properties: Camera.Properties):
         assert camera.timeout is None
@@ -170,7 +170,7 @@ class TestService:
             assert response.intrinsic_parameters == properties.intrinsic_parameters
             assert response.mime_types == properties.mime_types
             assert response.frame_rate == properties.frame_rate
-            assert camera.timeout == loose_approx(5.43)
+            assert camera.timeout == expected_grpc_timeout(5.43)
 
     async def test_do(self, camera: MockCamera, service: CameraRPCService):
         async with ChannelFor([service]) as channel:
@@ -200,7 +200,7 @@ class TestClient:
             assert imgs[0].name == camera.name
             assert imgs[0].data == image.data
             assert md == metadata
-            assert camera.timeout == loose_approx(1.82)
+            assert camera.timeout == expected_grpc_timeout(1.82)
 
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
@@ -208,7 +208,7 @@ class TestClient:
             client = CameraClient("camera", channel)
             pc, _ = await client.get_point_cloud(timeout=4.4)
             assert pc == point_cloud
-            assert camera.timeout == loose_approx(4.4)
+            assert camera.timeout == expected_grpc_timeout(4.4)
 
     async def test_get_properties(self, camera: MockCamera, service: CameraRPCService, properties: Camera.Properties):
         assert camera.timeout is None
@@ -216,7 +216,7 @@ class TestClient:
             client = CameraClient("camera", channel)
             props = await client.get_properties(timeout=7.86)
             assert props == properties
-            assert camera.timeout == loose_approx(7.86)
+            assert camera.timeout == expected_grpc_timeout(7.86)
 
     async def test_do(self, service: CameraRPCService):
         async with ChannelFor([service]) as channel:

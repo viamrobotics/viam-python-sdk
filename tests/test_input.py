@@ -23,7 +23,7 @@ from viam.proto.component.inputcontroller import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockInputController
 
 
@@ -72,20 +72,20 @@ class TestInputController:
             Control.BUTTON_E_STOP,
         ]
         assert controller.extra == extra
-        assert controller.timeout == loose_approx(4.4)
+        assert controller.timeout == expected_grpc_timeout(4.4)
 
     async def test_get_events(self, controller: MockInputController):
         extra = {"foo": "get_events"}
         events = await controller.get_events(extra=extra, timeout=1.82)
         assert len(events) == 0
         assert controller.extra == extra
-        assert controller.timeout == loose_approx(1.82)
+        assert controller.timeout == expected_grpc_timeout(1.82)
 
     async def test_trigger_event(self, controller: MockInputController):
         assert len(controller.events) == 0
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
         await controller.trigger_event(event, timeout=7.86)
-        assert controller.timeout == loose_approx(7.86)
+        assert controller.timeout == expected_grpc_timeout(7.86)
         events = await controller.get_events()
         assert events[Control.ABSOLUTE_X] == event
         assert controller.extra is None
@@ -143,7 +143,7 @@ class TestService:
                 Control.BUTTON_E_STOP,
             ]
             assert controller.extra == extra
-            assert controller.timeout == loose_approx(2.23)
+            assert controller.timeout == expected_grpc_timeout(2.23)
 
     async def test_get_events(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
@@ -154,7 +154,7 @@ class TestService:
             events = list(response.events)
             assert events == list(controller.events.values())
             assert controller.extra == extra
-            assert controller.timeout == loose_approx(2.34)
+            assert controller.timeout == expected_grpc_timeout(2.34)
 
     async def test_trigger_event(self, controller: MockInputController, service: InputControllerRPCService):
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
@@ -168,7 +168,7 @@ class TestService:
             # timestamp nanos conversion can result in differences in the 1e-7 scale
             assert abs(controller.events[Control.ABSOLUTE_X].time - event.time) < 0.000001
             assert controller.extra == {}
-            assert controller.timeout == loose_approx(3.45)
+            assert controller.timeout == expected_grpc_timeout(3.45)
 
     async def test_stream_events(selc, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
@@ -249,7 +249,7 @@ class TestClient:
                 Control.BUTTON_E_STOP,
             ]
             assert controller.extra == extra
-            assert controller.timeout == loose_approx(4.56)
+            assert controller.timeout == expected_grpc_timeout(4.56)
 
     async def test_get_events(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
@@ -258,7 +258,7 @@ class TestClient:
             events = await client.get_events(extra=extra, timeout=5.67)
             assert events == controller.events
             assert controller.extra == extra
-            assert controller.timeout == loose_approx(5.67)
+            assert controller.timeout == expected_grpc_timeout(5.67)
 
     async def test_trigger_event(self, controller: MockInputController, service: InputControllerRPCService):
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
@@ -270,7 +270,7 @@ class TestClient:
             assert controller.events[Control.ABSOLUTE_X].value == event.value
             # timestamp nanos conversion can result in differences in the 1e-7 scale
             assert abs(controller.events[Control.ABSOLUTE_X].time - event.time) < 0.000001
-            assert controller.timeout == loose_approx(6.78)
+            assert controller.timeout == expected_grpc_timeout(6.78)
             assert controller.extra == {}
 
     async def test_register_control_callback(self, controller: MockInputController, service: InputControllerRPCService):

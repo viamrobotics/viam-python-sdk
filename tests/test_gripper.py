@@ -24,7 +24,7 @@ from viam.proto.component.gripper import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockGripper
 
 
@@ -49,7 +49,7 @@ class TestGripper:
     async def test_open(self, gripper: MockGripper):
         await gripper.open(timeout=1.82)
         assert gripper.opened is True
-        assert gripper.timeout == loose_approx(1.82)
+        assert gripper.timeout == expected_grpc_timeout(1.82)
 
     async def test_grab(self, gripper: MockGripper):
         grabbed = await gripper.grab()
@@ -63,7 +63,7 @@ class TestGripper:
         assert gripper.is_stopped is False
         await gripper.stop(timeout=7.86)
         assert gripper.is_stopped is True
-        assert gripper.timeout == loose_approx(7.86)
+        assert gripper.timeout == expected_grpc_timeout(7.86)
 
     async def test_is_moving(self, gripper: MockGripper):
         await gripper.open()
@@ -100,7 +100,7 @@ class TestService:
             request = OpenRequest(name=gripper.name)
             await client.Open(request, timeout=1.23)
             assert gripper.opened is True
-            assert gripper.timeout == loose_approx(1.23)
+            assert gripper.timeout == expected_grpc_timeout(1.23)
 
     async def test_grab(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -109,7 +109,7 @@ class TestService:
             response: GrabResponse = await client.Grab(request, timeout=4.56)
             assert gripper.opened is False
             assert isinstance(response.success, bool)
-            assert gripper.timeout == loose_approx(4.56)
+            assert gripper.timeout == expected_grpc_timeout(4.56)
 
     async def test_stop(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -123,7 +123,7 @@ class TestService:
             request = StopRequest(name=gripper.name)
             await client.Stop(request, timeout=7.89)
             assert gripper.is_stopped is True
-            assert gripper.timeout == loose_approx(7.89)
+            assert gripper.timeout == expected_grpc_timeout(7.89)
 
     async def test_is_moving(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -174,7 +174,7 @@ class TestClient:
             client = GripperClient(gripper.name, channel)
             await client.open(timeout=1.23)
             assert gripper.opened is True
-            assert gripper.timeout == loose_approx(1.23)
+            assert gripper.timeout == expected_grpc_timeout(1.23)
 
     async def test_grab(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -182,7 +182,7 @@ class TestClient:
             grabbed = await client.grab(timeout=2.34)
             assert gripper.opened is False
             assert isinstance(grabbed, bool)
-            assert gripper.timeout == loose_approx(2.34)
+            assert gripper.timeout == expected_grpc_timeout(2.34)
 
     async def test_stop(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -193,7 +193,7 @@ class TestClient:
             assert gripper.is_stopped is False
             await client.stop(timeout=3.45)
             assert gripper.is_stopped is True
-            assert gripper.timeout == loose_approx(3.45)
+            assert gripper.timeout == expected_grpc_timeout(3.45)
 
     async def test_is_moving(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:

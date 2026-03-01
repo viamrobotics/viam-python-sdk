@@ -16,7 +16,7 @@ from viam.proto.component.powersensor import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import MockPowerSensor
 
 VOLTS = 3.2
@@ -75,16 +75,16 @@ class TestPowerSensor:
         assert power_sensor.timeout is None
 
         await power_sensor.get_voltage(timeout=8.90)
-        assert power_sensor.timeout == loose_approx(8.90)
+        assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
         await power_sensor.get_current(timeout=2.34)
-        assert power_sensor.timeout == loose_approx(2.34)
+        assert power_sensor.timeout == expected_grpc_timeout(2.34)
 
         await power_sensor.get_power(timeout=3.45)
-        assert power_sensor.timeout == loose_approx(3.45)
+        assert power_sensor.timeout == expected_grpc_timeout(3.45)
 
         await power_sensor.get_readings(timeout=8.90)
-        assert power_sensor.timeout == loose_approx(8.90)
+        assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
     async def test_do(self, power_sensor: PowerSensor):
         command = {"command": "args"}
@@ -102,7 +102,7 @@ class TestService:
             assert response.volts == VOLTS
             assert response.is_ac == IS_AC
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(8.90)
+            assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
     async def test_get_current(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -113,7 +113,7 @@ class TestService:
             assert response.amperes == AMPERES
             assert response.is_ac == IS_AC
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(8.90)
+            assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
     async def test_get_power(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -123,7 +123,7 @@ class TestService:
             response: GetPowerResponse = await client.GetPower(request, timeout=8.90)
             assert response.watts == WATTS
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(8.90)
+            assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
     async def test_get_readings(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -133,7 +133,7 @@ class TestService:
             response: GetReadingsResponse = await client.GetReadings(request, timeout=8.90)
             assert sensor_readings_value_to_native(response.readings) == READINGS
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(8.90)
+            assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
     async def test_do(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -154,7 +154,7 @@ class TestClient:
             assert vol == VOLTS
             assert is_ac == IS_AC
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(1.45)
+            assert power_sensor.timeout == expected_grpc_timeout(1.45)
 
     async def test_get_current(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -164,7 +164,7 @@ class TestClient:
             assert vol == VOLTS
             assert is_ac == IS_AC
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(1.45)
+            assert power_sensor.timeout == expected_grpc_timeout(1.45)
 
     async def test_get_power(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -173,7 +173,7 @@ class TestClient:
             watts = await client.get_power(extra=EXTRA_PARAMS, timeout=1.45)
             assert watts == WATTS
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(1.45)
+            assert power_sensor.timeout == expected_grpc_timeout(1.45)
 
     async def test_get_readings(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -182,7 +182,7 @@ class TestClient:
             value = await client.get_readings(extra=EXTRA_PARAMS, timeout=2.34)
             assert value == READINGS
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(2.34)
+            assert power_sensor.timeout == expected_grpc_timeout(2.34)
 
     async def test_do(self, power_sensor: PowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:

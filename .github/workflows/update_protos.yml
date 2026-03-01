@@ -226,7 +226,7 @@ jobs:
                         client = <Name>ServiceStub(channel)
                         await client.Method(request, timeout=1.82)
                         cast(AsyncMock, <name>.method_name).assert_called_once_with(
-                            value1, timeout=loose_approx(1.82), extra={"a": "b"}, metadata={}
+                            value1, timeout=expected_grpc_timeout(1.82), extra={"a": "b"}, metadata={}
                         )
 
             class TestClient:

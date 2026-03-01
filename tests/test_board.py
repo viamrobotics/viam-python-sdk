@@ -36,7 +36,7 @@ from viam.proto.component.board import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockAnalog, MockBoard, MockDigitalInterrupt, MockGPIOPin
 
 
@@ -122,7 +122,7 @@ class TestBoard:
         pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
         pm_duration = timedelta(minutes=1)
         await board.set_power_mode(mode=pm_mode, duration=pm_duration, timeout=1.11)
-        assert board.timeout == loose_approx(1.11)
+        assert board.timeout == expected_grpc_timeout(1.11)
         assert board.power_mode == pm_mode
         assert board.power_mode_duration == pm_duration
 
@@ -157,7 +157,7 @@ class TestService:
 
             reader = cast(MockAnalog, board.analogs["analog1"])
             assert reader.extra == extra
-            assert reader.timeout == loose_approx(4.4)
+            assert reader.timeout == expected_grpc_timeout(4.4)
 
     async def test_get_digital_interrupt_value(self, board: MockBoard, service: BoardRPCService, interrupt: MockDigitalInterrupt):
         async with ChannelFor([service]) as channel:
@@ -182,7 +182,7 @@ class TestService:
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.high is True
             assert pin.extra == extra
-            assert pin.timeout == loose_approx(4.1)
+            assert pin.timeout == expected_grpc_timeout(4.1)
 
     async def test_get_gpio(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -199,7 +199,7 @@ class TestService:
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == loose_approx(1.82)
+            assert pin.timeout == expected_grpc_timeout(1.82)
 
     async def test_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -212,7 +212,7 @@ class TestService:
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == loose_approx(7.86)
+            assert pin.timeout == expected_grpc_timeout(7.86)
 
     async def test_set_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -225,7 +225,7 @@ class TestService:
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.pwm == 12.3
             assert pin.extra == extra
-            assert pin.timeout == loose_approx(1.213)
+            assert pin.timeout == expected_grpc_timeout(1.213)
 
     async def test_pwm_frequency(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -238,7 +238,7 @@ class TestService:
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == loose_approx(182)
+            assert pin.timeout == expected_grpc_timeout(182)
 
     async def test_set_pwm_freq(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -279,7 +279,7 @@ class TestService:
             request = SetPowerModeRequest(name=board.name, power_mode=pm_mode, duration=pm_duration, extra=dict_to_struct(extra))
             response: SetPowerModeResponse = await client.SetPowerMode(request, timeout=6.66)
             assert response == SetPowerModeResponse()
-            assert board.timeout == loose_approx(6.66)
+            assert board.timeout == expected_grpc_timeout(6.66)
             assert board.power_mode == PowerMode.POWER_MODE_OFFLINE_DEEP
             assert board.power_mode_duration == pm_duration.ToTimedelta()
             assert board.extra == extra
@@ -293,7 +293,7 @@ class TestService:
             response: WriteAnalogResponse = await client.WriteAnalog(request, timeout=6.66)
             assert response == WriteAnalogResponse()
             mock_analog = cast(MockAnalog, board.analogs["analog1"])
-            assert mock_analog.timeout == loose_approx(6.66)
+            assert mock_analog.timeout == expected_grpc_timeout(6.66)
             assert mock_analog.value.value == value
             assert mock_analog.name == pin
 
@@ -364,8 +364,7 @@ class TestClient:
             pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
             pm_timedelta = timedelta(minutes=1)
             await client.set_power_mode(mode=pm_mode, duration=pm_timedelta, timeout=9.83)
-            print("timeout is", board.timeout)
-            assert board.timeout == loose_approx(9.83)
+            assert board.timeout == expected_grpc_timeout(9.83)
             assert board.power_mode == pm_mode
             pm_duration = Duration()
             pm_duration.FromTimedelta(pm_timedelta)
@@ -426,7 +425,7 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.high is True
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == loose_approx(1.82)
+            assert mock_pin.timeout == expected_grpc_timeout(1.82)
 
     async def test_get(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -448,7 +447,7 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.pwm == 12.3
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == loose_approx(3.23)
+            assert mock_pin.timeout == expected_grpc_timeout(3.23)
 
     async def test_get_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -459,7 +458,7 @@ class TestGPIOPinClient:
             assert pwm == 0.0
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == loose_approx(1.2345)
+            assert mock_pin.timeout == expected_grpc_timeout(1.2345)
 
     async def test_set_pwm_frequency(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -470,7 +469,7 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.pwm_freq == 123
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == loose_approx(4.341)
+            assert mock_pin.timeout == expected_grpc_timeout(4.341)
 
     async def test_get_pwm_freq(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
