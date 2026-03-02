@@ -400,11 +400,13 @@ class DataCaptureMetadata(google.protobuf.message.Message):
     METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
     FILE_EXTENSION_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
+    MIME_TYPE_FIELD_NUMBER: builtins.int
     component_type: builtins.str
     component_name: builtins.str
     method_name: builtins.str
     type: global___DataType.ValueType
     file_extension: builtins.str
+    mime_type: builtins.str
 
     @property
     def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
@@ -414,10 +416,10 @@ class DataCaptureMetadata(google.protobuf.message.Message):
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'tags', b'tags', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'tags', b'tags', 'type', b'type']) -> None:
         ...
 global___DataCaptureMetadata = DataCaptureMetadata
 
