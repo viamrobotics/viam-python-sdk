@@ -255,6 +255,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     DISTORTION_PARAMETERS_FIELD_NUMBER: builtins.int
     MIME_TYPES_FIELD_NUMBER: builtins.int
     FRAME_RATE_FIELD_NUMBER: builtins.int
+    EXTRINSIC_PARAMETERS_FIELD_NUMBER: builtins.int
     supports_pcd: builtins.bool
     'A boolean property determining whether the camera supports the return of pointcloud data'
     frame_rate: builtins.float
@@ -278,13 +279,19 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     def mime_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Supported MIME types by the camera"""
 
-    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=..., mime_types: collections.abc.Iterable[builtins.str] | None=..., frame_rate: builtins.float | None=...) -> None:
+    @property
+    def extrinsic_parameters(self) -> global___ExtrinsicParameters:
+        """Parameters for the camera's position relative to a reference frame
+        If camera does not provide extrinsic parameters, leave the field empty
+        """
+
+    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=..., mime_types: collections.abc.Iterable[builtins.str] | None=..., frame_rate: builtins.float | None=..., extrinsic_parameters: global___ExtrinsicParameters | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']) -> None:
+    def ClearField(self, field_name: typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_frame_rate', b'_frame_rate']) -> typing.Literal['frame_rate'] | None:
@@ -398,3 +405,30 @@ class DistortionParameters(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['model', b'model', 'parameters', b'parameters']) -> None:
         ...
 global___DistortionParameters = DistortionParameters
+
+@typing.final
+class ExtrinsicParameters(google.protobuf.message.Message):
+    """ExtrinsicParameters define the position of the camera
+    relative to a reference frame (the world or another sensor).
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TRANSLATION_FIELD_NUMBER: builtins.int
+    ORIENTATION_FIELD_NUMBER: builtins.int
+
+    @property
+    def translation(self) -> common.v1.common_pb2.Vector3:
+        """The translation from the reference frame to the camera."""
+
+    @property
+    def orientation(self) -> common.v1.common_pb2.Orientation:
+        """The orientation from the reference frame to the camera."""
+
+    def __init__(self, *, translation: common.v1.common_pb2.Vector3 | None=..., orientation: common.v1.common_pb2.Orientation | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['orientation', b'orientation', 'translation', b'translation']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['orientation', b'orientation', 'translation', b'translation']) -> None:
+        ...
+global___ExtrinsicParameters = ExtrinsicParameters
