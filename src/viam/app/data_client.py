@@ -14,6 +14,7 @@ from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
+    UpdateBoundingBoxRequest,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryData,
@@ -67,7 +68,6 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
-    UpdateBoundingBoxRequest,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -1193,7 +1193,7 @@ class DataClient:
         response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
         return response.bbox_id
 
-    async def update_bounding_box_to_image_by_id(
+    async def update_bounding_box(
         self,
         binary_id: str,
         bbox_id: str,
