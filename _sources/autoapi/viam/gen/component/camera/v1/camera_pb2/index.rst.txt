@@ -37,6 +37,7 @@ Attributes
    viam.gen.component.camera.v1.camera_pb2.global___Property
    viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters
    viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters
+   viam.gen.component.camera.v1.camera_pb2.global___ExtrinsicParameters
 
 
 Classes
@@ -60,6 +61,7 @@ Classes
    viam.gen.component.camera.v1.camera_pb2.Property
    viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters
    viam.gen.component.camera.v1.camera_pb2.DistortionParameters
+   viam.gen.component.camera.v1.camera_pb2.ExtrinsicParameters
 
 
 Module Contents
@@ -469,7 +471,7 @@ Module Contents
 
 .. py:data:: global___GetPropertiesRequest
 
-.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ...)
+.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ..., extrinsic_parameters: global___ExtrinsicParameters | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -515,7 +517,14 @@ Module Contents
       Supported MIME types by the camera
 
 
-   .. py:method:: HasField(field_name: Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> bool
+   .. py:property:: extrinsic_parameters
+      :type: global___ExtrinsicParameters
+
+      Parameters for the camera's position relative to a reference frame
+      If camera does not provide extrinsic parameters, leave the field empty
+
+
+   .. py:method:: HasField(field_name: Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -712,4 +721,45 @@ Module Contents
 
 
 .. py:data:: global___DistortionParameters
+
+.. py:class:: ExtrinsicParameters(*, translation: viam.gen.common.v1.common_pb2.Vector3 | None = ..., orientation: viam.gen.common.v1.common_pb2.Orientation | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ExtrinsicParameters define the position of the camera
+   relative to a reference frame (the world or another sensor).
+
+
+   .. py:property:: translation
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      The translation from the reference frame to the camera.
+
+
+   .. py:property:: orientation
+      :type: viam.gen.common.v1.common_pb2.Orientation
+
+      The orientation from the reference frame to the camera.
+
+
+   .. py:method:: HasField(field_name: Literal['orientation', b'orientation', 'translation', b'translation']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ExtrinsicParameters
 

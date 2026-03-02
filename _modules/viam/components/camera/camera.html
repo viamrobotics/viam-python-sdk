@@ -196,7 +196,7 @@
 <div class="viewcode-block" id="Camera.get_properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/index.html#viam.components.camera.camera.Camera.get_properties">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the camera intrinsic parameters and camera distortion parameters</span>
+<span class="sd">        Get the camera intrinsic parameters, distortion parameters, and optionally extrinsic parameters</span>
 
 <span class="sd">        ::</span>
 
@@ -205,7 +205,8 @@
 <span class="sd">            properties = await my_camera.get_properties()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Properties: The properties of the camera.</span>
+<span class="sd">            Properties: The properties of the camera, including intrinsic parameters, distortion parameters,</span>
+<span class="sd">            supported mime types, and optionally extrinsic parameters (position relative to a reference frame).</span>
 
 <span class="sd">        For more information, see `Camera component &lt;https://docs.viam.com/dev/reference/apis/components/camera/#getproperties&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

@@ -263,7 +263,7 @@ and the second [1] the mimetype of the pointcloud (for example, PCD).</p>
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<p>Get the camera intrinsic parameters and camera distortion parameters</p>
+<p>Get the camera intrinsic parameters, distortion parameters, and optionally extrinsic parameters</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 
 <span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
@@ -271,7 +271,8 @@ and the second [1] the mimetype of the pointcloud (for example, PCD).</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The properties of the camera.</p>
+<dd class="field-odd"><p>The properties of the camera, including intrinsic parameters, distortion parameters,
+supported mime types, and optionally extrinsic parameters (position relative to a reference frame).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../base/base/index.html#viam.components.base.base.Base.Properties" title="viam.components.base.base.Base.Properties">Properties</a></p>

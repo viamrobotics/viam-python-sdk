@@ -95,7 +95,7 @@ Module Contents
       :async:
 
 
-      Get the camera intrinsic parameters and camera distortion parameters
+      Get the camera intrinsic parameters, distortion parameters, and optionally extrinsic parameters
 
       ::
 
@@ -103,7 +103,8 @@ Module Contents
 
           properties = await my_camera.get_properties()
 
-      :returns: The properties of the camera.
+      :returns: The properties of the camera, including intrinsic parameters, distortion parameters,
+                supported mime types, and optionally extrinsic parameters (position relative to a reference frame).
       :rtype: Properties
 
       For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getproperties>`_.
