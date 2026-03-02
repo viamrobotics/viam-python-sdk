@@ -1,5 +1,6 @@
 from datetime import datetime
-from typing import Optional
+from typing import cast
+from unittest.mock import AsyncMock
 
 import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
@@ -31,69 +32,24 @@ from viam.proto.component.camera import (
     IntrinsicParameters,
 )
 from viam.resource.manager import ResourceManager
+from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import GEOMETRIES, MockCamera
-
-# ################################ NB ################################# #
-#   These test values have to be fixtures and must match the values in  #
-#  MockCamera because there are some weird PIL errors if you pass these #
-#   fixtures in the initializer to seed the mock with expected values   #
-# ##################################################################### #
+from .mocks import create_mock_subclass
+from .mocks.components import GEOMETRIES
 
 
 @pytest.fixture(scope="function")
-def image() -> ViamImage:
-    return ViamImage(b"data", CameraMimeType.PNG)
-
-
-@pytest.fixture(scope="function")
-def metadata() -> ResponseMetadata:
-    ts = Timestamp()
-    ts.FromDatetime(datetime(1970, 1, 1))
-    return ResponseMetadata(captured_at=ts)
-
-
-@pytest.fixture(scope="function")
-def point_cloud() -> bytes:
-    return b"THIS IS A POINT CLOUD"
-
-
-@pytest.fixture(scope="function")
-def properties() -> Camera.Properties:
-    return Camera.Properties(
-        supports_pcd=False,
-        intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
-        distortion_parameters=DistortionParameters(model="no_distortion"),
-        mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
-        frame_rate=10.0,
-    )
-
-
-@pytest.fixture(scope="function")
-def properties_with_extrinsic() -> Camera.Properties:
-    return Camera.Properties(
-        supports_pcd=False,
-        intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
-        distortion_parameters=DistortionParameters(model="no_distortion"),
-        mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
-        frame_rate=10.0,
-        extrinsic_parameters=ExtrinsicParameters(
-            translation=Vector3(x=1.0, y=2.0, z=3.0), orientation=Orientation(o_x=0.0, o_y=0.0, o_z=0.0, theta=0.0)
-        ),
-    )
-
-
-@pytest.fixture(scope="function")
-def camera() -> MockCamera:
-    return MockCamera("camera")
+def camera() -> Camera:
+    mc = create_mock_subclass(Camera)
+    return mc(name="camera")
 
 
 @pytest.fixture(scope="function")
 def service(camera: Camera) -> CameraRPCService:
-    rm = ResourceManager([camera])
-    return CameraRPCService(rm)
+    manager = ResourceManager([camera])
+    return CameraRPCService(manager)
 
 
 @pytest.fixture(scope="function")
@@ -102,203 +58,176 @@ def generic_service(camera: Camera) -> GenericRPCService:
     return GenericRPCService(manager)
 
 
-class TestCamera:
-    async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata):
-        imgs, md = await camera.get_images()
-        assert isinstance(imgs[0], NamedImage)
-        assert imgs[0].name == camera.name
-        assert imgs[0].data == image.data
-        assert md == metadata
-
-    async def test_get_point_cloud(self, camera: MockCamera, point_cloud: bytes):
-        pc, _ = await camera.get_point_cloud()
-        assert pc == point_cloud
-
-        await camera.get_point_cloud(extra={"1": 1})
-        assert camera.extra == {"1": 1}
-
-    async def test_get_properties(self, camera: Camera, properties: Camera.Properties):
-        props = await camera.get_properties()
-        assert props == properties
-
-    async def test_do(self, camera: Camera):
-        command = {"command": "args"}
-        resp = await camera.do_command(command)
-        assert resp == {"command": command}
-
-    async def test_timeout(self, camera: MockCamera):
-        assert camera.timeout is None
-
-        await camera.get_point_cloud(timeout=4.4)
-        assert camera.timeout == loose_approx(4.4)
-
-        await camera.get_properties(timeout=7.86)
-        assert camera.timeout == loose_approx(7.86)
-
-    async def test_get_geometries(self, camera: MockCamera):
-        geometries = await camera.get_geometries()
-        assert geometries == GEOMETRIES
+DEFAULT_EXTRA = {"a": "b"}
+DEFAULT_EXTRA_STRUCT = dict_to_struct(DEFAULT_EXTRA)
+DEFAULT_TIMEOUT = 1.82
+DEFAULT_TIMEOUT_APPROX = loose_approx(DEFAULT_TIMEOUT)
+DEFAULT_METADATA = ResourceRPCClientBase.Metadata()
+DEFAULT_METADATA.enable_debug_logging
 
 
 class TestService:
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, metadata: ResponseMetadata):
-        assert camera.timeout is None
+    async def test_get_images(self, camera: Camera, service: CameraRPCService):
+        ts = Timestamp()
+        ts.FromDatetime(datetime.now())
+        metadata = ResponseMetadata(captured_at=ts)
+        image = ViamImage(b"data", CameraMimeType.PNG)
+
+        cast(AsyncMock, camera.get_images).return_value = (
+            [NamedImage(camera.name, image.data, image.mime_type)],
+            metadata,
+        )
+
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-
-            request = GetImagesRequest(name="camera")
-            response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
+            request = GetImagesRequest(name="camera", extra=DEFAULT_EXTRA_STRUCT)
+            response: GetImagesResponse = await client.GetImages(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             raw_img = response.images[0]
             assert raw_img.mime_type == CameraMimeType.PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
-            assert camera.timeout == loose_approx(18.1)
+            cast(AsyncMock, camera.get_images).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA.metadata, filter_source_names=[]
+            )
 
-    async def test_get_images_uses_source_name_not_resource_name(self):
-        class MockCameraWithCustomSource(MockCamera):
-            def __init__(self, name: str, source_name: str):
-                super().__init__(name)
-                self._source_name = source_name
-
-            async def get_images(self, timeout: Optional[float] = None, **kwargs):
-                self.timeout = timeout
-                return [NamedImage(self._source_name, self.image.data, self.image.mime_type)], self.metadata
-
-        custom_camera = MockCameraWithCustomSource("camera", "the_source")
-        rm = ResourceManager([custom_camera])
-        service = CameraRPCService(rm)
+    async def test_get_point_cloud(self, camera: Camera, service: CameraRPCService):
+        point_cloud = b"THIS IS A POINT CLOUD"
+        cast(AsyncMock, camera.get_point_cloud).return_value = (point_cloud, CameraMimeType.PCD)
 
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetImagesRequest(name="camera")
-            response: GetImagesResponse = await client.GetImages(request)
-            assert response.images[0].source_name == "the_source"
-
-    async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
-        assert camera.timeout is None
-        async with ChannelFor([service]) as channel:
-            client = CameraServiceStub(channel)
-            request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD)
-            response: GetPointCloudResponse = await client.GetPointCloud(request, timeout=7.86)
+            request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD, extra=DEFAULT_EXTRA_STRUCT)
+            response: GetPointCloudResponse = await client.GetPointCloud(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             assert response.point_cloud == point_cloud
-            assert camera.timeout == loose_approx(7.86)
+            cast(AsyncMock, camera.get_point_cloud).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_properties(self, camera: MockCamera, service: CameraRPCService, properties: Camera.Properties):
-        assert camera.timeout is None
+    async def test_get_properties(self, camera: Camera, service: CameraRPCService):
+        properties = Camera.Properties(
+            supports_pcd=False,
+            intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
+            distortion_parameters=DistortionParameters(model="no_distortion"),
+            mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
+            frame_rate=10.0,
+            extrinsic_parameters=ExtrinsicParameters(
+                translation=Vector3(x=1.0, y=2.0, z=3.0), orientation=Orientation(o_x=0.0, o_y=0.0, o_z=0.0, theta=0.0)
+            ),
+        )
+        cast(AsyncMock, camera.get_properties).return_value = properties
+
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPropertiesRequest(name="camera")
-            response: GetPropertiesResponse = await client.GetProperties(request, timeout=5.43)
+            response: GetPropertiesResponse = await client.GetProperties(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             assert response.supports_pcd == properties.supports_pcd
             assert response.intrinsic_parameters == properties.intrinsic_parameters
             assert response.mime_types == properties.mime_types
             assert response.frame_rate == properties.frame_rate
-            assert camera.timeout == loose_approx(5.43)
+            assert response.extrinsic_parameters == properties.extrinsic_parameters
+            cast(AsyncMock, camera.get_properties).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_properties_with_extrinsic(self, properties_with_extrinsic: Camera.Properties):
-        class MockCameraWithExtrinsic(MockCamera):
-            def __init__(self, name: str):
-                super().__init__(name)
-                self.props = properties_with_extrinsic
-
-            async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
-                self.timeout = timeout
-                return self.props
-
-        camera = MockCameraWithExtrinsic("camera")
-        rm = ResourceManager([camera])
-        service = CameraRPCService(rm)
+    async def test_do(self, camera: Camera, service: CameraRPCService):
+        command = {"command": "args"}
+        cast(AsyncMock, camera.do_command).return_value = {"command": command}
 
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetPropertiesRequest(name="camera")
-            response: GetPropertiesResponse = await client.GetProperties(request, timeout=5.43)
-            assert response.supports_pcd == properties_with_extrinsic.supports_pcd
-            assert response.intrinsic_parameters == properties_with_extrinsic.intrinsic_parameters
-            assert response.mime_types == properties_with_extrinsic.mime_types
-            assert response.frame_rate == properties_with_extrinsic.frame_rate
-            assert response.extrinsic_parameters == properties_with_extrinsic.extrinsic_parameters
-            assert camera.timeout == loose_approx(5.43)
-
-    async def test_do(self, camera: MockCamera, service: CameraRPCService):
-        async with ChannelFor([service]) as channel:
-            client = CameraServiceStub(channel)
-            command = {"command": "args"}
             request = DoCommandRequest(name=camera.name, command=dict_to_struct(command))
-            response: DoCommandResponse = await client.DoCommand(request)
+            response: DoCommandResponse = await client.DoCommand(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+            cast(AsyncMock, camera.do_command).assert_called_once_with(
+                command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_geometries(self, camera: MockCamera, service: CameraRPCService):
+    async def test_get_geometries(self, camera: Camera, service: CameraRPCService):
+        cast(AsyncMock, camera.get_geometries).return_value = GEOMETRIES
+
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetGeometriesRequest(name=camera.name)
-            response: GetGeometriesResponse = await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=camera.name, extra=DEFAULT_EXTRA_STRUCT)
+            response: GetGeometriesResponse = await client.GetGeometries(request, timeout=DEFAULT_TIMEOUT)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
+            cast(AsyncMock, camera.get_geometries).assert_called_once_with(extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX)
 
 
 class TestClient:
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: ViamImage, metadata: ResponseMetadata):
-        assert camera.timeout is None
+    async def test_get_images(self, camera: Camera, service: CameraRPCService):
+        ts = Timestamp()
+        ts.FromDatetime(datetime.now())
+        metadata = ResponseMetadata(captured_at=ts)
+        image = ViamImage(b"data", CameraMimeType.PNG)
+
+        cast(AsyncMock, camera.get_images).return_value = (
+            [NamedImage(camera.name, image.data, image.mime_type)],
+            metadata,
+        )
+
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
-
-            imgs, md = await client.get_images(timeout=1.82)
+            imgs, md = await client.get_images(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
             assert isinstance(imgs[0], NamedImage)
             assert imgs[0].name == camera.name
             assert imgs[0].data == image.data
             assert md == metadata
-            assert camera.timeout == loose_approx(1.82)
+            cast(AsyncMock, camera.get_images).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA.metadata, filter_source_names=[]
+            )
 
-    async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
-        assert camera.timeout is None
+    async def test_get_point_cloud(self, camera: Camera, service: CameraRPCService):
+        point_cloud = b"THIS IS A POINT CLOUD"
+        cast(AsyncMock, camera.get_point_cloud).return_value = (point_cloud, CameraMimeType.PCD)
+
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
-            pc, _ = await client.get_point_cloud(timeout=4.4)
+            pc, mime = await client.get_point_cloud(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
             assert pc == point_cloud
-            assert camera.timeout == loose_approx(4.4)
+            assert mime == CameraMimeType.PCD
+            cast(AsyncMock, camera.get_point_cloud).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_properties(self, camera: MockCamera, service: CameraRPCService, properties: Camera.Properties):
-        assert camera.timeout is None
+    async def test_get_properties(self, camera: Camera, service: CameraRPCService):
+        properties = Camera.Properties(
+            supports_pcd=False,
+            intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
+            distortion_parameters=DistortionParameters(model="no_distortion"),
+            mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
+            frame_rate=10.0,
+            extrinsic_parameters=ExtrinsicParameters(
+                translation=Vector3(x=1.0, y=2.0, z=3.0), orientation=Orientation(o_x=0.0, o_y=0.0, o_z=0.0, theta=0.0)
+            ),
+        )
+        cast(AsyncMock, camera.get_properties).return_value = properties
+
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
-            props = await client.get_properties(timeout=7.86)
+            props = await client.get_properties(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
             assert props == properties
-            assert camera.timeout == loose_approx(7.86)
+            cast(AsyncMock, camera.get_properties).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_properties_with_extrinsic(self, properties_with_extrinsic: Camera.Properties):
-        class MockCameraWithExtrinsic(MockCamera):
-            def __init__(self, name: str):
-                super().__init__(name)
-                self.props = properties_with_extrinsic
-
-            async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
-                self.timeout = timeout
-                return self.props
-
-        camera = MockCameraWithExtrinsic("camera")
-        rm = ResourceManager([camera])
-        service = CameraRPCService(rm)
+    async def test_do(self, camera: Camera, service: CameraRPCService):
+        command = {"command": "args"}
+        cast(AsyncMock, camera.do_command).return_value = {"command": command}
 
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
-            props = await client.get_properties(timeout=7.86)
-            assert props == properties_with_extrinsic
-            assert props.extrinsic_parameters.translation.x == 1.0
-            assert props.extrinsic_parameters.translation.y == 2.0
-            assert props.extrinsic_parameters.translation.z == 3.0
-            assert props.extrinsic_parameters.orientation.o_x == 0.0
-            assert camera.timeout == loose_approx(7.86)
-
-    async def test_do(self, service: CameraRPCService):
-        async with ChannelFor([service]) as channel:
-            client = CameraClient("camera", channel)
-            command = {"command": "args"}
-            resp = await client.do_command(command)
+            resp = await client.do_command(command, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
             assert resp == {"command": command}
+            cast(AsyncMock, camera.do_command).assert_called_once_with(
+                command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_geometries(self, service: CameraRPCService):
+    async def test_get_geometries(self, camera: Camera, service: CameraRPCService):
+        cast(AsyncMock, camera.get_geometries).return_value = GEOMETRIES
+
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
-            geometries = await client.get_geometries()
+            geometries = await client.get_geometries(extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
             assert geometries == GEOMETRIES
+            cast(AsyncMock, camera.get_geometries).assert_called_once_with(extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX)
