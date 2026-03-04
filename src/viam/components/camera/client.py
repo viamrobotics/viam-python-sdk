@@ -3,7 +3,7 @@ from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
 from grpclib.client import Channel
 
 from viam.media.video import CameraMimeType, NamedImage
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetStatusRequest, GetStatusResponse, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImagesRequest,
@@ -78,6 +78,17 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(
