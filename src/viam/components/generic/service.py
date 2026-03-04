@@ -2,7 +2,7 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.generic import GenericServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -28,6 +28,15 @@ class GenericRPCService(GenericServiceBase, ResourceRPCServiceBase):
         except NotImplementedError:
             raise GRPCError(Status.UNIMPLEMENTED, f"``DO`` command is unimplemented for component named: {name}")
         response = DoCommandResponse(result=dict_to_struct(result))
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        component = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await component.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:

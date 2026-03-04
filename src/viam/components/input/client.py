@@ -10,7 +10,7 @@ from grpclib.client import Channel
 import viam
 from viam.errors import NotSupportedError
 from viam.logging import getLogger
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetStatusRequest, GetStatusResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -187,6 +187,17 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
