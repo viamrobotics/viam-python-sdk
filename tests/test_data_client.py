@@ -21,6 +21,7 @@ from viam.proto.app.data import (
     IndexableCollection,
     IndexCreator,
     Order,
+    TabularFilter,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
 
@@ -70,6 +71,12 @@ FILTER = create_filter(
     tags=TAGS,
     bbox_labels=BBOX_LABELS,
     dataset_id=DATASET_ID,
+)
+TABULAR_FILTER = TabularFilter(
+    location_ids=LOCATION_IDS,
+    robot_id=ROBOT_ID,
+    component_name=COMPONENT_NAME,
+    component_type=COMPONENT_TYPE,
 )
 INTERVAL = CaptureInterval(start=START_TS, end=END_TS)
 ADDITIONAL_PARAMS = {"docommand_input": {"test": "test"}}
@@ -325,6 +332,20 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0)
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+
+    async def test_delete_tabular_data_with_filter(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            # Test with filter parameter
+            deleted_count = await client.delete_tabular_data(
+                organization_id=ORG_ID, delete_older_than_days=0, filter=TABULAR_FILTER
+            )
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+            # Test with None filter (default behavior)
+            deleted_count = await client.delete_tabular_data(
+                organization_id=ORG_ID, delete_older_than_days=0, filter=None
+            )
             assert deleted_count == DELETE_REMOVE_RESPONSE
 
     async def test_delete_binary_data_by_filter(self, service: MockData):
