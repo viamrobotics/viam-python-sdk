@@ -70,6 +70,7 @@ def _wait_for_server_ready(log_path, timeout=30.0):
 def test_example(example):
     is_server_example = "server" in example
 
+    # if someone is running these tests without viam-server it'll skip, it runs in the github actions workflow anyways
     if not is_server_example and not HAS_VIAM_SERVER:
         pytest.skip("viam-server not found")
 
@@ -140,3 +141,14 @@ def test_example(example):
         if server_log_fh:
             server_log_fh.close()
         shutil.rmtree(tmp_dir, ignore_errors=True)
+
+
+def test_check_example_coverage():
+    """Check if a new example directory exists that isn't in the EXAMPLES table."""
+    known = {e["dir"] for e in EXAMPLES}
+    actual = {d.name for d in EXAMPLES_DIR.iterdir() if d.is_dir()}
+    unknown = actual - known
+    assert not unknown, (
+        f"New example directories without test coverage: {unknown}. "
+        f"Add new examples to the EXAMPLES list in tests/test_examples.py."
+    )
