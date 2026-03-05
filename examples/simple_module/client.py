@@ -30,6 +30,6 @@ async def main(machine_url: str,api_key_id: str, api_key: str):
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    if len(args) >= 3:
-        raise ValueError("Usage: python client.py <robot_uri> <api_key>")
+    if len(args) < 3:
+        raise ValueError("Usage: python client.py <machine_url> <api_key_id> <api_key>")
     asyncio.run(main(args[0], args[1], args[2]))

@@ -1,19 +1,21 @@
 import asyncio
+import sys
 
 from src.gizmo import Gizmo
 from src.summation import SummationService
 
 from viam.robot.client import RobotClient
+from viam.rpc.dial import DialOptions
 from viam.components.base import Base
 
 
-async def connect():
-    opts = RobotClient.Options.with_api_key(api_key="<your api key here>", api_key_id="<your api key ID here>")
-    return await RobotClient.at_address("<your robot uri here>", opts)
+async def connect(machine_url: str, api_key_id: str, api_key: str):
+    opts = RobotClient.Options(dial_options=DialOptions(insecure=True, disable_webrtc=True))
+    return await RobotClient.at_address(machine_url, opts)
 
 
-async def main():
-    robot = await connect()
+async def main(machine_url: str, api_key_id: str, api_key: str):
+    robot = await connect(machine_url, api_key_id, api_key)
 
     print("Resources:")
     for resource in robot.resource_names:
@@ -53,4 +55,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    args = sys.argv[1:]
+    if len(args) < 3:
+        raise ValueError("Usage: python client.py <machine_url> <api_key_id> <api_key>")
+    asyncio.run(main(args[0], args[1], args[2]))
