@@ -72,7 +72,7 @@ FILTER = create_filter(
     bbox_labels=BBOX_LABELS,
     dataset_id=DATASET_ID,
 )
-TABULAR_FILTER = DeleteTabularFilter(
+DELETE_TABULAR_FILTER = DeleteTabularFilter(
     location_ids=LOCATION_IDS,
     robot_id=ROBOT_ID,
     component_name=COMPONENT_NAME,
@@ -333,20 +333,26 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0)
             assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.organization_id == ORG_ID
+            assert service.delete_older_than_days == 0
 
     async def test_delete_tabular_data_with_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             # Test with filter parameter
             deleted_count = await client.delete_tabular_data(
-                organization_id=ORG_ID, delete_older_than_days=0, filter=TABULAR_FILTER
+                organization_id=ORG_ID, delete_older_than_days=0, filter=DELETE_TABULAR_FILTER
             )
             assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.organization_id == ORG_ID
+            assert service.delete_older_than_days == 0
+            assert service.delete_tabular_filter == DELETE_TABULAR_FILTER
             # Test with None filter (default behavior)
             deleted_count = await client.delete_tabular_data(
                 organization_id=ORG_ID, delete_older_than_days=0, filter=None
             )
             assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.delete_tabular_filter is None
 
     async def test_delete_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
