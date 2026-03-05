@@ -11,14 +11,19 @@ from pathlib import Path
 import pytest
 
 EXAMPLES_DIR = Path(__file__).parent.parent / "examples"
+PROJECT_ROOT = Path(__file__).parent.parent
 
+# If any new examples are added, add them to this list.
 EXAMPLES = [
     {"dir": "complex_module", "entry": "src/main.py", "client": "client.py"},
     {"dir": "easy_resource", "entry": "main.py"},
     {"dir": "optionaldepsmodule", "entry": "module.py"},
     {"dir": "simple_module", "entry": "src/main.py", "client": "client.py"},
     {"dir": "stubbed_model", "entry": "main.py"},
+    {"dir": "server", "server": "examples.server.v1.server", "client": "v1/client.py"},
 ]
+
+HAS_VIAM_SERVER = shutil.which("viam-server") is not None
 
 
 def _find_free_port():
@@ -38,12 +43,19 @@ def _terminate(proc):
         proc.wait(timeout=5)
 
 
-def _wait_for_server_ready(log_path, timeout=30.0):
-    """Poll viam-server log until modules are loaded.
+def _wait_for_port(host, port, timeout=10.0):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            with socket.create_connection((host, port), timeout=0.5):
+                return True
+        except OSError:
+            time.sleep(0.1)
+    return False
 
-    viam-server opens its port before modules finish loading, so we wait for
-    the "Robot constructed with full config" log line.
-    """
+
+def _wait_for_server_ready(log_path, timeout=30.0):
+    """Wait for viam-server to finish loading modules (port opens before modules are ready)."""
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         if os.path.exists(log_path):
@@ -54,57 +66,67 @@ def _wait_for_server_ready(log_path, timeout=30.0):
     return False
 
 
-@pytest.mark.skipif(not shutil.which("viam-server"), reason="viam-server not found")
 @pytest.mark.parametrize("example", EXAMPLES, ids=[e["dir"] for e in EXAMPLES])
 def test_example(example):
-    """Start viam-server with the example's config, optionally run client.py."""
+    is_server_example = "server" in example
+
+    if not is_server_example and not HAS_VIAM_SERVER:
+        pytest.skip("viam-server not found")
+
     example_dir = EXAMPLES_DIR / example["dir"]
-    entry_point = example_dir / example["entry"]
-    config_path = example_dir / "config.json"
     client_file = example_dir / example["client"] if "client" in example else None
+    port = _find_free_port()
+    address = f"127.0.0.1:{port}"
 
     tmp_dir = tempfile.mkdtemp(prefix="viam_test_")
     server_proc = None
     server_log_fh = None
 
     try:
-        # Create wrapper script (bypasses run.sh venv creation)
-        wrapper = os.path.join(tmp_dir, "wrapper.sh")
-        with open(wrapper, "w") as f:
-            f.write(f'#!/bin/bash\nexec {sys.executable} {entry_point} "$@"\n')
-        os.chmod(wrapper, 0o755)
+        if is_server_example:
+            server_proc = subprocess.Popen(
+                [sys.executable, "-m", example["server"], "127.0.0.1", str(port), "quiet"],
+                cwd=str(PROJECT_ROOT),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            assert _wait_for_port("127.0.0.1", port), f"Server did not start on {address}"
+        else:
+            entry_point = example_dir / example["entry"]
+            wrapper = os.path.join(tmp_dir, "wrapper.sh")
+            with open(wrapper, "w") as f:
+                f.write(f'#!/bin/bash\nexec {sys.executable} {entry_point} "$@"\n')
+            os.chmod(wrapper, 0o755)
 
-        # Patch config with wrapper path and a free port
-        with open(config_path) as f:
-            config = json.load(f)
-        for mod in config.get("modules", []):
-            mod["executable_path"] = wrapper
-        port = _find_free_port()
-        config["network"] = {"bind_address": f"127.0.0.1:{port}"}
-        test_config = os.path.join(tmp_dir, "config.json")
-        with open(test_config, "w") as f:
-            json.dump(config, f)
+            with open(example_dir / "config.json") as f:
+                config = json.load(f)
+            for mod in config.get("modules", []):
+                mod["executable_path"] = wrapper
+            config["network"] = {"bind_address": address}
+            test_config = os.path.join(tmp_dir, "config.json")
+            with open(test_config, "w") as f:
+                json.dump(config, f)
 
-        # Start viam-server
-        server_log = os.path.join(tmp_dir, "server.log")
-        server_log_fh = open(server_log, "w")
-        server_proc = subprocess.Popen(
-            ["viam-server", "-config", test_config, "-no-tls", "-allow-insecure-creds"],
-            cwd=str(example_dir),
-            env={**os.environ, "PYTHONPATH": str(example_dir)},
-            stdout=server_log_fh,
-            stderr=subprocess.STDOUT,
-        )
-
-        assert _wait_for_server_ready(server_log), (
-            f"viam-server did not start.\nlog:\n{open(server_log).read()}"
-        )
-
-        # Run client if present
-        if client_file:
-            result = subprocess.run(
-                [sys.executable, str(client_file), f"127.0.0.1:{port}", "test_id", "test_key"],
+            server_log = os.path.join(tmp_dir, "server.log")
+            server_log_fh = open(server_log, "w")
+            server_proc = subprocess.Popen(
+                ["viam-server", "-config", test_config, "-no-tls", "-allow-insecure-creds"],
                 cwd=str(example_dir),
+                env={**os.environ, "PYTHONPATH": str(example_dir)},
+                stdout=server_log_fh,
+                stderr=subprocess.STDOUT,
+            )
+            assert _wait_for_server_ready(server_log), (
+                f"viam-server did not start.\nlog:\n{open(server_log).read()}"
+            )
+
+        if client_file:
+            cmd = [sys.executable, str(client_file), address]
+            if not is_server_example:
+                cmd += ["test_id", "test_key"]
+            result = subprocess.run(
+                cmd,
+                cwd=str(PROJECT_ROOT) if is_server_example else str(example_dir),
                 env={**os.environ, "PYTHONPATH": str(example_dir)},
                 capture_output=True,
                 timeout=30,
