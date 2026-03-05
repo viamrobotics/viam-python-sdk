@@ -21,7 +21,7 @@ from viam.proto.app.data import (
     IndexableCollection,
     IndexCreator,
     Order,
-    TabularFilter,
+    DeleteTabularFilter,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
 
@@ -72,7 +72,7 @@ FILTER = create_filter(
     bbox_labels=BBOX_LABELS,
     dataset_id=DATASET_ID,
 )
-TABULAR_FILTER = TabularFilter(
+TABULAR_FILTER = DeleteTabularFilter(
     location_ids=LOCATION_IDS,
     robot_id=ROBOT_ID,
     component_name=COMPONENT_NAME,

@@ -65,7 +65,7 @@ from viam.proto.app.data import (
     TabularDataBySQLResponse,
     TabularDataSource,
     TabularDataSourceType,
-    TabularFilter,
+    DeleteTabularFilter,
     TagsByFilterRequest,
     TagsByFilterResponse,
     UpdateBoundingBoxRequest,
@@ -845,7 +845,7 @@ class DataClient:
         return list(response.data)
 
     async def delete_tabular_data(
-        self, organization_id: str, delete_older_than_days: int, filter: Optional[TabularFilter] = None
+        self, organization_id: str, delete_older_than_days: int, filter: Optional[DeleteTabularFilter] = None
     ) -> int:
         """Delete tabular data older than a specified number of days.
 
@@ -857,11 +857,11 @@ class DataClient:
             )
 
             # Delete with additional filter constraints
-            from viam.proto.app.data import TabularFilter
+            from viam.proto.app.data import DeleteTabularFilter
             tabular_data = await data_client.delete_tabular_data(
                 organization_id="<YOUR-ORG-ID>",
                 delete_older_than_days=150,
-                filter=TabularFilter(
+                filter=DeleteTabularFilter(
                     location_ids=["location-id"],
                     component_name="camera"
                 )
@@ -872,7 +872,7 @@ class DataClient:
                 To find your organization ID, visit the organization settings page.
             delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
                 10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
-            filter (Optional[TabularFilter]): Optional filter to further constrain which data is deleted.
+            filter (Optional[DeleteTabularFilter]): Optional filter to further constrain which data is deleted.
                 If provided, only data matching both the time constraint AND the filter will be deleted.
                 If omitted, data is deleted based on organization_id and time only.
 
