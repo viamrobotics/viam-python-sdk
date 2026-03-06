@@ -71,6 +71,9 @@ omit = [ "*/gen/*", "*/proto/*" ]
 include = [ "src" ]
 exclude = [ "**/gen", "**/proto" ]
 
+[tool.uv]
+constraint-dependencies = ["tornado>=6.5; python_version>='3.9'"]
+
 [tool.ruff]
 line-length = 140
 exclude = [
