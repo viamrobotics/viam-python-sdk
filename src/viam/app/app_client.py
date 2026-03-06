@@ -2381,7 +2381,7 @@ class AppClient:
         response: UpdateModuleResponse = await self._app_client.UpdateModule(request, metadata=self._metadata)
         return response.url
 
-    async def upload_module_file(self, module_file_info: Optional[ModuleFileInfo], file: bytes) -> str:
+    async def upload_module_file(self, module_file_info: ModuleFileInfo, file: bytes) -> str:
         """Upload a module file
 
         ::
@@ -2400,7 +2400,7 @@ class AppClient:
             )
 
         Args:
-            module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.
+            module_file_info (viam.proto.app.ModuleFileInfo): Relevant metadata.
             file (bytes): Bytes of file to upload.
 
         Returns:
