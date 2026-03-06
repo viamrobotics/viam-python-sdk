@@ -12,7 +12,7 @@ from viam.proto.component.button import ButtonServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import MockButton
 
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
@@ -27,7 +27,7 @@ class TestButton:
     async def test_push(self, button):
         await button.push(timeout=1.23, extra=EXTRA_PARAMS)
         assert button.pushed is True
-        assert button.timeout == loose_approx(1.23)
+        assert button.timeout == expected_grpc_timeout(1.23)
         assert button.extra == EXTRA_PARAMS
 
     async def test_do(self, button):
@@ -55,7 +55,7 @@ class TestService:
             await client.Push(request, timeout=1.23)
             assert button.pushed is True
             assert button.extra == EXTRA_PARAMS
-            assert button.timeout == loose_approx(1.23)
+            assert button.timeout == expected_grpc_timeout(1.23)
 
     async def test_do(self, button: MockButton, service: ButtonRPCService):
         async with ChannelFor([service]) as channel:
@@ -75,7 +75,7 @@ class TestClient:
             await client.push(timeout=3.45, extra=EXTRA_PARAMS)
             assert button.pushed is True
             assert button.extra == EXTRA_PARAMS
-            assert button.timeout == loose_approx(3.45)
+            assert button.timeout == expected_grpc_timeout(3.45)
 
     async def test_do(self, button, manager, service):
         async with ChannelFor([service]) as channel:

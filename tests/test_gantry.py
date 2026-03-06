@@ -26,7 +26,7 @@ from viam.proto.component.gantry import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockGantry
 
 
@@ -81,16 +81,16 @@ class TestGantry:
         assert self.gantry.timeout is None
 
         await self.gantry.get_position(timeout=5.5)
-        assert self.gantry.timeout == loose_approx(5.5)
+        assert self.gantry.timeout == expected_grpc_timeout(5.5)
 
         await self.gantry.move_to_position([1, 2, 3], [4, 5, 6], timeout=1.82)
-        assert self.gantry.timeout == loose_approx(1.82)
+        assert self.gantry.timeout == expected_grpc_timeout(1.82)
 
         await self.gantry.get_lengths(timeout=7.86)
-        assert self.gantry.timeout == loose_approx(7.86)
+        assert self.gantry.timeout == expected_grpc_timeout(7.86)
 
         await self.gantry.stop(timeout=4.4)
-        assert self.gantry.timeout == loose_approx(4.4)
+        assert self.gantry.timeout == expected_grpc_timeout(4.4)
 
     async def test_get_geometries(self):
         geometries = await self.gantry.get_geometries()
@@ -110,7 +110,7 @@ class TestService:
             request = GetPositionRequest(name=self.gantry.name)
             response: GetPositionResponse = await client.GetPosition(request, timeout=9.87)
             assert list(response.positions_mm) == [1, 2, 3]
-            assert self.gantry.timeout == loose_approx(9.87)
+            assert self.gantry.timeout == expected_grpc_timeout(9.87)
 
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
@@ -119,7 +119,7 @@ class TestService:
             await client.MoveToPosition(request, timeout=18.1)
             assert self.gantry.position == [1, 8, 2]
             assert self.gantry.speeds == [3, 9, 12]
-            assert self.gantry.timeout == loose_approx(18.1)
+            assert self.gantry.timeout == expected_grpc_timeout(18.1)
 
     async def test_home(self):
         async with ChannelFor([self.service]) as channel:
@@ -127,7 +127,7 @@ class TestService:
             request = HomeRequest(name=self.gantry.name)
             response: HomeResponse = await client.Home(request, timeout=18.1)
             assert response.homed is True
-            assert self.gantry.timeout == loose_approx(18.1)
+            assert self.gantry.timeout == expected_grpc_timeout(18.1)
 
     async def test_get_lengths(self):
         async with ChannelFor([self.service]) as channel:
@@ -135,7 +135,7 @@ class TestService:
             request = GetLengthsRequest(name=self.gantry.name)
             response: GetLengthsResponse = await client.GetLengths(request, timeout=3.3)
             assert list(response.lengths_mm) == [4, 5, 6]
-            assert self.gantry.timeout == loose_approx(3.3)
+            assert self.gantry.timeout == expected_grpc_timeout(3.3)
 
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
@@ -144,7 +144,7 @@ class TestService:
             request = StopRequest(name=self.gantry.name)
             await client.Stop(request, timeout=1.1)
             assert self.gantry.is_stopped is True
-            assert self.gantry.timeout == loose_approx(1.1)
+            assert self.gantry.timeout == expected_grpc_timeout(1.1)
 
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
@@ -180,7 +180,7 @@ class TestService:
             response: GetKinematicsResponse = await client.GetKinematics(request, timeout=1.1)
             assert response.format == self.gantry.kinematics[0]
             assert response.kinematics_data == self.gantry.kinematics[1]
-            assert self.gantry.timeout == loose_approx(1.1)
+            assert self.gantry.timeout == expected_grpc_timeout(1.1)
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
@@ -202,7 +202,7 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             pos = await client.get_position(timeout=1.82)
             assert pos == [1, 2, 3]
-            assert self.gantry.timeout == loose_approx(1.82)
+            assert self.gantry.timeout == expected_grpc_timeout(1.82)
 
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
@@ -210,21 +210,21 @@ class TestClient:
             await client.move_to_position([1, 8, 2], [3, 9, 12], timeout=4.4)
             assert self.gantry.position == [1, 8, 2]
             assert self.gantry.speeds == [3, 9, 12]
-            assert self.gantry.timeout == loose_approx(4.4)
+            assert self.gantry.timeout == expected_grpc_timeout(4.4)
 
     async def test_home(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
             homed = await client.home(timeout=5.5)
             assert homed is True
-            assert self.gantry.timeout == loose_approx(5.5)
+            assert self.gantry.timeout == expected_grpc_timeout(5.5)
 
     async def test_get_lengths(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
             lengths = await client.get_lengths(timeout=5.5)
             assert lengths == [4, 5, 6]
-            assert self.gantry.timeout == loose_approx(5.5)
+            assert self.gantry.timeout == expected_grpc_timeout(5.5)
 
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
@@ -263,7 +263,7 @@ class TestClient:
             assert format == self.gantry.kinematics[0]
             assert data == self.gantry.kinematics[1]
             assert meshes == self.gantry.kinematics[2]
-            assert self.gantry.timeout == loose_approx(1.1)
+            assert self.gantry.timeout == expected_grpc_timeout(1.1)
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

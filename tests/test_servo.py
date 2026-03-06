@@ -15,7 +15,7 @@ from viam.proto.component.servo import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockServo
 
 
@@ -26,20 +26,20 @@ class TestServo:
     async def test_move(self):
         await self.servo.move(self.pos, timeout=1.23, extra={"foo": "move"})
         assert self.servo.angle == self.pos
-        assert self.servo.timeout == loose_approx(1.23)
+        assert self.servo.timeout == expected_grpc_timeout(1.23)
         assert self.servo.extra == {"foo": "move"}
 
     async def test_get_position(self):
         new_pos = await self.servo.get_position(timeout=2.34, extra={"foo": "get_position"})
         assert new_pos == self.pos
-        assert self.servo.timeout == loose_approx(2.34)
+        assert self.servo.timeout == expected_grpc_timeout(2.34)
         assert self.servo.extra == {"foo": "get_position"}
 
     async def test_stop(self):
         assert self.servo.is_stopped is False
         await self.servo.stop(timeout=3.45, extra={"foo": "stop"})
         assert self.servo.is_stopped is True
-        assert self.servo.timeout == loose_approx(3.45)
+        assert self.servo.timeout == expected_grpc_timeout(3.45)
         assert self.servo.extra == {"foo": "stop"}
 
     async def test_is_moving(self):
@@ -73,7 +73,7 @@ class TestService:
             request = MoveRequest(name=self.name, angle_deg=self.pos, extra=dict_to_struct({"foo": "move"}))
             await client.Move(request, timeout=1.23)
             assert self.servo.angle == self.pos
-            assert self.servo.timeout == loose_approx(1.23)
+            assert self.servo.timeout == expected_grpc_timeout(1.23)
             assert self.servo.extra == {"foo": "move"}
 
     async def test_get_position(self):
@@ -82,7 +82,7 @@ class TestService:
             request = GetPositionRequest(name=self.name, extra=dict_to_struct({"foo": "get_position"}))
             response: GetPositionResponse = await client.GetPosition(request, timeout=2.34)
             assert response.position_deg == self.pos
-            assert self.servo.timeout == loose_approx(2.34)
+            assert self.servo.timeout == expected_grpc_timeout(2.34)
             assert self.servo.extra == {"foo": "get_position"}
 
     async def test_stop(self):
@@ -92,7 +92,7 @@ class TestService:
             request = StopRequest(name=self.name, extra=dict_to_struct({"foo": "stop"}))
             await client.Stop(request, timeout=3.45)
             assert self.servo.is_stopped is True
-            assert self.servo.timeout == loose_approx(3.45)
+            assert self.servo.timeout == expected_grpc_timeout(3.45)
             assert self.servo.extra == {"foo": "stop"}
 
     async def test_is_moving(self):
@@ -135,7 +135,7 @@ class TestClient:
             client = ServoClient(self.servo.name, channel)
             await client.move(self.pos, timeout=1.23, extra={"foo": "move"})
             assert self.servo.angle == self.pos
-            assert self.servo.timeout == loose_approx(1.23)
+            assert self.servo.timeout == expected_grpc_timeout(1.23)
             assert self.servo.extra == {"foo": "move"}
 
     async def test_get_position(self):
@@ -143,7 +143,7 @@ class TestClient:
             client = ServoClient(self.servo.name, channel)
             new_pos = await client.get_position(timeout=2.34, extra={"foo": "get_position"})
             assert new_pos == self.pos
-            assert self.servo.timeout == loose_approx(2.34)
+            assert self.servo.timeout == expected_grpc_timeout(2.34)
             assert self.servo.extra == {"foo": "get_position"}
 
     async def test_stop(self):
@@ -152,7 +152,7 @@ class TestClient:
             client = ServoClient(self.name, channel)
             await client.stop(timeout=3.45, extra={"foo": "stop"})
             assert self.servo.is_stopped is True
-            assert self.servo.timeout == loose_approx(3.45)
+            assert self.servo.timeout == expected_grpc_timeout(3.45)
             assert self.servo.extra == {"foo": "stop"}
 
     async def test_is_moving(self):
