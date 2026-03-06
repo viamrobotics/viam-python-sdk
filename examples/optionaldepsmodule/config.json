@@ -1,0 +1,24 @@
+{
+  "modules": [
+    {
+      "name": "optional-deps-module",
+      "executable_path": "<PATH_TO_RUN_SH>"
+    }
+  ],
+  "components": [
+    {
+      "name": "f",
+      "type": "generic",
+      "model": "acme:demo:foo",
+      "attributes": {
+        "required_motor": "m",
+        "optional_motor": "m2"
+      }
+    },
+    {
+      "name": "m",
+      "type": "motor",
+      "model": "fake"
+    }
+  ]
+}
