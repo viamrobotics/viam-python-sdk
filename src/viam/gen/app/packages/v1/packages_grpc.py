@@ -5,7 +5,7 @@ import grpclib.client
 import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
-import google.api.annotations_pb2
+from .... import google
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 from .... import app

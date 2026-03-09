@@ -52,6 +52,8 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     packages: Dict[str, List[str]] = {}
 
     for dirpath, _, filenames in os.walk(root):
+        if "google" in dirpath:
+            continue
         rel_path = Path(dirpath).relative_to(root).__str__()
         if "__" in rel_path:
             continue
@@ -143,7 +145,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
             f.write("Do not edit manually!\n")
             f.write("'''\n")
             for imp, cls in classes.items():
-                f.write(f'from {"."*(len(package.split("."))+IMPORT_LEVEL)}{PROTO_GEN_PACKAGE}.{package}.{imp} import (\n')
+                f.write(f"from {'.' * (len(package.split('.')) + IMPORT_LEVEL)}{PROTO_GEN_PACKAGE}.{package}.{imp} import (\n")
                 f.write("    %s\n" % (",\n    ".join(cls)))
                 f.write(")\n")
             f.write("\n__all__ = [\n")

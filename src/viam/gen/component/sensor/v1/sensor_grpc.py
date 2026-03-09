@@ -6,7 +6,7 @@ import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import common
-import google.api.annotations_pb2
+from .... import google
 from .... import component
 
 class SensorServiceBase(abc.ABC):

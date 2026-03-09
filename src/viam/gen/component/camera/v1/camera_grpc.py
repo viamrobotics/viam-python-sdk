@@ -7,8 +7,7 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import app
 from .... import common
-import google.api.annotations_pb2
-import google.api.httpbody_pb2
+from .... import google
 import google.protobuf.struct_pb2
 from .... import component
 
