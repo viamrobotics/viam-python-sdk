@@ -82,7 +82,7 @@ Module Contents
 
 .. py:data:: global___PackageFormat
 
-.. py:class:: DeviceAgentConfigRequest(*, id: str = ..., host_info: global___HostInfo | None = ..., subsystem_versions: collections.abc.Mapping[str, str] | None = ..., version_info: global___VersionInfo | None = ...)
+.. py:class:: DeviceAgentConfigRequest(*, id: str = ..., host_info: global___HostInfo | None = ..., subsystem_versions: collections.abc.Mapping[str, str] | None = ..., version_info: global___VersionInfo | None = ..., agent_uptime: google.protobuf.duration_pb2.Duration | None = ..., viam_server_uptime: google.protobuf.duration_pb2.Duration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -136,7 +136,19 @@ Module Contents
       Currently installed versions for agent and viam-server
 
 
-   .. py:method:: HasField(field_name: Literal['host_info', b'host_info', 'version_info', b'version_info']) -> bool
+   .. py:property:: agent_uptime
+      :type: google.protobuf.duration_pb2.Duration
+
+      how long viam-agent has been running since its most recent start
+
+
+   .. py:property:: viam_server_uptime
+      :type: google.protobuf.duration_pb2.Duration
+
+      how long viam-server has been running since its most recent start (omitted if not running)
+
+
+   .. py:method:: HasField(field_name: Literal['agent_uptime', b'agent_uptime', 'host_info', b'host_info', 'version_info', b'version_info', 'viam_server_uptime', b'viam_server_uptime']) -> bool
 
       Checks if a certain field is set for the message.
 
