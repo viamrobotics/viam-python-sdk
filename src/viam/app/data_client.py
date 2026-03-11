@@ -870,8 +870,8 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization to delete the data from.
                 To find your organization ID, visit the organization settings page.
-            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
-                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
+            delete_older_than_days (int): Delete data that was captured more than *this many* days ago. For example, a value of
+                10 deletes any data that was captured more than 10 days ago. A value of 0 deletes *all* existing data.
             filter (Optional[DeleteTabularFilter]): Optional filter to further constrain which data is deleted.
                 If provided, only data matching the filter will be deleted.
                 If omitted, data is deleted based on organization_id and delete_older_than_days.
