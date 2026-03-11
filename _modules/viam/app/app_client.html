@@ -2470,7 +2470,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span></div>
 
-<div class="viewcode-block" id="AppClient.upload_module_file"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.upload_module_file">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">upload_module_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_file_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModuleFileInfo</span><span class="p">],</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.upload_module_file"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.upload_module_file">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">upload_module_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_file_info</span><span class="p">:</span> <span class="n">ModuleFileInfo</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload a module file</span>
 
 <span class="sd">        ::</span>
@@ -2489,7 +2489,7 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.</span>
+<span class="sd">            module_file_info (viam.proto.app.ModuleFileInfo): Relevant metadata.</span>
 <span class="sd">            file (bytes): Bytes of file to upload.</span>
 
 <span class="sd">        Returns:</span>

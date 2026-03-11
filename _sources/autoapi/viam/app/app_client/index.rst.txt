@@ -2089,7 +2089,7 @@ Module Contents
 
 
 
-   .. py:method:: upload_module_file(module_file_info: Optional[viam.proto.app.ModuleFileInfo], file: bytes) -> str
+   .. py:method:: upload_module_file(module_file_info: viam.proto.app.ModuleFileInfo, file: bytes) -> str
       :async:
 
 
@@ -2111,7 +2111,7 @@ Module Contents
           )
 
       :param module_file_info: Relevant metadata.
-      :type module_file_info: Optional[viam.proto.app.ModuleFileInfo]
+      :type module_file_info: viam.proto.app.ModuleFileInfo
       :param file: Bytes of file to upload.
       :type file: bytes
 
