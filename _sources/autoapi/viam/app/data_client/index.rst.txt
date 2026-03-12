@@ -688,7 +688,7 @@ Module Contents
 
 
 
-   .. py:method:: delete_tabular_data(organization_id: str, delete_older_than_days: int) -> int
+   .. py:method:: delete_tabular_data(organization_id: str, delete_older_than_days: int, filter: Optional[viam.proto.app.data.DeleteTabularFilter] = None) -> int
       :async:
 
 
@@ -707,6 +707,10 @@ Module Contents
       :param delete_older_than_days: Delete data that was captured up to *this many* days ago. For example, a value of
                                      10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
       :type delete_older_than_days: int
+      :param filter: Optional filter to specify which data to delete based on
+                     location, robot, part, component, method, or tags. If no filter is provided, data will be deleted based
+                     on organization_id and delete_older_than_days.
+      :type filter: ~viam.proto.app.data.DeleteTabularFilter
 
       :returns: The number of items deleted.
       :rtype: int

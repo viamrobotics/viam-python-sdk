@@ -65,6 +65,7 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___Classification
    viam.gen.app.data.v1.data_pb2.global___Annotations
    viam.gen.app.data.v1.data_pb2.global___BinaryMetadata
+   viam.gen.app.data.v1.data_pb2.global___DeleteTabularFilter
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataRequest
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataResponse
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByFilterRequest
@@ -156,6 +157,7 @@ Classes
    viam.gen.app.data.v1.data_pb2.Classification
    viam.gen.app.data.v1.data_pb2.Annotations
    viam.gen.app.data.v1.data_pb2.BinaryMetadata
+   viam.gen.app.data.v1.data_pb2.DeleteTabularFilter
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataRequest
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataResponse
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest
@@ -1603,7 +1605,65 @@ Module Contents
 
 .. py:data:: global___BinaryMetadata
 
-.. py:class:: DeleteTabularDataRequest(*, organization_id: str = ..., delete_older_than_days: int = ...)
+.. py:class:: DeleteTabularFilter(*, location_ids: collections.abc.Iterable[str] | None = ..., robot_id: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method: str = ..., tags_filter: global___TagsFilter | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   TabularFilter filters tabular data. All fields are optional; omitted fields are treated as unconstrained.
+
+
+   .. py:attribute:: robot_id
+      :type:  str
+
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:attribute:: component_type
+      :type:  str
+
+
+   .. py:attribute:: component_name
+      :type:  str
+
+
+   .. py:attribute:: method
+      :type:  str
+
+
+   .. py:property:: location_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:property:: tags_filter
+      :type: global___TagsFilter
+
+
+
+   .. py:method:: HasField(field_name: Literal['tags_filter', b'tags_filter']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___DeleteTabularFilter
+
+.. py:class:: DeleteTabularDataRequest(*, organization_id: str = ..., delete_older_than_days: int = ..., filter: global___DeleteTabularFilter | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1614,6 +1674,7 @@ Module Contents
    If the request is at 10PM EST on March 11 (March 12 2AM UTC), this deletes all data captured
    through March 11 11:59:59PM UTC.
    If delete_older_than_days is 0, all existing data is deleted.
+   If no filter is provided, data will be deleted based on organization_id.
 
 
    .. py:attribute:: organization_id
@@ -1622,6 +1683,45 @@ Module Contents
 
    .. py:attribute:: delete_older_than_days
       :type:  int
+
+
+   .. py:property:: filter
+      :type: global___DeleteTabularFilter
+
+
+
+   .. py:method:: HasField(field_name: Literal['_filter', b'_filter', 'filter', b'filter']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_filter', b'_filter']) -> Literal['filter'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___DeleteTabularDataRequest

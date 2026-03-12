@@ -412,10 +412,24 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.organization_id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.delete_older_than_days</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.filter"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.filter</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse.deleted_count"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataResponse.deleted_count</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.robot_id"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.robot_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.part_id"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.part_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.component_type"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.component_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.component_name"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.component_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.method"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.method</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.location_ids"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.location_ids</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.tags_filter"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.tags_filter</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter.HasField"><code class="docutils literal notranslate"><span class="pre">DeleteTabularFilter.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.ExportTabularDataRequest"><code class="docutils literal notranslate"><span class="pre">ExportTabularDataRequest</span></code></a><ul>
@@ -869,133 +883,136 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse" title="viam.proto.app.data.DeleteTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataResponse returns the number of tabular datapoints deleted.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ExportTabularDataRequest" title="viam.proto.app.data.ExportTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTabularDataRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularFilter" title="viam.proto.app.data.DeleteTabularFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularFilter</span></code></a></p></td>
+<td><p>TabularFilter filters tabular data. All fields are optional; omitted fields are treated as unconstrained.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ExportTabularDataRequest" title="viam.proto.app.data.ExportTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTabularDataRequest</span></code></a></p></td>
 <td><p>ExportTabularDataRequest requests tabular data from the specified data source.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ExportTabularDataResponse" title="viam.proto.app.data.ExportTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTabularDataResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ExportTabularDataResponse" title="viam.proto.app.data.ExportTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExportTabularDataResponse</span></code></a></p></td>
 <td><p>ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filter</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filter</span></code></a></p></td>
 <td><p>Filter defines the fields over which we can filter data using a logic AND.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest" title="viam.proto.app.data.GetDatabaseConnectionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest" title="viam.proto.app.data.GetDatabaseConnectionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest</span></code></a></p></td>
 <td><p>GetDatabaseConnectionRequest requests the database connection hostname.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="viam.proto.app.data.GetDatabaseConnectionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="viam.proto.app.data.GetDatabaseConnectionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a></p></td>
 <td><p>GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetLatestTabularDataRequest" title="viam.proto.app.data.GetLatestTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLatestTabularDataRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetLatestTabularDataRequest" title="viam.proto.app.data.GetLatestTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLatestTabularDataRequest</span></code></a></p></td>
 <td><p>GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetLatestTabularDataResponse" title="viam.proto.app.data.GetLatestTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLatestTabularDataResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetLatestTabularDataResponse" title="viam.proto.app.data.GetLatestTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLatestTabularDataResponse</span></code></a></p></td>
 <td><p>GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetSavedQueryRequest" title="viam.proto.app.data.GetSavedQueryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSavedQueryRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetSavedQueryRequest" title="viam.proto.app.data.GetSavedQueryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSavedQueryRequest</span></code></a></p></td>
 <td><p>GetSavedQuery retrieves a saved query by id.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetSavedQueryResponse" title="viam.proto.app.data.GetSavedQueryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSavedQueryResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetSavedQueryResponse" title="viam.proto.app.data.GetSavedQueryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSavedQueryResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Index" title="viam.proto.app.data.Index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Index" title="viam.proto.app.data.Index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.IndexableCollection" title="viam.proto.app.data.IndexableCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IndexableCollection</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.IndexableCollection" title="viam.proto.app.data.IndexableCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IndexableCollection</span></code></a></p></td>
 <td><p>IndexableCollection specifies the types of collections available for custom indexes</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.IndexCreator" title="viam.proto.app.data.IndexCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IndexCreator</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.IndexCreator" title="viam.proto.app.data.IndexCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IndexCreator</span></code></a></p></td>
 <td><p>IndexCreator specifies the entity that originally created the index</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest" title="viam.proto.app.data.ListIndexesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListIndexesRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest" title="viam.proto.app.data.ListIndexesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListIndexesRequest</span></code></a></p></td>
 <td><p>ListIndexesRequest returns all the indexes for a given collection</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ListIndexesResponse" title="viam.proto.app.data.ListIndexesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListIndexesResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ListIndexesResponse" title="viam.proto.app.data.ListIndexesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListIndexesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ListSavedQueriesRequest" title="viam.proto.app.data.ListSavedQueriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListSavedQueriesRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ListSavedQueriesRequest" title="viam.proto.app.data.ListSavedQueriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListSavedQueriesRequest</span></code></a></p></td>
 <td><p>ListSavedQueries lists saved queries for a given organization.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ListSavedQueriesResponse" title="viam.proto.app.data.ListSavedQueriesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListSavedQueriesResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ListSavedQueriesResponse" title="viam.proto.app.data.ListSavedQueriesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListSavedQueriesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
 <td><p>Order specifies the order in which data is returned.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Query" title="viam.proto.app.data.Query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Query" title="viam.proto.app.data.Query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a></p></td>
 <td><p>RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
 <td><p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
 <td><p>TabularData contains data and metadata associated with tabular data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest" title="viam.proto.app.data.TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest" title="viam.proto.app.data.TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a></p></td>
 <td><p>TabularDataByFilterRequest requests tabular data based on filter values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
 <td><p>TabularDataByFilterResponse provides the data and metadata of tabular data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
 <td><p>TabularDataByMQLRequest requests tabular data using an MQL query.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
 <td><p>TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
 <td><p>TabularDataBySQLRequest requests tabular data using a SQL query.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
 <td><p>TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSource" title="viam.proto.app.data.TabularDataSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSource</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSource" title="viam.proto.app.data.TabularDataSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSource</span></code></a></p></td>
 <td><p>TabularDataSource specifies the data source for user queries to execute on.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSourceType" title="viam.proto.app.data.TabularDataSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSourceType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSourceType" title="viam.proto.app.data.TabularDataSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSourceType</span></code></a></p></td>
 <td><p>TabularDataSourceType specifies the data source type for TabularDataByMQL queries.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
 <td><p>TagsByFilterRequest requests the unique tags from data based on given filter.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterResponse" title="viam.proto.app.data.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterResponse" title="viam.proto.app.data.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
 <td><p>TagsByFilterResponse returns the unique tags from data based on given filter.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilter" title="viam.proto.app.data.TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilter</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilter" title="viam.proto.app.data.TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilter</span></code></a></p></td>
 <td><p>TagsFilter defines the type of filtering and, if applicable, over which tags to perform a logical OR.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
 <td><p>TagsFilterType specifies how data can be filtered based on tags.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
 <td><p>UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateSavedQueryRequest" title="viam.proto.app.data.UpdateSavedQueryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateSavedQueryRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateSavedQueryRequest" title="viam.proto.app.data.UpdateSavedQueryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateSavedQueryRequest</span></code></a></p></td>
 <td><p>UpdateSavedQuery updates the saved query with the given id.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateSavedQueryResponse" title="viam.proto.app.data.UpdateSavedQueryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateSavedQueryResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateSavedQueryResponse" title="viam.proto.app.data.UpdateSavedQueryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateSavedQueryResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -2983,14 +3000,15 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_older_than_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_older_than_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DeleteTabularFilter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite>
 in UTC time. For example, if delete_older_than_days=1 and the request is made at 1AM EST on March 11
 (March 11 5AM UTC), this deletes all data captured through March 10 11:59:59PM UTC.
 If the request is at 10PM EST on March 11 (March 12 2AM UTC), this deletes all data captured
 through March 11 11:59:59PM UTC.
-If delete_older_than_days is 0, all existing data is deleted.</p>
+If delete_older_than_days is 0, all existing data is deleted.
+If no filter is provided, data will be deleted based on organization_id.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.organization_id">
 <span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.organization_id" title="Permalink to this definition"></a></dt>
@@ -3000,6 +3018,55 @@ If delete_older_than_days is 0, all existing data is deleted.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days">
 <span class="sig-name descname"><span class="pre">delete_older_than_days</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.filter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DeleteTabularFilter</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_filter'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_filter'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'filter'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'filter'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_filter'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_filter'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'filter'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -3012,6 +3079,71 @@ If delete_older_than_days is 0, all existing data is deleted.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataResponse.deleted_count">
 <span class="sig-name descname"><span class="pre">deleted_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataResponse.deleted_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TagsFilter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TabularFilter filters tabular data. All fields are optional; omitted fields are treated as unconstrained.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.robot_id">
+<span class="sig-name descname"><span class="pre">robot_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.robot_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.part_id">
+<span class="sig-name descname"><span class="pre">part_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.part_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.component_type">
+<span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.component_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.component_name">
+<span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.component_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.method">
+<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.method" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.location_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.location_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.tags_filter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags_filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TagsFilter</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.tags_filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularFilter.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'tags_filter'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'tags_filter'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularFilter.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
