@@ -131,7 +131,7 @@ def test_example(example):
             )
 
         if client_file:
-            local = str(_is_local(address)).lower()
+            local = str(_is_local(address))
             cmd = [sys.executable, str(client_file), address]
             if not is_server_example:
                 cmd += ["test_id", "test_key", local]
