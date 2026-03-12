@@ -36,12 +36,6 @@ jobs:
       - name: Setup Python
         run: uv python install ${{ matrix.python-version }}
 
-      - name: Install viam-server
-        run: |
-          curl -o viam-server https://storage.googleapis.com/packages.viam.com/apps/viam-server/viam-server-stable-x86_64.AppImage
-          chmod 755 viam-server
-          sudo mv viam-server /usr/local/bin/viam-server
-
       - name: Install package
         run: make install
 
