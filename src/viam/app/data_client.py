@@ -39,6 +39,7 @@ from viam.proto.app.data import (
     DeleteIndexRequest,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    DeleteTabularFilter,
     ExportTabularDataRequest,
     ExportTabularDataResponse,
     Filter,
@@ -843,7 +844,9 @@ class DataClient:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
         return list(response.data)
 
-    async def delete_tabular_data(self, organization_id: str, delete_older_than_days: int) -> int:
+    async def delete_tabular_data(
+        self, organization_id: str, delete_older_than_days: int, filter: Optional[DeleteTabularFilter] = None
+    ) -> int:
         """Delete tabular data older than a specified number of days.
 
         ::
@@ -858,13 +861,16 @@ class DataClient:
                 To find your organization ID, visit the organization settings page.
             delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
                 10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
+            filter (~viam.proto.app.data.DeleteTabularFilter): Optional filter to specify which data to delete based on
+                location, robot, part, component, method, or tags. If no filter is provided, data will be deleted based
+                on organization_id and delete_older_than_days.
 
         Returns:
             int: The number of items deleted.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata>`_.
         """
-        request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days)
+        request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter)
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
         return response.deleted_count
 

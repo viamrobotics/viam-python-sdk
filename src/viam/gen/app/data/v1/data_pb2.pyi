@@ -949,6 +949,41 @@ class BinaryMetadata(google.protobuf.message.Message):
 global___BinaryMetadata = BinaryMetadata
 
 @typing.final
+class DeleteTabularFilter(google.protobuf.message.Message):
+    """TabularFilter filters tabular data. All fields are optional; omitted fields are treated as unconstrained."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_IDS_FIELD_NUMBER: builtins.int
+    ROBOT_ID_FIELD_NUMBER: builtins.int
+    PART_ID_FIELD_NUMBER: builtins.int
+    COMPONENT_TYPE_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    METHOD_FIELD_NUMBER: builtins.int
+    TAGS_FILTER_FIELD_NUMBER: builtins.int
+    robot_id: builtins.str
+    part_id: builtins.str
+    component_type: builtins.str
+    component_name: builtins.str
+    method: builtins.str
+
+    @property
+    def location_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def tags_filter(self) -> global___TagsFilter:
+        ...
+
+    def __init__(self, *, location_ids: collections.abc.Iterable[builtins.str] | None=..., robot_id: builtins.str=..., part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method: builtins.str=..., tags_filter: global___TagsFilter | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['tags_filter', b'tags_filter']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'location_ids', b'location_ids', 'method', b'method', 'part_id', b'part_id', 'robot_id', b'robot_id', 'tags_filter', b'tags_filter']) -> None:
+        ...
+global___DeleteTabularFilter = DeleteTabularFilter
+
+@typing.final
 class DeleteTabularDataRequest(google.protobuf.message.Message):
     """DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`
     in UTC time. For example, if delete_older_than_days=1 and the request is made at 1AM EST on March 11
@@ -956,17 +991,29 @@ class DeleteTabularDataRequest(google.protobuf.message.Message):
     If the request is at 10PM EST on March 11 (March 12 2AM UTC), this deletes all data captured
     through March 11 11:59:59PM UTC.
     If delete_older_than_days is 0, all existing data is deleted.
+    If no filter is provided, data will be deleted based on organization_id.
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     DELETE_OLDER_THAN_DAYS_FIELD_NUMBER: builtins.int
+    FILTER_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     delete_older_than_days: builtins.int
 
-    def __init__(self, *, organization_id: builtins.str=..., delete_older_than_days: builtins.int=...) -> None:
+    @property
+    def filter(self) -> global___DeleteTabularFilter:
         ...
 
-    def ClearField(self, field_name: typing.Literal['delete_older_than_days', b'delete_older_than_days', 'organization_id', b'organization_id']) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., delete_older_than_days: builtins.int=..., filter: global___DeleteTabularFilter | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_filter', b'_filter', 'filter', b'filter']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_filter', b'_filter', 'delete_older_than_days', b'delete_older_than_days', 'filter', b'filter', 'organization_id', b'organization_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_filter', b'_filter']) -> typing.Literal['filter'] | None:
         ...
 global___DeleteTabularDataRequest = DeleteTabularDataRequest
 

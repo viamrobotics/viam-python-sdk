@@ -938,6 +938,7 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.organization_id = request.organization_id
         self.delete_older_than_days = request.delete_older_than_days
+        self.delete_tabular_filter = request.filter if request.HasField("filter") else None
         await stream.send_message(DeleteTabularDataResponse(deleted_count=self.delete_remove_response))
 
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
