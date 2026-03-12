@@ -7,11 +7,20 @@ import sys
 import tempfile
 import time
 from pathlib import Path
+from urllib.parse import urlparse
 
 import pytest
 
 EXAMPLES_DIR = Path(__file__).parent.parent / "examples"
 PROJECT_ROOT = Path(__file__).parent.parent
+
+
+def _is_local(address: str) -> bool:
+    LOCAL_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1"}
+    if address.startswith("/") or address.startswith("unix://"):
+        return True
+    parsed = urlparse(address if "://" in address else f"http://{address}")
+    return parsed.hostname in LOCAL_HOSTS
 
 # If any new examples are added, add them to this list.
 EXAMPLES = [
@@ -122,9 +131,10 @@ def test_example(example):
             )
 
         if client_file:
+            local = str(_is_local(address)).lower()
             cmd = [sys.executable, str(client_file), address]
             if not is_server_example:
-                cmd += ["test_id", "test_key"]
+                cmd += ["test_id", "test_key", local]
             result = subprocess.run(
                 cmd,
                 cwd=str(PROJECT_ROOT) if is_server_example else str(example_dir),

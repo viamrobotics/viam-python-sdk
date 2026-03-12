@@ -32,8 +32,8 @@ async def main(machine_url: str, api_key_id: str, api_key: str, local: bool = Fa
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    if len(args) >= 3:
-        asyncio.run(main(args[0], args[1], args[2], local=True))
+    if len(args) >= 4:
+        asyncio.run(main(args[0], args[1], args[2], local=args[3].lower() == "true"))
     else:
         # Update these values with your app.viam.com credentials
         asyncio.run(main(
