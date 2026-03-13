@@ -62,7 +62,7 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
         response: GetTransformResponse = await self.client.GetTransform(request, timeout=timeout, metadata=md)
         return response.transform
 
-    async def stream_transform_changes(
+    async def stream_transform_changes(  # type: ignore
         self,
         *,
         extra: Optional[Mapping[str, Any]] = None,
@@ -74,8 +74,7 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
             name=self.name,
             extra=dict_to_struct(extra),
         )
-        responses = await self.client.StreamTransformChanges(request, timeout=timeout, metadata=md)
-        for response in responses:
+        async for response in self.client.StreamTransformChanges(request, timeout=timeout, metadata=md):  # pyright: ignore [reportGeneralTypeIssues]
             yield response
 
     async def do_command(

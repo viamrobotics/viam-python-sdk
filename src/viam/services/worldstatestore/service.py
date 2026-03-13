@@ -43,7 +43,7 @@ class WorldStateStoreService(UnimplementedWorldStateStoreServiceBase, ResourceRP
         assert request is not None
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        async for change in service.stream_transform_changes(extra=struct_to_dict(request.extra), timeout=timeout):
+        async for change in service.stream_transform_changes(extra=struct_to_dict(request.extra), timeout=timeout):  # pyright: ignore [reportGeneralTypeIssues]
             await stream.send_message(change)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
