@@ -170,7 +170,7 @@ def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
     std_handler.setFormatter(format)
     # filter out logs at error level or above
     std_handler.setLevel(LOG_LEVEL)
-    std_handler.addFilter(filter=lambda record: (record.levelno < ERROR))
+    std_handler.addFilter(filter=lambda record: record.levelno < ERROR)
 
     err_handler = logging.StreamHandler(stream=sys.stderr)
     err_handler.setFormatter(format)

@@ -22,6 +22,7 @@ def _is_local(address: str) -> bool:
     parsed = urlparse(address if "://" in address else f"http://{address}")
     return parsed.hostname in LOCAL_HOSTS
 
+
 # If any new examples are added, add them to this list.
 EXAMPLES = [
     {"dir": "complex_module", "entry": "src/main.py", "client": "client.py"},
@@ -126,9 +127,7 @@ def test_example(example):
                 stdout=server_log_fh,
                 stderr=subprocess.STDOUT,
             )
-            assert _wait_for_server_ready(server_log), (
-                f"viam-server did not start.\nlog:\n{open(server_log).read()}"
-            )
+            assert _wait_for_server_ready(server_log), f"viam-server did not start.\nlog:\n{open(server_log).read()}"
 
         if client_file:
             local = str(_is_local(address))
@@ -142,9 +141,7 @@ def test_example(example):
                 capture_output=True,
                 timeout=30,
             )
-            assert result.returncode == 0, (
-                f"Client failed.\nstdout:\n{result.stdout.decode()}\nstderr:\n{result.stderr.decode()}"
-            )
+            assert result.returncode == 0, f"Client failed.\nstdout:\n{result.stdout.decode()}\nstderr:\n{result.stderr.decode()}"
     finally:
         if server_proc:
             _terminate(server_proc)
@@ -159,6 +156,5 @@ def test_check_example_coverage():
     actual = {d.name for d in EXAMPLES_DIR.iterdir() if d.is_dir()}
     unknown = actual - known
     assert not unknown, (
-        f"New example directories without test coverage: {unknown}. "
-        f"Add new examples to the EXAMPLES list in tests/test_examples.py."
+        f"New example directories without test coverage: {unknown}. Add new examples to the EXAMPLES list in tests/test_examples.py."
     )

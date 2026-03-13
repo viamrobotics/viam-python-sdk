@@ -881,9 +881,7 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata>`_.
         """
-        request = DeleteTabularDataRequest(
-            organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter
-        )
+        request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter)
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
         return response.deleted_count
 
