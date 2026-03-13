@@ -13,7 +13,7 @@ dynamic = [
 dependencies = [
     "googleapis-common-protos>=1.65.0",
     "grpclib>=0.4.7",
-    "protobuf==5.29.5",
+    "protobuf==5.29.6",
     "typing-extensions>=4.12.2",
     "pymongo>=4.10.1",
 ]
@@ -44,7 +44,8 @@ Repository = "https://github.com/viamrobotics/viam-python-sdk"
 
 [project.optional-dependencies]
 mlmodel = [
-	"numpy"
+	"numpy",
+	"packaging",
 ]
 
 [build-system]

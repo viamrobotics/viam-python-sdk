@@ -252,6 +252,8 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
     UnimplementedDataServiceBase,
+    UpdateBoundingBoxRequest,
+    UpdateBoundingBoxResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -936,6 +938,7 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.organization_id = request.organization_id
         self.delete_older_than_days = request.delete_older_than_days
+        self.delete_tabular_filter = request.filter if request.HasField("filter") else None
         await stream.send_message(DeleteTabularDataResponse(deleted_count=self.delete_remove_response))
 
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
@@ -997,6 +1000,12 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(AddBoundingBoxToImageByIDResponse(bbox_id=self.bbox_labels_response[0]))
+
+    async def UpdateBoundingBox(self, stream: Stream[UpdateBoundingBoxRequest, UpdateBoundingBoxResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.updated_label = request.bbox_id
+        await stream.send_message(UpdateBoundingBoxResponse())
 
     async def RemoveBoundingBoxFromImageByID(
         self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
@@ -1598,6 +1607,8 @@ class MockApp(UnimplementedAppServiceBase):
         self.filter = request.filter
         self.errors_only = request.errors_only
         self.levels = request.levels
+        self.start = request.start
+        self.end = request.end
         await stream.send_message(GetRobotPartLogsResponse(logs=[self.log_entry]))
 
     async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:

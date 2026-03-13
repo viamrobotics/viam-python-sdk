@@ -107,7 +107,7 @@ class Camera(ComponentBase):
     @abc.abstractmethod
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
         """
-        Get the camera intrinsic parameters and camera distortion parameters
+        Get the camera intrinsic parameters, distortion parameters, and optionally extrinsic parameters
 
         ::
 
@@ -116,7 +116,8 @@ class Camera(ComponentBase):
             properties = await my_camera.get_properties()
 
         Returns:
-            Properties: The properties of the camera.
+            Properties: The properties of the camera, including intrinsic parameters, distortion parameters,
+            supported mime types, and optionally extrinsic parameters (position relative to a reference frame).
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getproperties>`_.
         """

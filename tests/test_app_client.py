@@ -456,6 +456,21 @@ class TestClient:
             assert service.levels == LOG_LEVELS
             assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
 
+    async def test_get_robot_part_logs_with_time_range(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            start_time = datetime(2024, 1, 1, 0, 0, 0)
+            end_time = datetime(2024, 1, 2, 0, 0, 0)
+            log_entries = await client.get_robot_part_logs(
+                robot_part_id=ID, filter=FILTER, log_levels=LOG_LEVELS, num_log_entries=NUM, start=start_time, end=end_time
+            )
+            assert service.robot_part_id == ID
+            assert service.filter == FILTER
+            assert service.levels == LOG_LEVELS
+            assert service.start == datetime_to_timestamp(start_time)
+            assert service.end == datetime_to_timestamp(end_time)
+            assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
+
     async def test_tail_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)

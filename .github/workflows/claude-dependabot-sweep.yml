@@ -1,0 +1,42 @@
+name: Claude Dependabot Sweep
+
+on:
+  schedule:
+    - cron: '0 14 * * 2' # Every Tuesday at 9 AM EST
+  workflow_dispatch:
+
+jobs:
+  sweep:
+    # viamrobotics/claude-ci-workflows@v1.10.6
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@918148a29da73235a7d751a93912aeaea0320b04
+    with:
+      install_command: 'pip install uv && make install'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*)'
+      alert_severity: 'critical,high,medium'
+      max_turns: 40
+      extra_prompt: |
+        - This project uses `uv` for dependency management with `pyproject.toml` and `uv.lock`.
+        - To update a dependency: edit the version constraint in `pyproject.toml`, then run `uv lock` to regenerate the lockfile.
+          Alternatively, use `uv add <package>>=<version>` to update both `pyproject.toml` and `uv.lock` in one step.
+        - For package investigation, use ONLY these Bash commands: uv pip show, uv pip index versions, uv add, uv lock.
+        - Do NOT use: python3, pip (without uv prefix), curl, WebFetch, WebSearch, or uv run python3. These are not available.
+        - Do NOT edit `uv.lock` directly — always regenerate it with `uv lock`.
+        - Run `uv run make format` to format code before committing.
+        - Run `uv run make lint` to check for lint issues. Fix any errors.
+        - Dependency placement — determine the dependency chain, then:
+          1. Direct dependency → update its constraint in `[project] dependencies`.
+          2. Transitive via dev/doc only (`[dependency-groups]`) → use `[tool.uv] constraint-dependencies`.
+          3. Transitive via production dependency (`[project] dependencies`) → add to `[project] dependencies`
+             with minimum secure version so downstream users get the fix.
+          - In the PR description, explain the dependency chain and placement rationale.
+        - TOML section ordering in `pyproject.toml`:
+          - If a `[tool.uv]` section already exists, add to it. Do NOT create a duplicate section.
+          - If creating a new `[tool.uv]` section, place it at the END of the file.
+          - Do NOT insert `[tool.uv]` between `[tool.ruff]` and its subsections (`[tool.ruff.lint.per-file-ignores]`).
+      extra_system_prompt: >-
+        Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      CI_GITHUB_APP_ID: ${{ secrets.CI_GITHUB_APP_ID }}
+      CI_GITHUB_APP_PRIVATE_KEY: ${{ secrets.CI_GITHUB_APP_PRIVATE_KEY }}
+      SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}

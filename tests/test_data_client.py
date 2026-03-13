@@ -15,6 +15,7 @@ from viam.proto.app.data import (
     BoundingBox,
     CaptureInterval,
     CaptureMetadata,
+    DeleteTabularFilter,
     ExportTabularDataResponse,
     Filter,
     Index,
@@ -326,6 +327,34 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0)
             assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.organization_id == ORG_ID
+            assert service.delete_older_than_days == 0
+
+    async def test_delete_tabular_data_with_filter(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            delete_filter = DeleteTabularFilter(
+                location_ids=LOCATION_IDS,
+                robot_id=ROBOT_ID,
+                part_id=PART_ID,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method=METHOD,
+            )
+            # Test with filter parameter
+            deleted_count = await client.delete_tabular_data(
+                organization_id=ORG_ID, delete_older_than_days=0, filter=delete_filter
+            )
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.organization_id == ORG_ID
+            assert service.delete_older_than_days == 0
+            assert service.delete_tabular_filter == delete_filter
+            # Test with None filter (default behavior)
+            deleted_count = await client.delete_tabular_data(
+                organization_id=ORG_ID, delete_older_than_days=0, filter=None
+            )
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.delete_tabular_filter is None
 
     async def test_delete_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -398,6 +427,7 @@ class TestClient:
                 y_min_normalized=0.1,
                 x_max_normalized=0.2,
                 y_max_normalized=0.3,
+                confidence_score=0.95,
             )
             assert bbox_label == BBOX_LABEL
             bbox_label = await client.add_bounding_box_to_image_by_id(
@@ -407,8 +437,25 @@ class TestClient:
                 y_min_normalized=0.1,
                 x_max_normalized=0.2,
                 y_max_normalized=0.3,
+                confidence_score=0.95,
             )
             assert bbox_label == BBOX_LABEL
+
+    async def test_update_bounding_box(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+
+            await client.update_bounding_box(
+                binary_id=BINARY_DATA_ID,
+                label="label",
+                bbox_id=BBOX_LABEL,
+                x_min_normalized=0,
+                y_min_normalized=0.1,
+                x_max_normalized=0.2,
+                y_max_normalized=0.3,
+                confidence_score=0.95,
+            )
+            assert service.updated_label == BBOX_LABEL
 
     async def test_remove_bounding_box_from_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:

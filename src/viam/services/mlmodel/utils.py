@@ -44,7 +44,6 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
         # Creating our array as a uint32 array initially and then casting to int16 solves this.
         if Version(np.__version__) >= Version("2") and dtype == np.int16:
             arr = np.astype(make_array(flat_data, np.uint32), np.int16)  # pyright: ignore [reportAttributeAccessIssue]
-
         else:
             arr = make_array(flat_data, dtype)
         return arr.reshape(shape)

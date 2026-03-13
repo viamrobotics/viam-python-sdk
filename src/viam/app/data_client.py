@@ -39,6 +39,7 @@ from viam.proto.app.data import (
     DeleteIndexRequest,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    DeleteTabularFilter,
     ExportTabularDataRequest,
     ExportTabularDataResponse,
     Filter,
@@ -67,6 +68,7 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    UpdateBoundingBoxRequest,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -842,7 +844,9 @@ class DataClient:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
         return list(response.data)
 
-    async def delete_tabular_data(self, organization_id: str, delete_older_than_days: int) -> int:
+    async def delete_tabular_data(
+        self, organization_id: str, delete_older_than_days: int, filter: Optional[DeleteTabularFilter] = None
+    ) -> int:
         """Delete tabular data older than a specified number of days.
 
         ::
@@ -852,18 +856,34 @@ class DataClient:
                 delete_older_than_days=150
             )
 
+            # Delete with additional filter constraints
+            from viam.proto.app.data import DeleteTabularFilter
+            tabular_data = await data_client.delete_tabular_data(
+                organization_id="<YOUR-ORG-ID>",
+                delete_older_than_days=150,
+                filter=DeleteTabularFilter(
+                    location_ids=["location-id"],
+                    component_name="camera"
+                )
+            )
+
         Args:
             organization_id (str): The ID of the organization to delete the data from.
                 To find your organization ID, visit the organization settings page.
-            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
-                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
+            delete_older_than_days (int): Delete data that was captured more than *this many* days ago. For example, a value of
+                10 deletes any data that was captured more than 10 days ago. A value of 0 deletes *all* existing data.
+            filter (Optional[~viam.proto.app.data.DeleteTabularFilter]): Optional filter to further constrain which data is deleted.
+                If provided, only data matching the filter will be deleted.
+                If omitted, data is deleted based on organization_id and delete_older_than_days.
 
         Returns:
             int: The number of items deleted.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata>`_.
         """
-        request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days)
+        request = DeleteTabularDataRequest(
+            organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter
+        )
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
         return response.deleted_count
 
@@ -1131,6 +1151,7 @@ class DataClient:
         y_min_normalized: float,
         x_max_normalized: float,
         y_max_normalized: float,
+        confidence_score: Optional[float] = None,
     ) -> str:
         """Add a bounding box to an image.
 
@@ -1142,7 +1163,8 @@ class DataClient:
                 x_min_normalized=0,
                 y_min_normalized=.1,
                 x_max_normalized=.2,
-                y_max_normalized=.3
+                y_max_normalized=.3,
+                confidence_score=.95
             )
 
             print(bbox_id)
@@ -1156,6 +1178,7 @@ class DataClient:
             y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
             x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.
             y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.
+            confidence_score (float): Confidence level of the bounding box being correct.
 
         Raises:
             GRPCError: If the X or Y values are outside of the [0, 1] range.
@@ -1174,6 +1197,7 @@ class DataClient:
                 x_min_normalized=x_min_normalized,
                 y_max_normalized=y_max_normalized,
                 y_min_normalized=y_min_normalized,
+                confidence=confidence_score,
             )
         else:
             request = AddBoundingBoxToImageByIDRequest(
@@ -1183,9 +1207,67 @@ class DataClient:
                 x_min_normalized=x_min_normalized,
                 y_max_normalized=y_max_normalized,
                 y_min_normalized=y_min_normalized,
+                confidence=confidence_score,
             )
         response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
         return response.bbox_id
+
+    async def update_bounding_box(
+        self,
+        binary_id: str,
+        bbox_id: str,
+        label: str,
+        x_min_normalized: float,
+        y_min_normalized: float,
+        x_max_normalized: float,
+        y_max_normalized: float,
+        confidence_score: Optional[float] = None,
+    ) -> None:
+        """Update a bounding box in an image.
+
+        ::
+
+            bbox_id = await data_client.update_bounding_box_to_image_by_id(
+                binary_id="<YOUR-BINARY-DATA-ID>",
+                bbox_id="2"
+                label="label",
+                x_min_normalized=0,
+                y_min_normalized=.1,
+                x_max_normalized=.2,
+                y_max_normalized=.3,
+                confidence_score=.95
+            )
+
+        Args:
+            binary_id (str): The binary data ID of the image to add the bounding
+                box to.
+            bbox_id (str): The ID of the bounding box to be updated
+            label (str): A label for the bounding box.
+            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
+            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
+            x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.
+            y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.
+            confidence_score (float): Confidence level of the bounding box being correct.
+
+        Raises:
+            GRPCError: If the X or Y values are outside of the [0, 1] range.
+
+        Returns:
+            N/A
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
+        """
+        request = UpdateBoundingBoxRequest(
+            binary_data_id=binary_id,
+            bbox_id=bbox_id,
+            label=label,
+            x_max_normalized=x_max_normalized,
+            x_min_normalized=x_min_normalized,
+            y_max_normalized=y_max_normalized,
+            y_min_normalized=y_min_normalized,
+            confidence=confidence_score,
+        )
+        await self._data_client.UpdateBoundingBox(request, metadata=self._metadata)
 
     async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: Union[BinaryID, str]) -> None:
         """Removes a bounding box from an image.
