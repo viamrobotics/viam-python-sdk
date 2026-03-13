@@ -22,7 +22,6 @@ from viam.proto.app.data import (
     IndexableCollection,
     IndexCreator,
     Order,
-    DeleteTabularFilter,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
 
