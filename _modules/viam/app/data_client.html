@@ -945,21 +945,34 @@
 <span class="sd">                delete_older_than_days=150</span>
 <span class="sd">            )</span>
 
+<span class="sd">            # Delete with additional filter constraints</span>
+<span class="sd">            from viam.proto.app.data import DeleteTabularFilter</span>
+<span class="sd">            tabular_data = await data_client.delete_tabular_data(</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                delete_older_than_days=150,</span>
+<span class="sd">                filter=DeleteTabularFilter(</span>
+<span class="sd">                    location_ids=[&quot;location-id&quot;],</span>
+<span class="sd">                    component_name=&quot;camera&quot;</span>
+<span class="sd">                )</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization to delete the data from.</span>
 <span class="sd">                To find your organization ID, visit the organization settings page.</span>
-<span class="sd">            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of</span>
-<span class="sd">                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.</span>
-<span class="sd">            filter (~viam.proto.app.data.DeleteTabularFilter): Optional filter to specify which data to delete based on</span>
-<span class="sd">                location, robot, part, component, method, or tags. If no filter is provided, data will be deleted based</span>
-<span class="sd">                on organization_id and delete_older_than_days.</span>
+<span class="sd">            delete_older_than_days (int): Delete data that was captured more than *this many* days ago. For example, a value of</span>
+<span class="sd">                10 deletes any data that was captured more than 10 days ago. A value of 0 deletes *all* existing data.</span>
+<span class="sd">            filter (Optional[~viam.proto.app.data.DeleteTabularFilter]): Optional filter to further constrain which data is deleted.</span>
+<span class="sd">                If provided, only data matching the filter will be deleted.</span>
+<span class="sd">                If omitted, data is deleted based on organization_id and delete_older_than_days.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 

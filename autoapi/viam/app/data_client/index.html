@@ -929,6 +929,17 @@ Defaults to true (that is, both the files’ data and metadata are returned).</p
     <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
     <span class="n">delete_older_than_days</span><span class="o">=</span><span class="mi">150</span>
 <span class="p">)</span>
+
+<span class="c1"># Delete with additional filter constraints</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">DeleteTabularFilter</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_tabular_data</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">delete_older_than_days</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">DeleteTabularFilter</span><span class="p">(</span>
+        <span class="n">location_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;location-id&quot;</span><span class="p">],</span>
+        <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -936,11 +947,11 @@ Defaults to true (that is, both the files’ data and metadata are returned).</p
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization to delete the data from.
 To find your organization ID, visit the organization settings page.</p></li>
-<li><p><strong>delete_older_than_days</strong> (<em>int</em>) – Delete data that was captured up to <em>this many</em> days ago. For example, a value of
-10 deletes any data that was captured up to 10 days ago. A value of 0 deletes <em>all</em> existing data.</p></li>
-<li><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.DeleteTabularFilter" title="viam.proto.app.data.DeleteTabularFilter"><em>DeleteTabularFilter</em></a>) – Optional filter to specify which data to delete based on
-location, robot, part, component, method, or tags. If no filter is provided, data will be deleted based
-on organization_id and delete_older_than_days.</p></li>
+<li><p><strong>delete_older_than_days</strong> (<em>int</em>) – Delete data that was captured more than <em>this many</em> days ago. For example, a value of
+10 deletes any data that was captured more than 10 days ago. A value of 0 deletes <em>all</em> existing data.</p></li>
+<li><p><strong>filter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.DeleteTabularFilter" title="viam.proto.app.data.DeleteTabularFilter"><em>DeleteTabularFilter</em></a><em>]</em>) – Optional filter to further constrain which data is deleted.
+If provided, only data matching the filter will be deleted.
+If omitted, data is deleted based on organization_id and delete_older_than_days.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
