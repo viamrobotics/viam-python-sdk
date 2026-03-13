@@ -333,7 +333,7 @@ class TestClient:
     async def test_delete_tabular_data_with_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-                        delete_filter = DeleteTabularFilter(
+            delete_filter = DeleteTabularFilter(
                 location_ids=LOCATION_IDS,
                 robot_id=ROBOT_ID,
                 part_id=PART_ID,
