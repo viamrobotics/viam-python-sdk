@@ -15,7 +15,7 @@ from viam.proto.component.audioin import AudioInServiceStub, GetAudioRequest
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockAudioIn
 
 # Test properties for the mock AudioIn
@@ -116,7 +116,7 @@ class TestService:
             assert response.supported_codecs == PROPERTIES.supported_codecs
             assert response.sample_rate_hz == PROPERTIES.sample_rate_hz
             assert response.num_channels == PROPERTIES.num_channels
-            assert audio_in.timeout == loose_approx(1.82)
+            assert audio_in.timeout == expected_grpc_timeout(1.82)
 
     async def test_do_command(self, audio_in: MockAudioIn, service: AudioInRPCService):
         async with ChannelFor([service]) as channel:
@@ -165,7 +165,7 @@ class TestClient:
             assert properties.supported_codecs == PROPERTIES.supported_codecs
             assert properties.sample_rate_hz == PROPERTIES.sample_rate_hz
             assert properties.num_channels == PROPERTIES.num_channels
-            assert audio_in.timeout == loose_approx(4.4)
+            assert audio_in.timeout == expected_grpc_timeout(4.4)
 
     async def test_do_command(self, audio_in: AudioIn, service: AudioInRPCService):
         async with ChannelFor([service]) as channel:

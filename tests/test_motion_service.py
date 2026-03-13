@@ -25,7 +25,7 @@ from viam.services.motion.motion import Motion
 from viam.services.motion.service import MotionRPCService
 from viam.utils import ValueTypes
 
-from . import loose_approx
+from . import expected_grpc_timeout
 
 MOTION_SERVICE_NAME = "motion1"
 
@@ -140,7 +140,7 @@ class TestMotionService:
                 assert patched_method.call_args.args[2] == world_state
                 assert patched_method.call_args.args[3] == constraints
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_get_pose(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "get_pose") as patched_method:
@@ -160,7 +160,7 @@ class TestMotionService:
                 assert patched_method.call_args.args[1] == destination_frame
                 assert patched_method.call_args.args[2] == transforms
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_move_on_map(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "move_on_map") as patched_method:
@@ -192,7 +192,7 @@ class TestMotionService:
                 assert patched_method.call_args.args[3] == configuration
                 assert patched_method.call_args.args[4] == obstacles
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_move_on_globe(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "move_on_globe") as patched_method:
@@ -230,7 +230,7 @@ class TestMotionService:
                 assert patched_method.call_args.args[5] == configuration
                 assert patched_method.call_args.kwargs["bounding_regions"] == bounding_regions
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_stop_plan(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "stop_plan") as patched_method:
@@ -243,7 +243,7 @@ class TestMotionService:
                 patched_method.assert_called_once()
                 assert patched_method.call_args.args[0] == component_rn
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_get_plan(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "get_plan") as patched_method:
@@ -294,7 +294,7 @@ class TestMotionService:
                 assert patched_method.call_args.args[1] == last_plan_only
                 assert patched_method.call_args.args[2] == execution_id
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_list_plan_statuses(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "list_plan_statuses") as patched_method:
@@ -313,7 +313,7 @@ class TestMotionService:
                 patched_method.assert_called_once()
                 assert patched_method.call_args.args[0] == only_active_plans
                 assert patched_method.call_args.kwargs["extra"] == extra
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
 
     async def test_do(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "do_command") as patched_method:
@@ -327,4 +327,4 @@ class TestMotionService:
                 assert dc_response == response
                 patched_method.assert_called_once()
                 assert patched_method.call_args.args[0] == command
-                assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
+                assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)

@@ -7,7 +7,7 @@ from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, 
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockPose, MockPoseTracker
 
 POSES = [
@@ -24,7 +24,7 @@ class TestPoseTracker:
         received_poses = await self.mock_pose_tracker.get_poses([], extra={"foo": "get_poses"}, timeout=1.23)
         assert received_poses["0"] == PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
         assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
-        assert self.mock_pose_tracker.timeout == loose_approx(1.23)
+        assert self.mock_pose_tracker.timeout == expected_grpc_timeout(1.23)
         assert self.mock_pose_tracker.extra == {"foo": "get_poses"}
 
     async def test_do(self):
@@ -54,7 +54,7 @@ class TestService:
             received_poses = response.body_poses
             assert received_poses["0"] == PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
             assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
-            assert self.pose_tracker.timeout == loose_approx(2.34)
+            assert self.pose_tracker.timeout == expected_grpc_timeout(2.34)
             assert self.pose_tracker.extra == {"foo": "get_poses"}
 
     async def test_do(self):
@@ -89,7 +89,7 @@ class TestClient:
             received_poses = await client.get_poses([], extra={"foo": "get_poses"}, timeout=3.45)
             assert received_poses["0"] == PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
             assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
-            assert self.pose_tracker.timeout == loose_approx(3.45)
+            assert self.pose_tracker.timeout == expected_grpc_timeout(3.45)
             assert self.pose_tracker.extra == {"foo": "get_poses"}
 
     async def test_do(self):
