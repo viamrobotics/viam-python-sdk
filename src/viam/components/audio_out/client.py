@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetPropertiesRequest, GetPropertiesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetPropertiesRequest, GetPropertiesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.audioout import AudioOutServiceStub, PlayRequest
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
@@ -60,6 +60,17 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:

@@ -3,7 +3,7 @@
 from grpclib.server import Stream
 
 from viam.errors import NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
     GetImagesRequest,
@@ -80,6 +80,15 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await camera.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        camera = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await camera.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:

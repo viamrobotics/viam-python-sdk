@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetReadingsRequest, GetReadingsResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetReadingsRequest, GetReadingsResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.sensor import SensorServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import SensorReading, ValueTypes, dict_to_struct, get_geometries, sensor_readings_value_to_native, struct_to_dict
@@ -42,6 +42,17 @@ class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:

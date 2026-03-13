@@ -46,6 +46,9 @@ class ComponentBase(abc.ABC, ResourceBase):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Sequence[Geometry]:
         """
         Get all geometries associated with the component, in their current configuration, in the
