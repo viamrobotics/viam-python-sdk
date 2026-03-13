@@ -327,6 +327,8 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0)
             assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.organization_id == ORG_ID
+            assert service.delete_older_than_days == 0
 
     async def test_delete_tabular_data_with_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -339,9 +341,20 @@ class TestClient:
                 component_name=COMPONENT_NAME,
                 method=METHOD,
             )
-            deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0, filter=delete_filter)
+            # Test with filter parameter
+            deleted_count = await client.delete_tabular_data(
+                organization_id=ORG_ID, delete_older_than_days=0, filter=delete_filter
+            )
             assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.organization_id == ORG_ID
+            assert service.delete_older_than_days == 0
             assert service.delete_tabular_filter == delete_filter
+            # Test with None filter (default behavior)
+            deleted_count = await client.delete_tabular_data(
+                organization_id=ORG_ID, delete_older_than_days=0, filter=None
+            )
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.delete_tabular_filter is None
 
     async def test_delete_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:

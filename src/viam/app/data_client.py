@@ -856,21 +856,34 @@ class DataClient:
                 delete_older_than_days=150
             )
 
+            # Delete with additional filter constraints
+            from viam.proto.app.data import DeleteTabularFilter
+            tabular_data = await data_client.delete_tabular_data(
+                organization_id="<YOUR-ORG-ID>",
+                delete_older_than_days=150,
+                filter=DeleteTabularFilter(
+                    location_ids=["location-id"],
+                    component_name="camera"
+                )
+            )
+
         Args:
             organization_id (str): The ID of the organization to delete the data from.
                 To find your organization ID, visit the organization settings page.
-            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
-                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
-            filter (~viam.proto.app.data.DeleteTabularFilter): Optional filter to specify which data to delete based on
-                location, robot, part, component, method, or tags. If no filter is provided, data will be deleted based
-                on organization_id and delete_older_than_days.
+            delete_older_than_days (int): Delete data that was captured more than *this many* days ago. For example, a value of
+                10 deletes any data that was captured more than 10 days ago. A value of 0 deletes *all* existing data.
+            filter (Optional[~viam.proto.app.data.DeleteTabularFilter]): Optional filter to further constrain which data is deleted.
+                If provided, only data matching the filter will be deleted.
+                If omitted, data is deleted based on organization_id and delete_older_than_days.
 
         Returns:
             int: The number of items deleted.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata>`_.
         """
-        request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter)
+        request = DeleteTabularDataRequest(
+            organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter
+        )
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
         return response.deleted_count
 
