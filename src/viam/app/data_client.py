@@ -66,7 +66,6 @@ from viam.proto.app.data import (
     TabularDataBySQLResponse,
     TabularDataSource,
     TabularDataSourceType,
-    DeleteTabularFilter,
     TagsByFilterRequest,
     TagsByFilterResponse,
     UpdateBoundingBoxRequest,
