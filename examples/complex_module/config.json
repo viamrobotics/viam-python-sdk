@@ -1,0 +1,55 @@
+{
+  "modules": [
+    {
+      "name": "complex-module",
+      "executable_path": "<PATH_TO_RUN_SH>"
+    }
+  ],
+  "components": [
+    {
+      "name": "gizmo1",
+      "api": "acme:component:gizmo",
+      "model": "acme:demo:mygizmo",
+      "attributes": {
+        "arg1": "test",
+        "motor": "motor1"
+      },
+      "depends_on": ["motor1"]
+    },
+    {
+      "name": "motor1",
+      "type": "motor",
+      "model": "fake"
+    },
+    {
+      "name": "base1",
+      "type": "base",
+      "model": "viam:base:mybase",
+      "attributes": {
+        "left": "motor_left",
+        "right": "motor_right"
+      },
+      "depends_on": ["motor_left", "motor_right"]
+    },
+    {
+      "name": "motor_left",
+      "type": "motor",
+      "model": "fake"
+    },
+    {
+      "name": "motor_right",
+      "type": "motor",
+      "model": "fake"
+    }
+  ],
+  "services": [
+    {
+      "name": "mysum1",
+      "api": "acme:service:summation",
+      "model": "acme:demo:mysum",
+      "attributes": {
+        "subtract": false
+      }
+    }
+  ]
+}
