@@ -342,17 +342,13 @@ class TestClient:
                 method=METHOD,
             )
             # Test with filter parameter
-            deleted_count = await client.delete_tabular_data(
-                organization_id=ORG_ID, delete_older_than_days=0, filter=delete_filter
-            )
+            deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0, filter=delete_filter)
             assert deleted_count == DELETE_REMOVE_RESPONSE
             assert service.organization_id == ORG_ID
             assert service.delete_older_than_days == 0
             assert service.delete_tabular_filter == delete_filter
             # Test with None filter (default behavior)
-            deleted_count = await client.delete_tabular_data(
-                organization_id=ORG_ID, delete_older_than_days=0, filter=None
-            )
+            deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0, filter=None)
             assert deleted_count == DELETE_REMOVE_RESPONSE
             assert service.delete_tabular_filter is None
 
