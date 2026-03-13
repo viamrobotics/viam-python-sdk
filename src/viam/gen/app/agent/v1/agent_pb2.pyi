@@ -71,6 +71,8 @@ class DeviceAgentConfigRequest(google.protobuf.message.Message):
     HOST_INFO_FIELD_NUMBER: builtins.int
     SUBSYSTEM_VERSIONS_FIELD_NUMBER: builtins.int
     VERSION_INFO_FIELD_NUMBER: builtins.int
+    AGENT_UPTIME_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_UPTIME_FIELD_NUMBER: builtins.int
     id: builtins.str
     'robot partID'
 
@@ -88,13 +90,21 @@ class DeviceAgentConfigRequest(google.protobuf.message.Message):
     def version_info(self) -> global___VersionInfo:
         """Currently installed versions for agent and viam-server"""
 
-    def __init__(self, *, id: builtins.str=..., host_info: global___HostInfo | None=..., subsystem_versions: collections.abc.Mapping[builtins.str, builtins.str] | None=..., version_info: global___VersionInfo | None=...) -> None:
+    @property
+    def agent_uptime(self) -> google.protobuf.duration_pb2.Duration:
+        """how long viam-agent has been running since its most recent start"""
+
+    @property
+    def viam_server_uptime(self) -> google.protobuf.duration_pb2.Duration:
+        """how long viam-server has been running since its most recent start (omitted if not running)"""
+
+    def __init__(self, *, id: builtins.str=..., host_info: global___HostInfo | None=..., subsystem_versions: collections.abc.Mapping[builtins.str, builtins.str] | None=..., version_info: global___VersionInfo | None=..., agent_uptime: google.protobuf.duration_pb2.Duration | None=..., viam_server_uptime: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['host_info', b'host_info', 'version_info', b'version_info']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['agent_uptime', b'agent_uptime', 'host_info', b'host_info', 'version_info', b'version_info', 'viam_server_uptime', b'viam_server_uptime']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['host_info', b'host_info', 'id', b'id', 'subsystem_versions', b'subsystem_versions', 'version_info', b'version_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['agent_uptime', b'agent_uptime', 'host_info', b'host_info', 'id', b'id', 'subsystem_versions', b'subsystem_versions', 'version_info', b'version_info', 'viam_server_uptime', b'viam_server_uptime']) -> None:
         ...
 global___DeviceAgentConfigRequest = DeviceAgentConfigRequest
 

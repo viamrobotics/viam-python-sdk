@@ -39,6 +39,7 @@ from viam.proto.app.data import (
     DeleteIndexRequest,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    DeleteTabularFilter,
     ExportTabularDataRequest,
     ExportTabularDataResponse,
     Filter,
@@ -872,7 +873,7 @@ class DataClient:
                 To find your organization ID, visit the organization settings page.
             delete_older_than_days (int): Delete data that was captured more than *this many* days ago. For example, a value of
                 10 deletes any data that was captured more than 10 days ago. A value of 0 deletes *all* existing data.
-            filter (Optional[DeleteTabularFilter]): Optional filter to further constrain which data is deleted.
+            filter (Optional[~viam.proto.app.data.DeleteTabularFilter]): Optional filter to further constrain which data is deleted.
                 If provided, only data matching the filter will be deleted.
                 If omitted, data is deleted based on organization_id and delete_older_than_days.
 
