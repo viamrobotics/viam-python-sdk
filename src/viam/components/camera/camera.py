@@ -1,6 +1,5 @@
 import abc
-import sys
-from typing import Any, Dict, Final, Optional, Sequence, Tuple
+from typing import Any, Dict, Final, Optional, Sequence, Tuple, TypeAlias
 
 from viam.media.video import NamedImage
 from viam.proto.common import ResponseMetadata
@@ -8,11 +7,6 @@ from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
 
 
 class Camera(ComponentBase):

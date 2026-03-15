@@ -3,8 +3,9 @@ import contextvars
 import functools
 import sys
 import threading
+from collections.abc import Callable
 from datetime import datetime
-from typing import Any, Callable, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
+from typing import Any, Dict, List, Mapping, Optional, ParamSpec, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
@@ -17,17 +18,6 @@ from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import API, SupportsGetGeometries
-
-if sys.version_info >= (3, 9):
-    from collections.abc import Callable
-else:
-    from typing import Callable
-
-if sys.version_info >= (3, 10):
-    from typing import ParamSpec
-else:
-    from typing_extensions import ParamSpec
-
 
 ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
 """Types that can be encoded into a protobuf `Value`"""
@@ -245,22 +235,6 @@ class PointerCounter:
 
 _P = ParamSpec("_P")
 _R = TypeVar("_R")
-
-
-async def to_thread(func: Callable[_P, _R], *args: _P.args, **kwargs: _P.kwargs) -> _R:
-    """Asynchronously run a function in a separate thread.
-
-    This is a copy of the function defined in the python source,
-    which is only available in python >= 3.9.
-
-    See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py
-    """
-    if sys.version_info >= (3, 9):
-        return await asyncio.to_thread(func, *args, **kwargs)
-    loop = asyncio.events.get_running_loop()
-    ctx = contextvars.copy_context()
-    func_call = functools.partial(ctx.run, func, *args, **kwargs)
-    return await loop.run_in_executor(None, func_call)  # type: ignore
 
 
 def from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool:

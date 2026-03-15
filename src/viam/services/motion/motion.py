@@ -1,11 +1,5 @@
 import abc
-import sys
-from typing import Any, Final, Mapping, Optional, Sequence
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
+from typing import Any, Final, Mapping, Optional, Sequence, TypeAlias
 
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, Transform, WorldState
 from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID

@@ -1,6 +1,5 @@
 import abc
-import sys
-from typing import Final, Optional
+from typing import Final, Optional, TypeAlias
 
 from viam.proto.common import GetPropertiesResponse
 from viam.proto.component.audioin import GetAudioResponse
@@ -8,11 +7,6 @@ from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPO
 from viam.streams import Stream
 
 from ..component_base import ComponentBase
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
 
 
 class AudioIn(ComponentBase):
