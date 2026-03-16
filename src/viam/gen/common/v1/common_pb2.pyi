@@ -121,24 +121,57 @@ class Orientation(google.protobuf.message.Message):
 global___Orientation = Orientation
 
 @typing.final
+class PoseCloud(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    X_FIELD_NUMBER: builtins.int
+    Y_FIELD_NUMBER: builtins.int
+    Z_FIELD_NUMBER: builtins.int
+    O_X_FIELD_NUMBER: builtins.int
+    O_Y_FIELD_NUMBER: builtins.int
+    O_Z_FIELD_NUMBER: builtins.int
+    THETA_FIELD_NUMBER: builtins.int
+    x: builtins.float
+    y: builtins.float
+    z: builtins.float
+    o_x: builtins.float
+    o_y: builtins.float
+    o_z: builtins.float
+    theta: builtins.float
+
+    def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=..., o_x: builtins.float=..., o_y: builtins.float=..., o_z: builtins.float=..., theta: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
+        ...
+global___PoseCloud = PoseCloud
+
+@typing.final
 class PoseInFrame(google.protobuf.message.Message):
     """PoseInFrame contains a pose and the reference frame in which it was observed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_FIELD_NUMBER: builtins.int
+    GOAL_CLOUD_FIELD_NUMBER: builtins.int
     reference_frame: builtins.str
 
     @property
     def pose(self) -> global___Pose:
         ...
 
-    def __init__(self, *, reference_frame: builtins.str=..., pose: global___Pose | None=...) -> None:
+    @property
+    def goal_cloud(self) -> global___PoseCloud:
         ...
 
-    def HasField(self, field_name: typing.Literal['pose', b'pose']) -> builtins.bool:
+    def __init__(self, *, reference_frame: builtins.str=..., pose: global___Pose | None=..., goal_cloud: global___PoseCloud | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['pose', b'pose', 'reference_frame', b'reference_frame']) -> None:
+    def HasField(self, field_name: typing.Literal['_goal_cloud', b'_goal_cloud', 'goal_cloud', b'goal_cloud', 'pose', b'pose']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_goal_cloud', b'_goal_cloud', 'goal_cloud', b'goal_cloud', 'pose', b'pose', 'reference_frame', b'reference_frame']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_goal_cloud', b'_goal_cloud']) -> typing.Literal['goal_cloud'] | None:
         ...
 global___PoseInFrame = PoseInFrame
 

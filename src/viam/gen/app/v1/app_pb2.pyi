@@ -5689,10 +5689,12 @@ class OAuthConfig(google.protobuf.message.Message):
     REDIRECT_URIS_FIELD_NUMBER: builtins.int
     LOGOUT_URI_FIELD_NUMBER: builtins.int
     ENABLED_GRANTS_FIELD_NUMBER: builtins.int
+    INVITE_REDIRECT_URI_FIELD_NUMBER: builtins.int
     client_authentication: global___ClientAuthentication.ValueType
     pkce: global___PKCE.ValueType
     url_validation: global___URLValidation.ValueType
     logout_uri: builtins.str
+    invite_redirect_uri: builtins.str
 
     @property
     def origin_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -5706,10 +5708,10 @@ class OAuthConfig(google.protobuf.message.Message):
     def enabled_grants(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___EnabledGrant.ValueType]:
         ...
 
-    def __init__(self, *, client_authentication: global___ClientAuthentication.ValueType=..., pkce: global___PKCE.ValueType=..., url_validation: global___URLValidation.ValueType=..., origin_uris: collections.abc.Iterable[builtins.str] | None=..., redirect_uris: collections.abc.Iterable[builtins.str] | None=..., logout_uri: builtins.str=..., enabled_grants: collections.abc.Iterable[global___EnabledGrant.ValueType] | None=...) -> None:
+    def __init__(self, *, client_authentication: global___ClientAuthentication.ValueType=..., pkce: global___PKCE.ValueType=..., url_validation: global___URLValidation.ValueType=..., origin_uris: collections.abc.Iterable[builtins.str] | None=..., redirect_uris: collections.abc.Iterable[builtins.str] | None=..., logout_uri: builtins.str=..., enabled_grants: collections.abc.Iterable[global___EnabledGrant.ValueType] | None=..., invite_redirect_uri: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['client_authentication', b'client_authentication', 'enabled_grants', b'enabled_grants', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'pkce', b'pkce', 'redirect_uris', b'redirect_uris', 'url_validation', b'url_validation']) -> None:
+    def ClearField(self, field_name: typing.Literal['client_authentication', b'client_authentication', 'enabled_grants', b'enabled_grants', 'invite_redirect_uri', b'invite_redirect_uri', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'pkce', b'pkce', 'redirect_uris', b'redirect_uris', 'url_validation', b'url_validation']) -> None:
         ...
 global___OAuthConfig = OAuthConfig
 
