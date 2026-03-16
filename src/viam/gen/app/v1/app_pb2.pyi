@@ -6212,10 +6212,12 @@ class OAuthConfig(_message.Message):
     REDIRECT_URIS_FIELD_NUMBER: _builtins.int
     LOGOUT_URI_FIELD_NUMBER: _builtins.int
     ENABLED_GRANTS_FIELD_NUMBER: _builtins.int
+    INVITE_REDIRECT_URI_FIELD_NUMBER: _builtins.int
     client_authentication: Global___ClientAuthentication.ValueType
     pkce: Global___PKCE.ValueType
     url_validation: Global___URLValidation.ValueType
     logout_uri: _builtins.str
+    invite_redirect_uri: _builtins.str
 
     @_builtins.property
     def origin_uris(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
@@ -6229,9 +6231,9 @@ class OAuthConfig(_message.Message):
     def enabled_grants(self) -> _containers.RepeatedScalarFieldContainer[Global___EnabledGrant.ValueType]:
         ...
 
-    def __init__(self, *, client_authentication: Global___ClientAuthentication.ValueType=..., pkce: Global___PKCE.ValueType=..., url_validation: Global___URLValidation.ValueType=..., origin_uris: _abc.Iterable[_builtins.str] | None=..., redirect_uris: _abc.Iterable[_builtins.str] | None=..., logout_uri: _builtins.str=..., enabled_grants: _abc.Iterable[Global___EnabledGrant.ValueType] | None=...) -> None:
+    def __init__(self, *, client_authentication: Global___ClientAuthentication.ValueType=..., pkce: Global___PKCE.ValueType=..., url_validation: Global___URLValidation.ValueType=..., origin_uris: _abc.Iterable[_builtins.str] | None=..., redirect_uris: _abc.Iterable[_builtins.str] | None=..., logout_uri: _builtins.str=..., enabled_grants: _abc.Iterable[Global___EnabledGrant.ValueType] | None=..., invite_redirect_uri: _builtins.str=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['client_authentication', b'client_authentication', 'enabled_grants', b'enabled_grants', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'pkce', b'pkce', 'redirect_uris', b'redirect_uris', 'url_validation', b'url_validation']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['client_authentication', b'client_authentication', 'enabled_grants', b'enabled_grants', 'invite_redirect_uri', b'invite_redirect_uri', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'pkce', b'pkce', 'redirect_uris', b'redirect_uris', 'url_validation', b'url_validation']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...

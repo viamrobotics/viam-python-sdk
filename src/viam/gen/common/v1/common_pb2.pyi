@@ -124,26 +124,62 @@ class Orientation(_message.Message):
 Global___Orientation: _TypeAlias = Orientation
 
 @_typing.final
+class PoseCloud(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    X_FIELD_NUMBER: _builtins.int
+    Y_FIELD_NUMBER: _builtins.int
+    Z_FIELD_NUMBER: _builtins.int
+    O_X_FIELD_NUMBER: _builtins.int
+    O_Y_FIELD_NUMBER: _builtins.int
+    O_Z_FIELD_NUMBER: _builtins.int
+    THETA_FIELD_NUMBER: _builtins.int
+    x: _builtins.float
+    y: _builtins.float
+    z: _builtins.float
+    o_x: _builtins.float
+    o_y: _builtins.float
+    o_z: _builtins.float
+    theta: _builtins.float
+
+    def __init__(self, *, x: _builtins.float=..., y: _builtins.float=..., z: _builtins.float=..., o_x: _builtins.float=..., o_y: _builtins.float=..., o_z: _builtins.float=..., theta: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PoseCloud: _TypeAlias = PoseCloud
+
+@_typing.final
 class PoseInFrame(_message.Message):
     """PoseInFrame contains a pose and the reference frame in which it was observed"""
     DESCRIPTOR: _descriptor.Descriptor
     REFERENCE_FRAME_FIELD_NUMBER: _builtins.int
     POSE_FIELD_NUMBER: _builtins.int
+    GOAL_CLOUD_FIELD_NUMBER: _builtins.int
     reference_frame: _builtins.str
 
     @_builtins.property
     def pose(self) -> Global___Pose:
         ...
 
-    def __init__(self, *, reference_frame: _builtins.str=..., pose: Global___Pose | None=...) -> None:
+    @_builtins.property
+    def goal_cloud(self) -> Global___PoseCloud:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['pose', b'pose']
+
+    def __init__(self, *, reference_frame: _builtins.str=..., pose: Global___Pose | None=..., goal_cloud: Global___PoseCloud | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_goal_cloud', b'_goal_cloud', 'goal_cloud', b'goal_cloud', 'pose', b'pose']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['pose', b'pose', 'reference_frame', b'reference_frame']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_goal_cloud', b'_goal_cloud', 'goal_cloud', b'goal_cloud', 'pose', b'pose', 'reference_frame', b'reference_frame']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__goal_cloud: _TypeAlias = _typing.Literal['goal_cloud']
+    _WhichOneofArgType__goal_cloud: _TypeAlias = _typing.Literal['_goal_cloud', b'_goal_cloud']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__goal_cloud) -> _WhichOneofReturnType__goal_cloud | None:
         ...
 Global___PoseInFrame: _TypeAlias = PoseInFrame
 
