@@ -7558,7 +7558,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: OAuthConfig(*, client_authentication: global___ClientAuthentication = ..., pkce: global___PKCE = ..., url_validation: global___URLValidation = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ..., enabled_grants: collections.abc.Iterable[global___EnabledGrant] | None = ...)
+.. py:class:: OAuthConfig(*, client_authentication: global___ClientAuthentication = ..., pkce: global___PKCE = ..., url_validation: global___URLValidation = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ..., enabled_grants: collections.abc.Iterable[global___EnabledGrant] | None = ..., invite_redirect_uri: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7583,6 +7583,10 @@ Package Contents
 
 
    .. py:attribute:: logout_uri
+      :type:  str
+
+
+   .. py:attribute:: invite_redirect_uri
       :type:  str
 
 

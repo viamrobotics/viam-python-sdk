@@ -239,10 +239,22 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Pose.theta"><code class="docutils literal notranslate"><span class="pre">Pose.theta</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.PoseCloud"><code class="docutils literal notranslate"><span class="pre">PoseCloud</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.x"><code class="docutils literal notranslate"><span class="pre">PoseCloud.x</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.y"><code class="docutils literal notranslate"><span class="pre">PoseCloud.y</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.z"><code class="docutils literal notranslate"><span class="pre">PoseCloud.z</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.o_x"><code class="docutils literal notranslate"><span class="pre">PoseCloud.o_x</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.o_y"><code class="docutils literal notranslate"><span class="pre">PoseCloud.o_y</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.o_z"><code class="docutils literal notranslate"><span class="pre">PoseCloud.o_z</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseCloud.theta"><code class="docutils literal notranslate"><span class="pre">PoseCloud.theta</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.PoseInFrame"><code class="docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.reference_frame</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.pose"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.pose</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.goal_cloud"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.goal_cloud</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.HasField"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.WhichOneof"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.RectangularPrism"><code class="docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a><ul>
@@ -418,28 +430,31 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Pose" title="viam.proto.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
 <td><p>Pose is a combination of location and orientation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PoseCloud" title="viam.proto.common.PoseCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseCloud</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
 <td><p>PoseInFrame contains a pose and the reference frame in which it was observed</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.RectangularPrism" title="viam.proto.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.RectangularPrism" title="viam.proto.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
 <td><p>RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.ResponseMetadata" title="viam.proto.common.ResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResponseMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ResponseMetadata" title="viam.proto.common.ResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResponseMetadata</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Sphere" title="viam.proto.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Sphere" title="viam.proto.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Transform" title="viam.proto.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Transform" title="viam.proto.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
 <td><p>Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Vector3" title="viam.proto.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Vector3" title="viam.proto.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
 <td><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,</p></td>
 </tr>
 </tbody>
@@ -1452,8 +1467,53 @@ is circled, the Roll will correct itself to remain in-line.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">PoseCloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.PoseCloud" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.x" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.z">
+<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.o_x">
+<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.o_x" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.o_y">
+<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.o_y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.o_z">
+<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.o_z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.PoseCloud.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.PoseCloud.theta" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.PoseInFrame">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">PoseInFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.PoseInFrame" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">PoseInFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_cloud</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PoseCloud</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.PoseInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>PoseInFrame contains a pose and the reference frame in which it was observed</p>
 <dl class="py attribute">
@@ -1466,9 +1526,14 @@ is circled, the Roll will correct itself to remain in-line.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Pose</span></em><a class="headerlink" href="#viam.proto.common.PoseInFrame.pose" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.goal_cloud">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">goal_cloud</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PoseCloud</span></em><a class="headerlink" href="#viam.proto.common.PoseInFrame.goal_cloud" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pose'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.PoseInFrame.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_goal_cloud'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_goal_cloud'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'goal_cloud'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'goal_cloud'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pose'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.PoseInFrame.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -1485,6 +1550,27 @@ be raised.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_goal_cloud'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_goal_cloud'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'goal_cloud'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.common.PoseInFrame.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
 </dd></dl>
