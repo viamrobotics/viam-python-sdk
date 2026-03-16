@@ -912,11 +912,13 @@ class BinaryMetadata(google.protobuf.message.Message):
     ANNOTATIONS_FIELD_NUMBER: builtins.int
     DATASET_IDS_FIELD_NUMBER: builtins.int
     BINARY_DATA_ID_FIELD_NUMBER: builtins.int
+    FILE_SIZE_BYTES_FIELD_NUMBER: builtins.int
     id: builtins.str
     file_name: builtins.str
     file_ext: builtins.str
     uri: builtins.str
     binary_data_id: builtins.str
+    file_size_bytes: builtins.int
 
     @property
     def capture_metadata(self) -> global___CaptureMetadata:
@@ -938,13 +940,13 @@ class BinaryMetadata(google.protobuf.message.Message):
     def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=..., binary_data_id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=..., binary_data_id: builtins.str=..., file_size_bytes: builtins.int=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['annotations', b'annotations', 'binary_data_id', b'binary_data_id', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
+    def ClearField(self, field_name: typing.Literal['annotations', b'annotations', 'binary_data_id', b'binary_data_id', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'file_size_bytes', b'file_size_bytes', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
         ...
 global___BinaryMetadata = BinaryMetadata
 

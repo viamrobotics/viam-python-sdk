@@ -22,13 +22,16 @@ global___IsLegalAcceptedRequest = IsLegalAcceptedRequest
 class IsLegalAcceptedResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ACCEPTED_LEGAL_FIELD_NUMBER: builtins.int
+    EVER_ACCEPTED_LEGAL_FIELD_NUMBER: builtins.int
     accepted_legal: builtins.bool
     'If false, the user should not be able to use the application.'
+    ever_accepted_legal: builtins.bool
+    'Whether the user has ever accepted any version of the legal terms.'
 
-    def __init__(self, *, accepted_legal: builtins.bool=...) -> None:
+    def __init__(self, *, accepted_legal: builtins.bool=..., ever_accepted_legal: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['accepted_legal', b'accepted_legal']) -> None:
+    def ClearField(self, field_name: typing.Literal['accepted_legal', b'accepted_legal', 'ever_accepted_legal', b'ever_accepted_legal']) -> None:
         ...
 global___IsLegalAcceptedResponse = IsLegalAcceptedResponse
 
