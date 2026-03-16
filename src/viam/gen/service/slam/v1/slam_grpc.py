@@ -6,7 +6,7 @@ import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import common
-from .... import google
+import google.api.annotations_pb2
 from .... import service
 
 class SLAMServiceBase(abc.ABC):

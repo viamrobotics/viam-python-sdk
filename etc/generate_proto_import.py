@@ -52,8 +52,6 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     packages: Dict[str, List[str]] = {}
 
     for dirpath, _, filenames in os.walk(root):
-        if "google" in dirpath:
-            continue
         rel_path = Path(dirpath).relative_to(root).__str__()
         if "__" in rel_path:
             continue

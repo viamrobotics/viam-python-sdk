@@ -6,7 +6,7 @@ import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import common
-from .... import google
+import google.api.annotations_pb2
 import google.protobuf.field_mask_pb2
 import google.protobuf.struct_pb2
 from .... import service

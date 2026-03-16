@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime
 from typing import Any, AsyncGenerator, Dict, List, Mapping, Optional, Sequence, Union
 
@@ -560,7 +561,7 @@ class MockMLModel(MLModel):
 
     SQUARE_INT_UINT_NDARRAYS = {"0": SQUARE_INT16_NDARRAY, "1": UINT64_NDARRAY}
     SQUARE_INT_UINT_TENSORS = {
-        "0": FlatTensor(shape=(3, 3), int16_tensor=FlatTensorDataInt16(data=SQUARE_INT16_NDARRAY)),
+        "0": FlatTensor(shape=(3, 3), int16_tensor=FlatTensorDataInt16(data=SQUARE_INT16_NDARRAY.flatten().astype(np.uint32))),
         "1": FlatTensor(shape=(3,), int64_tensor=FlatTensorDataInt64(data=INT64_NDARRAY)),
     }
 
@@ -1978,7 +1979,7 @@ class MockWorldStateStore(WorldStateStore):
             uuid=uuid,
         )
 
-    async def stream_transform_changes(
+    async def stream_transform_changes(  # type: ignore
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
         self.extra = extra

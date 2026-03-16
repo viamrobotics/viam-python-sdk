@@ -74,8 +74,10 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
             name=self.name,
             extra=dict_to_struct(extra),
         )
-        async for response in self.client.StreamTransformChanges(request, timeout=timeout, metadata=md):  # pyright: ignore [reportGeneralTypeIssues]
-            yield response
+        async with self.client.StreamTransformChanges.open(timeout=timeout, metadata=md) as stream:
+            await stream.send_message(request, end=True)
+            async for response in stream:
+                yield response
 
     async def do_command(
         self,

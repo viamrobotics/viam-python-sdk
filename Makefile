@@ -16,14 +16,12 @@ buf: clean
 	rm -rf src/viam/gen
 	chmod +x plugin/main.py
 	uv pip install protoletariat
-	uv pip install protobuf==7.34.0
+	uv pip install protobuf==6.33.5
 	$(eval API_VERSION := $(shell grep 'API_VERSION' src/viam/version_metadata.py | awk -F '"' '{print $$2}'))
-	buf generate buf.build/googleapis/googleapis --path google/rpc,google/api
 	buf generate buf.build/viamrobotics/api:${API_VERSION}
 	buf generate buf.build/viamrobotics/goutils
-	protol --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/googleapis/googleapis
-	protol --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
-	protol --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
+	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
+	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
 	find src/viam/gen -type d -exec touch {}/__init__.py \;
 	uv run python3 -m etc.generate_proto_import -v
 
