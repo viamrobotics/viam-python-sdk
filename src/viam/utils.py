@@ -1,7 +1,5 @@
 import asyncio
-import contextvars
 import functools
-import sys
 import threading
 from collections.abc import Callable
 from datetime import datetime
