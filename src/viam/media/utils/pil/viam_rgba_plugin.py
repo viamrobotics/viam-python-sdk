@@ -1,13 +1,13 @@
-from typing import ClassVar, Tuple
+from typing import IO, ClassVar
 
 from PIL import Image
-from PIL.ImageFile import ImageFile, PyDecoder, PyEncoder, _safe_read  # type: ignore -- (njooma) this exists, manually checked
-from PIL.ImageFile import _save as image_save  # type: ignore -- (njooma) this exists, manually checked
+from PIL.ImageFile import ImageFile, PyDecoder, PyEncoder, _safe_read, _Tile
+from PIL.ImageFile import _save as image_save
 
 from ...viam_rgba import RGBA_FORMAT_LABEL, RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
 
-def _accept(prefix: str):
+def _accept(prefix: bytes):
     return prefix[:4] == RGBA_MAGIC_NUMBER
 
 
@@ -16,8 +16,9 @@ class RGBAEncoder(PyEncoder):
 
     _pushes_fd = True
 
-    def encode(self, bufsize):  # pyright: ignore [reportIncompatibleMethodOverride]
+    def encode(self, bufsize: int) -> tuple[int, int, bytes]:
         data_arr = bytearray()
+        assert self.im is not None
         width, height = self.im.size
         for y in range(height):
             for x in range(width):
@@ -27,13 +28,14 @@ class RGBAEncoder(PyEncoder):
         return len(data), 0, data
 
 
-def _save_rgba(img, fp, filename):
+def _save_rgba(img: Image.Image, fp: IO[bytes], filename: str | bytes):
     width, height = img.size
     fp.write(RGBA_MAGIC_NUMBER)
     fp.write(width.to_bytes(4, byteorder="big"))
     fp.write(height.to_bytes(4, byteorder="big"))
 
-    image_save(img, fp, [(RGBAEncoder.ENCODER_NAME, (0, 0, width, height), 0, ("RGBA", 0, 1))])
+    tile = _Tile(codec_name=RGBAEncoder.ENCODER_NAME, extents=(0, 0, width, height), offset=0, args=("RGBA", 0, 1))
+    image_save(img, fp, [tile])
 
 
 class RGBAImage(ImageFile):
@@ -41,6 +43,7 @@ class RGBAImage(ImageFile):
     format_description = "Viam's Raw RGBA Format"
 
     def _open(self):
+        assert self.fp is not None
         header = self.fp.read(RGBA_HEADER_LENGTH)
 
         width = int.from_bytes(header[4:8], "big")
@@ -52,13 +55,16 @@ class RGBAImage(ImageFile):
             self.mode = "RGBA"  # type: ignore -- (njooma) newer versions of PIL hide this behind _mode, which is why we check
 
         # data descriptor
-        self.tile = [(RGBAEncoder.ENCODER_NAME, (0, 0, width, height), RGBA_HEADER_LENGTH, (self.mode, 0, 1))]
+        tile = _Tile(codec_name=RGBAEncoder.ENCODER_NAME, extents=(0, 0, width, height), offset=RGBA_HEADER_LENGTH, args=(self.mode, 0, 1))
+        self.tile = [tile]
 
 
 class RGBADecoder(PyDecoder):
     _pulls_fd = True
 
-    def decode(self, buffer) -> Tuple[int, int]:
+    def decode(self, buffer: bytes | Image.SupportsArrayInterface) -> tuple[int, int]:
+        assert self.im is not None
+        assert self.fd is not None
         width, height = self.im.size
         self.set_as_raw(_safe_read(self.fd, width * height * 4))
         return -1, 0

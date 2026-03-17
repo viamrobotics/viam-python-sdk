@@ -156,5 +156,5 @@ def test_check_example_coverage():
     actual = {d.name for d in EXAMPLES_DIR.iterdir() if d.is_dir()}
     unknown = actual - known
     assert not unknown, (
-        f"New example directories without test coverage: {unknown}. " f"Add new examples to the EXAMPLES list in tests/test_examples.py."
+        f"New example directories without test coverage: {unknown}. Add new examples to the EXAMPLES list in tests/test_examples.py."
     )

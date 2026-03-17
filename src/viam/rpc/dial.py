@@ -6,6 +6,7 @@ import ssl
 import sys
 import uuid
 import warnings
+from asyncio import to_thread
 from dataclasses import dataclass
 from typing import Callable, Literal, Optional, Tuple, Type, Union
 
@@ -21,7 +22,6 @@ from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
-from viam.utils import to_thread
 from viam.version_metadata import API_VERSION, SDK_VERSION
 
 LOGGER = logging.getLogger(__name__)

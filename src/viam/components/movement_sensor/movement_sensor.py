@@ -1,7 +1,6 @@
 import abc
-import sys
 from dataclasses import dataclass
-from typing import Any, Dict, Final, Mapping, Optional, Tuple
+from typing import Any, Dict, Final, Mapping, Optional, Tuple, TypeAlias
 
 from typing_extensions import Self
 
@@ -11,11 +10,6 @@ from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPO
 from viam.utils import SensorReading
 
 from . import GeoPoint, Orientation, Vector3
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
 
 
 class MovementSensor(ComponentBase):
