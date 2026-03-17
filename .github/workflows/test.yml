@@ -44,7 +44,7 @@ jobs:
         run: make install
 
       - name: Install minimum package versions
-        run: uv pip install -r requirements-test.txt
+        run: uv pip install -r requirements-test.txt --resolution=lowest-direct
         if: ${{ matrix.requirements-version == 'min' }}
 
       - name: Type Check
