@@ -386,7 +386,7 @@ class Fragment:
     robot_part_count: int
     organization_count: int
     only_used_by_owner: bool
-    visibility: Visibility
+    visibility: "Fragment.Visibility"
     last_updated: Optional[datetime]
 
     @property
