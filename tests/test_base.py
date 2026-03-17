@@ -20,7 +20,7 @@ from viam.proto.component.base import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockBase
 
 
@@ -194,7 +194,7 @@ class TestService:
             assert base.stopped is False
             await client.Stop(StopRequest(name=base.name), timeout=1.82)
             assert base.stopped is True
-            assert base.timeout == loose_approx(1.82)
+            assert base.timeout == expected_grpc_timeout(1.82)
 
             request = MoveStraightRequest(
                 name=base.name,
@@ -315,7 +315,7 @@ class TestClient:
             assert base.stopped is False
             await client.stop(timeout=4.4)
             assert base.stopped is True
-            assert base.timeout == loose_approx(4.4)
+            assert base.timeout == expected_grpc_timeout(4.4)
 
             await client.move_straight(1, 1)
             assert base.stopped is False

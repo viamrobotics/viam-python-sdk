@@ -25,7 +25,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.utils import dict_to_struct
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks import create_mock_subclass
 
 
@@ -50,7 +50,7 @@ def generic_service(motor) -> GenericRPCService:
 DEFAULT_EXTRA = {"a": "b"}
 DEFAULT_EXTRA_STRUCT = dict_to_struct(DEFAULT_EXTRA)
 DEFAULT_TIMEOUT = 1.82
-DEFAULT_TIMEOUT_APPROX = loose_approx(DEFAULT_TIMEOUT)
+DEFAULT_TIMEOUT_APPROX = expected_grpc_timeout(DEFAULT_TIMEOUT)
 DEFAULT_METADATA = ResourceRPCClientBase.Metadata()
 DEFAULT_METADATA.enable_debug_logging
 
