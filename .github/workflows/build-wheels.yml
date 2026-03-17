@@ -49,12 +49,12 @@ jobs:
             whl: win_amd64
     steps:
       - name: Checkout Code - Call
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.branch }}
         if: ${{ inputs.branch }}
       - name: Checkout Code - Dispatch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         if: ${{ !inputs.branch }}
 
       - name: Install uv
@@ -76,12 +76,14 @@ jobs:
         run: uv build --wheel
 
       - name: Rename
+        id: rename
         run: |
-          echo "WHL_NAME=viam_sdk-$(uv run python3 -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl" >> $GITHUB_ENV
-          mv dist/viam_sdk-$(uv run python3 -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(uv run python3 -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl
+          WHL_NAME=viam_sdk-$(uv run python3 -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl
+          echo "whl_name=${WHL_NAME}" >> $GITHUB_OUTPUT
+          mv dist/viam_sdk-$(uv run python3 -c 'import viam; print(viam.__version__)')-py3-none-any.whl dist/${WHL_NAME}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.WHL_NAME }}
-          path: dist/${{ env.WHL_NAME }}
+          name: ${{ steps.rename.outputs.whl_name }}
+          path: dist/${{ steps.rename.outputs.whl_name }}
