@@ -36,7 +36,7 @@ from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
 
 from .service import ModuleRPCService
-from .types import Reconfigurable, Stoppable
+from .types import Stoppable
 
 
 def _parse_module_args() -> argparse.Namespace:
@@ -198,23 +198,19 @@ class Module:
         self.server.register(resource)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
-        dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
         api = API.from_string(config.api)
         name = config.name
         rn = ResourceName(namespace=api.namespace, type=api.resource_type, subtype=api.resource_subtype, name=name)
         resource = self.server.get_resource(ResourceBase, rn)
-        if isinstance(resource, Reconfigurable):
-            resource.reconfigure(config, dependencies)
-        else:
-            if isinstance(resource, Stoppable):
-                if iscoroutinefunction(resource.stop):
-                    await resource.stop()
-                else:
-                    resource.stop()
-            add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
-            await self.server.remove_resource(rn)
-            await self.add_resource(add_request)
+        if isinstance(resource, Stoppable):
+            if iscoroutinefunction(resource.stop):
+                await resource.stop()
+            else:
+                resource.stop()
+        add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
+        await self.server.remove_resource(rn)
+        await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
         rn = resource_name_from_string(request.name)

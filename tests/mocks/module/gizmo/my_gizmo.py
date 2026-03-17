@@ -3,7 +3,6 @@ from typing import ClassVar, List, Mapping, Sequence, Tuple
 from typing_extensions import Self
 
 from viam.components.component_base import ComponentBase
-from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
@@ -12,7 +11,7 @@ from viam.resource.types import Model, ModelFamily
 from ..gizmo.api import Gizmo
 
 
-class MyGizmo(Gizmo, Reconfigurable):
+class MyGizmo(Gizmo):
     MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mygizmo")
     my_arg: str
     closed: bool = False

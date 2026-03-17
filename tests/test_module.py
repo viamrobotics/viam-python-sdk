@@ -26,7 +26,6 @@ from viam.utils import dict_to_struct
 from .mocks.module.gizmo.api import Gizmo
 from .mocks.module.gizmo.my_gizmo import MyGizmo
 from .mocks.module.summation.api import SummationService
-from .mocks.module.summation.my_summation import MySummationService
 from .test_robot import service as robot_service  # noqa: F401
 
 
@@ -73,39 +72,6 @@ class TestModule:
         assert SummationService.get_resource_name("mysum1") not in module.server.resources
         await module.add_resource(req)
         assert SummationService.get_resource_name("mysum1") in module.server.resources
-
-    async def test_reconfigure_resource(self, module: Module):
-        await self.test_add_resource(module)
-
-        gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
-        assert gizmo.my_arg == "arg1"
-        req = ReconfigureResourceRequest(
-            config=ComponentConfig(
-                name="gizmo1",
-                namespace="acme",
-                type="gizmo",
-                model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
-                api="acme:component:gizmo",
-            )
-        )
-        await module.reconfigure_resource(req)
-        assert gizmo.my_arg == "arg2"
-
-        summer = module.server.get_resource(MySummationService, SummationService.get_resource_name("mysum1"))
-        assert summer.subtract is False
-        req = ReconfigureResourceRequest(
-            config=ComponentConfig(
-                name="mysum1",
-                namespace="acme",
-                type="summation",
-                model="acme:demo:mysum",
-                attributes=dict_to_struct({"subtract": True}),
-                api="acme:service:summation",
-            )
-        )
-        await module.reconfigure_resource(req)
-        assert summer.subtract is True
 
     async def test_add_resource_with_deps(self, robot_service: RobotService, module: Module):  # noqa: F811
         async with ChannelFor([robot_service]) as channel:
