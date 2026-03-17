@@ -4,7 +4,6 @@ from typing_extensions import Self
 
 from viam.components.generic import Generic
 from viam.components.motor import Motor
-from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.resource.base import ResourceBase
 from viam.proto.common import ResourceName
@@ -15,7 +14,7 @@ from viam.module.module import Module
 import asyncio
 
 
-class Foo(Generic, Reconfigurable):
+class Foo(Generic):
     MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "foo")
 
     def __init__(self, name: str):
