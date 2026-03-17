@@ -111,13 +111,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -147,7 +147,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: UploadBinaryDataToDatasetsRequest(*, name: str = ..., binary_data: bytes = ..., tags: collections.abc.Iterable[str] | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., mime_type: viam.gen.app.datasync.v1.data_sync_pb2.MimeType.ValueType = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: UploadBinaryDataToDatasetsRequest(*, name: str = ..., binary_data: bytes = ..., tags: collections.abc.Iterable[str] | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., mime_type: app.datasync.v1.data_sync_pb2.MimeType.ValueType = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -168,26 +168,22 @@ Package Contents
 
 
    .. py:attribute:: mime_type
-      :type:  viam.gen.app.datasync.v1.data_sync_pb2.MimeType.ValueType
+      :type:  app.datasync.v1.data_sync_pb2.MimeType.ValueType
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: dataset_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dataset_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

@@ -29,7 +29,7 @@ Attributes
 .. autoapisummary::
 
    viam.gen.opentelemetry.proto.resource.v1.resource_pb2.DESCRIPTOR
-   viam.gen.opentelemetry.proto.resource.v1.resource_pb2.global___Resource
+   viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Global___Resource
 
 
 Classes
@@ -46,7 +46,7 @@ Module Contents
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
 
-.. py:class:: Resource(*, attributes: collections.abc.Iterable[viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue] | None = ..., dropped_attributes_count: int = ..., entity_refs: collections.abc.Iterable[viam.gen.opentelemetry.proto.common.v1.common_pb2.EntityRef] | None = ...)
+.. py:class:: Resource(*, attributes: collections.abc.Iterable[opentelemetry.proto.common.v1.common_pb2.KeyValue] | None = ..., dropped_attributes_count: int = ..., entity_refs: collections.abc.Iterable[opentelemetry.proto.common.v1.common_pb2.EntityRef] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -61,8 +61,7 @@ Module Contents
       no attributes were dropped.
 
 
-   .. py:property:: attributes
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue]
+   .. py:method:: attributes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[opentelemetry.proto.common.v1.common_pb2.KeyValue]
 
       Set of attributes that describe the resource.
       Attribute keys MUST be unique (it is not allowed to have more than one
@@ -70,8 +69,8 @@ Module Contents
       The behavior of software that receives duplicated keys can be unpredictable.
 
 
-   .. py:property:: entity_refs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.opentelemetry.proto.common.v1.common_pb2.EntityRef]
+
+   .. py:method:: entity_refs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[opentelemetry.proto.common.v1.common_pb2.EntityRef]
 
       Set of entities that participate in this Resource.
 
@@ -80,5 +79,8 @@ Module Contents
       Status: [Development]
 
 
-.. py:data:: global___Resource
+
+.. py:type:: Global___Resource
+   :canonical: Resource
+
 

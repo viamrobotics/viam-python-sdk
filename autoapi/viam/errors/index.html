@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.errors &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -88,9 +86,9 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.errors">
-<span id="viam-errors"></span><h1>viam.errors<a class="headerlink" href="#module-viam.errors" title="Permalink to this heading"></a></h1>
+<span id="viam-errors"></span><h1>viam.errors<a class="headerlink" href="#module-viam.errors" title="Link to this heading"></a></h1>
 <section id="exceptions">
-<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.errors.ViamError" title="viam.errors.ViamError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></a></p></td>
@@ -124,186 +122,186 @@
 </table>
 </section>
 <section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.ViamError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ViamError</span></span><a class="reference internal" href="../../../_modules/viam/errors.html#ViamError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ViamError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ViamError</span></span><a class="reference internal" href="../../../_modules/viam/errors.html#ViamError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ViamError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Base Viam Error</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.InsecureConnectionError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">InsecureConnectionError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authenticated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#InsecureConnectionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.InsecureConnectionError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">InsecureConnectionError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authenticated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#InsecureConnectionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.InsecureConnectionError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamError" title="viam.errors.ViamError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></a></p>
 <p>Exception raised when establishing an insecure connection</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.InsecureConnectionError.address">
-<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#viam.errors.InsecureConnectionError.address" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#viam.errors.InsecureConnectionError.address" title="Link to this definition"></a></dt>
 <dd><p>The endpoint of the connection</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.InsecureConnectionError.authenticated">
-<span class="sig-name descname"><span class="pre">authenticated</span></span><a class="headerlink" href="#viam.errors.InsecureConnectionError.authenticated" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">authenticated</span></span><a class="headerlink" href="#viam.errors.InsecureConnectionError.authenticated" title="Link to this definition"></a></dt>
 <dd><p>True if the insecure connection provided credentials</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.InsecureConnectionError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.InsecureConnectionError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.InsecureConnectionError.message" title="Link to this definition"></a></dt>
 <dd><p>Explanation of the error</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">authenticated</span></span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">authenticated</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.DuplicateResourceError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">DuplicateResourceError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#DuplicateResourceError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.DuplicateResourceError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">DuplicateResourceError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#DuplicateResourceError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.DuplicateResourceError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamError" title="viam.errors.ViamError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></a></p>
 <p>Exception raised when attempting to register a resource
 with the same name as an existing resource already in
 the registry</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.DuplicateResourceError.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.errors.DuplicateResourceError.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.errors.DuplicateResourceError.name" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.DuplicateResourceError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.DuplicateResourceError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.DuplicateResourceError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.ViamGRPCError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ViamGRPCError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grpc_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.Status</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Status.INTERNAL</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ViamGRPCError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ViamGRPCError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ViamGRPCError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grpc_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.Status</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Status.INTERNAL</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ViamGRPCError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ViamGRPCError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamError" title="viam.errors.ViamError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></a></p>
 <p>Exception raised if it could happen as a part of GRPC calls.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ViamGRPCError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ViamGRPCError.grpc_code">
-<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.grpc_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.grpc_code" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.errors.ViamGRPCError.grpc_error">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grpc_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.GRPCError</span></em><a class="headerlink" href="#viam.errors.ViamGRPCError.grpc_error" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">grpc_error</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.GRPCError</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.grpc_error" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ResourceNotFoundError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ResourceNotFoundError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ResourceNotFoundError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ResourceNotFoundError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ResourceNotFoundError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ResourceNotFoundError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when a resource is not found in the registry</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.resource">
-<span class="sig-name descname"><span class="pre">resource</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.resource" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">resource</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.resource" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.name" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.grpc_code">
-<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.grpc_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.grpc_code" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.MethodNotImplementedError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">MethodNotImplementedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#MethodNotImplementedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.MethodNotImplementedError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">MethodNotImplementedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#MethodNotImplementedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.MethodNotImplementedError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when specific methods are unimplemented.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.MethodNotImplementedError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.MethodNotImplementedError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.MethodNotImplementedError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.MethodNotImplementedError.grpc_code">
-<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.MethodNotImplementedError.grpc_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.MethodNotImplementedError.grpc_code" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.NotSupportedError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">NotSupportedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#NotSupportedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.NotSupportedError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">NotSupportedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#NotSupportedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.NotSupportedError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when specific component functionality is not supported</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.NotSupportedError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.NotSupportedError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.NotSupportedError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.NotSupportedError.grpc_code">
-<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.NotSupportedError.grpc_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.NotSupportedError.grpc_code" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.ValidationError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ValidationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ValidationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ValidationError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ValidationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ValidationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ValidationError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when there is an error during module validation</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ValidationError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ValidationError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ValidationError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.ValidationError.grpc_code">
-<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ValidationError.grpc_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ValidationError.grpc_code" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="viam.errors.NoCaptureToStoreError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">NoCaptureToStoreError</span></span><a class="reference internal" href="../../../_modules/viam/errors.html#NoCaptureToStoreError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.NoCaptureToStoreError" title="Permalink to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">NoCaptureToStoreError</span></span><a class="reference internal" href="../../../_modules/viam/errors.html#NoCaptureToStoreError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.NoCaptureToStoreError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised in filter module to signal that data capture should not be stored</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.NoCaptureToStoreError.message">
-<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'no</span> <span class="pre">capture</span> <span class="pre">from</span> <span class="pre">filter</span> <span class="pre">module'</span></em><a class="headerlink" href="#viam.errors.NoCaptureToStoreError.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'no</span> <span class="pre">capture</span> <span class="pre">from</span> <span class="pre">filter</span> <span class="pre">module'</span></span><a class="headerlink" href="#viam.errors.NoCaptureToStoreError.message" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.errors.NoCaptureToStoreError.grpc_code">
-<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.NoCaptureToStoreError.grpc_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.NoCaptureToStoreError.grpc_code" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

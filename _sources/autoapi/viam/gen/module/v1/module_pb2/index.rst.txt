@@ -16,18 +16,18 @@ Attributes
 .. autoapisummary::
 
    viam.gen.module.v1.module_pb2.DESCRIPTOR
-   viam.gen.module.v1.module_pb2.global___AddResourceRequest
-   viam.gen.module.v1.module_pb2.global___AddResourceResponse
-   viam.gen.module.v1.module_pb2.global___ReconfigureResourceRequest
-   viam.gen.module.v1.module_pb2.global___ReconfigureResourceResponse
-   viam.gen.module.v1.module_pb2.global___RemoveResourceRequest
-   viam.gen.module.v1.module_pb2.global___RemoveResourceResponse
-   viam.gen.module.v1.module_pb2.global___HandlerDefinition
-   viam.gen.module.v1.module_pb2.global___HandlerMap
-   viam.gen.module.v1.module_pb2.global___ReadyRequest
-   viam.gen.module.v1.module_pb2.global___ReadyResponse
-   viam.gen.module.v1.module_pb2.global___ValidateConfigRequest
-   viam.gen.module.v1.module_pb2.global___ValidateConfigResponse
+   viam.gen.module.v1.module_pb2.Global___AddResourceRequest
+   viam.gen.module.v1.module_pb2.Global___AddResourceResponse
+   viam.gen.module.v1.module_pb2.Global___ReconfigureResourceRequest
+   viam.gen.module.v1.module_pb2.Global___ReconfigureResourceResponse
+   viam.gen.module.v1.module_pb2.Global___RemoveResourceRequest
+   viam.gen.module.v1.module_pb2.Global___RemoveResourceResponse
+   viam.gen.module.v1.module_pb2.Global___HandlerDefinition
+   viam.gen.module.v1.module_pb2.Global___HandlerMap
+   viam.gen.module.v1.module_pb2.Global___ReadyRequest
+   viam.gen.module.v1.module_pb2.Global___ReadyResponse
+   viam.gen.module.v1.module_pb2.Global___ValidateConfigRequest
+   viam.gen.module.v1.module_pb2.Global___ValidateConfigResponse
 
 
 Classes
@@ -55,7 +55,7 @@ Module Contents
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
 
-.. py:class:: AddResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
+.. py:class:: AddResourceRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -67,17 +67,13 @@ Module Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+   .. py:method:: config() -> app.v1.robot_pb2.ComponentConfig
 
 
-
-   .. py:property:: dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -95,7 +91,9 @@ Module Contents
 
 
 
-.. py:data:: global___AddResourceRequest
+.. py:type:: Global___AddResourceRequest
+   :canonical: AddResourceRequest
+
 
 .. py:class:: AddResourceResponse
 
@@ -109,9 +107,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___AddResourceResponse
+.. py:type:: Global___AddResourceResponse
+   :canonical: AddResourceResponse
 
-.. py:class:: ReconfigureResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
+
+.. py:class:: ReconfigureResourceRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -123,17 +123,13 @@ Module Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+   .. py:method:: config() -> app.v1.robot_pb2.ComponentConfig
 
 
-
-   .. py:property:: dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -151,7 +147,9 @@ Module Contents
 
 
 
-.. py:data:: global___ReconfigureResourceRequest
+.. py:type:: Global___ReconfigureResourceRequest
+   :canonical: ReconfigureResourceRequest
+
 
 .. py:class:: ReconfigureResourceResponse
 
@@ -165,7 +163,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___ReconfigureResourceResponse
+.. py:type:: Global___ReconfigureResourceResponse
+   :canonical: ReconfigureResourceResponse
+
 
 .. py:class:: RemoveResourceRequest(*, name: str = ...)
 
@@ -183,7 +183,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___RemoveResourceRequest
+.. py:type:: Global___RemoveResourceRequest
+   :canonical: RemoveResourceRequest
+
 
 .. py:class:: RemoveResourceResponse
 
@@ -197,9 +199,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___RemoveResourceResponse
+.. py:type:: Global___RemoveResourceResponse
+   :canonical: RemoveResourceResponse
 
-.. py:class:: HandlerDefinition(*, subtype: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[str] | None = ...)
+
+.. py:class:: HandlerDefinition(*, subtype: robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -211,17 +215,13 @@ Module Contents
    shown below.
 
 
-   .. py:property:: subtype
-      :type: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype
+   .. py:method:: subtype() -> robot.v1.robot_pb2.ResourceRPCSubtype
 
 
-
-   .. py:property:: models
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: models() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['subtype', b'subtype']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -239,9 +239,11 @@ Module Contents
 
 
 
-.. py:data:: global___HandlerDefinition
+.. py:type:: Global___HandlerDefinition
+   :canonical: HandlerDefinition
 
-.. py:class:: HandlerMap(*, handlers: collections.abc.Iterable[global___HandlerDefinition] | None = ...)
+
+.. py:class:: HandlerMap(*, handlers: collections.abc.Iterable[Global___HandlerDefinition] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -253,12 +255,12 @@ Module Contents
    shown below.
 
 
-   .. py:property:: handlers
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___HandlerDefinition]
+   .. py:method:: handlers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___HandlerDefinition]
 
 
+.. py:type:: Global___HandlerMap
+   :canonical: HandlerMap
 
-.. py:data:: global___HandlerMap
 
 .. py:class:: ReadyRequest(*, parent_address: str = ..., webrtc_offer: str = ...)
 
@@ -280,9 +282,11 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___ReadyRequest
+.. py:type:: Global___ReadyRequest
+   :canonical: ReadyRequest
 
-.. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: global___HandlerMap | None = ..., webrtc_answer: str = ...)
+
+.. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: Global___HandlerMap | None = ..., webrtc_answer: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -302,12 +306,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: handlermap
-      :type: global___HandlerMap
+   .. py:method:: handlermap() -> Global___HandlerMap
 
 
-
-   .. py:method:: HasField(field_name: Literal['handlermap', b'handlermap']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -325,9 +327,11 @@ Module Contents
 
 
 
-.. py:data:: global___ReadyResponse
+.. py:type:: Global___ReadyResponse
+   :canonical: ReadyResponse
 
-.. py:class:: ValidateConfigRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ...)
+
+.. py:class:: ValidateConfigRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -339,12 +343,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+   .. py:method:: config() -> app.v1.robot_pb2.ComponentConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -362,7 +364,9 @@ Module Contents
 
 
 
-.. py:data:: global___ValidateConfigRequest
+.. py:type:: Global___ValidateConfigRequest
+   :canonical: ValidateConfigRequest
+
 
 .. py:class:: ValidateConfigResponse(*, dependencies: collections.abc.Iterable[str] | None = ..., optional_dependencies: collections.abc.Iterable[str] | None = ...)
 
@@ -376,15 +380,13 @@ Module Contents
    shown below.
 
 
-   .. py:property:: dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: optional_dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: optional_dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___ValidateConfigResponse
+   :canonical: ValidateConfigResponse
 
-.. py:data:: global___ValidateConfigResponse
 

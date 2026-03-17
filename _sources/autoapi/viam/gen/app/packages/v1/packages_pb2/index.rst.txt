@@ -22,18 +22,18 @@ Attributes
    viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_MODULE
    viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_SLAM_MAP
    viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_ML_TRAINING
-   viam.gen.app.packages.v1.packages_pb2.global___PackageType
-   viam.gen.app.packages.v1.packages_pb2.global___FileInfo
-   viam.gen.app.packages.v1.packages_pb2.global___PackageInfo
-   viam.gen.app.packages.v1.packages_pb2.global___CreatePackageRequest
-   viam.gen.app.packages.v1.packages_pb2.global___CreatePackageResponse
-   viam.gen.app.packages.v1.packages_pb2.global___DeletePackageRequest
-   viam.gen.app.packages.v1.packages_pb2.global___DeletePackageResponse
-   viam.gen.app.packages.v1.packages_pb2.global___Package
-   viam.gen.app.packages.v1.packages_pb2.global___GetPackageRequest
-   viam.gen.app.packages.v1.packages_pb2.global___GetPackageResponse
-   viam.gen.app.packages.v1.packages_pb2.global___ListPackagesRequest
-   viam.gen.app.packages.v1.packages_pb2.global___ListPackagesResponse
+   viam.gen.app.packages.v1.packages_pb2.Global___PackageType
+   viam.gen.app.packages.v1.packages_pb2.Global___FileInfo
+   viam.gen.app.packages.v1.packages_pb2.Global___PackageInfo
+   viam.gen.app.packages.v1.packages_pb2.Global___CreatePackageRequest
+   viam.gen.app.packages.v1.packages_pb2.Global___CreatePackageResponse
+   viam.gen.app.packages.v1.packages_pb2.Global___DeletePackageRequest
+   viam.gen.app.packages.v1.packages_pb2.Global___DeletePackageResponse
+   viam.gen.app.packages.v1.packages_pb2.Global___Package
+   viam.gen.app.packages.v1.packages_pb2.Global___GetPackageRequest
+   viam.gen.app.packages.v1.packages_pb2.Global___GetPackageResponse
+   viam.gen.app.packages.v1.packages_pb2.Global___ListPackagesRequest
+   viam.gen.app.packages.v1.packages_pb2.Global___ListPackagesResponse
 
 
 Classes
@@ -84,7 +84,9 @@ Module Contents
 .. py:data:: PACKAGE_TYPE_ML_TRAINING
    :type:  PackageType
 
-.. py:data:: global___PackageType
+.. py:type:: Global___PackageType
+   :canonical: PackageType
+
 
 .. py:class:: FileInfo(*, name: str = ..., size: int = ..., is_directory: bool | None = ...)
 
@@ -110,7 +112,7 @@ Module Contents
       :type:  bool
 
 
-   .. py:method:: HasField(field_name: Literal['_is_directory', b'_is_directory', 'is_directory', b'is_directory']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -128,7 +130,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_is_directory', b'_is_directory']) -> Literal['is_directory'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__is_directory) -> _WhichOneofReturnType__is_directory | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -144,9 +146,11 @@ Module Contents
 
 
 
-.. py:data:: global___FileInfo
+.. py:type:: Global___FileInfo
+   :canonical: FileInfo
 
-.. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., platform: str | None = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: Global___PackageType = ..., platform: str | None = ..., files: collections.abc.Iterable[Global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -171,24 +175,20 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___PackageType
+      :type:  Global___PackageType
 
 
    .. py:attribute:: platform
       :type:  str
 
 
-   .. py:property:: files
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FileInfo]
+   .. py:method:: files() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___FileInfo]
 
 
-
-   .. py:property:: metadata
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: metadata() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['_platform', b'_platform', 'metadata', b'metadata', 'platform', b'platform']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -206,7 +206,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__platform) -> _WhichOneofReturnType__platform | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -222,9 +222,11 @@ Module Contents
 
 
 
-.. py:data:: global___PackageInfo
+.. py:type:: Global___PackageInfo
+   :canonical: PackageInfo
 
-.. py:class:: CreatePackageRequest(*, info: global___PackageInfo | None = ..., contents: bytes = ...)
+
+.. py:class:: CreatePackageRequest(*, info: Global___PackageInfo | None = ..., contents: bytes = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -242,12 +244,10 @@ Module Contents
       .tar.gz file
 
 
-   .. py:property:: info
-      :type: global___PackageInfo
+   .. py:method:: info() -> Global___PackageInfo
 
 
-
-   .. py:method:: HasField(field_name: Literal['contents', b'contents', 'info', b'info', 'package', b'package']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -265,7 +265,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['package', b'package']) -> Literal['info', 'contents'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_package) -> _WhichOneofReturnType_package | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -281,7 +281,9 @@ Module Contents
 
 
 
-.. py:data:: global___CreatePackageRequest
+.. py:type:: Global___CreatePackageRequest
+   :canonical: CreatePackageRequest
+
 
 .. py:class:: CreatePackageResponse(*, id: str = ..., version: str = ...)
 
@@ -300,9 +302,11 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___CreatePackageResponse
+.. py:type:: Global___CreatePackageResponse
+   :canonical: CreatePackageResponse
 
-.. py:class:: DeletePackageRequest(*, id: str = ..., version: str = ..., type: global___PackageType = ...)
+
+.. py:class:: DeletePackageRequest(*, id: str = ..., version: str = ..., type: Global___PackageType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -323,10 +327,12 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___PackageType
+      :type:  Global___PackageType
 
 
-.. py:data:: global___DeletePackageRequest
+.. py:type:: Global___DeletePackageRequest
+   :canonical: DeletePackageRequest
+
 
 .. py:class:: DeletePackageResponse
 
@@ -340,9 +346,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___DeletePackageResponse
+.. py:type:: Global___DeletePackageResponse
+   :canonical: DeletePackageResponse
 
-.. py:class:: Package(*, info: global___PackageInfo | None = ..., url: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., checksum: str = ..., id: str = ...)
+
+.. py:class:: Package(*, info: Global___PackageInfo | None = ..., url: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., checksum: str = ..., id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -366,17 +374,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: info
-      :type: global___PackageInfo
+   .. py:method:: info() -> Global___PackageInfo
 
 
-
-   .. py:property:: created_on
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'info', b'info']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -394,9 +398,11 @@ Module Contents
 
 
 
-.. py:data:: global___Package
+.. py:type:: Global___Package
+   :canonical: Package
 
-.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: bool | None = ..., type: global___PackageType | None = ..., platform: str | None = ...)
+
+.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: bool | None = ..., type: Global___PackageType | None = ..., platform: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -421,14 +427,14 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___PackageType
+      :type:  Global___PackageType
 
 
    .. py:attribute:: platform
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_include_url', b'_include_url', '_platform', b'_platform', '_type', b'_type', 'include_url', b'include_url', 'platform', b'platform', 'type', b'type']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -446,9 +452,9 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_include_url', b'_include_url']) -> Literal['include_url'] | None
-                  WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
-                  WhichOneof(oneof_group: Literal['_type', b'_type']) -> Literal['type'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__include_url) -> _WhichOneofReturnType__include_url | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__platform) -> _WhichOneofReturnType__platform | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -464,9 +470,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetPackageRequest
+.. py:type:: Global___GetPackageRequest
+   :canonical: GetPackageRequest
 
-.. py:class:: GetPackageResponse(*, package: global___Package | None = ...)
+
+.. py:class:: GetPackageResponse(*, package: Global___Package | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -478,12 +486,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: package
-      :type: global___Package
+   .. py:method:: package() -> Global___Package
 
 
-
-   .. py:method:: HasField(field_name: Literal['package', b'package']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -501,9 +507,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetPackageResponse
+.. py:type:: Global___GetPackageResponse
+   :canonical: GetPackageResponse
 
-.. py:class:: ListPackagesRequest(*, organization_id: str = ..., name: str | None = ..., version: str | None = ..., type: global___PackageType | None = ..., include_url: bool | None = ...)
+
+.. py:class:: ListPackagesRequest(*, organization_id: str = ..., name: str | None = ..., version: str | None = ..., type: Global___PackageType | None = ..., include_url: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -528,14 +536,14 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___PackageType
+      :type:  Global___PackageType
 
 
    .. py:attribute:: include_url
       :type:  bool
 
 
-   .. py:method:: HasField(field_name: Literal['_include_url', b'_include_url', '_name', b'_name', '_type', b'_type', '_version', b'_version', 'include_url', b'include_url', 'name', b'name', 'type', b'type', 'version', b'version']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -553,10 +561,10 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_include_url', b'_include_url']) -> Literal['include_url'] | None
-                  WhichOneof(oneof_group: Literal['_name', b'_name']) -> Literal['name'] | None
-                  WhichOneof(oneof_group: Literal['_type', b'_type']) -> Literal['type'] | None
-                  WhichOneof(oneof_group: Literal['_version', b'_version']) -> Literal['version'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__include_url) -> _WhichOneofReturnType__include_url | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__name) -> _WhichOneofReturnType__name | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__version) -> _WhichOneofReturnType__version | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -572,9 +580,11 @@ Module Contents
 
 
 
-.. py:data:: global___ListPackagesRequest
+.. py:type:: Global___ListPackagesRequest
+   :canonical: ListPackagesRequest
 
-.. py:class:: ListPackagesResponse(*, packages: collections.abc.Iterable[global___Package] | None = ...)
+
+.. py:class:: ListPackagesResponse(*, packages: collections.abc.Iterable[Global___Package] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -586,10 +596,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: packages
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Package]
+   .. py:method:: packages() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Package]
 
 
+.. py:type:: Global___ListPackagesResponse
+   :canonical: ListPackagesResponse
 
-.. py:data:: global___ListPackagesResponse
 

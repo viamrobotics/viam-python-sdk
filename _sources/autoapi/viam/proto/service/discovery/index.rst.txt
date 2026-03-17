@@ -96,13 +96,13 @@ Package Contents
       name of the discover service
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -120,7 +120,7 @@ Package Contents
 
 
 
-.. py:class:: DiscoverResourcesResponse(*, discoveries: collections.abc.Iterable[viam.gen.app.v1.robot_pb2.ComponentConfig] | None = ...)
+.. py:class:: DiscoverResourcesResponse(*, discoveries: collections.abc.Iterable[app.v1.robot_pb2.ComponentConfig] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -132,9 +132,9 @@ Package Contents
    shown below.
 
 
-   .. py:property:: discoveries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.app.v1.robot_pb2.ComponentConfig]
+   .. py:method:: discoveries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[app.v1.robot_pb2.ComponentConfig]
 
       list of ComponentConfigs that describe the components found by a discover service.
+
 
 

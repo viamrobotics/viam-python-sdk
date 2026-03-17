@@ -54,23 +54,23 @@ Package Contents
 
 
    .. py:attribute:: VIAM_RGBA
-      :type:  typing_extensions.ClassVar[typing_extensions.Self]
+      :type:  ClassVar[Self]
 
 
    .. py:attribute:: VIAM_RAW_DEPTH
-      :type:  typing_extensions.ClassVar[typing_extensions.Self]
+      :type:  ClassVar[Self]
 
 
    .. py:attribute:: JPEG
-      :type:  typing_extensions.ClassVar[typing_extensions.Self]
+      :type:  ClassVar[Self]
 
 
    .. py:attribute:: PNG
-      :type:  typing_extensions.ClassVar[typing_extensions.Self]
+      :type:  ClassVar[Self]
 
 
    .. py:attribute:: PCD
-      :type:  typing_extensions.ClassVar[typing_extensions.Self]
+      :type:  ClassVar[Self]
 
 
    .. py:property:: name
@@ -83,7 +83,7 @@ Package Contents
 
 
 
-   .. py:method:: CUSTOM(mime_type: str) -> typing_extensions.Self
+   .. py:method:: CUSTOM(mime_type: str) -> Self
       :classmethod:
 
 
@@ -94,7 +94,7 @@ Package Contents
 
 
 
-   .. py:method:: from_string(value: str) -> typing_extensions.Self
+   .. py:method:: from_string(value: str) -> Self
       :classmethod:
 
 
@@ -118,11 +118,13 @@ Package Contents
    .. py:property:: data
       :type: bytes
 
+
       The raw bytes of the image
 
 
    .. py:property:: mime_type
       :type: CameraMimeType
+
 
       The mime type of the image
 
@@ -130,11 +132,13 @@ Package Contents
    .. py:property:: width
       :type: Optional[int]
 
+
       The width of the image
 
 
    .. py:property:: height
       :type: Optional[int]
+
 
       The height of the image
 

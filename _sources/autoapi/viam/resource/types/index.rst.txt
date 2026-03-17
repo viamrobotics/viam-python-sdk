@@ -85,7 +85,7 @@ Module Contents
    .. py:method:: __eq__(other: object) -> bool
 
 
-   .. py:method:: from_resource_name(resource_name: viam.proto.common.ResourceName) -> typing_extensions.Self
+   .. py:method:: from_resource_name(resource_name: viam.proto.common.ResourceName) -> Self
       :classmethod:
 
 
@@ -99,7 +99,7 @@ Module Contents
 
 
 
-   .. py:method:: from_string(string: str) -> typing_extensions.Self
+   .. py:method:: from_string(string: str) -> Self
       :classmethod:
 
 
@@ -183,7 +183,7 @@ Module Contents
    .. py:method:: __eq__(other: object) -> bool
 
 
-   .. py:method:: from_string(model: str, *, ignore_errors=False) -> typing_extensions.Self
+   .. py:method:: from_string(model: str, *, ignore_errors=False) -> Self
       :classmethod:
 
 
@@ -215,14 +215,12 @@ Module Contents
    :rtype: viam.proto.common.ResourceName
 
 
-.. py:data:: ResourceCreator
-   :type:  TypeAlias
-   :value: Callable[[ComponentConfig, Mapping[ResourceName, 'ResourceBase']], 'ResourceBase']
+.. py:type:: ResourceCreator
+   :canonical: Callable[[ComponentConfig, Mapping[ResourceName, 'ResourceBase']], 'ResourceBase']
 
 
-.. py:data:: Validator
-   :type:  TypeAlias
-   :value: Callable[[ComponentConfig], Tuple[Sequence[str], Sequence[str]]]
+.. py:type:: Validator
+   :canonical: Callable[[ComponentConfig], Tuple[Sequence[str], Sequence[str]]]
 
 
 .. py:class:: SupportsGetGeometries

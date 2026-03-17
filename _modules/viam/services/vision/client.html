@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.services.vision.client &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=b3ba4146"></script>
-        <script src="../../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -87,14 +85,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.vision.client</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ViamError</span>
-<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">ViamImage</span>
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PointCloudObject</span>
-<span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ViamError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.media.video</span><span class="w"> </span><span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">ViamImage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PointCloudObject</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.service.vision</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CaptureAllFromCameraRequest</span><span class="p">,</span>
     <span class="n">CaptureAllFromCameraResponse</span><span class="p">,</span>
     <span class="n">Classification</span><span class="p">,</span>
@@ -113,13 +111,15 @@
     <span class="n">GetPropertiesResponse</span><span class="p">,</span>
     <span class="n">VisionServiceStub</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.rpc_client_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
-<span class="kn">from</span> <span class="nn">.vision</span> <span class="kn">import</span> <span class="n">CaptureAllResult</span><span class="p">,</span> <span class="n">Vision</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.vision</span><span class="w"> </span><span class="kn">import</span> <span class="n">CaptureAllResult</span><span class="p">,</span> <span class="n">Vision</span>
 
 
-<div class="viewcode-block" id="VisionClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient">[docs]</a><span class="k">class</span> <span class="nc">VisionClient</span><span class="p">(</span><span class="n">Vision</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
+<div class="viewcode-block" id="VisionClient">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VisionClient</span><span class="p">(</span><span class="n">Vision</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to the Vision service, which allows you to access various computer vision algorithms</span>
 <span class="sd">    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.</span>
@@ -127,12 +127,14 @@
 
     <span class="n">client</span><span class="p">:</span> <span class="n">VisionServiceStub</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">VisionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
 
-<div class="viewcode-block" id="VisionClient.capture_all_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.capture_all_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">capture_all_from_camera</span><span class="p">(</span>
+<div class="viewcode-block" id="VisionClient.capture_all_from_camera">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.capture_all_from_camera">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">capture_all_from_camera</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">return_image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -169,7 +171,10 @@
             <span class="n">result</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_detections_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections_from_camera</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.get_detections_from_camera">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections_from_camera">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_detections_from_camera</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -182,7 +187,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsFromCameraResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetectionsFromCamera</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_detections"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.get_detections">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_detections</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">image</span><span class="p">:</span> <span class="n">ViamImage</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -207,7 +215,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetections</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_classifications_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_classifications_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_classifications_from_camera</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.get_classifications_from_camera">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_classifications_from_camera">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_classifications_from_camera</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -223,7 +234,10 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">classifications</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_classifications"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_classifications">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_classifications</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.get_classifications">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_classifications">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_classifications</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">image</span><span class="p">:</span> <span class="n">ViamImage</span><span class="p">,</span>
         <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -249,7 +263,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetClassificationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetClassifications</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">classifications</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_object_point_clouds"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.get_object_point_clouds">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_object_point_clouds">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_object_point_clouds</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -267,7 +284,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetObjectPointCloudsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetObjectPointClouds</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_properties"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_properties">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.get_properties">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_properties">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_properties</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -282,7 +302,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetPropertiesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetProperties</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="VisionClient.do_command"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span>
+
+<div class="viewcode-block" id="VisionClient.do_command">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.do_command">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">do_command</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span>
         <span class="o">*</span><span class="p">,</span>
@@ -292,7 +315,9 @@
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>

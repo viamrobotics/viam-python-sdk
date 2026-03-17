@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.app.data_client &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -87,19 +85,19 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.app.data_client</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
 
-<span class="kn">import</span> <span class="nn">bson</span>
-<span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
-<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">bson</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.protobuf.struct_pb2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Struct</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
 
-<span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.data</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDResponse</span><span class="p">,</span>
@@ -159,7 +157,7 @@
     <span class="n">TagsByFilterResponse</span><span class="p">,</span>
     <span class="n">UpdateBoundingBoxRequest</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datapipelines</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CreateDataPipelineRequest</span><span class="p">,</span>
     <span class="n">CreateDataPipelineResponse</span><span class="p">,</span>
     <span class="n">DataPipelineRunStatus</span><span class="p">,</span>
@@ -173,13 +171,13 @@
     <span class="n">ListDataPipelinesResponse</span><span class="p">,</span>
     <span class="n">RenameDataPipelineRequest</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datapipelines</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataPipeline</span> <span class="k">as</span> <span class="n">ProtoDataPipeline</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datapipelines</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataPipelineRun</span> <span class="k">as</span> <span class="n">ProtoDataPipelineRun</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.dataset</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CreateDatasetRequest</span><span class="p">,</span>
     <span class="n">CreateDatasetResponse</span><span class="p">,</span>
     <span class="n">Dataset</span><span class="p">,</span>
@@ -193,7 +191,7 @@
     <span class="n">MergeDatasetsResponse</span><span class="p">,</span>
     <span class="n">RenameDatasetRequest</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.datasync</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datasync</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataCaptureUploadMetadata</span><span class="p">,</span>
     <span class="n">DataCaptureUploadRequest</span><span class="p">,</span>
     <span class="n">DataCaptureUploadResponse</span><span class="p">,</span>
@@ -208,12 +206,14 @@
     <span class="n">StreamingDataCaptureUploadResponse</span><span class="p">,</span>
     <span class="n">UploadMetadata</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">_alias_param</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">_alias_param</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="DataClient"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient">[docs]</a><span class="k">class</span> <span class="nc">DataClient</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DataClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for uploading and retrieving data from app.</span>
 
 <span class="sd">    This class&#39;s constructor instantiates relevant service stubs. Always make :class:`DataClient` method calls through an instance of</span>
@@ -246,8 +246,10 @@
 <span class="sd">    For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.TabularData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">TabularData</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.TabularData">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">TabularData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of tabular data and associated metadata.&quot;&quot;&quot;</span>
 
         <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
@@ -262,16 +264,25 @@
         <span class="n">time_received</span><span class="p">:</span> <span class="n">datetime</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The time the data were received&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.TabularData.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.TabularData.__str__">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__str__">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">Time requested: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_requested</span><span class="si">}</span><span class="se">\n</span><span class="s2">Time received: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_received</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="DataClient.TabularData.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.TabularData.__eq__">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__eq__">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularData</span><span class="p">):</span>
                 <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">False</span></div></div>
+            <span class="k">return</span> <span class="kc">False</span></div>
+</div>
 
-<div class="viewcode-block" id="DataClient.TabularDataPoint"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">TabularDataPoint</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.TabularDataPoint">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">TabularDataPoint</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a tabular data point and its associated metadata.&quot;&quot;&quot;</span>
 
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span>
@@ -313,7 +324,9 @@
         <span class="n">payload</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The captured data&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.TabularDataPoint.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.TabularDataPoint.__str__">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint.__str__">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;TabularDataPoint(&quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;robot=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_name</span><span class="si">}</span><span class="s2">&#39; (id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_id</span><span class="si">}</span><span class="s2">), &quot;</span>
@@ -328,13 +341,17 @@
                 <span class="sa">f</span><span class="s2">&quot;payload=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">payload</span><span class="si">}</span><span class="s2">)&quot;</span>
             <span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.TabularDataPoint.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.TabularDataPoint.__eq__">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint.__eq__">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularDataPoint</span><span class="p">):</span>
                 <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
+
         <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">resource_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">resource_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;`TabularDataPoint.resource_subtype` is deprecated. Use `TabularDataPoint.resource_api` instead.&quot;</span><span class="p">,</span>
                 <span class="ne">DeprecationWarning</span><span class="p">,</span>
@@ -342,8 +359,11 @@
             <span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_api</span></div>
 
-<div class="viewcode-block" id="DataClient.DataPipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipeline">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">DataPipeline</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.DataPipeline">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipeline">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">DataPipeline</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a data pipeline and its associated metadata.&quot;&quot;&quot;</span>
 
         <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
@@ -373,8 +393,10 @@
         <span class="n">data_source_type</span><span class="p">:</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">ValueType</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The type of data source for the data pipeline&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.DataPipeline.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipeline.from_proto">[docs]</a>        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline</span><span class="p">:</span> <span class="n">ProtoDataPipeline</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.DataPipeline.from_proto">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipeline.from_proto">[docs]</a>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline</span><span class="p">:</span> <span class="n">ProtoDataPipeline</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
                 <span class="nb">id</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
                 <span class="n">organization_id</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
@@ -385,10 +407,14 @@
                 <span class="n">updated_at</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">updated_at</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
                 <span class="n">enabled</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">enabled</span><span class="p">,</span>
                 <span class="n">data_source_type</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">data_source_type</span><span class="p">,</span>
-            <span class="p">)</span></div></div>
+            <span class="p">)</span></div>
+</div>
 
-<div class="viewcode-block" id="DataClient.DataPipelineRun"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRun">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">DataPipelineRun</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.DataPipelineRun">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRun">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">DataPipelineRun</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a data pipeline run and its associated metadata.&quot;&quot;&quot;</span>
 
         <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
@@ -411,8 +437,10 @@
         <span class="n">error_message</span><span class="p">:</span> <span class="nb">str</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The error message of the data pipeline run. Only set if the run failed.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.DataPipelineRun.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRun.from_proto">[docs]</a>        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline_run</span><span class="p">:</span> <span class="n">ProtoDataPipelineRun</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.DataPipelineRun.from_proto">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRun.from_proto">[docs]</a>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline_run</span><span class="p">:</span> <span class="n">ProtoDataPipelineRun</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
                 <span class="nb">id</span><span class="o">=</span><span class="n">data_pipeline_run</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
                 <span class="n">status</span><span class="o">=</span><span class="n">data_pipeline_run</span><span class="o">.</span><span class="n">status</span><span class="p">,</span>
@@ -421,10 +449,14 @@
                 <span class="n">data_start_time</span><span class="o">=</span><span class="n">data_pipeline_run</span><span class="o">.</span><span class="n">data_start_time</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
                 <span class="n">data_end_time</span><span class="o">=</span><span class="n">data_pipeline_run</span><span class="o">.</span><span class="n">data_end_time</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
                 <span class="n">error_message</span><span class="o">=</span><span class="n">data_pipeline_run</span><span class="o">.</span><span class="n">error_message</span><span class="p">,</span>
-            <span class="p">)</span></div></div>
+            <span class="p">)</span></div>
+</div>
 
-<div class="viewcode-block" id="DataClient.DataPipelineRunsPage"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">DataPipelineRunsPage</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.DataPipelineRunsPage">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">DataPipelineRunsPage</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a page of data pipeline runs and provides pagination functionality.&quot;&quot;&quot;</span>
 
         <span class="n">_client</span><span class="p">:</span> <span class="s2">&quot;DataClient&quot;</span>
@@ -442,7 +474,9 @@
         <span class="n">next_page_token</span><span class="p">:</span> <span class="nb">str</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The token to use to get the next page of results&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.DataPipelineRunsPage.next_page"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage.next_page">[docs]</a>        <span class="k">async</span> <span class="k">def</span> <span class="nf">next_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DataClient.DataPipelineRunsPage&quot;</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.DataPipelineRunsPage.next_page">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage.next_page">[docs]</a>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">next_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DataClient.DataPipelineRunsPage&quot;</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Get the next page of data pipeline runs.</span>
 
 <span class="sd">            Returns:</span>
@@ -455,17 +489,22 @@
                 <span class="p">)</span>
             <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">_list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_page_token</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.DataPipelineRunsPage.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage.from_proto">[docs]</a>        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline_runs_page</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;DataClient&quot;</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.DataPipelineRunsPage.from_proto">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage.from_proto">[docs]</a>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline_runs_page</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;DataClient&quot;</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
                 <span class="n">_client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
                 <span class="n">pipeline_id</span><span class="o">=</span><span class="n">data_pipeline_runs_page</span><span class="o">.</span><span class="n">pipeline_id</span><span class="p">,</span>
                 <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">,</span>
                 <span class="n">runs</span><span class="o">=</span><span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipelineRun</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">run</span><span class="p">)</span> <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">data_pipeline_runs_page</span><span class="o">.</span><span class="n">runs</span><span class="p">],</span>
                 <span class="n">next_page_token</span><span class="o">=</span><span class="n">data_pipeline_runs_page</span><span class="o">.</span><span class="n">next_page_token</span><span class="p">,</span>
-            <span class="p">)</span></div></div>
+            <span class="p">)</span></div>
+</div>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a :class:`DataClient` that maintains a connection to app.</span>
 
 <span class="sd">        Args:</span>
@@ -486,7 +525,9 @@
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
 
-<div class="viewcode-block" id="DataClient.tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_filter</span><span class="p">(</span>
+<div class="viewcode-block" id="DataClient.tabular_data_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">tabular_data_by_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -565,7 +606,10 @@
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write tabular data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span></div>
 
-<div class="viewcode-block" id="DataClient.tabular_data_by_sql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_sql">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sql_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
+
+<div class="viewcode-block" id="DataClient.tabular_data_by_sql">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_sql">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">tabular_data_by_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sql_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with SQL.</span>
 <span class="sd">        Make sure your API key has permissions at the organization level in order to use this.</span>
 
@@ -590,8 +634,11 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataBySQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataBySQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bson_bytes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bson_bytes</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.tabular_data_by_mql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_mql">[docs]</a>    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;mql_binary&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_mql</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.tabular_data_by_mql">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_mql">[docs]</a>
+    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;mql_binary&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">tabular_data_by_mql</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">query</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
@@ -645,8 +692,11 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByMQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByMQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bson_bytes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bson_bytes</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.get_latest_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_latest_tabular_data">[docs]</a>    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;resource_api&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;resource_subtype&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_latest_tabular_data</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.get_latest_tabular_data">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_latest_tabular_data">[docs]</a>
+    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;resource_api&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;resource_subtype&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_latest_tabular_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -706,8 +756,11 @@
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">time_captured</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span> <span class="n">response</span><span class="o">.</span><span class="n">time_synced</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.export_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.export_tabular_data">[docs]</a>    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;resource_api&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;resource_subtype&quot;</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">export_tabular_data</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.export_tabular_data">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.export_tabular_data">[docs]</a>
+    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;resource_api&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;resource_subtype&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">export_tabular_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -778,7 +831,10 @@
             <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">response</span>
         <span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_filter</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.binary_data_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">binary_data_by_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -878,7 +934,10 @@
 
         <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span></div>
 
-<div class="viewcode-block" id="DataClient.binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_ids</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.binary_data_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">binary_data_by_ids</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
         <span class="n">include_binary_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -933,7 +992,10 @@
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.delete_tabular_data">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_tabular_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DeleteTabularFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete tabular data older than a specified number of days.</span>
@@ -970,17 +1032,21 @@
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span>
-        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Deprecated: use :meth:`delete_tabular_data` instead.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.delete_binary_data_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
 
 <span class="sd">        ::</span>
@@ -1007,7 +1073,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">DeleteBinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteBinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.delete_binary_data_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
 
 <span class="sd">        ::</span>
@@ -1055,7 +1124,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">DeleteBinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteBinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 
-<div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_tags_to_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_tags_to_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add tags to binary data.</span>
 
 <span class="sd">        ::</span>
@@ -1101,7 +1173,10 @@
             <span class="n">request</span> <span class="o">=</span> <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">bin_ids</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddTagsToBinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_tags_to_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_tags_to_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_tags_to_binary_data_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_tags_to_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add tags to binary data.</span>
 
 <span class="sd">        ::</span>
@@ -1125,7 +1200,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddTagsToBinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_tags_from_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary data by IDs.</span>
 
 <span class="sd">        ::</span>
@@ -1179,7 +1257,10 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 
-<div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_tags_from_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary data.</span>
 
 <span class="sd">        ::</span>
@@ -1209,7 +1290,10 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 
-<div class="viewcode-block" id="DataClient.tags_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tags_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tags_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="DataClient.tags_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tags_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">tags_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of tags using a filter.</span>
 
 <span class="sd">        ::</span>
@@ -1232,7 +1316,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">TagsByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TagsByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">tags</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.add_bounding_box_to_image_by_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_bounding_box_to_image_by_id</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.add_bounding_box_to_image_by_id">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_bounding_box_to_image_by_id</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1301,7 +1388,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">AddBoundingBoxToImageByIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddBoundingBoxToImageByID</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">bbox_id</span></div>
 
-<div class="viewcode-block" id="DataClient.update_bounding_box"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.update_bounding_box">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_bounding_box</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.update_bounding_box">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.update_bounding_box">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_bounding_box</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">bbox_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1358,7 +1448,10 @@
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">UpdateBoundingBox</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.remove_bounding_box_from_image_by_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_bounding_box_from_image_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">binary_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.remove_bounding_box_from_image_by_id">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_bounding_box_from_image_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">binary_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes a bounding box from an image.</span>
 
 <span class="sd">        ::</span>
@@ -1385,7 +1478,10 @@
 
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveBoundingBoxFromImageByID</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.bounding_box_labels_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.bounding_box_labels_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">bounding_box_labels_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="DataClient.bounding_box_labels_by_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.bounding_box_labels_by_filter">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">bounding_box_labels_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of bounding box labels using a `Filter`.</span>
 
 <span class="sd">        ::</span>
@@ -1412,7 +1508,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">BoundingBoxLabelsByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BoundingBoxLabelsByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.get_database_connection"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_database_connection">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_database_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.get_database_connection">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_database_connection">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_database_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a connection to access a MongoDB Atlas Data federation instance.</span>
 
 <span class="sd">        ::</span>
@@ -1432,7 +1531,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDatabaseConnectionResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetDatabaseConnection</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">hostname</span></div>
 
-<div class="viewcode-block" id="DataClient.configure_database_user"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.configure_database_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">configure_database_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.configure_database_user">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.configure_database_user">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">configure_database_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure a database user for the Viam organization&#39;s MongoDB Atlas Data Federation instance. It can also be used to reset the</span>
 <span class="sd">        password of the existing database user.</span>
 
@@ -1453,7 +1555,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">ConfigureDatabaseUserRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ConfigureDatabaseUser</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.create_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.create_dataset">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_dataset">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new dataset.</span>
 
 <span class="sd">        ::</span>
@@ -1478,7 +1583,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
-<div class="viewcode-block" id="DataClient.merge_datasets"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.merge_datasets">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">merge_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.merge_datasets">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.merge_datasets">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">merge_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Merge multiple datasets into a new dataset.</span>
 
 <span class="sd">        ::</span>
@@ -1504,7 +1612,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">MergeDatasetsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">MergeDatasets</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">dataset_id</span></div>
 
-<div class="viewcode-block" id="DataClient.list_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="DataClient.list_dataset_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_dataset_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of datasets using their IDs.</span>
 
 <span class="sd">        ::</span>
@@ -1532,7 +1643,10 @@
 
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">datasets</span></div>
 
-<div class="viewcode-block" id="DataClient.list_datasets_by_organization_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_datasets_by_organization_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_datasets_by_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="DataClient.list_datasets_by_organization_id">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_datasets_by_organization_id">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_datasets_by_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the datasets in an organization.</span>
 
 <span class="sd">        ::</span>
@@ -1558,7 +1672,10 @@
 
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">datasets</span></div>
 
-<div class="viewcode-block" id="DataClient.rename_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.rename_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">rename_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.rename_dataset">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.rename_dataset">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">rename_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rename a dataset specified by the dataset ID.</span>
 
 <span class="sd">        ::</span>
@@ -1582,7 +1699,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">RenameDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">RenameDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.delete_dataset">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_dataset">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a dataset.</span>
 
 <span class="sd">        ::</span>
@@ -1604,7 +1724,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">DeleteDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.add_binary_data_to_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_binary_data_to_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.add_binary_data_to_dataset_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_binary_data_to_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the BinaryData to the provided dataset.</span>
 
 <span class="sd">        This BinaryData will be tagged with the VIAM_DATASET_{id} label.</span>
@@ -1648,7 +1771,10 @@
             <span class="n">request</span> <span class="o">=</span> <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">bin_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddBinaryDataToDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.remove_binary_data_from_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_binary_data_from_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.remove_binary_data_from_dataset_by_ids">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_binary_data_from_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the BinaryData from the provided dataset.</span>
 
 <span class="sd">        This BinaryData will lose the VIAM_DATASET_{id} tag.</span>
@@ -1694,7 +1820,10 @@
             <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">bin_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveBinaryDataFromDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.binary_data_capture_upload"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_capture_upload</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.binary_data_capture_upload">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_capture_upload">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">binary_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1783,7 +1912,10 @@
         <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_capture_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="p">[</span><span class="n">sensor_contents</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">binary_data_id</span></div>
 
-<div class="viewcode-block" id="DataClient.tabular_data_capture_upload"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_capture_upload</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.tabular_data_capture_upload">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_capture_upload">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">tabular_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">tabular_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1878,12 +2010,15 @@
         <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_capture_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="n">sensor_contents</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">file_id</span></div>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_data_capture_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">UploadMetadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SensorData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">DataCaptureUploadResponse</span><span class="p">:</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_data_capture_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">UploadMetadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SensorData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">DataCaptureUploadResponse</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DataCaptureUploadRequest</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="n">sensor_contents</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DataCaptureUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_sync_client</span><span class="o">.</span><span class="n">DataCaptureUpload</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span>
 
-<div class="viewcode-block" id="DataClient.streaming_data_capture_upload"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.streaming_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">streaming_data_capture_upload</span><span class="p">(</span>
+<div class="viewcode-block" id="DataClient.streaming_data_capture_upload">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.streaming_data_capture_upload">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">streaming_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1967,7 +2102,10 @@
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Response cannot be empty&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">binary_data_id</span></div>
 
-<div class="viewcode-block" id="DataClient.file_upload"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.file_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">file_upload</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.file_upload">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.file_upload">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">file_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
@@ -2035,7 +2173,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">binary_data_id</span></div>
 
-<div class="viewcode-block" id="DataClient.file_upload_from_path"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.file_upload_from_path">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">file_upload_from_path</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.file_upload_from_path">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.file_upload_from_path">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">file_upload_from_path</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2103,7 +2244,8 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="nb">bytes</span><span class="p">()))</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">binary_data_id</span></div>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_file_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">UploadMetadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">:</span> <span class="n">FileData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUploadResponse</span><span class="p">:</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_file_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">UploadMetadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">:</span> <span class="n">FileData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUploadResponse</span><span class="p">:</span>
         <span class="n">request_metadata</span> <span class="o">=</span> <span class="n">FileUploadRequest</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
         <span class="n">request_file_contents</span> <span class="o">=</span> <span class="n">FileUploadRequest</span><span class="p">(</span><span class="n">file_contents</span><span class="o">=</span><span class="n">file_contents</span><span class="p">)</span>
         <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">FileUploadRequest</span><span class="p">,</span> <span class="n">FileUploadResponse</span><span class="p">]</span>
@@ -2116,7 +2258,9 @@
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Response cannot be empty&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">response</span>
 
-<div class="viewcode-block" id="DataClient.get_data_pipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_data_pipeline">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipeline</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.get_data_pipeline">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_data_pipeline">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipeline</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a data pipeline by its ID.</span>
 
 <span class="sd">        ::</span>
@@ -2133,7 +2277,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDataPipelineResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">GetDataPipeline</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipeline</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data_pipeline</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.list_data_pipelines"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_data_pipelines">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_data_pipelines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DataPipeline</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="DataClient.list_data_pipelines">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_data_pipelines">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_data_pipelines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DataPipeline</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List all of the data pipelines for an organization.</span>
 
 <span class="sd">        ::</span>
@@ -2151,7 +2298,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDataPipelinesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">ListDataPipelines</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipeline</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">pipeline</span><span class="p">)</span> <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data_pipelines</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.create_data_pipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_data_pipeline">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_data_pipeline</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.create_data_pipeline">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_data_pipeline">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_data_pipeline</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2199,7 +2349,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDataPipelineResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">CreateDataPipeline</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
-<div class="viewcode-block" id="DataClient.rename_data_pipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.rename_data_pipeline">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">rename_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.rename_data_pipeline">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.rename_data_pipeline">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">rename_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rename a data pipeline by its ID.</span>
 <span class="sd">        ::</span>
 
@@ -2214,7 +2367,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">RenameDataPipelineRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">RenameDataPipeline</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_data_pipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_data_pipeline">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.delete_data_pipeline">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_data_pipeline">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a data pipeline by its ID.</span>
 
 <span class="sd">        ::</span>
@@ -2227,7 +2383,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDataPipelineRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">DeleteDataPipeline</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.list_data_pipeline_runs"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_data_pipeline_runs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DataClient.list_data_pipeline_runs">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_data_pipeline_runs">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List all of the data pipeline runs for a data pipeline.</span>
 
 <span class="sd">        ::</span>
@@ -2245,7 +2404,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_data_pipeline_runs</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">page_size</span><span class="p">)</span></div>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">page_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">page_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal method to list data pipeline runs with pagination.</span>
 
 <span class="sd">        Args:</span>
@@ -2260,7 +2420,9 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">ListDataPipelineRuns</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipelineRunsPage</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">page_size</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DataClient.create_index"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_index">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span>
+<div class="viewcode-block" id="DataClient.create_index">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_index">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">collection_type</span><span class="p">:</span> <span class="n">IndexableCollection</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
@@ -2287,7 +2449,10 @@
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">CreateIndex</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.list_indexes"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_indexes">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_indexes</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.list_indexes">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_indexes">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_indexes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">collection_type</span><span class="p">:</span> <span class="n">IndexableCollection</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
@@ -2314,7 +2479,10 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListIndexesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ListIndexes</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">indexes</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_index"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_index">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_index</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.delete_index">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_index">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">collection_type</span><span class="p">:</span> <span class="n">IndexableCollection</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
@@ -2340,7 +2508,10 @@
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteIndex</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.create_binary_data_signed_url"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_binary_data_signed_url">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_binary_data_signed_url</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.create_binary_data_signed_url">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_binary_data_signed_url">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_binary_data_signed_url</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_data_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">expiration_minutes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2375,8 +2546,11 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateBinaryDataSignedURLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">CreateBinaryDataSignedURL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">signed_url</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">expires_at</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DataClient.create_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_filter">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>
+
+<div class="viewcode-block" id="DataClient.create_filter">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_filter">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_filter</span><span class="p">(</span>
         <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2410,7 +2584,9 @@
             <span class="n">tags</span><span class="p">,</span>
             <span class="n">bbox_labels</span><span class="p">,</span>
             <span class="n">dataset_id</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>

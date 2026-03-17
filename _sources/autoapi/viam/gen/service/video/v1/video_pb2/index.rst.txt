@@ -16,8 +16,8 @@ Attributes
 .. autoapisummary::
 
    viam.gen.service.video.v1.video_pb2.DESCRIPTOR
-   viam.gen.service.video.v1.video_pb2.global___GetVideoRequest
-   viam.gen.service.video.v1.video_pb2.global___GetVideoResponse
+   viam.gen.service.video.v1.video_pb2.Global___GetVideoRequest
+   viam.gen.service.video.v1.video_pb2.Global___GetVideoResponse
 
 
 Classes
@@ -71,25 +71,25 @@ Module Contents
       To match a request to its responses
 
 
-   .. py:property:: start_timestamp
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: start_timestamp() -> google.protobuf.timestamp_pb2.Timestamp
 
       Start time for the video retrieval
 
 
-   .. py:property:: end_timestamp
-      :type: google.protobuf.timestamp_pb2.Timestamp
+
+   .. py:method:: end_timestamp() -> google.protobuf.timestamp_pb2.Timestamp
 
       End time for the video retrieval
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['end_timestamp', b'end_timestamp', 'extra', b'extra', 'start_timestamp', b'start_timestamp']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -107,7 +107,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetVideoRequest
+.. py:type:: Global___GetVideoRequest
+   :canonical: GetVideoRequest
+
 
 .. py:class:: GetVideoResponse(*, video_data: bytes = ..., video_container: str = ..., request_id: str = ...)
 
@@ -139,5 +141,7 @@ Module Contents
       Request ID to match this response to its request
 
 
-.. py:data:: global___GetVideoResponse
+.. py:type:: Global___GetVideoResponse
+   :canonical: GetVideoResponse
+
 

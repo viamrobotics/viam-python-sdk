@@ -39,11 +39,13 @@ Package Contents
    .. py:property:: data
       :type: bytes
 
+
       The raw bytes of the image
 
 
    .. py:property:: mime_type
       :type: CameraMimeType
+
 
       The mime type of the image
 
@@ -51,11 +53,13 @@ Package Contents
    .. py:property:: width
       :type: Optional[int]
 
+
       The width of the image
 
 
    .. py:property:: height
       :type: Optional[int]
+
 
       The height of the image
 
@@ -87,9 +91,7 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: parameters
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-
+   .. py:method:: parameters() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 .. py:class:: IntrinsicParameters(*, width_px: int = ..., height_px: int = ..., focal_x_px: float = ..., focal_y_px: float = ..., center_x_px: float = ..., center_y_px: float = ...)
@@ -152,9 +154,8 @@ Package Contents
       The API of the Resource
 
 
-   .. py:attribute:: Properties
-      :type:  TypeAlias
-      :value: GetPropertiesResponse
+   .. py:type:: Properties
+      :canonical: GetPropertiesResponse
 
 
 
@@ -246,7 +247,7 @@ Package Contents
 
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 
 

@@ -611,7 +611,7 @@ Package Contents
 
 
 
-.. py:class:: AddBinaryDataToDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
+.. py:class:: AddBinaryDataToDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[Global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -623,14 +623,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: binary_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+   .. py:method:: binary_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryID]
 
 
-
-   .. py:property:: binary_data_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: binary_data_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: AddBinaryDataToDatasetByIDsResponse
@@ -645,7 +641,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ..., confidence: float | None = ...)
+.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: Global___BinaryID | None = ..., binary_data_id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ..., confidence: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -682,12 +678,10 @@ Package Contents
       :type:  float
 
 
-   .. py:property:: binary_id
-      :type: global___BinaryID
+   .. py:method:: binary_id() -> Global___BinaryID
 
 
-
-   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', 'binary_id', b'binary_id', 'confidence', b'confidence']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -705,7 +699,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__confidence) -> _WhichOneofReturnType__confidence | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -733,7 +727,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: AddTagsToBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByFilterRequest(*, filter: Global___Filter | None = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -741,17 +735,13 @@ Package Contents
    AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 
 
-   .. py:property:: filter
-      :type: global___Filter
+   .. py:method:: filter() -> Global___Filter
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -781,7 +771,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[Global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -789,19 +779,13 @@ Package Contents
    AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 
 
-   .. py:property:: binary_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+   .. py:method:: binary_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryID]
 
 
-
-   .. py:property:: binary_data_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: binary_data_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: AddTagsToBinaryDataByIDsResponse
@@ -816,7 +800,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: Annotations(*, bboxes: collections.abc.Iterable[global___BoundingBox] | None = ..., classifications: collections.abc.Iterable[global___Classification] | None = ...)
+.. py:class:: Annotations(*, bboxes: collections.abc.Iterable[Global___BoundingBox] | None = ..., classifications: collections.abc.Iterable[Global___Classification] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -824,17 +808,13 @@ Package Contents
    Annotations are data annotations used for machine learning.
 
 
-   .. py:property:: bboxes
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BoundingBox]
+   .. py:method:: bboxes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BoundingBox]
 
 
-
-   .. py:property:: classifications
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
+   .. py:method:: classifications() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Classification]
 
 
-
-.. py:class:: BinaryData(*, binary: bytes = ..., metadata: global___BinaryMetadata | None = ...)
+.. py:class:: BinaryData(*, binary: bytes = ..., metadata: Global___BinaryMetadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -846,12 +826,10 @@ Package Contents
       :type:  bytes
 
 
-   .. py:property:: metadata
-      :type: global___BinaryMetadata
+   .. py:method:: metadata() -> Global___BinaryMetadata
 
 
-
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -869,7 +847,7 @@ Package Contents
 
 
 
-.. py:class:: BinaryDataByFilterRequest(*, data_request: global___DataRequest | None = ..., include_binary: bool = ..., count_only: bool = ..., include_internal_data: bool = ...)
+.. py:class:: BinaryDataByFilterRequest(*, data_request: Global___DataRequest | None = ..., include_binary: bool = ..., count_only: bool = ..., include_internal_data: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -889,12 +867,10 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: data_request
-      :type: global___DataRequest
+   .. py:method:: data_request() -> Global___DataRequest
 
 
-
-   .. py:method:: HasField(field_name: Literal['data_request', b'data_request']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -912,7 +888,7 @@ Package Contents
 
 
 
-.. py:class:: BinaryDataByFilterResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ..., last: str = ..., total_size_bytes: int = ...)
+.. py:class:: BinaryDataByFilterResponse(*, data: collections.abc.Iterable[Global___BinaryData] | None = ..., count: int = ..., last: str = ..., total_size_bytes: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -932,12 +908,10 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryData]
 
 
-
-.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[Global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -949,17 +923,13 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: binary_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+   .. py:method:: binary_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryID]
 
 
-
-   .. py:property:: binary_data_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: binary_data_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-.. py:class:: BinaryDataByIDsResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
+.. py:class:: BinaryDataByIDsResponse(*, data: collections.abc.Iterable[Global___BinaryData] | None = ..., count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -971,9 +941,7 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
-
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryData]
 
 
 .. py:class:: BinaryID(*, file_id: str = ..., organization_id: str = ..., location_id: str = ...)
@@ -996,7 +964,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., binary_data_id: str = ...)
+.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: Global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: Global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., binary_data_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1004,8 +972,7 @@ Package Contents
    BinaryMetadata is the metadata associated with binary data.
 
 
-   .. py:attribute:: id
-      :type:  str
+   .. py:method:: id() -> str
 
 
    .. py:attribute:: file_name
@@ -1024,32 +991,22 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: capture_metadata
-      :type: global___CaptureMetadata
+   .. py:method:: capture_metadata() -> Global___CaptureMetadata
 
 
-
-   .. py:property:: time_requested
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_requested() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: time_received
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_received() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: annotations
-      :type: global___Annotations
+   .. py:method:: annotations() -> Global___Annotations
 
 
-
-   .. py:property:: dataset_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dataset_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1106,7 +1063,7 @@ Package Contents
       confidence is an optional range from 0 - 1
 
 
-   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1124,7 +1081,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__confidence) -> _WhichOneofReturnType__confidence | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1140,7 +1097,7 @@ Package Contents
 
 
 
-.. py:class:: BoundingBoxLabelsByFilterRequest(*, filter: global___Filter | None = ...)
+.. py:class:: BoundingBoxLabelsByFilterRequest(*, filter: Global___Filter | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1148,12 +1105,10 @@ Package Contents
    BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 
 
-   .. py:property:: filter
-      :type: global___Filter
+   .. py:method:: filter() -> Global___Filter
 
 
-
-   .. py:method:: HasField(field_name: Literal['filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1179,9 +1134,7 @@ Package Contents
    BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 
 
-   .. py:property:: labels
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: labels() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: CaptureInterval(*, start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
@@ -1192,17 +1145,13 @@ Package Contents
    CaptureInterval describes the start and end time of the capture in this file.
 
 
-   .. py:property:: start
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: start() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: end
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: end() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['end', b'end', 'start', b'start']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1244,12 +1193,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: google.protobuf.any_pb2.Any
+      .. py:method:: value() -> google.protobuf.any_pb2.Any
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -1308,14 +1255,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: method_parameters
-      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+   .. py:method:: method_parameters() -> google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: Classification(*, id: str = ..., label: str = ..., confidence: float | None = ...)
@@ -1340,7 +1283,7 @@ Package Contents
       confidence is an optional range from 0 - 1
 
 
-   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1358,7 +1301,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__confidence) -> _WhichOneofReturnType__confidence | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1429,7 +1372,7 @@ Package Contents
       Maximum allowed is 10080 minutes (7 days).
 
 
-   .. py:method:: HasField(field_name: Literal['_expiration_minutes', b'_expiration_minutes', 'expiration_minutes', b'expiration_minutes']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1447,7 +1390,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_expiration_minutes', b'_expiration_minutes']) -> Literal['expiration_minutes'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__expiration_minutes) -> _WhichOneofReturnType__expiration_minutes | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1481,13 +1424,13 @@ Package Contents
       The signed URL for the binary data file.
 
 
-   .. py:property:: expires_at
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: expires_at() -> google.protobuf.timestamp_pb2.Timestamp
 
       Expiration time of the signed URL token.
 
 
-   .. py:method:: HasField(field_name: Literal['expires_at', b'expires_at']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1505,7 +1448,7 @@ Package Contents
 
 
 
-.. py:class:: CreateIndexRequest(*, organization_id: str = ..., collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_spec: collections.abc.Iterable[bytes] | None = ...)
+.. py:class:: CreateIndexRequest(*, organization_id: str = ..., collection_type: Global___IndexableCollection = ..., pipeline_name: str | None = ..., index_spec: collections.abc.Iterable[bytes] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1518,20 +1461,20 @@ Package Contents
 
 
    .. py:attribute:: collection_type
-      :type:  global___IndexableCollection
+      :type:  Global___IndexableCollection
 
 
    .. py:attribute:: pipeline_name
       :type:  str
 
 
-   .. py:property:: index_spec
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+   .. py:method:: index_spec() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
       index_spec accepts a MongoDB index specification defined in JSON format
 
 
-   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1549,7 +1492,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__pipeline_name) -> _WhichOneofReturnType__pipeline_name | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1593,9 +1536,7 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: mql_binary
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
-
+   .. py:method:: mql_binary() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
 
 .. py:class:: CreateSavedQueryResponse(*, id: str = ...)
@@ -1614,7 +1555,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: DataRequest(*, filter: global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: global___Order = ...)
+.. py:class:: DataRequest(*, filter: Global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: Global___Order = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1636,15 +1577,13 @@ Package Contents
 
 
    .. py:attribute:: sort_order
-      :type:  global___Order
+      :type:  Global___Order
 
 
-   .. py:property:: filter
-      :type: global___Filter
+   .. py:method:: filter() -> Global___Filter
 
 
-
-   .. py:method:: HasField(field_name: Literal['filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1662,7 +1601,7 @@ Package Contents
 
 
 
-.. py:class:: DeleteBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., include_internal_data: bool = ...)
+.. py:class:: DeleteBinaryDataByFilterRequest(*, filter: Global___Filter | None = ..., include_internal_data: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1674,12 +1613,10 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: filter
-      :type: global___Filter
+   .. py:method:: filter() -> Global___Filter
 
 
-
-   .. py:method:: HasField(field_name: Literal['filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1709,7 +1646,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[Global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1717,14 +1654,10 @@ Package Contents
    DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 
 
-   .. py:property:: binary_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+   .. py:method:: binary_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryID]
 
 
-
-   .. py:property:: binary_data_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: binary_data_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: DeleteBinaryDataByIDsResponse(*, deleted_count: int = ...)
@@ -1739,7 +1672,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: DeleteIndexRequest(*, organization_id: str = ..., collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ...)
+.. py:class:: DeleteIndexRequest(*, organization_id: str = ..., collection_type: Global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1752,7 +1685,7 @@ Package Contents
 
 
    .. py:attribute:: collection_type
-      :type:  global___IndexableCollection
+      :type:  Global___IndexableCollection
 
 
    .. py:attribute:: pipeline_name
@@ -1763,7 +1696,7 @@ Package Contents
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1781,7 +1714,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__pipeline_name) -> _WhichOneofReturnType__pipeline_name | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1833,7 +1766,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: DeleteTabularDataRequest(*, organization_id: str = ..., delete_older_than_days: int = ..., filter: global___DeleteTabularFilter | None = ...)
+.. py:class:: DeleteTabularDataRequest(*, organization_id: str = ..., delete_older_than_days: int = ..., filter: Global___DeleteTabularFilter | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1855,12 +1788,10 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: filter
-      :type: global___DeleteTabularFilter
+   .. py:method:: filter() -> Global___DeleteTabularFilter
 
 
-
-   .. py:method:: HasField(field_name: Literal['_filter', b'_filter', 'filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1878,7 +1809,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_filter', b'_filter']) -> Literal['filter'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__filter) -> _WhichOneofReturnType__filter | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1906,7 +1837,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: DeleteTabularFilter(*, location_ids: collections.abc.Iterable[str] | None = ..., robot_id: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method: str = ..., tags_filter: global___TagsFilter | None = ...)
+.. py:class:: DeleteTabularFilter(*, location_ids: collections.abc.Iterable[str] | None = ..., robot_id: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method: str = ..., tags_filter: Global___TagsFilter | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1934,17 +1865,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: location_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: location_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: tags_filter
-      :type: global___TagsFilter
+   .. py:method:: tags_filter() -> Global___TagsFilter
 
 
-
-   .. py:method:: HasField(field_name: Literal['tags_filter', b'tags_filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1962,7 +1889,7 @@ Package Contents
 
 
 
-.. py:class:: ExportTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., resource_subtype: str = ..., method_name: str = ..., interval: global___CaptureInterval | None = ..., additional_parameters: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: ExportTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., resource_subtype: str = ..., method_name: str = ..., interval: Global___CaptureInterval | None = ..., additional_parameters: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1986,17 +1913,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: interval
-      :type: global___CaptureInterval
+   .. py:method:: interval() -> Global___CaptureInterval
 
 
-
-   .. py:property:: additional_parameters
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: additional_parameters() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters', 'interval', b'interval']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2014,7 +1937,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_additional_parameters', b'_additional_parameters']) -> Literal['additional_parameters'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__additional_parameters) -> _WhichOneofReturnType__additional_parameters | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2074,27 +1997,19 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: time_captured
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_captured() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: method_parameters
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: method_parameters() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: payload
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: payload() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['method_parameters', b'method_parameters', 'payload', b'payload', 'time_captured', b'time_captured']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2112,7 +2027,7 @@ Package Contents
 
 
 
-.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[str] | None = ..., organization_ids: collections.abc.Iterable[str] | None = ..., mime_type: collections.abc.Iterable[str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[str] | None = ..., organization_ids: collections.abc.Iterable[str] | None = ..., mime_type: collections.abc.Iterable[str] | None = ..., interval: Global___CaptureInterval | None = ..., tags_filter: Global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2156,38 +2071,28 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: location_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: location_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: organization_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: organization_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: mime_type
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: mime_type() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: interval
-      :type: global___CaptureInterval
+   .. py:method:: interval() -> Global___CaptureInterval
 
 
-
-   .. py:property:: tags_filter
-      :type: global___TagsFilter
+   .. py:method:: tags_filter() -> Global___TagsFilter
 
 
-
-   .. py:property:: bbox_labels
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: bbox_labels() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
 
 
-   .. py:method:: HasField(field_name: Literal['interval', b'interval', 'tags_filter', b'tags_filter']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2263,12 +2168,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: additional_parameters
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: additional_parameters() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2286,7 +2189,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_additional_parameters', b'_additional_parameters']) -> Literal['additional_parameters'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__additional_parameters) -> _WhichOneofReturnType__additional_parameters | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2311,22 +2214,16 @@ Package Contents
    from the requested data source, as long as it was synced within the last year.
 
 
-   .. py:property:: time_captured
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_captured() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: time_synced
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_synced() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: payload
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: payload() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['payload', b'payload', 'time_captured', b'time_captured', 'time_synced', b'time_synced']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2356,7 +2253,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetSavedQueryResponse(*, saved_query: global___Query | None = ...)
+.. py:class:: GetSavedQueryResponse(*, saved_query: Global___Query | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2368,12 +2265,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: saved_query
-      :type: global___Query
+   .. py:method:: saved_query() -> Global___Query
 
 
-
-   .. py:method:: HasField(field_name: Literal['saved_query', b'saved_query']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2391,7 +2286,7 @@ Package Contents
 
 
 
-.. py:class:: Index(*, collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ..., index_spec: collections.abc.Iterable[bytes] | None = ..., created_by: global___IndexCreator = ...)
+.. py:class:: Index(*, collection_type: Global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ..., index_spec: collections.abc.Iterable[bytes] | None = ..., created_by: Global___IndexCreator = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2404,7 +2299,7 @@ Package Contents
 
 
    .. py:attribute:: collection_type
-      :type:  global___IndexableCollection
+      :type:  Global___IndexableCollection
 
 
    .. py:attribute:: pipeline_name
@@ -2416,16 +2311,16 @@ Package Contents
 
 
    .. py:attribute:: created_by
-      :type:  global___IndexCreator
+      :type:  Global___IndexCreator
 
 
-   .. py:property:: index_spec
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+   .. py:method:: index_spec() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
       index_spec defines a MongoDB index in JSON format
 
 
-   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2443,7 +2338,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__pipeline_name) -> _WhichOneofReturnType__pipeline_name | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2475,7 +2370,7 @@ Package Contents
    IndexCreator specifies the entity that originally created the index
 
 
-.. py:class:: ListIndexesRequest(*, organization_id: str = ..., collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ...)
+.. py:class:: ListIndexesRequest(*, organization_id: str = ..., collection_type: Global___IndexableCollection = ..., pipeline_name: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2488,14 +2383,14 @@ Package Contents
 
 
    .. py:attribute:: collection_type
-      :type:  global___IndexableCollection
+      :type:  Global___IndexableCollection
 
 
    .. py:attribute:: pipeline_name
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2513,7 +2408,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__pipeline_name) -> _WhichOneofReturnType__pipeline_name | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2529,7 +2424,7 @@ Package Contents
 
 
 
-.. py:class:: ListIndexesResponse(*, indexes: collections.abc.Iterable[global___Index] | None = ...)
+.. py:class:: ListIndexesResponse(*, indexes: collections.abc.Iterable[Global___Index] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2541,9 +2436,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: indexes
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Index]
-
+   .. py:method:: indexes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Index]
 
 
 .. py:class:: ListSavedQueriesRequest(*, organization_id: str = ..., limit: int = ...)
@@ -2562,7 +2455,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: ListSavedQueriesResponse(*, queries: collections.abc.Iterable[global___Query] | None = ...)
+.. py:class:: ListSavedQueriesResponse(*, queries: collections.abc.Iterable[Global___Query] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2574,9 +2467,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: queries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Query]
-
+   .. py:method:: queries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Query]
 
 
 .. py:class:: Order
@@ -2611,22 +2502,16 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: mql_binary
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+   .. py:method:: mql_binary() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
 
-
-   .. py:property:: created_on
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: updated_at
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: updated_at() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'updated_at', b'updated_at']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2644,7 +2529,7 @@ Package Contents
 
 
 
-.. py:class:: RemoveBinaryDataFromDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
+.. py:class:: RemoveBinaryDataFromDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[Global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2656,14 +2541,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: binary_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+   .. py:method:: binary_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryID]
 
 
-
-   .. py:property:: binary_data_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: binary_data_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: RemoveBinaryDataFromDatasetByIDsResponse
@@ -2678,7 +2559,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ...)
+.. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, binary_id: Global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2694,12 +2575,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: binary_id
-      :type: global___BinaryID
+   .. py:method:: binary_id() -> Global___BinaryID
 
 
-
-   .. py:method:: HasField(field_name: Literal['binary_id', b'binary_id']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2729,7 +2608,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: RemoveTagsFromBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByFilterRequest(*, filter: Global___Filter | None = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2737,17 +2616,13 @@ Package Contents
    RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 
 
-   .. py:property:: filter
-      :type: global___Filter
+   .. py:method:: filter() -> Global___Filter
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2777,7 +2652,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[Global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2785,19 +2660,13 @@ Package Contents
    RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 
 
-   .. py:property:: binary_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+   .. py:method:: binary_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___BinaryID]
 
 
-
-   .. py:property:: binary_data_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: binary_data_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: RemoveTagsFromBinaryDataByIDsResponse(*, deleted_count: int = ...)
@@ -2824,22 +2693,16 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: data
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: data() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:property:: time_requested
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_requested() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: time_received
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_received() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['data', b'data', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2857,7 +2720,7 @@ Package Contents
 
 
 
-.. py:class:: TabularDataByFilterRequest(*, data_request: global___DataRequest | None = ..., count_only: bool = ..., include_internal_data: bool = ...)
+.. py:class:: TabularDataByFilterRequest(*, data_request: Global___DataRequest | None = ..., count_only: bool = ..., include_internal_data: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2873,12 +2736,10 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: data_request
-      :type: global___DataRequest
+   .. py:method:: data_request() -> Global___DataRequest
 
 
-
-   .. py:method:: HasField(field_name: Literal['data_request', b'data_request']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2896,7 +2757,7 @@ Package Contents
 
 
 
-.. py:class:: TabularDataByFilterResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___TabularData] | None = ..., count: int = ..., last: str = ..., total_size_bytes: int = ...)
+.. py:class:: TabularDataByFilterResponse(*, metadata: collections.abc.Iterable[Global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[Global___TabularData] | None = ..., count: int = ..., last: str = ..., total_size_bytes: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2916,17 +2777,13 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: metadata
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
+   .. py:method:: metadata() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CaptureMetadata]
 
 
-
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TabularData]
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TabularData]
 
 
-
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., data_source: global___TabularDataSource | None = ..., query_prefix_name: str | None = ...)
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., data_source: Global___TabularDataSource | None = ..., query_prefix_name: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2950,22 +2807,22 @@ Package Contents
       query_prefix_name is an optional field that can be used to specify a saved query to run
 
 
-   .. py:property:: mql_binary
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+   .. py:method:: mql_binary() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
       mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
       document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
       namespace, which holds the Viam organization's tabular data.
 
 
-   .. py:property:: data_source
-      :type: global___TabularDataSource
+
+   .. py:method:: data_source() -> Global___TabularDataSource
 
       data_source is an optional field that can be used to specify the data source for the query.
       If not specified, the query will run on "standard" storage.
 
 
-   .. py:method:: HasField(field_name: Literal['_data_source', b'_data_source', '_query_prefix_name', b'_query_prefix_name', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'query_prefix_name', b'query_prefix_name', 'use_recent_data', b'use_recent_data']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2983,9 +2840,9 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_data_source', b'_data_source']) -> Literal['data_source'] | None
-                  WhichOneof(oneof_group: Literal['_query_prefix_name', b'_query_prefix_name']) -> Literal['query_prefix_name'] | None
-                  WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__data_source) -> _WhichOneofReturnType__data_source | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__query_prefix_name) -> _WhichOneofReturnType__query_prefix_name | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__use_recent_data) -> _WhichOneofReturnType__use_recent_data | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3009,9 +2866,7 @@ Package Contents
    TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
 
 
-   .. py:property:: raw_data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
-
+   .. py:method:: raw_data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
 
 .. py:class:: TabularDataBySQLRequest(*, organization_id: str = ..., sql_query: str = ...)
@@ -3042,12 +2897,10 @@ Package Contents
    TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
 
 
-   .. py:property:: raw_data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+   .. py:method:: raw_data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
 
-
-.. py:class:: TabularDataSource(*, type: global___TabularDataSourceType = ..., pipeline_id: str | None = ...)
+.. py:class:: TabularDataSource(*, type: Global___TabularDataSourceType = ..., pipeline_id: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3056,7 +2909,7 @@ Package Contents
 
 
    .. py:attribute:: type
-      :type:  global___TabularDataSourceType
+      :type:  Global___TabularDataSourceType
 
 
    .. py:attribute:: pipeline_id
@@ -3066,7 +2919,7 @@ Package Contents
       TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.
 
 
-   .. py:method:: HasField(field_name: Literal['_pipeline_id', b'_pipeline_id', 'pipeline_id', b'pipeline_id']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3084,7 +2937,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_id', b'_pipeline_id']) -> Literal['pipeline_id'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__pipeline_id) -> _WhichOneofReturnType__pipeline_id | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3108,7 +2961,7 @@ Package Contents
    TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
 
 
-.. py:class:: TagsByFilterRequest(*, filter: global___Filter | None = ...)
+.. py:class:: TagsByFilterRequest(*, filter: Global___Filter | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3116,12 +2969,10 @@ Package Contents
    TagsByFilterRequest requests the unique tags from data based on given filter.
 
 
-   .. py:property:: filter
-      :type: global___Filter
+   .. py:method:: filter() -> Global___Filter
 
 
-
-   .. py:method:: HasField(field_name: Literal['filter', b'filter']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3147,12 +2998,10 @@ Package Contents
    TagsByFilterResponse returns the unique tags from data based on given filter.
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-.. py:class:: TagsFilter(*, type: global___TagsFilterType = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: TagsFilter(*, type: Global___TagsFilterType = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3161,13 +3010,13 @@ Package Contents
 
 
    .. py:attribute:: type
-      :type:  global___TagsFilterType
+      :type:  Global___TagsFilterType
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR.
+
 
 
 .. py:class:: TagsFilterType
@@ -3178,7 +3027,7 @@ Package Contents
    TagsFilterType specifies how data can be filtered based on tags.
 
 
-.. py:class:: UpdateBoundingBoxRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ..., label: str | None = ..., x_min_normalized: float | None = ..., y_min_normalized: float | None = ..., x_max_normalized: float | None = ..., y_max_normalized: float | None = ..., confidence: float | None = ...)
+.. py:class:: UpdateBoundingBoxRequest(*, binary_id: Global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ..., label: str | None = ..., x_min_normalized: float | None = ..., y_min_normalized: float | None = ..., x_max_normalized: float | None = ..., y_max_normalized: float | None = ..., confidence: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3218,12 +3067,10 @@ Package Contents
       :type:  float
 
 
-   .. py:property:: binary_id
-      :type: global___BinaryID
+   .. py:method:: binary_id() -> Global___BinaryID
 
 
-
-   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', '_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'confidence', b'confidence', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3241,12 +3088,12 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
-                  WhichOneof(oneof_group: Literal['_label', b'_label']) -> Literal['label'] | None
-                  WhichOneof(oneof_group: Literal['_x_max_normalized', b'_x_max_normalized']) -> Literal['x_max_normalized'] | None
-                  WhichOneof(oneof_group: Literal['_x_min_normalized', b'_x_min_normalized']) -> Literal['x_min_normalized'] | None
-                  WhichOneof(oneof_group: Literal['_y_max_normalized', b'_y_max_normalized']) -> Literal['y_max_normalized'] | None
-                  WhichOneof(oneof_group: Literal['_y_min_normalized', b'_y_min_normalized']) -> Literal['y_min_normalized'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__confidence) -> _WhichOneofReturnType__confidence | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__label) -> _WhichOneofReturnType__label | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__x_max_normalized) -> _WhichOneofReturnType__x_max_normalized | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__x_min_normalized) -> _WhichOneofReturnType__x_min_normalized | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__y_max_normalized) -> _WhichOneofReturnType__y_max_normalized | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__y_min_normalized) -> _WhichOneofReturnType__y_min_normalized | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3290,9 +3137,7 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: mql_binary
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
-
+   .. py:method:: mql_binary() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
 
 .. py:class:: UpdateSavedQueryResponse

@@ -16,8 +16,8 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.audioout.v1.audioout_pb2.DESCRIPTOR
-   viam.gen.component.audioout.v1.audioout_pb2.global___PlayRequest
-   viam.gen.component.audioout.v1.audioout_pb2.global___PlayResponse
+   viam.gen.component.audioout.v1.audioout_pb2.Global___PlayRequest
+   viam.gen.component.audioout.v1.audioout_pb2.Global___PlayResponse
 
 
 Classes
@@ -35,7 +35,7 @@ Module Contents
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
 
-.. py:class:: PlayRequest(*, name: str = ..., audio_data: bytes = ..., audio_info: viam.gen.common.v1.common_pb2.AudioInfo | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: PlayRequest(*, name: str = ..., audio_data: bytes = ..., audio_info: common.v1.common_pb2.AudioInfo | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -55,18 +55,16 @@ Module Contents
       :type:  bytes
 
 
-   .. py:property:: audio_info
-      :type: viam.gen.common.v1.common_pb2.AudioInfo
+   .. py:method:: audio_info() -> common.v1.common_pb2.AudioInfo
 
       Info describing the audio_data
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['audio_info', b'audio_info', 'extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -84,7 +82,9 @@ Module Contents
 
 
 
-.. py:data:: global___PlayRequest
+.. py:type:: Global___PlayRequest
+   :canonical: PlayRequest
+
 
 .. py:class:: PlayResponse
 
@@ -98,5 +98,7 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___PlayResponse
+.. py:type:: Global___PlayResponse
+   :canonical: PlayResponse
+
 

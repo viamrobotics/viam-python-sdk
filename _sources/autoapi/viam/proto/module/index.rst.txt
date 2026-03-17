@@ -133,7 +133,7 @@ Package Contents
 
 
 
-.. py:class:: AddResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
+.. py:class:: AddResourceRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -145,17 +145,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+   .. py:method:: config() -> app.v1.robot_pb2.ComponentConfig
 
 
-
-   .. py:property:: dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -185,7 +181,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: HandlerDefinition(*, subtype: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[str] | None = ...)
+.. py:class:: HandlerDefinition(*, subtype: robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -197,17 +193,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: subtype
-      :type: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype
+   .. py:method:: subtype() -> robot.v1.robot_pb2.ResourceRPCSubtype
 
 
-
-   .. py:property:: models
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: models() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['subtype', b'subtype']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -225,7 +217,7 @@ Package Contents
 
 
 
-.. py:class:: HandlerMap(*, handlers: collections.abc.Iterable[global___HandlerDefinition] | None = ...)
+.. py:class:: HandlerMap(*, handlers: collections.abc.Iterable[Global___HandlerDefinition] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -237,9 +229,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: handlers
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___HandlerDefinition]
-
+   .. py:method:: handlers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___HandlerDefinition]
 
 
 .. py:class:: ReadyRequest(*, parent_address: str = ..., webrtc_offer: str = ...)
@@ -262,7 +252,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: global___HandlerMap | None = ..., webrtc_answer: str = ...)
+.. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: Global___HandlerMap | None = ..., webrtc_answer: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -282,12 +272,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: handlermap
-      :type: global___HandlerMap
+   .. py:method:: handlermap() -> Global___HandlerMap
 
 
-
-   .. py:method:: HasField(field_name: Literal['handlermap', b'handlermap']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -305,7 +293,7 @@ Package Contents
 
 
 
-.. py:class:: ReconfigureResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
+.. py:class:: ReconfigureResourceRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -317,17 +305,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+   .. py:method:: config() -> app.v1.robot_pb2.ComponentConfig
 
 
-
-   .. py:property:: dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -385,7 +369,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: ValidateConfigRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ...)
+.. py:class:: ValidateConfigRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -397,12 +381,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+   .. py:method:: config() -> app.v1.robot_pb2.ComponentConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -432,13 +414,9 @@ Package Contents
    shown below.
 
 
-   .. py:property:: dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: optional_dependencies
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: optional_dependencies() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 

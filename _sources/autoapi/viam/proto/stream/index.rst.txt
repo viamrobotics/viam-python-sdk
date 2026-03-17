@@ -164,7 +164,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetStreamOptionsResponse(*, resolutions: collections.abc.Iterable[global___Resolution] | None = ...)
+.. py:class:: GetStreamOptionsResponse(*, resolutions: collections.abc.Iterable[Global___Resolution] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -172,9 +172,7 @@ Package Contents
    GetStreamOptionsResponse details the options for a particular stream.
 
 
-   .. py:property:: resolutions
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Resolution]
-
+   .. py:method:: resolutions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Resolution]
 
 
 .. py:class:: ListStreamsRequest
@@ -193,9 +191,7 @@ Package Contents
    A ListStreamsResponse details streams registered.
 
 
-   .. py:property:: names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: RemoveStreamRequest(*, name: str = ...)
@@ -234,7 +230,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: SetStreamOptionsRequest(*, name: str = ..., resolution: global___Resolution | None = ...)
+.. py:class:: SetStreamOptionsRequest(*, name: str = ..., resolution: Global___Resolution | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -246,12 +242,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: resolution
-      :type: global___Resolution
+   .. py:method:: resolution() -> Global___Resolution
 
 
-
-   .. py:method:: HasField(field_name: Literal['resolution', b'resolution']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

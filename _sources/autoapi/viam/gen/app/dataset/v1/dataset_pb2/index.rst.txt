@@ -16,19 +16,19 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.dataset.v1.dataset_pb2.DESCRIPTOR
-   viam.gen.app.dataset.v1.dataset_pb2.global___Dataset
-   viam.gen.app.dataset.v1.dataset_pb2.global___CreateDatasetRequest
-   viam.gen.app.dataset.v1.dataset_pb2.global___CreateDatasetResponse
-   viam.gen.app.dataset.v1.dataset_pb2.global___DeleteDatasetRequest
-   viam.gen.app.dataset.v1.dataset_pb2.global___DeleteDatasetResponse
-   viam.gen.app.dataset.v1.dataset_pb2.global___RenameDatasetRequest
-   viam.gen.app.dataset.v1.dataset_pb2.global___RenameDatasetResponse
-   viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByOrganizationIDRequest
-   viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByOrganizationIDResponse
-   viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsRequest
-   viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsResponse
-   viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsRequest
-   viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___Dataset
+   viam.gen.app.dataset.v1.dataset_pb2.Global___CreateDatasetRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___CreateDatasetResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___DeleteDatasetRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___DeleteDatasetResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___RenameDatasetRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___RenameDatasetResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___ListDatasetsByOrganizationIDRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___ListDatasetsByOrganizationIDResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___ListDatasetsByIDsRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___ListDatasetsByIDsResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___MergeDatasetsRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___MergeDatasetsResponse
 
 
 Classes
@@ -77,12 +77,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: time_created
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_created() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['time_created', b'time_created']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -100,7 +98,9 @@ Module Contents
 
 
 
-.. py:data:: global___Dataset
+.. py:type:: Global___Dataset
+   :canonical: Dataset
+
 
 .. py:class:: CreateDatasetRequest(*, name: str = ..., organization_id: str = ...)
 
@@ -118,7 +118,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___CreateDatasetRequest
+.. py:type:: Global___CreateDatasetRequest
+   :canonical: CreateDatasetRequest
+
 
 .. py:class:: CreateDatasetResponse(*, id: str = ...)
 
@@ -132,7 +134,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___CreateDatasetResponse
+.. py:type:: Global___CreateDatasetResponse
+   :canonical: CreateDatasetResponse
+
 
 .. py:class:: DeleteDatasetRequest(*, id: str = ...)
 
@@ -146,7 +150,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___DeleteDatasetRequest
+.. py:type:: Global___DeleteDatasetRequest
+   :canonical: DeleteDatasetRequest
+
 
 .. py:class:: DeleteDatasetResponse
 
@@ -160,7 +166,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___DeleteDatasetResponse
+.. py:type:: Global___DeleteDatasetResponse
+   :canonical: DeleteDatasetResponse
+
 
 .. py:class:: RenameDatasetRequest(*, id: str = ..., name: str = ...)
 
@@ -178,7 +186,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___RenameDatasetRequest
+.. py:type:: Global___RenameDatasetRequest
+   :canonical: RenameDatasetRequest
+
 
 .. py:class:: RenameDatasetResponse
 
@@ -192,7 +202,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___RenameDatasetResponse
+.. py:type:: Global___RenameDatasetResponse
+   :canonical: RenameDatasetResponse
+
 
 .. py:class:: ListDatasetsByOrganizationIDRequest(*, organization_id: str = ...)
 
@@ -206,9 +218,11 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___ListDatasetsByOrganizationIDRequest
+.. py:type:: Global___ListDatasetsByOrganizationIDRequest
+   :canonical: ListDatasetsByOrganizationIDRequest
 
-.. py:class:: ListDatasetsByOrganizationIDResponse(*, datasets: collections.abc.Iterable[global___Dataset] | None = ...)
+
+.. py:class:: ListDatasetsByOrganizationIDResponse(*, datasets: collections.abc.Iterable[Global___Dataset] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -216,12 +230,12 @@ Module Contents
    ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.
 
 
-   .. py:property:: datasets
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Dataset]
+   .. py:method:: datasets() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Dataset]
 
 
+.. py:type:: Global___ListDatasetsByOrganizationIDResponse
+   :canonical: ListDatasetsByOrganizationIDResponse
 
-.. py:data:: global___ListDatasetsByOrganizationIDResponse
 
 .. py:class:: ListDatasetsByIDsRequest(*, ids: collections.abc.Iterable[str] | None = ...)
 
@@ -231,14 +245,14 @@ Module Contents
    ListDatasetsByIDsRequest requests all of the datasets by their dataset IDs.
 
 
-   .. py:property:: ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___ListDatasetsByIDsRequest
+   :canonical: ListDatasetsByIDsRequest
 
-.. py:data:: global___ListDatasetsByIDsRequest
 
-.. py:class:: ListDatasetsByIDsResponse(*, datasets: collections.abc.Iterable[global___Dataset] | None = ...)
+.. py:class:: ListDatasetsByIDsResponse(*, datasets: collections.abc.Iterable[Global___Dataset] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -246,12 +260,12 @@ Module Contents
    ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs.
 
 
-   .. py:property:: datasets
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Dataset]
+   .. py:method:: datasets() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Dataset]
 
 
+.. py:type:: Global___ListDatasetsByIDsResponse
+   :canonical: ListDatasetsByIDsResponse
 
-.. py:data:: global___ListDatasetsByIDsResponse
 
 .. py:class:: MergeDatasetsRequest(*, dataset_ids: collections.abc.Iterable[str] | None = ..., name: str = ..., organization_id: str = ...)
 
@@ -269,12 +283,12 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: dataset_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dataset_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___MergeDatasetsRequest
+   :canonical: MergeDatasetsRequest
 
-.. py:data:: global___MergeDatasetsRequest
 
 .. py:class:: MergeDatasetsResponse(*, dataset_id: str = ...)
 
@@ -288,5 +302,7 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___MergeDatasetsResponse
+.. py:type:: Global___MergeDatasetsResponse
+   :canonical: MergeDatasetsResponse
+
 

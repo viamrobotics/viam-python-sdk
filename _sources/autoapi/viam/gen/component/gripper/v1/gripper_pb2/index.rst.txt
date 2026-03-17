@@ -16,16 +16,16 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.gripper.v1.gripper_pb2.DESCRIPTOR
-   viam.gen.component.gripper.v1.gripper_pb2.global___OpenRequest
-   viam.gen.component.gripper.v1.gripper_pb2.global___OpenResponse
-   viam.gen.component.gripper.v1.gripper_pb2.global___GrabRequest
-   viam.gen.component.gripper.v1.gripper_pb2.global___GrabResponse
-   viam.gen.component.gripper.v1.gripper_pb2.global___StopRequest
-   viam.gen.component.gripper.v1.gripper_pb2.global___StopResponse
-   viam.gen.component.gripper.v1.gripper_pb2.global___IsMovingRequest
-   viam.gen.component.gripper.v1.gripper_pb2.global___IsMovingResponse
-   viam.gen.component.gripper.v1.gripper_pb2.global___IsHoldingSomethingRequest
-   viam.gen.component.gripper.v1.gripper_pb2.global___IsHoldingSomethingResponse
+   viam.gen.component.gripper.v1.gripper_pb2.Global___OpenRequest
+   viam.gen.component.gripper.v1.gripper_pb2.Global___OpenResponse
+   viam.gen.component.gripper.v1.gripper_pb2.Global___GrabRequest
+   viam.gen.component.gripper.v1.gripper_pb2.Global___GrabResponse
+   viam.gen.component.gripper.v1.gripper_pb2.Global___StopRequest
+   viam.gen.component.gripper.v1.gripper_pb2.Global___StopResponse
+   viam.gen.component.gripper.v1.gripper_pb2.Global___IsMovingRequest
+   viam.gen.component.gripper.v1.gripper_pb2.Global___IsMovingResponse
+   viam.gen.component.gripper.v1.gripper_pb2.Global___IsHoldingSomethingRequest
+   viam.gen.component.gripper.v1.gripper_pb2.Global___IsHoldingSomethingResponse
 
 
 Classes
@@ -67,12 +67,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -90,7 +88,9 @@ Module Contents
 
 
 
-.. py:data:: global___OpenRequest
+.. py:type:: Global___OpenRequest
+   :canonical: OpenRequest
+
 
 .. py:class:: OpenResponse
 
@@ -104,7 +104,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___OpenResponse
+.. py:type:: Global___OpenResponse
+   :canonical: OpenResponse
+
 
 .. py:class:: GrabRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -122,12 +124,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -145,7 +145,9 @@ Module Contents
 
 
 
-.. py:data:: global___GrabRequest
+.. py:type:: Global___GrabRequest
+   :canonical: GrabRequest
+
 
 .. py:class:: GrabResponse(*, success: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -163,12 +165,10 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -186,7 +186,9 @@ Module Contents
 
 
 
-.. py:data:: global___GrabResponse
+.. py:type:: Global___GrabResponse
+   :canonical: GrabResponse
+
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -206,12 +208,10 @@ Module Contents
       Name of a gripper
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -229,7 +229,9 @@ Module Contents
 
 
 
-.. py:data:: global___StopRequest
+.. py:type:: Global___StopRequest
+   :canonical: StopRequest
+
 
 .. py:class:: StopResponse
 
@@ -243,7 +245,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___StopResponse
+.. py:type:: Global___StopResponse
+   :canonical: StopResponse
+
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
@@ -261,7 +265,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___IsMovingRequest
+.. py:type:: Global___IsMovingRequest
+   :canonical: IsMovingRequest
+
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
@@ -279,7 +285,9 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___IsMovingResponse
+.. py:type:: Global___IsMovingResponse
+   :canonical: IsMovingResponse
+
 
 .. py:class:: IsHoldingSomethingRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -297,12 +305,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -320,7 +326,9 @@ Module Contents
 
 
 
-.. py:data:: global___IsHoldingSomethingRequest
+.. py:type:: Global___IsHoldingSomethingRequest
+   :canonical: IsHoldingSomethingRequest
+
 
 .. py:class:: IsHoldingSomethingResponse(*, is_holding_something: bool = ..., meta: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -338,12 +346,10 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: meta
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: meta() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['meta', b'meta']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -361,5 +367,7 @@ Module Contents
 
 
 
-.. py:data:: global___IsHoldingSomethingResponse
+.. py:type:: Global___IsHoldingSomethingResponse
+   :canonical: IsHoldingSomethingResponse
+
 

@@ -195,7 +195,7 @@ Package Contents
       does not handle edited maps, the unedited map will be returned instead.
 
 
-   .. py:method:: HasField(field_name: Literal['_return_edited_map', b'_return_edited_map', 'return_edited_map', b'return_edited_map']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -213,7 +213,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_return_edited_map', b'_return_edited_map']) -> Literal['return_edited_map'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__return_edited_map) -> _WhichOneofReturnType__return_edited_map | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -282,7 +282,7 @@ Package Contents
       Name of slam service
 
 
-.. py:class:: GetPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
+.. py:class:: GetPositionResponse(*, pose: common.v1.common_pb2.Pose | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -294,13 +294,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: pose
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: pose() -> common.v1.common_pb2.Pose
 
       Current position of the specified component in the SLAM Map
 
 
-   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -336,7 +336,7 @@ Package Contents
       Name of the slam service
 
 
-.. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: global___MappingMode = ..., internal_state_file_type: str | None = ..., sensor_info: collections.abc.Iterable[global___SensorInfo] | None = ...)
+.. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: Global___MappingMode = ..., internal_state_file_type: str | None = ..., sensor_info: collections.abc.Iterable[Global___SensorInfo] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -349,19 +349,17 @@ Package Contents
 
 
    .. py:attribute:: mapping_mode
-      :type:  global___MappingMode
+      :type:  Global___MappingMode
 
 
    .. py:attribute:: internal_state_file_type
       :type:  str
 
 
-   .. py:property:: sensor_info
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]
+   .. py:method:: sensor_info() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SensorInfo]
 
 
-
-   .. py:method:: HasField(field_name: Literal['_internal_state_file_type', b'_internal_state_file_type', 'internal_state_file_type', b'internal_state_file_type']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -379,7 +377,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_internal_state_file_type', b'_internal_state_file_type']) -> Literal['internal_state_file_type'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__internal_state_file_type) -> _WhichOneofReturnType__internal_state_file_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -405,7 +403,7 @@ Package Contents
    exisiting map.
 
 
-.. py:class:: SensorInfo(*, name: str = ..., type: global___SensorType = ...)
+.. py:class:: SensorInfo(*, name: str = ..., type: Global___SensorType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -422,7 +420,7 @@ Package Contents
 
 
    .. py:attribute:: type
-      :type:  global___SensorType
+      :type:  Global___SensorType
 
 
 .. py:class:: SensorType

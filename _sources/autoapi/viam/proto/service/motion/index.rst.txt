@@ -194,7 +194,7 @@ Package Contents
 
 
 
-.. py:class:: CollisionSpecification(*, allows: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
+.. py:class:: CollisionSpecification(*, allows: collections.abc.Iterable[Global___CollisionSpecification] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -223,13 +223,13 @@ Package Contents
 
 
 
-   .. py:property:: allows
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]
+   .. py:method:: allows() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CollisionSpecification]
 
       Pairs of frame which should be allowed to collide with one another
 
 
-.. py:class:: ComponentState(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
+
+.. py:class:: ComponentState(*, pose: common.v1.common_pb2.Pose | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -237,12 +237,10 @@ Package Contents
    A pose
 
 
-   .. py:property:: pose
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: pose() -> common.v1.common_pb2.Pose
 
 
-
-   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -260,7 +258,7 @@ Package Contents
 
 
 
-.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ..., pseudolinear_constraint: collections.abc.Iterable[global___PseudolinearConstraint] | None = ...)
+.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[Global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[Global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[Global___CollisionSpecification] | None = ..., pseudolinear_constraint: collections.abc.Iterable[Global___PseudolinearConstraint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -268,29 +266,25 @@ Package Contents
    Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
 
 
-   .. py:property:: linear_constraint
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LinearConstraint]
+   .. py:method:: linear_constraint() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___LinearConstraint]
 
       Typed message for a specific constraint
 
 
-   .. py:property:: orientation_constraint
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrientationConstraint]
+
+   .. py:method:: orientation_constraint() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___OrientationConstraint]
 
 
-
-   .. py:property:: collision_specification
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]
+   .. py:method:: collision_specification() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CollisionSpecification]
 
 
-
-   .. py:property:: pseudolinear_constraint
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PseudolinearConstraint]
+   .. py:method:: pseudolinear_constraint() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PseudolinearConstraint]
 
       Arc constraint, Time constraint, and others will be added here when they are supported
 
 
-.. py:class:: GetPlanRequest(*, name: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., last_plan_only: bool = ..., execution_id: str | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: GetPlanRequest(*, name: str = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., last_plan_only: bool = ..., execution_id: str | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -327,19 +321,19 @@ Package Contents
       The name of the component which was requested to be moved.
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_execution_id', b'_execution_id', 'component_name_deprecated', b'component_name_deprecated', 'execution_id', b'execution_id', 'extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -357,7 +351,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_execution_id', b'_execution_id']) -> Literal['execution_id'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__execution_id) -> _WhichOneofReturnType__execution_id | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -373,7 +367,7 @@ Package Contents
 
 
 
-.. py:class:: GetPlanResponse(*, current_plan_with_status: global___PlanWithStatus | None = ..., replan_history: collections.abc.Iterable[global___PlanWithStatus] | None = ...)
+.. py:class:: GetPlanResponse(*, current_plan_with_status: Global___PlanWithStatus | None = ..., replan_history: collections.abc.Iterable[Global___PlanWithStatus] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -385,14 +379,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: current_plan_with_status
-      :type: global___PlanWithStatus
+   .. py:method:: current_plan_with_status() -> Global___PlanWithStatus
 
       The current plan and status that matches the request query
 
 
-   .. py:property:: replan_history
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanWithStatus]
+
+   .. py:method:: replan_history() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PlanWithStatus]
 
       Returns the history of all previous plans that were
       generated in ascending order.
@@ -400,7 +393,8 @@ Package Contents
       did not need to re-plan.
 
 
-   .. py:method:: HasField(field_name: Literal['current_plan_with_status', b'current_plan_with_status']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -418,7 +412,7 @@ Package Contents
 
 
 
-.. py:class:: GetPoseRequest(*, name: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPoseRequest(*, name: str = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -448,26 +442,26 @@ Package Contents
       the component whose pose is being requested
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: supplemental_transforms
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
+
+   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.Transform]
 
       pose information on any additional reference frames that are needed
       to compute the component's pose
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated', 'extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -485,7 +479,7 @@ Package Contents
 
 
 
-.. py:class:: GetPoseResponse(*, pose: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
+.. py:class:: GetPoseResponse(*, pose: common.v1.common_pb2.PoseInFrame | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -497,12 +491,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: pose
-      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+   .. py:method:: pose() -> common.v1.common_pb2.PoseInFrame
 
 
-
-   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -541,7 +533,7 @@ Package Contents
       Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
 
 
-   .. py:method:: HasField(field_name: Literal['_line_tolerance_mm', b'_line_tolerance_mm', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'line_tolerance_mm', b'line_tolerance_mm', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -559,8 +551,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_line_tolerance_mm', b'_line_tolerance_mm']) -> Literal['line_tolerance_mm'] | None
-                  WhichOneof(oneof_group: Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> Literal['orientation_tolerance_degs'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__line_tolerance_mm) -> _WhichOneofReturnType__line_tolerance_mm | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__orientation_tolerance_degs) -> _WhichOneofReturnType__orientation_tolerance_degs | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -601,13 +593,13 @@ Package Contents
       plan results for the supplied state
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -625,7 +617,7 @@ Package Contents
 
 
 
-.. py:class:: ListPlanStatusesResponse(*, plan_statuses_with_ids: collections.abc.Iterable[global___PlanStatusWithID] | None = ...)
+.. py:class:: ListPlanStatusesResponse(*, plan_statuses_with_ids: collections.abc.Iterable[Global___PlanStatusWithID] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -633,14 +625,14 @@ Package Contents
    Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL
 
 
-   .. py:property:: plan_statuses_with_ids
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatusWithID]
+   .. py:method:: plan_statuses_with_ids() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PlanStatusWithID]
 
       List of last known statuses with the associated IDs of all plans within the TTL
       ordered by timestamp in ascending order
 
 
-.. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
+
+.. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[Global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -682,13 +674,13 @@ Package Contents
       Optional angular velocity to target when turning
 
 
-   .. py:property:: obstacle_detectors
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]
+   .. py:method:: obstacle_detectors() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ObstacleDetector]
 
       The ObstacleDetectors that will be used for transient obstacle avoidance
 
 
-   .. py:method:: HasField(field_name: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -706,11 +698,11 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> Literal['angular_degs_per_sec'] | None
-                  WhichOneof(oneof_group: Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> Literal['linear_m_per_sec'] | None
-                  WhichOneof(oneof_group: Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> Literal['obstacle_polling_frequency_hz'] | None
-                  WhichOneof(oneof_group: Literal['_plan_deviation_m', b'_plan_deviation_m']) -> Literal['plan_deviation_m'] | None
-                  WhichOneof(oneof_group: Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> Literal['position_polling_frequency_hz'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__angular_degs_per_sec) -> _WhichOneofReturnType__angular_degs_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__linear_m_per_sec) -> _WhichOneofReturnType__linear_m_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__obstacle_polling_frequency_hz) -> _WhichOneofReturnType__obstacle_polling_frequency_hz | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__plan_deviation_m) -> _WhichOneofReturnType__plan_deviation_m | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__position_polling_frequency_hz) -> _WhichOneofReturnType__position_polling_frequency_hz | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -726,7 +718,7 @@ Package Contents
 
 
 
-.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., bounding_regions: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., component_name: str = ..., movement_sensor_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None = ..., motion_configuration: Global___MotionConfiguration | None = ..., bounding_regions: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None = ..., component_name: str = ..., movement_sensor_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -762,49 +754,49 @@ Package Contents
       Name of the movement sensor which will be used to check robot location
 
 
-   .. py:property:: destination
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: destination() -> common.v1.common_pb2.GeoPoint
 
       Destination, encoded as a GeoPoint
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: movement_sensor_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+   .. py:method:: movement_sensor_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use movement_sensor_name field.
 
 
-   .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
+
+   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]
 
       Obstacles to be considered for motion planning
 
 
-   .. py:property:: motion_configuration
-      :type: global___MotionConfiguration
+
+   .. py:method:: motion_configuration() -> Global___MotionConfiguration
 
       Optional set of motion configuration options
 
 
-   .. py:property:: bounding_regions
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
+
+   .. py:method:: bounding_regions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]
 
       Set of obstacles which the robot must remain within while navigating
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name_deprecated', b'movement_sensor_name_deprecated']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -822,8 +814,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_heading', b'_heading']) -> Literal['heading'] | None
-                  WhichOneof(oneof_group: Literal['_motion_configuration', b'_motion_configuration']) -> Literal['motion_configuration'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__heading) -> _WhichOneofReturnType__heading | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__motion_configuration) -> _WhichOneofReturnType__motion_configuration | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -859,7 +851,7 @@ Package Contents
       generated due to replanning.
 
 
-.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., motion_configuration: global___MotionConfiguration | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Geometry] | None = ..., component_name: str = ..., slam_service_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: common.v1.common_pb2.Pose | None = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., slam_service_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., motion_configuration: Global___MotionConfiguration | None = ..., obstacles: collections.abc.Iterable[common.v1.common_pb2.Geometry] | None = ..., component_name: str = ..., slam_service_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -889,43 +881,43 @@ Package Contents
       Name of the slam service from which the SLAM map is requested
 
 
-   .. py:property:: destination
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: destination() -> common.v1.common_pb2.Pose
 
       Specify a destination to, which can be any pose with respect to the SLAM map's origin
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: slam_service_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+   .. py:method:: slam_service_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use slam_service_name field.
 
 
-   .. py:property:: motion_configuration
-      :type: global___MotionConfiguration
+
+   .. py:method:: motion_configuration() -> Global___MotionConfiguration
 
       Optional set of motion configuration options
 
 
-   .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Geometry]
+
+   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.Geometry]
 
       Obstacles to be considered for motion planning
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_motion_configuration', b'_motion_configuration', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name_deprecated', b'slam_service_name_deprecated']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -943,7 +935,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_motion_configuration', b'_motion_configuration']) -> Literal['motion_configuration'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__motion_configuration) -> _WhichOneofReturnType__motion_configuration | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -979,7 +971,7 @@ Package Contents
       generated due to replanning.
 
 
-.. py:class:: MoveRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., constraints: Global___Constraints | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -999,38 +991,38 @@ Package Contents
       Component on the robot to move to the specified destination
 
 
-   .. py:property:: destination
-      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+   .. py:method:: destination() -> common.v1.common_pb2.PoseInFrame
 
       Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: world_state
-      :type: viam.gen.common.v1.common_pb2.WorldState
+
+   .. py:method:: world_state() -> common.v1.common_pb2.WorldState
 
       Avoid obstacles by specifying their geometries in the world state
       Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
 
 
-   .. py:property:: constraints
-      :type: global___Constraints
+
+   .. py:method:: constraints() -> Global___Constraints
 
       Constrain the way the robot will move
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name_deprecated', b'component_name_deprecated', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1048,8 +1040,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_constraints', b'_constraints']) -> Literal['constraints'] | None
-                  WhichOneof(oneof_group: Literal['_world_state', b'_world_state']) -> Literal['world_state'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__constraints) -> _WhichOneofReturnType__constraints | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__world_state) -> _WhichOneofReturnType__world_state | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1081,7 +1073,7 @@ Package Contents
       :type:  bool
 
 
-.. py:class:: ObstacleDetector(*, vision_service_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., camera_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., vision_service: str = ..., camera: str = ...)
+.. py:class:: ObstacleDetector(*, vision_service_deprecated: common.v1.common_pb2.ResourceName | None = ..., camera_deprecated: common.v1.common_pb2.ResourceName | None = ..., vision_service: str = ..., camera: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1097,17 +1089,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: vision_service_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: vision_service_deprecated() -> common.v1.common_pb2.ResourceName
 
 
-
-   .. py:property:: camera_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: camera_deprecated() -> common.v1.common_pb2.ResourceName
 
 
-
-   .. py:method:: HasField(field_name: Literal['camera_deprecated', b'camera_deprecated', 'vision_service_deprecated', b'vision_service_deprecated']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1140,7 +1128,7 @@ Package Contents
       Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
 
 
-   .. py:method:: HasField(field_name: Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1158,7 +1146,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> Literal['orientation_tolerance_degs'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__orientation_tolerance_degs) -> _WhichOneofReturnType__orientation_tolerance_degs | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1174,7 +1162,7 @@ Package Contents
 
 
 
-.. py:class:: Plan(*, id: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., steps: collections.abc.Iterable[global___PlanStep] | None = ..., component_name: str = ...)
+.. py:class:: Plan(*, id: str = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., steps: collections.abc.Iterable[Global___PlanStep] | None = ..., component_name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1205,19 +1193,19 @@ Package Contents
       root component.
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: steps
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStep]
+
+   .. py:method:: steps() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PlanStep]
 
       The steps of a plan is an ordered list of plan steps
 
 
-   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1247,7 +1235,7 @@ Package Contents
    Failed if the robot did not reach its destination.
 
 
-.. py:class:: PlanStatus(*, state: global___PlanState = ..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ..., reason: str | None = ...)
+.. py:class:: PlanStatus(*, state: Global___PlanState = ..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ..., reason: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1257,7 +1245,7 @@ Package Contents
 
 
    .. py:attribute:: state
-      :type:  global___PlanState
+      :type:  Global___PlanState
 
       The state of the plan execution
 
@@ -1271,13 +1259,13 @@ Package Contents
       the re-plan reason.
 
 
-   .. py:property:: timestamp
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: timestamp() -> google.protobuf.timestamp_pb2.Timestamp
 
       The time the executing plan transtioned to the state
 
 
-   .. py:method:: HasField(field_name: Literal['_reason', b'_reason', 'reason', b'reason', 'timestamp', b'timestamp']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1295,7 +1283,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_reason', b'_reason']) -> Literal['reason'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__reason) -> _WhichOneofReturnType__reason | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1311,7 +1299,7 @@ Package Contents
 
 
 
-.. py:class:: PlanStatusWithID(*, plan_id: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., status: global___PlanStatus | None = ..., component_name: str = ...)
+.. py:class:: PlanStatusWithID(*, plan_id: str = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., status: Global___PlanStatus | None = ..., component_name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1344,18 +1332,16 @@ Package Contents
       component_name.
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: status
-      :type: global___PlanStatus
+
+   .. py:method:: status() -> Global___PlanStatus
 
 
-
-   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated', 'status', b'status']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1373,7 +1359,7 @@ Package Contents
 
 
 
-.. py:class:: PlanStep(*, step: collections.abc.Mapping[str, global___ComponentState] | None = ...)
+.. py:class:: PlanStep(*, step: collections.abc.Mapping[str, Global___ComponentState] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1385,7 +1371,7 @@ Package Contents
    shown below.
 
 
-   .. py:class:: StepEntry(*, key: str = ..., value: global___ComponentState | None = ...)
+   .. py:class:: StepEntry(*, key: str = ..., value: Global___ComponentState | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1401,12 +1387,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___ComponentState
+      .. py:method:: value() -> Global___ComponentState
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -1425,8 +1409,7 @@ Package Contents
 
 
 
-   .. py:property:: step
-      :type: google.protobuf.internal.containers.MessageMap[str, global___ComponentState]
+   .. py:method:: step() -> google.protobuf.internal.containers.MessageMap[str, Global___ComponentState]
 
       A step is the component state each
       component resource should reach while executing
@@ -1434,7 +1417,8 @@ Package Contents
       Keys are the fully qualified component name.
 
 
-.. py:class:: PlanWithStatus(*, plan: global___Plan | None = ..., status: global___PlanStatus | None = ..., status_history: collections.abc.Iterable[global___PlanStatus] | None = ...)
+
+.. py:class:: PlanWithStatus(*, plan: Global___Plan | None = ..., status: Global___PlanStatus | None = ..., status_history: collections.abc.Iterable[Global___PlanStatus] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1443,25 +1427,25 @@ Package Contents
    that have occured previously on that plan
 
 
-   .. py:property:: plan
-      :type: global___Plan
+   .. py:method:: plan() -> Global___Plan
 
       The plan
 
 
-   .. py:property:: status
-      :type: global___PlanStatus
+
+   .. py:method:: status() -> Global___PlanStatus
 
       The current status of the plan
 
 
-   .. py:property:: status_history
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatus]
+
+   .. py:method:: status_history() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PlanStatus]
 
       The prior status changes that have happened during plan execution
 
 
-   .. py:method:: HasField(field_name: Literal['plan', b'plan', 'status', b'status']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1498,7 +1482,7 @@ Package Contents
       :type:  float
 
 
-   .. py:method:: HasField(field_name: Literal['_line_tolerance_factor', b'_line_tolerance_factor', '_orientation_tolerance_factor', b'_orientation_tolerance_factor', 'line_tolerance_factor', b'line_tolerance_factor', 'orientation_tolerance_factor', b'orientation_tolerance_factor']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1516,8 +1500,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_line_tolerance_factor', b'_line_tolerance_factor']) -> Literal['line_tolerance_factor'] | None
-                  WhichOneof(oneof_group: Literal['_orientation_tolerance_factor', b'_orientation_tolerance_factor']) -> Literal['orientation_tolerance_factor'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__line_tolerance_factor) -> _WhichOneofReturnType__line_tolerance_factor | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__orientation_tolerance_factor) -> _WhichOneofReturnType__orientation_tolerance_factor | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1533,7 +1517,7 @@ Package Contents
 
 
 
-.. py:class:: StopPlanRequest(*, name: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: StopPlanRequest(*, name: str = ..., component_name_deprecated: common.v1.common_pb2.ResourceName | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1557,19 +1541,19 @@ Package Contents
       The component of the currently executing plan to stop
 
 
-   .. py:property:: component_name_deprecated
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name_deprecated() -> common.v1.common_pb2.ResourceName
 
       Deprecated, use component_name field.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated', 'extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

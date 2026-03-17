@@ -34,7 +34,7 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: Metadata(*, md: collections.abc.Mapping[str, global___Strings] | None = ...)
+.. py:class:: Metadata(*, md: collections.abc.Mapping[str, Global___Strings] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -43,7 +43,7 @@ Module Contents
    during a stream.
 
 
-   .. py:class:: MdEntry(*, key: str = ..., value: global___Strings | None = ...)
+   .. py:class:: MdEntry(*, key: str = ..., value: Global___Strings | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -59,12 +59,10 @@ Module Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___Strings
+      .. py:method:: value() -> Global___Strings
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -83,9 +81,7 @@ Module Contents
 
 
 
-   .. py:property:: md
-      :type: google.protobuf.internal.containers.MessageMap[str, global___Strings]
-
+   .. py:method:: md() -> google.protobuf.internal.containers.MessageMap[str, Global___Strings]
 
 
 .. py:class:: PacketMessage(*, data: bytes = ..., eom: bool = ...)
@@ -105,7 +101,7 @@ Module Contents
       :type:  bool
 
 
-.. py:class:: Request(*, stream: global___Stream | None = ..., headers: global___RequestHeaders | None = ..., message: global___RequestMessage | None = ..., rst_stream: bool = ...)
+.. py:class:: Request(*, stream: Global___Stream | None = ..., headers: Global___RequestHeaders | None = ..., message: Global___RequestMessage | None = ..., rst_stream: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -120,22 +116,16 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: stream
-      :type: global___Stream
+   .. py:method:: stream() -> Global___Stream
 
 
-
-   .. py:property:: headers
-      :type: global___RequestHeaders
+   .. py:method:: headers() -> Global___RequestHeaders
 
 
-
-   .. py:property:: message
-      :type: global___RequestMessage
+   .. py:method:: message() -> Global___RequestMessage
 
 
-
-   .. py:method:: HasField(field_name: Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -153,7 +143,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['headers', 'message', 'rst_stream'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_type) -> _WhichOneofReturnType_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -169,7 +159,7 @@ Module Contents
 
 
 
-.. py:class:: RequestHeaders(*, method: str = ..., metadata: global___Metadata | None = ..., timeout: google.protobuf.duration_pb2.Duration | None = ...)
+.. py:class:: RequestHeaders(*, method: str = ..., metadata: Global___Metadata | None = ..., timeout: google.protobuf.duration_pb2.Duration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -181,17 +171,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: metadata
-      :type: global___Metadata
+   .. py:method:: metadata() -> Global___Metadata
 
 
-
-   .. py:property:: timeout
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: timeout() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata', 'timeout', b'timeout']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -209,7 +195,7 @@ Module Contents
 
 
 
-.. py:class:: RequestMessage(*, has_message: bool = ..., packet_message: global___PacketMessage | None = ..., eos: bool = ...)
+.. py:class:: RequestMessage(*, has_message: bool = ..., packet_message: Global___PacketMessage | None = ..., eos: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -226,12 +212,10 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: packet_message
-      :type: global___PacketMessage
+   .. py:method:: packet_message() -> Global___PacketMessage
 
 
-
-   .. py:method:: HasField(field_name: Literal['packet_message', b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -249,7 +233,7 @@ Module Contents
 
 
 
-.. py:class:: Response(*, stream: global___Stream | None = ..., headers: global___ResponseHeaders | None = ..., message: global___ResponseMessage | None = ..., trailers: global___ResponseTrailers | None = ...)
+.. py:class:: Response(*, stream: Global___Stream | None = ..., headers: Global___ResponseHeaders | None = ..., message: Global___ResponseMessage | None = ..., trailers: Global___ResponseTrailers | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -260,27 +244,19 @@ Module Contents
    has no association.
 
 
-   .. py:property:: stream
-      :type: global___Stream
+   .. py:method:: stream() -> Global___Stream
 
 
-
-   .. py:property:: headers
-      :type: global___ResponseHeaders
+   .. py:method:: headers() -> Global___ResponseHeaders
 
 
-
-   .. py:property:: message
-      :type: global___ResponseMessage
+   .. py:method:: message() -> Global___ResponseMessage
 
 
-
-   .. py:property:: trailers
-      :type: global___ResponseTrailers
+   .. py:method:: trailers() -> Global___ResponseTrailers
 
 
-
-   .. py:method:: HasField(field_name: Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -298,7 +274,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['headers', 'message', 'trailers'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_type) -> _WhichOneofReturnType_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -314,7 +290,7 @@ Module Contents
 
 
 
-.. py:class:: ResponseHeaders(*, metadata: global___Metadata | None = ...)
+.. py:class:: ResponseHeaders(*, metadata: Global___Metadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -323,12 +299,10 @@ Module Contents
    before any message or trailers (unless only trailers are sent).
 
 
-   .. py:property:: metadata
-      :type: global___Metadata
+   .. py:method:: metadata() -> Global___Metadata
 
 
-
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -346,7 +320,7 @@ Module Contents
 
 
 
-.. py:class:: ResponseMessage(*, packet_message: global___PacketMessage | None = ...)
+.. py:class:: ResponseMessage(*, packet_message: Global___PacketMessage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -354,12 +328,10 @@ Module Contents
    ResponseMessage contains the data of a response to a call.
 
 
-   .. py:property:: packet_message
-      :type: global___PacketMessage
+   .. py:method:: packet_message() -> Global___PacketMessage
 
 
-
-   .. py:method:: HasField(field_name: Literal['packet_message', b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -377,7 +349,7 @@ Module Contents
 
 
 
-.. py:class:: ResponseTrailers(*, status: google.rpc.status_pb2.Status | None = ..., metadata: global___Metadata | None = ...)
+.. py:class:: ResponseTrailers(*, status: google.rpc.status_pb2.Status | None = ..., metadata: Global___Metadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -385,17 +357,13 @@ Module Contents
    ResponseTrailers contain the status of a response and any custom metadata.
 
 
-   .. py:property:: status
-      :type: google.rpc.status_pb2.Status
+   .. py:method:: status() -> google.rpc.status_pb2.Status
 
 
-
-   .. py:property:: metadata
-      :type: global___Metadata
+   .. py:method:: metadata() -> Global___Metadata
 
 
-
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata', 'status', b'status']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -434,9 +402,7 @@ Module Contents
    Strings are a series of values.
 
 
-   .. py:property:: values
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: SignalingServiceBase

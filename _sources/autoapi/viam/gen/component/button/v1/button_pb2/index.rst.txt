@@ -16,8 +16,8 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.button.v1.button_pb2.DESCRIPTOR
-   viam.gen.component.button.v1.button_pb2.global___PushRequest
-   viam.gen.component.button.v1.button_pb2.global___PushResponse
+   viam.gen.component.button.v1.button_pb2.Global___PushRequest
+   viam.gen.component.button.v1.button_pb2.Global___PushResponse
 
 
 Classes
@@ -51,12 +51,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -74,7 +72,9 @@ Module Contents
 
 
 
-.. py:data:: global___PushRequest
+.. py:type:: Global___PushRequest
+   :canonical: PushRequest
+
 
 .. py:class:: PushResponse
 
@@ -88,5 +88,7 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___PushResponse
+.. py:type:: Global___PushResponse
+   :canonical: PushResponse
+
 

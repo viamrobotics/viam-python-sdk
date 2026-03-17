@@ -246,13 +246,13 @@ Package Contents
       Name of an arm
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -270,7 +270,7 @@ Package Contents
 
 
 
-.. py:class:: GetEndPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
+.. py:class:: GetEndPositionResponse(*, pose: common.v1.common_pb2.Pose | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -282,14 +282,14 @@ Package Contents
    shown below.
 
 
-   .. py:property:: pose
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: pose() -> common.v1.common_pb2.Pose
 
       Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
       millimeters and theta, ox, oy, oz coordinates which express an orientation vector
 
 
-   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -325,13 +325,13 @@ Package Contents
       Name of an arm
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -349,7 +349,7 @@ Package Contents
 
 
 
-.. py:class:: GetJointPositionsResponse(*, positions: global___JointPositions | None = ...)
+.. py:class:: GetJointPositionsResponse(*, positions: Global___JointPositions | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -361,13 +361,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: positions
-      :type: global___JointPositions
+   .. py:method:: positions() -> Global___JointPositions
 
       a list JointPositions
 
 
-   .. py:method:: HasField(field_name: Literal['positions', b'positions']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -429,11 +429,11 @@ Package Contents
    shown below.
 
 
-   .. py:property:: values
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       A list of joint positions. Rotations values are in degrees, translational values in mm.
       There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm
+
 
 
 .. py:class:: MoveOptions(*, max_vel_degs_per_sec: float | None = ..., max_acc_degs_per_sec2: float | None = ..., max_vel_degs_per_sec_joints: collections.abc.Iterable[float] | None = ..., max_acc_degs_per_sec2_joints: collections.abc.Iterable[float] | None = ...)
@@ -462,19 +462,19 @@ Package Contents
       ignored when max_acc_degs_per_sec2_joints is set.
 
 
-   .. py:property:: max_vel_degs_per_sec_joints
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: max_vel_degs_per_sec_joints() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Per-joint maximum velocity in degrees per second.
 
 
-   .. py:property:: max_acc_degs_per_sec2_joints
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+   .. py:method:: max_acc_degs_per_sec2_joints() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Per-joint maximum acceleration in degrees per second squared.
 
 
-   .. py:method:: HasField(field_name: Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -492,8 +492,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2']) -> Literal['max_acc_degs_per_sec2'] | None
-                  WhichOneof(oneof_group: Literal['_max_vel_degs_per_sec', b'_max_vel_degs_per_sec']) -> Literal['max_vel_degs_per_sec'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__max_acc_degs_per_sec2) -> _WhichOneofReturnType__max_acc_degs_per_sec2 | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__max_vel_degs_per_sec) -> _WhichOneofReturnType__max_vel_degs_per_sec | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -509,7 +509,7 @@ Package Contents
 
 
 
-.. py:class:: MoveThroughJointPositionsRequest(*, name: str = ..., positions: collections.abc.Iterable[global___JointPositions] | None = ..., options: global___MoveOptions | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveThroughJointPositionsRequest(*, name: str = ..., positions: collections.abc.Iterable[Global___JointPositions] | None = ..., options: Global___MoveOptions | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -527,25 +527,25 @@ Package Contents
       Name of an arm
 
 
-   .. py:property:: positions
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___JointPositions]
+   .. py:method:: positions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___JointPositions]
 
       A list of joint positions which will be moved to in the order they are specified
 
 
-   .. py:property:: options
-      :type: global___MoveOptions
+
+   .. py:method:: options() -> Global___MoveOptions
 
       optional specifications to be obeyed during the motion
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_options', b'_options', 'extra', b'extra', 'options', b'options']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -563,7 +563,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_options', b'_options']) -> Literal['options'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__options) -> _WhichOneofReturnType__options | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -591,7 +591,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: MoveToJointPositionsRequest(*, name: str = ..., positions: global___JointPositions | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveToJointPositionsRequest(*, name: str = ..., positions: Global___JointPositions | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -609,20 +609,20 @@ Package Contents
       Name of an arm
 
 
-   .. py:property:: positions
-      :type: global___JointPositions
+   .. py:method:: positions() -> Global___JointPositions
 
       A list of joint positions
       There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'positions', b'positions']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -652,7 +652,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: MoveToPositionRequest(*, name: str = ..., to: viam.gen.common.v1.common_pb2.Pose | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveToPositionRequest(*, name: str = ..., to: common.v1.common_pb2.Pose | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -668,19 +668,19 @@ Package Contents
       Name of an arm
 
 
-   .. py:property:: to
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: to() -> common.v1.common_pb2.Pose
 
       The destination to move the arm to; this is from the reference frame of the arm.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'to', b'to']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -710,7 +710,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: Status(*, end_position: viam.gen.common.v1.common_pb2.Pose | None = ..., joint_positions: global___JointPositions | None = ..., is_moving: bool = ...)
+.. py:class:: Status(*, end_position: common.v1.common_pb2.Pose | None = ..., joint_positions: Global___JointPositions | None = ..., is_moving: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -726,17 +726,13 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: end_position
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: end_position() -> common.v1.common_pb2.Pose
 
 
-
-   .. py:property:: joint_positions
-      :type: global___JointPositions
+   .. py:method:: joint_positions() -> Global___JointPositions
 
 
-
-   .. py:method:: HasField(field_name: Literal['end_position', b'end_position', 'joint_positions', b'joint_positions']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -772,13 +768,13 @@ Package Contents
       Name of an arm
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

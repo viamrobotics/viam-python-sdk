@@ -32,7 +32,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+.. py:class:: GeoGeometry(*, location: Global___GeoPoint | None = ..., geometries: collections.abc.Iterable[Global___Geometry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -40,19 +40,19 @@ Package Contents
    GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
 
 
-   .. py:property:: location
-      :type: global___GeoPoint
+   .. py:method:: location() -> Global___GeoPoint
 
       Location of the geometry
 
 
-   .. py:property:: geometries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+
+   .. py:method:: geometries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Geometry]
 
       Geometries associated with the location, where embedded Pose data is with respect to the specified location
 
 
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -103,7 +103,7 @@ Package Contents
    Bases: :py:obj:`_Mode`
 
 
-.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoPoint] | None = ...)
+.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[common.v1.common_pb2.GeoPoint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -118,14 +118,14 @@ Package Contents
       The id of the user specified waypoint
 
 
-   .. py:property:: geopoints
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoPoint]
+   .. py:method:: geopoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoPoint]
 
       List of geopoints that the motion planner output to reach the destination
       The first geopoint is the starting position of the robot for that path
 
 
-.. py:class:: Waypoint(*, id: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
+
+.. py:class:: Waypoint(*, id: str = ..., location: common.v1.common_pb2.GeoPoint | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -141,12 +141,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -444,7 +442,7 @@ Package Contents
 
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 
 

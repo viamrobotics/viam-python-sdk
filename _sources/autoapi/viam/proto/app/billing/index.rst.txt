@@ -279,7 +279,7 @@ Module Contents
       :type:  bool
 
 
-   .. py:method:: HasField(field_name: Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -297,8 +297,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_description', b'_description']) -> Literal['description'] | None
-                  WhichOneof(oneof_group: Literal['_org_id_for_branding', b'_org_id_for_branding']) -> Literal['org_id_for_branding'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__description) -> _WhichOneofReturnType__description | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__org_id_for_branding) -> _WhichOneofReturnType__org_id_for_branding | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -358,7 +358,7 @@ Module Contents
       :type:  bool
 
 
-   .. py:method:: HasField(field_name: Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -376,8 +376,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_description', b'_description']) -> Literal['description'] | None
-                  WhichOneof(oneof_group: Literal['_org_id_for_branding', b'_org_id_for_branding']) -> Literal['org_id_for_branding'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__description) -> _WhichOneofReturnType__description | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__org_id_for_branding) -> _WhichOneofReturnType__org_id_for_branding | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -429,9 +429,7 @@ Module Contents
    shown below.
 
 
-   .. py:property:: tiers
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: tiers() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: GetCurrentMonthUsageRequest(*, org_id: str = ...)
@@ -450,7 +448,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: GetCurrentMonthUsageResponse(*, start_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., resource_usage_costs_by_source: collections.abc.Iterable[global___ResourceUsageCostsBySource] | None = ..., subtotal: float = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_egres_usage_cost: float = ..., remote_control_usage_cost: float = ..., standard_compute_usage_cost: float = ..., discount_amount: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ..., per_machine_usage_cost: float = ..., binary_data_cloud_storage_usage_cost: float = ..., other_cloud_storage_usage_cost: float = ...)
+.. py:class:: GetCurrentMonthUsageResponse(*, start_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., resource_usage_costs_by_source: collections.abc.Iterable[Global___ResourceUsageCostsBySource] | None = ..., subtotal: float = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_egres_usage_cost: float = ..., remote_control_usage_cost: float = ..., standard_compute_usage_cost: float = ..., discount_amount: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ..., per_machine_usage_cost: float = ..., binary_data_cloud_storage_usage_cost: float = ..., other_cloud_storage_usage_cost: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -466,68 +464,52 @@ Module Contents
       :type:  float
 
 
-   .. py:attribute:: cloud_storage_usage_cost
-      :type:  float
+   .. py:method:: cloud_storage_usage_cost() -> float
 
       all fields below are deprecated
 
 
-   .. py:attribute:: data_upload_usage_cost
-      :type:  float
+
+   .. py:method:: data_upload_usage_cost() -> float
 
 
-   .. py:attribute:: data_egres_usage_cost
-      :type:  float
+   .. py:method:: data_egres_usage_cost() -> float
 
 
-   .. py:attribute:: remote_control_usage_cost
-      :type:  float
+   .. py:method:: remote_control_usage_cost() -> float
 
 
-   .. py:attribute:: standard_compute_usage_cost
-      :type:  float
+   .. py:method:: standard_compute_usage_cost() -> float
 
 
-   .. py:attribute:: discount_amount
-      :type:  float
+   .. py:method:: discount_amount() -> float
 
 
-   .. py:attribute:: total_usage_with_discount
-      :type:  float
+   .. py:method:: total_usage_with_discount() -> float
 
 
-   .. py:attribute:: total_usage_without_discount
-      :type:  float
+   .. py:method:: total_usage_without_discount() -> float
 
 
-   .. py:attribute:: per_machine_usage_cost
-      :type:  float
+   .. py:method:: per_machine_usage_cost() -> float
 
 
-   .. py:attribute:: binary_data_cloud_storage_usage_cost
-      :type:  float
+   .. py:method:: binary_data_cloud_storage_usage_cost() -> float
 
 
-   .. py:attribute:: other_cloud_storage_usage_cost
-      :type:  float
+   .. py:method:: other_cloud_storage_usage_cost() -> float
 
 
-   .. py:property:: start_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: start_date() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: end_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: end_date() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: resource_usage_costs_by_source
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceUsageCostsBySource]
+   .. py:method:: resource_usage_costs_by_source() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ResourceUsageCostsBySource]
 
 
-
-   .. py:method:: HasField(field_name: Literal['end_date', b'end_date', 'start_date', b'start_date']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -597,7 +579,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: GetInvoicesSummaryResponse(*, outstanding_balance: float = ..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ...)
+.. py:class:: GetInvoicesSummaryResponse(*, outstanding_balance: float = ..., invoices: collections.abc.Iterable[Global___InvoiceSummary] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -615,10 +597,10 @@ Module Contents
       all unpaid balances at the end of the last billing cycle
 
 
-   .. py:property:: invoices
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InvoiceSummary]
+   .. py:method:: invoices() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___InvoiceSummary]
 
       all previous invoices
+
 
 
 .. py:class:: GetLocationBillingOrganizationRequest(*, location_id: str = ...)
@@ -669,7 +651,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: GetOrgBillingInformationResponse(*, type: global___PaymentMethodType = ..., billing_email: str = ..., method: global___PaymentMethodCard | None = ..., billing_tier: str | None = ..., method_us_bank_account: global___PaymentMethodUSBankAccount | None = ...)
+.. py:class:: GetOrgBillingInformationResponse(*, type: Global___PaymentMethodType = ..., billing_email: str = ..., method: Global___PaymentMethodCard | None = ..., billing_tier: str | None = ..., method_us_bank_account: Global___PaymentMethodUSBankAccount | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -682,7 +664,7 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___PaymentMethodType
+      :type:  Global___PaymentMethodType
 
 
    .. py:attribute:: billing_email
@@ -695,19 +677,19 @@ Module Contents
       Only return billing_tier for billing dashboard admin users
 
 
-   .. py:property:: method
-      :type: global___PaymentMethodCard
+   .. py:method:: method() -> Global___PaymentMethodCard
 
       defined if type is PAYMENT_METHOD_TYPE_CARD
 
 
-   .. py:property:: method_us_bank_account
-      :type: global___PaymentMethodUSBankAccount
+
+   .. py:method:: method_us_bank_account() -> Global___PaymentMethodUSBankAccount
 
       defined if type is PAYMENT_METHOD_TYPE_USBANKACCOUNT
 
 
-   .. py:method:: HasField(field_name: Literal['_billing_tier', b'_billing_tier', '_method', b'_method', '_method_us_bank_account', b'_method_us_bank_account', 'billing_tier', b'billing_tier', 'method', b'method', 'method_us_bank_account', b'method_us_bank_account']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -725,9 +707,9 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_billing_tier', b'_billing_tier']) -> Literal['billing_tier'] | None
-                  WhichOneof(oneof_group: Literal['_method', b'_method']) -> Literal['method'] | None
-                  WhichOneof(oneof_group: Literal['_method_us_bank_account', b'_method_us_bank_account']) -> Literal['method_us_bank_account'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__billing_tier) -> _WhichOneofReturnType__billing_tier | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__method) -> _WhichOneofReturnType__method | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__method_us_bank_account) -> _WhichOneofReturnType__method_us_bank_account | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -767,22 +749,16 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: invoice_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: invoice_date() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: due_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: due_date() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: paid_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: paid_date() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['due_date', b'due_date', 'invoice_date', b'invoice_date', 'paid_date', b'paid_date']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -825,7 +801,7 @@ Module Contents
    Bases: :py:obj:`_PaymentMethodType`
 
 
-.. py:class:: PaymentMethodUSBankAccount(*, bank_name: str = ..., last_four_digits_account_number: str = ..., routing_number: str = ..., account_type: str = ..., verification_info: global___VerificationInfo | None = ...)
+.. py:class:: PaymentMethodUSBankAccount(*, bank_name: str = ..., last_four_digits_account_number: str = ..., routing_number: str = ..., account_type: str = ..., verification_info: Global___VerificationInfo | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -853,13 +829,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: verification_info
-      :type: global___VerificationInfo
+   .. py:method:: verification_info() -> Global___VerificationInfo
 
       this is only set if the account is not verified
 
 
-   .. py:method:: HasField(field_name: Literal['_verification_info', b'_verification_info', 'verification_info', b'verification_info']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -877,7 +853,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_verification_info', b'_verification_info']) -> Literal['verification_info'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__verification_info) -> _WhichOneofReturnType__verification_info | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -893,7 +869,7 @@ Module Contents
 
 
 
-.. py:class:: ResourceUsageCosts(*, usage_costs: collections.abc.Iterable[global___UsageCost] | None = ..., discount: float = ..., total_with_discount: float = ..., total_without_discount: float = ...)
+.. py:class:: ResourceUsageCosts(*, usage_costs: collections.abc.Iterable[Global___UsageCost] | None = ..., discount: float = ..., total_with_discount: float = ..., total_without_discount: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -917,12 +893,10 @@ Module Contents
       :type:  float
 
 
-   .. py:property:: usage_costs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___UsageCost]
+   .. py:method:: usage_costs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UsageCost]
 
 
-
-.. py:class:: ResourceUsageCostsBySource(*, source_type: global___SourceType = ..., resource_usage_costs: global___ResourceUsageCosts | None = ..., tier_name: str = ...)
+.. py:class:: ResourceUsageCostsBySource(*, source_type: Global___SourceType = ..., resource_usage_costs: Global___ResourceUsageCosts | None = ..., tier_name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -935,19 +909,17 @@ Module Contents
 
 
    .. py:attribute:: source_type
-      :type:  global___SourceType
+      :type:  Global___SourceType
 
 
    .. py:attribute:: tier_name
       :type:  str
 
 
-   .. py:property:: resource_usage_costs
-      :type: global___ResourceUsageCosts
+   .. py:method:: resource_usage_costs() -> Global___ResourceUsageCosts
 
 
-
-   .. py:method:: HasField(field_name: Literal['resource_usage_costs', b'resource_usage_costs']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1066,7 +1038,7 @@ Module Contents
    shown below.
 
 
-.. py:class:: UsageCost(*, resource_type: global___UsageCostType = ..., cost: float = ...)
+.. py:class:: UsageCost(*, resource_type: Global___UsageCostType = ..., cost: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1079,7 +1051,7 @@ Module Contents
 
 
    .. py:attribute:: resource_type
-      :type:  global___UsageCostType
+      :type:  Global___UsageCostType
 
 
    .. py:attribute:: cost

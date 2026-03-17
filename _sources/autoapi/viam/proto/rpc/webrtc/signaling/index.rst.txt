@@ -128,7 +128,7 @@ Module Contents
 
 
 
-.. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ..., heartbeat: global___AnswerRequestHeartbeatStage | None = ...)
+.. py:class:: AnswerRequest(*, uuid: str = ..., init: Global___AnswerRequestInitStage | None = ..., update: Global___AnswerRequestUpdateStage | None = ..., done: Global___AnswerRequestDoneStage | None = ..., error: Global___AnswerRequestErrorStage | None = ..., heartbeat: Global___AnswerRequestHeartbeatStage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -141,35 +141,31 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: init
-      :type: global___AnswerRequestInitStage
+   .. py:method:: init() -> Global___AnswerRequestInitStage
 
 
-
-   .. py:property:: update
-      :type: global___AnswerRequestUpdateStage
+   .. py:method:: update() -> Global___AnswerRequestUpdateStage
 
 
-
-   .. py:property:: done
-      :type: global___AnswerRequestDoneStage
+   .. py:method:: done() -> Global___AnswerRequestDoneStage
 
       done is sent when the requester is done sending information
 
 
-   .. py:property:: error
-      :type: global___AnswerRequestErrorStage
+
+   .. py:method:: error() -> Global___AnswerRequestErrorStage
 
       error is sent any time before done
 
 
-   .. py:property:: heartbeat
-      :type: global___AnswerRequestHeartbeatStage
+
+   .. py:method:: heartbeat() -> Global___AnswerRequestHeartbeatStage
 
       heartbeat is sent periodically to verify liveness of answerer
 
 
-   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'heartbeat', b'heartbeat', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -187,7 +183,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error', 'heartbeat'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_stage) -> _WhichOneofReturnType_stage | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -219,12 +215,10 @@ Module Contents
    AnswerRequestErrorStage indicates the exchange has failed with an error.
 
 
-   .. py:property:: status
-      :type: google.rpc.status_pb2.Status
+   .. py:method:: status() -> google.rpc.status_pb2.Status
 
 
-
-   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -250,7 +244,7 @@ Module Contents
    AnswerRequestHeartbeatStage is sent periodically to verify liveness of answerer.
 
 
-.. py:class:: AnswerRequestInitStage(*, sdp: str = ..., optional_config: global___WebRTCConfig | None = ..., deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: AnswerRequestInitStage(*, sdp: str = ..., optional_config: Global___WebRTCConfig | None = ..., deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -263,17 +257,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: optional_config
-      :type: global___WebRTCConfig
+   .. py:method:: optional_config() -> Global___WebRTCConfig
 
 
-
-   .. py:property:: deadline
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: deadline() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -291,7 +281,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_deadline', b'_deadline']) -> Literal['deadline'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deadline) -> _WhichOneofReturnType__deadline | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -307,7 +297,7 @@ Module Contents
 
 
 
-.. py:class:: AnswerRequestUpdateStage(*, candidate: global___ICECandidate | None = ...)
+.. py:class:: AnswerRequestUpdateStage(*, candidate: Global___ICECandidate | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -316,12 +306,10 @@ Module Contents
    the controlled (answerer) side.
 
 
-   .. py:property:: candidate
-      :type: global___ICECandidate
+   .. py:method:: candidate() -> Global___ICECandidate
 
 
-
-   .. py:method:: HasField(field_name: Literal['candidate', b'candidate']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -339,7 +327,7 @@ Module Contents
 
 
 
-.. py:class:: AnswerResponse(*, uuid: str = ..., init: global___AnswerResponseInitStage | None = ..., update: global___AnswerResponseUpdateStage | None = ..., done: global___AnswerResponseDoneStage | None = ..., error: global___AnswerResponseErrorStage | None = ...)
+.. py:class:: AnswerResponse(*, uuid: str = ..., init: Global___AnswerResponseInitStage | None = ..., update: Global___AnswerResponseUpdateStage | None = ..., done: Global___AnswerResponseDoneStage | None = ..., error: Global___AnswerResponseErrorStage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -351,29 +339,25 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: init
-      :type: global___AnswerResponseInitStage
+   .. py:method:: init() -> Global___AnswerResponseInitStage
 
 
-
-   .. py:property:: update
-      :type: global___AnswerResponseUpdateStage
+   .. py:method:: update() -> Global___AnswerResponseUpdateStage
 
 
-
-   .. py:property:: done
-      :type: global___AnswerResponseDoneStage
+   .. py:method:: done() -> Global___AnswerResponseDoneStage
 
       done is sent when the answerer is done sending information
 
 
-   .. py:property:: error
-      :type: global___AnswerResponseErrorStage
+
+   .. py:method:: error() -> Global___AnswerResponseErrorStage
 
       error is sent any time before done
 
 
-   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -391,7 +375,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_stage) -> _WhichOneofReturnType_stage | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -423,12 +407,10 @@ Module Contents
    AnswerResponseErrorStage indicates the exchange has failed with an error.
 
 
-   .. py:property:: status
-      :type: google.rpc.status_pb2.Status
+   .. py:method:: status() -> google.rpc.status_pb2.Status
 
 
-
-   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -459,7 +441,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: AnswerResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
+.. py:class:: AnswerResponseUpdateStage(*, candidate: Global___ICECandidate | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -468,12 +450,10 @@ Module Contents
    the controlling side.
 
 
-   .. py:property:: candidate
-      :type: global___ICECandidate
+   .. py:method:: candidate() -> Global___ICECandidate
 
 
-
-   .. py:method:: HasField(field_name: Literal['candidate', b'candidate']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -511,7 +491,7 @@ Module Contents
       to contain all ICE candidates.
 
 
-.. py:class:: CallResponse(*, uuid: str = ..., init: global___CallResponseInitStage | None = ..., update: global___CallResponseUpdateStage | None = ...)
+.. py:class:: CallResponse(*, uuid: str = ..., init: Global___CallResponseInitStage | None = ..., update: Global___CallResponseUpdateStage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -523,17 +503,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: init
-      :type: global___CallResponseInitStage
+   .. py:method:: init() -> Global___CallResponseInitStage
 
 
-
-   .. py:property:: update
-      :type: global___CallResponseUpdateStage
+   .. py:method:: update() -> Global___CallResponseUpdateStage
 
 
-
-   .. py:method:: HasField(field_name: Literal['init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -551,7 +527,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_stage) -> _WhichOneofReturnType_stage | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -580,7 +556,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: CallResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
+.. py:class:: CallResponseUpdateStage(*, candidate: Global___ICECandidate | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -589,12 +565,10 @@ Module Contents
    the controlled (answering) side.
 
 
-   .. py:property:: candidate
-      :type: global___ICECandidate
+   .. py:method:: candidate() -> Global___ICECandidate
 
 
-
-   .. py:method:: HasField(field_name: Literal['candidate', b'candidate']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -612,7 +586,7 @@ Module Contents
 
 
 
-.. py:class:: CallUpdateRequest(*, uuid: str = ..., candidate: global___ICECandidate | None = ..., done: bool = ..., error: google.rpc.status_pb2.Status | None = ...)
+.. py:class:: CallUpdateRequest(*, uuid: str = ..., candidate: Global___ICECandidate | None = ..., done: bool = ..., error: google.rpc.status_pb2.Status | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -628,17 +602,13 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: candidate
-      :type: global___ICECandidate
+   .. py:method:: candidate() -> Global___ICECandidate
 
 
-
-   .. py:property:: error
-      :type: google.rpc.status_pb2.Status
+   .. py:method:: error() -> google.rpc.status_pb2.Status
 
 
-
-   .. py:method:: HasField(field_name: Literal['candidate', b'candidate', 'done', b'done', 'error', b'error', 'update', b'update']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -656,7 +626,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['update', b'update']) -> Literal['candidate', 'done', 'error'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_update) -> _WhichOneofReturnType_update | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -705,7 +675,7 @@ Module Contents
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_sdp_mid', b'_sdp_mid', '_sdpm_line_index', b'_sdpm_line_index', '_username_fragment', b'_username_fragment', 'sdp_mid', b'sdp_mid', 'sdpm_line_index', b'sdpm_line_index', 'username_fragment', b'username_fragment']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -723,9 +693,9 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_sdp_mid', b'_sdp_mid']) -> Literal['sdp_mid'] | None
-                  WhichOneof(oneof_group: Literal['_sdpm_line_index', b'_sdpm_line_index']) -> Literal['sdpm_line_index'] | None
-                  WhichOneof(oneof_group: Literal['_username_fragment', b'_username_fragment']) -> Literal['username_fragment'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__sdp_mid) -> _WhichOneofReturnType__sdp_mid | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__sdpm_line_index) -> _WhichOneofReturnType__sdpm_line_index | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__username_fragment) -> _WhichOneofReturnType__username_fragment | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -757,9 +727,7 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: urls
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: urls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: OptionalWebRTCConfigRequest
@@ -771,7 +739,7 @@ Module Contents
    to use for the peer connection.
 
 
-.. py:class:: OptionalWebRTCConfigResponse(*, config: global___WebRTCConfig | None = ...)
+.. py:class:: OptionalWebRTCConfigResponse(*, config: Global___WebRTCConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -780,12 +748,10 @@ Module Contents
    to use for the peer connection.
 
 
-   .. py:property:: config
-      :type: global___WebRTCConfig
+   .. py:method:: config() -> Global___WebRTCConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -803,7 +769,7 @@ Module Contents
 
 
 
-.. py:class:: WebRTCConfig(*, additional_ice_servers: collections.abc.Iterable[global___ICEServer] | None = ..., disable_trickle: bool = ...)
+.. py:class:: WebRTCConfig(*, additional_ice_servers: collections.abc.Iterable[Global___ICEServer] | None = ..., disable_trickle: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -818,8 +784,6 @@ Module Contents
       sides must both respect this setting.
 
 
-   .. py:property:: additional_ice_servers
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]
-
+   .. py:method:: additional_ice_servers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ICEServer]
 
 

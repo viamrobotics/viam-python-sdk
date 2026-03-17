@@ -16,15 +16,15 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.servo.v1.servo_pb2.DESCRIPTOR
-   viam.gen.component.servo.v1.servo_pb2.global___MoveRequest
-   viam.gen.component.servo.v1.servo_pb2.global___MoveResponse
-   viam.gen.component.servo.v1.servo_pb2.global___GetPositionRequest
-   viam.gen.component.servo.v1.servo_pb2.global___GetPositionResponse
-   viam.gen.component.servo.v1.servo_pb2.global___StopRequest
-   viam.gen.component.servo.v1.servo_pb2.global___StopResponse
-   viam.gen.component.servo.v1.servo_pb2.global___Status
-   viam.gen.component.servo.v1.servo_pb2.global___IsMovingRequest
-   viam.gen.component.servo.v1.servo_pb2.global___IsMovingResponse
+   viam.gen.component.servo.v1.servo_pb2.Global___MoveRequest
+   viam.gen.component.servo.v1.servo_pb2.Global___MoveResponse
+   viam.gen.component.servo.v1.servo_pb2.Global___GetPositionRequest
+   viam.gen.component.servo.v1.servo_pb2.Global___GetPositionResponse
+   viam.gen.component.servo.v1.servo_pb2.Global___StopRequest
+   viam.gen.component.servo.v1.servo_pb2.Global___StopResponse
+   viam.gen.component.servo.v1.servo_pb2.Global___Status
+   viam.gen.component.servo.v1.servo_pb2.Global___IsMovingRequest
+   viam.gen.component.servo.v1.servo_pb2.Global___IsMovingResponse
 
 
 Classes
@@ -73,13 +73,13 @@ Module Contents
       the degrees by which to rotate the servo.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -97,7 +97,9 @@ Module Contents
 
 
 
-.. py:data:: global___MoveRequest
+.. py:type:: Global___MoveRequest
+   :canonical: MoveRequest
+
 
 .. py:class:: MoveResponse
 
@@ -111,7 +113,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___MoveResponse
+.. py:type:: Global___MoveResponse
+   :canonical: MoveResponse
+
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -131,13 +135,13 @@ Module Contents
       the name of the servo, as registered
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -155,7 +159,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPositionRequest
+.. py:type:: Global___GetPositionRequest
+   :canonical: GetPositionRequest
+
 
 .. py:class:: GetPositionResponse(*, position_deg: int = ...)
 
@@ -175,7 +181,9 @@ Module Contents
       the degrees from neutral by which the servo is currently rotated.
 
 
-.. py:data:: global___GetPositionResponse
+.. py:type:: Global___GetPositionResponse
+   :canonical: GetPositionResponse
+
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -195,13 +203,13 @@ Module Contents
       Name of a servo
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -219,7 +227,9 @@ Module Contents
 
 
 
-.. py:data:: global___StopRequest
+.. py:type:: Global___StopRequest
+   :canonical: StopRequest
+
 
 .. py:class:: StopResponse
 
@@ -233,7 +243,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___StopResponse
+.. py:type:: Global___StopResponse
+   :canonical: StopResponse
+
 
 .. py:class:: Status(*, position_deg: int = ..., is_moving: bool = ...)
 
@@ -255,7 +267,9 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___Status
+.. py:type:: Global___Status
+   :canonical: Status
+
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
@@ -273,7 +287,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___IsMovingRequest
+.. py:type:: Global___IsMovingRequest
+   :canonical: IsMovingRequest
+
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
@@ -291,5 +307,7 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___IsMovingResponse
+.. py:type:: Global___IsMovingResponse
+   :canonical: IsMovingResponse
+
 

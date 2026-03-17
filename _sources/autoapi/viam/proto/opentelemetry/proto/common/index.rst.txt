@@ -26,7 +26,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: AnyValue(*, string_value: str = ..., bool_value: bool = ..., int_value: int = ..., double_value: float = ..., array_value: global___ArrayValue | None = ..., kvlist_value: global___KeyValueList | None = ..., bytes_value: bytes = ...)
+.. py:class:: AnyValue(*, string_value: str = ..., bool_value: bool = ..., int_value: int = ..., double_value: float = ..., array_value: Global___ArrayValue | None = ..., kvlist_value: Global___KeyValueList | None = ..., bytes_value: bytes = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -56,17 +56,13 @@ Package Contents
       :type:  bytes
 
 
-   .. py:property:: array_value
-      :type: global___ArrayValue
+   .. py:method:: array_value() -> Global___ArrayValue
 
 
-
-   .. py:property:: kvlist_value
-      :type: global___KeyValueList
+   .. py:method:: kvlist_value() -> Global___KeyValueList
 
 
-
-   .. py:method:: HasField(field_name: Literal['array_value', b'array_value', 'bool_value', b'bool_value', 'bytes_value', b'bytes_value', 'double_value', b'double_value', 'int_value', b'int_value', 'kvlist_value', b'kvlist_value', 'string_value', b'string_value', 'value', b'value']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -84,7 +80,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['value', b'value']) -> Literal['string_value', 'bool_value', 'int_value', 'double_value', 'array_value', 'kvlist_value', 'bytes_value'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -100,7 +96,7 @@ Package Contents
 
 
 
-.. py:class:: ArrayValue(*, values: collections.abc.Iterable[global___AnyValue] | None = ...)
+.. py:class:: ArrayValue(*, values: collections.abc.Iterable[Global___AnyValue] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -109,10 +105,10 @@ Package Contents
    since oneof in AnyValue does not allow repeated fields.
 
 
-   .. py:property:: values
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AnyValue]
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___AnyValue]
 
       Array of values. The array may be empty (contain 0 elements).
+
 
 
 .. py:class:: EntityRef(*, schema_url: str = ..., type: str = ..., id_keys: collections.abc.Iterable[str] | None = ..., description_keys: collections.abc.Iterable[str] | None = ...)
@@ -149,16 +145,15 @@ Package Contents
       for valid entities.
 
 
-   .. py:property:: id_keys
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: id_keys() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Attribute Keys that identify the entity.
       MUST not change during the lifetime of the entity. The Id must contain at least one attribute.
       These keys MUST exist in the containing {message}.attributes.
 
 
-   .. py:property:: description_keys
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+   .. py:method:: description_keys() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Descriptive (non-identifying) attribute keys of the entity.
       MAY change over the lifetime of the entity. MAY be empty.
@@ -166,7 +161,8 @@ Package Contents
       These keys MUST exist in the containing {message}.attributes.
 
 
-.. py:class:: InstrumentationScope(*, name: str = ..., version: str = ..., attributes: collections.abc.Iterable[global___KeyValue] | None = ..., dropped_attributes_count: int = ...)
+
+.. py:class:: InstrumentationScope(*, name: str = ..., version: str = ..., attributes: collections.abc.Iterable[Global___KeyValue] | None = ..., dropped_attributes_count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -197,8 +193,7 @@ Package Contents
       attributes. If this value is 0, then no attributes were dropped.
 
 
-   .. py:property:: attributes
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___KeyValue]
+   .. py:method:: attributes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___KeyValue]
 
       Additional attributes that describe the scope. [Optional].
       Attribute keys MUST be unique (it is not allowed to have more than one
@@ -206,7 +201,8 @@ Package Contents
       The behavior of software that receives duplicated keys can be unpredictable.
 
 
-.. py:class:: KeyValue(*, key: str = ..., value: global___AnyValue | None = ...)
+
+.. py:class:: KeyValue(*, key: str = ..., value: Global___AnyValue | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -221,13 +217,13 @@ Package Contents
       The key name of the pair.
 
 
-   .. py:property:: value
-      :type: global___AnyValue
+   .. py:method:: value() -> Global___AnyValue
 
       The value of the pair.
 
 
-   .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -245,7 +241,7 @@ Package Contents
 
 
 
-.. py:class:: KeyValueList(*, values: collections.abc.Iterable[global___KeyValue] | None = ...)
+.. py:class:: KeyValueList(*, values: collections.abc.Iterable[Global___KeyValue] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -257,8 +253,7 @@ Package Contents
    are semantically equivalent.
 
 
-   .. py:property:: values
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___KeyValue]
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___KeyValue]
 
       A collection of key/value pairs of key-value pairs. The list may be empty (may
       contain 0 elements).
@@ -266,5 +261,6 @@ Package Contents
       The keys MUST be unique (it is not allowed to have more than one
       value with the same key).
       The behavior of software that receives duplicated keys can be unpredictable.
+
 
 

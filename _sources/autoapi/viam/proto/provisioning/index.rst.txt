@@ -155,7 +155,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: CloudConfig(*, id: str = ..., secret: str = ..., app_address: str = ..., api_key: global___APIKey | None = ...)
+.. py:class:: CloudConfig(*, id: str = ..., secret: str = ..., app_address: str = ..., api_key: Global___APIKey | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -179,12 +179,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: api_key
-      :type: global___APIKey
+   .. py:method:: api_key() -> Global___APIKey
 
 
-
-   .. py:method:: HasField(field_name: Literal['api_key', b'api_key']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -238,7 +236,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: GetNetworkListResponse(*, networks: collections.abc.Iterable[global___NetworkInfo] | None = ...)
+.. py:class:: GetNetworkListResponse(*, networks: collections.abc.Iterable[Global___NetworkInfo] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -250,9 +248,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: networks
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___NetworkInfo]
-
+   .. py:method:: networks() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___NetworkInfo]
 
 
 .. py:class:: GetSmartMachineStatusRequest
@@ -267,7 +263,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: GetSmartMachineStatusResponse(*, provisioning_info: global___ProvisioningInfo | None = ..., has_smart_machine_credentials: bool = ..., is_online: bool = ..., latest_connection_attempt: global___NetworkInfo | None = ..., errors: collections.abc.Iterable[str] | None = ..., agent_version: str = ...)
+.. py:class:: GetSmartMachineStatusResponse(*, provisioning_info: Global___ProvisioningInfo | None = ..., has_smart_machine_credentials: bool = ..., is_online: bool = ..., latest_connection_attempt: Global___NetworkInfo | None = ..., errors: collections.abc.Iterable[str] | None = ..., agent_version: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -291,22 +287,16 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: provisioning_info
-      :type: global___ProvisioningInfo
+   .. py:method:: provisioning_info() -> Global___ProvisioningInfo
 
 
-
-   .. py:property:: latest_connection_attempt
-      :type: global___NetworkInfo
+   .. py:method:: latest_connection_attempt() -> Global___NetworkInfo
 
 
-
-   .. py:property:: errors
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: errors() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -420,7 +410,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: SetSmartMachineCredentialsRequest(*, cloud: global___CloudConfig | None = ...)
+.. py:class:: SetSmartMachineCredentialsRequest(*, cloud: Global___CloudConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -432,12 +422,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: cloud
-      :type: global___CloudConfig
+   .. py:method:: cloud() -> Global___CloudConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['cloud', b'cloud']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

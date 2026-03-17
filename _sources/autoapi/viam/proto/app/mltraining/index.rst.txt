@@ -244,12 +244,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: eol
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: eol() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['eol', b'eol']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -315,7 +313,7 @@ Package Contents
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_page_token', b'_page_token', 'page_token', b'page_token']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -333,7 +331,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -349,7 +347,7 @@ Package Contents
 
 
 
-.. py:class:: GetTrainingJobLogsResponse(*, logs: collections.abc.Iterable[global___TrainingJobLogEntry] | None = ..., next_page_token: str = ...)
+.. py:class:: GetTrainingJobLogsResponse(*, logs: collections.abc.Iterable[Global___TrainingJobLogEntry] | None = ..., next_page_token: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -365,9 +363,7 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: logs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrainingJobLogEntry]
-
+   .. py:method:: logs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TrainingJobLogEntry]
 
 
 .. py:class:: GetTrainingJobRequest(*, id: str = ...)
@@ -386,7 +382,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetTrainingJobResponse(*, metadata: global___TrainingJobMetadata | None = ...)
+.. py:class:: GetTrainingJobResponse(*, metadata: Global___TrainingJobMetadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -398,12 +394,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: metadata
-      :type: global___TrainingJobMetadata
+   .. py:method:: metadata() -> Global___TrainingJobMetadata
 
 
-
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -433,7 +427,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: ListSupportedContainersResponse(*, container_map: collections.abc.Mapping[str, global___Container] | None = ...)
+.. py:class:: ListSupportedContainersResponse(*, container_map: collections.abc.Mapping[str, Global___Container] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -445,7 +439,7 @@ Package Contents
    shown below.
 
 
-   .. py:class:: ContainerMapEntry(*, key: str = ..., value: global___Container | None = ...)
+   .. py:class:: ContainerMapEntry(*, key: str = ..., value: Global___Container | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -461,12 +455,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___Container
+      .. py:method:: value() -> Global___Container
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -485,8 +477,7 @@ Package Contents
 
 
 
-   .. py:property:: container_map
-      :type: google.protobuf.internal.containers.MessageMap[str, global___Container]
+   .. py:method:: container_map() -> google.protobuf.internal.containers.MessageMap[str, Global___Container]
 
       ex value:
       container_map: {
@@ -499,7 +490,8 @@ Package Contents
       }
 
 
-.. py:class:: ListTrainingJobsRequest(*, organization_id: str = ..., status: global___TrainingStatus = ...)
+
+.. py:class:: ListTrainingJobsRequest(*, organization_id: str = ..., status: Global___TrainingStatus = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -516,10 +508,10 @@ Package Contents
 
 
    .. py:attribute:: status
-      :type:  global___TrainingStatus
+      :type:  Global___TrainingStatus
 
 
-.. py:class:: ListTrainingJobsResponse(*, jobs: collections.abc.Iterable[global___TrainingJobMetadata] | None = ...)
+.. py:class:: ListTrainingJobsResponse(*, jobs: collections.abc.Iterable[Global___TrainingJobMetadata] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -531,9 +523,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: jobs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrainingJobMetadata]
-
+   .. py:method:: jobs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TrainingJobMetadata]
 
 
 .. py:class:: ModelFramework
@@ -607,9 +597,7 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: arguments
-      :type: google.protobuf.internal.containers.ScalarMap[str, str]
-
+   .. py:method:: arguments() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
 
 .. py:class:: SubmitCustomTrainingJobResponse(*, id: str = ...)
@@ -628,7 +616,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: SubmitTrainingJobRequest(*, dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: SubmitTrainingJobRequest(*, dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -657,16 +645,14 @@ Package Contents
 
 
    .. py:attribute:: model_type
-      :type:  global___ModelType
+      :type:  Global___ModelType
 
 
    .. py:attribute:: model_framework
-      :type:  global___ModelFramework
+      :type:  Global___ModelFramework
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: SubmitTrainingJobResponse(*, id: str = ...)
@@ -705,12 +691,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: time
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['time', b'time']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -728,7 +712,7 @@ Package Contents
 
 
 
-.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
+.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: Global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -782,11 +766,11 @@ Package Contents
 
 
    .. py:attribute:: model_type
-      :type:  global___ModelType
+      :type:  Global___ModelType
 
 
    .. py:attribute:: model_framework
-      :type:  global___ModelFramework
+      :type:  Global___ModelFramework
 
 
    .. py:attribute:: is_custom_job
@@ -802,7 +786,7 @@ Package Contents
 
 
    .. py:attribute:: status
-      :type:  global___TrainingStatus
+      :type:  Global___TrainingStatus
 
 
    .. py:attribute:: synced_model_id
@@ -813,42 +797,28 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: error_status
-      :type: google.rpc.status_pb2.Status
+   .. py:method:: error_status() -> google.rpc.status_pb2.Status
 
 
-
-   .. py:property:: created_on
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: last_modified
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: last_modified() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: training_started
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: training_started() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: training_ended
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: training_ended() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: arguments
-      :type: google.protobuf.internal.containers.ScalarMap[str, str]
+   .. py:method:: arguments() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

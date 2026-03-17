@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.services.mlmodel.utils &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=b3ba4146"></script>
-        <script src="../../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -87,13 +85,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.mlmodel.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">NDArray</span>
-<span class="kn">from</span> <span class="nn">packaging.version</span> <span class="kn">import</span> <span class="n">Version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">Version</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.service.mlmodel</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.service.mlmodel</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">FlatTensor</span><span class="p">,</span>
     <span class="n">FlatTensorDataDouble</span><span class="p">,</span>
     <span class="n">FlatTensorDataFloat</span><span class="p">,</span>
@@ -109,7 +107,9 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="flat_tensors_to_ndarrays"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.utils.flat_tensors_to_ndarrays">[docs]</a><span class="k">def</span> <span class="nf">flat_tensors_to_ndarrays</span><span class="p">(</span><span class="n">flat_tensors</span><span class="p">:</span> <span class="n">FlatTensors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<div class="viewcode-block" id="flat_tensors_to_ndarrays">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.utils.flat_tensors_to_ndarrays">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">flat_tensors_to_ndarrays</span><span class="p">(</span><span class="n">flat_tensors</span><span class="p">:</span> <span class="n">FlatTensors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
     <span class="n">property_name_to_dtype</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;float_tensor&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
         <span class="s2">&quot;double_tensor&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
@@ -123,7 +123,7 @@
         <span class="s2">&quot;uint64_tensor&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">make_ndarray</span><span class="p">(</span><span class="n">flat_data</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_ndarray</span><span class="p">(</span><span class="n">flat_data</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Takes flat data (protobuf RepeatedScalarFieldContainer | bytes) to output an ndarray</span>
 <span class="sd">        of appropriate dtype and shape&quot;&quot;&quot;</span>
         <span class="n">make_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span> <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span> <span class="ow">or</span> <span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span>
@@ -147,7 +147,10 @@
     <span class="k">return</span> <span class="n">ndarrays</span></div>
 
 
-<div class="viewcode-block" id="ndarrays_to_flat_tensors"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.utils.ndarrays_to_flat_tensors">[docs]</a><span class="k">def</span> <span class="nf">ndarrays_to_flat_tensors</span><span class="p">(</span><span class="n">ndarrays</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">FlatTensors</span><span class="p">:</span>
+
+<div class="viewcode-block" id="ndarrays_to_flat_tensors">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.utils.ndarrays_to_flat_tensors">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ndarrays_to_flat_tensors</span><span class="p">(</span><span class="n">ndarrays</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">FlatTensors</span><span class="p">:</span>
     <span class="n">dtype_name_to_tensor_data_class</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;float32&quot;</span><span class="p">:</span> <span class="n">FlatTensorDataFloat</span><span class="p">,</span>
         <span class="s2">&quot;float64&quot;</span><span class="p">:</span> <span class="n">FlatTensorDataDouble</span><span class="p">,</span>
@@ -161,7 +164,7 @@
         <span class="s2">&quot;uint64&quot;</span><span class="p">:</span> <span class="n">FlatTensorDataUInt64</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">get_tensor_data</span><span class="p">(</span><span class="n">ndarray</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tensor_data</span><span class="p">(</span><span class="n">ndarray</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Takes an ndarray and returns the corresponding tensor data class instance</span>
 <span class="sd">        for example FlatTensorDataInt8, FlatTensorDataUInt8 etc.&quot;&quot;&quot;</span>
         <span class="n">tensor_data_class</span> <span class="o">=</span> <span class="n">dtype_name_to_tensor_data_class</span><span class="p">[</span><span class="n">ndarray</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
@@ -173,7 +176,7 @@
         <span class="n">tensor_data</span> <span class="o">=</span> <span class="n">tensor_data_class</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tensor_data</span>
 
-    <span class="k">def</span> <span class="nf">get_tensor_data_type</span><span class="p">(</span><span class="n">ndarray</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tensor_data_type</span><span class="p">(</span><span class="n">ndarray</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Takes ndarray and returns a FlatTensor datatype property to be set</span>
 <span class="sd">        for example &quot;float_tensor&quot;, &quot;uint32_tensor&quot; etc.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">ndarray</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
@@ -187,6 +190,7 @@
         <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_value</span> <span class="o">=</span> <span class="n">get_tensor_data_type</span><span class="p">(</span><span class="n">ndarray</span><span class="p">),</span> <span class="n">get_tensor_data</span><span class="p">(</span><span class="n">ndarray</span><span class="p">)</span>
         <span class="n">tensors_mapping</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">FlatTensor</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">ndarray</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">prop_name</span><span class="p">:</span> <span class="n">prop_value</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">FlatTensors</span><span class="p">(</span><span class="n">tensors</span><span class="o">=</span><span class="n">tensors_mapping</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>

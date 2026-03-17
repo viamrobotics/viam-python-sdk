@@ -181,19 +181,19 @@ Module Contents
       The platform the RDK is running on. For example linux/amd64
 
 
-   .. py:property:: ips
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: ips() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       list of all ipv4 ips.
 
 
-   .. py:property:: platform_tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+   .. py:method:: platform_tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Optional tags to further constrain which artifact is returned for modules.
 
 
-   .. py:method:: HasField(field_name: Literal['_platform', b'_platform', 'platform', b'platform']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -211,7 +211,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__platform) -> _WhichOneofReturnType__platform | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -243,7 +243,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[str] | None = ..., external_auth_config: global___ExternalAuthConfig | None = ...)
+.. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[Global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[str] | None = ..., external_auth_config: Global___ExternalAuthConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -255,22 +255,16 @@ Module Contents
    shown below.
 
 
-   .. py:property:: handlers
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthHandlerConfig]
+   .. py:method:: handlers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___AuthHandlerConfig]
 
 
-
-   .. py:property:: tls_auth_entities
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tls_auth_entities() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: external_auth_config
-      :type: global___ExternalAuthConfig
+   .. py:method:: external_auth_config() -> Global___ExternalAuthConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -288,7 +282,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_external_auth_config', b'_external_auth_config']) -> Literal['external_auth_config'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__external_auth_config) -> _WhichOneofReturnType__external_auth_config | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -304,7 +298,7 @@ Module Contents
 
 
 
-.. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AuthHandlerConfig(*, type: Global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -317,15 +311,13 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___CredentialsType
+      :type:  Global___CredentialsType
 
 
-   .. py:property:: config
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: config() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -387,7 +379,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: CloudConfig(*, id: str = ..., fqdn: str = ..., local_fqdn: str = ..., managed_by: str = ..., signaling_address: str = ..., signaling_insecure: bool = ..., location_secret: str = ..., secret: str = ..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None = ..., primary_org_id: str = ..., location_id: str = ..., machine_id: str = ...)
+.. py:class:: CloudConfig(*, id: str = ..., fqdn: str = ..., local_fqdn: str = ..., managed_by: str = ..., signaling_address: str = ..., signaling_insecure: bool = ..., location_secret: str = ..., secret: str = ..., location_secrets: collections.abc.Iterable[Global___LocationSecret] | None = ..., primary_org_id: str = ..., location_id: str = ..., machine_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -425,10 +417,10 @@ Module Contents
       :type:  bool
 
 
-   .. py:attribute:: location_secret
-      :type:  str
+   .. py:method:: location_secret() -> str
 
       Deprecated use location_secrets
+
 
 
    .. py:attribute:: secret
@@ -449,13 +441,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: location_secrets
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSecret]
+   .. py:method:: location_secrets() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___LocationSecret]
 
       All valid location secrets.
 
 
-.. py:class:: ComponentConfig(*, name: str = ..., namespace: str = ..., type: str = ..., model: str = ..., frame: global___Frame | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., api: str = ..., log_configuration: global___LogConfiguration | None = ...)
+
+.. py:class:: ComponentConfig(*, name: str = ..., namespace: str = ..., type: str = ..., model: str = ..., frame: Global___Frame | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., service_configs: collections.abc.Iterable[Global___ResourceLevelServiceConfig] | None = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., api: str = ..., log_configuration: Global___LogConfiguration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -491,32 +483,22 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: frame
-      :type: global___Frame
+   .. py:method:: frame() -> Global___Frame
 
 
-
-   .. py:property:: depends_on
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: depends_on() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: service_configs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]
+   .. py:method:: service_configs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ResourceLevelServiceConfig]
 
 
-
-   .. py:property:: attributes
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: attributes() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:property:: log_configuration
-      :type: global___LogConfiguration
+   .. py:method:: log_configuration() -> Global___LogConfiguration
 
 
-
-   .. py:method:: HasField(field_name: Literal['attributes', b'attributes', 'frame', b'frame', 'log_configuration', b'log_configuration']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -534,7 +516,7 @@ Module Contents
 
 
 
-.. py:class:: ConfigRequest(*, id: str = ..., agent_info: global___AgentInfo | None = ...)
+.. py:class:: ConfigRequest(*, id: str = ..., agent_info: Global___AgentInfo | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -552,13 +534,13 @@ Module Contents
       Robot part id.
 
 
-   .. py:property:: agent_info
-      :type: global___AgentInfo
+   .. py:method:: agent_info() -> Global___AgentInfo
 
       Details about the RDK (os, version) are updated during this request.
 
 
-   .. py:method:: HasField(field_name: Literal['_agent_info', b'_agent_info', 'agent_info', b'agent_info']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -576,7 +558,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_agent_info', b'_agent_info']) -> Literal['agent_info'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__agent_info) -> _WhichOneofReturnType__agent_info | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -592,7 +574,7 @@ Module Contents
 
 
 
-.. py:class:: ConfigResponse(*, config: global___RobotConfig | None = ...)
+.. py:class:: ConfigResponse(*, config: Global___RobotConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -604,12 +586,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: config
-      :type: global___RobotConfig
+   .. py:method:: config() -> Global___RobotConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -632,7 +612,7 @@ Module Contents
    Bases: :py:obj:`_CredentialsType`
 
 
-.. py:class:: ExternalAuthConfig(*, jwks: global___JWKSFile | None = ...)
+.. py:class:: ExternalAuthConfig(*, jwks: Global___JWKSFile | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -641,12 +621,10 @@ Module Contents
    credentials signed by the cloud app.
 
 
-   .. py:property:: jwks
-      :type: global___JWKSFile
+   .. py:method:: jwks() -> Global___JWKSFile
 
 
-
-   .. py:method:: HasField(field_name: Literal['jwks', b'jwks']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -664,7 +642,7 @@ Module Contents
 
 
 
-.. py:class:: Frame(*, parent: str = ..., translation: global___Translation | None = ..., orientation: global___Orientation | None = ..., geometry: viam.gen.common.v1.common_pb2.Geometry | None = ...)
+.. py:class:: Frame(*, parent: str = ..., translation: Global___Translation | None = ..., orientation: Global___Orientation | None = ..., geometry: common.v1.common_pb2.Geometry | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -680,22 +658,16 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: translation
-      :type: global___Translation
+   .. py:method:: translation() -> Global___Translation
 
 
-
-   .. py:property:: orientation
-      :type: global___Orientation
+   .. py:method:: orientation() -> Global___Orientation
 
 
-
-   .. py:property:: geometry
-      :type: viam.gen.common.v1.common_pb2.Geometry
+   .. py:method:: geometry() -> common.v1.common_pb2.Geometry
 
 
-
-   .. py:method:: HasField(field_name: Literal['geometry', b'geometry', 'orientation', b'orientation', 'translation', b'translation']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -713,7 +685,7 @@ Module Contents
 
 
 
-.. py:class:: JobConfig(*, name: str = ..., schedule: str = ..., resource: str = ..., method: str = ..., command: google.protobuf.struct_pb2.Struct | None = ..., log_configuration: global___LogConfiguration | None = ...)
+.. py:class:: JobConfig(*, name: str = ..., schedule: str = ..., resource: str = ..., method: str = ..., command: google.protobuf.struct_pb2.Struct | None = ..., log_configuration: Global___LogConfiguration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -750,20 +722,20 @@ Module Contents
       the gRPC request of this job's resource.
 
 
-   .. py:property:: command
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: command() -> google.protobuf.struct_pb2.Struct
 
       in case method is "DoCommand", specifies the
       command argument of the gRPC request.
 
 
-   .. py:property:: log_configuration
-      :type: global___LogConfiguration
+
+   .. py:method:: log_configuration() -> Global___LogConfiguration
 
       configuration for this job's logger.
 
 
-   .. py:method:: HasField(field_name: Literal['command', b'command', 'log_configuration', b'log_configuration']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -793,14 +765,14 @@ Module Contents
    shown below.
 
 
-   .. py:property:: json
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: json() -> google.protobuf.struct_pb2.Struct
 
       JSON Web Keys (JWKS) file as arbitary json.
       See https://www.rfc-editor.org/rfc/rfc7517
 
 
-   .. py:method:: HasField(field_name: Literal['json', b'json']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -869,7 +841,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: LogRequest(*, id: str = ..., logs: collections.abc.Iterable[viam.gen.common.v1.common_pb2.LogEntry] | None = ...)
+.. py:class:: LogRequest(*, id: str = ..., logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -887,9 +859,7 @@ Module Contents
       Robot part id.
 
 
-   .. py:property:: logs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
-
+   .. py:method:: logs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.LogEntry]
 
 
 .. py:class:: LogResponse
@@ -904,7 +874,7 @@ Module Contents
    shown below.
 
 
-.. py:class:: MaintenanceConfig(*, sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., maintenance_allowed_key: str = ...)
+.. py:class:: MaintenanceConfig(*, sensor_name: common.v1.common_pb2.ResourceName | None = ..., maintenance_allowed_key: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -920,12 +890,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: sensor_name
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:method:: sensor_name() -> common.v1.common_pb2.ResourceName
 
 
-
-   .. py:method:: HasField(field_name: Literal['sensor_name', b'sensor_name']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -943,7 +911,7 @@ Module Contents
 
 
 
-.. py:class:: ModuleConfig(*, name: str = ..., path: str = ..., log_level: str = ..., type: str = ..., module_id: str = ..., env: collections.abc.Mapping[str, str] | None = ..., status: global___AppValidationStatus | None = ..., first_run_timeout: google.protobuf.duration_pb2.Duration | None = ..., tcp_mode: bool = ...)
+.. py:class:: ModuleConfig(*, name: str = ..., path: str = ..., log_level: str = ..., type: str = ..., module_id: str = ..., env: collections.abc.Mapping[str, str] | None = ..., status: Global___AppValidationStatus | None = ..., first_run_timeout: google.protobuf.duration_pb2.Duration | None = ..., tcp_mode: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1006,25 +974,25 @@ Module Contents
       whether we are starting a module in TCP mode
 
 
-   .. py:property:: env
-      :type: google.protobuf.internal.containers.ScalarMap[str, str]
+   .. py:method:: env() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
       additional environment variables passed to the module process
 
 
-   .. py:property:: status
-      :type: global___AppValidationStatus
+
+   .. py:method:: status() -> Global___AppValidationStatus
 
       info about the validity of the module
 
 
-   .. py:property:: first_run_timeout
-      :type: google.protobuf.duration_pb2.Duration
+
+   .. py:method:: first_run_timeout() -> google.protobuf.duration_pb2.Duration
 
       timeout for first_run script
 
 
-   .. py:method:: HasField(field_name: Literal['first_run_timeout', b'first_run_timeout', 'status', b'status']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1082,12 +1050,10 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: restart_check_interval
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: restart_check_interval() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:method:: HasField(field_name: Literal['restart_check_interval', b'restart_check_interval']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1105,7 +1071,7 @@ Module Contents
 
 
 
-.. py:class:: NetworkConfig(*, fqdn: str = ..., bind_address: str = ..., tls_cert_file: str = ..., tls_key_file: str = ..., sessions: global___SessionsConfig | None = ..., traffic_tunnel_endpoints: collections.abc.Iterable[global___TrafficTunnelEndpoint] | None = ..., no_tls: bool = ...)
+.. py:class:: NetworkConfig(*, fqdn: str = ..., bind_address: str = ..., tls_cert_file: str = ..., tls_key_file: str = ..., sessions: Global___SessionsConfig | None = ..., traffic_tunnel_endpoints: collections.abc.Iterable[Global___TrafficTunnelEndpoint] | None = ..., no_tls: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1137,17 +1103,13 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: sessions
-      :type: global___SessionsConfig
+   .. py:method:: sessions() -> Global___SessionsConfig
 
 
-
-   .. py:property:: traffic_tunnel_endpoints
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrafficTunnelEndpoint]
+   .. py:method:: traffic_tunnel_endpoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TrafficTunnelEndpoint]
 
 
-
-   .. py:method:: HasField(field_name: Literal['sessions', b'sessions']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1165,7 +1127,7 @@ Module Contents
 
 
 
-.. py:class:: Orientation(*, no_orientation: global___Orientation | None = ..., vector_radians: global___Orientation | None = ..., vector_degrees: global___Orientation | None = ..., euler_angles: global___Orientation | None = ..., axis_angles: global___Orientation | None = ..., quaternion: global___Orientation | None = ...)
+.. py:class:: Orientation(*, no_orientation: Global___Orientation | None = ..., vector_radians: Global___Orientation | None = ..., vector_degrees: Global___Orientation | None = ..., euler_angles: Global___Orientation | None = ..., axis_angles: Global___Orientation | None = ..., quaternion: Global___Orientation | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1327,37 +1289,25 @@ Module Contents
 
 
 
-   .. py:property:: no_orientation
-      :type: global___Orientation
+   .. py:method:: no_orientation() -> Global___Orientation
 
 
-
-   .. py:property:: vector_radians
-      :type: global___Orientation
+   .. py:method:: vector_radians() -> Global___Orientation
 
 
-
-   .. py:property:: vector_degrees
-      :type: global___Orientation
+   .. py:method:: vector_degrees() -> Global___Orientation
 
 
-
-   .. py:property:: euler_angles
-      :type: global___Orientation
+   .. py:method:: euler_angles() -> Global___Orientation
 
 
-
-   .. py:property:: axis_angles
-      :type: global___Orientation
+   .. py:method:: axis_angles() -> Global___Orientation
 
 
-
-   .. py:property:: quaternion
-      :type: global___Orientation
+   .. py:method:: quaternion() -> Global___Orientation
 
 
-
-   .. py:method:: HasField(field_name: Literal['axis_angles', b'axis_angles', 'euler_angles', b'euler_angles', 'no_orientation', b'no_orientation', 'quaternion', b'quaternion', 'type', b'type', 'vector_degrees', b'vector_degrees', 'vector_radians', b'vector_radians']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1375,7 +1325,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['no_orientation', 'vector_radians', 'vector_degrees', 'euler_angles', 'axis_angles', 'quaternion'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_type) -> _WhichOneofReturnType_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1391,7 +1341,7 @@ Module Contents
 
 
 
-.. py:class:: PackageConfig(*, name: str = ..., package: str = ..., version: str = ..., type: str = ..., status: global___AppValidationStatus | None = ...)
+.. py:class:: PackageConfig(*, name: str = ..., package: str = ..., version: str = ..., type: str = ..., status: Global___AppValidationStatus | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1423,13 +1373,13 @@ Module Contents
       type of the package
 
 
-   .. py:property:: status
-      :type: global___AppValidationStatus
+   .. py:method:: status() -> Global___AppValidationStatus
 
       info about the validity of the package
 
 
-   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1504,23 +1454,19 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: args
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: args() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: stop_timeout
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: stop_timeout() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:property:: env
-      :type: google.protobuf.internal.containers.ScalarMap[str, str]
+   .. py:method:: env() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
       additional environment variables passed to the process
 
 
-   .. py:method:: HasField(field_name: Literal['stop_timeout', b'stop_timeout']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1538,7 +1484,7 @@ Module Contents
 
 
 
-.. py:class:: RemoteAuth(*, credentials: global___RemoteAuth | None = ..., entity: str = ...)
+.. py:class:: RemoteAuth(*, credentials: Global___RemoteAuth | None = ..., entity: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1548,7 +1494,7 @@ Module Contents
    authentication request will specify it.
 
 
-   .. py:class:: Credentials(*, type: global___CredentialsType = ..., payload: str = ...)
+   .. py:class:: Credentials(*, type: Global___CredentialsType = ..., payload: str = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1558,7 +1504,7 @@ Module Contents
 
 
       .. py:attribute:: type
-         :type:  global___CredentialsType
+         :type:  Global___CredentialsType
 
 
       .. py:attribute:: payload
@@ -1570,12 +1516,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: credentials
-      :type: global___RemoteAuth
+   .. py:method:: credentials() -> Global___RemoteAuth
 
 
-
-   .. py:method:: HasField(field_name: Literal['credentials', b'credentials']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1593,7 +1537,7 @@ Module Contents
 
 
 
-.. py:class:: RemoteConfig(*, name: str = ..., address: str = ..., frame: global___Frame | None = ..., auth: global___RemoteAuth | None = ..., managed_by: str = ..., insecure: bool = ..., connection_check_interval: google.protobuf.duration_pb2.Duration | None = ..., reconnect_interval: google.protobuf.duration_pb2.Duration | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., secret: str = ..., prefix: str = ...)
+.. py:class:: RemoteConfig(*, name: str = ..., address: str = ..., frame: Global___Frame | None = ..., auth: Global___RemoteAuth | None = ..., managed_by: str = ..., insecure: bool = ..., connection_check_interval: google.protobuf.duration_pb2.Duration | None = ..., reconnect_interval: google.protobuf.duration_pb2.Duration | None = ..., service_configs: collections.abc.Iterable[Global___ResourceLevelServiceConfig] | None = ..., secret: str = ..., prefix: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1632,32 +1576,22 @@ Module Contents
       A string with which to prefix all resource names fetched from this remote.
 
 
-   .. py:property:: frame
-      :type: global___Frame
+   .. py:method:: frame() -> Global___Frame
 
 
-
-   .. py:property:: auth
-      :type: global___RemoteAuth
+   .. py:method:: auth() -> Global___RemoteAuth
 
 
-
-   .. py:property:: connection_check_interval
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: connection_check_interval() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:property:: reconnect_interval
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: reconnect_interval() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:property:: service_configs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]
+   .. py:method:: service_configs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ResourceLevelServiceConfig]
 
 
-
-   .. py:method:: HasField(field_name: Literal['auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'reconnect_interval', b'reconnect_interval']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1687,15 +1621,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: attributes
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: attributes() -> google.protobuf.struct_pb2.Struct
 
-      Should this be move to a structured type as defined in the typescript frontend.
-
-      :type: TODO(adam)
+      TODO(adam): Should this be move to a structured type as defined in the typescript frontend.
 
 
-   .. py:method:: HasField(field_name: Literal['attributes', b'attributes']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1713,7 +1645,7 @@ Module Contents
 
 
 
-.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[global___LogPatternConfig] | None = ..., revision: str = ..., maintenance: global___MaintenanceConfig | None = ..., disable_log_deduplication: bool = ..., jobs: collections.abc.Iterable[global___JobConfig] | None = ..., tracing: global___TracingConfig | None = ...)
+.. py:class:: RobotConfig(*, cloud: Global___CloudConfig | None = ..., remotes: collections.abc.Iterable[Global___RemoteConfig] | None = ..., components: collections.abc.Iterable[Global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[Global___ProcessConfig] | None = ..., services: collections.abc.Iterable[Global___ServiceConfig] | None = ..., network: Global___NetworkConfig | None = ..., auth: Global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[Global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[Global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[Global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[Global___LogPatternConfig] | None = ..., revision: str = ..., maintenance: Global___MaintenanceConfig | None = ..., disable_log_deduplication: bool = ..., jobs: collections.abc.Iterable[Global___JobConfig] | None = ..., tracing: Global___TracingConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1754,77 +1686,49 @@ Module Contents
       be output individually instead of aggregated.)
 
 
-   .. py:property:: cloud
-      :type: global___CloudConfig
+   .. py:method:: cloud() -> Global___CloudConfig
 
 
-
-   .. py:property:: remotes
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RemoteConfig]
+   .. py:method:: remotes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___RemoteConfig]
 
 
-
-   .. py:property:: components
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ComponentConfig]
+   .. py:method:: components() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ComponentConfig]
 
 
-
-   .. py:property:: processes
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ProcessConfig]
+   .. py:method:: processes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ProcessConfig]
 
 
-
-   .. py:property:: services
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ServiceConfig]
+   .. py:method:: services() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ServiceConfig]
 
 
-
-   .. py:property:: network
-      :type: global___NetworkConfig
+   .. py:method:: network() -> Global___NetworkConfig
 
 
-
-   .. py:property:: auth
-      :type: global___AuthConfig
+   .. py:method:: auth() -> Global___AuthConfig
 
 
-
-   .. py:property:: modules
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ModuleConfig]
+   .. py:method:: modules() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ModuleConfig]
 
 
-
-   .. py:property:: packages
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PackageConfig]
+   .. py:method:: packages() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PackageConfig]
 
 
-
-   .. py:property:: overwrite_fragment_status
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AppValidationStatus]
+   .. py:method:: overwrite_fragment_status() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___AppValidationStatus]
 
 
-
-   .. py:property:: log
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LogPatternConfig]
+   .. py:method:: log() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___LogPatternConfig]
 
 
-
-   .. py:property:: maintenance
-      :type: global___MaintenanceConfig
+   .. py:method:: maintenance() -> Global___MaintenanceConfig
 
 
-
-   .. py:property:: jobs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___JobConfig]
+   .. py:method:: jobs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___JobConfig]
 
 
-
-   .. py:property:: tracing
-      :type: global___TracingConfig
+   .. py:method:: tracing() -> Global___TracingConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', '_tracing', b'_tracing', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network', 'tracing', b'tracing']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1842,12 +1746,12 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_auth', b'_auth']) -> Literal['auth'] | None
-                  WhichOneof(oneof_group: Literal['_debug', b'_debug']) -> Literal['debug'] | None
-                  WhichOneof(oneof_group: Literal['_disable_partial_start', b'_disable_partial_start']) -> Literal['disable_partial_start'] | None
-                  WhichOneof(oneof_group: Literal['_maintenance', b'_maintenance']) -> Literal['maintenance'] | None
-                  WhichOneof(oneof_group: Literal['_network', b'_network']) -> Literal['network'] | None
-                  WhichOneof(oneof_group: Literal['_tracing', b'_tracing']) -> Literal['tracing'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__auth) -> _WhichOneofReturnType__auth | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__debug) -> _WhichOneofReturnType__debug | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__disable_partial_start) -> _WhichOneofReturnType__disable_partial_start | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__maintenance) -> _WhichOneofReturnType__maintenance | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__network) -> _WhichOneofReturnType__network | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__tracing) -> _WhichOneofReturnType__tracing | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1863,7 +1767,7 @@ Module Contents
 
 
 
-.. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., model: str = ..., api: str = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., log_configuration: global___LogConfiguration | None = ...)
+.. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., model: str = ..., api: str = ..., service_configs: collections.abc.Iterable[Global___ResourceLevelServiceConfig] | None = ..., log_configuration: Global___LogConfiguration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1899,27 +1803,19 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: attributes
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: attributes() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:property:: depends_on
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: depends_on() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: service_configs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]
+   .. py:method:: service_configs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ResourceLevelServiceConfig]
 
 
-
-   .. py:property:: log_configuration
-      :type: global___LogConfiguration
+   .. py:method:: log_configuration() -> Global___LogConfiguration
 
 
-
-   .. py:method:: HasField(field_name: Literal['attributes', b'attributes', 'log_configuration', b'log_configuration']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1949,12 +1845,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: heartbeat_window
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: heartbeat_window() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:method:: HasField(field_name: Literal['heartbeat_window', b'heartbeat_window']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2021,12 +1915,10 @@ Module Contents
       :type:  int
 
 
-   .. py:property:: connection_timeout
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: connection_timeout() -> google.protobuf.duration_pb2.Duration
 
 
-
-   .. py:method:: HasField(field_name: Literal['connection_timeout', b'connection_timeout']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

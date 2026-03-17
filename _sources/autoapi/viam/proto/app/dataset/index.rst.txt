@@ -197,12 +197,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: time_created
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time_created() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['time_created', b'time_created']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -252,12 +250,10 @@ Package Contents
    ListDatasetsByIDsRequest requests all of the datasets by their dataset IDs.
 
 
-   .. py:property:: ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-.. py:class:: ListDatasetsByIDsResponse(*, datasets: collections.abc.Iterable[global___Dataset] | None = ...)
+.. py:class:: ListDatasetsByIDsResponse(*, datasets: collections.abc.Iterable[Global___Dataset] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -265,9 +261,7 @@ Package Contents
    ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs.
 
 
-   .. py:property:: datasets
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Dataset]
-
+   .. py:method:: datasets() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Dataset]
 
 
 .. py:class:: ListDatasetsByOrganizationIDRequest(*, organization_id: str = ...)
@@ -282,7 +276,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: ListDatasetsByOrganizationIDResponse(*, datasets: collections.abc.Iterable[global___Dataset] | None = ...)
+.. py:class:: ListDatasetsByOrganizationIDResponse(*, datasets: collections.abc.Iterable[Global___Dataset] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -290,9 +284,7 @@ Package Contents
    ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.
 
 
-   .. py:property:: datasets
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Dataset]
-
+   .. py:method:: datasets() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Dataset]
 
 
 .. py:class:: MergeDatasetsRequest(*, dataset_ids: collections.abc.Iterable[str] | None = ..., name: str = ..., organization_id: str = ...)
@@ -311,9 +303,7 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: dataset_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
+   .. py:method:: dataset_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 .. py:class:: MergeDatasetsResponse(*, dataset_id: str = ...)

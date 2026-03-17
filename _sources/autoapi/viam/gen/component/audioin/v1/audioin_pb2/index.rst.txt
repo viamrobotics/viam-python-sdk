@@ -16,9 +16,9 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.audioin.v1.audioin_pb2.DESCRIPTOR
-   viam.gen.component.audioin.v1.audioin_pb2.global___GetAudioRequest
-   viam.gen.component.audioin.v1.audioin_pb2.global___GetAudioResponse
-   viam.gen.component.audioin.v1.audioin_pb2.global___AudioChunk
+   viam.gen.component.audioin.v1.audioin_pb2.Global___GetAudioRequest
+   viam.gen.component.audioin.v1.audioin_pb2.Global___GetAudioResponse
+   viam.gen.component.audioin.v1.audioin_pb2.Global___AudioChunk
 
 
 Classes
@@ -78,12 +78,10 @@ Module Contents
       Timestamp of the previous audio chunk, in nanoseconds, used for resuming and continuity.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -101,9 +99,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetAudioRequest
+.. py:type:: Global___GetAudioRequest
+   :canonical: GetAudioRequest
 
-.. py:class:: GetAudioResponse(*, audio: global___AudioChunk | None = ..., request_id: str = ...)
+
+.. py:class:: GetAudioResponse(*, audio: Global___AudioChunk | None = ..., request_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -119,12 +119,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: audio
-      :type: global___AudioChunk
+   .. py:method:: audio() -> Global___AudioChunk
 
 
-
-   .. py:method:: HasField(field_name: Literal['audio', b'audio']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -142,9 +140,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetAudioResponse
+.. py:type:: Global___GetAudioResponse
+   :canonical: GetAudioResponse
 
-.. py:class:: AudioChunk(*, audio_data: bytes = ..., audio_info: viam.gen.common.v1.common_pb2.AudioInfo | None = ..., start_timestamp_nanoseconds: int = ..., end_timestamp_nanoseconds: int = ..., sequence: int = ...)
+
+.. py:class:: AudioChunk(*, audio_data: bytes = ..., audio_info: common.v1.common_pb2.AudioInfo | None = ..., start_timestamp_nanoseconds: int = ..., end_timestamp_nanoseconds: int = ..., sequence: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -176,13 +176,13 @@ Module Contents
       Sequential chunk number
 
 
-   .. py:property:: audio_info
-      :type: viam.gen.common.v1.common_pb2.AudioInfo
+   .. py:method:: audio_info() -> common.v1.common_pb2.AudioInfo
 
       Info about the audio stream for this chunk
 
 
-   .. py:method:: HasField(field_name: Literal['audio_info', b'audio_info']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -200,5 +200,7 @@ Module Contents
 
 
 
-.. py:data:: global___AudioChunk
+.. py:type:: Global___AudioChunk
+   :canonical: AudioChunk
+
 

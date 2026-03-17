@@ -245,13 +245,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -318,12 +318,10 @@ Package Contents
       :type:  float
 
 
-   .. py:property:: accuracy
-      :type: google.protobuf.internal.containers.ScalarMap[str, float]
+   .. py:method:: accuracy() -> google.protobuf.internal.containers.ScalarMap[str, float]
 
 
-
-   .. py:method:: HasField(field_name: Literal['_compass_degrees_error', b'_compass_degrees_error', '_position_hdop', b'_position_hdop', '_position_nmea_gga_fix', b'_position_nmea_gga_fix', '_position_vdop', b'_position_vdop', 'compass_degrees_error', b'compass_degrees_error', 'position_hdop', b'position_hdop', 'position_nmea_gga_fix', b'position_nmea_gga_fix', 'position_vdop', b'position_vdop']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -341,10 +339,10 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_compass_degrees_error', b'_compass_degrees_error']) -> Literal['compass_degrees_error'] | None
-                  WhichOneof(oneof_group: Literal['_position_hdop', b'_position_hdop']) -> Literal['position_hdop'] | None
-                  WhichOneof(oneof_group: Literal['_position_nmea_gga_fix', b'_position_nmea_gga_fix']) -> Literal['position_nmea_gga_fix'] | None
-                  WhichOneof(oneof_group: Literal['_position_vdop', b'_position_vdop']) -> Literal['position_vdop'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__compass_degrees_error) -> _WhichOneofReturnType__compass_degrees_error | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__position_hdop) -> _WhichOneofReturnType__position_hdop | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__position_nmea_gga_fix) -> _WhichOneofReturnType__position_nmea_gga_fix | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__position_vdop) -> _WhichOneofReturnType__position_vdop | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -378,13 +376,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -402,7 +400,7 @@ Package Contents
 
 
 
-.. py:class:: GetAngularVelocityResponse(*, angular_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+.. py:class:: GetAngularVelocityResponse(*, angular_velocity: common.v1.common_pb2.Vector3 | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -414,13 +412,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: angular_velocity
-      :type: viam.gen.common.v1.common_pb2.Vector3
+   .. py:method:: angular_velocity() -> common.v1.common_pb2.Vector3
 
       Angular velocity in degrees/s across x/y/z axes
 
 
-   .. py:method:: HasField(field_name: Literal['angular_velocity', b'angular_velocity']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -456,13 +454,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -517,13 +515,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -541,7 +539,7 @@ Package Contents
 
 
 
-.. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+.. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: common.v1.common_pb2.Vector3 | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -553,13 +551,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: linear_acceleration
-      :type: viam.gen.common.v1.common_pb2.Vector3
+   .. py:method:: linear_acceleration() -> common.v1.common_pb2.Vector3
 
       Linear acceleration in m/s across x/y/z axes
 
 
-   .. py:method:: HasField(field_name: Literal['linear_acceleration', b'linear_acceleration']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -595,13 +593,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -619,7 +617,7 @@ Package Contents
 
 
 
-.. py:class:: GetLinearVelocityResponse(*, linear_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+.. py:class:: GetLinearVelocityResponse(*, linear_velocity: common.v1.common_pb2.Vector3 | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -631,13 +629,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: linear_velocity
-      :type: viam.gen.common.v1.common_pb2.Vector3
+   .. py:method:: linear_velocity() -> common.v1.common_pb2.Vector3
 
       Linear velocity in m/s across x/y/z axes
 
 
-   .. py:method:: HasField(field_name: Literal['linear_velocity', b'linear_velocity']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -673,13 +671,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -697,7 +695,7 @@ Package Contents
 
 
 
-.. py:class:: GetOrientationResponse(*, orientation: viam.gen.common.v1.common_pb2.Orientation | None = ...)
+.. py:class:: GetOrientationResponse(*, orientation: common.v1.common_pb2.Orientation | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -709,14 +707,14 @@ Package Contents
    shown below.
 
 
-   .. py:property:: orientation
-      :type: viam.gen.common.v1.common_pb2.Orientation
+   .. py:method:: orientation() -> common.v1.common_pb2.Orientation
 
       Orientation is returned as an orientation message with
       OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
 
 
-   .. py:method:: HasField(field_name: Literal['orientation', b'orientation']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -752,13 +750,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -776,7 +774,7 @@ Package Contents
 
 
 
-.. py:class:: GetPositionResponse(*, coordinate: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
+.. py:class:: GetPositionResponse(*, coordinate: common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -792,14 +790,14 @@ Package Contents
       :type:  float
 
 
-   .. py:property:: coordinate
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: coordinate() -> common.v1.common_pb2.GeoPoint
 
       Position is returned in a coordinate of latitute and longitude
       and an altidue in meters
 
 
-   .. py:method:: HasField(field_name: Literal['coordinate', b'coordinate']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -835,13 +833,13 @@ Package Contents
       Name of a movement sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

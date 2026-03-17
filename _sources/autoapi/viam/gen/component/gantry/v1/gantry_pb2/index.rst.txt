@@ -16,19 +16,19 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.gantry.v1.gantry_pb2.DESCRIPTOR
-   viam.gen.component.gantry.v1.gantry_pb2.global___GetPositionRequest
-   viam.gen.component.gantry.v1.gantry_pb2.global___GetPositionResponse
-   viam.gen.component.gantry.v1.gantry_pb2.global___MoveToPositionRequest
-   viam.gen.component.gantry.v1.gantry_pb2.global___MoveToPositionResponse
-   viam.gen.component.gantry.v1.gantry_pb2.global___HomeRequest
-   viam.gen.component.gantry.v1.gantry_pb2.global___HomeResponse
-   viam.gen.component.gantry.v1.gantry_pb2.global___GetLengthsRequest
-   viam.gen.component.gantry.v1.gantry_pb2.global___GetLengthsResponse
-   viam.gen.component.gantry.v1.gantry_pb2.global___StopRequest
-   viam.gen.component.gantry.v1.gantry_pb2.global___StopResponse
-   viam.gen.component.gantry.v1.gantry_pb2.global___Status
-   viam.gen.component.gantry.v1.gantry_pb2.global___IsMovingRequest
-   viam.gen.component.gantry.v1.gantry_pb2.global___IsMovingResponse
+   viam.gen.component.gantry.v1.gantry_pb2.Global___GetPositionRequest
+   viam.gen.component.gantry.v1.gantry_pb2.Global___GetPositionResponse
+   viam.gen.component.gantry.v1.gantry_pb2.Global___MoveToPositionRequest
+   viam.gen.component.gantry.v1.gantry_pb2.Global___MoveToPositionResponse
+   viam.gen.component.gantry.v1.gantry_pb2.Global___HomeRequest
+   viam.gen.component.gantry.v1.gantry_pb2.Global___HomeResponse
+   viam.gen.component.gantry.v1.gantry_pb2.Global___GetLengthsRequest
+   viam.gen.component.gantry.v1.gantry_pb2.Global___GetLengthsResponse
+   viam.gen.component.gantry.v1.gantry_pb2.Global___StopRequest
+   viam.gen.component.gantry.v1.gantry_pb2.Global___StopResponse
+   viam.gen.component.gantry.v1.gantry_pb2.Global___Status
+   viam.gen.component.gantry.v1.gantry_pb2.Global___IsMovingRequest
+   viam.gen.component.gantry.v1.gantry_pb2.Global___IsMovingResponse
 
 
 Classes
@@ -73,13 +73,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -97,7 +97,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPositionRequest
+.. py:type:: Global___GetPositionRequest
+   :canonical: GetPositionRequest
+
 
 .. py:class:: GetPositionResponse(*, positions_mm: collections.abc.Iterable[float] | None = ...)
 
@@ -111,12 +113,12 @@ Module Contents
    shown below.
 
 
-   .. py:property:: positions_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
+.. py:type:: Global___GetPositionResponse
+   :canonical: GetPositionResponse
 
-.. py:data:: global___GetPositionResponse
 
 .. py:class:: MoveToPositionRequest(*, name: str = ..., positions_mm: collections.abc.Iterable[float] | None = ..., speeds_mm_per_sec: collections.abc.Iterable[float] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -134,25 +136,25 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: positions_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Number of millimeters to move the gantry by respective to each axis.
 
 
-   .. py:property:: speeds_mm_per_sec
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+   .. py:method:: speeds_mm_per_sec() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Speeds to move each gantry axis must match length and order of positions_mm.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -170,7 +172,9 @@ Module Contents
 
 
 
-.. py:data:: global___MoveToPositionRequest
+.. py:type:: Global___MoveToPositionRequest
+   :canonical: MoveToPositionRequest
+
 
 .. py:class:: MoveToPositionResponse
 
@@ -184,7 +188,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___MoveToPositionResponse
+.. py:type:: Global___MoveToPositionResponse
+   :canonical: MoveToPositionResponse
+
 
 .. py:class:: HomeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -202,13 +208,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -226,7 +232,9 @@ Module Contents
 
 
 
-.. py:data:: global___HomeRequest
+.. py:type:: Global___HomeRequest
+   :canonical: HomeRequest
+
 
 .. py:class:: HomeResponse(*, homed: bool = ...)
 
@@ -246,7 +254,9 @@ Module Contents
       A bool describing whether the gantry has completed homing
 
 
-.. py:data:: global___HomeResponse
+.. py:type:: Global___HomeResponse
+   :canonical: HomeResponse
+
 
 .. py:class:: GetLengthsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -264,13 +274,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -288,7 +298,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetLengthsRequest
+.. py:type:: Global___GetLengthsRequest
+   :canonical: GetLengthsRequest
+
 
 .. py:class:: GetLengthsResponse(*, lengths_mm: collections.abc.Iterable[float] | None = ...)
 
@@ -302,12 +314,12 @@ Module Contents
    shown below.
 
 
-   .. py:property:: lengths_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
+.. py:type:: Global___GetLengthsResponse
+   :canonical: GetLengthsResponse
 
-.. py:data:: global___GetLengthsResponse
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -327,13 +339,13 @@ Module Contents
       Name of a gantry
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -351,7 +363,9 @@ Module Contents
 
 
 
-.. py:data:: global___StopRequest
+.. py:type:: Global___StopRequest
+   :canonical: StopRequest
+
 
 .. py:class:: StopResponse
 
@@ -365,7 +379,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___StopResponse
+.. py:type:: Global___StopResponse
+   :canonical: StopResponse
+
 
 .. py:class:: Status(*, positions_mm: collections.abc.Iterable[float] | None = ..., lengths_mm: collections.abc.Iterable[float] | None = ..., is_moving: bool = ...)
 
@@ -383,17 +399,15 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: positions_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
-
-   .. py:property:: lengths_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
+.. py:type:: Global___Status
+   :canonical: Status
 
-.. py:data:: global___Status
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
@@ -411,7 +425,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___IsMovingRequest
+.. py:type:: Global___IsMovingRequest
+   :canonical: IsMovingRequest
+
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
@@ -429,5 +445,7 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___IsMovingResponse
+.. py:type:: Global___IsMovingResponse
+   :canonical: IsMovingResponse
+
 

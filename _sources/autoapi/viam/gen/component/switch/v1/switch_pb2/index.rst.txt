@@ -16,12 +16,12 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.switch.v1.switch_pb2.DESCRIPTOR
-   viam.gen.component.switch.v1.switch_pb2.global___SetPositionRequest
-   viam.gen.component.switch.v1.switch_pb2.global___SetPositionResponse
-   viam.gen.component.switch.v1.switch_pb2.global___GetPositionRequest
-   viam.gen.component.switch.v1.switch_pb2.global___GetPositionResponse
-   viam.gen.component.switch.v1.switch_pb2.global___GetNumberOfPositionsRequest
-   viam.gen.component.switch.v1.switch_pb2.global___GetNumberOfPositionsResponse
+   viam.gen.component.switch.v1.switch_pb2.Global___SetPositionRequest
+   viam.gen.component.switch.v1.switch_pb2.Global___SetPositionResponse
+   viam.gen.component.switch.v1.switch_pb2.Global___GetPositionRequest
+   viam.gen.component.switch.v1.switch_pb2.Global___GetPositionResponse
+   viam.gen.component.switch.v1.switch_pb2.Global___GetNumberOfPositionsRequest
+   viam.gen.component.switch.v1.switch_pb2.Global___GetNumberOfPositionsResponse
 
 
 Classes
@@ -63,12 +63,10 @@ Module Contents
       :type:  int
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -86,7 +84,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetPositionRequest
+.. py:type:: Global___SetPositionRequest
+   :canonical: SetPositionRequest
+
 
 .. py:class:: SetPositionResponse
 
@@ -100,7 +100,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetPositionResponse
+.. py:type:: Global___SetPositionResponse
+   :canonical: SetPositionResponse
+
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -118,12 +120,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -141,7 +141,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPositionRequest
+.. py:type:: Global___GetPositionRequest
+   :canonical: GetPositionRequest
+
 
 .. py:class:: GetPositionResponse(*, position: int = ...)
 
@@ -159,7 +161,9 @@ Module Contents
       :type:  int
 
 
-.. py:data:: global___GetPositionResponse
+.. py:type:: Global___GetPositionResponse
+   :canonical: GetPositionResponse
+
 
 .. py:class:: GetNumberOfPositionsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -177,12 +181,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -200,7 +202,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetNumberOfPositionsRequest
+.. py:type:: Global___GetNumberOfPositionsRequest
+   :canonical: GetNumberOfPositionsRequest
+
 
 .. py:class:: GetNumberOfPositionsResponse(*, number_of_positions: int = ..., labels: collections.abc.Iterable[str] | None = ...)
 
@@ -218,10 +222,10 @@ Module Contents
       :type:  int
 
 
-   .. py:property:: labels
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: labels() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___GetNumberOfPositionsResponse
+   :canonical: GetNumberOfPositionsResponse
 
-.. py:data:: global___GetNumberOfPositionsResponse
 

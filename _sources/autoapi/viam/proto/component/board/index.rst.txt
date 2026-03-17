@@ -281,13 +281,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -341,13 +341,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -409,13 +409,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -469,13 +469,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -527,13 +527,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -603,13 +603,13 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -639,7 +639,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: Global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -658,24 +658,24 @@ Package Contents
 
 
    .. py:attribute:: power_mode
-      :type:  global___PowerMode
+      :type:  Global___PowerMode
 
       Requested power mode
 
 
-   .. py:property:: duration
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: duration() -> google.protobuf.duration_pb2.Duration
 
       Requested duration to stay in `power_mode`
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_duration', b'_duration', 'duration', b'duration', 'extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -693,7 +693,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_duration', b'_duration']) -> Literal['duration'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__duration) -> _WhichOneofReturnType__duration | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -745,13 +745,13 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -807,13 +807,13 @@ Package Contents
       0-1
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -897,14 +897,10 @@ Package Contents
 
 
 
-   .. py:property:: analogs
-      :type: google.protobuf.internal.containers.ScalarMap[str, int]
+   .. py:method:: analogs() -> google.protobuf.internal.containers.ScalarMap[str, int]
 
 
-
-   .. py:property:: digital_interrupts
-      :type: google.protobuf.internal.containers.ScalarMap[str, int]
-
+   .. py:method:: digital_interrupts() -> google.protobuf.internal.containers.ScalarMap[str, int]
 
 
 .. py:class:: StreamTicksRequest(*, name: str = ..., pin_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -925,19 +921,19 @@ Package Contents
       Board name
 
 
-   .. py:property:: pin_names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: pin_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Name of digital interrupts to recieve ticks from
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1005,13 +1001,13 @@ Package Contents
       :type:  int
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

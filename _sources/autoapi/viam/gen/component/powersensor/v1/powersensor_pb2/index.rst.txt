@@ -16,12 +16,12 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.powersensor.v1.powersensor_pb2.DESCRIPTOR
-   viam.gen.component.powersensor.v1.powersensor_pb2.global___GetVoltageRequest
-   viam.gen.component.powersensor.v1.powersensor_pb2.global___GetVoltageResponse
-   viam.gen.component.powersensor.v1.powersensor_pb2.global___GetCurrentRequest
-   viam.gen.component.powersensor.v1.powersensor_pb2.global___GetCurrentResponse
-   viam.gen.component.powersensor.v1.powersensor_pb2.global___GetPowerRequest
-   viam.gen.component.powersensor.v1.powersensor_pb2.global___GetPowerResponse
+   viam.gen.component.powersensor.v1.powersensor_pb2.Global___GetVoltageRequest
+   viam.gen.component.powersensor.v1.powersensor_pb2.Global___GetVoltageResponse
+   viam.gen.component.powersensor.v1.powersensor_pb2.Global___GetCurrentRequest
+   viam.gen.component.powersensor.v1.powersensor_pb2.Global___GetCurrentResponse
+   viam.gen.component.powersensor.v1.powersensor_pb2.Global___GetPowerRequest
+   viam.gen.component.powersensor.v1.powersensor_pb2.Global___GetPowerResponse
 
 
 Classes
@@ -61,13 +61,13 @@ Module Contents
       Name of a power sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -85,7 +85,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetVoltageRequest
+.. py:type:: Global___GetVoltageRequest
+   :canonical: GetVoltageRequest
+
 
 .. py:class:: GetVoltageResponse(*, volts: float = ..., is_ac: bool = ...)
 
@@ -111,7 +113,9 @@ Module Contents
       Bool describing whether the voltage is DC or AC
 
 
-.. py:data:: global___GetVoltageResponse
+.. py:type:: Global___GetVoltageResponse
+   :canonical: GetVoltageResponse
+
 
 .. py:class:: GetCurrentRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -131,13 +135,13 @@ Module Contents
       Name of a power sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -155,7 +159,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetCurrentRequest
+.. py:type:: Global___GetCurrentRequest
+   :canonical: GetCurrentRequest
+
 
 .. py:class:: GetCurrentResponse(*, amperes: float = ..., is_ac: bool = ...)
 
@@ -181,7 +187,9 @@ Module Contents
       Bool descibing whether the current is DC or AC
 
 
-.. py:data:: global___GetCurrentResponse
+.. py:type:: Global___GetCurrentResponse
+   :canonical: GetCurrentResponse
+
 
 .. py:class:: GetPowerRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -201,13 +209,13 @@ Module Contents
       Name of a power sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -225,7 +233,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPowerRequest
+.. py:type:: Global___GetPowerRequest
+   :canonical: GetPowerRequest
+
 
 .. py:class:: GetPowerResponse(*, watts: float = ...)
 
@@ -245,5 +255,7 @@ Module Contents
       Power in watts
 
 
-.. py:data:: global___GetPowerResponse
+.. py:type:: Global___GetPowerResponse
+   :canonical: GetPowerResponse
+
 

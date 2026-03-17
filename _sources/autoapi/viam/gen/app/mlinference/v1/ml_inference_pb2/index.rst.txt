@@ -16,8 +16,8 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.mlinference.v1.ml_inference_pb2.DESCRIPTOR
-   viam.gen.app.mlinference.v1.ml_inference_pb2.global___GetInferenceRequest
-   viam.gen.app.mlinference.v1.ml_inference_pb2.global___GetInferenceResponse
+   viam.gen.app.mlinference.v1.ml_inference_pb2.Global___GetInferenceRequest
+   viam.gen.app.mlinference.v1.ml_inference_pb2.Global___GetInferenceResponse
 
 
 Classes
@@ -35,7 +35,7 @@ Module Contents
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
 
-.. py:class:: GetInferenceRequest(*, registry_item_id: str = ..., registry_item_version: str = ..., binary_id: viam.gen.app.data.v1.data_pb2.BinaryID | None = ..., binary_data_id: str = ..., organization_id: str = ...)
+.. py:class:: GetInferenceRequest(*, registry_item_id: str = ..., registry_item_version: str = ..., binary_id: app.data.v1.data_pb2.BinaryID | None = ..., binary_data_id: str = ..., organization_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -67,12 +67,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: binary_id
-      :type: viam.gen.app.data.v1.data_pb2.BinaryID
+   .. py:method:: binary_id() -> app.data.v1.data_pb2.BinaryID
 
 
-
-   .. py:method:: HasField(field_name: Literal['binary_id', b'binary_id']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -90,9 +88,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetInferenceRequest
+.. py:type:: Global___GetInferenceRequest
+   :canonical: GetInferenceRequest
 
-.. py:class:: GetInferenceResponse(*, output_tensors: viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensors | None = ..., annotations: viam.gen.app.data.v1.data_pb2.Annotations | None = ...)
+
+.. py:class:: GetInferenceResponse(*, output_tensors: service.mlmodel.v1.mlmodel_pb2.FlatTensors | None = ..., annotations: app.data.v1.data_pb2.Annotations | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -104,17 +104,13 @@ Module Contents
    shown below.
 
 
-   .. py:property:: output_tensors
-      :type: viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensors
+   .. py:method:: output_tensors() -> service.mlmodel.v1.mlmodel_pb2.FlatTensors
 
 
-
-   .. py:property:: annotations
-      :type: viam.gen.app.data.v1.data_pb2.Annotations
+   .. py:method:: annotations() -> app.data.v1.data_pb2.Annotations
 
 
-
-   .. py:method:: HasField(field_name: Literal['annotations', b'annotations', 'output_tensors', b'output_tensors']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -132,5 +128,7 @@ Module Contents
 
 
 
-.. py:data:: global___GetInferenceResponse
+.. py:type:: Global___GetInferenceResponse
+   :canonical: GetInferenceResponse
+
 

@@ -107,7 +107,7 @@ Module Contents
 
 
 
-.. py:class:: AuthenticateRequest(*, entity: str = ..., credentials: global___Credentials | None = ...)
+.. py:class:: AuthenticateRequest(*, entity: str = ..., credentials: Global___Credentials | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -119,12 +119,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: credentials
-      :type: global___Credentials
+   .. py:method:: credentials() -> Global___Credentials
 
 
-
-   .. py:method:: HasField(field_name: Literal['credentials', b'credentials']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

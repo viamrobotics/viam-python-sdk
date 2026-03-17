@@ -21,23 +21,23 @@ Attributes
    viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_DEPTH
    viam.gen.component.camera.v1.camera_pb2.FORMAT_JPEG
    viam.gen.component.camera.v1.camera_pb2.FORMAT_PNG
-   viam.gen.component.camera.v1.camera_pb2.global___Format
-   viam.gen.component.camera.v1.camera_pb2.global___GetImageRequest
-   viam.gen.component.camera.v1.camera_pb2.global___GetImageResponse
-   viam.gen.component.camera.v1.camera_pb2.global___GetImagesRequest
-   viam.gen.component.camera.v1.camera_pb2.global___GetImagesResponse
-   viam.gen.component.camera.v1.camera_pb2.global___Image
-   viam.gen.component.camera.v1.camera_pb2.global___RenderFrameRequest
-   viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudRequest
-   viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudResponse
-   viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesRequest
-   viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesResponse
-   viam.gen.component.camera.v1.camera_pb2.global___Webcams
-   viam.gen.component.camera.v1.camera_pb2.global___Webcam
-   viam.gen.component.camera.v1.camera_pb2.global___Property
-   viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters
-   viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters
-   viam.gen.component.camera.v1.camera_pb2.global___ExtrinsicParameters
+   viam.gen.component.camera.v1.camera_pb2.Global___Format
+   viam.gen.component.camera.v1.camera_pb2.Global___GetImageRequest
+   viam.gen.component.camera.v1.camera_pb2.Global___GetImageResponse
+   viam.gen.component.camera.v1.camera_pb2.Global___GetImagesRequest
+   viam.gen.component.camera.v1.camera_pb2.Global___GetImagesResponse
+   viam.gen.component.camera.v1.camera_pb2.Global___Image
+   viam.gen.component.camera.v1.camera_pb2.Global___RenderFrameRequest
+   viam.gen.component.camera.v1.camera_pb2.Global___GetPointCloudRequest
+   viam.gen.component.camera.v1.camera_pb2.Global___GetPointCloudResponse
+   viam.gen.component.camera.v1.camera_pb2.Global___GetPropertiesRequest
+   viam.gen.component.camera.v1.camera_pb2.Global___GetPropertiesResponse
+   viam.gen.component.camera.v1.camera_pb2.Global___Webcams
+   viam.gen.component.camera.v1.camera_pb2.Global___Webcam
+   viam.gen.component.camera.v1.camera_pb2.Global___Property
+   viam.gen.component.camera.v1.camera_pb2.Global___IntrinsicParameters
+   viam.gen.component.camera.v1.camera_pb2.Global___DistortionParameters
+   viam.gen.component.camera.v1.camera_pb2.Global___ExtrinsicParameters
 
 
 Classes
@@ -90,7 +90,9 @@ Module Contents
 .. py:data:: FORMAT_PNG
    :type:  Format
 
-.. py:data:: global___Format
+.. py:type:: Global___Format
+   :canonical: Format
+
 
 .. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -116,13 +118,13 @@ Module Contents
       Requested MIME type of response
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -140,7 +142,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetImageRequest
+.. py:type:: Global___GetImageRequest
+   :canonical: GetImageRequest
+
 
 .. py:class:: GetImageResponse(*, mime_type: str = ..., image: bytes = ...)
 
@@ -166,7 +170,9 @@ Module Contents
       Frame in bytes
 
 
-.. py:data:: global___GetImageResponse
+.. py:type:: Global___GetImageResponse
+   :canonical: GetImageResponse
+
 
 .. py:class:: GetImagesRequest(*, name: str = ..., filter_source_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -186,20 +192,20 @@ Module Contents
       Name of a camera
 
 
-   .. py:property:: filter_source_names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: filter_source_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       The names of the sensors to retrieve images from. If this is not provided,
       all images from all sensors will be returned.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -217,9 +223,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetImagesRequest
+.. py:type:: Global___GetImagesRequest
+   :canonical: GetImagesRequest
 
-.. py:class:: GetImagesResponse(*, images: collections.abc.Iterable[global___Image] | None = ..., response_metadata: viam.gen.common.v1.common_pb2.ResponseMetadata | None = ...)
+
+.. py:class:: GetImagesResponse(*, images: collections.abc.Iterable[Global___Image] | None = ..., response_metadata: common.v1.common_pb2.ResponseMetadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -231,19 +239,19 @@ Module Contents
    shown below.
 
 
-   .. py:property:: images
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Image]
+   .. py:method:: images() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Image]
 
       list of images returned from the camera system
 
 
-   .. py:property:: response_metadata
-      :type: viam.gen.common.v1.common_pb2.ResponseMetadata
+
+   .. py:method:: response_metadata() -> common.v1.common_pb2.ResponseMetadata
 
       contains timestamp data
 
 
-   .. py:method:: HasField(field_name: Literal['response_metadata', b'response_metadata']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -261,9 +269,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetImagesResponse
+.. py:type:: Global___GetImagesResponse
+   :canonical: GetImagesResponse
 
-.. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ..., mime_type: str = ..., annotations: viam.gen.app.data.v1.data_pb2.Annotations | None = ...)
+
+.. py:class:: Image(*, source_name: str = ..., format: Global___Format = ..., image: bytes = ..., mime_type: str = ..., annotations: app.data.v1.data_pb2.Annotations | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -282,7 +292,7 @@ Module Contents
 
 
    .. py:attribute:: format
-      :type:  global___Format
+      :type:  Global___Format
 
       format of the response image bytes
 
@@ -299,13 +309,13 @@ Module Contents
       The mime type of the image
 
 
-   .. py:property:: annotations
-      :type: viam.gen.app.data.v1.data_pb2.Annotations
+   .. py:method:: annotations() -> app.data.v1.data_pb2.Annotations
 
       annotations can be used to store additional information about the image
 
 
-   .. py:method:: HasField(field_name: Literal['annotations', b'annotations']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -323,7 +333,9 @@ Module Contents
 
 
 
-.. py:data:: global___Image
+.. py:type:: Global___Image
+   :canonical: Image
+
 
 .. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -349,13 +361,13 @@ Module Contents
       Requested MIME type of response
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -373,7 +385,9 @@ Module Contents
 
 
 
-.. py:data:: global___RenderFrameRequest
+.. py:type:: Global___RenderFrameRequest
+   :canonical: RenderFrameRequest
+
 
 .. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -399,13 +413,13 @@ Module Contents
       Requested MIME type of response
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -423,7 +437,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPointCloudRequest
+.. py:type:: Global___GetPointCloudRequest
+   :canonical: GetPointCloudRequest
+
 
 .. py:class:: GetPointCloudResponse(*, mime_type: str = ..., point_cloud: bytes = ...)
 
@@ -449,7 +465,9 @@ Module Contents
       Frame in bytes
 
 
-.. py:data:: global___GetPointCloudResponse
+.. py:type:: Global___GetPointCloudResponse
+   :canonical: GetPointCloudResponse
+
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
 
@@ -469,9 +487,11 @@ Module Contents
       Name of a camera
 
 
-.. py:data:: global___GetPropertiesRequest
+.. py:type:: Global___GetPropertiesRequest
+   :canonical: GetPropertiesRequest
 
-.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ..., extrinsic_parameters: global___ExtrinsicParameters | None = ...)
+
+.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: Global___IntrinsicParameters | None = ..., distortion_parameters: Global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ..., extrinsic_parameters: Global___ExtrinsicParameters | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -495,36 +515,36 @@ Module Contents
       Optional camera frame rate for image capture timing
 
 
-   .. py:property:: intrinsic_parameters
-      :type: global___IntrinsicParameters
+   .. py:method:: intrinsic_parameters() -> Global___IntrinsicParameters
 
       Parameters for doing a perspective of a 3D scene to a 2D plane
       If camera does not provide intrinsic parameters, leave the field empty
       Initializing the parameters with 0-values is considered an error
 
 
-   .. py:property:: distortion_parameters
-      :type: global___DistortionParameters
+
+   .. py:method:: distortion_parameters() -> Global___DistortionParameters
 
       Parameters for modeling lens distortion in cameras
       If camera does not provide distortion parameters, leave the field empty
       Initializing the parameters with 0-values is considered an error
 
 
-   .. py:property:: mime_types
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+   .. py:method:: mime_types() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Supported MIME types by the camera
 
 
-   .. py:property:: extrinsic_parameters
-      :type: global___ExtrinsicParameters
+
+   .. py:method:: extrinsic_parameters() -> Global___ExtrinsicParameters
 
       Parameters for the camera's position relative to a reference frame
       If camera does not provide extrinsic parameters, leave the field empty
 
 
-   .. py:method:: HasField(field_name: Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -542,7 +562,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_frame_rate', b'_frame_rate']) -> Literal['frame_rate'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__frame_rate) -> _WhichOneofReturnType__frame_rate | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -558,9 +578,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetPropertiesResponse
+.. py:type:: Global___GetPropertiesResponse
+   :canonical: GetPropertiesResponse
 
-.. py:class:: Webcams(*, webcams: collections.abc.Iterable[global___Webcam] | None = ...)
+
+.. py:class:: Webcams(*, webcams: collections.abc.Iterable[Global___Webcam] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -572,14 +594,14 @@ Module Contents
    shown below.
 
 
-   .. py:property:: webcams
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]
+   .. py:method:: webcams() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Webcam]
 
 
+.. py:type:: Global___Webcams
+   :canonical: Webcams
 
-.. py:data:: global___Webcams
 
-.. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[global___Property] | None = ..., name: str = ..., id: str = ...)
+.. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[Global___Property] | None = ..., name: str = ..., id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -615,13 +637,15 @@ Module Contents
       Camera unique identifier
 
 
-   .. py:property:: properties
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]
+   .. py:method:: properties() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Property]
 
       Camera properties
 
 
-.. py:data:: global___Webcam
+
+.. py:type:: Global___Webcam
+   :canonical: Webcam
+
 
 .. py:class:: Property(*, width_px: int = ..., height_px: int = ..., frame_format: str = ..., frame_rate: float = ...)
 
@@ -659,7 +683,9 @@ Module Contents
       Video frame rate in fps
 
 
-.. py:data:: global___Property
+.. py:type:: Global___Property
+   :canonical: Property
+
 
 .. py:class:: IntrinsicParameters(*, width_px: int = ..., height_px: int = ..., focal_x_px: float = ..., focal_y_px: float = ..., center_x_px: float = ..., center_y_px: float = ...)
 
@@ -697,7 +723,9 @@ Module Contents
       :type:  float
 
 
-.. py:data:: global___IntrinsicParameters
+.. py:type:: Global___IntrinsicParameters
+   :canonical: IntrinsicParameters
+
 
 .. py:class:: DistortionParameters(*, model: str = ..., parameters: collections.abc.Iterable[float] | None = ...)
 
@@ -715,14 +743,14 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: parameters
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: parameters() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
+.. py:type:: Global___DistortionParameters
+   :canonical: DistortionParameters
 
-.. py:data:: global___DistortionParameters
 
-.. py:class:: ExtrinsicParameters(*, translation: viam.gen.common.v1.common_pb2.Vector3 | None = ..., orientation: viam.gen.common.v1.common_pb2.Orientation | None = ...)
+.. py:class:: ExtrinsicParameters(*, translation: common.v1.common_pb2.Vector3 | None = ..., orientation: common.v1.common_pb2.Orientation | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -731,19 +759,19 @@ Module Contents
    relative to a reference frame (the world or another sensor).
 
 
-   .. py:property:: translation
-      :type: viam.gen.common.v1.common_pb2.Vector3
+   .. py:method:: translation() -> common.v1.common_pb2.Vector3
 
       The translation from the reference frame to the camera.
 
 
-   .. py:property:: orientation
-      :type: viam.gen.common.v1.common_pb2.Orientation
+
+   .. py:method:: orientation() -> common.v1.common_pb2.Orientation
 
       The orientation from the reference frame to the camera.
 
 
-   .. py:method:: HasField(field_name: Literal['orientation', b'orientation', 'translation', b'translation']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -761,5 +789,7 @@ Module Contents
 
 
 
-.. py:data:: global___ExtrinsicParameters
+.. py:type:: Global___ExtrinsicParameters
+   :canonical: ExtrinsicParameters
+
 

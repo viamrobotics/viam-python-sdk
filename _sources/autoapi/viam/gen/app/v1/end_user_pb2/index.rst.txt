@@ -16,16 +16,16 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.v1.end_user_pb2.DESCRIPTOR
-   viam.gen.app.v1.end_user_pb2.global___IsLegalAcceptedRequest
-   viam.gen.app.v1.end_user_pb2.global___IsLegalAcceptedResponse
-   viam.gen.app.v1.end_user_pb2.global___AcceptLegalRequest
-   viam.gen.app.v1.end_user_pb2.global___AcceptLegalResponse
-   viam.gen.app.v1.end_user_pb2.global___RegisterAuthApplicationRequest
-   viam.gen.app.v1.end_user_pb2.global___RegisterAuthApplicationResponse
-   viam.gen.app.v1.end_user_pb2.global___UpdateAuthApplicationRequest
-   viam.gen.app.v1.end_user_pb2.global___UpdateAuthApplicationResponse
-   viam.gen.app.v1.end_user_pb2.global___GetAuthApplicationRequest
-   viam.gen.app.v1.end_user_pb2.global___GetAuthApplicationResponse
+   viam.gen.app.v1.end_user_pb2.Global___IsLegalAcceptedRequest
+   viam.gen.app.v1.end_user_pb2.Global___IsLegalAcceptedResponse
+   viam.gen.app.v1.end_user_pb2.Global___AcceptLegalRequest
+   viam.gen.app.v1.end_user_pb2.Global___AcceptLegalResponse
+   viam.gen.app.v1.end_user_pb2.Global___RegisterAuthApplicationRequest
+   viam.gen.app.v1.end_user_pb2.Global___RegisterAuthApplicationResponse
+   viam.gen.app.v1.end_user_pb2.Global___UpdateAuthApplicationRequest
+   viam.gen.app.v1.end_user_pb2.Global___UpdateAuthApplicationResponse
+   viam.gen.app.v1.end_user_pb2.Global___GetAuthApplicationRequest
+   viam.gen.app.v1.end_user_pb2.Global___GetAuthApplicationResponse
 
 
 Classes
@@ -63,7 +63,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___IsLegalAcceptedRequest
+.. py:type:: Global___IsLegalAcceptedRequest
+   :canonical: IsLegalAcceptedRequest
+
 
 .. py:class:: IsLegalAcceptedResponse(*, accepted_legal: bool = ...)
 
@@ -83,7 +85,9 @@ Module Contents
       If false, the user should not be able to use the application.
 
 
-.. py:data:: global___IsLegalAcceptedResponse
+.. py:type:: Global___IsLegalAcceptedResponse
+   :canonical: IsLegalAcceptedResponse
+
 
 .. py:class:: AcceptLegalRequest
 
@@ -97,7 +101,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___AcceptLegalRequest
+.. py:type:: Global___AcceptLegalRequest
+   :canonical: AcceptLegalRequest
+
 
 .. py:class:: AcceptLegalResponse
 
@@ -111,7 +117,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___AcceptLegalResponse
+.. py:type:: Global___AcceptLegalResponse
+   :canonical: AcceptLegalResponse
+
 
 .. py:class:: RegisterAuthApplicationRequest(*, application_name: str = ..., org_id: str = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ...)
 
@@ -137,17 +145,15 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: origin_uris
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: origin_uris() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: redirect_uris
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: redirect_uris() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___RegisterAuthApplicationRequest
+   :canonical: RegisterAuthApplicationRequest
 
-.. py:data:: global___RegisterAuthApplicationRequest
 
 .. py:class:: RegisterAuthApplicationResponse(*, application_id: str = ..., application_name: str = ..., client_secret: str = ...)
 
@@ -173,7 +179,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___RegisterAuthApplicationResponse
+.. py:type:: Global___RegisterAuthApplicationResponse
+   :canonical: RegisterAuthApplicationResponse
+
 
 .. py:class:: UpdateAuthApplicationRequest(*, org_id: str = ..., application_id: str = ..., application_name: str = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ...)
 
@@ -203,17 +211,15 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: origin_uris
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: origin_uris() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: redirect_uris
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: redirect_uris() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___UpdateAuthApplicationRequest
+   :canonical: UpdateAuthApplicationRequest
 
-.. py:data:: global___UpdateAuthApplicationRequest
 
 .. py:class:: UpdateAuthApplicationResponse(*, application_id: str = ..., application_name: str = ...)
 
@@ -235,7 +241,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___UpdateAuthApplicationResponse
+.. py:type:: Global___UpdateAuthApplicationResponse
+   :canonical: UpdateAuthApplicationResponse
+
 
 .. py:class:: GetAuthApplicationRequest(*, org_id: str = ..., application_id: str = ...)
 
@@ -257,7 +265,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___GetAuthApplicationRequest
+.. py:type:: Global___GetAuthApplicationRequest
+   :canonical: GetAuthApplicationRequest
+
 
 .. py:class:: GetAuthApplicationResponse(*, application_id: str = ..., application_name: str = ..., client_secret: str = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ...)
 
@@ -287,15 +297,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: origin_uris
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: origin_uris() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: redirect_uris
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: redirect_uris() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___GetAuthApplicationResponse
+   :canonical: GetAuthApplicationResponse
 
-.. py:data:: global___GetAuthApplicationResponse
 

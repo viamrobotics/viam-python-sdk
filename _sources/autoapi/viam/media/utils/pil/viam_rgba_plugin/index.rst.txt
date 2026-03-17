@@ -17,7 +17,7 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: RGBAEncoder(mode, *args)
+.. py:class:: RGBAEncoder(mode: str, *args: Any)
 
    Bases: :py:obj:`PIL.ImageFile.PyEncoder`
 
@@ -29,9 +29,11 @@ Module Contents
 
 
    .. py:attribute:: ENCODER_NAME
+      :value: 'VIAM_RGBA'
 
 
-   .. py:method:: encode(bufsize)
+
+   .. py:method:: encode(bufsize: int) -> tuple[int, int, bytes]
 
       Override to perform the encoding process.
 
@@ -42,7 +44,7 @@ Module Contents
 
 
 
-.. py:class:: RGBAImage(fp=None, filename=None)
+.. py:class:: RGBAImage(fp: PIL._typing.StrOrBytesPath | IO[bytes], filename: str | bytes | None = None)
 
    Bases: :py:obj:`PIL.ImageFile.ImageFile`
 
@@ -52,6 +54,8 @@ Module Contents
 
    .. py:attribute:: format
       :type:  ClassVar[str]
+      :value: 'VIAM_RGBA'
+
 
 
    .. py:attribute:: format_description
@@ -73,7 +77,7 @@ Module Contents
 
 
 
-.. py:class:: RGBADecoder(mode, *args)
+.. py:class:: RGBADecoder(mode: str, *args: Any)
 
    Bases: :py:obj:`PIL.ImageFile.PyDecoder`
 
@@ -84,7 +88,7 @@ Module Contents
    See :ref:`Writing Your Own File Codec in Python<file-codecs-py>`
 
 
-   .. py:method:: decode(buffer) -> Tuple[int, int]
+   .. py:method:: decode(buffer: bytes | PIL.Image.SupportsArrayInterface) -> tuple[int, int]
 
       Override to perform the decoding process.
 

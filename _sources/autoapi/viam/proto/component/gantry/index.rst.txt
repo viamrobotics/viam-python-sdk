@@ -210,13 +210,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -246,9 +246,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: lengths_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-
+   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -267,13 +265,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -303,9 +301,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: positions_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 .. py:class:: HomeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -324,13 +320,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -414,25 +410,25 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: positions_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Number of millimeters to move the gantry by respective to each axis.
 
 
-   .. py:property:: speeds_mm_per_sec
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+   .. py:method:: speeds_mm_per_sec() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Speeds to move each gantry axis must match length and order of positions_mm.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -478,14 +474,10 @@ Package Contents
       :type:  bool
 
 
-   .. py:property:: positions_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
-
-   .. py:property:: lengths_mm
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-
+   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -506,13 +498,13 @@ Package Contents
       Name of a gantry
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

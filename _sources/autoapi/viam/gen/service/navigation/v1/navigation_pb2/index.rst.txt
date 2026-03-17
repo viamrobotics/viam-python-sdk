@@ -19,32 +19,32 @@ Attributes
    viam.gen.service.navigation.v1.navigation_pb2.MAP_TYPE_UNSPECIFIED
    viam.gen.service.navigation.v1.navigation_pb2.MAP_TYPE_NONE
    viam.gen.service.navigation.v1.navigation_pb2.MAP_TYPE_GPS
-   viam.gen.service.navigation.v1.navigation_pb2.global___MapType
+   viam.gen.service.navigation.v1.navigation_pb2.Global___MapType
    viam.gen.service.navigation.v1.navigation_pb2.MODE_UNSPECIFIED
    viam.gen.service.navigation.v1.navigation_pb2.MODE_MANUAL
    viam.gen.service.navigation.v1.navigation_pb2.MODE_WAYPOINT
    viam.gen.service.navigation.v1.navigation_pb2.MODE_EXPLORE
-   viam.gen.service.navigation.v1.navigation_pb2.global___Mode
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetModeRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetModeResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___SetModeRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___SetModeResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___Waypoint
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetLocationRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetLocationResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetWaypointsRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetWaypointsResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___AddWaypointRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___AddWaypointResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___RemoveWaypointRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___RemoveWaypointResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetObstaclesRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetObstaclesResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___Path
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetPathsRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetPathsResponse
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetPropertiesRequest
-   viam.gen.service.navigation.v1.navigation_pb2.global___GetPropertiesResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___Mode
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetModeRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetModeResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___SetModeRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___SetModeResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___Waypoint
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetLocationRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetLocationResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetWaypointsRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetWaypointsResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___AddWaypointRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___AddWaypointResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___RemoveWaypointRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___RemoveWaypointResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetObstaclesRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetObstaclesResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___Path
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetPathsRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetPathsResponse
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetPropertiesRequest
+   viam.gen.service.navigation.v1.navigation_pb2.Global___GetPropertiesResponse
 
 
 Classes
@@ -99,7 +99,9 @@ Module Contents
 .. py:data:: MAP_TYPE_GPS
    :type:  MapType
 
-.. py:data:: global___MapType
+.. py:type:: Global___MapType
+   :canonical: MapType
+
 
 .. py:class:: Mode
 
@@ -118,7 +120,9 @@ Module Contents
 .. py:data:: MODE_EXPLORE
    :type:  Mode
 
-.. py:data:: global___Mode
+.. py:type:: Global___Mode
+   :canonical: Mode
+
 
 .. py:class:: GetModeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -136,13 +140,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -160,9 +164,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetModeRequest
+.. py:type:: Global___GetModeRequest
+   :canonical: GetModeRequest
 
-.. py:class:: GetModeResponse(*, mode: global___Mode = ...)
+
+.. py:class:: GetModeResponse(*, mode: Global___Mode = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -175,12 +181,14 @@ Module Contents
 
 
    .. py:attribute:: mode
-      :type:  global___Mode
+      :type:  Global___Mode
 
 
-.. py:data:: global___GetModeResponse
+.. py:type:: Global___GetModeResponse
+   :canonical: GetModeResponse
 
-.. py:class:: SetModeRequest(*, name: str = ..., mode: global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: SetModeRequest(*, name: str = ..., mode: Global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -197,16 +205,16 @@ Module Contents
 
 
    .. py:attribute:: mode
-      :type:  global___Mode
+      :type:  Global___Mode
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -224,7 +232,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetModeRequest
+.. py:type:: Global___SetModeRequest
+   :canonical: SetModeRequest
+
 
 .. py:class:: SetModeResponse
 
@@ -238,9 +248,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetModeResponse
+.. py:type:: Global___SetModeResponse
+   :canonical: SetModeResponse
 
-.. py:class:: Waypoint(*, id: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
+
+.. py:class:: Waypoint(*, id: str = ..., location: common.v1.common_pb2.GeoPoint | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -256,12 +268,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -279,7 +289,9 @@ Module Contents
 
 
 
-.. py:data:: global___Waypoint
+.. py:type:: Global___Waypoint
+   :canonical: Waypoint
+
 
 .. py:class:: GetLocationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -297,13 +309,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -321,9 +333,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetLocationRequest
+.. py:type:: Global___GetLocationRequest
+   :canonical: GetLocationRequest
 
-.. py:class:: GetLocationResponse(*, location: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., compass_heading: float = ...)
+
+.. py:class:: GetLocationResponse(*, location: common.v1.common_pb2.GeoPoint | None = ..., compass_heading: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -342,12 +356,10 @@ Module Contents
       90 is east, 180 is south, 270 is west
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -365,7 +377,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetLocationResponse
+.. py:type:: Global___GetLocationResponse
+   :canonical: GetLocationResponse
+
 
 .. py:class:: GetWaypointsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -383,13 +397,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -407,9 +421,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetWaypointsRequest
+.. py:type:: Global___GetWaypointsRequest
+   :canonical: GetWaypointsRequest
 
-.. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[global___Waypoint] | None = ...)
+
+.. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[Global___Waypoint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -421,14 +437,14 @@ Module Contents
    shown below.
 
 
-   .. py:property:: waypoints
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Waypoint]
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
 
 
+.. py:type:: Global___GetWaypointsResponse
+   :canonical: GetWaypointsResponse
 
-.. py:data:: global___GetWaypointsResponse
 
-.. py:class:: AddWaypointRequest(*, name: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddWaypointRequest(*, name: str = ..., location: common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -444,18 +460,16 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'location', b'location']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -473,7 +487,9 @@ Module Contents
 
 
 
-.. py:data:: global___AddWaypointRequest
+.. py:type:: Global___AddWaypointRequest
+   :canonical: AddWaypointRequest
+
 
 .. py:class:: AddWaypointResponse
 
@@ -487,7 +503,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___AddWaypointResponse
+.. py:type:: Global___AddWaypointResponse
+   :canonical: AddWaypointResponse
+
 
 .. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -509,13 +527,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -533,7 +551,9 @@ Module Contents
 
 
 
-.. py:data:: global___RemoveWaypointRequest
+.. py:type:: Global___RemoveWaypointRequest
+   :canonical: RemoveWaypointRequest
+
 
 .. py:class:: RemoveWaypointResponse
 
@@ -547,7 +567,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___RemoveWaypointResponse
+.. py:type:: Global___RemoveWaypointResponse
+   :canonical: RemoveWaypointResponse
+
 
 .. py:class:: GetObstaclesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -564,13 +586,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -588,9 +610,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetObstaclesRequest
+.. py:type:: Global___GetObstaclesRequest
+   :canonical: GetObstaclesRequest
 
-.. py:class:: GetObstaclesResponse(*, obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ...)
+
+.. py:class:: GetObstaclesResponse(*, obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -602,15 +626,17 @@ Module Contents
    shown below.
 
 
-   .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
+   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]
 
       List of all known geometries
 
 
-.. py:data:: global___GetObstaclesResponse
 
-.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoPoint] | None = ...)
+.. py:type:: Global___GetObstaclesResponse
+   :canonical: GetObstaclesResponse
+
+
+.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[common.v1.common_pb2.GeoPoint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -625,14 +651,16 @@ Module Contents
       The id of the user specified waypoint
 
 
-   .. py:property:: geopoints
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoPoint]
+   .. py:method:: geopoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoPoint]
 
       List of geopoints that the motion planner output to reach the destination
       The first geopoint is the starting position of the robot for that path
 
 
-.. py:data:: global___Path
+
+.. py:type:: Global___Path
+   :canonical: Path
+
 
 .. py:class:: GetPathsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -648,12 +676,10 @@ Module Contents
       Name of the navigation service
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -671,9 +697,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetPathsRequest
+.. py:type:: Global___GetPathsRequest
+   :canonical: GetPathsRequest
 
-.. py:class:: GetPathsResponse(*, paths: collections.abc.Iterable[global___Path] | None = ...)
+
+.. py:class:: GetPathsResponse(*, paths: collections.abc.Iterable[Global___Path] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -685,12 +713,12 @@ Module Contents
    shown below.
 
 
-   .. py:property:: paths
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Path]
+   .. py:method:: paths() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Path]
 
 
+.. py:type:: Global___GetPathsResponse
+   :canonical: GetPathsResponse
 
-.. py:data:: global___GetPathsResponse
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
 
@@ -710,9 +738,11 @@ Module Contents
       Name of the navigation service
 
 
-.. py:data:: global___GetPropertiesRequest
+.. py:type:: Global___GetPropertiesRequest
+   :canonical: GetPropertiesRequest
 
-.. py:class:: GetPropertiesResponse(*, map_type: global___MapType = ...)
+
+.. py:class:: GetPropertiesResponse(*, map_type: Global___MapType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -721,8 +751,10 @@ Module Contents
 
 
    .. py:attribute:: map_type
-      :type:  global___MapType
+      :type:  Global___MapType
 
 
-.. py:data:: global___GetPropertiesResponse
+.. py:type:: Global___GetPropertiesResponse
+   :canonical: GetPropertiesResponse
+
 

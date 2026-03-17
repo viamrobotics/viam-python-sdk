@@ -16,27 +16,27 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.motor.v1.motor_pb2.DESCRIPTOR
-   viam.gen.component.motor.v1.motor_pb2.global___SetPowerRequest
-   viam.gen.component.motor.v1.motor_pb2.global___SetPowerResponse
-   viam.gen.component.motor.v1.motor_pb2.global___GoForRequest
-   viam.gen.component.motor.v1.motor_pb2.global___GoForResponse
-   viam.gen.component.motor.v1.motor_pb2.global___GoToRequest
-   viam.gen.component.motor.v1.motor_pb2.global___GoToResponse
-   viam.gen.component.motor.v1.motor_pb2.global___SetRPMRequest
-   viam.gen.component.motor.v1.motor_pb2.global___SetRPMResponse
-   viam.gen.component.motor.v1.motor_pb2.global___ResetZeroPositionRequest
-   viam.gen.component.motor.v1.motor_pb2.global___ResetZeroPositionResponse
-   viam.gen.component.motor.v1.motor_pb2.global___GetPositionRequest
-   viam.gen.component.motor.v1.motor_pb2.global___GetPositionResponse
-   viam.gen.component.motor.v1.motor_pb2.global___StopRequest
-   viam.gen.component.motor.v1.motor_pb2.global___StopResponse
-   viam.gen.component.motor.v1.motor_pb2.global___IsPoweredRequest
-   viam.gen.component.motor.v1.motor_pb2.global___IsPoweredResponse
-   viam.gen.component.motor.v1.motor_pb2.global___GetPropertiesRequest
-   viam.gen.component.motor.v1.motor_pb2.global___GetPropertiesResponse
-   viam.gen.component.motor.v1.motor_pb2.global___Status
-   viam.gen.component.motor.v1.motor_pb2.global___IsMovingRequest
-   viam.gen.component.motor.v1.motor_pb2.global___IsMovingResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___SetPowerRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___SetPowerResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___GoForRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___GoForResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___GoToRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___GoToResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___SetRPMRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___SetRPMResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___ResetZeroPositionRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___ResetZeroPositionResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___GetPositionRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___GetPositionResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___StopRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___StopResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___IsPoweredRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___IsPoweredResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___GetPropertiesRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___GetPropertiesResponse
+   viam.gen.component.motor.v1.motor_pb2.Global___Status
+   viam.gen.component.motor.v1.motor_pb2.Global___IsMovingRequest
+   viam.gen.component.motor.v1.motor_pb2.Global___IsMovingResponse
 
 
 Classes
@@ -97,13 +97,13 @@ Module Contents
       Percentage of motor's power, between -1 and 1
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -121,7 +121,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetPowerRequest
+.. py:type:: Global___SetPowerRequest
+   :canonical: SetPowerRequest
+
 
 .. py:class:: SetPowerResponse
 
@@ -135,7 +137,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetPowerResponse
+.. py:type:: Global___SetPowerResponse
+   :canonical: SetPowerResponse
+
 
 .. py:class:: GoForRequest(*, name: str = ..., rpm: float = ..., revolutions: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -167,13 +171,13 @@ Module Contents
       Number of revolutions relative to motor's start position
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -191,7 +195,9 @@ Module Contents
 
 
 
-.. py:data:: global___GoForRequest
+.. py:type:: Global___GoForRequest
+   :canonical: GoForRequest
+
 
 .. py:class:: GoForResponse
 
@@ -205,7 +211,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___GoForResponse
+.. py:type:: Global___GoForResponse
+   :canonical: GoForResponse
+
 
 .. py:class:: GoToRequest(*, name: str = ..., rpm: float = ..., position_revolutions: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -237,13 +245,13 @@ Module Contents
       Number of revolutions relative to motor's home home/zero
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -261,7 +269,9 @@ Module Contents
 
 
 
-.. py:data:: global___GoToRequest
+.. py:type:: Global___GoToRequest
+   :canonical: GoToRequest
+
 
 .. py:class:: GoToResponse
 
@@ -275,7 +285,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___GoToResponse
+.. py:type:: Global___GoToResponse
+   :canonical: GoToResponse
+
 
 .. py:class:: SetRPMRequest(*, name: str = ..., rpm: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -301,13 +313,13 @@ Module Contents
       Speed of motor travel in rotations per minute
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -325,7 +337,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetRPMRequest
+.. py:type:: Global___SetRPMRequest
+   :canonical: SetRPMRequest
+
 
 .. py:class:: SetRPMResponse
 
@@ -339,7 +353,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetRPMResponse
+.. py:type:: Global___SetRPMResponse
+   :canonical: SetRPMResponse
+
 
 .. py:class:: ResetZeroPositionRequest(*, name: str = ..., offset: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -365,13 +381,13 @@ Module Contents
       Motor position
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -389,7 +405,9 @@ Module Contents
 
 
 
-.. py:data:: global___ResetZeroPositionRequest
+.. py:type:: Global___ResetZeroPositionRequest
+   :canonical: ResetZeroPositionRequest
+
 
 .. py:class:: ResetZeroPositionResponse
 
@@ -403,7 +421,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___ResetZeroPositionResponse
+.. py:type:: Global___ResetZeroPositionResponse
+   :canonical: ResetZeroPositionResponse
+
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -423,13 +443,13 @@ Module Contents
       Name of a motor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -447,7 +467,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPositionRequest
+.. py:type:: Global___GetPositionRequest
+   :canonical: GetPositionRequest
+
 
 .. py:class:: GetPositionResponse(*, position: float = ...)
 
@@ -467,7 +489,9 @@ Module Contents
       Current position of the motor relative to its home
 
 
-.. py:data:: global___GetPositionResponse
+.. py:type:: Global___GetPositionResponse
+   :canonical: GetPositionResponse
+
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -487,13 +511,13 @@ Module Contents
       Name of a motor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -511,7 +535,9 @@ Module Contents
 
 
 
-.. py:data:: global___StopRequest
+.. py:type:: Global___StopRequest
+   :canonical: StopRequest
+
 
 .. py:class:: StopResponse
 
@@ -525,7 +551,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___StopResponse
+.. py:type:: Global___StopResponse
+   :canonical: StopResponse
+
 
 .. py:class:: IsPoweredRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -545,13 +573,13 @@ Module Contents
       Name of a motor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -569,7 +597,9 @@ Module Contents
 
 
 
-.. py:data:: global___IsPoweredRequest
+.. py:type:: Global___IsPoweredRequest
+   :canonical: IsPoweredRequest
+
 
 .. py:class:: IsPoweredResponse(*, is_on: bool = ..., power_pct: float = ...)
 
@@ -597,7 +627,9 @@ Module Contents
       will be 0.
 
 
-.. py:data:: global___IsPoweredResponse
+.. py:type:: Global___IsPoweredResponse
+   :canonical: IsPoweredResponse
+
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -617,13 +649,13 @@ Module Contents
       Name of a motor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -641,7 +673,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPropertiesRequest
+.. py:type:: Global___GetPropertiesRequest
+   :canonical: GetPropertiesRequest
+
 
 .. py:class:: GetPropertiesResponse(*, position_reporting: bool = ...)
 
@@ -661,7 +695,9 @@ Module Contents
       Returns true if the motor supports reporting its position
 
 
-.. py:data:: global___GetPropertiesResponse
+.. py:type:: Global___GetPropertiesResponse
+   :canonical: GetPropertiesResponse
+
 
 .. py:class:: Status(*, is_powered: bool = ..., position: float = ..., is_moving: bool = ...)
 
@@ -693,7 +729,9 @@ Module Contents
       Returns true if the motor is moving
 
 
-.. py:data:: global___Status
+.. py:type:: Global___Status
+   :canonical: Status
+
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
@@ -711,7 +749,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___IsMovingRequest
+.. py:type:: Global___IsMovingRequest
+   :canonical: IsMovingRequest
+
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
@@ -729,5 +769,7 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___IsMovingResponse
+.. py:type:: Global___IsMovingResponse
+   :canonical: IsMovingResponse
+
 

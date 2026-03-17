@@ -29,7 +29,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ..., pseudolinear_constraint: collections.abc.Iterable[global___PseudolinearConstraint] | None = ...)
+.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[Global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[Global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[Global___CollisionSpecification] | None = ..., pseudolinear_constraint: collections.abc.Iterable[Global___PseudolinearConstraint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -37,29 +37,25 @@ Package Contents
    Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
 
 
-   .. py:property:: linear_constraint
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LinearConstraint]
+   .. py:method:: linear_constraint() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___LinearConstraint]
 
       Typed message for a specific constraint
 
 
-   .. py:property:: orientation_constraint
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrientationConstraint]
+
+   .. py:method:: orientation_constraint() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___OrientationConstraint]
 
 
-
-   .. py:property:: collision_specification
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]
+   .. py:method:: collision_specification() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CollisionSpecification]
 
 
-
-   .. py:property:: pseudolinear_constraint
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PseudolinearConstraint]
+   .. py:method:: pseudolinear_constraint() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PseudolinearConstraint]
 
       Arc constraint, Time constraint, and others will be added here when they are supported
 
 
-.. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
+
+.. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[Global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -101,13 +97,13 @@ Package Contents
       Optional angular velocity to target when turning
 
 
-   .. py:property:: obstacle_detectors
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]
+   .. py:method:: obstacle_detectors() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ObstacleDetector]
 
       The ObstacleDetectors that will be used for transient obstacle avoidance
 
 
-   .. py:method:: HasField(field_name: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -125,11 +121,11 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> Literal['angular_degs_per_sec'] | None
-                  WhichOneof(oneof_group: Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> Literal['linear_m_per_sec'] | None
-                  WhichOneof(oneof_group: Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> Literal['obstacle_polling_frequency_hz'] | None
-                  WhichOneof(oneof_group: Literal['_plan_deviation_m', b'_plan_deviation_m']) -> Literal['plan_deviation_m'] | None
-                  WhichOneof(oneof_group: Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> Literal['position_polling_frequency_hz'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__angular_degs_per_sec) -> _WhichOneofReturnType__angular_degs_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__linear_m_per_sec) -> _WhichOneofReturnType__linear_m_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__obstacle_polling_frequency_hz) -> _WhichOneofReturnType__obstacle_polling_frequency_hz | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__plan_deviation_m) -> _WhichOneofReturnType__plan_deviation_m | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__position_polling_frequency_hz) -> _WhichOneofReturnType__position_polling_frequency_hz | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -508,7 +504,7 @@ Package Contents
 
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 
 
@@ -605,9 +601,8 @@ Package Contents
    For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/>`_.
 
 
-   .. py:attribute:: Plan
-      :type:  TypeAlias
-      :value: GetPlanResponse
+   .. py:type:: Plan
+      :canonical: GetPlanResponse
 
 
 
@@ -953,7 +948,7 @@ Package Contents
 
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 
 

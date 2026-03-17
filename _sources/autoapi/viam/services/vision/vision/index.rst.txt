@@ -27,18 +27,28 @@ Module Contents
 
 
    .. py:attribute:: image
+      :value: None
+
 
 
    .. py:attribute:: classifications
+      :value: None
+
 
 
    .. py:attribute:: detections
+      :value: None
+
 
 
    .. py:attribute:: objects
+      :value: None
+
 
 
    .. py:attribute:: extra
+      :value: None
+
 
 
 .. py:class:: Vision(name: str, *, logger: Optional[logging.Logger] = None)
@@ -61,9 +71,8 @@ Module Contents
       The API of the Resource
 
 
-   .. py:attribute:: Properties
-      :type:  TypeAlias
-      :value: GetPropertiesResponse
+   .. py:type:: Properties
+      :canonical: GetPropertiesResponse
 
 
       Properties is a class that states what features are supported on the associated vision service.
@@ -296,7 +305,7 @@ Module Contents
 
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 
 

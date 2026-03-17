@@ -71,9 +71,8 @@ Package Contents
          The name of the analog pin
 
 
-      .. py:attribute:: Value
-         :type:  TypeAlias
-         :value: ReadAnalogReaderResponse
+      .. py:type:: Value
+         :canonical: ReadAnalogReaderResponse
 
 
          Value contains the result of reading an analog reader. It contains the raw data read,
@@ -475,7 +474,7 @@ Package Contents
 
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 
 

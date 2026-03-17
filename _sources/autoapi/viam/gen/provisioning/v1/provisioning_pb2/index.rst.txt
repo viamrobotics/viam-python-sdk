@@ -16,20 +16,20 @@ Attributes
 .. autoapisummary::
 
    viam.gen.provisioning.v1.provisioning_pb2.DESCRIPTOR
-   viam.gen.provisioning.v1.provisioning_pb2.global___ExitProvisioningRequest
-   viam.gen.provisioning.v1.provisioning_pb2.global___ExitProvisioningResponse
-   viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusRequest
-   viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusResponse
-   viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsRequest
-   viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsResponse
-   viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsRequest
-   viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsResponse
-   viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListRequest
-   viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListResponse
-   viam.gen.provisioning.v1.provisioning_pb2.global___ProvisioningInfo
-   viam.gen.provisioning.v1.provisioning_pb2.global___NetworkInfo
-   viam.gen.provisioning.v1.provisioning_pb2.global___CloudConfig
-   viam.gen.provisioning.v1.provisioning_pb2.global___APIKey
+   viam.gen.provisioning.v1.provisioning_pb2.Global___ExitProvisioningRequest
+   viam.gen.provisioning.v1.provisioning_pb2.Global___ExitProvisioningResponse
+   viam.gen.provisioning.v1.provisioning_pb2.Global___GetSmartMachineStatusRequest
+   viam.gen.provisioning.v1.provisioning_pb2.Global___GetSmartMachineStatusResponse
+   viam.gen.provisioning.v1.provisioning_pb2.Global___SetNetworkCredentialsRequest
+   viam.gen.provisioning.v1.provisioning_pb2.Global___SetNetworkCredentialsResponse
+   viam.gen.provisioning.v1.provisioning_pb2.Global___SetSmartMachineCredentialsRequest
+   viam.gen.provisioning.v1.provisioning_pb2.Global___SetSmartMachineCredentialsResponse
+   viam.gen.provisioning.v1.provisioning_pb2.Global___GetNetworkListRequest
+   viam.gen.provisioning.v1.provisioning_pb2.Global___GetNetworkListResponse
+   viam.gen.provisioning.v1.provisioning_pb2.Global___ProvisioningInfo
+   viam.gen.provisioning.v1.provisioning_pb2.Global___NetworkInfo
+   viam.gen.provisioning.v1.provisioning_pb2.Global___CloudConfig
+   viam.gen.provisioning.v1.provisioning_pb2.Global___APIKey
 
 
 Classes
@@ -71,7 +71,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___ExitProvisioningRequest
+.. py:type:: Global___ExitProvisioningRequest
+   :canonical: ExitProvisioningRequest
+
 
 .. py:class:: ExitProvisioningResponse
 
@@ -85,7 +87,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___ExitProvisioningResponse
+.. py:type:: Global___ExitProvisioningResponse
+   :canonical: ExitProvisioningResponse
+
 
 .. py:class:: GetSmartMachineStatusRequest
 
@@ -99,9 +103,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___GetSmartMachineStatusRequest
+.. py:type:: Global___GetSmartMachineStatusRequest
+   :canonical: GetSmartMachineStatusRequest
 
-.. py:class:: GetSmartMachineStatusResponse(*, provisioning_info: global___ProvisioningInfo | None = ..., has_smart_machine_credentials: bool = ..., is_online: bool = ..., latest_connection_attempt: global___NetworkInfo | None = ..., errors: collections.abc.Iterable[str] | None = ..., agent_version: str = ...)
+
+.. py:class:: GetSmartMachineStatusResponse(*, provisioning_info: Global___ProvisioningInfo | None = ..., has_smart_machine_credentials: bool = ..., is_online: bool = ..., latest_connection_attempt: Global___NetworkInfo | None = ..., errors: collections.abc.Iterable[str] | None = ..., agent_version: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -125,22 +131,16 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: provisioning_info
-      :type: global___ProvisioningInfo
+   .. py:method:: provisioning_info() -> Global___ProvisioningInfo
 
 
-
-   .. py:property:: latest_connection_attempt
-      :type: global___NetworkInfo
+   .. py:method:: latest_connection_attempt() -> Global___NetworkInfo
 
 
-
-   .. py:property:: errors
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: errors() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -158,7 +158,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetSmartMachineStatusResponse
+.. py:type:: Global___GetSmartMachineStatusResponse
+   :canonical: GetSmartMachineStatusResponse
+
 
 .. py:class:: SetNetworkCredentialsRequest(*, type: str = ..., ssid: str = ..., psk: str = ...)
 
@@ -184,7 +186,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___SetNetworkCredentialsRequest
+.. py:type:: Global___SetNetworkCredentialsRequest
+   :canonical: SetNetworkCredentialsRequest
+
 
 .. py:class:: SetNetworkCredentialsResponse
 
@@ -198,9 +202,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetNetworkCredentialsResponse
+.. py:type:: Global___SetNetworkCredentialsResponse
+   :canonical: SetNetworkCredentialsResponse
 
-.. py:class:: SetSmartMachineCredentialsRequest(*, cloud: global___CloudConfig | None = ...)
+
+.. py:class:: SetSmartMachineCredentialsRequest(*, cloud: Global___CloudConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -212,12 +218,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: cloud
-      :type: global___CloudConfig
+   .. py:method:: cloud() -> Global___CloudConfig
 
 
-
-   .. py:method:: HasField(field_name: Literal['cloud', b'cloud']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -235,7 +239,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetSmartMachineCredentialsRequest
+.. py:type:: Global___SetSmartMachineCredentialsRequest
+   :canonical: SetSmartMachineCredentialsRequest
+
 
 .. py:class:: SetSmartMachineCredentialsResponse
 
@@ -249,7 +255,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetSmartMachineCredentialsResponse
+.. py:type:: Global___SetSmartMachineCredentialsResponse
+   :canonical: SetSmartMachineCredentialsResponse
+
 
 .. py:class:: GetNetworkListRequest
 
@@ -263,9 +271,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___GetNetworkListRequest
+.. py:type:: Global___GetNetworkListRequest
+   :canonical: GetNetworkListRequest
 
-.. py:class:: GetNetworkListResponse(*, networks: collections.abc.Iterable[global___NetworkInfo] | None = ...)
+
+.. py:class:: GetNetworkListResponse(*, networks: collections.abc.Iterable[Global___NetworkInfo] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -277,12 +287,12 @@ Module Contents
    shown below.
 
 
-   .. py:property:: networks
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___NetworkInfo]
+   .. py:method:: networks() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___NetworkInfo]
 
 
+.. py:type:: Global___GetNetworkListResponse
+   :canonical: GetNetworkListResponse
 
-.. py:data:: global___GetNetworkListResponse
 
 .. py:class:: ProvisioningInfo(*, fragment_id: str = ..., model: str = ..., manufacturer: str = ...)
 
@@ -308,7 +318,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___ProvisioningInfo
+.. py:type:: Global___ProvisioningInfo
+   :canonical: ProvisioningInfo
+
 
 .. py:class:: NetworkInfo(*, type: str = ..., ssid: str = ..., security: str = ..., signal: int = ..., connected: bool = ..., last_error: str = ...)
 
@@ -346,9 +358,11 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___NetworkInfo
+.. py:type:: Global___NetworkInfo
+   :canonical: NetworkInfo
 
-.. py:class:: CloudConfig(*, id: str = ..., secret: str = ..., app_address: str = ..., api_key: global___APIKey | None = ...)
+
+.. py:class:: CloudConfig(*, id: str = ..., secret: str = ..., app_address: str = ..., api_key: Global___APIKey | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -372,12 +386,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: api_key
-      :type: global___APIKey
+   .. py:method:: api_key() -> Global___APIKey
 
 
-
-   .. py:method:: HasField(field_name: Literal['api_key', b'api_key']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -395,7 +407,9 @@ Module Contents
 
 
 
-.. py:data:: global___CloudConfig
+.. py:type:: Global___CloudConfig
+   :canonical: CloudConfig
+
 
 .. py:class:: APIKey(*, id: str = ..., key: str = ...)
 
@@ -417,5 +431,7 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___APIKey
+.. py:type:: Global___APIKey
+   :canonical: APIKey
+
 

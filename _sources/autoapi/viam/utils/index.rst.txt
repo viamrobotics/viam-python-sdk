@@ -37,7 +37,6 @@ Functions
    viam.utils.get_geometries
    viam.utils.sensor_readings_native_to_value
    viam.utils.sensor_readings_value_to_native
-   viam.utils.to_thread
    viam.utils.from_dm_from_extra
    viam.utils.create_filter
 
@@ -112,18 +111,6 @@ Module Contents
    .. py:property:: count
       :type: int
 
-
-
-.. py:function:: to_thread(func: Callable[_P, _R], *args: _P, **kwargs: _P) -> _R
-   :async:
-
-
-   Asynchronously run a function in a separate thread.
-
-   This is a copy of the function defined in the python source,
-   which is only available in python >= 3.9.
-
-   See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py
 
 
 .. py:function:: from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool

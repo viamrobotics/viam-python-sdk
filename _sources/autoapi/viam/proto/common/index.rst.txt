@@ -125,12 +125,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: command
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: command() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -156,12 +154,10 @@ Package Contents
    DoCommandResponse represents a generic DoCommand output
 
 
-   .. py:property:: result
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: result() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -179,7 +175,7 @@ Package Contents
 
 
 
-.. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+.. py:class:: GeoGeometry(*, location: Global___GeoPoint | None = ..., geometries: collections.abc.Iterable[Global___Geometry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -187,19 +183,19 @@ Package Contents
    GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
 
 
-   .. py:property:: location
-      :type: global___GeoPoint
+   .. py:method:: location() -> Global___GeoPoint
 
       Location of the geometry
 
 
-   .. py:property:: geometries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+
+   .. py:method:: geometries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Geometry]
 
       Geometries associated with the location, where embedded Pose data is with respect to the specified location
 
 
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -217,7 +213,7 @@ Package Contents
 
 
 
-.. py:class:: GeometriesInFrame(*, reference_frame: str = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+.. py:class:: GeometriesInFrame(*, reference_frame: str = ..., geometries: collections.abc.Iterable[Global___Geometry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -232,13 +228,13 @@ Package Contents
       Reference frame of the observer of the geometry
 
 
-   .. py:property:: geometries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+   .. py:method:: geometries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Geometry]
 
       Dimensional type
 
 
-.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., mesh: global___Mesh | None = ..., pointcloud: global___PointCloud | None = ..., label: str = ...)
+
+.. py:class:: Geometry(*, center: Global___Pose | None = ..., sphere: Global___Sphere | None = ..., box: Global___RectangularPrism | None = ..., capsule: Global___Capsule | None = ..., mesh: Global___Mesh | None = ..., pointcloud: Global___PointCloud | None = ..., label: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -252,38 +248,28 @@ Package Contents
       Label of the geometry. If none supplied, will be an empty string.
 
 
-   .. py:property:: center
-      :type: global___Pose
+   .. py:method:: center() -> Global___Pose
 
       Pose of a geometries center point
 
 
-   .. py:property:: sphere
-      :type: global___Sphere
+
+   .. py:method:: sphere() -> Global___Sphere
 
 
-
-   .. py:property:: box
-      :type: global___RectangularPrism
+   .. py:method:: box() -> Global___RectangularPrism
 
 
-
-   .. py:property:: capsule
-      :type: global___Capsule
+   .. py:method:: capsule() -> Global___Capsule
 
 
-
-   .. py:property:: mesh
-      :type: global___Mesh
+   .. py:method:: mesh() -> Global___Mesh
 
 
-
-   .. py:property:: pointcloud
-      :type: global___PointCloud
+   .. py:method:: pointcloud() -> Global___PointCloud
 
 
-
-   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -301,7 +287,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule', 'mesh', 'pointcloud'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_geometry_type) -> _WhichOneofReturnType_geometry_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -355,13 +341,13 @@ Package Contents
       The component name
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -379,7 +365,7 @@ Package Contents
 
 
 
-.. py:class:: Get3DModelsResponse(*, models: collections.abc.Mapping[str, global___Mesh] | None = ...)
+.. py:class:: Get3DModelsResponse(*, models: collections.abc.Mapping[str, Global___Mesh] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -391,7 +377,7 @@ Package Contents
    shown below.
 
 
-   .. py:class:: ModelsEntry(*, key: str = ..., value: global___Mesh | None = ...)
+   .. py:class:: ModelsEntry(*, key: str = ..., value: Global___Mesh | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -407,12 +393,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___Mesh
+      .. py:method:: value() -> Global___Mesh
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -431,10 +415,10 @@ Package Contents
 
 
 
-   .. py:property:: models
-      :type: google.protobuf.internal.containers.MessageMap[str, global___Mesh]
+   .. py:method:: models() -> google.protobuf.internal.containers.MessageMap[str, Global___Mesh]
 
       the 3D models associated with the component
+
 
 
 .. py:class:: GetGeometriesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -455,13 +439,13 @@ Package Contents
       The component name
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -479,7 +463,7 @@ Package Contents
 
 
 
-.. py:class:: GetGeometriesResponse(*, geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+.. py:class:: GetGeometriesResponse(*, geometries: collections.abc.Iterable[Global___Geometry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -491,10 +475,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: geometries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+   .. py:method:: geometries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Geometry]
 
       All geometries associated with the component, in their current configuration, in the frame of that component.
+
 
 
 .. py:class:: GetKinematicsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -515,13 +499,13 @@ Package Contents
       The component name
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -539,7 +523,7 @@ Package Contents
 
 
 
-.. py:class:: GetKinematicsResponse(*, format: global___KinematicsFileFormat = ..., kinematics_data: bytes = ..., meshes_by_urdf_filepath: collections.abc.Mapping[str, global___Mesh] | None = ...)
+.. py:class:: GetKinematicsResponse(*, format: Global___KinematicsFileFormat = ..., kinematics_data: bytes = ..., meshes_by_urdf_filepath: collections.abc.Mapping[str, Global___Mesh] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -551,7 +535,7 @@ Package Contents
    shown below.
 
 
-   .. py:class:: MeshesByUrdfFilepathEntry(*, key: str = ..., value: global___Mesh | None = ...)
+   .. py:class:: MeshesByUrdfFilepathEntry(*, key: str = ..., value: Global___Mesh | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -567,12 +551,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___Mesh
+      .. py:method:: value() -> Global___Mesh
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -592,7 +574,7 @@ Package Contents
 
 
    .. py:attribute:: format
-      :type:  global___KinematicsFileFormat
+      :type:  Global___KinematicsFileFormat
 
       The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
       https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
@@ -604,10 +586,10 @@ Package Contents
       The byte contents of the file
 
 
-   .. py:property:: meshes_by_urdf_filepath
-      :type: google.protobuf.internal.containers.MessageMap[str, global___Mesh]
+   .. py:method:: meshes_by_urdf_filepath() -> google.protobuf.internal.containers.MessageMap[str, Global___Mesh]
 
       Map of URDF mesh file paths to mesh data
+
 
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -622,12 +604,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -669,10 +649,10 @@ Package Contents
       Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)
 
 
-   .. py:property:: supported_codecs
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: supported_codecs() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       List of audio codecs supported by the system (e.g., "mp3", "pcm16", "pcm32float")
+
 
 
 .. py:class:: GetReadingsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -693,13 +673,13 @@ Package Contents
       Name of a sensor
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -745,12 +725,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: google.protobuf.struct_pb2.Value
+      .. py:method:: value() -> google.protobuf.struct_pb2.Value
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -769,9 +747,7 @@ Package Contents
 
 
 
-   .. py:property:: readings
-      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
-
+   .. py:method:: readings() -> google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
 
 
 .. py:class:: KinematicsFileFormat
@@ -811,22 +787,16 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: time
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: caller
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: caller() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:property:: fields
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
+   .. py:method:: fields() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
 
 
-
-   .. py:method:: HasField(field_name: Literal['caller', b'caller', 'time', b'time']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -920,7 +890,7 @@ Package Contents
       :type:  bytes
 
 
-.. py:class:: PointCloudObject(*, point_cloud: bytes = ..., geometries: global___GeometriesInFrame | None = ...)
+.. py:class:: PointCloudObject(*, point_cloud: bytes = ..., geometries: Global___GeometriesInFrame | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -935,13 +905,13 @@ Package Contents
       image frame expressed in bytes
 
 
-   .. py:property:: geometries
-      :type: global___GeometriesInFrame
+   .. py:method:: geometries() -> Global___GeometriesInFrame
 
       volume of a given geometry
 
 
-   .. py:method:: HasField(field_name: Literal['geometries', b'geometries']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1056,7 +1026,7 @@ Package Contents
       :type:  float
 
 
-.. py:class:: PoseInFrame(*, reference_frame: str = ..., pose: global___Pose | None = ..., goal_cloud: global___PoseCloud | None = ...)
+.. py:class:: PoseInFrame(*, reference_frame: str = ..., pose: Global___Pose | None = ..., goal_cloud: Global___PoseCloud | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1068,17 +1038,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: pose
-      :type: global___Pose
+   .. py:method:: pose() -> Global___Pose
 
 
-
-   .. py:property:: goal_cloud
-      :type: global___PoseCloud
+   .. py:method:: goal_cloud() -> Global___PoseCloud
 
 
-
-   .. py:method:: HasField(field_name: Literal['_goal_cloud', b'_goal_cloud', 'goal_cloud', b'goal_cloud', 'pose', b'pose']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1096,7 +1062,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_goal_cloud', b'_goal_cloud']) -> Literal['goal_cloud'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__goal_cloud) -> _WhichOneofReturnType__goal_cloud | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1112,7 +1078,7 @@ Package Contents
 
 
 
-.. py:class:: RectangularPrism(*, dims_mm: global___Vector3 | None = ...)
+.. py:class:: RectangularPrism(*, dims_mm: Global___Vector3 | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1121,12 +1087,10 @@ Package Contents
    These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
 
 
-   .. py:property:: dims_mm
-      :type: global___Vector3
+   .. py:method:: dims_mm() -> Global___Vector3
 
 
-
-   .. py:method:: HasField(field_name: Literal['dims_mm', b'dims_mm']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1184,8 +1148,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: captured_at
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: captured_at() -> google.protobuf.timestamp_pb2.Timestamp
 
       captured_at is the time at which the resource as close as physically possible, captured
       the data in the response.
@@ -1193,7 +1156,8 @@ Package Contents
       of measuring the capture are similar enough such that comparison can be made between them.
 
 
-   .. py:method:: HasField(field_name: Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1211,7 +1175,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_captured_at', b'_captured_at']) -> Literal['captured_at'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__captured_at) -> _WhichOneofReturnType__captured_at | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1243,7 +1207,7 @@ Package Contents
       :type:  float
 
 
-.. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ..., physical_object: global___Geometry | None = ..., uuid: bytes = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: Global___PoseInFrame | None = ..., physical_object: Global___Geometry | None = ..., uuid: bytes = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1265,24 +1229,22 @@ Package Contents
       The UUID of the transform
 
 
-   .. py:property:: pose_in_observer_frame
-      :type: global___PoseInFrame
+   .. py:method:: pose_in_observer_frame() -> Global___PoseInFrame
 
       the pose of the above reference frame with respect to a different observer reference frame
 
 
-   .. py:property:: physical_object
-      :type: global___Geometry
+
+   .. py:method:: physical_object() -> Global___Geometry
 
 
-
-   .. py:property:: metadata
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: metadata() -> google.protobuf.struct_pb2.Struct
 
       Can hold information like color, opacity, points colors, collision_allowed, etc...
 
 
-   .. py:method:: HasField(field_name: Literal['_metadata', b'_metadata', '_physical_object', b'_physical_object', 'metadata', b'metadata', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1300,8 +1262,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_metadata', b'_metadata']) -> Literal['metadata'] | None
-                  WhichOneof(oneof_group: Literal['_physical_object', b'_physical_object']) -> Literal['physical_object'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__metadata) -> _WhichOneofReturnType__metadata | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__physical_object) -> _WhichOneofReturnType__physical_object | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1341,7 +1303,7 @@ Package Contents
       :type:  float
 
 
-.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
+.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[Global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[Global___Transform] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1351,16 +1313,16 @@ Package Contents
    given reference frame and a new target reference frame.
 
 
-   .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
+   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___GeometriesInFrame]
 
       a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
 
 
-   .. py:property:: transforms
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
+
+   .. py:method:: transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Transform]
 
       a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
       another, or to attach moving geometries to the frame system. This field is optional
+
 
 

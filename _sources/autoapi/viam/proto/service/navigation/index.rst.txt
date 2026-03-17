@@ -218,7 +218,7 @@ Package Contents
 
 
 
-.. py:class:: AddWaypointRequest(*, name: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddWaypointRequest(*, name: str = ..., location: common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -234,18 +234,16 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'location', b'location']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -291,13 +289,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -315,7 +313,7 @@ Package Contents
 
 
 
-.. py:class:: GetLocationResponse(*, location: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., compass_heading: float = ...)
+.. py:class:: GetLocationResponse(*, location: common.v1.common_pb2.GeoPoint | None = ..., compass_heading: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -334,12 +332,10 @@ Package Contents
       90 is east, 180 is south, 270 is west
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -373,13 +369,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -397,7 +393,7 @@ Package Contents
 
 
 
-.. py:class:: GetModeResponse(*, mode: global___Mode = ...)
+.. py:class:: GetModeResponse(*, mode: Global___Mode = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -410,7 +406,7 @@ Package Contents
 
 
    .. py:attribute:: mode
-      :type:  global___Mode
+      :type:  Global___Mode
 
 
 .. py:class:: GetObstaclesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -428,13 +424,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -452,7 +448,7 @@ Package Contents
 
 
 
-.. py:class:: GetObstaclesResponse(*, obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ...)
+.. py:class:: GetObstaclesResponse(*, obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -464,10 +460,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
+   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]
 
       List of all known geometries
+
 
 
 .. py:class:: GetPathsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -484,12 +480,10 @@ Package Contents
       Name of the navigation service
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -507,7 +501,7 @@ Package Contents
 
 
 
-.. py:class:: GetPathsResponse(*, paths: collections.abc.Iterable[global___Path] | None = ...)
+.. py:class:: GetPathsResponse(*, paths: collections.abc.Iterable[Global___Path] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -519,9 +513,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: paths
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Path]
-
+   .. py:method:: paths() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Path]
 
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
@@ -542,7 +534,7 @@ Package Contents
       Name of the navigation service
 
 
-.. py:class:: GetPropertiesResponse(*, map_type: global___MapType = ...)
+.. py:class:: GetPropertiesResponse(*, map_type: Global___MapType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -551,7 +543,7 @@ Package Contents
 
 
    .. py:attribute:: map_type
-      :type:  global___MapType
+      :type:  Global___MapType
 
 
 .. py:class:: GetWaypointsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -570,13 +562,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -594,7 +586,7 @@ Package Contents
 
 
 
-.. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[global___Waypoint] | None = ...)
+.. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[Global___Waypoint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -606,9 +598,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: waypoints
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Waypoint]
-
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
 
 
 .. py:class:: MapType
@@ -624,7 +614,7 @@ Package Contents
    Bases: :py:obj:`_Mode`
 
 
-.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoPoint] | None = ...)
+.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[common.v1.common_pb2.GeoPoint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -639,11 +629,11 @@ Package Contents
       The id of the user specified waypoint
 
 
-   .. py:property:: geopoints
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoPoint]
+   .. py:method:: geopoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoPoint]
 
       List of geopoints that the motion planner output to reach the destination
       The first geopoint is the starting position of the robot for that path
+
 
 
 .. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -666,13 +656,13 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -702,7 +692,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: SetModeRequest(*, name: str = ..., mode: global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: SetModeRequest(*, name: str = ..., mode: Global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -719,16 +709,16 @@ Package Contents
 
 
    .. py:attribute:: mode
-      :type:  global___Mode
+      :type:  Global___Mode
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -758,7 +748,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: Waypoint(*, id: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
+.. py:class:: Waypoint(*, id: str = ..., location: common.v1.common_pb2.GeoPoint | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -774,12 +764,10 @@ Package Contents
       :type:  str
 
 
-   .. py:property:: location
-      :type: viam.gen.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
 
 
-
-   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

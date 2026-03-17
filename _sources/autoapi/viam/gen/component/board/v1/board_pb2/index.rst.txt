@@ -19,30 +19,30 @@ Attributes
    viam.gen.component.board.v1.board_pb2.POWER_MODE_UNSPECIFIED
    viam.gen.component.board.v1.board_pb2.POWER_MODE_NORMAL
    viam.gen.component.board.v1.board_pb2.POWER_MODE_OFFLINE_DEEP
-   viam.gen.component.board.v1.board_pb2.global___PowerMode
-   viam.gen.component.board.v1.board_pb2.global___Status
-   viam.gen.component.board.v1.board_pb2.global___SetGPIORequest
-   viam.gen.component.board.v1.board_pb2.global___SetGPIOResponse
-   viam.gen.component.board.v1.board_pb2.global___GetGPIORequest
-   viam.gen.component.board.v1.board_pb2.global___GetGPIOResponse
-   viam.gen.component.board.v1.board_pb2.global___PWMRequest
-   viam.gen.component.board.v1.board_pb2.global___PWMResponse
-   viam.gen.component.board.v1.board_pb2.global___SetPWMRequest
-   viam.gen.component.board.v1.board_pb2.global___SetPWMResponse
-   viam.gen.component.board.v1.board_pb2.global___PWMFrequencyRequest
-   viam.gen.component.board.v1.board_pb2.global___PWMFrequencyResponse
-   viam.gen.component.board.v1.board_pb2.global___SetPWMFrequencyRequest
-   viam.gen.component.board.v1.board_pb2.global___SetPWMFrequencyResponse
-   viam.gen.component.board.v1.board_pb2.global___ReadAnalogReaderRequest
-   viam.gen.component.board.v1.board_pb2.global___ReadAnalogReaderResponse
-   viam.gen.component.board.v1.board_pb2.global___WriteAnalogRequest
-   viam.gen.component.board.v1.board_pb2.global___WriteAnalogResponse
-   viam.gen.component.board.v1.board_pb2.global___GetDigitalInterruptValueRequest
-   viam.gen.component.board.v1.board_pb2.global___GetDigitalInterruptValueResponse
-   viam.gen.component.board.v1.board_pb2.global___StreamTicksRequest
-   viam.gen.component.board.v1.board_pb2.global___StreamTicksResponse
-   viam.gen.component.board.v1.board_pb2.global___SetPowerModeRequest
-   viam.gen.component.board.v1.board_pb2.global___SetPowerModeResponse
+   viam.gen.component.board.v1.board_pb2.Global___PowerMode
+   viam.gen.component.board.v1.board_pb2.Global___Status
+   viam.gen.component.board.v1.board_pb2.Global___SetGPIORequest
+   viam.gen.component.board.v1.board_pb2.Global___SetGPIOResponse
+   viam.gen.component.board.v1.board_pb2.Global___GetGPIORequest
+   viam.gen.component.board.v1.board_pb2.Global___GetGPIOResponse
+   viam.gen.component.board.v1.board_pb2.Global___PWMRequest
+   viam.gen.component.board.v1.board_pb2.Global___PWMResponse
+   viam.gen.component.board.v1.board_pb2.Global___SetPWMRequest
+   viam.gen.component.board.v1.board_pb2.Global___SetPWMResponse
+   viam.gen.component.board.v1.board_pb2.Global___PWMFrequencyRequest
+   viam.gen.component.board.v1.board_pb2.Global___PWMFrequencyResponse
+   viam.gen.component.board.v1.board_pb2.Global___SetPWMFrequencyRequest
+   viam.gen.component.board.v1.board_pb2.Global___SetPWMFrequencyResponse
+   viam.gen.component.board.v1.board_pb2.Global___ReadAnalogReaderRequest
+   viam.gen.component.board.v1.board_pb2.Global___ReadAnalogReaderResponse
+   viam.gen.component.board.v1.board_pb2.Global___WriteAnalogRequest
+   viam.gen.component.board.v1.board_pb2.Global___WriteAnalogResponse
+   viam.gen.component.board.v1.board_pb2.Global___GetDigitalInterruptValueRequest
+   viam.gen.component.board.v1.board_pb2.Global___GetDigitalInterruptValueResponse
+   viam.gen.component.board.v1.board_pb2.Global___StreamTicksRequest
+   viam.gen.component.board.v1.board_pb2.Global___StreamTicksResponse
+   viam.gen.component.board.v1.board_pb2.Global___SetPowerModeRequest
+   viam.gen.component.board.v1.board_pb2.Global___SetPowerModeResponse
 
 
 Classes
@@ -99,7 +99,9 @@ Module Contents
 .. py:data:: POWER_MODE_OFFLINE_DEEP
    :type:  PowerMode
 
-.. py:data:: global___PowerMode
+.. py:type:: Global___PowerMode
+   :canonical: PowerMode
+
 
 .. py:class:: Status(*, analogs: collections.abc.Mapping[str, int] | None = ..., digital_interrupts: collections.abc.Mapping[str, int] | None = ...)
 
@@ -155,17 +157,15 @@ Module Contents
 
 
 
-   .. py:property:: analogs
-      :type: google.protobuf.internal.containers.ScalarMap[str, int]
+   .. py:method:: analogs() -> google.protobuf.internal.containers.ScalarMap[str, int]
 
 
-
-   .. py:property:: digital_interrupts
-      :type: google.protobuf.internal.containers.ScalarMap[str, int]
+   .. py:method:: digital_interrupts() -> google.protobuf.internal.containers.ScalarMap[str, int]
 
 
+.. py:type:: Global___Status
+   :canonical: Status
 
-.. py:data:: global___Status
 
 .. py:class:: SetGPIORequest(*, name: str = ..., pin: str = ..., high: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -191,13 +191,13 @@ Module Contents
       :type:  bool
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -215,7 +215,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetGPIORequest
+.. py:type:: Global___SetGPIORequest
+   :canonical: SetGPIORequest
+
 
 .. py:class:: SetGPIOResponse
 
@@ -229,7 +231,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetGPIOResponse
+.. py:type:: Global___SetGPIOResponse
+   :canonical: SetGPIOResponse
+
 
 .. py:class:: GetGPIORequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -251,13 +255,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -275,7 +279,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetGPIORequest
+.. py:type:: Global___GetGPIORequest
+   :canonical: GetGPIORequest
+
 
 .. py:class:: GetGPIOResponse(*, high: bool = ...)
 
@@ -293,7 +299,9 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___GetGPIOResponse
+.. py:type:: Global___GetGPIOResponse
+   :canonical: GetGPIOResponse
+
 
 .. py:class:: PWMRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -315,13 +323,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -339,7 +347,9 @@ Module Contents
 
 
 
-.. py:data:: global___PWMRequest
+.. py:type:: Global___PWMRequest
+   :canonical: PWMRequest
+
 
 .. py:class:: PWMResponse(*, duty_cycle_pct: float = ...)
 
@@ -359,7 +369,9 @@ Module Contents
       0-1
 
 
-.. py:data:: global___PWMResponse
+.. py:type:: Global___PWMResponse
+   :canonical: PWMResponse
+
 
 .. py:class:: SetPWMRequest(*, name: str = ..., pin: str = ..., duty_cycle_pct: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -387,13 +399,13 @@ Module Contents
       0-1
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -411,7 +423,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetPWMRequest
+.. py:type:: Global___SetPWMRequest
+   :canonical: SetPWMRequest
+
 
 .. py:class:: SetPWMResponse
 
@@ -425,7 +439,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetPWMResponse
+.. py:type:: Global___SetPWMResponse
+   :canonical: SetPWMResponse
+
 
 .. py:class:: PWMFrequencyRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -447,13 +463,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -471,7 +487,9 @@ Module Contents
 
 
 
-.. py:data:: global___PWMFrequencyRequest
+.. py:type:: Global___PWMFrequencyRequest
+   :canonical: PWMFrequencyRequest
+
 
 .. py:class:: PWMFrequencyResponse(*, frequency_hz: int = ...)
 
@@ -489,7 +507,9 @@ Module Contents
       :type:  int
 
 
-.. py:data:: global___PWMFrequencyResponse
+.. py:type:: Global___PWMFrequencyResponse
+   :canonical: PWMFrequencyResponse
+
 
 .. py:class:: SetPWMFrequencyRequest(*, name: str = ..., pin: str = ..., frequency_hz: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -515,13 +535,13 @@ Module Contents
       :type:  int
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -539,7 +559,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetPWMFrequencyRequest
+.. py:type:: Global___SetPWMFrequencyRequest
+   :canonical: SetPWMFrequencyRequest
+
 
 .. py:class:: SetPWMFrequencyResponse
 
@@ -553,7 +575,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetPWMFrequencyResponse
+.. py:type:: Global___SetPWMFrequencyResponse
+   :canonical: SetPWMFrequencyResponse
+
 
 .. py:class:: ReadAnalogReaderRequest(*, board_name: str = ..., analog_reader_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -571,13 +595,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -595,7 +619,9 @@ Module Contents
 
 
 
-.. py:data:: global___ReadAnalogReaderRequest
+.. py:type:: Global___ReadAnalogReaderRequest
+   :canonical: ReadAnalogReaderRequest
+
 
 .. py:class:: ReadAnalogReaderResponse(*, value: int = ..., min_range: float = ..., max_range: float = ..., step_size: float = ...)
 
@@ -625,7 +651,9 @@ Module Contents
       :type:  float
 
 
-.. py:data:: global___ReadAnalogReaderResponse
+.. py:type:: Global___ReadAnalogReaderResponse
+   :canonical: ReadAnalogReaderResponse
+
 
 .. py:class:: WriteAnalogRequest(*, name: str = ..., pin: str = ..., value: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -647,13 +675,13 @@ Module Contents
       :type:  int
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -671,7 +699,9 @@ Module Contents
 
 
 
-.. py:data:: global___WriteAnalogRequest
+.. py:type:: Global___WriteAnalogRequest
+   :canonical: WriteAnalogRequest
+
 
 .. py:class:: WriteAnalogResponse
 
@@ -685,7 +715,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___WriteAnalogResponse
+.. py:type:: Global___WriteAnalogResponse
+   :canonical: WriteAnalogResponse
+
 
 .. py:class:: GetDigitalInterruptValueRequest(*, board_name: str = ..., digital_interrupt_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -703,13 +735,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -727,7 +759,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetDigitalInterruptValueRequest
+.. py:type:: Global___GetDigitalInterruptValueRequest
+   :canonical: GetDigitalInterruptValueRequest
+
 
 .. py:class:: GetDigitalInterruptValueResponse(*, value: int = ...)
 
@@ -745,7 +779,9 @@ Module Contents
       :type:  int
 
 
-.. py:data:: global___GetDigitalInterruptValueResponse
+.. py:type:: Global___GetDigitalInterruptValueResponse
+   :canonical: GetDigitalInterruptValueResponse
+
 
 .. py:class:: StreamTicksRequest(*, name: str = ..., pin_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -765,19 +801,19 @@ Module Contents
       Board name
 
 
-   .. py:property:: pin_names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: pin_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Name of digital interrupts to recieve ticks from
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -795,7 +831,9 @@ Module Contents
 
 
 
-.. py:data:: global___StreamTicksRequest
+.. py:type:: Global___StreamTicksRequest
+   :canonical: StreamTicksRequest
+
 
 .. py:class:: StreamTicksResponse(*, pin_name: str = ..., time: int = ..., high: bool = ...)
 
@@ -827,9 +865,11 @@ Module Contents
       Value high or low of the tick
 
 
-.. py:data:: global___StreamTicksResponse
+.. py:type:: Global___StreamTicksResponse
+   :canonical: StreamTicksResponse
 
-.. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: Global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -848,24 +888,24 @@ Module Contents
 
 
    .. py:attribute:: power_mode
-      :type:  global___PowerMode
+      :type:  Global___PowerMode
 
       Requested power mode
 
 
-   .. py:property:: duration
-      :type: google.protobuf.duration_pb2.Duration
+   .. py:method:: duration() -> google.protobuf.duration_pb2.Duration
 
       Requested duration to stay in `power_mode`
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_duration', b'_duration', 'duration', b'duration', 'extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -883,7 +923,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_duration', b'_duration']) -> Literal['duration'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__duration) -> _WhichOneofReturnType__duration | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -899,7 +939,9 @@ Module Contents
 
 
 
-.. py:data:: global___SetPowerModeRequest
+.. py:type:: Global___SetPowerModeRequest
+   :canonical: SetPowerModeRequest
+
 
 .. py:class:: SetPowerModeResponse
 
@@ -913,5 +955,7 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SetPowerModeResponse
+.. py:type:: Global___SetPowerModeResponse
+   :canonical: SetPowerModeResponse
+
 

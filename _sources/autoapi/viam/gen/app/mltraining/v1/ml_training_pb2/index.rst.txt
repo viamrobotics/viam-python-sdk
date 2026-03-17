@@ -20,13 +20,13 @@ Attributes
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_TYPE_MULTI_LABEL_CLASSIFICATION
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_TYPE_OBJECT_DETECTION
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___ModelType
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ModelType
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_FRAMEWORK_UNSPECIFIED
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_FRAMEWORK_TFLITE
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_FRAMEWORK_TENSORFLOW
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_FRAMEWORK_PYTORCH
    viam.gen.app.mltraining.v1.ml_training_pb2.MODEL_FRAMEWORK_ONNX
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___ModelFramework
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ModelFramework
    viam.gen.app.mltraining.v1.ml_training_pb2.TRAINING_STATUS_UNSPECIFIED
    viam.gen.app.mltraining.v1.ml_training_pb2.TRAINING_STATUS_PENDING
    viam.gen.app.mltraining.v1.ml_training_pb2.TRAINING_STATUS_IN_PROGRESS
@@ -34,26 +34,26 @@ Attributes
    viam.gen.app.mltraining.v1.ml_training_pb2.TRAINING_STATUS_FAILED
    viam.gen.app.mltraining.v1.ml_training_pb2.TRAINING_STATUS_CANCELED
    viam.gen.app.mltraining.v1.ml_training_pb2.TRAINING_STATUS_CANCELING
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___TrainingStatus
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___SubmitTrainingJobRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___SubmitTrainingJobResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___SubmitCustomTrainingJobRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___SubmitCustomTrainingJobResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___GetTrainingJobRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___GetTrainingJobResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___ListTrainingJobsRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___ListTrainingJobsResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___TrainingJobMetadata
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___CancelTrainingJobRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___CancelTrainingJobResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___DeleteCompletedTrainingJobRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___DeleteCompletedTrainingJobResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___TrainingJobLogEntry
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___GetTrainingJobLogsRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___GetTrainingJobLogsResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___ListSupportedContainersRequest
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___ListSupportedContainersResponse
-   viam.gen.app.mltraining.v1.ml_training_pb2.global___Container
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___TrainingStatus
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___SubmitTrainingJobRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___SubmitTrainingJobResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___SubmitCustomTrainingJobRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___SubmitCustomTrainingJobResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetTrainingJobRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetTrainingJobResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListTrainingJobsRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListTrainingJobsResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___TrainingJobMetadata
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___CancelTrainingJobRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___CancelTrainingJobResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___DeleteCompletedTrainingJobRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___DeleteCompletedTrainingJobResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___TrainingJobLogEntry
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetTrainingJobLogsRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetTrainingJobLogsResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListSupportedContainersRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListSupportedContainersResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___Container
 
 
 Classes
@@ -108,7 +108,9 @@ Module Contents
 .. py:data:: MODEL_TYPE_OBJECT_DETECTION
    :type:  ModelType
 
-.. py:data:: global___ModelType
+.. py:type:: Global___ModelType
+   :canonical: ModelType
+
 
 .. py:class:: ModelFramework
 
@@ -130,7 +132,9 @@ Module Contents
 .. py:data:: MODEL_FRAMEWORK_ONNX
    :type:  ModelFramework
 
-.. py:data:: global___ModelFramework
+.. py:type:: Global___ModelFramework
+   :canonical: ModelFramework
+
 
 .. py:class:: TrainingStatus
 
@@ -158,9 +162,11 @@ Module Contents
 .. py:data:: TRAINING_STATUS_CANCELING
    :type:  TrainingStatus
 
-.. py:data:: global___TrainingStatus
+.. py:type:: Global___TrainingStatus
+   :canonical: TrainingStatus
 
-.. py:class:: SubmitTrainingJobRequest(*, dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., tags: collections.abc.Iterable[str] | None = ...)
+
+.. py:class:: SubmitTrainingJobRequest(*, dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -189,19 +195,19 @@ Module Contents
 
 
    .. py:attribute:: model_type
-      :type:  global___ModelType
+      :type:  Global___ModelType
 
 
    .. py:attribute:: model_framework
-      :type:  global___ModelFramework
+      :type:  Global___ModelFramework
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+.. py:type:: Global___SubmitTrainingJobRequest
+   :canonical: SubmitTrainingJobRequest
 
-.. py:data:: global___SubmitTrainingJobRequest
 
 .. py:class:: SubmitTrainingJobResponse(*, id: str = ...)
 
@@ -219,7 +225,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___SubmitTrainingJobResponse
+.. py:type:: Global___SubmitTrainingJobResponse
+   :canonical: SubmitTrainingJobResponse
+
 
 .. py:class:: SubmitCustomTrainingJobRequest(*, dataset_id: str = ..., registry_item_id: str = ..., registry_item_version: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
 
@@ -282,12 +290,12 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: arguments
-      :type: google.protobuf.internal.containers.ScalarMap[str, str]
+   .. py:method:: arguments() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
 
+.. py:type:: Global___SubmitCustomTrainingJobRequest
+   :canonical: SubmitCustomTrainingJobRequest
 
-.. py:data:: global___SubmitCustomTrainingJobRequest
 
 .. py:class:: SubmitCustomTrainingJobResponse(*, id: str = ...)
 
@@ -305,7 +313,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___SubmitCustomTrainingJobResponse
+.. py:type:: Global___SubmitCustomTrainingJobResponse
+   :canonical: SubmitCustomTrainingJobResponse
+
 
 .. py:class:: GetTrainingJobRequest(*, id: str = ...)
 
@@ -323,9 +333,11 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___GetTrainingJobRequest
+.. py:type:: Global___GetTrainingJobRequest
+   :canonical: GetTrainingJobRequest
 
-.. py:class:: GetTrainingJobResponse(*, metadata: global___TrainingJobMetadata | None = ...)
+
+.. py:class:: GetTrainingJobResponse(*, metadata: Global___TrainingJobMetadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -337,12 +349,10 @@ Module Contents
    shown below.
 
 
-   .. py:property:: metadata
-      :type: global___TrainingJobMetadata
+   .. py:method:: metadata() -> Global___TrainingJobMetadata
 
 
-
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -360,9 +370,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetTrainingJobResponse
+.. py:type:: Global___GetTrainingJobResponse
+   :canonical: GetTrainingJobResponse
 
-.. py:class:: ListTrainingJobsRequest(*, organization_id: str = ..., status: global___TrainingStatus = ...)
+
+.. py:class:: ListTrainingJobsRequest(*, organization_id: str = ..., status: Global___TrainingStatus = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -379,12 +391,14 @@ Module Contents
 
 
    .. py:attribute:: status
-      :type:  global___TrainingStatus
+      :type:  Global___TrainingStatus
 
 
-.. py:data:: global___ListTrainingJobsRequest
+.. py:type:: Global___ListTrainingJobsRequest
+   :canonical: ListTrainingJobsRequest
 
-.. py:class:: ListTrainingJobsResponse(*, jobs: collections.abc.Iterable[global___TrainingJobMetadata] | None = ...)
+
+.. py:class:: ListTrainingJobsResponse(*, jobs: collections.abc.Iterable[Global___TrainingJobMetadata] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -396,14 +410,14 @@ Module Contents
    shown below.
 
 
-   .. py:property:: jobs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrainingJobMetadata]
+   .. py:method:: jobs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TrainingJobMetadata]
 
 
+.. py:type:: Global___ListTrainingJobsResponse
+   :canonical: ListTrainingJobsResponse
 
-.. py:data:: global___ListTrainingJobsResponse
 
-.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
+.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: Global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -457,11 +471,11 @@ Module Contents
 
 
    .. py:attribute:: model_type
-      :type:  global___ModelType
+      :type:  Global___ModelType
 
 
    .. py:attribute:: model_framework
-      :type:  global___ModelFramework
+      :type:  Global___ModelFramework
 
 
    .. py:attribute:: is_custom_job
@@ -477,7 +491,7 @@ Module Contents
 
 
    .. py:attribute:: status
-      :type:  global___TrainingStatus
+      :type:  Global___TrainingStatus
 
 
    .. py:attribute:: synced_model_id
@@ -488,42 +502,28 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: error_status
-      :type: google.rpc.status_pb2.Status
+   .. py:method:: error_status() -> google.rpc.status_pb2.Status
 
 
-
-   .. py:property:: created_on
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: last_modified
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: last_modified() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: training_started
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: training_started() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: training_ended
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: training_ended() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: arguments
-      :type: google.protobuf.internal.containers.ScalarMap[str, str]
+   .. py:method:: arguments() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
 
-
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -541,7 +541,9 @@ Module Contents
 
 
 
-.. py:data:: global___TrainingJobMetadata
+.. py:type:: Global___TrainingJobMetadata
+   :canonical: TrainingJobMetadata
+
 
 .. py:class:: CancelTrainingJobRequest(*, id: str = ...)
 
@@ -559,7 +561,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___CancelTrainingJobRequest
+.. py:type:: Global___CancelTrainingJobRequest
+   :canonical: CancelTrainingJobRequest
+
 
 .. py:class:: CancelTrainingJobResponse
 
@@ -573,7 +577,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___CancelTrainingJobResponse
+.. py:type:: Global___CancelTrainingJobResponse
+   :canonical: CancelTrainingJobResponse
+
 
 .. py:class:: DeleteCompletedTrainingJobRequest(*, id: str = ...)
 
@@ -591,7 +597,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___DeleteCompletedTrainingJobRequest
+.. py:type:: Global___DeleteCompletedTrainingJobRequest
+   :canonical: DeleteCompletedTrainingJobRequest
+
 
 .. py:class:: DeleteCompletedTrainingJobResponse
 
@@ -605,7 +613,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___DeleteCompletedTrainingJobResponse
+.. py:type:: Global___DeleteCompletedTrainingJobResponse
+   :canonical: DeleteCompletedTrainingJobResponse
+
 
 .. py:class:: TrainingJobLogEntry(*, level: str = ..., time: google.protobuf.timestamp_pb2.Timestamp | None = ..., message: str = ...)
 
@@ -627,12 +637,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: time
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['time', b'time']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -650,7 +658,9 @@ Module Contents
 
 
 
-.. py:data:: global___TrainingJobLogEntry
+.. py:type:: Global___TrainingJobLogEntry
+   :canonical: TrainingJobLogEntry
+
 
 .. py:class:: GetTrainingJobLogsRequest(*, id: str = ..., page_token: str | None = ...)
 
@@ -672,7 +682,7 @@ Module Contents
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_page_token', b'_page_token', 'page_token', b'page_token']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -690,7 +700,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -706,9 +716,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetTrainingJobLogsRequest
+.. py:type:: Global___GetTrainingJobLogsRequest
+   :canonical: GetTrainingJobLogsRequest
 
-.. py:class:: GetTrainingJobLogsResponse(*, logs: collections.abc.Iterable[global___TrainingJobLogEntry] | None = ..., next_page_token: str = ...)
+
+.. py:class:: GetTrainingJobLogsResponse(*, logs: collections.abc.Iterable[Global___TrainingJobLogEntry] | None = ..., next_page_token: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -724,12 +736,12 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: logs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrainingJobLogEntry]
+   .. py:method:: logs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TrainingJobLogEntry]
 
 
+.. py:type:: Global___GetTrainingJobLogsResponse
+   :canonical: GetTrainingJobLogsResponse
 
-.. py:data:: global___GetTrainingJobLogsResponse
 
 .. py:class:: ListSupportedContainersRequest
 
@@ -743,9 +755,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___ListSupportedContainersRequest
+.. py:type:: Global___ListSupportedContainersRequest
+   :canonical: ListSupportedContainersRequest
 
-.. py:class:: ListSupportedContainersResponse(*, container_map: collections.abc.Mapping[str, global___Container] | None = ...)
+
+.. py:class:: ListSupportedContainersResponse(*, container_map: collections.abc.Mapping[str, Global___Container] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -757,7 +771,7 @@ Module Contents
    shown below.
 
 
-   .. py:class:: ContainerMapEntry(*, key: str = ..., value: global___Container | None = ...)
+   .. py:class:: ContainerMapEntry(*, key: str = ..., value: Global___Container | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -773,12 +787,10 @@ Module Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___Container
+      .. py:method:: value() -> Global___Container
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -797,8 +809,7 @@ Module Contents
 
 
 
-   .. py:property:: container_map
-      :type: google.protobuf.internal.containers.MessageMap[str, global___Container]
+   .. py:method:: container_map() -> google.protobuf.internal.containers.MessageMap[str, Global___Container]
 
       ex value:
       container_map: {
@@ -811,7 +822,10 @@ Module Contents
       }
 
 
-.. py:data:: global___ListSupportedContainersResponse
+
+.. py:type:: Global___ListSupportedContainersResponse
+   :canonical: ListSupportedContainersResponse
+
 
 .. py:class:: Container(*, key: str = ..., uri: str = ..., framework: str = ..., description: str = ..., eol: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
@@ -841,12 +855,10 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: eol
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: eol() -> google.protobuf.timestamp_pb2.Timestamp
 
 
-
-   .. py:method:: HasField(field_name: Literal['eol', b'eol']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -864,5 +876,7 @@ Module Contents
 
 
 
-.. py:data:: global___Container
+.. py:type:: Global___Container
+   :canonical: Container
+
 

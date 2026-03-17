@@ -36,7 +36,7 @@ Module Contents
        ViamClient.create_from_env_vars()
 
 
-   .. py:method:: create_from_env_vars(dial_options: Optional[viam.rpc.dial.DialOptions] = None, app_url: Optional[str] = None) -> typing_extensions.Self
+   .. py:method:: create_from_env_vars(dial_options: Optional[viam.rpc.dial.DialOptions] = None, app_url: Optional[str] = None) -> Self
       :classmethod:
 
       :async:
@@ -58,7 +58,7 @@ Module Contents
 
 
 
-   .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> typing_extensions.Self
+   .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> Self
       :classmethod:
 
       :async:
@@ -86,6 +86,7 @@ Module Contents
    .. py:property:: data_client
       :type: viam.app.data_client.DataClient
 
+
       Instantiate and return a `DataClient` object used to make `data` and `data_sync` method calls.
       To use the `DataClient`, you must first instantiate a `ViamClient`.
 
@@ -105,6 +106,7 @@ Module Contents
 
    .. py:property:: app_client
       :type: viam.app.app_client.AppClient
+
 
       Instantiate and return an `AppClient` used to make  `app` method calls.
       To use the `AppClient`, you must first instantiate a `ViamClient`.
@@ -127,6 +129,7 @@ Module Contents
    .. py:property:: ml_training_client
       :type: viam.app.ml_training_client.MLTrainingClient
 
+
       Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.
       To use the `MLTrainingClient`, you must first instantiate a `ViamClient`.
 
@@ -147,6 +150,7 @@ Module Contents
 
    .. py:property:: billing_client
       :type: viam.app.billing_client.BillingClient
+
 
       
 
@@ -172,6 +176,7 @@ Module Contents
 
    .. py:property:: provisioning_client
       :type: viam.app.provisioning_client.ProvisioningClient
+
 
       Instantiate and return a `ProvisioningClient` used to make  `provisioning` method calls.
       To use the `ProvisioningClient`, you must first instantiate a `ViamClient`.

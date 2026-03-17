@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.resource.rpc_client_base &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -87,26 +85,32 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.resource.rpc_client_base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
-<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_lowercase</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">runtime_checkable</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">choice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">string</span><span class="w"> </span><span class="kn">import</span> <span class="n">ascii_lowercase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">runtime_checkable</span>
 
-<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.rpc.types</span> <span class="kn">import</span> <span class="n">RPCServiceStubBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.rpc.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPCServiceStubBase</span>
 
 
-<div class="viewcode-block" id="ResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase">[docs]</a><span class="nd">@runtime_checkable</span>
-<span class="k">class</span> <span class="nc">ResourceRPCClientBase</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceRPCClientBase">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase">[docs]</a>
+<span class="nd">@runtime_checkable</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ResourceRPCClientBase</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base RPC client for a resource.</span>
 <span class="sd">    Resource RPC clients must inherit from this class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ResourceRPCClientBase.Metadata"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata">[docs]</a>    <span class="k">class</span> <span class="nc">Metadata</span><span class="p">:</span>
+<div class="viewcode-block" id="ResourceRPCClientBase.Metadata">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Metadata</span><span class="p">:</span>
         <span class="n">metadata</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.enable_debug_logging"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.enable_debug_logging">[docs]</a>        <span class="k">def</span> <span class="nf">enable_debug_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.enable_debug_logging">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.enable_debug_logging">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">enable_debug_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Enables server-side debug logging for resource methods.</span>
 
 <span class="sd">            Args:</span>
@@ -116,34 +120,50 @@
                 <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">choice</span><span class="p">(</span><span class="n">ascii_lowercase</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;dtname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span></div>
 
-<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.disable_debug_logging"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.disable_debug_logging">[docs]</a>        <span class="k">def</span> <span class="nf">disable_debug_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.disable_debug_logging">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.disable_debug_logging">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">disable_debug_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Disables server-side debug logging for resource methods.&quot;&quot;&quot;</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;dtname&quot;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.add_metadata"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.add_metadata">[docs]</a>        <span class="k">def</span> <span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.add_metadata">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.add_metadata">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">add_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Adds a key-value pair to the metadata&quot;&quot;&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.delete_metadata"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.delete_metadata">[docs]</a>        <span class="k">def</span> <span class="nf">delete_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ResourceRPCClientBase.Metadata.delete_metadata">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.delete_metadata">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">delete_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Removes a key-value pair from the metadata by key&quot;&quot;&quot;</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
 
+
         <span class="nd">@property</span>
-        <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Returns metadata in a gRPC-appropriate form&quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span></div>
+
 
     <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">Any</span></div>
 
 
-<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">[docs]</a><span class="k">class</span> <span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A base RPC client that can reset its channel.</span>
 
 <span class="sd">    Useful if connection is lost and then regained.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>    <span class="k">def</span> <span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Called when the RPC channel was reset. Passes in the new channel.</span>
 
 <span class="sd">        Args:</span>
@@ -151,7 +171,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">RPCServiceStubBase</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>

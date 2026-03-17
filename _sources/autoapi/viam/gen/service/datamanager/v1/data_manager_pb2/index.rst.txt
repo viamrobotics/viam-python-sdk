@@ -16,10 +16,10 @@ Attributes
 .. autoapisummary::
 
    viam.gen.service.datamanager.v1.data_manager_pb2.DESCRIPTOR
-   viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncRequest
-   viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncResponse
-   viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsRequest
-   viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsResponse
+   viam.gen.service.datamanager.v1.data_manager_pb2.Global___SyncRequest
+   viam.gen.service.datamanager.v1.data_manager_pb2.Global___SyncResponse
+   viam.gen.service.datamanager.v1.data_manager_pb2.Global___UploadBinaryDataToDatasetsRequest
+   viam.gen.service.datamanager.v1.data_manager_pb2.Global___UploadBinaryDataToDatasetsResponse
 
 
 Classes
@@ -55,13 +55,13 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -79,7 +79,9 @@ Module Contents
 
 
 
-.. py:data:: global___SyncRequest
+.. py:type:: Global___SyncRequest
+   :canonical: SyncRequest
+
 
 .. py:class:: SyncResponse
 
@@ -93,9 +95,11 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___SyncResponse
+.. py:type:: Global___SyncResponse
+   :canonical: SyncResponse
 
-.. py:class:: UploadBinaryDataToDatasetsRequest(*, name: str = ..., binary_data: bytes = ..., tags: collections.abc.Iterable[str] | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., mime_type: viam.gen.app.datasync.v1.data_sync_pb2.MimeType.ValueType = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: UploadBinaryDataToDatasetsRequest(*, name: str = ..., binary_data: bytes = ..., tags: collections.abc.Iterable[str] | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., mime_type: app.datasync.v1.data_sync_pb2.MimeType.ValueType = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -116,26 +120,22 @@ Module Contents
 
 
    .. py:attribute:: mime_type
-      :type:  viam.gen.app.datasync.v1.data_sync_pb2.MimeType.ValueType
+      :type:  app.datasync.v1.data_sync_pb2.MimeType.ValueType
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: dataset_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: dataset_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -153,7 +153,9 @@ Module Contents
 
 
 
-.. py:data:: global___UploadBinaryDataToDatasetsRequest
+.. py:type:: Global___UploadBinaryDataToDatasetsRequest
+   :canonical: UploadBinaryDataToDatasetsRequest
+
 
 .. py:class:: UploadBinaryDataToDatasetsResponse
 
@@ -167,5 +169,7 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___UploadBinaryDataToDatasetsResponse
+.. py:type:: Global___UploadBinaryDataToDatasetsResponse
+   :canonical: UploadBinaryDataToDatasetsResponse
+
 

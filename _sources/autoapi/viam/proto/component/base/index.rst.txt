@@ -213,12 +213,10 @@ Package Contents
       Name of the base
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
-
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -322,13 +320,13 @@ Package Contents
       Desired travel velocity in millimeters/second
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -358,7 +356,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: SetPowerRequest(*, name: str = ..., linear: viam.gen.common.v1.common_pb2.Vector3 | None = ..., angular: viam.gen.common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: SetPowerRequest(*, name: str = ..., linear: common.v1.common_pb2.Vector3 | None = ..., angular: common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -376,25 +374,25 @@ Package Contents
       Name of a base
 
 
-   .. py:property:: linear
-      :type: viam.gen.common.v1.common_pb2.Vector3
+   .. py:method:: linear() -> common.v1.common_pb2.Vector3
 
       Desired linear power percentage as -1 -> 1
 
 
-   .. py:property:: angular
-      :type: viam.gen.common.v1.common_pb2.Vector3
+
+   .. py:method:: angular() -> common.v1.common_pb2.Vector3
 
       Desired angular power percentage % as -1 -> 1
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['angular', b'angular', 'extra', b'extra', 'linear', b'linear']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -424,7 +422,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: SetVelocityRequest(*, name: str = ..., linear: viam.gen.common.v1.common_pb2.Vector3 | None = ..., angular: viam.gen.common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: SetVelocityRequest(*, name: str = ..., linear: common.v1.common_pb2.Vector3 | None = ..., angular: common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -442,25 +440,25 @@ Package Contents
       Name of a base
 
 
-   .. py:property:: linear
-      :type: viam.gen.common.v1.common_pb2.Vector3
+   .. py:method:: linear() -> common.v1.common_pb2.Vector3
 
       Desired linear velocity in mm per second
 
 
-   .. py:property:: angular
-      :type: viam.gen.common.v1.common_pb2.Vector3
+
+   .. py:method:: angular() -> common.v1.common_pb2.Vector3
 
       Desired angular velocity in degrees per second
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['angular', b'angular', 'extra', b'extra', 'linear', b'linear']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -520,13 +518,13 @@ Package Contents
       Desired angular velocity
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -574,13 +572,13 @@ Package Contents
       Name of a base
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

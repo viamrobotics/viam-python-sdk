@@ -20,20 +20,20 @@ Attributes
    viam.gen.service.slam.v1.slam_pb2.MAPPING_MODE_CREATE_NEW_MAP
    viam.gen.service.slam.v1.slam_pb2.MAPPING_MODE_LOCALIZE_ONLY
    viam.gen.service.slam.v1.slam_pb2.MAPPING_MODE_UPDATE_EXISTING_MAP
-   viam.gen.service.slam.v1.slam_pb2.global___MappingMode
+   viam.gen.service.slam.v1.slam_pb2.Global___MappingMode
    viam.gen.service.slam.v1.slam_pb2.SENSOR_TYPE_UNSPECIFIED
    viam.gen.service.slam.v1.slam_pb2.SENSOR_TYPE_CAMERA
    viam.gen.service.slam.v1.slam_pb2.SENSOR_TYPE_MOVEMENT_SENSOR
-   viam.gen.service.slam.v1.slam_pb2.global___SensorType
-   viam.gen.service.slam.v1.slam_pb2.global___GetPositionRequest
-   viam.gen.service.slam.v1.slam_pb2.global___GetPositionResponse
-   viam.gen.service.slam.v1.slam_pb2.global___GetPointCloudMapRequest
-   viam.gen.service.slam.v1.slam_pb2.global___GetPointCloudMapResponse
-   viam.gen.service.slam.v1.slam_pb2.global___GetInternalStateRequest
-   viam.gen.service.slam.v1.slam_pb2.global___GetInternalStateResponse
-   viam.gen.service.slam.v1.slam_pb2.global___GetPropertiesRequest
-   viam.gen.service.slam.v1.slam_pb2.global___GetPropertiesResponse
-   viam.gen.service.slam.v1.slam_pb2.global___SensorInfo
+   viam.gen.service.slam.v1.slam_pb2.Global___SensorType
+   viam.gen.service.slam.v1.slam_pb2.Global___GetPositionRequest
+   viam.gen.service.slam.v1.slam_pb2.Global___GetPositionResponse
+   viam.gen.service.slam.v1.slam_pb2.Global___GetPointCloudMapRequest
+   viam.gen.service.slam.v1.slam_pb2.Global___GetPointCloudMapResponse
+   viam.gen.service.slam.v1.slam_pb2.Global___GetInternalStateRequest
+   viam.gen.service.slam.v1.slam_pb2.Global___GetInternalStateResponse
+   viam.gen.service.slam.v1.slam_pb2.Global___GetPropertiesRequest
+   viam.gen.service.slam.v1.slam_pb2.Global___GetPropertiesResponse
+   viam.gen.service.slam.v1.slam_pb2.Global___SensorInfo
 
 
 Classes
@@ -82,7 +82,9 @@ Module Contents
 .. py:data:: MAPPING_MODE_UPDATE_EXISTING_MAP
    :type:  MappingMode
 
-.. py:data:: global___MappingMode
+.. py:type:: Global___MappingMode
+   :canonical: MappingMode
+
 
 .. py:class:: SensorType
 
@@ -98,7 +100,9 @@ Module Contents
 .. py:data:: SENSOR_TYPE_MOVEMENT_SENSOR
    :type:  SensorType
 
-.. py:data:: global___SensorType
+.. py:type:: Global___SensorType
+   :canonical: SensorType
+
 
 .. py:class:: GetPositionRequest(*, name: str = ...)
 
@@ -118,9 +122,11 @@ Module Contents
       Name of slam service
 
 
-.. py:data:: global___GetPositionRequest
+.. py:type:: Global___GetPositionRequest
+   :canonical: GetPositionRequest
 
-.. py:class:: GetPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
+
+.. py:class:: GetPositionResponse(*, pose: common.v1.common_pb2.Pose | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -132,13 +138,13 @@ Module Contents
    shown below.
 
 
-   .. py:property:: pose
-      :type: viam.gen.common.v1.common_pb2.Pose
+   .. py:method:: pose() -> common.v1.common_pb2.Pose
 
       Current position of the specified component in the SLAM Map
 
 
-   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -156,7 +162,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPositionResponse
+.. py:type:: Global___GetPositionResponse
+   :canonical: GetPositionResponse
+
 
 .. py:class:: GetPointCloudMapRequest(*, name: str = ..., return_edited_map: bool | None = ...)
 
@@ -184,7 +192,7 @@ Module Contents
       does not handle edited maps, the unedited map will be returned instead.
 
 
-   .. py:method:: HasField(field_name: Literal['_return_edited_map', b'_return_edited_map', 'return_edited_map', b'return_edited_map']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -202,7 +210,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_return_edited_map', b'_return_edited_map']) -> Literal['return_edited_map'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__return_edited_map) -> _WhichOneofReturnType__return_edited_map | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -218,7 +226,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPointCloudMapRequest
+.. py:type:: Global___GetPointCloudMapRequest
+   :canonical: GetPointCloudMapRequest
+
 
 .. py:class:: GetPointCloudMapResponse(*, point_cloud_pcd_chunk: bytes = ...)
 
@@ -255,7 +265,9 @@ Module Contents
       Pointclouds are little endian encoded.
 
 
-.. py:data:: global___GetPointCloudMapResponse
+.. py:type:: Global___GetPointCloudMapResponse
+   :canonical: GetPointCloudMapResponse
+
 
 .. py:class:: GetInternalStateRequest(*, name: str = ...)
 
@@ -275,7 +287,9 @@ Module Contents
       Name of slam service
 
 
-.. py:data:: global___GetInternalStateRequest
+.. py:type:: Global___GetInternalStateRequest
+   :canonical: GetInternalStateRequest
+
 
 .. py:class:: GetInternalStateResponse(*, internal_state_chunk: bytes = ...)
 
@@ -296,7 +310,9 @@ Module Contents
       mapping/localization
 
 
-.. py:data:: global___GetInternalStateResponse
+.. py:type:: Global___GetInternalStateResponse
+   :canonical: GetInternalStateResponse
+
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
 
@@ -316,9 +332,11 @@ Module Contents
       Name of the slam service
 
 
-.. py:data:: global___GetPropertiesRequest
+.. py:type:: Global___GetPropertiesRequest
+   :canonical: GetPropertiesRequest
 
-.. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: global___MappingMode = ..., internal_state_file_type: str | None = ..., sensor_info: collections.abc.Iterable[global___SensorInfo] | None = ...)
+
+.. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: Global___MappingMode = ..., internal_state_file_type: str | None = ..., sensor_info: collections.abc.Iterable[Global___SensorInfo] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -331,19 +349,17 @@ Module Contents
 
 
    .. py:attribute:: mapping_mode
-      :type:  global___MappingMode
+      :type:  Global___MappingMode
 
 
    .. py:attribute:: internal_state_file_type
       :type:  str
 
 
-   .. py:property:: sensor_info
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]
+   .. py:method:: sensor_info() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SensorInfo]
 
 
-
-   .. py:method:: HasField(field_name: Literal['_internal_state_file_type', b'_internal_state_file_type', 'internal_state_file_type', b'internal_state_file_type']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -361,7 +377,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_internal_state_file_type', b'_internal_state_file_type']) -> Literal['internal_state_file_type'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__internal_state_file_type) -> _WhichOneofReturnType__internal_state_file_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -377,9 +393,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetPropertiesResponse
+.. py:type:: Global___GetPropertiesResponse
+   :canonical: GetPropertiesResponse
 
-.. py:class:: SensorInfo(*, name: str = ..., type: global___SensorType = ...)
+
+.. py:class:: SensorInfo(*, name: str = ..., type: Global___SensorType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -396,8 +414,10 @@ Module Contents
 
 
    .. py:attribute:: type
-      :type:  global___SensorType
+      :type:  Global___SensorType
 
 
-.. py:data:: global___SensorInfo
+.. py:type:: Global___SensorInfo
+   :canonical: SensorInfo
+
 

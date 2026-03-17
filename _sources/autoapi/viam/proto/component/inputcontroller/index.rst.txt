@@ -182,13 +182,13 @@ Package Contents
       0 or 1 for buttons, -1.0 to +1.0 for axes
 
 
-   .. py:property:: time
-      :type: google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time() -> google.protobuf.timestamp_pb2.Timestamp
 
       Timestamp of event
 
 
-   .. py:method:: HasField(field_name: Literal['time', b'time']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -224,13 +224,13 @@ Package Contents
       Name of an input controller
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -260,11 +260,11 @@ Package Contents
    shown below.
 
 
-   .. py:property:: controls
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: controls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Returns a list of all the controls (buttons and axes) that are
       available to a given Input Controller
+
 
 
 .. py:class:: GetEventsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -285,13 +285,13 @@ Package Contents
       Name of an input controller
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -309,7 +309,7 @@ Package Contents
 
 
 
-.. py:class:: GetEventsResponse(*, events: collections.abc.Iterable[global___Event] | None = ...)
+.. py:class:: GetEventsResponse(*, events: collections.abc.Iterable[Global___Event] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -321,14 +321,14 @@ Package Contents
    shown below.
 
 
-   .. py:property:: events
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
+   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Event]
 
       Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
       buttons/axes on a given input controller
 
 
-.. py:class:: Status(*, events: collections.abc.Iterable[global___Event] | None = ...)
+
+.. py:class:: Status(*, events: collections.abc.Iterable[Global___Event] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -340,12 +340,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: events
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
+   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Event]
 
 
-
-.. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[global___StreamEventsRequest] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[Global___StreamEventsRequest] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -375,39 +373,39 @@ Package Contents
          Name of a control (button or axis)
 
 
-      .. py:property:: events
-         :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+      .. py:method:: events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
          Specify which event types to recieve events for
 
 
-      .. py:property:: cancelled_events
-         :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      .. py:method:: cancelled_events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
          Specify which event types to stop recieving events for
          This can be an empty list
 
 
 
+
    .. py:attribute:: controller
       :type:  str
 
       Name of an input controller
 
 
-   .. py:property:: events
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest]
+   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___StreamEventsRequest]
 
       A list of Events
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -425,7 +423,7 @@ Package Contents
 
 
 
-.. py:class:: StreamEventsResponse(*, event: global___Event | None = ...)
+.. py:class:: StreamEventsResponse(*, event: Global___Event | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -437,13 +435,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: event
-      :type: global___Event
+   .. py:method:: event() -> Global___Event
 
       Event for a controller
 
 
-   .. py:method:: HasField(field_name: Literal['event', b'event']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -461,7 +459,7 @@ Package Contents
 
 
 
-.. py:class:: TriggerEventRequest(*, controller: str = ..., event: global___Event | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: TriggerEventRequest(*, controller: str = ..., event: Global___Event | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -479,19 +477,19 @@ Package Contents
       Name of an input controller
 
 
-   .. py:property:: event
-      :type: global___Event
+   .. py:method:: event() -> Global___Event
 
       Digitally assert a given event
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['event', b'event', 'extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

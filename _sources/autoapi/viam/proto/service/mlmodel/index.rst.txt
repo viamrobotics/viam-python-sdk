@@ -96,7 +96,7 @@ Package Contents
 
 
 
-.. py:class:: File(*, name: str = ..., description: str = ..., label_type: global___LabelType = ...)
+.. py:class:: File(*, name: str = ..., description: str = ..., label_type: Global___LabelType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -121,12 +121,12 @@ Package Contents
 
 
    .. py:attribute:: label_type
-      :type:  global___LabelType
+      :type:  Global___LabelType
 
       How to associate the arrays/tensors to the labels in the file
 
 
-.. py:class:: FlatTensor(*, shape: collections.abc.Iterable[int] | None = ..., int8_tensor: global___FlatTensorDataInt8 | None = ..., uint8_tensor: global___FlatTensorDataUInt8 | None = ..., int16_tensor: global___FlatTensorDataInt16 | None = ..., uint16_tensor: global___FlatTensorDataUInt16 | None = ..., int32_tensor: global___FlatTensorDataInt32 | None = ..., uint32_tensor: global___FlatTensorDataUInt32 | None = ..., int64_tensor: global___FlatTensorDataInt64 | None = ..., uint64_tensor: global___FlatTensorDataUInt64 | None = ..., float_tensor: global___FlatTensorDataFloat | None = ..., double_tensor: global___FlatTensorDataDouble | None = ...)
+.. py:class:: FlatTensor(*, shape: collections.abc.Iterable[int] | None = ..., int8_tensor: Global___FlatTensorDataInt8 | None = ..., uint8_tensor: Global___FlatTensorDataUInt8 | None = ..., int16_tensor: Global___FlatTensorDataInt16 | None = ..., uint16_tensor: Global___FlatTensorDataUInt16 | None = ..., int32_tensor: Global___FlatTensorDataInt32 | None = ..., uint32_tensor: Global___FlatTensorDataUInt32 | None = ..., int64_tensor: Global___FlatTensorDataInt64 | None = ..., uint64_tensor: Global___FlatTensorDataUInt64 | None = ..., float_tensor: Global___FlatTensorDataFloat | None = ..., double_tensor: Global___FlatTensorDataDouble | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -138,63 +138,43 @@ Package Contents
    shown below.
 
 
-   .. py:property:: shape
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+   .. py:method:: shape() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
       the shape of the provided tensor as a list of integer extents
 
 
-   .. py:property:: int8_tensor
-      :type: global___FlatTensorDataInt8
+
+   .. py:method:: int8_tensor() -> Global___FlatTensorDataInt8
 
 
-
-   .. py:property:: uint8_tensor
-      :type: global___FlatTensorDataUInt8
+   .. py:method:: uint8_tensor() -> Global___FlatTensorDataUInt8
 
 
-
-   .. py:property:: int16_tensor
-      :type: global___FlatTensorDataInt16
+   .. py:method:: int16_tensor() -> Global___FlatTensorDataInt16
 
 
-
-   .. py:property:: uint16_tensor
-      :type: global___FlatTensorDataUInt16
+   .. py:method:: uint16_tensor() -> Global___FlatTensorDataUInt16
 
 
-
-   .. py:property:: int32_tensor
-      :type: global___FlatTensorDataInt32
+   .. py:method:: int32_tensor() -> Global___FlatTensorDataInt32
 
 
-
-   .. py:property:: uint32_tensor
-      :type: global___FlatTensorDataUInt32
+   .. py:method:: uint32_tensor() -> Global___FlatTensorDataUInt32
 
 
-
-   .. py:property:: int64_tensor
-      :type: global___FlatTensorDataInt64
+   .. py:method:: int64_tensor() -> Global___FlatTensorDataInt64
 
 
-
-   .. py:property:: uint64_tensor
-      :type: global___FlatTensorDataUInt64
+   .. py:method:: uint64_tensor() -> Global___FlatTensorDataUInt64
 
 
-
-   .. py:property:: float_tensor
-      :type: global___FlatTensorDataFloat
+   .. py:method:: float_tensor() -> Global___FlatTensorDataFloat
 
 
-
-   .. py:property:: double_tensor
-      :type: global___FlatTensorDataDouble
+   .. py:method:: double_tensor() -> Global___FlatTensorDataDouble
 
 
-
-   .. py:method:: HasField(field_name: Literal['double_tensor', b'double_tensor', 'float_tensor', b'float_tensor', 'int16_tensor', b'int16_tensor', 'int32_tensor', b'int32_tensor', 'int64_tensor', b'int64_tensor', 'int8_tensor', b'int8_tensor', 'tensor', b'tensor', 'uint16_tensor', b'uint16_tensor', 'uint32_tensor', b'uint32_tensor', 'uint64_tensor', b'uint64_tensor', 'uint8_tensor', b'uint8_tensor']) -> bool
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -212,7 +192,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['tensor', b'tensor']) -> Literal['int8_tensor', 'uint8_tensor', 'int16_tensor', 'uint16_tensor', 'int32_tensor', 'uint32_tensor', 'int64_tensor', 'uint64_tensor', 'float_tensor', 'double_tensor'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_tensor) -> _WhichOneofReturnType_tensor | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -240,9 +220,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 .. py:class:: FlatTensorDataFloat(*, data: collections.abc.Iterable[float] | None = ...)
@@ -257,9 +235,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 .. py:class:: FlatTensorDataInt8(*, data: bytes = ...)
@@ -290,11 +266,11 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
       packs two 16-bit numbers per entry - explicitly little-endian
       so big-endian producers/consumers must compensate
+
 
 
 .. py:class:: FlatTensorDataInt32(*, data: collections.abc.Iterable[int] | None = ...)
@@ -309,9 +285,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
-
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
 
 .. py:class:: FlatTensorDataInt64(*, data: collections.abc.Iterable[int] | None = ...)
@@ -326,9 +300,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
-
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
 
 .. py:class:: FlatTensorDataUInt8(*, data: bytes = ...)
@@ -359,11 +331,11 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
       packs two 16-bit numbers per entry - explicitly little-endian
       so big-endian producers/consumers must compensate
+
 
 
 .. py:class:: FlatTensorDataUInt32(*, data: collections.abc.Iterable[int] | None = ...)
@@ -378,9 +350,7 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
-
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
 
 .. py:class:: FlatTensorDataUInt64(*, data: collections.abc.Iterable[int] | None = ...)
@@ -395,12 +365,10 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
 
-
-.. py:class:: FlatTensors(*, tensors: collections.abc.Mapping[str, global___FlatTensor] | None = ...)
+.. py:class:: FlatTensors(*, tensors: collections.abc.Mapping[str, Global___FlatTensor] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -412,7 +380,7 @@ Package Contents
    shown below.
 
 
-   .. py:class:: TensorsEntry(*, key: str = ..., value: global___FlatTensor | None = ...)
+   .. py:class:: TensorsEntry(*, key: str = ..., value: Global___FlatTensor | None = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -428,12 +396,10 @@ Package Contents
          :type:  str
 
 
-      .. py:property:: value
-         :type: global___FlatTensor
+      .. py:method:: value() -> Global___FlatTensor
 
 
-
-      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+      .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -452,13 +418,13 @@ Package Contents
 
 
 
-   .. py:property:: tensors
-      :type: google.protobuf.internal.containers.MessageMap[str, global___FlatTensor]
+   .. py:method:: tensors() -> google.protobuf.internal.containers.MessageMap[str, Global___FlatTensor]
 
       A name-indexed collection of flat tensor objects
 
 
-.. py:class:: InferRequest(*, name: str = ..., input_tensors: global___FlatTensors | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: InferRequest(*, name: str = ..., input_tensors: Global___FlatTensors | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -476,19 +442,19 @@ Package Contents
       name of the model service
 
 
-   .. py:property:: input_tensors
-      :type: global___FlatTensors
+   .. py:method:: input_tensors() -> Global___FlatTensors
 
       the input data is provided as set of named flat tensors
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'input_tensors', b'input_tensors']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -506,7 +472,7 @@ Package Contents
 
 
 
-.. py:class:: InferResponse(*, output_tensors: global___FlatTensors | None = ...)
+.. py:class:: InferResponse(*, output_tensors: Global___FlatTensors | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -518,13 +484,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: output_tensors
-      :type: global___FlatTensors
+   .. py:method:: output_tensors() -> Global___FlatTensors
 
       the output data is provided as a set of named flat tensors
 
 
-   .. py:method:: HasField(field_name: Literal['output_tensors', b'output_tensors']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -547,7 +513,7 @@ Package Contents
    Bases: :py:obj:`_LabelType`
 
 
-.. py:class:: Metadata(*, name: str = ..., type: str = ..., description: str = ..., input_info: collections.abc.Iterable[global___TensorInfo] | None = ..., output_info: collections.abc.Iterable[global___TensorInfo] | None = ...)
+.. py:class:: Metadata(*, name: str = ..., type: str = ..., description: str = ..., input_info: collections.abc.Iterable[Global___TensorInfo] | None = ..., output_info: collections.abc.Iterable[Global___TensorInfo] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -577,16 +543,16 @@ Package Contents
       description of the model
 
 
-   .. py:property:: input_info
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TensorInfo]
+   .. py:method:: input_info() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TensorInfo]
 
       the necessary input arrays/tensors for an inference, order matters
 
 
-   .. py:property:: output_info
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TensorInfo]
+
+   .. py:method:: output_info() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___TensorInfo]
 
       the output arrays/tensors of the model, order matters
+
 
 
 .. py:class:: MetadataRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -607,13 +573,13 @@ Package Contents
       name of the model service
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -631,7 +597,7 @@ Package Contents
 
 
 
-.. py:class:: MetadataResponse(*, metadata: global___Metadata | None = ...)
+.. py:class:: MetadataResponse(*, metadata: Global___Metadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -643,13 +609,13 @@ Package Contents
    shown below.
 
 
-   .. py:property:: metadata
-      :type: global___Metadata
+   .. py:method:: metadata() -> Global___Metadata
 
       this is the metadata associated with the ML model
 
 
-   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -667,7 +633,7 @@ Package Contents
 
 
 
-.. py:class:: TensorInfo(*, name: str = ..., description: str = ..., data_type: str = ..., shape: collections.abc.Iterable[int] | None = ..., associated_files: collections.abc.Iterable[global___File] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: TensorInfo(*, name: str = ..., description: str = ..., data_type: str = ..., shape: collections.abc.Iterable[int] | None = ..., associated_files: collections.abc.Iterable[Global___File] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -697,25 +663,25 @@ Package Contents
       data type of the array/tensor, e.g. float32, float64, uint8
 
 
-   .. py:property:: shape
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+   .. py:method:: shape() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
 
       shape of the array/tensor (-1 for unknown)
 
 
-   .. py:property:: associated_files
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___File]
+
+   .. py:method:: associated_files() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___File]
 
       files associated with the array/tensor, like for category labels
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       anything else you want to say
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 

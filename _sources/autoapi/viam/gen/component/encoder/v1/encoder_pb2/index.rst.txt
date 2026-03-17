@@ -19,13 +19,13 @@ Attributes
    viam.gen.component.encoder.v1.encoder_pb2.POSITION_TYPE_UNSPECIFIED
    viam.gen.component.encoder.v1.encoder_pb2.POSITION_TYPE_TICKS_COUNT
    viam.gen.component.encoder.v1.encoder_pb2.POSITION_TYPE_ANGLE_DEGREES
-   viam.gen.component.encoder.v1.encoder_pb2.global___PositionType
-   viam.gen.component.encoder.v1.encoder_pb2.global___GetPositionRequest
-   viam.gen.component.encoder.v1.encoder_pb2.global___GetPositionResponse
-   viam.gen.component.encoder.v1.encoder_pb2.global___ResetPositionRequest
-   viam.gen.component.encoder.v1.encoder_pb2.global___ResetPositionResponse
-   viam.gen.component.encoder.v1.encoder_pb2.global___GetPropertiesRequest
-   viam.gen.component.encoder.v1.encoder_pb2.global___GetPropertiesResponse
+   viam.gen.component.encoder.v1.encoder_pb2.Global___PositionType
+   viam.gen.component.encoder.v1.encoder_pb2.Global___GetPositionRequest
+   viam.gen.component.encoder.v1.encoder_pb2.Global___GetPositionResponse
+   viam.gen.component.encoder.v1.encoder_pb2.Global___ResetPositionRequest
+   viam.gen.component.encoder.v1.encoder_pb2.Global___ResetPositionResponse
+   viam.gen.component.encoder.v1.encoder_pb2.Global___GetPropertiesRequest
+   viam.gen.component.encoder.v1.encoder_pb2.Global___GetPropertiesResponse
 
 
 Classes
@@ -68,9 +68,11 @@ Module Contents
    Return type for absolute encoders that report
    their position in degrees along the radial axis
 
-.. py:data:: global___PositionType
+.. py:type:: Global___PositionType
+   :canonical: PositionType
 
-.. py:class:: GetPositionRequest(*, name: str = ..., position_type: global___PositionType | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: GetPositionRequest(*, name: str = ..., position_type: Global___PositionType | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -89,7 +91,7 @@ Module Contents
 
 
    .. py:attribute:: position_type
-      :type:  global___PositionType
+      :type:  Global___PositionType
 
       If supplied, the response will return the specified
       position type. If the driver does not implement
@@ -98,13 +100,13 @@ Module Contents
       will return a default according to the driver.
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_position_type', b'_position_type', 'extra', b'extra', 'position_type', b'position_type']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -122,7 +124,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_position_type', b'_position_type']) -> Literal['position_type'] | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__position_type) -> _WhichOneofReturnType__position_type | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -138,9 +140,11 @@ Module Contents
 
 
 
-.. py:data:: global___GetPositionRequest
+.. py:type:: Global___GetPositionRequest
+   :canonical: GetPositionRequest
 
-.. py:class:: GetPositionResponse(*, value: float = ..., position_type: global___PositionType = ...)
+
+.. py:class:: GetPositionResponse(*, value: float = ..., position_type: Global___PositionType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -157,10 +161,12 @@ Module Contents
 
 
    .. py:attribute:: position_type
-      :type:  global___PositionType
+      :type:  Global___PositionType
 
 
-.. py:data:: global___GetPositionResponse
+.. py:type:: Global___GetPositionResponse
+   :canonical: GetPositionResponse
+
 
 .. py:class:: ResetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -180,13 +186,13 @@ Module Contents
       Name of an encoder
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -204,7 +210,9 @@ Module Contents
 
 
 
-.. py:data:: global___ResetPositionRequest
+.. py:type:: Global___ResetPositionRequest
+   :canonical: ResetPositionRequest
+
 
 .. py:class:: ResetPositionResponse
 
@@ -218,7 +226,9 @@ Module Contents
    shown below.
 
 
-.. py:data:: global___ResetPositionResponse
+.. py:type:: Global___ResetPositionResponse
+   :canonical: ResetPositionResponse
+
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
@@ -238,13 +248,13 @@ Module Contents
       Name of the encoder
 
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -262,7 +272,9 @@ Module Contents
 
 
 
-.. py:data:: global___GetPropertiesRequest
+.. py:type:: Global___GetPropertiesRequest
+   :canonical: GetPropertiesRequest
+
 
 .. py:class:: GetPropertiesResponse(*, ticks_count_supported: bool = ..., angle_degrees_supported: bool = ...)
 
@@ -284,5 +296,7 @@ Module Contents
       :type:  bool
 
 
-.. py:data:: global___GetPropertiesResponse
+.. py:type:: Global___GetPropertiesResponse
+   :canonical: GetPropertiesResponse
+
 
