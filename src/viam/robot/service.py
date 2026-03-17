@@ -65,5 +65,5 @@ class RobotService(UnimplementedRobotServiceBase, ResourceRPCServiceBase):
                     errors.append(component.name)
 
         if errors:
-            raise ViamGRPCError(f'Failed to stop components named {", ".join(errors)}')
+            raise ViamGRPCError(f"Failed to stop components named {', '.join(errors)}")
         await stream.send_message(StopAllResponse())

@@ -15,87 +15,97 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import builtins
-import collections.abc
-import google.protobuf.descriptor
-import google.protobuf.internal.containers
-import google.protobuf.message
-import typing
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+from collections import abc as _abc
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from google.protobuf.internal import containers as _containers
+import builtins as _builtins
+import sys
+import typing as _typing
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias as _TypeAlias
+else:
+    from typing_extensions import TypeAlias as _TypeAlias
+DESCRIPTOR: _descriptor.FileDescriptor
 
-@typing.final
-class AnyValue(google.protobuf.message.Message):
+@_typing.final
+class AnyValue(_message.Message):
     """Represents any type of attribute value. AnyValue may contain a
     primitive value such as a string or integer or it may contain an arbitrary nested
     object containing arrays, key-value lists and primitives.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    STRING_VALUE_FIELD_NUMBER: builtins.int
-    BOOL_VALUE_FIELD_NUMBER: builtins.int
-    INT_VALUE_FIELD_NUMBER: builtins.int
-    DOUBLE_VALUE_FIELD_NUMBER: builtins.int
-    ARRAY_VALUE_FIELD_NUMBER: builtins.int
-    KVLIST_VALUE_FIELD_NUMBER: builtins.int
-    BYTES_VALUE_FIELD_NUMBER: builtins.int
-    string_value: builtins.str
-    bool_value: builtins.bool
-    int_value: builtins.int
-    double_value: builtins.float
-    bytes_value: builtins.bytes
+    DESCRIPTOR: _descriptor.Descriptor
+    STRING_VALUE_FIELD_NUMBER: _builtins.int
+    BOOL_VALUE_FIELD_NUMBER: _builtins.int
+    INT_VALUE_FIELD_NUMBER: _builtins.int
+    DOUBLE_VALUE_FIELD_NUMBER: _builtins.int
+    ARRAY_VALUE_FIELD_NUMBER: _builtins.int
+    KVLIST_VALUE_FIELD_NUMBER: _builtins.int
+    BYTES_VALUE_FIELD_NUMBER: _builtins.int
+    string_value: _builtins.str
+    bool_value: _builtins.bool
+    int_value: _builtins.int
+    double_value: _builtins.float
+    bytes_value: _builtins.bytes
 
-    @property
-    def array_value(self) -> global___ArrayValue:
+    @_builtins.property
+    def array_value(self) -> Global___ArrayValue:
         ...
 
-    @property
-    def kvlist_value(self) -> global___KeyValueList:
+    @_builtins.property
+    def kvlist_value(self) -> Global___KeyValueList:
         ...
 
-    def __init__(self, *, string_value: builtins.str=..., bool_value: builtins.bool=..., int_value: builtins.int=..., double_value: builtins.float=..., array_value: global___ArrayValue | None=..., kvlist_value: global___KeyValueList | None=..., bytes_value: builtins.bytes=...) -> None:
+    def __init__(self, *, string_value: _builtins.str=..., bool_value: _builtins.bool=..., int_value: _builtins.int=..., double_value: _builtins.float=..., array_value: Global___ArrayValue | None=..., kvlist_value: Global___KeyValueList | None=..., bytes_value: _builtins.bytes=...) -> None:
         ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['array_value', b'array_value', 'bool_value', b'bool_value', 'bytes_value', b'bytes_value', 'double_value', b'double_value', 'int_value', b'int_value', 'kvlist_value', b'kvlist_value', 'string_value', b'string_value', 'value', b'value']
 
-    def HasField(self, field_name: typing.Literal['array_value', b'array_value', 'bool_value', b'bool_value', 'bytes_value', b'bytes_value', 'double_value', b'double_value', 'int_value', b'int_value', 'kvlist_value', b'kvlist_value', 'string_value', b'string_value', 'value', b'value']) -> builtins.bool:
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['array_value', b'array_value', 'bool_value', b'bool_value', 'bytes_value', b'bytes_value', 'double_value', b'double_value', 'int_value', b'int_value', 'kvlist_value', b'kvlist_value', 'string_value', b'string_value', 'value', b'value']
 
-    def ClearField(self, field_name: typing.Literal['array_value', b'array_value', 'bool_value', b'bool_value', 'bytes_value', b'bytes_value', 'double_value', b'double_value', 'int_value', b'int_value', 'kvlist_value', b'kvlist_value', 'string_value', b'string_value', 'value', b'value']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType_value: _TypeAlias = _typing.Literal['string_value', 'bool_value', 'int_value', 'double_value', 'array_value', 'kvlist_value', 'bytes_value']
+    _WhichOneofArgType_value: _TypeAlias = _typing.Literal['value', b'value']
 
-    def WhichOneof(self, oneof_group: typing.Literal['value', b'value']) -> typing.Literal['string_value', 'bool_value', 'int_value', 'double_value', 'array_value', 'kvlist_value', 'bytes_value'] | None:
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None:
         ...
-global___AnyValue = AnyValue
+Global___AnyValue: _TypeAlias = AnyValue
 
-@typing.final
-class ArrayValue(google.protobuf.message.Message):
+@_typing.final
+class ArrayValue(_message.Message):
     """ArrayValue is a list of AnyValue messages. We need ArrayValue as a message
     since oneof in AnyValue does not allow repeated fields.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    VALUES_FIELD_NUMBER: builtins.int
+    DESCRIPTOR: _descriptor.Descriptor
+    VALUES_FIELD_NUMBER: _builtins.int
 
-    @property
-    def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AnyValue]:
+    @_builtins.property
+    def values(self) -> _containers.RepeatedCompositeFieldContainer[Global___AnyValue]:
         """Array of values. The array may be empty (contain 0 elements)."""
 
-    def __init__(self, *, values: collections.abc.Iterable[global___AnyValue] | None=...) -> None:
+    def __init__(self, *, values: _abc.Iterable[Global___AnyValue] | None=...) -> None:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['values', b'values']
 
-    def ClearField(self, field_name: typing.Literal['values', b'values']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-global___ArrayValue = ArrayValue
+Global___ArrayValue: _TypeAlias = ArrayValue
 
-@typing.final
-class KeyValueList(google.protobuf.message.Message):
+@_typing.final
+class KeyValueList(_message.Message):
     """KeyValueList is a list of KeyValue messages. We need KeyValueList as a message
     since `oneof` in AnyValue does not allow repeated fields. Everywhere else where we need
     a list of KeyValue messages (e.g. in Span) we use `repeated KeyValue` directly to
     avoid unnecessary extra wrapping (which slows down the protocol). The 2 approaches
     are semantically equivalent.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    VALUES_FIELD_NUMBER: builtins.int
+    DESCRIPTOR: _descriptor.Descriptor
+    VALUES_FIELD_NUMBER: _builtins.int
 
-    @property
-    def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___KeyValue]:
+    @_builtins.property
+    def values(self) -> _containers.RepeatedCompositeFieldContainer[Global___KeyValue]:
         """A collection of key/value pairs of key-value pairs. The list may be empty (may
         contain 0 elements).
 
@@ -104,105 +114,110 @@ class KeyValueList(google.protobuf.message.Message):
         The behavior of software that receives duplicated keys can be unpredictable.
         """
 
-    def __init__(self, *, values: collections.abc.Iterable[global___KeyValue] | None=...) -> None:
+    def __init__(self, *, values: _abc.Iterable[Global___KeyValue] | None=...) -> None:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['values', b'values']
 
-    def ClearField(self, field_name: typing.Literal['values', b'values']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-global___KeyValueList = KeyValueList
+Global___KeyValueList: _TypeAlias = KeyValueList
 
-@typing.final
-class KeyValue(google.protobuf.message.Message):
+@_typing.final
+class KeyValue(_message.Message):
     """Represents a key-value pair that is used to store Span attributes, Link
     attributes, etc.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    KEY_FIELD_NUMBER: builtins.int
-    VALUE_FIELD_NUMBER: builtins.int
-    key: builtins.str
+    DESCRIPTOR: _descriptor.Descriptor
+    KEY_FIELD_NUMBER: _builtins.int
+    VALUE_FIELD_NUMBER: _builtins.int
+    key: _builtins.str
     'The key name of the pair.'
 
-    @property
-    def value(self) -> global___AnyValue:
+    @_builtins.property
+    def value(self) -> Global___AnyValue:
         """The value of the pair."""
 
-    def __init__(self, *, key: builtins.str=..., value: global___AnyValue | None=...) -> None:
+    def __init__(self, *, key: _builtins.str=..., value: Global___AnyValue | None=...) -> None:
         ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['value', b'value']
 
-    def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['key', b'key', 'value', b'value']
 
-    def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-global___KeyValue = KeyValue
+Global___KeyValue: _TypeAlias = KeyValue
 
-@typing.final
-class InstrumentationScope(google.protobuf.message.Message):
+@_typing.final
+class InstrumentationScope(_message.Message):
     """InstrumentationScope is a message representing the instrumentation scope information
     such as the fully qualified name and version.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    VERSION_FIELD_NUMBER: builtins.int
-    ATTRIBUTES_FIELD_NUMBER: builtins.int
-    DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    VERSION_FIELD_NUMBER: _builtins.int
+    ATTRIBUTES_FIELD_NUMBER: _builtins.int
+    DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
     'A name denoting the Instrumentation scope.\n    An empty instrumentation scope name means the name is unknown.\n    '
-    version: builtins.str
+    version: _builtins.str
     'Defines the version of the instrumentation scope.\n    An empty instrumentation scope version means the version is unknown.\n    '
-    dropped_attributes_count: builtins.int
+    dropped_attributes_count: _builtins.int
     'The number of attributes that were discarded. Attributes\n    can be discarded because their keys are too long or because there are too many\n    attributes. If this value is 0, then no attributes were dropped.\n    '
 
-    @property
-    def attributes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___KeyValue]:
+    @_builtins.property
+    def attributes(self) -> _containers.RepeatedCompositeFieldContainer[Global___KeyValue]:
         """Additional attributes that describe the scope. [Optional].
         Attribute keys MUST be unique (it is not allowed to have more than one
         attribute with the same key).
         The behavior of software that receives duplicated keys can be unpredictable.
         """
 
-    def __init__(self, *, name: builtins.str=..., version: builtins.str=..., attributes: collections.abc.Iterable[global___KeyValue] | None=..., dropped_attributes_count: builtins.int=...) -> None:
+    def __init__(self, *, name: _builtins.str=..., version: _builtins.str=..., attributes: _abc.Iterable[Global___KeyValue] | None=..., dropped_attributes_count: _builtins.int=...) -> None:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['attributes', b'attributes', 'dropped_attributes_count', b'dropped_attributes_count', 'name', b'name', 'version', b'version']
 
-    def ClearField(self, field_name: typing.Literal['attributes', b'attributes', 'dropped_attributes_count', b'dropped_attributes_count', 'name', b'name', 'version', b'version']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-global___InstrumentationScope = InstrumentationScope
+Global___InstrumentationScope: _TypeAlias = InstrumentationScope
 
-@typing.final
-class EntityRef(google.protobuf.message.Message):
+@_typing.final
+class EntityRef(_message.Message):
     """A reference to an Entity.
     Entity represents an object of interest associated with produced telemetry: e.g spans, metrics, profiles, or logs.
 
     Status: [Development]
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SCHEMA_URL_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
-    ID_KEYS_FIELD_NUMBER: builtins.int
-    DESCRIPTION_KEYS_FIELD_NUMBER: builtins.int
-    schema_url: builtins.str
+    DESCRIPTOR: _descriptor.Descriptor
+    SCHEMA_URL_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    ID_KEYS_FIELD_NUMBER: _builtins.int
+    DESCRIPTION_KEYS_FIELD_NUMBER: _builtins.int
+    schema_url: _builtins.str
     'The Schema URL, if known. This is the identifier of the Schema that the entity data\n    is recorded in. To learn more about Schema URL see\n    https://opentelemetry.io/docs/specs/otel/schemas/#schema-url\n\n    This schema_url applies to the data in this message and to the Resource attributes\n    referenced by id_keys and description_keys.\n    TODO: discuss if we are happy with this somewhat complicated definition of what\n    the schema_url applies to.\n\n    This field obsoletes the schema_url field in ResourceMetrics/ResourceSpans/ResourceLogs.\n    '
-    type: builtins.str
+    type: _builtins.str
     'Defines the type of the entity. MUST not change during the lifetime of the entity.\n    For example: "service" or "host". This field is required and MUST not be empty\n    for valid entities.\n    '
 
-    @property
-    def id_keys(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def id_keys(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Attribute Keys that identify the entity.
         MUST not change during the lifetime of the entity. The Id must contain at least one attribute.
         These keys MUST exist in the containing {message}.attributes.
         """
 
-    @property
-    def description_keys(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def description_keys(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Descriptive (non-identifying) attribute keys of the entity.
         MAY change over the lifetime of the entity. MAY be empty.
         These attribute keys are not part of entity's identity.
         These keys MUST exist in the containing {message}.attributes.
         """
 
-    def __init__(self, *, schema_url: builtins.str=..., type: builtins.str=..., id_keys: collections.abc.Iterable[builtins.str] | None=..., description_keys: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, schema_url: _builtins.str=..., type: _builtins.str=..., id_keys: _abc.Iterable[_builtins.str] | None=..., description_keys: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['description_keys', b'description_keys', 'id_keys', b'id_keys', 'schema_url', b'schema_url', 'type', b'type']
 
-    def ClearField(self, field_name: typing.Literal['description_keys', b'description_keys', 'id_keys', b'id_keys', 'schema_url', b'schema_url', 'type', b'type']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-global___EntityRef = EntityRef
+Global___EntityRef: _TypeAlias = EntityRef

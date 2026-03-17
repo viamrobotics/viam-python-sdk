@@ -1,6 +1,5 @@
 import abc
-import sys
-from typing import Final, List, Mapping, Optional
+from typing import Final, List, Mapping, Optional, TypeAlias
 
 from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
@@ -9,11 +8,6 @@ from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVI
 from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
 
 
 class CaptureAllResult:
