@@ -15,12 +15,14 @@ jobs:
   update-protos:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
+    env:
+      API_VERSION: ${{ inputs.api_version || github.event.client_payload.tag }}
     permissions:
       id-token: write
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.REPO_READ_TOKEN }}
       - uses: bufbuild/buf-setup-action@v1
@@ -35,16 +37,6 @@ jobs:
         with:
           python-version: "3.13"
           enable-cache: true
-
-      - name: API Version - Repository Dispatch
-        if: github.event.client_payload.tag != ''
-        run: |
-          echo "API_VERSION=${{github.event.client_payload.tag}}" >> $GITHUB_ENV
-
-      - name: API Version - User Input
-        if: inputs.api_version != ''
-        run: |
-          echo "API_VERSION=${{inputs.api_version}}" >> $GITHUB_ENV
 
       - name: prune origin
         run: git remote prune origin
@@ -71,7 +63,7 @@ jobs:
       - name: Commit generated buf files
         run: |
           git add -A
-          git diff --cached --quiet || git commit -m "[WORKFLOW] Generate buf from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}"
+          git diff --cached --quiet || git commit -m "[WORKFLOW] Generate buf for version ${{ env.API_VERSION }}"
 
       - name: Install OpenCode CLI
         run: |
@@ -379,7 +371,7 @@ jobs:
               --body "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes"
 
       - name: Notify slack of failure
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v3.0.1
         if: ${{ failure() }}
         with:
           payload: |
