@@ -97,3 +97,8 @@ exclude = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
+
+[tool.uv]
+constraint-dependencies = [
+	"tornado>=6.5.5; python_version>='3.9'",
+]
