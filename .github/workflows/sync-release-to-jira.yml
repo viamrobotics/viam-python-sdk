@@ -38,4 +38,4 @@ jobs:
           # Pass version via env var to prevent shell injection
           RELEASE_VERSION: ${{ inputs.version }}
         run: |
-          python sync_jira_release.py "$RELEASE_VERSION"
+          python etc/sync_jira_release.py "$RELEASE_VERSION"
