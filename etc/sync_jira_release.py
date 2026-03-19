@@ -155,13 +155,7 @@ def set_fix_version_and_close(ticket_key, version_id):
     Step 2: Transition ticket to Closed
     """
     # Step 1: Set fix version first
-    update_url = f"{JIRA_BASE_URL}/rest/api/3/issue/{ticket_key}"
-    update_payload = {"fields": {"fixVersions": [{"id": version_id}]}}
-
-    response = requests.put(update_url, auth=jira_auth, headers={"Content-Type": "application/json"}, json=update_payload)
-
-    if response.status_code != 204:
-        print(f"⚠️  Failed to set fix version for {ticket_key}")
+    if not set_fix_version(ticket_key, version_id):
         return False
 
     # Step 2: Get available transitions
