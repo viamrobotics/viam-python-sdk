@@ -241,6 +241,7 @@ class Module:
         resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
+            update_log_level(resource.logger, config.log_configuration.level.upper())
         else:
             if isinstance(resource, Stoppable):
                 if iscoroutinefunction(resource.stop):

@@ -1,4 +1,5 @@
 import datetime
+import logging
 import os
 import uuid
 from unittest import mock
@@ -10,7 +11,7 @@ from viam.errors import GRPCError
 from viam.module import Module
 from viam.module.resource_data_consumer import ResourceDataConsumer
 from viam.module.service import ModuleRPCService
-from viam.proto.app.robot import ComponentConfig
+from viam.proto.app.robot import ComponentConfig, LogConfiguration
 from viam.proto.module import (
     AddResourceRequest,
     ModuleServiceStub,
@@ -137,6 +138,54 @@ class TestModule:
         )
         await module.reconfigure_resource(req)
         assert summer.subtract is True
+
+    async def test_add_resource_applies_log_level(self, module: Module):
+        req = AddResourceRequest(
+            config=ComponentConfig(
+                name="gizmo_log",
+                namespace="acme",
+                type="gizmo",
+                model="acme:demo:mygizmo",
+                attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
+                api="acme:component:gizmo",
+                log_configuration=LogConfiguration(level="debug"),
+            )
+        )
+        await module.add_resource(req)
+        gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo_log"))
+        assert gizmo.logger.level == logging.DEBUG
+
+    async def test_reconfigure_resource_applies_log_level(self, module: Module):
+        # Add a resource with default (INFO) log level
+        req = AddResourceRequest(
+            config=ComponentConfig(
+                name="gizmo_reconf_log",
+                namespace="acme",
+                type="gizmo",
+                model="acme:demo:mygizmo",
+                attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
+                api="acme:component:gizmo",
+            )
+        )
+        await module.add_resource(req)
+        gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo_reconf_log"))
+        assert gizmo.logger.level != logging.DEBUG
+
+        # Reconfigure with debug log level
+        req = ReconfigureResourceRequest(
+            config=ComponentConfig(
+                name="gizmo_reconf_log",
+                namespace="acme",
+                type="gizmo",
+                model="acme:demo:mygizmo",
+                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
+                api="acme:component:gizmo",
+                log_configuration=LogConfiguration(level="debug"),
+            )
+        )
+        await module.reconfigure_resource(req)
+        assert gizmo.my_arg == "arg2"
+        assert gizmo.logger.level == logging.DEBUG
 
     async def test_add_resource_with_deps(self, robot_service: RobotService, module: Module):  # noqa: F811
         async with ChannelFor([robot_service]) as channel:
