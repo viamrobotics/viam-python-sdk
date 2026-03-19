@@ -187,6 +187,20 @@ class TestModule:
         assert gizmo.my_arg == "arg2"
         assert gizmo.logger.level == logging.DEBUG
 
+        # Reconfigure with no log_configuration
+        req = ReconfigureResourceRequest(
+            config=ComponentConfig(
+                name="gizmo_reconf_log",
+                namespace="acme",
+                type="gizmo",
+                model="acme:demo:mygizmo",
+                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
+                api="acme:component:gizmo",
+            )
+        )
+        await module.reconfigure_resource(req)
+        assert gizmo.logger.level == logging.INFO
+
     async def test_add_resource_with_deps(self, robot_service: RobotService, module: Module):  # noqa: F811
         async with ChannelFor([robot_service]) as channel:
             _ = mock.patch("viam.module.module.Module._connect_to_parent")
