@@ -338,6 +338,7 @@ class RobotPart(_message.Message):
     LAST_UPDATED_FIELD_NUMBER: _builtins.int
     ONLINE_STATE_FIELD_NUMBER: _builtins.int
     SECONDS_SINCE_ONLINE_FIELD_NUMBER: _builtins.int
+    ROBOT_CONFIG_JSON_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
     dns_name: _builtins.str
@@ -351,6 +352,8 @@ class RobotPart(_message.Message):
     local_fqdn: _builtins.str
     online_state: Global___OnlineState.ValueType
     seconds_since_online: _builtins.int
+    robot_config_json: _builtins.str
+    'robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.'
 
     @_builtins.property
     def robot_config(self) -> _struct_pb2.Struct:
@@ -376,15 +379,20 @@ class RobotPart(_message.Message):
     def last_updated(self) -> _timestamp_pb2.Timestamp:
         """latest timestamp when a robot part was updated"""
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., dns_name: _builtins.str=..., secret: _builtins.str=..., robot: _builtins.str=..., location_id: _builtins.str=..., robot_config: _struct_pb2.Struct | None=..., last_access: _timestamp_pb2.Timestamp | None=..., user_supplied_info: _struct_pb2.Struct | None=..., main_part: _builtins.bool=..., fqdn: _builtins.str=..., local_fqdn: _builtins.str=..., created_on: _timestamp_pb2.Timestamp | None=..., secrets: _abc.Iterable[Global___SharedSecret] | None=..., last_updated: _timestamp_pb2.Timestamp | None=..., online_state: Global___OnlineState.ValueType=..., seconds_since_online: _builtins.int=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., dns_name: _builtins.str=..., secret: _builtins.str=..., robot: _builtins.str=..., location_id: _builtins.str=..., robot_config: _struct_pb2.Struct | None=..., last_access: _timestamp_pb2.Timestamp | None=..., user_supplied_info: _struct_pb2.Struct | None=..., main_part: _builtins.bool=..., fqdn: _builtins.str=..., local_fqdn: _builtins.str=..., created_on: _timestamp_pb2.Timestamp | None=..., secrets: _abc.Iterable[Global___SharedSecret] | None=..., last_updated: _timestamp_pb2.Timestamp | None=..., online_state: Global___OnlineState.ValueType=..., seconds_since_online: _builtins.int=..., robot_config_json: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'last_access', b'last_access', 'last_updated', b'last_updated', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_robot_config_json', b'_robot_config_json', 'created_on', b'created_on', 'last_access', b'last_access', 'last_updated', b'last_updated', 'robot_config', b'robot_config', 'robot_config_json', b'robot_config_json', 'user_supplied_info', b'user_supplied_info']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'last_updated', b'last_updated', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'online_state', b'online_state', 'robot', b'robot', 'robot_config', b'robot_config', 'seconds_since_online', b'seconds_since_online', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_robot_config_json', b'_robot_config_json', 'created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'last_updated', b'last_updated', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'online_state', b'online_state', 'robot', b'robot', 'robot_config', b'robot_config', 'robot_config_json', b'robot_config_json', 'seconds_since_online', b'seconds_since_online', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__robot_config_json: _TypeAlias = _typing.Literal['robot_config_json']
+    _WhichOneofArgType__robot_config_json: _TypeAlias = _typing.Literal['_robot_config_json', b'_robot_config_json']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__robot_config_json) -> _WhichOneofReturnType__robot_config_json | None:
         ...
 Global___RobotPart: _TypeAlias = RobotPart
 
@@ -2403,8 +2411,11 @@ class UpdateRobotPartRequest(_message.Message):
     NAME_FIELD_NUMBER: _builtins.int
     ROBOT_CONFIG_FIELD_NUMBER: _builtins.int
     LAST_KNOWN_UPDATE_FIELD_NUMBER: _builtins.int
+    ROBOT_CONFIG_JSON_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
+    robot_config_json: _builtins.str
+    'robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.\n    When set, this takes precedence over robot_config for storage purposes.\n    '
 
     @_builtins.property
     def robot_config(self) -> _struct_pb2.Struct:
@@ -2414,20 +2425,27 @@ class UpdateRobotPartRequest(_message.Message):
     def last_known_update(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., robot_config: _struct_pb2.Struct | None=..., last_known_update: _timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., robot_config: _struct_pb2.Struct | None=..., last_known_update: _timestamp_pb2.Timestamp | None=..., robot_config_json: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update', 'last_known_update', b'last_known_update', 'robot_config', b'robot_config']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update', '_robot_config_json', b'_robot_config_json', 'last_known_update', b'last_known_update', 'robot_config', b'robot_config', 'robot_config_json', b'robot_config_json']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update', 'id', b'id', 'last_known_update', b'last_known_update', 'name', b'name', 'robot_config', b'robot_config']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update', '_robot_config_json', b'_robot_config_json', 'id', b'id', 'last_known_update', b'last_known_update', 'name', b'name', 'robot_config', b'robot_config', 'robot_config_json', b'robot_config_json']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
     _WhichOneofReturnType__last_known_update: _TypeAlias = _typing.Literal['last_known_update']
     _WhichOneofArgType__last_known_update: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update']
+    _WhichOneofReturnType__robot_config_json: _TypeAlias = _typing.Literal['robot_config_json']
+    _WhichOneofArgType__robot_config_json: _TypeAlias = _typing.Literal['_robot_config_json', b'_robot_config_json']
 
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__last_known_update) -> _WhichOneofReturnType__last_known_update | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__robot_config_json) -> _WhichOneofReturnType__robot_config_json | None:
         ...
 Global___UpdateRobotPartRequest: _TypeAlias = UpdateRobotPartRequest
 
