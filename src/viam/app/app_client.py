@@ -212,6 +212,7 @@ class RobotPart:
         self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
         self.secrets = list(robot_part.secrets)
         self.last_updated = robot_part.last_updated.ToDatetime() if robot_part.HasField("last_updated") else None
+        self.robot_config_json = robot_part.robot_config_json if robot_part.HasField("robot_config_json") else None
         return self
 
     id: str
@@ -229,6 +230,7 @@ class RobotPart:
     created_on: Optional[datetime]
     secrets: Optional[List[SharedSecret]]
     last_updated: Optional[datetime]
+    robot_config_json: Optional[str]
 
     @property
     def proto(self) -> RobotPartPB:
@@ -248,6 +250,7 @@ class RobotPart:
             created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
             secrets=self.secrets,
             last_updated=datetime_to_timestamp(self.last_updated) if self.last_updated else None,
+            robot_config_json=self.robot_config_json if self.robot_config_json else None,
         )
 
 
@@ -1475,7 +1478,12 @@ class AppClient:
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
     async def update_robot_part(
-        self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None, last_known_update: Optional[datetime] = None
+        self,
+        robot_part_id: str,
+        name: str,
+        robot_config: Optional[Mapping[str, Any]] = None,
+        last_known_update: Optional[datetime] = None,
+        robot_config_json: Optional[str] = None,
     ) -> RobotPart:
         """Change the name and assign an optional new configuration to a machine part.
 
@@ -1493,6 +1501,8 @@ class AppClient:
             last_known_update (datetime): Optional time of the last known update to this part's config. If provided, this will result in a
                 GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this
                 parameter will result in an overwrite of the upstream config.
+            robot_config_json (str): Optional raw JSON string of the robot config, preserving user-defined key order.
+                When set, this takes precedence over robot_config for storage purposes.
         Raises:
             GRPCError: If either an invalid machine part ID, name, or config is passed, or if the upstream config has changed since
                 last_known_update.
@@ -1506,6 +1516,7 @@ class AppClient:
             name=name,
             robot_config=dict_to_struct(robot_config) if robot_config else None,
             last_known_update=datetime_to_timestamp(last_known_update),
+            robot_config_json=robot_config_json if robot_config_json else None,
         )
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)

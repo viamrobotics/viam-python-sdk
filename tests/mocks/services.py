@@ -1632,6 +1632,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.name = request.name
         self.robot_config = request.robot_config
         self.last_known_update = request.last_known_update
+        self.robot_config_json = request.robot_config_json if request.HasField("robot_config_json") else None
         await stream.send_message(UpdateRobotPartResponse(part=self.robot_part))
 
     async def NewRobotPart(self, stream: Stream[NewRobotPartRequest, NewRobotPartResponse]) -> None:
