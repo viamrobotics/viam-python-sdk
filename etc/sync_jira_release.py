@@ -139,7 +139,7 @@ def get_ticket_status(ticket_key):
 def set_fix_version(ticket_key, version_id):
     """Set fix version on a ticket without transitioning it."""
     update_url = f"{JIRA_BASE_URL}/rest/api/3/issue/{ticket_key}"
-    update_payload = {"fields": {"fixVersions": [{"id": version_id}]}}
+    update_payload = {"update": {"fixVersions": [{"add": {"id": version_id}}]}}
 
     response = requests.put(update_url, auth=jira_auth, headers={"Content-Type": "application/json"}, json=update_payload)
 
@@ -154,13 +154,17 @@ def set_fix_version_and_close(ticket_key, version_id):
     Step 1: Set fix version while in "Awaiting Release"
     Step 2: Transition ticket to Closed
     """
-    # Step 1: Set fix version first
+    # Step 1: Set fix version first (additive — preserves any existing fix versions)
     if not set_fix_version(ticket_key, version_id):
         return False
 
     # Step 2: Get available transitions
     transitions_url = f"{JIRA_BASE_URL}/rest/api/3/issue/{ticket_key}/transitions"
     response = requests.get(transitions_url, auth=jira_auth)
+
+    if response.status_code != 200:
+        print(f"⚠️  Failed to fetch transitions for {ticket_key} (HTTP {response.status_code})")
+        return False
 
     transitions = response.json().get("transitions", [])
     close_transition = next(
