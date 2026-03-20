@@ -8454,7 +8454,7 @@ Package Contents
 
 
 
-.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[Global___SharedSecret] | None = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., online_state: Global___OnlineState = ..., seconds_since_online: int = ...)
+.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[Global___SharedSecret] | None = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., online_state: Global___OnlineState = ..., seconds_since_online: int = ..., robot_config_json: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8515,6 +8515,12 @@ Package Contents
       :type:  int
 
 
+   .. py:attribute:: robot_config_json
+      :type:  str
+
+      robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+
+
    .. py:method:: robot_config() -> google.protobuf.struct_pb2.Struct
 
 
@@ -8554,6 +8560,22 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__robot_config_json) -> _WhichOneofReturnType__robot_config_json | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -10157,7 +10179,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: UpdateRobotPartRequest(*, id: str = ..., name: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: UpdateRobotPartRequest(*, id: str = ..., name: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None = ..., robot_config_json: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10175,6 +10197,13 @@ Package Contents
 
    .. py:attribute:: name
       :type:  str
+
+
+   .. py:attribute:: robot_config_json
+      :type:  str
+
+      robot_config_json is the raw JSON string of the robot config, preserving user-defined key order.
+      When set, this takes precedence over robot_config for storage purposes.
 
 
    .. py:method:: robot_config() -> google.protobuf.struct_pb2.Struct
@@ -10202,6 +10231,7 @@ Package Contents
 
 
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__last_known_update) -> _WhichOneofReturnType__last_known_update | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__robot_config_json) -> _WhichOneofReturnType__robot_config_json | None
 
       Returns the name of the field that is set inside a oneof group.
 

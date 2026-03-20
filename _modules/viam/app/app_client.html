@@ -303,6 +303,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">created_on</span> <span class="o">=</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">created_on</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span> <span class="k">if</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;created_on&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secrets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">robot_part</span><span class="o">.</span><span class="n">secrets</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span> <span class="o">=</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">last_updated</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span> <span class="k">if</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;last_updated&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robot_config_json</span> <span class="o">=</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">robot_config_json</span> <span class="k">if</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;robot_config_json&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
@@ -321,6 +322,7 @@
     <span class="n">created_on</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
     <span class="n">secrets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SharedSecret</span><span class="p">]]</span>
     <span class="n">last_updated</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="n">robot_config_json</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPartPB</span><span class="p">:</span>
@@ -340,6 +342,7 @@
             <span class="n">created_on</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">created_on</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">created_on</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">secrets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">secrets</span><span class="p">,</span>
             <span class="n">last_updated</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">robot_config_json</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_config_json</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_config_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -1704,7 +1707,12 @@
 <div class="viewcode-block" id="AppClient.update_robot_part">
 <a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_robot_part</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">last_known_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last_known_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">robot_config_json</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a machine part.</span>
 
@@ -1722,6 +1730,8 @@
 <span class="sd">            last_known_update (datetime): Optional time of the last known update to this part&#39;s config. If provided, this will result in a</span>
 <span class="sd">                GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this</span>
 <span class="sd">                parameter will result in an overwrite of the upstream config.</span>
+<span class="sd">            robot_config_json (str): Optional raw JSON string of the robot config, preserving user-defined key order.</span>
+<span class="sd">                When set, this takes precedence over robot_config for storage purposes.</span>
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid machine part ID, name, or config is passed, or if the upstream config has changed since</span>
 <span class="sd">                last_known_update.</span>
@@ -1735,6 +1745,7 @@
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">last_known_update</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">last_known_update</span><span class="p">),</span>
+            <span class="n">robot_config_json</span><span class="o">=</span><span class="n">robot_config_json</span> <span class="k">if</span> <span class="n">robot_config_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>

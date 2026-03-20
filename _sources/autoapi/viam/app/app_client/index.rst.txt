@@ -112,6 +112,10 @@ Module Contents
       :type:  Optional[datetime.datetime]
 
 
+   .. py:attribute:: robot_config_json
+      :type:  Optional[str]
+
+
    .. py:property:: proto
       :type: viam.proto.app.RobotPart
 
@@ -1230,7 +1234,7 @@ Module Contents
 
 
 
-   .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None, last_known_update: Optional[datetime.datetime] = None) -> RobotPart
+   .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None, last_known_update: Optional[datetime.datetime] = None, robot_config_json: Optional[str] = None) -> RobotPart
       :async:
 
 
@@ -1253,6 +1257,9 @@ Module Contents
                                 GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this
                                 parameter will result in an overwrite of the upstream config.
       :type last_known_update: datetime
+      :param robot_config_json: Optional raw JSON string of the robot config, preserving user-defined key order.
+                                When set, this takes precedence over robot_config for storage purposes.
+      :type robot_config_json: str
 
       :raises GRPCError: If either an invalid machine part ID, name, or config is passed, or if the upstream config has changed since
           last_known_update.

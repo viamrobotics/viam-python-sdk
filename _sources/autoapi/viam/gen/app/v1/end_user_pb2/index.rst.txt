@@ -67,7 +67,7 @@ Module Contents
    :canonical: IsLegalAcceptedRequest
 
 
-.. py:class:: IsLegalAcceptedResponse(*, accepted_legal: bool = ...)
+.. py:class:: IsLegalAcceptedResponse(*, accepted_legal: bool = ..., ever_accepted_legal: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -83,6 +83,12 @@ Module Contents
       :type:  bool
 
       If false, the user should not be able to use the application.
+
+
+   .. py:attribute:: ever_accepted_legal
+      :type:  bool
+
+      Whether the user has ever accepted any version of the legal terms.
 
 
 .. py:type:: Global___IsLegalAcceptedResponse

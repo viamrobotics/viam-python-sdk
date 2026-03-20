@@ -162,7 +162,7 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f1534db1b20&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f1534db1bc0&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f1534db1a30&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f1534db1c10&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f1534db1c60&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7f1534db1cb0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f1534db1d00&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f1534db1d50&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f1534db1da0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f1534db1df0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f1534db1e40&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f1534db1e90&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f1534db1ee0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f1534db1f30&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f1534db1f80&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f9a588f9e40&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f9a588f9ee0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f9a588f9d50&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f9a588f9f30&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f9a588f9f80&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f9a588f9fd0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f9a588fa020&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f9a588fa070&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f9a588fa0c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f9a588fa110&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7f9a588fa160&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f9a588fa1b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f9a588fa200&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f9a588fa250&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f9a588fa2a0&gt;]
 </pre></div>
 </div>
 </div>
@@ -1026,8 +1026,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DataClient.TabularData(data={&#39;PowerPct&#39;: 0.0, &#39;IsPowered&#39;: False}, metadata=method_name: &quot;IsPowered&quot;
-, time_requested=datetime.datetime(2022, 1, 1, 1, 1, 1), time_received=datetime.datetime(2022, 12, 31, 23, 59, 59)), DataClient.TabularData(data={&#39;PowerPct&#39;: 0.0, &#39;IsPowered&#39;: False}, metadata=location_id: &quot;loc-id&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=method_name: &quot;IsPowered&quot;
+, time_requested=datetime.datetime(2022, 1, 1, 1, 1, 1), time_received=datetime.datetime(2022, 12, 31, 23, 59, 59)), DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=location_id: &quot;loc-id&quot;
 , time_requested=datetime.datetime(2023, 1, 2, 0, 0), time_received=datetime.datetime(2023, 3, 4, 0, 0)), DataClient.TabularData(data={&#39;Position&#39;: 0.0}, metadata=, time_requested=datetime.datetime(2023, 5, 6, 0, 0), time_received=datetime.datetime(2023, 7, 8, 0, 0))]
 0
 </pre></div>
@@ -1122,10 +1122,10 @@ robot-3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Function: go.viam.com/rdk/robot/impl.(*resourceManager).updateResources
-Line: 922.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File: /__w/rdk/rdk/robot/impl/resource_manager.go
 Defined: True
-File: /__w/rdk/rdk/robot/impl/resource_manager.go
+Function: go.viam.com/rdk/robot/impl.(*resourceManager).updateResources
+Line: 922.0
 
 *****PROTO*****
 

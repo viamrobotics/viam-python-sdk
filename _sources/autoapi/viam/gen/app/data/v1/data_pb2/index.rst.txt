@@ -1520,7 +1520,7 @@ Module Contents
    :canonical: Annotations
 
 
-.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: Global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: Global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., binary_data_id: str = ...)
+.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: Global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: Global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., binary_data_id: str = ..., file_size_bytes: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1545,6 +1545,10 @@ Module Contents
 
    .. py:attribute:: binary_data_id
       :type:  str
+
+
+   .. py:attribute:: file_size_bytes
+      :type:  int
 
 
    .. py:method:: capture_metadata() -> Global___CaptureMetadata
