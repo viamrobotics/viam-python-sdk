@@ -88,6 +88,7 @@ ROBOT_PART = RobotPart(
     created_on=TIME,
     secrets=None,
     last_updated=TIME,
+    robot_config_json=None,
 )
 ROBOT_PARTS = [ROBOT_PART]
 ROVER_RENTAL_ROBOT = RoverRentalRobot(
@@ -501,6 +502,16 @@ class TestClient:
             assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
             assert updated_robot_part.proto == ROBOT_PART
             assert service.last_known_update == datetime_to_timestamp(last_known_update)
+
+    async def test_update_robot_part_with_config_json(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            robot_config_json = '{"components": [{"name": "test"}]}'
+            client = AppClient(channel, METADATA)
+            updated_robot_part = await client.update_robot_part(robot_part_id=ID, name=NAME, robot_config_json=robot_config_json)
+            assert service.robot_part_id == ID
+            assert service.name == NAME
+            assert service.robot_config_json == robot_config_json
+            assert updated_robot_part.proto == ROBOT_PART
 
     async def test_new_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:

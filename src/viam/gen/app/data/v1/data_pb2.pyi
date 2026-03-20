@@ -980,6 +980,7 @@ class BinaryMetadata(_message.Message):
     ANNOTATIONS_FIELD_NUMBER: _builtins.int
     DATASET_IDS_FIELD_NUMBER: _builtins.int
     BINARY_DATA_ID_FIELD_NUMBER: _builtins.int
+    FILE_SIZE_BYTES_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
     @_deprecated('This field has been marked as deprecated using proto field options.')
@@ -994,6 +995,7 @@ class BinaryMetadata(_message.Message):
     file_ext: _builtins.str
     uri: _builtins.str
     binary_data_id: _builtins.str
+    file_size_bytes: _builtins.int
 
     @_builtins.property
     def capture_metadata(self) -> Global___CaptureMetadata:
@@ -1015,13 +1017,13 @@ class BinaryMetadata(_message.Message):
     def dataset_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., capture_metadata: Global___CaptureMetadata | None=..., time_requested: _timestamp_pb2.Timestamp | None=..., time_received: _timestamp_pb2.Timestamp | None=..., file_name: _builtins.str=..., file_ext: _builtins.str=..., uri: _builtins.str=..., annotations: Global___Annotations | None=..., dataset_ids: _abc.Iterable[_builtins.str] | None=..., binary_data_id: _builtins.str=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., capture_metadata: Global___CaptureMetadata | None=..., time_requested: _timestamp_pb2.Timestamp | None=..., time_received: _timestamp_pb2.Timestamp | None=..., file_name: _builtins.str=..., file_ext: _builtins.str=..., uri: _builtins.str=..., annotations: Global___Annotations | None=..., dataset_ids: _abc.Iterable[_builtins.str] | None=..., binary_data_id: _builtins.str=..., file_size_bytes: _builtins.int=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['annotations', b'annotations', 'binary_data_id', b'binary_data_id', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['annotations', b'annotations', 'binary_data_id', b'binary_data_id', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'file_size_bytes', b'file_size_bytes', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...

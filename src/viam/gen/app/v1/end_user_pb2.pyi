@@ -31,12 +31,15 @@ Global___IsLegalAcceptedRequest: _TypeAlias = IsLegalAcceptedRequest
 class IsLegalAcceptedResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ACCEPTED_LEGAL_FIELD_NUMBER: _builtins.int
+    EVER_ACCEPTED_LEGAL_FIELD_NUMBER: _builtins.int
     accepted_legal: _builtins.bool
     'If false, the user should not be able to use the application.'
+    ever_accepted_legal: _builtins.bool
+    'Whether the user has ever accepted any version of the legal terms.'
 
-    def __init__(self, *, accepted_legal: _builtins.bool=...) -> None:
+    def __init__(self, *, accepted_legal: _builtins.bool=..., ever_accepted_legal: _builtins.bool=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['accepted_legal', b'accepted_legal']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['accepted_legal', b'accepted_legal', 'ever_accepted_legal', b'ever_accepted_legal']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
