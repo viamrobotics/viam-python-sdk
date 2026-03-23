@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 from multiprocessing import Lock
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
@@ -317,7 +317,7 @@ class ExampleCamera(Camera):
         img.close()
         super().__init__(name)
 
-    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+    async def get_images(self, *, filter_source_names: Optional[Sequence[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         ts = Timestamp()
         ts.FromDatetime(datetime.now())
         metadata = ResponseMetadata(captured_at=ts)
