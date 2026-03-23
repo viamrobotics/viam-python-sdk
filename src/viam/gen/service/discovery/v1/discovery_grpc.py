@@ -21,8 +21,12 @@ class DiscoveryServiceBase(abc.ABC):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.service.discovery.v1.DiscoveryService/DiscoverResources': grpclib.const.Handler(self.DiscoverResources, grpclib.const.Cardinality.UNARY_UNARY, service.discovery.v1.discovery_pb2.DiscoverResourcesRequest, service.discovery.v1.discovery_pb2.DiscoverResourcesResponse), '/viam.service.discovery.v1.DiscoveryService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
+        return {'/viam.service.discovery.v1.DiscoveryService/DiscoverResources': grpclib.const.Handler(self.DiscoverResources, grpclib.const.Cardinality.UNARY_UNARY, service.discovery.v1.discovery_pb2.DiscoverResourcesRequest, service.discovery.v1.discovery_pb2.DiscoverResourcesResponse), '/viam.service.discovery.v1.DiscoveryService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.service.discovery.v1.DiscoveryService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
 
 class UnimplementedDiscoveryServiceBase(DiscoveryServiceBase):
 
@@ -32,8 +36,12 @@ class UnimplementedDiscoveryServiceBase(DiscoveryServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class DiscoveryServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.DiscoverResources = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.discovery.v1.DiscoveryService/DiscoverResources', service.discovery.v1.discovery_pb2.DiscoverResourcesRequest, service.discovery.v1.discovery_pb2.DiscoverResourcesResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.discovery.v1.DiscoveryService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.discovery.v1.DiscoveryService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)

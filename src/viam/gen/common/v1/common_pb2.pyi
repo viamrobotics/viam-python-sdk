@@ -608,6 +608,43 @@ class DoCommandResponse(_message.Message):
 Global___DoCommandResponse: _TypeAlias = DoCommandResponse
 
 @_typing.final
+class GetStatusRequest(_message.Message):
+    """GetStatusRequest represents a generic GetStatus input"""
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+
+    def __init__(self, *, name: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetStatusRequest: _TypeAlias = GetStatusRequest
+
+@_typing.final
+class GetStatusResponse(_message.Message):
+    """GetStatusResponse represents a generic GetStatus output"""
+    DESCRIPTOR: _descriptor.Descriptor
+    RESULT_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def result(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, result: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['result', b'result']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['result', b'result']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetStatusResponse: _TypeAlias = GetStatusResponse
+
+@_typing.final
 class GetKinematicsRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int

@@ -25,11 +25,15 @@ class AudioInServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.audioin.v1.AudioInService/GetAudio': grpclib.const.Handler(self.GetAudio, grpclib.const.Cardinality.UNARY_STREAM, component.audioin.v1.audioin_pb2.GetAudioRequest, component.audioin.v1.audioin_pb2.GetAudioResponse), '/viam.component.audioin.v1.AudioInService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse), '/viam.component.audioin.v1.AudioInService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.audioin.v1.AudioInService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)}
+        return {'/viam.component.audioin.v1.AudioInService/GetAudio': grpclib.const.Handler(self.GetAudio, grpclib.const.Cardinality.UNARY_STREAM, component.audioin.v1.audioin_pb2.GetAudioRequest, component.audioin.v1.audioin_pb2.GetAudioResponse), '/viam.component.audioin.v1.AudioInService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse), '/viam.component.audioin.v1.AudioInService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.audioin.v1.AudioInService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse), '/viam.component.audioin.v1.AudioInService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)}
 
 class UnimplementedAudioInServiceBase(AudioInServiceBase):
 
@@ -42,6 +46,9 @@ class UnimplementedAudioInServiceBase(AudioInServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -51,4 +58,5 @@ class AudioInServiceStub:
         self.GetAudio = grpclib.client.UnaryStreamMethod(channel, '/viam.component.audioin.v1.AudioInService/GetAudio', component.audioin.v1.audioin_pb2.GetAudioRequest, component.audioin.v1.audioin_pb2.GetAudioResponse)
         self.GetProperties = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioin.v1.AudioInService/GetProperties', common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioin.v1.AudioInService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioin.v1.AudioInService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
         self.GetGeometries = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioin.v1.AudioInService/GetGeometries', common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)
