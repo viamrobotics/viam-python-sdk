@@ -485,6 +485,9 @@ class MockVision(Vision):
         self.timeout = timeout
         return {"cmd": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockDiscovery(Discovery):
     def __init__(
@@ -509,6 +512,9 @@ class MockDiscovery(Discovery):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {"cmd": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockMLModel(MLModel):
@@ -751,6 +757,9 @@ class MockSLAM(SLAM):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockNavigation(Navigation):
     LOCATION = GeoPoint(latitude=100.0, longitude=150.0)
@@ -805,6 +814,9 @@ class MockNavigation(Navigation):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockProvisioning(UnimplementedProvisioningServiceBase):
@@ -1947,6 +1959,9 @@ class MockGenericService(GenericService):
         self.timeout = timeout
         return {key: True for key in command.keys()}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockWorldStateStore(WorldStateStore):
     def __init__(self, name: str):
@@ -1998,3 +2013,6 @@ class MockWorldStateStore(WorldStateStore):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {"cmd": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
