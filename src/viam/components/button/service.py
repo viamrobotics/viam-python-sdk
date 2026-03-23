@@ -7,6 +7,8 @@ from viam.gen.component.button.v1.button_pb2 import (
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.button import ButtonServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -43,4 +45,13 @@ class ButtonRPCService(ButtonServiceBase, ResourceRPCServiceBase[Button]):
             metadata=stream.metadata,
         )
         response = DoCommandResponse(result=dict_to_struct(result))
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        button = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await button.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)
