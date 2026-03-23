@@ -3,7 +3,6 @@ from typing import ClassVar, Mapping, Sequence, Tuple
 from typing_extensions import Self
 
 from viam.logging import getLogger
-from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
@@ -15,7 +14,7 @@ from ..gizmo.api import Gizmo
 LOGGER = getLogger(__name__)
 
 
-class MyGizmo(Gizmo, Reconfigurable):
+class MyGizmo(Gizmo):
     """This is the specific implementation of a ``Gizmo`` (defined in api.py).
 
     It inherits from Gizmo, as well conforms to the ``Reconfigurable`` protocol, which signifies that this component can be reconfigured.

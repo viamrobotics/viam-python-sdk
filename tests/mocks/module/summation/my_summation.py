@@ -2,7 +2,6 @@ from typing import ClassVar, Mapping, Sequence
 
 from typing_extensions import Self
 
-from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
@@ -11,7 +10,7 @@ from viam.resource.types import Model
 from ..summation.api import SummationService
 
 
-class MySummationService(SummationService, Reconfigurable):
+class MySummationService(SummationService):
     MODEL: ClassVar[Model] = Model.from_string("acme:demo:mysum")
     subtract: bool
 

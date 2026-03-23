@@ -4,7 +4,6 @@ from typing_extensions import Self
 
 from viam.components.base import Base
 from viam.components.motor import Motor
-from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.resource.base import ResourceBase
 from viam.proto.common import Geometry, Vector3, ResourceName
@@ -13,7 +12,7 @@ from viam.resource.types import Model, ModelFamily
 from viam.utils import struct_to_dict
 
 
-class MyBase(Base, Reconfigurable):
+class MyBase(Base):
     """
     MyBase implements a base that only supports set_power (basic forward/back/turn controls), is_moving (check if in motion), and stop (stop
     all motion).
