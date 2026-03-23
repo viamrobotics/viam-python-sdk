@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.service.worldstatestore import (
     GetTransformRequest,
     GetTransformResponse,
@@ -53,3 +53,12 @@ class WorldStateStoreService(UnimplementedWorldStateStoreServiceBase, ResourceRP
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await worldstatestore.do_command(struct_to_dict(request.command), timeout=timeout)
         await stream.send_message(DoCommandResponse(result=dict_to_struct(result)))
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        worldstatestore = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await worldstatestore.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
+        await stream.send_message(response)

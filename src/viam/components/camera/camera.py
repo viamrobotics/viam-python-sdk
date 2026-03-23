@@ -116,3 +116,19 @@ class Camera(ComponentBase):
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getproperties>`_.
         """
         ...
+
+    @abc.abstractmethod
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        """
+        Get the current status of the camera as a dictionary.
+
+        ::
+
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
+
+            status = await my_camera.get_status()
+
+        Returns:
+            Dict[str, Any]: The status of the camera.
+        """
+        ...
