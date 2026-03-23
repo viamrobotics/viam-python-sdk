@@ -2,7 +2,6 @@
 # pyright: reportGeneralTypeIssues=false
 from grpclib.server import Stream
 
-from viam.errors import NotSupportedError
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,

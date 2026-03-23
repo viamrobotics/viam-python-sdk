@@ -9,7 +9,7 @@ from viam.proto.common import GetStatusRequest, GetStatusResponse
 from viam.resource.manager import ResourceType
 from viam.rpc.types import RPCServiceBase
 from viam.services.service_base import ServiceBase
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct
 
 from .base import ResourceBase
 
