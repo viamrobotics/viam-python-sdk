@@ -1,8 +1,9 @@
-from typing import ClassVar, Mapping, Sequence
+from typing import ClassVar, Mapping, Optional, Sequence
 
 from typing_extensions import Self
 
 from viam.module.types import Reconfigurable
+from viam.utils import ValueTypes
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
@@ -40,6 +41,9 @@ class MySummationService(SummationService, Reconfigurable):
             else:
                 result += num
         return result
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.subtract = config.attributes.fields["subtract"].bool_value or False

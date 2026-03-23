@@ -52,7 +52,7 @@ from viam.proto.common import (
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
-from viam.utils import SensorReading
+from viam.utils import SensorReading, ValueTypes
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -107,6 +107,9 @@ class ExampleArm(Arm):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExampleAudioOut(AudioOut):
     def __init__(self, name: str):
@@ -150,6 +153,9 @@ class ExampleAudioOut(AudioOut):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class ExampleBase(Base):
@@ -205,6 +211,9 @@ class ExampleBase(Base):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class ExampleAnalog(Board.Analog):
@@ -294,6 +303,9 @@ class ExampleBoard(Board):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExampleCamera(Camera):
     def __init__(self, name: str):
@@ -319,6 +331,9 @@ class ExampleCamera(Camera):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {}
 
 
 class ExampleController(Controller):
@@ -428,6 +443,9 @@ class ExampleController(Controller):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExampleEncoder(Encoder):
     def __init__(self, name: str):
@@ -450,6 +468,9 @@ class ExampleEncoder(Encoder):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class ExampleGantry(Gantry):
@@ -490,6 +511,9 @@ class ExampleGantry(Gantry):
     async def get_kinematics(self, *, extra=None, timeout=None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_UNSPECIFIED, b"abc", {})
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExampleGripper(Gripper):
     def __init__(self, name: str):
@@ -524,6 +548,9 @@ class ExampleGripper(Gripper):
 
     async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return self.kinematics
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class ExampleMotor(Motor):
@@ -607,6 +634,9 @@ class ExampleMotor(Motor):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExampleMovementSensor(MovementSensor):
     def __init__(
@@ -664,6 +694,9 @@ class ExampleMovementSensor(MovementSensor):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExamplePoseTracker(PoseTracker):
     async def get_poses(self, body_names: List[str], **kwargs) -> Dict[str, PoseInFrame]:
@@ -676,6 +709,9 @@ class ExamplePoseTracker(PoseTracker):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class ExampleSensor(Sensor):
     def __init__(self, name: str):
@@ -687,6 +723,9 @@ class ExampleSensor(Sensor):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class ExampleServo(Servo):
@@ -710,3 +749,6 @@ class ExampleServo(Servo):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
