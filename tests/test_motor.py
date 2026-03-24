@@ -7,7 +7,7 @@ from grpclib.testing import ChannelFor
 from viam.components.generic.service import GenericRPCService
 from viam.components.motor import Motor, MotorClient
 from viam.components.motor.service import MotorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetStatusRequest, GetStatusResponse
 from viam.proto.component.motor import (
     GetPositionRequest,
     GetPositionResponse,
@@ -180,6 +180,17 @@ class TestService:
                 command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
             )
 
+    async def test_get_status(self, motor: Motor, service: MotorRPCService):
+        cast(AsyncMock, motor.get_status).return_value = {}
+        async with ChannelFor([service]) as channel:
+            client = MotorServiceStub(channel)
+            request = GetStatusRequest(name=motor.name)
+            response: GetStatusResponse = await client.GetStatus(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            assert struct_to_dict(response.result) == {}
+            cast(AsyncMock, motor.get_status).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
+
     async def test_get_geometries(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
@@ -297,6 +308,16 @@ class TestClient:
             assert result == {"command": command}
             cast(AsyncMock, motor.do_command).assert_called_once_with(
                 command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
+
+    async def test_get_status(self, motor: Motor, service: MotorRPCService):
+        cast(AsyncMock, motor.get_status).return_value = {}
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            status = await client.get_status(timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
+            assert status == {}
+            cast(AsyncMock, motor.get_status).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
             )
 
     async def test_get_geometries(self, motor: Motor, service: MotorRPCService):

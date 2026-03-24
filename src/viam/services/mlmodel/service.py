@@ -1,9 +1,10 @@
 from grpclib.server import Stream
 
+from viam.proto.common import GetStatusRequest, GetStatusResponse
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
-from viam.utils import struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .mlmodel import MLModel
 
@@ -35,4 +36,13 @@ class MLModelRPCService(MLModelServiceBase, ResourceRPCServiceBase):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         metadata = await mlmodel.metadata(extra=extra, timeout=timeout)
         response = MetadataResponse(metadata=metadata)
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        mlmodel = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await mlmodel.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)

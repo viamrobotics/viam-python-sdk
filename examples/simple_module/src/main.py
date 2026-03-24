@@ -46,6 +46,9 @@ class MySensor(Sensor):
         LOGGER.info(f"received {command=}.")
         return command
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         if "multiplier" in config.attributes.fields:
             multiplier = config.attributes.fields["multiplier"].number_value

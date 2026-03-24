@@ -7,6 +7,8 @@ from viam.gen.component.button.v1.button_pb2 import PushRequest
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.button import ButtonServiceStub
 from viam.resource.manager import ResourceManager
@@ -34,6 +36,10 @@ class TestButton:
         command = {"command": "args"}
         resp = await button.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self, button):
+        status = await button.get_status()
+        assert status == {}
 
 
 @pytest.fixture(scope="function")
@@ -66,6 +72,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, button: MockButton, service: ButtonRPCService):
+        async with ChannelFor([service]) as channel:
+            client = ButtonServiceStub(channel)
+            request = GetStatusRequest(name=button.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     async def test_push(self, button, service):
@@ -83,3 +96,9 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, button, service):
+        async with ChannelFor([service]) as channel:
+            client = ButtonClient(button.name, channel)
+            status = await client.get_status()
+            assert status == {}

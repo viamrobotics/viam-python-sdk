@@ -2,7 +2,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, Pose, PoseInFrame
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse, Pose, PoseInFrame
 from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
@@ -31,6 +31,10 @@ class TestPoseTracker:
         command = {"command": "args"}
         resp = await self.mock_pose_tracker.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self):
+        status = await self.mock_pose_tracker.get_status()
+        assert status == {}
 
     async def test_get_geometries(self):
         geometries = await self.mock_pose_tracker.get_geometries()
@@ -66,6 +70,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = PoseTrackerServiceStub(channel)
+            request = GetStatusRequest(name=self.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerServiceStub(channel)
@@ -98,6 +109,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = PoseTrackerClient(self.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

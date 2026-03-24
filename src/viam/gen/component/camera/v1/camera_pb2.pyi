@@ -9,7 +9,6 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import struct_pb2 as _struct_pb2
 from google.protobuf.internal import containers as _containers
-from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 import builtins as _builtins
 import sys
 import typing as _typing
@@ -18,72 +17,6 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import TypeAlias as _TypeAlias
 DESCRIPTOR: _descriptor.FileDescriptor
-
-class _Format:
-    ValueType = _typing.NewType('ValueType', _builtins.int)
-    V: _TypeAlias = ValueType
-
-class _FormatEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_Format.ValueType], _builtins.type):
-    DESCRIPTOR: _descriptor.EnumDescriptor
-    FORMAT_UNSPECIFIED: _Format.ValueType
-    FORMAT_RAW_RGBA: _Format.ValueType
-    FORMAT_RAW_DEPTH: _Format.ValueType
-    FORMAT_JPEG: _Format.ValueType
-    FORMAT_PNG: _Format.ValueType
-
-class Format(_Format, metaclass=_FormatEnumTypeWrapper):
-    ...
-FORMAT_UNSPECIFIED: Format.ValueType
-FORMAT_RAW_RGBA: Format.ValueType
-FORMAT_RAW_DEPTH: Format.ValueType
-FORMAT_JPEG: Format.ValueType
-FORMAT_PNG: Format.ValueType
-Global___Format: _TypeAlias = Format
-
-@_typing.final
-class GetImageRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    MIME_TYPE_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
-    'Name of a camera'
-    mime_type: _builtins.str
-    'Requested MIME type of response'
-
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., mime_type: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
-        ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
-
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'mime_type', b'mime_type', 'name', b'name']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetImageRequest: _TypeAlias = GetImageRequest
-
-@_typing.final
-class GetImageResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    MIME_TYPE_FIELD_NUMBER: _builtins.int
-    IMAGE_FIELD_NUMBER: _builtins.int
-    mime_type: _builtins.str
-    'Actual MIME type of response'
-    image: _builtins.bytes
-    'Frame in bytes'
-
-    def __init__(self, *, mime_type: _builtins.str=..., image: _builtins.bytes=...) -> None:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['image', b'image', 'mime_type', b'mime_type']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetImageResponse: _TypeAlias = GetImageResponse
 
 @_typing.final
 class GetImagesRequest(_message.Message):
@@ -146,14 +79,11 @@ Global___GetImagesResponse: _TypeAlias = GetImagesResponse
 class Image(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     SOURCE_NAME_FIELD_NUMBER: _builtins.int
-    FORMAT_FIELD_NUMBER: _builtins.int
     IMAGE_FIELD_NUMBER: _builtins.int
     MIME_TYPE_FIELD_NUMBER: _builtins.int
     ANNOTATIONS_FIELD_NUMBER: _builtins.int
     source_name: _builtins.str
     'the name of the sensor where the image came from'
-    format: Global___Format.ValueType
-    'format of the response image bytes'
     image: _builtins.bytes
     'image in bytes'
     mime_type: _builtins.str
@@ -163,44 +93,17 @@ class Image(_message.Message):
     def annotations(self) -> _data_pb2.Annotations:
         """annotations can be used to store additional information about the image"""
 
-    def __init__(self, *, source_name: _builtins.str=..., format: Global___Format.ValueType=..., image: _builtins.bytes=..., mime_type: _builtins.str=..., annotations: _data_pb2.Annotations | None=...) -> None:
+    def __init__(self, *, source_name: _builtins.str=..., image: _builtins.bytes=..., mime_type: _builtins.str=..., annotations: _data_pb2.Annotations | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['annotations', b'annotations']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['annotations', b'annotations', 'format', b'format', 'image', b'image', 'mime_type', b'mime_type', 'source_name', b'source_name']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['annotations', b'annotations', 'image', b'image', 'mime_type', b'mime_type', 'source_name', b'source_name']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___Image: _TypeAlias = Image
-
-@_typing.final
-class RenderFrameRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    MIME_TYPE_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
-    'Name of a camera'
-    mime_type: _builtins.str
-    'Requested MIME type of response'
-
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., mime_type: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
-        ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
-
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'mime_type', b'mime_type', 'name', b'name']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___RenderFrameRequest: _TypeAlias = RenderFrameRequest
 
 @_typing.final
 class GetPointCloudRequest(_message.Message):

@@ -18,7 +18,7 @@ def create_mock_subclass(abstract_class):
 
         namespace[method_name] = mock
 
-    base_methods = [("do_command", {}), ("get_geometries", [])]
+    base_methods = [("do_command", {}), ("get_geometries", []), ("get_status", {})]
     for method_name, return_value in base_methods:
         original_method = getattr(abstract_class, method_name, None)
         if original_method:

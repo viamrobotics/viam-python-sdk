@@ -7,9 +7,6 @@ from ....gen.component.camera.v1.camera_grpc import CameraServiceBase, CameraSer
 from ....gen.component.camera.v1.camera_pb2 import (
     DistortionParameters,
     ExtrinsicParameters,
-    Format,
-    GetImageRequest,
-    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
@@ -19,7 +16,6 @@ from ....gen.component.camera.v1.camera_pb2 import (
     Image,
     IntrinsicParameters,
     Property,
-    RenderFrameRequest,
     Webcam,
     Webcams,
 )
@@ -30,9 +26,6 @@ __all__ = [
     "UnimplementedCameraServiceBase",
     "DistortionParameters",
     "ExtrinsicParameters",
-    "Format",
-    "GetImageRequest",
-    "GetImageResponse",
     "GetImagesRequest",
     "GetImagesResponse",
     "GetPointCloudRequest",
@@ -42,7 +35,6 @@ __all__ = [
     "Image",
     "IntrinsicParameters",
     "Property",
-    "RenderFrameRequest",
     "Webcam",
     "Webcams",
 ]

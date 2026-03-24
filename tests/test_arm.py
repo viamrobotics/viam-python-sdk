@@ -9,6 +9,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
     Pose,
 )
 from viam.proto.component.arm import (
@@ -77,6 +79,10 @@ class TestArm:
         command = {"command": "args"}
         resp = await self.arm.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self):
+        status = await self.arm.get_status()
+        assert status == {}
 
     async def test_extra(self):
         await self.arm.get_end_position(extra={"foo": "bar"})
@@ -149,6 +155,13 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = GetStatusRequest(name=self.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
 
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
@@ -243,6 +256,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:

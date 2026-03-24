@@ -10,7 +10,7 @@ from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -117,6 +117,10 @@ class TestBoard:
         command = {"command": "args"}
         resp = await board.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self, board: MockBoard):
+        status = await board.get_status()
+        assert status == {}
 
     async def test_set_power_mode(self, board: MockBoard):
         pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
@@ -262,6 +266,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardServiceStub(channel)
+            request = GetStatusRequest(name=board.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -357,6 +368,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(board.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_set_power_mode(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:

@@ -10,7 +10,7 @@ from ....app.v1 import robot_pb2 as app_dot_v1_dot_robot__pb2
 from ....common.v1 import common_pb2 as common_dot_v1_dot_common__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$service/discovery/v1/discovery.proto\x12\x19viam.service.discovery.v1\x1a\x12app/v1/robot.proto\x1a\x16common/v1/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto"]\n\x18DiscoverResourcesRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12-\n\x05extra\x18c \x01(\x0b2\x17.google.protobuf.StructR\x05extra"[\n\x19DiscoverResourcesResponse\x12>\n\x0bdiscoveries\x18\x01 \x03(\x0b2\x1c.viam.app.v1.ComponentConfigR\x0bdiscoveries2\xcf\x02\n\x10DiscoveryService\x12\xad\x01\n\x11DiscoverResources\x123.viam.service.discovery.v1.DiscoverResourcesRequest\x1a4.viam.service.discovery.v1.DiscoverResourcesResponse"-\x82\xd3\xe4\x93\x02\'\x12%/viam/api/v1/service/{name}/discovery\x12\x8a\x01\n\tDoCommand\x12 .viam.common.v1.DoCommandRequest\x1a!.viam.common.v1.DoCommandResponse"8\x82\xd3\xe4\x93\x022"0/viam/api/v1/service/discovery/{name}/do_commandBD\n\x1dcom.viam.service.discovery.v1Z#go.viam.com/api/service/discovey/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$service/discovery/v1/discovery.proto\x12\x19viam.service.discovery.v1\x1a\x12app/v1/robot.proto\x1a\x16common/v1/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto"]\n\x18DiscoverResourcesRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12-\n\x05extra\x18c \x01(\x0b2\x17.google.protobuf.StructR\x05extra"[\n\x19DiscoverResourcesResponse\x12>\n\x0bdiscoveries\x18\x01 \x03(\x0b2\x1c.viam.app.v1.ComponentConfigR\x0bdiscoveries2\xdc\x03\n\x10DiscoveryService\x12\xad\x01\n\x11DiscoverResources\x123.viam.service.discovery.v1.DiscoverResourcesRequest\x1a4.viam.service.discovery.v1.DiscoverResourcesResponse"-\x82\xd3\xe4\x93\x02\'\x12%/viam/api/v1/service/{name}/discovery\x12\x8a\x01\n\tDoCommand\x12 .viam.common.v1.DoCommandRequest\x1a!.viam.common.v1.DoCommandResponse"8\x82\xd3\xe4\x93\x022"0/viam/api/v1/service/discovery/{name}/do_command\x12\x8a\x01\n\tGetStatus\x12 .viam.common.v1.GetStatusRequest\x1a!.viam.common.v1.GetStatusResponse"8\x82\xd3\xe4\x93\x022\x120/viam/api/v1/service/discovery/{name}/get_statusBD\n\x1dcom.viam.service.discovery.v1Z#go.viam.com/api/service/discovey/v1b\x06proto3')
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'service.discovery.v1.discovery_pb2', _globals)
@@ -21,9 +21,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals['_DISCOVERYSERVICE'].methods_by_name['DiscoverResources']._serialized_options = b"\x82\xd3\xe4\x93\x02'\x12%/viam/api/v1/service/{name}/discovery"
     _globals['_DISCOVERYSERVICE'].methods_by_name['DoCommand']._loaded_options = None
     _globals['_DISCOVERYSERVICE'].methods_by_name['DoCommand']._serialized_options = b'\x82\xd3\xe4\x93\x022"0/viam/api/v1/service/discovery/{name}/do_command'
+    _globals['_DISCOVERYSERVICE'].methods_by_name['GetStatus']._loaded_options = None
+    _globals['_DISCOVERYSERVICE'].methods_by_name['GetStatus']._serialized_options = b'\x82\xd3\xe4\x93\x022\x120/viam/api/v1/service/discovery/{name}/get_status'
     _globals['_DISCOVERRESOURCESREQUEST']._serialized_start = 171
     _globals['_DISCOVERRESOURCESREQUEST']._serialized_end = 264
     _globals['_DISCOVERRESOURCESRESPONSE']._serialized_start = 266
     _globals['_DISCOVERRESOURCESRESPONSE']._serialized_end = 357
     _globals['_DISCOVERYSERVICE']._serialized_start = 360
-    _globals['_DISCOVERYSERVICE']._serialized_end = 695
+    _globals['_DISCOVERYSERVICE']._serialized_end = 836

@@ -1,4 +1,4 @@
-from typing import ClassVar, Mapping, Sequence, Tuple, cast
+from typing import ClassVar, Mapping, Optional, Sequence, Tuple, cast
 
 from typing_extensions import Self
 
@@ -10,7 +10,7 @@ from viam.resource.base import ResourceBase
 from viam.proto.common import ResourceName
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
-from viam.utils import struct_to_dict
+from viam.utils import ValueTypes, struct_to_dict
 from viam.module.module import Module
 import asyncio
 
@@ -48,6 +48,9 @@ class Foo(Generic, Reconfigurable):
             optional_deps.append(cfg_optional_motor)
 
         return required_deps, optional_deps
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
     # Reconfigure with latest dependencies
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):

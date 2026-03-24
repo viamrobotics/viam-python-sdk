@@ -5,6 +5,8 @@ from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.service.discovery import (
     DiscoverResourcesRequest,
@@ -49,6 +51,10 @@ class TestDiscovery:
         response = await discovery.do_command(command)
         assert response["cmd"] == command
 
+    async def test_get_status(self, discovery: MockDiscovery):
+        status = await discovery.get_status()
+        assert status == {}
+
 
 class TestService:
     async def test_discover_resources(self, discovery: MockDiscovery, service: DiscoveryRPCService):
@@ -68,6 +74,13 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             assert struct_to_dict(response.result)["cmd"] == command
 
+    async def test_get_status(self, discovery: MockDiscovery, service: DiscoveryRPCService):
+        async with ChannelFor([service]) as channel:
+            client = DiscoveryServiceStub(channel)
+            request = GetStatusRequest(name=discovery.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     async def test_discover_resources(self, discovery: MockDiscovery, service: DiscoveryRPCService):
@@ -84,3 +97,9 @@ class TestClient:
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response["cmd"] == command
+
+    async def test_get_status(self, discovery: MockDiscovery, service: DiscoveryRPCService):
+        async with ChannelFor([service]) as channel:
+            client = DiscoveryClient(DISCOVERY_SERVICE_NAME, channel)
+            status = await client.get_status()
+            assert status == {}

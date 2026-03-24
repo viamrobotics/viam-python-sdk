@@ -2,7 +2,7 @@ from typing import Any, AsyncGenerator, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Transform
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse, Transform
 from viam.proto.service.worldstatestore import (
     GetTransformRequest,
     GetTransformResponse,
@@ -92,4 +92,15 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
             command=dict_to_struct(command),
         )
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

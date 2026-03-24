@@ -8,6 +8,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetReadingsRequest,
     GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
@@ -133,6 +135,15 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         geometries = await sensor.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        sensor = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await sensor.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
     async def GetReadings(self, stream: Stream[GetReadingsRequest, GetReadingsResponse]) -> None:

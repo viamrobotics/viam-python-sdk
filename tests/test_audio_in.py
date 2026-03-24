@@ -10,6 +10,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.audioin import AudioInServiceStub, GetAudioRequest
 from viam.resource.manager import ResourceManager
@@ -75,6 +77,10 @@ class TestAudioIn:
         resp = await audio_in.do_command(command)
         assert resp == {"command": command}
 
+    async def test_get_status(self, audio_in: AudioIn):
+        status = await audio_in.get_status()
+        assert status == {}
+
     @pytest.mark.asyncio
     async def test_get_geometries(self, audio_in: AudioIn):
         geometries = await audio_in.get_geometries()
@@ -127,6 +133,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, audio_in: MockAudioIn, service: AudioInRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInServiceStub(channel)
+            request = GetStatusRequest(name=audio_in.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, audio_in: MockAudioIn, service: AudioInRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInServiceStub(channel)
@@ -173,6 +186,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, audio_in: AudioIn, service: AudioInRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInClient(audio_in.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     @pytest.mark.asyncio
     async def test_get_geometries(self, audio_in: AudioIn, service: AudioInRPCService):

@@ -93,6 +93,19 @@ class ResourceBase(Protocol):
         """
         ...
 
+    @abstractmethod
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, "ValueTypes"]:
+        """Get the current status of the Resource as a dictionary.
+
+        ::
+
+            status = await component.get_status()
+
+        Returns:
+            Mapping[str, ValueTypes]: The status of the resource
+        """
+        ...
+
     def get_operation(self, kwargs: Mapping[str, Any]) -> Operation:
         """Get the ``Operation`` associated with the currently running function.
 

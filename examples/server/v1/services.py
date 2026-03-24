@@ -1,6 +1,7 @@
 from numpy.typing import NDArray
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Mapping, Optional, Tuple
 from tests.mocks.services import MockMLModel, MockSLAM
+from viam.utils import ValueTypes
 from viam.services.slam import Pose, MappingMode, SLAM
 from viam.services.mlmodel import Metadata, MLModel
 
@@ -17,6 +18,9 @@ class ExampleMLModel(MLModel):
 
     async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
         return self.meta
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class ExampleSLAM(SLAM):
@@ -39,3 +43,6 @@ class ExampleSLAM(SLAM):
 
     async def get_properties(self, **kwargs) -> Tuple[bool, MappingMode.ValueType]:
         return (self.cloud_slam, self.mapping_mode)
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}

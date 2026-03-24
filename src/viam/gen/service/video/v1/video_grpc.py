@@ -21,8 +21,12 @@ class VideoServiceBase(abc.ABC):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.service.video.v1.VideoService/GetVideo': grpclib.const.Handler(self.GetVideo, grpclib.const.Cardinality.UNARY_STREAM, service.video.v1.video_pb2.GetVideoRequest, service.video.v1.video_pb2.GetVideoResponse), '/viam.service.video.v1.VideoService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
+        return {'/viam.service.video.v1.VideoService/GetVideo': grpclib.const.Handler(self.GetVideo, grpclib.const.Cardinality.UNARY_STREAM, service.video.v1.video_pb2.GetVideoRequest, service.video.v1.video_pb2.GetVideoResponse), '/viam.service.video.v1.VideoService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.service.video.v1.VideoService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
 
 class UnimplementedVideoServiceBase(VideoServiceBase):
 
@@ -32,8 +36,12 @@ class UnimplementedVideoServiceBase(VideoServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class VideoServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.GetVideo = grpclib.client.UnaryStreamMethod(channel, '/viam.service.video.v1.VideoService/GetVideo', service.video.v1.video_pb2.GetVideoRequest, service.video.v1.video_pb2.GetVideoResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.video.v1.VideoService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.video.v1.VideoService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
