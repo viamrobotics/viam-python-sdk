@@ -202,7 +202,7 @@ def test_get_server_output_captures_stderr():
     """_get_server_output captures process stderr for error reporting."""
     error_message = "TypeError: Can't instantiate abstract class"
     proc = subprocess.Popen(
-        [sys.executable, "-c", f"import sys; print('{error_message}', file=sys.stderr); sys.exit(1)"],
+        [sys.executable, "-c", f"import sys; print({error_message!r}, file=sys.stderr); sys.exit(1)"],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
