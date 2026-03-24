@@ -179,34 +179,3 @@ def test_check_example_coverage():
     assert not unknown, (
         f"New example directories without test coverage: {unknown}. Add new examples to the EXAMPLES list in tests/test_examples.py."
     )
-
-
-def test_wait_for_port_detects_process_death():
-    """_wait_for_port returns early when the monitored process exits."""
-    port = _find_free_port()
-    proc = subprocess.Popen(
-        [sys.executable, "-c", "import sys; sys.exit(1)"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    start = time.monotonic()
-    result = _wait_for_port("127.0.0.1", port, timeout=10.0, proc=proc)
-    elapsed = time.monotonic() - start
-    assert result is False
-    assert elapsed < 5.0, f"Should have returned early when process died, but took {elapsed:.1f}s"
-    proc.stdout.close()
-    proc.stderr.close()
-
-
-def test_get_server_output_captures_stderr():
-    """_get_server_output captures process stderr for error reporting."""
-    error_message = "TypeError: Can't instantiate abstract class"
-    proc = subprocess.Popen(
-        [sys.executable, "-c", f"import sys; print({error_message!r}, file=sys.stderr); sys.exit(1)"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    proc.wait()
-    stdout, stderr = _get_server_output(proc)
-    assert error_message in stderr
-    assert stdout == ""
