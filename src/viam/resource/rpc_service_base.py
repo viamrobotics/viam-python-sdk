@@ -1,15 +1,11 @@
 import abc
 from typing import TYPE_CHECKING, Generic, Type
 
-from grpclib.server import Stream
-
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import GetStatusRequest, GetStatusResponse
 from viam.resource.manager import ResourceType
 from viam.rpc.types import RPCServiceBase
 from viam.services.service_base import ServiceBase
-from viam.utils import dict_to_struct
 
 from .base import ResourceBase
 
@@ -50,13 +46,3 @@ class ResourceRPCServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
             return self.manager.get_resource(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore
         except ResourceNotFoundError as e:
             raise e.grpc_error
-
-    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
-        """Default implementation of GetStatus for all resources."""
-        request = await stream.recv_message()
-        assert request is not None
-        resource = self.get_resource(request.name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await resource.get_status(timeout=timeout, metadata=stream.metadata)
-        response = GetStatusResponse(result=dict_to_struct(result))
-        await stream.send_message(response)
