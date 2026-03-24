@@ -191,6 +191,22 @@
         <span class="o">...</span></div>
 
 
+<div class="viewcode-block" id="ResourceBase.get_status">
+<a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.get_status">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ValueTypes&quot;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current status of the Resource as a dictionary.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            status = await component.get_status()</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mapping[str, ValueTypes]: The status of the resource</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
 <div class="viewcode-block" id="ResourceBase.get_operation">
 <a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.get_operation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Operation</span><span class="p">:</span>

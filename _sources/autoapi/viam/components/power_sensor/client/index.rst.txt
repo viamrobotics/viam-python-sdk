@@ -137,6 +137,21 @@ Module Contents
 
 
 
+   .. py:method:: get_status(*, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+
+      Get the current status of the component as a dictionary.
+
+      ::
+
+          status = await component.get_status()
+
+      :returns: The status of the component
+      :rtype: Mapping[str, ValueTypes]
+
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 

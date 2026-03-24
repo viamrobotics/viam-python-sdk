@@ -192,6 +192,15 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetReadingsResponse.readings"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.readings()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetStatusRequest"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetStatusRequest.name"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetStatusResponse"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetStatusResponse.result"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse.result()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetStatusResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat"><code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.LogEntry"><code class="docutils literal notranslate"><span class="pre">LogEntry</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LogEntry.host"><code class="docutils literal notranslate"><span class="pre">LogEntry.host</span></code></a></li>
@@ -406,6 +415,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsResponse" title="viam.proto.common.GetReadingsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetStatusRequest" title="viam.proto.common.GetStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a></p></td>
+<td><p>GetStatusRequest represents a generic GetStatus input</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetStatusResponse" title="viam.proto.common.GetStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a></p></td>
+<td><p>GetStatusResponse represents a generic GetStatus output</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat" title="viam.proto.common.KinematicsFileFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></p></td>
 <td><p></p></td>
@@ -1212,6 +1227,53 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.common.GetReadingsResponse.readings">
 <span class="sig-name descname"><span class="pre">readings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Value</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.GetReadingsResponse.readings" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GetStatusRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetStatusRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetStatusRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetStatusRequest represents a generic GetStatus input</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GetStatusRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.GetStatusRequest.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GetStatusResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetStatusResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetStatusResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetStatusResponse represents a generic GetStatus output</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GetStatusResponse.result">
+<span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.common.GetStatusResponse.result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GetStatusResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.GetStatusResponse.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

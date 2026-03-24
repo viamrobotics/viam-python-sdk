@@ -88,6 +88,11 @@ Package Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+
 .. py:class:: VisionServiceBase
 
    Bases: :py:obj:`abc.ABC`
@@ -153,6 +158,13 @@ Package Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -180,6 +192,9 @@ Package Contents
 
 
    .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetStatus
 
 
 .. py:class:: CaptureAllFromCameraRequest(*, name: str = ..., camera_name: str = ..., return_image: bool = ..., return_classifications: bool = ..., return_detections: bool = ..., return_object_point_clouds: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)

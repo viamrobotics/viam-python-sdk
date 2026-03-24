@@ -44,6 +44,11 @@ Package Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+
 .. py:class:: VideoServiceBase
 
    Bases: :py:obj:`abc.ABC`
@@ -67,6 +72,13 @@ Package Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -76,6 +88,9 @@ Package Contents
 
 
    .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetStatus
 
 
 .. py:class:: GetVideoRequest(*, name: str = ..., start_timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ..., video_codec: str = ..., video_container: str = ..., request_id: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)

@@ -67,6 +67,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.get_audio"><code class="docutils literal notranslate"><span class="pre">AudioInClient.get_audio()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.get_properties"><code class="docutils literal notranslate"><span class="pre">AudioInClient.get_properties()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.do_command"><code class="docutils literal notranslate"><span class="pre">AudioInClient.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.get_status"><code class="docutils literal notranslate"><span class="pre">AudioInClient.get_status()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.get_geometries"><code class="docutils literal notranslate"><span class="pre">AudioInClient.get_geometries()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.from_robot"><code class="docutils literal notranslate"><span class="pre">AudioInClient.from_robot()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_in.client.AudioInClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">AudioInClient.get_resource_name()</span></code></a></li>
@@ -246,6 +247,23 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="../../component_base/index.html#viam.components.component_base.ValueTypes" title="viam.components.component_base.ValueTypes">ValueTypes</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_in.client.AudioInClient.get_status">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../utils/index.html#viam.utils.ValueTypes" title="viam.utils.ValueTypes"><span class="pre">viam.utils.ValueTypes</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_in/client.html#AudioInClient.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_in.client.AudioInClient.get_status" title="Link to this definition"></a></dt>
+<dd><p>Get the current status of the component as a dictionary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The status of the component</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Mapping[str, <a class="reference internal" href="../../component_base/index.html#viam.components.component_base.ValueTypes" title="viam.components.component_base.ValueTypes">ValueTypes</a>]</p>

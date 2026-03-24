@@ -92,6 +92,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">SwitchServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceBase.GetNumberOfPositions"><code class="docutils literal notranslate"><span class="pre">SwitchServiceBase.GetNumberOfPositions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">SwitchServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">SwitchServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SwitchServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -100,6 +101,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceStub.GetPosition"><code class="docutils literal notranslate"><span class="pre">SwitchServiceStub.GetPosition</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceStub.GetNumberOfPositions"><code class="docutils literal notranslate"><span class="pre">SwitchServiceStub.GetNumberOfPositions</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">SwitchServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.SwitchServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">SwitchServiceStub.GetStatus</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedSwitchServiceBase</span></code></a><ul>
@@ -107,6 +109,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedSwitchServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase.GetNumberOfPositions"><code class="docutils literal notranslate"><span class="pre">UnimplementedSwitchServiceBase.GetNumberOfPositions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedSwitchServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedSwitchServiceBase.GetStatus()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.switch.GetNumberOfPositionsRequest"><code class="docutils literal notranslate"><span class="pre">GetNumberOfPositionsRequest</span></code></a><ul>
@@ -270,6 +273,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.switch.SwitchServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/switch/v1/switch_grpc.html#SwitchServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.switch.SwitchServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.switch.SwitchServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/switch/v1/switch_grpc.html#SwitchServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.switch.SwitchServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -299,6 +311,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.component.switch.SwitchServiceStub.DoCommand" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.switch.SwitchServiceStub.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><a class="headerlink" href="#viam.proto.component.switch.SwitchServiceStub.GetStatus" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -325,6 +342,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.switch.UnimplementedSwitchServiceBase.DoCommand">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/switch/v1/switch_grpc.html#UnimplementedSwitchServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase.DoCommand" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.switch.UnimplementedSwitchServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/switch/v1/switch_grpc.html#UnimplementedSwitchServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.switch.UnimplementedSwitchServiceBase.GetStatus" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

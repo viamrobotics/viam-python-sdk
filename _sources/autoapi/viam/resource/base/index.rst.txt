@@ -106,6 +106,23 @@ Module Contents
 
 
 
+   .. py:method:: get_status(*, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the current status of the Resource as a dictionary.
+
+      ::
+
+          status = await component.get_status()
+
+      :returns: The status of the resource
+      :rtype: Mapping[str, ValueTypes]
+
+
+
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
 
       Get the ``Operation`` associated with the currently running function.

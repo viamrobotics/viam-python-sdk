@@ -26,21 +26,7 @@ Module Contents
    inheritance.
 
 
-   .. py:method:: GetImage(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImageRequest, component.camera.v1.camera_pb2.GetImageResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
    .. py:method:: GetImages(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImagesRequest, component.camera.v1.camera_pb2.GetImagesResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
-   .. py:method:: RenderFrame(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
       :abstractmethod:
 
       :async:
@@ -62,6 +48,13 @@ Module Contents
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -87,17 +80,7 @@ Module Contents
    inheritance.
 
 
-   .. py:method:: GetImage(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImageRequest, component.camera.v1.camera_pb2.GetImageResponse]) -> None
-      :async:
-
-
-
    .. py:method:: GetImages(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImagesRequest, component.camera.v1.camera_pb2.GetImagesResponse]) -> None
-      :async:
-
-
-
-   .. py:method:: RenderFrame(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
       :async:
 
 
@@ -117,6 +100,11 @@ Module Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :async:
 
@@ -124,13 +112,7 @@ Module Contents
 
 .. py:class:: CameraServiceStub(channel: grpclib.client.Channel)
 
-   .. py:attribute:: GetImage
-
-
    .. py:attribute:: GetImages
-
-
-   .. py:attribute:: RenderFrame
 
 
    .. py:attribute:: GetPointCloud
@@ -140,6 +122,9 @@ Module Contents
 
 
    .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetStatus
 
 
    .. py:attribute:: GetGeometries

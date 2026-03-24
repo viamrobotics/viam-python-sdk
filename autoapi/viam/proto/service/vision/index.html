@@ -94,6 +94,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.UnimplementedVisionServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">UnimplementedVisionServiceBase.GetProperties()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.UnimplementedVisionServiceBase.CaptureAllFromCamera"><code class="docutils literal notranslate"><span class="pre">UnimplementedVisionServiceBase.CaptureAllFromCamera()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.UnimplementedVisionServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedVisionServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.UnimplementedVisionServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedVisionServiceBase.GetStatus()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase</span></code></a><ul>
@@ -105,6 +106,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetProperties()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.CaptureAllFromCamera"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.CaptureAllFromCamera()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -117,6 +119,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceStub.GetProperties"><code class="docutils literal notranslate"><span class="pre">VisionServiceStub.GetProperties</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceStub.CaptureAllFromCamera"><code class="docutils literal notranslate"><span class="pre">VisionServiceStub.CaptureAllFromCamera</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">VisionServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">VisionServiceStub.GetStatus</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.vision.CaptureAllFromCameraRequest"><code class="docutils literal notranslate"><span class="pre">CaptureAllFromCameraRequest</span></code></a><ul>
@@ -395,6 +398,11 @@ inheritance.</p>
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#UnimplementedVisionServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.vision.UnimplementedVisionServiceBase.DoCommand" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.vision.UnimplementedVisionServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#UnimplementedVisionServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.vision.UnimplementedVisionServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -476,6 +484,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.vision.VisionServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.vision.VisionServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.vision.VisionServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.vision.VisionServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -523,6 +540,11 @@ inheritance.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.VisionServiceStub.DoCommand">
 <span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.service.vision.VisionServiceStub.DoCommand" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.vision.VisionServiceStub.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><a class="headerlink" href="#viam.proto.service.vision.VisionServiceStub.GetStatus" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

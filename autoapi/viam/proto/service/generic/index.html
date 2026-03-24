@@ -79,15 +79,18 @@
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceBase"><code class="docutils literal notranslate"><span class="pre">GenericServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">GenericServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">GenericServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">GenericServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceStub"><code class="docutils literal notranslate"><span class="pre">GenericServiceStub</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">GenericServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.GenericServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">GenericServiceStub.GetStatus</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.generic.UnimplementedGenericServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedGenericServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.UnimplementedGenericServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedGenericServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.generic.UnimplementedGenericServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedGenericServiceBase.GetStatus()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -179,6 +182,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.generic.GenericServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/generic/v1/generic_grpc.html#GenericServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.generic.GenericServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.generic.GenericServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/generic/v1/generic_grpc.html#GenericServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.generic.GenericServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -193,6 +205,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.service.generic.GenericServiceStub.DoCommand" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.generic.GenericServiceStub.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><a class="headerlink" href="#viam.proto.service.generic.GenericServiceStub.GetStatus" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -204,6 +221,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.generic.UnimplementedGenericServiceBase.DoCommand">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/generic/v1/generic_grpc.html#UnimplementedGenericServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.generic.UnimplementedGenericServiceBase.DoCommand" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.generic.UnimplementedGenericServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/generic/v1/generic_grpc.html#UnimplementedGenericServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.generic.UnimplementedGenericServiceBase.GetStatus" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

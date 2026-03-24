@@ -90,7 +90,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Channel</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components</span><span class="w"> </span><span class="kn">import</span> <span class="n">KinematicsReturn</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GetKinematicsRequest</span><span class="p">,</span> <span class="n">GetKinematicsResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GetKinematicsRequest</span><span class="p">,</span> <span class="n">GetKinematicsResponse</span><span class="p">,</span> <span class="n">GetStatusRequest</span><span class="p">,</span> <span class="n">GetStatusResponse</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.gripper</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">GrabRequest</span><span class="p">,</span>
     <span class="n">GrabResponse</span><span class="p">,</span>
@@ -195,6 +195,20 @@
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GripperClient.get_status">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/client/index.html#viam.components.gripper.client.GripperClient.get_status">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetStatusRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetStatusResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div>
 
 

@@ -93,6 +93,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsPowered"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.IsPowered()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetGeometries()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.__mapping__()</span></code></a></li>
 </ul>
@@ -109,6 +110,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub.IsPowered"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub.IsPowered</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub.IsMoving"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub.IsMoving</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub.GetStatus</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub.GetGeometries"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub.GetGeometries</span></code></a></li>
 </ul>
 </li>
@@ -124,6 +126,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.IsPowered"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.IsPowered()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.GetGeometries()</span></code></a></li>
 </ul>
 </li>
@@ -467,6 +470,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#MotorServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.MotorServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceBase.GetGeometries">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetGeometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesRequest" title="viam.gen.common.v1.common_pb2.GetGeometriesRequest"><span class="pre">common.v1.common_pb2.GetGeometriesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesResponse" title="viam.gen.common.v1.common_pb2.GetGeometriesResponse"><span class="pre">common.v1.common_pb2.GetGeometriesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#MotorServiceBase.GetGeometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.MotorServiceBase.GetGeometries" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -541,6 +553,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceStub.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><a class="headerlink" href="#viam.proto.component.motor.MotorServiceStub.GetStatus" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceStub.GetGeometries">
 <span class="sig-name descname"><span class="pre">GetGeometries</span></span><a class="headerlink" href="#viam.proto.component.motor.MotorServiceStub.GetGeometries" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -606,6 +623,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.motor.UnimplementedMotorServiceBase.DoCommand">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#UnimplementedMotorServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.DoCommand" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.motor.UnimplementedMotorServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#UnimplementedMotorServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GetStatus" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

@@ -81,17 +81,20 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.Infer"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.Infer()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.Metadata"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.Metadata()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub"><code class="docutils literal notranslate"><span class="pre">MLModelServiceStub</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub.Infer"><code class="docutils literal notranslate"><span class="pre">MLModelServiceStub.Infer</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub.Metadata"><code class="docutils literal notranslate"><span class="pre">MLModelServiceStub.Metadata</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">MLModelServiceStub.GetStatus</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.mlmodel.UnimplementedMLModelServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedMLModelServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.Infer"><code class="docutils literal notranslate"><span class="pre">UnimplementedMLModelServiceBase.Infer()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.Metadata"><code class="docutils literal notranslate"><span class="pre">UnimplementedMLModelServiceBase.Metadata()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedMLModelServiceBase.GetStatus()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.mlmodel.File"><code class="docutils literal notranslate"><span class="pre">File</span></code></a><ul>
@@ -365,6 +368,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -384,6 +396,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">Metadata</span></span><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceStub.Metadata" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceStub.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceStub.GetStatus" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -400,6 +417,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.Metadata">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/mlmodel/v1/mlmodel_pb2/index.html#viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataRequest" title="viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataRequest"><span class="pre">service.mlmodel.v1.mlmodel_pb2.MetadataRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/mlmodel/v1/mlmodel_pb2/index.html#viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataResponse" title="viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataResponse"><span class="pre">service.mlmodel.v1.mlmodel_pb2.MetadataResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#UnimplementedMLModelServiceBase.Metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.Metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#UnimplementedMLModelServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.UnimplementedMLModelServiceBase.GetStatus" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

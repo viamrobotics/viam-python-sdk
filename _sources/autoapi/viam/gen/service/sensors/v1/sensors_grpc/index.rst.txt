@@ -47,6 +47,13 @@ Module Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -74,6 +81,11 @@ Module Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+
 .. py:class:: SensorsServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetSensors
@@ -83,5 +95,8 @@ Module Contents
 
 
    .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetStatus
 
 

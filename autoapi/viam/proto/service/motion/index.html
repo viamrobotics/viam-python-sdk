@@ -88,6 +88,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.ListPlanStatuses"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.ListPlanStatuses()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.GetPlan"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.GetPlan()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -100,6 +101,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.ListPlanStatuses"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.ListPlanStatuses</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.GetPlan"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.GetPlan</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.GetStatus</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase</span></code></a><ul>
@@ -111,6 +113,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.ListPlanStatuses"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase.ListPlanStatuses()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.GetPlan"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase.GetPlan()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase.GetStatus()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification</span></code></a><ul>
@@ -557,6 +560,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.GetStatus" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -606,6 +618,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.DoCommand" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.GetStatus">
+<span class="sig-name descname"><span class="pre">GetStatus</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.GetStatus" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -652,6 +669,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.UnimplementedMotionServiceBase.DoCommand">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#UnimplementedMotionServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.DoCommand" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.UnimplementedMotionServiceBase.GetStatus">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusRequest" title="viam.gen.common.v1.common_pb2.GetStatusRequest"><span class="pre">common.v1.common_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetStatusResponse" title="viam.gen.common.v1.common_pb2.GetStatusResponse"><span class="pre">common.v1.common_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#UnimplementedMotionServiceBase.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.GetStatus" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

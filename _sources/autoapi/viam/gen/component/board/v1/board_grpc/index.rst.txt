@@ -75,6 +75,13 @@ Module Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[component.board.v1.board_pb2.ReadAnalogReaderRequest, component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
       :abstractmethod:
 
@@ -164,6 +171,11 @@ Module Contents
 
 
 
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+
    .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[component.board.v1.board_pb2.ReadAnalogReaderRequest, component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
       :async:
 
@@ -215,6 +227,9 @@ Module Contents
 
 
    .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetStatus
 
 
    .. py:attribute:: ReadAnalogReader
