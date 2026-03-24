@@ -50,8 +50,8 @@ on:
 
 jobs:
   call-jira:
-    # viamrobotics/claude-ci-workflows@v1.10.6
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@918148a29da73235a7d751a93912aeaea0320b04
+    # viamrobotics/claude-ci-workflows@v1.15.0
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@736bddfce24fc88bbae0662d0335dd1c437c7a92
     with:
       ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
       summary: ${{ github.event.client_payload.summary || inputs.summary }}
