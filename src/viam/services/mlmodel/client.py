@@ -3,10 +3,11 @@ from typing import Dict, Mapping, Optional
 from grpclib.client import Channel
 from numpy.typing import NDArray
 
+from viam.proto.common import GetStatusRequest, GetStatusResponse
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
-from viam.utils import ValueTypes, dict_to_struct
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .mlmodel import Metadata, MLModel
 
@@ -35,3 +36,14 @@ class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
         request = MetadataRequest(name=self.name, extra=dict_to_struct(extra))
         response: MetadataResponse = await self.client.Metadata(request, timeout=timeout, metadata=md)
         return response.metadata
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
