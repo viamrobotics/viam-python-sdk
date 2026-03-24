@@ -13,11 +13,13 @@ from viam.gen.component.switch.v1.switch_pb2 import (
 )
 from viam.proto.common import (
     DoCommandRequest,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.switch import SwitchServiceStub
 from viam.resource.manager import ResourceManager
 from viam.resource.rpc_client_base import ResourceRPCClientBase
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks import create_mock_subclass
@@ -90,6 +92,17 @@ class TestService:
                 command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
             )
 
+    async def test_get_status(self, switch: Switch, service: SwitchRPCService):
+        cast(AsyncMock, switch.get_status).return_value = {}
+        async with ChannelFor([service]) as channel:
+            client = SwitchServiceStub(channel)
+            request = GetStatusRequest(name=switch.name)
+            response: GetStatusResponse = await client.GetStatus(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            assert struct_to_dict(response.result) == {}
+            cast(AsyncMock, switch.get_status).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
+
 
 class TestClient:
     pos = 2
@@ -126,4 +139,14 @@ class TestClient:
             await client.do_command(command, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
             cast(AsyncMock, switch.do_command).assert_called_once_with(
                 command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
+
+    async def test_get_status(self, switch: Switch, service: SwitchRPCService):
+        cast(AsyncMock, switch.get_status).return_value = {}
+        async with ChannelFor([service]) as channel:
+            client = SwitchClient(switch.name, channel)
+            status = await client.get_status(timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
+            assert status == {}
+            cast(AsyncMock, switch.get_status).assert_called_once_with(
+                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
             )

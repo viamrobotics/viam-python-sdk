@@ -2,7 +2,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.servo import ServoClient
 from viam.components.servo.service import ServoRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
@@ -52,6 +52,10 @@ class TestServo:
         command = {"command": "args"}
         resp = await self.servo.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self):
+        status = await self.servo.get_status()
+        assert status == {}
 
     async def test_get_geometries(self):
         geometries = await self.servo.get_geometries()
@@ -113,6 +117,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoServiceStub(channel)
+            request = GetStatusRequest(name=self.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
@@ -168,6 +179,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoClient(self.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

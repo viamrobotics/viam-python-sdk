@@ -6,7 +6,7 @@ from grpclib.testing import ChannelFor
 from viam.components.base import BaseClient, Vector3
 from viam.components.base.service import BaseRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.base import (
     BaseServiceStub,
     IsMovingRequest,
@@ -111,6 +111,10 @@ class TestBase:
         command = {"command": "args"}
         resp = await base.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self, base: MockBase):
+        status = await base.get_status()
+        assert status == {}
 
     async def test_extra(self, base: MockBase):
         assert base.extra is None
@@ -253,6 +257,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, base: MockBase, service: BaseRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BaseServiceStub(channel)
+            request = GetStatusRequest(name=base.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -340,6 +351,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, base: MockBase, service: BaseRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_extra(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:

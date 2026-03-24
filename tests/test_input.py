@@ -9,7 +9,7 @@ from viam.components.generic.service import GenericRPCService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -105,6 +105,10 @@ class TestInputController:
         command = {"command": "args"}
         resp = await controller.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self, controller: MockInputController):
+        status = await controller.get_status()
+        assert status == {}
 
     async def test_get_geometries(self, controller: MockInputController):
         geometries = await controller.get_geometries()
@@ -211,6 +215,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, controller: MockInputController, service: InputControllerRPCService):
+        async with ChannelFor([service]) as channel:
+            client = InputControllerServiceStub(channel)
+            request = GetStatusRequest(name=controller.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
@@ -308,6 +319,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, controller: MockInputController, service: InputControllerRPCService):
+        async with ChannelFor([service]) as channel:
+            client = ControllerClient(controller.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_channel_rest(self, controller: MockInputController, service: InputControllerRPCService):
         channel = await ChannelFor([service]).__aenter__()

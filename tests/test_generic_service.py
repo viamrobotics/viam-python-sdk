@@ -1,7 +1,7 @@
 from grpclib.testing import ChannelFor
 
 from viam.components.generic import GenericClient, GenericRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.generic import GenericServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
@@ -17,6 +17,10 @@ class TestGenericService:
         result = await self.generic.do_command({"command": "args"}, timeout=1.82)
         assert result == {"command": True}
         assert self.generic.timeout == loose_approx(1.82)
+
+    async def test_get_status(self):
+        status = await self.generic.get_status()
+        assert status == {}
 
 
 class TestService:
@@ -36,6 +40,13 @@ class TestService:
             assert result == {"command": True}
             assert self.generic.timeout == loose_approx(4.4)
 
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GenericServiceStub(channel)
+            request = GetStatusRequest(name=self.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     @classmethod
@@ -51,3 +62,9 @@ class TestClient:
             result = await client.do_command({"command": "args"}, timeout=7.86)
             assert result == {"command": True}
             assert self.generic.timeout == loose_approx(7.86)
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GenericClient(self.name, channel)
+            status = await client.get_status()
+            assert status == {}

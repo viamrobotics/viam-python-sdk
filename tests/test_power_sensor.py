@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.power_sensor import PowerSensor, PowerSensorClient, PowerSensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,
@@ -91,6 +91,10 @@ class TestPowerSensor:
         resp = await power_sensor.do_command(command)
         assert resp == {"command": command}
 
+    async def test_get_status(self, power_sensor: PowerSensor):
+        status = await power_sensor.get_status()
+        assert status == {}
+
 
 class TestService:
     async def test_get_voltage(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
@@ -144,6 +148,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorServiceStub(channel)
+            request = GetStatusRequest(name=power_sensor.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     async def test_get_voltage(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
@@ -190,3 +201,9 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, power_sensor: PowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorClient(power_sensor.name, channel)
+            status = await client.get_status()
+            assert status == {}
