@@ -53,15 +53,24 @@ def _terminate(proc):
         proc.wait(timeout=5)
 
 
-def _wait_for_port(host, port, timeout=10.0):
+def _wait_for_port(host, port, timeout=10.0, proc=None):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
+        if proc is not None and proc.poll() is not None:
+            return False
         try:
             with socket.create_connection((host, port), timeout=0.5):
                 return True
         except OSError:
             time.sleep(0.1)
     return False
+
+
+def _get_server_output(proc):
+    """Read stdout and stderr from a terminated server process."""
+    stdout = proc.stdout.read().decode(errors="replace") if proc.stdout else ""
+    stderr = proc.stderr.read().decode(errors="replace") if proc.stderr else ""
+    return stdout, stderr
 
 
 def _wait_for_server_ready(log_path, timeout=30.0):
@@ -101,7 +110,19 @@ def test_example(example):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
             )
-            assert _wait_for_port("127.0.0.1", port), f"Server did not start on {address}"
+            if not _wait_for_port("127.0.0.1", port, proc=server_proc):
+                _terminate(server_proc)
+                stdout, stderr = _get_server_output(server_proc)
+                returncode = server_proc.returncode
+                server_proc = None
+                msg = f"Server did not start on {address}"
+                if returncode is not None:
+                    msg += f"\nProcess exited with code {returncode}"
+                if stdout.strip():
+                    msg += f"\nstdout:\n{stdout}"
+                if stderr.strip():
+                    msg += f"\nstderr:\n{stderr}"
+                pytest.fail(msg)
         else:
             entry_point = example_dir / example["entry"]
             wrapper = os.path.join(tmp_dir, "wrapper.sh")
@@ -158,3 +179,34 @@ def test_check_example_coverage():
     assert not unknown, (
         f"New example directories without test coverage: {unknown}. Add new examples to the EXAMPLES list in tests/test_examples.py."
     )
+
+
+def test_wait_for_port_detects_process_death():
+    """_wait_for_port returns early when the monitored process exits."""
+    port = _find_free_port()
+    proc = subprocess.Popen(
+        [sys.executable, "-c", "import sys; sys.exit(1)"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    start = time.monotonic()
+    result = _wait_for_port("127.0.0.1", port, timeout=10.0, proc=proc)
+    elapsed = time.monotonic() - start
+    assert result is False
+    assert elapsed < 5.0, f"Should have returned early when process died, but took {elapsed:.1f}s"
+    proc.stdout.close()
+    proc.stderr.close()
+
+
+def test_get_server_output_captures_stderr():
+    """_get_server_output captures process stderr for error reporting."""
+    error_message = "TypeError: Can't instantiate abstract class"
+    proc = subprocess.Popen(
+        [sys.executable, "-c", f"import sys; print('{error_message}', file=sys.stderr); sys.exit(1)"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    proc.wait()
+    stdout, stderr = _get_server_output(proc)
+    assert error_message in stderr
+    assert stdout == ""
