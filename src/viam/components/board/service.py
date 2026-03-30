@@ -3,7 +3,14 @@ from h2.exceptions import StreamClosedError
 
 from viam.errors import ResourceNotFoundError
 from viam.logging import getLogger
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.board import (
     BoardServiceBase,
     GetDigitalInterruptValueRequest,

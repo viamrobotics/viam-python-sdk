@@ -187,9 +187,7 @@ class TestService:
             request = GetStatusRequest(name=motor.name)
             response: GetStatusResponse = await client.GetStatus(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             assert struct_to_dict(response.result) == {}
-            cast(AsyncMock, motor.get_status).assert_called_once_with(
-                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
-            )
+            cast(AsyncMock, motor.get_status).assert_called_once_with(timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata)
 
     async def test_get_geometries(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
@@ -316,9 +314,7 @@ class TestClient:
             client = MotorClient(motor.name, channel)
             status = await client.get_status(timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
             assert status == {}
-            cast(AsyncMock, motor.get_status).assert_called_once_with(
-                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
-            )
+            cast(AsyncMock, motor.get_status).assert_called_once_with(timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata)
 
     async def test_get_geometries(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:

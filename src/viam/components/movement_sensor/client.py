@@ -3,7 +3,15 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetReadingsRequest, GetReadingsResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetReadingsRequest,
+    GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAngularVelocityRequest,

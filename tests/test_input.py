@@ -9,7 +9,14 @@ from viam.components.generic.service import GenericRPCService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,

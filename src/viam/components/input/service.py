@@ -7,7 +7,14 @@ from h2.exceptions import StreamClosedError
 
 import viam
 from viam.errors import NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,

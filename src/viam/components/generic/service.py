@@ -2,7 +2,14 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.generic import GenericServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict

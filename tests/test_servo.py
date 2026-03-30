@@ -2,7 +2,14 @@ from grpclib.testing import ChannelFor
 
 from viam.components.servo import ServoClient
 from viam.components.servo.service import ServoRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,

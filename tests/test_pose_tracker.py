@@ -2,7 +2,16 @@ from grpclib.testing import ChannelFor
 
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse, Pose, PoseInFrame
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+    Pose,
+    PoseInFrame,
+)
 from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
