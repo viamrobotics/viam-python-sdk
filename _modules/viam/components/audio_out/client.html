@@ -89,7 +89,15 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GetPropertiesRequest</span><span class="p">,</span> <span class="n">GetPropertiesResponse</span><span class="p">,</span> <span class="n">GetStatusRequest</span><span class="p">,</span> <span class="n">GetStatusResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DoCommandRequest</span><span class="p">,</span>
+    <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">Geometry</span><span class="p">,</span>
+    <span class="n">GetPropertiesRequest</span><span class="p">,</span>
+    <span class="n">GetPropertiesResponse</span><span class="p">,</span>
+    <span class="n">GetStatusRequest</span><span class="p">,</span>
+    <span class="n">GetStatusResponse</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.audioout</span><span class="w"> </span><span class="kn">import</span> <span class="n">AudioOutServiceStub</span><span class="p">,</span> <span class="n">PlayRequest</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.rpc_client_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">get_geometries</span><span class="p">,</span> <span class="n">struct_to_dict</span>

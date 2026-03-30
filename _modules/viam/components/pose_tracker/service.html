@@ -87,7 +87,14 @@
   <h1>Source code for viam.components.pose_tracker.service</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stream</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span><span class="p">,</span> <span class="n">GetStatusRequest</span><span class="p">,</span> <span class="n">GetStatusResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DoCommandRequest</span><span class="p">,</span>
+    <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">GetGeometriesRequest</span><span class="p">,</span>
+    <span class="n">GetGeometriesResponse</span><span class="p">,</span>
+    <span class="n">GetStatusRequest</span><span class="p">,</span>
+    <span class="n">GetStatusResponse</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.posetracker</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetPosesRequest</span><span class="p">,</span> <span class="n">GetPosesResponse</span><span class="p">,</span> <span class="n">PoseTrackerServiceBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.rpc_service_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
