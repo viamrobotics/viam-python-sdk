@@ -152,9 +152,7 @@ class TestService:
             request = GetStatusRequest(name=camera.name)
             response: GetStatusResponse = await client.GetStatus(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             assert struct_to_dict(response.result) == {}
-            cast(AsyncMock, camera.get_status).assert_called_once_with(
-                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
-            )
+            cast(AsyncMock, camera.get_status).assert_called_once_with(timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata)
 
     async def test_get_geometries(self, camera: Camera, service: CameraRPCService):
         cast(AsyncMock, camera.get_geometries).return_value = GEOMETRIES
@@ -242,9 +240,7 @@ class TestClient:
             client = CameraClient("camera", channel)
             status = await client.get_status(timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
             assert status == {}
-            cast(AsyncMock, camera.get_status).assert_called_once_with(
-                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
-            )
+            cast(AsyncMock, camera.get_status).assert_called_once_with(timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata)
 
     async def test_get_geometries(self, camera: Camera, service: CameraRPCService):
         cast(AsyncMock, camera.get_geometries).return_value = GEOMETRIES

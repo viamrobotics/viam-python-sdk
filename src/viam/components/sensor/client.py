@@ -2,7 +2,15 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetReadingsRequest, GetReadingsResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetReadingsRequest,
+    GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.sensor import SensorServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import SensorReading, ValueTypes, dict_to_struct, get_geometries, sensor_readings_value_to_native, struct_to_dict

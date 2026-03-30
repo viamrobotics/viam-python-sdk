@@ -3,7 +3,15 @@ from typing import Any, Dict, List, Mapping, Optional
 from grpclib.client import Channel
 
 from viam.components import KinematicsReturn
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,

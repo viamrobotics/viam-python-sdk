@@ -1,7 +1,14 @@
 from grpclib.server import Stream
 
 from viam.components.power_sensor.power_sensor import PowerSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetReadingsRequest,
+    GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,

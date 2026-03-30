@@ -4,7 +4,14 @@ from grpclib.testing import ChannelFor
 from viam.components.encoder import EncoderClient
 from viam.components.encoder.service import EncoderRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.encoder import (
     EncoderServiceStub,
     GetPositionRequest,

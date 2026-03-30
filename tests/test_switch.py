@@ -99,9 +99,7 @@ class TestService:
             request = GetStatusRequest(name=switch.name)
             response: GetStatusResponse = await client.GetStatus(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
             assert struct_to_dict(response.result) == {}
-            cast(AsyncMock, switch.get_status).assert_called_once_with(
-                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
-            )
+            cast(AsyncMock, switch.get_status).assert_called_once_with(timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata)
 
 
 class TestClient:
@@ -147,6 +145,4 @@ class TestClient:
             client = SwitchClient(switch.name, channel)
             status = await client.get_status(timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
             assert status == {}
-            cast(AsyncMock, switch.get_status).assert_called_once_with(
-                timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
-            )
+            cast(AsyncMock, switch.get_status).assert_called_once_with(timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata)

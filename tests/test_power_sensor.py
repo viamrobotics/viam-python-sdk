@@ -3,7 +3,14 @@ from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.power_sensor import PowerSensor, PowerSensorClient, PowerSensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetReadingsRequest,
+    GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,
