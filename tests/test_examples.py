@@ -53,15 +53,24 @@ def _terminate(proc):
         proc.wait(timeout=5)
 
 
-def _wait_for_port(host, port, timeout=10.0):
+def _wait_for_port(host, port, timeout=10.0, proc=None):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
+        if proc is not None and proc.poll() is not None:
+            return False
         try:
             with socket.create_connection((host, port), timeout=0.5):
                 return True
         except OSError:
             time.sleep(0.1)
     return False
+
+
+def _get_server_output(proc):
+    """Read stdout and stderr from a terminated server process."""
+    stdout = proc.stdout.read().decode(errors="replace") if proc.stdout else ""
+    stderr = proc.stderr.read().decode(errors="replace") if proc.stderr else ""
+    return stdout, stderr
 
 
 def _wait_for_server_ready(log_path, timeout=30.0):
@@ -101,7 +110,19 @@ def test_example(example):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
             )
-            assert _wait_for_port("127.0.0.1", port), f"Server did not start on {address}"
+            if not _wait_for_port("127.0.0.1", port, proc=server_proc):
+                _terminate(server_proc)
+                stdout, stderr = _get_server_output(server_proc)
+                returncode = server_proc.returncode
+                server_proc = None
+                msg = f"Server did not start on {address}"
+                if returncode is not None:
+                    msg += f"\nProcess exited with code {returncode}"
+                if stdout.strip():
+                    msg += f"\nstdout:\n{stdout}"
+                if stderr.strip():
+                    msg += f"\nstderr:\n{stderr}"
+                pytest.fail(msg)
         else:
             entry_point = example_dir / example["entry"]
             wrapper = os.path.join(tmp_dir, "wrapper.sh")
