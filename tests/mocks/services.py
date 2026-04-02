@@ -38,6 +38,10 @@ from viam.proto.app import (
     CreateRegistryItemResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
+    DeleteDevicePushTokenRequest,
+    DeleteDevicePushTokenResponse,
+    DeleteFirebaseConfigRequest,
+    DeleteFirebaseConfigResponse,
     DeleteFragmentRequest,
     DeleteFragmentResponse,
     DeleteKeyRequest,
@@ -61,6 +65,10 @@ from viam.proto.app import (
     DeleteRobotRequest,
     DeleteRobotResponse,
     Fragment,
+    GetDevicePushTokensRequest,
+    GetDevicePushTokensResponse,
+    GetFirebaseConfigRequest,
+    GetFirebaseConfigResponse,
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationMetadataRequest,
@@ -148,6 +156,8 @@ from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
+    SetFirebaseConfigRequest,
+    SetFirebaseConfigResponse,
     ShareLocationRequest,
     ShareLocationResponse,
     TailRobotPartLogsRequest,
@@ -179,6 +189,8 @@ from viam.proto.app import (
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
+    UploadDevicePushTokenRequest,
+    UploadDevicePushTokenResponse,
     UploadModuleFileRequest,
     UploadModuleFileResponse,
 )
@@ -1950,6 +1962,36 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.robot_part_metadata[request.id] = request.data
         await stream.send_message(UpdateRobotPartMetadataResponse())
+
+    async def UploadDevicePushToken(self, stream: Stream[UploadDevicePushTokenRequest, UploadDevicePushTokenResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(UploadDevicePushTokenResponse())
+
+    async def DeleteDevicePushToken(self, stream: Stream[DeleteDevicePushTokenRequest, DeleteDevicePushTokenResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(DeleteDevicePushTokenResponse())
+
+    async def GetDevicePushTokens(self, stream: Stream[GetDevicePushTokensRequest, GetDevicePushTokensResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetDevicePushTokensResponse(device_tokens=["token1", "token2"]))
+
+    async def SetFirebaseConfig(self, stream: Stream[SetFirebaseConfigRequest, SetFirebaseConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(SetFirebaseConfigResponse())
+
+    async def GetFirebaseConfig(self, stream: Stream[GetFirebaseConfigRequest, GetFirebaseConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetFirebaseConfigResponse(app_id="test-app-id"))
+
+    async def DeleteFirebaseConfig(self, stream: Stream[DeleteFirebaseConfigRequest, DeleteFirebaseConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(DeleteFirebaseConfigResponse())
 
 
 class MockGenericService(GenericService):

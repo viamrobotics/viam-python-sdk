@@ -37,6 +37,10 @@ from viam.proto.app import (
     CreateRegistryItemRequest,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
+    DeleteDevicePushTokenRequest,
+    DeleteDevicePushTokenResponse,
+    DeleteFirebaseConfigRequest,
+    DeleteFirebaseConfigResponse,
     DeleteFragmentRequest,
     DeleteKeyRequest,
     DeleteLocationRequest,
@@ -50,6 +54,10 @@ from viam.proto.app import (
     DeleteRobotRequest,
     FragmentImport,
     FragmentImportList,
+    GetDevicePushTokensRequest,
+    GetDevicePushTokensResponse,
+    GetFirebaseConfigRequest,
+    GetFirebaseConfigResponse,
     GetFragmentHistoryRequest,
     GetFragmentHistoryResponse,
     GetFragmentRequest,
@@ -137,6 +145,8 @@ from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
+    SetFirebaseConfigRequest,
+    SetFirebaseConfigResponse,
     SharedSecret,
     ShareLocationRequest,
     TailRobotPartLogsRequest,
@@ -165,6 +175,8 @@ from viam.proto.app import (
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
+    UploadDevicePushTokenRequest,
+    UploadDevicePushTokenResponse,
     UploadModuleFileRequest,
     Visibility,
 )
@@ -2731,3 +2743,109 @@ class AppClient:
         """
         request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
         _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request, metadata=self._metadata)
+
+    async def upload_device_push_token(self, app_id: str, device_token: str, device_uuid: str) -> None:
+        """Upload a device push token for mobile notifications.
+
+        ::
+
+            await cloud.upload_device_push_token(
+                app_id="<YOUR-APP-ID>",
+                device_token="<DEVICE-TOKEN>",
+                device_uuid="<DEVICE-UUID>"
+            )
+
+        Args:
+            app_id (str): The app ID for the mobile application.
+            device_token (str): The push notification token for the device.
+            device_uuid (str): The unique identifier for the device.
+        """
+        request = UploadDevicePushTokenRequest(app_id=app_id, device_token=device_token, device_uuid=device_uuid)
+        _: UploadDevicePushTokenResponse = await self._app_client.UploadDevicePushToken(request, metadata=self._metadata)
+
+    async def delete_device_push_token(self, app_id: str, device_uuid: str) -> None:
+        """Delete a device push token.
+
+        ::
+
+            await cloud.delete_device_push_token(
+                app_id="<YOUR-APP-ID>",
+                device_uuid="<DEVICE-UUID>"
+            )
+
+        Args:
+            app_id (str): The app ID for the mobile application.
+            device_uuid (str): The unique identifier for the device.
+        """
+        request = DeleteDevicePushTokenRequest(app_id=app_id, device_uuid=device_uuid)
+        _: DeleteDevicePushTokenResponse = await self._app_client.DeleteDevicePushToken(request, metadata=self._metadata)
+
+    async def get_device_push_tokens(self, app_id: str) -> List[str]:
+        """Get all device push tokens for an app.
+
+        ::
+
+            tokens = await cloud.get_device_push_tokens(app_id="<YOUR-APP-ID>")
+
+        Args:
+            app_id (str): The app ID for the mobile application.
+
+        Returns:
+            List[str]: A list of device push tokens.
+        """
+        request = GetDevicePushTokensRequest(app_id=app_id)
+        response: GetDevicePushTokensResponse = await self._app_client.GetDevicePushTokens(request, metadata=self._metadata)
+        return list(response.device_tokens)
+
+    async def set_firebase_config(self, org_id: str, app_id: str, config_json: str) -> None:
+        """Set Firebase configuration for an organization.
+
+        ::
+
+            await cloud.set_firebase_config(
+                org_id="<YOUR-ORG-ID>",
+                app_id="<YOUR-APP-ID>",
+                config_json='{"apiKey": "...", "projectId": "..."}'
+            )
+
+        Args:
+            org_id (str): The organization ID.
+            app_id (str): The Firebase app ID.
+            config_json (str): The Firebase configuration as a JSON string.
+        """
+        request = SetFirebaseConfigRequest(org_id=org_id, app_id=app_id, config_json=config_json)
+        _: SetFirebaseConfigResponse = await self._app_client.SetFirebaseConfig(request, metadata=self._metadata)
+
+    async def get_firebase_config(self, org_id: str) -> str:
+        """Get Firebase configuration for an organization.
+
+        ::
+
+            app_id = await cloud.get_firebase_config(org_id="<YOUR-ORG-ID>")
+
+        Args:
+            org_id (str): The organization ID.
+
+        Returns:
+            str: The Firebase app ID.
+        """
+        request = GetFirebaseConfigRequest(org_id=org_id)
+        response: GetFirebaseConfigResponse = await self._app_client.GetFirebaseConfig(request, metadata=self._metadata)
+        return response.app_id
+
+    async def delete_firebase_config(self, org_id: str, app_id: str) -> None:
+        """Delete Firebase configuration for an organization.
+
+        ::
+
+            await cloud.delete_firebase_config(
+                org_id="<YOUR-ORG-ID>",
+                app_id="<YOUR-APP-ID>"
+            )
+
+        Args:
+            org_id (str): The organization ID.
+            app_id (str): The Firebase app ID.
+        """
+        request = DeleteFirebaseConfigRequest(org_id=org_id, app_id=app_id)
+        _: DeleteFirebaseConfigResponse = await self._app_client.DeleteFirebaseConfig(request, metadata=self._metadata)

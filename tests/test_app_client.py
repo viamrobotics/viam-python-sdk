@@ -854,3 +854,35 @@ class TestClient:
             await client.update_robot_part_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_robot_part_metadata(ID)
             assert user_defined_metadata == USER_DEFINED_METADATA
+
+    async def test_upload_device_push_token(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.upload_device_push_token(app_id="test-app-id", device_token="test-token", device_uuid="test-uuid")
+
+    async def test_delete_device_push_token(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.delete_device_push_token(app_id="test-app-id", device_uuid="test-uuid")
+
+    async def test_get_device_push_tokens(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            tokens = await client.get_device_push_tokens(app_id="test-app-id")
+            assert tokens == ["token1", "token2"]
+
+    async def test_set_firebase_config(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.set_firebase_config(org_id="test-org-id", app_id="test-app-id", config_json='{"apiKey": "test-key"}')
+
+    async def test_get_firebase_config(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            app_id = await client.get_firebase_config(org_id="test-org-id")
+            assert app_id == "test-app-id"
+
+    async def test_delete_firebase_config(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.delete_firebase_config(org_id="test-org-id", app_id="test-app-id")
