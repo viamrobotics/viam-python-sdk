@@ -19,10 +19,6 @@ if sys.version_info >= (3, 10):
     from typing import TypeAlias as _TypeAlias
 else:
     from typing_extensions import TypeAlias as _TypeAlias
-if sys.version_info >= (3, 13):
-    from warnings import deprecated as _deprecated
-else:
-    from typing_extensions import deprecated as _deprecated
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class _PeerConnectionType:
@@ -862,29 +858,18 @@ Global___GetCloudMetadataRequest: _TypeAlias = GetCloudMetadataRequest
 @_typing.final
 class GetCloudMetadataResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
-    ROBOT_PART_ID_FIELD_NUMBER: _builtins.int
     PRIMARY_ORG_ID_FIELD_NUMBER: _builtins.int
     LOCATION_ID_FIELD_NUMBER: _builtins.int
     MACHINE_ID_FIELD_NUMBER: _builtins.int
     MACHINE_PART_ID_FIELD_NUMBER: _builtins.int
-
-    @_builtins.property
-    @_deprecated('This field has been marked as deprecated using proto field options.')
-    def robot_part_id(self) -> _builtins.str:
-        """Deprecated: use machine_part_id field."""
-
-    @robot_part_id.setter
-    @_deprecated('This field has been marked as deprecated using proto field options.')
-    def robot_part_id(self, value: _builtins.str) -> None:
-        """Deprecated: use machine_part_id field."""
     primary_org_id: _builtins.str
     location_id: _builtins.str
     machine_id: _builtins.str
     machine_part_id: _builtins.str
 
-    def __init__(self, *, robot_part_id: _builtins.str=..., primary_org_id: _builtins.str=..., location_id: _builtins.str=..., machine_id: _builtins.str=..., machine_part_id: _builtins.str=...) -> None:
+    def __init__(self, *, primary_org_id: _builtins.str=..., location_id: _builtins.str=..., machine_id: _builtins.str=..., machine_part_id: _builtins.str=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['location_id', b'location_id', 'machine_id', b'machine_id', 'machine_part_id', b'machine_part_id', 'primary_org_id', b'primary_org_id', 'robot_part_id', b'robot_part_id']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['location_id', b'location_id', 'machine_id', b'machine_id', 'machine_part_id', b'machine_part_id', 'primary_org_id', b'primary_org_id']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
