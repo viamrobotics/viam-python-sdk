@@ -1107,6 +1107,8 @@ class MockSensor(Sensor):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
