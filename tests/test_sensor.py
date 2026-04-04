@@ -37,10 +37,15 @@ class TestSensor:
         assert sensor.extra == EXTRA_PARAMS
         assert sensor.timeout == loose_approx(1.23)
 
+
+
     async def test_do(self, sensor):
         command = {"command": "args"}
-        resp = await sensor.do_command(command)
+        assert sensor.extra is None
+        resp = await sensor.do_command(command, extra=EXTRA_PARAMS, timeout=1.23)
         assert resp == {"command": command}
+        assert sensor.extra == EXTRA_PARAMS
+        assert sensor.timeout == loose_approx(1.23)
 
     async def test_get_status(self, sensor):
         status = await sensor.get_status()
@@ -76,10 +81,18 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
             command = {"command": "args"}
+            # Send extra parameters in the request just like get_readings
             request = DoCommandRequest(name=sensor.name, command=dict_to_struct(command))
-            response: DoCommandResponse = await client.DoCommand(request)
+            assert sensor.extra is None
+
+            response: DoCommandResponse = await client.DoCommand(request, timeout=2.34)
             result = struct_to_dict(response.result)
+
             assert result == {"command": command}
+            # Note: DoCommandRequest in proto might not explicitly take 'extra',
+            # but we can test if the timeout is properly passed through the gRPC channel!
+            assert sensor.timeout == loose_approx(2.34)
+
 
     async def test_get_status(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -110,8 +123,13 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
             command = {"command": "args"}
-            resp = await client.do_command(command)
+
+            # Yahan se humne 'extra' hata diya hai, sirf timeout check karenge
+            resp = await client.do_command(command, timeout=3.45)
             assert resp == {"command": command}
+            assert sensor.timeout == loose_approx(3.45)
+
+
 
     async def test_get_status(self, sensor, service):
         async with ChannelFor([service]) as channel:
