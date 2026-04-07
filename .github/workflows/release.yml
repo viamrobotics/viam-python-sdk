@@ -32,7 +32,7 @@ jobs:
       version: ${{ steps.set_version.outputs.version }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
@@ -57,33 +57,31 @@ jobs:
 
       - name: Set Version
         id: set_version
-        run: |
-          echo "SDK_VERSION=$(uvx hatch version)" >> $GITHUB_ENV
-          echo "version=$(uvx hatch version)" >> $GITHUB_OUTPUT
+        run: echo "version=$(uvx hatch version)" >> $GITHUB_OUTPUT
 
       - name: Check if release exists
-        uses: cardinalby/git-get-release-action@1.2.4
+        uses: cardinalby/git-get-release-action@v1
         id: release_exists
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseName: v${{ env.SDK_VERSION }}
+          releaseName: v${{ steps.set_version.outputs.version }}
           doNotFailIfNotFound: "true"
 
       - name: Cancelling - release already exists
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
         if: |
           steps.release_exists.outputs.id != ''
 
       - name: Add + Commit
         uses: EndBug/add-and-commit@v9
         with:
-          new_branch: release/v${{ env.SDK_VERSION }}
-          message: Bump version to ${{ env.SDK_VERSION }}
+          new_branch: release/v${{ steps.set_version.outputs.version }}
+          message: Bump version to ${{ steps.set_version.outputs.version }}
 
       - name: Open PR
         run: |
-          gh pr create -t "release/v${{ env.SDK_VERSION }}" -b "This is an auto-generated PR to merge the release branch back into main upon successful release" -B "main" -H "release/v${{ env.SDK_VERSION }}"
+          gh pr create -t "release/v${{ steps.set_version.outputs.version }}" -b "This is an auto-generated PR to merge the release branch back into main upon successful release" -B "main" -H "release/v${{ steps.set_version.outputs.version }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

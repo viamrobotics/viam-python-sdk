@@ -1,4 +1,5 @@
 import asyncio
+import sys
 
 from PIL.Image import Image
 
@@ -13,14 +14,11 @@ from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 
 
-async def client():
-    opts = RobotClient.Options(dial_options=DialOptions(insecure=True))
-    async with await RobotClient.at_address("localhost:9090", opts) as robot:
+async def client(address: str):
+    opts = RobotClient.Options(dial_options=DialOptions(insecure=True, disable_webrtc=True))
+    async with await RobotClient.at_address(address, opts) as robot:
         print("\n#### RESOURCES ####")
         print(f"Resources: {robot.resource_names}")
-
-        print("\n#### STATUS ####")
-        print(f"Robot status response received: {await robot.get_status()}")
 
         print("\n#### ARM ####")
         arm = Arm.from_robot(robot, "arm0")
@@ -38,9 +36,10 @@ async def client():
         images, _ = await camera.get_images()
         img = viam_to_pil_image(images[0])
         assert isinstance(img, Image)
-        img.show()
-        await asyncio.sleep(1)
-        img.close()
+        # Open the image on your device
+        # img.show()
+        # await asyncio.sleep(1)
+        # img.close()
 
         print("\n#### ENCODER ####")
         encoder = Encoder.from_robot(robot, "encoder0")
@@ -53,4 +52,5 @@ async def client():
 
 
 if __name__ == "__main__":
-    asyncio.run(client())
+    address = sys.argv[1] if len(sys.argv) > 1 else "localhost:9090"
+    asyncio.run(client(address))

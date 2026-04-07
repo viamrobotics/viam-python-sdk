@@ -295,7 +295,7 @@ class MockData(UnimplementedDataServiceBase):
     async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
         pass
 
-    async def UpdateBoundingBoxToImageByID(self, stream: Stream[UpdateBoundingBoxRequest, UpdateBoundingBoxResponse]) -> None:
+    async def UpdateBoundingBox(self, stream: Stream[UpdateBoundingBoxRequest, UpdateBoundingBoxResponse]) -> None:
         pass
 
     async def RemoveBoundingBoxFromImageByID(

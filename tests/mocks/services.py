@@ -485,6 +485,9 @@ class MockVision(Vision):
         self.timeout = timeout
         return {"cmd": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockDiscovery(Discovery):
     def __init__(
@@ -509,6 +512,9 @@ class MockDiscovery(Discovery):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {"cmd": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockMLModel(MLModel):
@@ -560,7 +566,7 @@ class MockMLModel(MLModel):
 
     SQUARE_INT_UINT_NDARRAYS = {"0": SQUARE_INT16_NDARRAY, "1": UINT64_NDARRAY}
     SQUARE_INT_UINT_TENSORS = {
-        "0": FlatTensor(shape=(3, 3), int16_tensor=FlatTensorDataInt16(data=SQUARE_INT16_NDARRAY)),
+        "0": FlatTensor(shape=(3, 3), int16_tensor=FlatTensorDataInt16(data=SQUARE_INT16_NDARRAY.flatten().astype(np.uint32))),
         "1": FlatTensor(shape=(3,), int64_tensor=FlatTensorDataInt64(data=INT64_NDARRAY)),
     }
 
@@ -751,6 +757,9 @@ class MockSLAM(SLAM):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockNavigation(Navigation):
     LOCATION = GeoPoint(latitude=100.0, longitude=150.0)
@@ -805,6 +814,9 @@ class MockNavigation(Navigation):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockProvisioning(UnimplementedProvisioningServiceBase):
@@ -938,6 +950,7 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.organization_id = request.organization_id
         self.delete_older_than_days = request.delete_older_than_days
+        self.delete_tabular_filter = request.filter if request.HasField("filter") else None
         await stream.send_message(DeleteTabularDataResponse(deleted_count=self.delete_remove_response))
 
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
@@ -1631,6 +1644,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.name = request.name
         self.robot_config = request.robot_config
         self.last_known_update = request.last_known_update
+        self.robot_config_json = request.robot_config_json if request.HasField("robot_config_json") else None
         await stream.send_message(UpdateRobotPartResponse(part=self.robot_part))
 
     async def NewRobotPart(self, stream: Stream[NewRobotPartRequest, NewRobotPartResponse]) -> None:
@@ -1945,6 +1959,9 @@ class MockGenericService(GenericService):
         self.timeout = timeout
         return {key: True for key in command.keys()}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockWorldStateStore(WorldStateStore):
     def __init__(self, name: str):
@@ -1977,7 +1994,7 @@ class MockWorldStateStore(WorldStateStore):
             uuid=uuid,
         )
 
-    async def stream_transform_changes(
+    async def stream_transform_changes(  # type: ignore
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
         self.extra = extra
@@ -1996,3 +2013,6 @@ class MockWorldStateStore(WorldStateStore):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {"cmd": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}

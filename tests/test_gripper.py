@@ -11,6 +11,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.gripper import (
     GrabRequest,
@@ -75,6 +77,10 @@ class TestGripper:
         command = {"command": "args"}
         resp = await gripper.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self, gripper: MockGripper):
+        status = await gripper.get_status()
+        assert status == {}
 
     async def test_extra(self, gripper: MockGripper):
         assert gripper.extra is None
@@ -152,6 +158,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            request = GetStatusRequest(name=gripper.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
@@ -208,6 +221,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_extra(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:

@@ -1,18 +1,12 @@
 import abc
-import sys
 from datetime import timedelta
-from typing import Any, Dict, Final, List, Optional
+from typing import Any, Dict, Final, List, Optional, TypeAlias
 
 from viam.proto.component.board import PowerMode, ReadAnalogReaderResponse, StreamTicksResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.streams import Stream
 
 from ..component_base import ComponentBase
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
 
 Tick = StreamTicksResponse
 TickStream = Stream[Tick]

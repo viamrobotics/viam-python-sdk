@@ -15,35 +15,40 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import builtins
-import collections.abc
-import google.protobuf.descriptor
-import google.protobuf.internal.containers
-import google.protobuf.message
-from ..... import opentelemetry
-import typing
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+from collections import abc as _abc
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from google.protobuf.internal import containers as _containers
+from opentelemetry.proto.common.v1 import common_pb2 as _common_pb2
+import builtins as _builtins
+import sys
+import typing as _typing
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias as _TypeAlias
+else:
+    from typing_extensions import TypeAlias as _TypeAlias
+DESCRIPTOR: _descriptor.FileDescriptor
 
-@typing.final
-class Resource(google.protobuf.message.Message):
+@_typing.final
+class Resource(_message.Message):
     """Resource information."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ATTRIBUTES_FIELD_NUMBER: builtins.int
-    DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER: builtins.int
-    ENTITY_REFS_FIELD_NUMBER: builtins.int
-    dropped_attributes_count: builtins.int
+    DESCRIPTOR: _descriptor.Descriptor
+    ATTRIBUTES_FIELD_NUMBER: _builtins.int
+    DROPPED_ATTRIBUTES_COUNT_FIELD_NUMBER: _builtins.int
+    ENTITY_REFS_FIELD_NUMBER: _builtins.int
+    dropped_attributes_count: _builtins.int
     'The number of dropped attributes. If the value is 0, then\n    no attributes were dropped.\n    '
 
-    @property
-    def attributes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[opentelemetry.proto.common.v1.common_pb2.KeyValue]:
+    @_builtins.property
+    def attributes(self) -> _containers.RepeatedCompositeFieldContainer[_common_pb2.KeyValue]:
         """Set of attributes that describe the resource.
         Attribute keys MUST be unique (it is not allowed to have more than one
         attribute with the same key).
         The behavior of software that receives duplicated keys can be unpredictable.
         """
 
-    @property
-    def entity_refs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[opentelemetry.proto.common.v1.common_pb2.EntityRef]:
+    @_builtins.property
+    def entity_refs(self) -> _containers.RepeatedCompositeFieldContainer[_common_pb2.EntityRef]:
         """Set of entities that participate in this Resource.
 
         Note: keys in the references MUST exist in attributes of this message.
@@ -51,9 +56,10 @@ class Resource(google.protobuf.message.Message):
         Status: [Development]
         """
 
-    def __init__(self, *, attributes: collections.abc.Iterable[opentelemetry.proto.common.v1.common_pb2.KeyValue] | None=..., dropped_attributes_count: builtins.int=..., entity_refs: collections.abc.Iterable[opentelemetry.proto.common.v1.common_pb2.EntityRef] | None=...) -> None:
+    def __init__(self, *, attributes: _abc.Iterable[_common_pb2.KeyValue] | None=..., dropped_attributes_count: _builtins.int=..., entity_refs: _abc.Iterable[_common_pb2.EntityRef] | None=...) -> None:
         ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['attributes', b'attributes', 'dropped_attributes_count', b'dropped_attributes_count', 'entity_refs', b'entity_refs']
 
-    def ClearField(self, field_name: typing.Literal['attributes', b'attributes', 'dropped_attributes_count', b'dropped_attributes_count', 'entity_refs', b'entity_refs']) -> None:
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-global___Resource = Resource
+Global___Resource: _TypeAlias = Resource

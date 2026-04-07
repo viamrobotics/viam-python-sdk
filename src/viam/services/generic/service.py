@@ -1,7 +1,7 @@
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.service.generic import GenericServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.services.service_base import ServiceBase
@@ -26,4 +26,13 @@ class GenericRPCService(GenericServiceBase, ResourceRPCServiceBase):
         except NotImplementedError:
             raise GRPCError(Status.UNIMPLEMENTED, f"``DO`` command is unimplemented for service named: {name}")
         response = DoCommandResponse(result=dict_to_struct(result))
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        service = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await service.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)

@@ -2,7 +2,7 @@ from typing import List
 
 from grpclib.testing import ChannelFor
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
@@ -45,6 +45,10 @@ class TestSLAMService:
         command = {"command": "args"}
         resp = await self.slam.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self):
+        status = await self.slam.get_status()
+        assert status == {}
 
     async def test_get_properties(self):
         properties = await self.slam.get_properties()
@@ -104,6 +108,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = SLAMServiceStub(channel)
+            request = GetStatusRequest(name=self.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     @classmethod
@@ -150,3 +161,9 @@ class TestClient:
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == {"command": command}
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = SLAMClient(self.name, channel)
+            status = await client.get_status()
+            assert status == {}

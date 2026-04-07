@@ -125,6 +125,9 @@ class MockArm(Arm):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockAudioIn(AudioIn):
     def __init__(self, name: str, properties: AudioIn.Properties):
@@ -166,6 +169,9 @@ class MockAudioIn(AudioIn):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.extra = extra
         self.timeout = timeout
@@ -202,6 +208,9 @@ class MockAudioOut(AudioOut):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return command
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.extra = extra
@@ -288,6 +297,9 @@ class MockBase(Base):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockAnalog(Board.Analog):
@@ -397,6 +409,9 @@ class MockBoard(Board):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
     async def set_power_mode(
         self,
         mode: PowerMode.ValueType,
@@ -460,6 +475,9 @@ class MockCamera(Camera):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {}
+
 
 class MockEncoder(Encoder):
     def __init__(self, name: str):
@@ -511,6 +529,9 @@ class MockEncoder(Encoder):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockGantry(Gantry):
@@ -580,6 +601,9 @@ class MockGantry(Gantry):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockGenericComponent(GenericComponent):
     timeout: Optional[float] = None
@@ -593,6 +617,9 @@ class MockGenericComponent(GenericComponent):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {key: True for key in command.keys()}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockGripper(Gripper):
@@ -649,6 +676,9 @@ class MockGripper(Gripper):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockInputController(Controller):
@@ -721,6 +751,9 @@ class MockInputController(Controller):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockMotor(Motor):
@@ -858,6 +891,9 @@ class MockMotor(Motor):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockMovementSensor(MovementSensor):
     def __init__(
@@ -952,6 +988,9 @@ class MockMovementSensor(MovementSensor):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 @dataclass
 class MockPose:
@@ -1002,6 +1041,9 @@ class MockPoseTracker(PoseTracker):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockPowerSensor(PowerSensor):
     def __init__(self, name: str, voltage: float, current: float, is_ac: bool, power: float, readings: Mapping[str, float]):
@@ -1040,6 +1082,9 @@ class MockPowerSensor(PowerSensor):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockSensor(Sensor):
     def __init__(self, name: str, result: Mapping[str, Any] = {"a": 0, "b": {"foo": "bar"}, "c": [1, 8, 2], "d": "Hello world!"}):
@@ -1063,6 +1108,9 @@ class MockSensor(Sensor):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 class MockServo(Servo):
@@ -1101,6 +1149,9 @@ class MockServo(Servo):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockSwitch(Switch):
     def __init__(self, name: str, number_of_positions: int = 3, labels: Sequence[str] = ["a", "b", "c"], position: int = 0):
@@ -1135,6 +1186,9 @@ class MockSwitch(Switch):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
+
 
 class MockButton(Button):
     def __init__(self, name: str):
@@ -1150,3 +1204,6 @@ class MockButton(Button):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}

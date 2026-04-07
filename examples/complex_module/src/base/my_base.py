@@ -10,7 +10,7 @@ from viam.resource.base import ResourceBase
 from viam.proto.common import Geometry, Vector3, ResourceName
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
-from viam.utils import struct_to_dict
+from viam.utils import ValueTypes, struct_to_dict
 
 
 class MyBase(Base, Reconfigurable):
@@ -139,12 +139,15 @@ class MyBase(Base, Reconfigurable):
         return await self.left.is_moving() or await self.right.is_moving()
 
     # Not implemented
-    async def get_properties(self, *, timeout: Optional[float] | None = None, **kwargs) -> Base.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
         raise NotImplementedError()
 
     # Not implemented
     async def get_geometries(self) -> List[Geometry]:
         raise NotImplementedError()
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
 
 Registry.register_resource_creator(Base.API, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))

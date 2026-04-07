@@ -24,8 +24,12 @@ class SensorsServiceBase(abc.ABC):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.service.sensors.v1.SensorsService/GetSensors': grpclib.const.Handler(self.GetSensors, grpclib.const.Cardinality.UNARY_UNARY, service.sensors.v1.sensors_pb2.GetSensorsRequest, service.sensors.v1.sensors_pb2.GetSensorsResponse), '/viam.service.sensors.v1.SensorsService/GetReadings': grpclib.const.Handler(self.GetReadings, grpclib.const.Cardinality.UNARY_UNARY, service.sensors.v1.sensors_pb2.GetReadingsRequest, service.sensors.v1.sensors_pb2.GetReadingsResponse), '/viam.service.sensors.v1.SensorsService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
+        return {'/viam.service.sensors.v1.SensorsService/GetSensors': grpclib.const.Handler(self.GetSensors, grpclib.const.Cardinality.UNARY_UNARY, service.sensors.v1.sensors_pb2.GetSensorsRequest, service.sensors.v1.sensors_pb2.GetSensorsResponse), '/viam.service.sensors.v1.SensorsService/GetReadings': grpclib.const.Handler(self.GetReadings, grpclib.const.Cardinality.UNARY_UNARY, service.sensors.v1.sensors_pb2.GetReadingsRequest, service.sensors.v1.sensors_pb2.GetReadingsResponse), '/viam.service.sensors.v1.SensorsService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.service.sensors.v1.SensorsService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
 
 class UnimplementedSensorsServiceBase(SensorsServiceBase):
 
@@ -38,9 +42,13 @@ class UnimplementedSensorsServiceBase(SensorsServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class SensorsServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.GetSensors = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.sensors.v1.SensorsService/GetSensors', service.sensors.v1.sensors_pb2.GetSensorsRequest, service.sensors.v1.sensors_pb2.GetSensorsResponse)
         self.GetReadings = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.sensors.v1.SensorsService/GetReadings', service.sensors.v1.sensors_pb2.GetReadingsRequest, service.sensors.v1.sensors_pb2.GetReadingsResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.sensors.v1.SensorsService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.sensors.v1.SensorsService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)

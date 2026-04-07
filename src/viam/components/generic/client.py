@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Mapping, Optional
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetStatusRequest, GetStatusResponse
 from viam.proto.component.generic import GenericServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
@@ -37,6 +37,17 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
                 raise NotImplementedError()
             raise e
 
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:

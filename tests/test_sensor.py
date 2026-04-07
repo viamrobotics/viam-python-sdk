@@ -10,6 +10,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetReadingsRequest,
     GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.sensor import SensorServiceStub
 from viam.resource.manager import ResourceManager
@@ -39,6 +41,10 @@ class TestSensor:
         command = {"command": "args"}
         resp = await sensor.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self, sensor):
+        status = await sensor.get_status()
+        assert status == {}
 
     async def test_get_geometries(self, sensor):
         geometries = await sensor.get_geometries()
@@ -75,6 +81,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, sensor: MockSensor, service: SensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = SensorServiceStub(channel)
+            request = GetStatusRequest(name=sensor.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
@@ -99,6 +112,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, sensor, service):
+        async with ChannelFor([service]) as channel:
+            client = SensorClient(sensor.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_get_geometries(self, sensor, service):
         async with ChannelFor([service]) as channel:

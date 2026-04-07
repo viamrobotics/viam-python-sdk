@@ -29,8 +29,12 @@ class WorldStateStoreServiceBase(abc.ABC):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.service.worldstatestore.v1.WorldStateStoreService/ListUUIDs': grpclib.const.Handler(self.ListUUIDs, grpclib.const.Cardinality.UNARY_UNARY, service.worldstatestore.v1.world_state_store_pb2.ListUUIDsRequest, service.worldstatestore.v1.world_state_store_pb2.ListUUIDsResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/GetTransform': grpclib.const.Handler(self.GetTransform, grpclib.const.Cardinality.UNARY_UNARY, service.worldstatestore.v1.world_state_store_pb2.GetTransformRequest, service.worldstatestore.v1.world_state_store_pb2.GetTransformResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/StreamTransformChanges': grpclib.const.Handler(self.StreamTransformChanges, grpclib.const.Cardinality.UNARY_STREAM, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesRequest, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
+        return {'/viam.service.worldstatestore.v1.WorldStateStoreService/ListUUIDs': grpclib.const.Handler(self.ListUUIDs, grpclib.const.Cardinality.UNARY_UNARY, service.worldstatestore.v1.world_state_store_pb2.ListUUIDsRequest, service.worldstatestore.v1.world_state_store_pb2.ListUUIDsResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/GetTransform': grpclib.const.Handler(self.GetTransform, grpclib.const.Cardinality.UNARY_UNARY, service.worldstatestore.v1.world_state_store_pb2.GetTransformRequest, service.worldstatestore.v1.world_state_store_pb2.GetTransformResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/StreamTransformChanges': grpclib.const.Handler(self.StreamTransformChanges, grpclib.const.Cardinality.UNARY_STREAM, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesRequest, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.service.worldstatestore.v1.WorldStateStoreService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
 
 class UnimplementedWorldStateStoreServiceBase(WorldStateStoreServiceBase):
 
@@ -46,6 +50,9 @@ class UnimplementedWorldStateStoreServiceBase(WorldStateStoreServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class WorldStateStoreServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -53,3 +60,4 @@ class WorldStateStoreServiceStub:
         self.GetTransform = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.worldstatestore.v1.WorldStateStoreService/GetTransform', service.worldstatestore.v1.world_state_store_pb2.GetTransformRequest, service.worldstatestore.v1.world_state_store_pb2.GetTransformResponse)
         self.StreamTransformChanges = grpclib.client.UnaryStreamMethod(channel, '/viam.service.worldstatestore.v1.WorldStateStoreService/StreamTransformChanges', service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesRequest, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.worldstatestore.v1.WorldStateStoreService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.worldstatestore.v1.WorldStateStoreService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)

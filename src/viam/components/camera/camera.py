@@ -1,6 +1,5 @@
 import abc
-import sys
-from typing import Any, Dict, Final, Optional, Sequence, Tuple
+from typing import Any, Dict, Final, Optional, Sequence, Tuple, TypeAlias
 
 from viam.media.video import NamedImage
 from viam.proto.common import ResponseMetadata
@@ -8,11 +7,6 @@ from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
-
-if sys.version_info >= (3, 10):
-    from typing import TypeAlias
-else:
-    from typing_extensions import TypeAlias
 
 
 class Camera(ComponentBase):
@@ -107,7 +101,7 @@ class Camera(ComponentBase):
     @abc.abstractmethod
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
         """
-        Get the camera intrinsic parameters and camera distortion parameters
+        Get the camera intrinsic parameters, distortion parameters, and optionally extrinsic parameters
 
         ::
 
@@ -116,7 +110,8 @@ class Camera(ComponentBase):
             properties = await my_camera.get_properties()
 
         Returns:
-            Properties: The properties of the camera.
+            Properties: The properties of the camera, including intrinsic parameters, distortion parameters,
+            supported mime types, and optionally extrinsic parameters (position relative to a reference frame).
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getproperties>`_.
         """

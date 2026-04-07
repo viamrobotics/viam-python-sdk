@@ -1,10 +1,4 @@
-import sys
-
-if sys.version_info >= (3, 9):
-    from collections.abc import AsyncIterator
-else:
-    from typing import AsyncIterator
-
+from collections.abc import AsyncIterator
 from typing import Protocol, TypeVar
 
 StreamType = TypeVar("StreamType", covariant=True)

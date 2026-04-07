@@ -1,4 +1,4 @@
-from typing import ClassVar, Mapping, Sequence, cast
+from typing import ClassVar, Mapping, Optional, Sequence, Tuple, cast
 
 from typing_extensions import Self
 
@@ -10,7 +10,7 @@ from viam.resource.base import ResourceBase
 from viam.proto.common import ResourceName
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
-from viam.utils import struct_to_dict
+from viam.utils import ValueTypes, struct_to_dict
 from viam.module.module import Module
 import asyncio
 
@@ -30,7 +30,7 @@ class Foo(Generic, Reconfigurable):
     # Validate validates the config and returns a required dependency on
     # `required_motor` and an optional dependency on `optional_motor`.
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> tuple[Sequence[str], Sequence[str]]:
+    def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
         attributes_dict = struct_to_dict(config.attributes)
 
         cfg_required_motor: str = cast(str, attributes_dict.get("required_motor"))
@@ -48,6 +48,9 @@ class Foo(Generic, Reconfigurable):
             optional_deps.append(cfg_optional_motor)
 
         return required_deps, optional_deps
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
     # Reconfigure with latest dependencies
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):

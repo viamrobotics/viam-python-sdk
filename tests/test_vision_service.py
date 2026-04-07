@@ -11,6 +11,8 @@ from viam.proto.common import (
     DoCommandResponse,
     GeometriesInFrame,
     Geometry,
+    GetStatusRequest,
+    GetStatusResponse,
     PointCloudObject,
     Pose,
     RectangularPrism,
@@ -195,6 +197,10 @@ class TestVision:
         response = await vision.do_command(command)
         assert response["cmd"] == command
 
+    async def test_get_status(self, vision: MockVision):
+        status = await vision.get_status()
+        assert status == {}
+
 
 class TestService:
     async def test_capture_all_from_camera(self, vision: MockVision, service: VisionRPCService):
@@ -296,6 +302,13 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             assert struct_to_dict(response.result)["cmd"] == command
 
+    async def test_get_status(self, vision: MockVision, service: VisionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceStub(channel)
+            request = GetStatusRequest(name=vision.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     async def test_get_properties(self, vision: MockVision, service: VisionRPCService):
@@ -370,3 +383,9 @@ class TestClient:
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response["cmd"] == command
+
+    async def test_get_status(self, vision: MockVision, service: VisionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = VisionClient(VISION_SERVICE_NAME, channel)
+            status = await client.get_status()
+            assert status == {}

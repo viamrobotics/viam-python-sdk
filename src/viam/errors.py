@@ -22,7 +22,7 @@ class InsecureConnectionError(ViamError):
     def __init__(self, address: str, authenticated: bool = False) -> None:
         self.address = address
         self.authenticated = authenticated
-        self.message = f"Requested address {self.address} is insecure" + f'{" and will not send credentials" if self.authenticated else ""}'
+        self.message = f"Requested address {self.address} is insecure" + f"{' and will not send credentials' if self.authenticated else ''}"
         super().__init__(self.message)
 
 

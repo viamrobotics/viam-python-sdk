@@ -1,7 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.service.worldstatestore import (
     GetTransformRequest,
     GetTransformResponse,
@@ -68,6 +68,10 @@ class TestWorldStateStore:
         assert worldstatestore.timeout == timeout
         assert response["cmd"] == command
 
+    async def test_get_status(self, worldstatestore: MockWorldStateStore):
+        status = await worldstatestore.get_status()
+        assert status == {}
+
 
 class TestService:
     async def test_list_uuids(self, worldstatestore: MockWorldStateStore, service: WorldStateStoreService):
@@ -111,6 +115,13 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             assert struct_to_dict(response.result)["cmd"] == command
 
+    async def test_get_status(self, worldstatestore: MockWorldStateStore, service: WorldStateStoreService):
+        async with ChannelFor([service]) as channel:
+            client = WorldStateStoreServiceStub(channel)
+            request = GetStatusRequest(name=worldstatestore.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
 
 class TestClient:
     async def test_list_uuids(self, worldstatestore: MockWorldStateStore, service: WorldStateStoreService):
@@ -150,3 +161,9 @@ class TestClient:
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response["cmd"] == command
+
+    async def test_get_status(self, worldstatestore: MockWorldStateStore, service: WorldStateStoreService):
+        async with ChannelFor([service]) as channel:
+            client = WorldStateStoreClient(WORLDSTATESTORE_SERVICE_NAME, channel)
+            status = await client.get_status()
+            assert status == {}

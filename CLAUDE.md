@@ -31,14 +31,6 @@ tests/                             — pytest test suite
 
 All component/service clients follow the same pattern. Tests live in `tests/` with `test_*.py` naming.
 
-## Restrictions
-
-- Do NOT add dependencies unless absolutely necessary — this is a public SDK.
-
-## Tools
-
-- Prefer dedicated tools (Grep, Glob, Read, Edit, Write) over Bash equivalents when practical.
-
 ## Python Conventions
 
 - **Line length** is 140 characters (`ruff` enforced).
@@ -59,12 +51,7 @@ All component/service clients follow the same pattern. Tests live in `tests/` wi
   ```
 - **Metadata extraction**: `md = kwargs.get("metadata", self.Metadata()).proto`
 - **Extra parameters**: converted via `dict_to_struct(extra)` / `struct_to_dict(result)`.
-- **Before creating a new file**, read 1–2 existing files of the same kind to match patterns exactly (e.g., read an existing `client.py` before writing a new one).
 
-## Implementation
+## Language Notes
 
-- Follow existing patterns. No new conventions or abstractions.
-- Implement the **minimal change**. No refactors or unnecessary additions.
-- Maintain backwards compatibility. No breaking changes to the public API.
-- Add or update unit tests for changed behavior. Tests should verify meaningful logic, edge cases, error paths, state transitions — not just trivial assertions.
 - Use `grpclib.testing.ChannelFor` and `tests/mocks/` patterns for test infrastructure.

@@ -9,6 +9,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.gantry import (
     GantryServiceStub,
@@ -53,6 +55,10 @@ class TestGantry:
         command = {"command": "args"}
         resp = await self.gantry.do_command(command)
         assert resp == {"command": command}
+
+    async def test_get_status(self):
+        status = await self.gantry.get_status()
+        assert status == {}
 
     async def test_stop(self):
         assert self.gantry.is_stopped is False
@@ -173,6 +179,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryServiceStub(channel)
+            request = GetStatusRequest(name=self.gantry.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -232,6 +245,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:

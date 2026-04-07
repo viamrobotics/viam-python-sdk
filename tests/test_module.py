@@ -204,7 +204,7 @@ class TestModule:
             model = handler.models[0]
             assert model == "acme:demo:mysum"
 
-    def test_add_model_from_registry(self):
+    async def test_add_model_from_registry(self):
         mod = Module("fake")
         mod.add_model_from_registry(Gizmo.API, MyGizmo.MODEL)
 

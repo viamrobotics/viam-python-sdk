@@ -6,9 +6,7 @@ Do not edit manually!
 from ....gen.component.camera.v1.camera_grpc import CameraServiceBase, CameraServiceStub, UnimplementedCameraServiceBase
 from ....gen.component.camera.v1.camera_pb2 import (
     DistortionParameters,
-    Format,
-    GetImageRequest,
-    GetImageResponse,
+    ExtrinsicParameters,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
@@ -18,7 +16,6 @@ from ....gen.component.camera.v1.camera_pb2 import (
     Image,
     IntrinsicParameters,
     Property,
-    RenderFrameRequest,
     Webcam,
     Webcams,
 )
@@ -28,9 +25,7 @@ __all__ = [
     "CameraServiceStub",
     "UnimplementedCameraServiceBase",
     "DistortionParameters",
-    "Format",
-    "GetImageRequest",
-    "GetImageResponse",
+    "ExtrinsicParameters",
     "GetImagesRequest",
     "GetImagesResponse",
     "GetPointCloudRequest",
@@ -40,7 +35,6 @@ __all__ = [
     "Image",
     "IntrinsicParameters",
     "Property",
-    "RenderFrameRequest",
     "Webcam",
     "Webcams",
 ]

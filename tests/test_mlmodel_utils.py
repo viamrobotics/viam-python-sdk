@@ -53,6 +53,6 @@ def test_ndarrays_to_flat_tensors():
     assert type(output.tensors["0"].int8_tensor.data) is builtins.bytes
     bytes_buffer = output.tensors["0"].int8_tensor.data
     assert np.array_equal(np.frombuffer(bytes_buffer, dtype=np.int8).reshape(output.tensors["0"].shape), MockMLModel.INT8_NDARRAY)
-    assert np.array_equal(np.array(output.tensors["1"].int16_tensor.data, dtype=np.int16), MockMLModel.INT16_NDARRAY)
+    assert np.array_equal(np.array(output.tensors["1"].int16_tensor.data, dtype=np.uint32).astype(np.int16), MockMLModel.INT16_NDARRAY)
     assert np.array_equal(np.array(output.tensors["2"].int32_tensor.data, dtype=np.int32), MockMLModel.INT32_NDARRAY)
     assert np.array_equal(np.array(output.tensors["3"].int64_tensor.data, dtype=np.int64), MockMLModel.INT64_NDARRAY)

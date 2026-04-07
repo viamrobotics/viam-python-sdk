@@ -7,6 +7,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
 )
 from viam.proto.component.gantry import (
     GetLengthsRequest,
@@ -108,6 +110,15 @@ class GantryRPCService(UnimplementedGantryServiceBase, ResourceRPCServiceBase[Ga
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await gantry.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
+        await stream.send_message(response)
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gantry = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await gantry.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
     async def GetKinematics(self, stream: Stream[GetKinematicsRequest, GetKinematicsResponse]) -> None:

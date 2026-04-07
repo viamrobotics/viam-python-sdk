@@ -4,7 +4,14 @@ from grpclib.testing import ChannelFor
 from viam.components.encoder import EncoderClient
 from viam.components.encoder.service import EncoderRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+)
 from viam.proto.component.encoder import (
     EncoderServiceStub,
     GetPositionRequest,
@@ -61,6 +68,10 @@ class TestEncoder:
         resp = await encoder.do_command(command)
         assert resp == {"command": command}
 
+    async def test_get_status(self, encoder: MockEncoder):
+        status = await encoder.get_status()
+        assert status == {}
+
     async def test_get_geometries(self, encoder: MockEncoder):
         geometries = await encoder.get_geometries()
         assert geometries == GEOMETRIES
@@ -102,6 +113,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, encoder: MockEncoder, service: EncoderRPCService):
+        async with ChannelFor([service]) as channel:
+            client = EncoderServiceStub(channel)
+            request = GetStatusRequest(name=encoder.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
@@ -140,6 +158,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, encoder: MockEncoder, service: EncoderRPCService):
+        async with ChannelFor([service]) as channel:
+            client = EncoderClient(encoder.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_get_geometries(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:

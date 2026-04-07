@@ -71,7 +71,6 @@ To create a client application, to navigate to [app.viam.com](https://app.viam.c
 1. Create a location (for example `home`)
 2. Create a robot (for example `arduino`)
 3. Follow the steps on the setup tab:
-
    1. Setup machine cloud credentials on Single Board Computer (SBC)
    2. Download and Install Viam Server
    3. Wait until the robot shows as connected. If this doesn't happen try restarting the viam-server:

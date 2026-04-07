@@ -2,7 +2,7 @@ from typing import Any, AsyncGenerator, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Transform
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse, Transform
 from viam.proto.service.worldstatestore import (
     GetTransformRequest,
     GetTransformResponse,
@@ -62,7 +62,7 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
         response: GetTransformResponse = await self.client.GetTransform(request, timeout=timeout, metadata=md)
         return response.transform
 
-    async def stream_transform_changes(
+    async def stream_transform_changes(  # type: ignore
         self,
         *,
         extra: Optional[Mapping[str, Any]] = None,
@@ -74,9 +74,10 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
             name=self.name,
             extra=dict_to_struct(extra),
         )
-        responses = await self.client.StreamTransformChanges(request, timeout=timeout, metadata=md)
-        for response in responses:
-            yield response
+        async with self.client.StreamTransformChanges.open(timeout=timeout, metadata=md) as stream:
+            await stream.send_message(request, end=True)
+            async for response in stream:
+                yield response
 
     async def do_command(
         self,
@@ -91,4 +92,15 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
             command=dict_to_struct(command),
         )
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
+        return struct_to_dict(response.result)
+
+    async def get_status(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetStatusRequest(name=self.name)
+        response: GetStatusResponse = await self.client.GetStatus(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

@@ -76,3 +76,15 @@ class ServiceBase(abc.ABC, ResourceBase):
             Dict[str, ValueTypes]: Result of the executed command
         """
         raise NotImplementedError()
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        """Get the current status of the service as a dictionary.
+
+        ::
+
+            status = await service.get_status()
+
+        Returns:
+            Mapping[str, ValueTypes]: The status of the service
+        """
+        raise NotImplementedError()

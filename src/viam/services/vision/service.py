@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType, ViamImage
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
 from viam.proto.component.camera import Image
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
@@ -141,3 +141,12 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.do_command(struct_to_dict(request.command), timeout=timeout)
         await stream.send_message(DoCommandResponse(result=dict_to_struct(result)))
+
+    async def GetStatus(self, stream: Stream[GetStatusRequest, GetStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        vision = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await vision.get_status(timeout=timeout, metadata=stream.metadata)
+        response = GetStatusResponse(result=dict_to_struct(result))
+        await stream.send_message(response)

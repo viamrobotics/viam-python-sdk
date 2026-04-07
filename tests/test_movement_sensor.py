@@ -11,6 +11,8 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetReadingsRequest,
     GetReadingsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
     Orientation,
     Vector3,
 )
@@ -189,6 +191,10 @@ class TestMovementSensor:
         resp = await movement_sensor.do_command(command)
         assert resp == {"command": command}
 
+    async def test_get_status(self, movement_sensor: MovementSensor):
+        status = await movement_sensor.get_status()
+        assert status == {}
+
     async def test_get_geometries(self, movement_sensor: MockMovementSensor):
         geometries = await movement_sensor.get_geometries()
         assert geometries == GEOMETRIES
@@ -296,6 +302,13 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_status(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorServiceStub(channel)
+            request = GetStatusRequest(name=movement_sensor.name)
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert struct_to_dict(response.result) == {}
+
     async def test_get_geometries(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -396,6 +409,12 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    async def test_get_status(self, movement_sensor: MovementSensor, service: MovementSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorClient(movement_sensor.name, channel)
+            status = await client.get_status()
+            assert status == {}
 
     async def test_get_geometries(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:

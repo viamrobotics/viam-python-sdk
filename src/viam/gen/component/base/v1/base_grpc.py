@@ -41,6 +41,10 @@ class BaseServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
         pass
 
@@ -49,7 +53,7 @@ class BaseServiceBase(abc.ABC):
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.base.v1.BaseService/MoveStraight': grpclib.const.Handler(self.MoveStraight, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse), '/viam.component.base.v1.BaseService/Spin': grpclib.const.Handler(self.Spin, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse), '/viam.component.base.v1.BaseService/SetPower': grpclib.const.Handler(self.SetPower, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse), '/viam.component.base.v1.BaseService/SetVelocity': grpclib.const.Handler(self.SetVelocity, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse), '/viam.component.base.v1.BaseService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse), '/viam.component.base.v1.BaseService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse), '/viam.component.base.v1.BaseService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.base.v1.BaseService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse), '/viam.component.base.v1.BaseService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse)}
+        return {'/viam.component.base.v1.BaseService/MoveStraight': grpclib.const.Handler(self.MoveStraight, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse), '/viam.component.base.v1.BaseService/Spin': grpclib.const.Handler(self.Spin, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse), '/viam.component.base.v1.BaseService/SetPower': grpclib.const.Handler(self.SetPower, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse), '/viam.component.base.v1.BaseService/SetVelocity': grpclib.const.Handler(self.SetVelocity, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse), '/viam.component.base.v1.BaseService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse), '/viam.component.base.v1.BaseService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse), '/viam.component.base.v1.BaseService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.base.v1.BaseService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse), '/viam.component.base.v1.BaseService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse), '/viam.component.base.v1.BaseService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse)}
 
 class UnimplementedBaseServiceBase(BaseServiceBase):
 
@@ -74,6 +78,9 @@ class UnimplementedBaseServiceBase(BaseServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -90,5 +97,6 @@ class BaseServiceStub:
         self.Stop = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/Stop', component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse)
         self.IsMoving = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/IsMoving', component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
         self.GetGeometries = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/GetGeometries', common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)
         self.GetProperties = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/GetProperties', component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse)

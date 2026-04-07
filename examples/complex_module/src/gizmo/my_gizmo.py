@@ -1,8 +1,9 @@
-from typing import ClassVar, Mapping, Sequence, Tuple
+from typing import ClassVar, Mapping, Optional, Sequence, Tuple
 
 from typing_extensions import Self
 
 from viam.logging import getLogger
+from viam.utils import ValueTypes
 from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -69,6 +70,9 @@ class MyGizmo(Gizmo, Reconfigurable):
 
     async def do_two(self, arg1: bool, **kwargs) -> str:
         return f"arg1={arg1}"
+
+    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {}
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value

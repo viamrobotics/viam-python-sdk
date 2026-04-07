@@ -20,8 +20,12 @@ class ButtonServiceBase(abc.ABC):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.button.v1.ButtonService/Push': grpclib.const.Handler(self.Push, grpclib.const.Cardinality.UNARY_UNARY, component.button.v1.button_pb2.PushRequest, component.button.v1.button_pb2.PushResponse), '/viam.component.button.v1.ButtonService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
+        return {'/viam.component.button.v1.ButtonService/Push': grpclib.const.Handler(self.Push, grpclib.const.Cardinality.UNARY_UNARY, component.button.v1.button_pb2.PushRequest, component.button.v1.button_pb2.PushResponse), '/viam.component.button.v1.ButtonService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.button.v1.ButtonService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
 
 class UnimplementedButtonServiceBase(ButtonServiceBase):
 
@@ -31,8 +35,12 @@ class UnimplementedButtonServiceBase(ButtonServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def GetStatus(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class ButtonServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.Push = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.button.v1.ButtonService/Push', component.button.v1.button_pb2.PushRequest, component.button.v1.button_pb2.PushResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.button.v1.ButtonService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.button.v1.ButtonService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
