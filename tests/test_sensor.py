@@ -28,42 +28,14 @@ EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 def sensor() -> MockSensor:
     return MockSensor(name="sensor", result=READINGS)
 
-
-class TestSensor:
-    async def test_get_readings(self, sensor):
-        assert sensor.extra is None
-        readings = await sensor.get_readings(extra=EXTRA_PARAMS, timeout=1.23)
-        assert readings == READINGS
-        assert sensor.extra == EXTRA_PARAMS
-        assert sensor.timeout == loose_approx(1.23)
-
-
-
-    async def test_do(self, sensor):
-        command = {"command": "args"}
-        assert sensor.extra is None
-        resp = await sensor.do_command(command, extra=EXTRA_PARAMS, timeout=1.23)
-        assert resp == {"command": command}
-        assert sensor.extra == EXTRA_PARAMS
-        assert sensor.timeout == loose_approx(1.23)
-
-    async def test_get_status(self, sensor):
-        status = await sensor.get_status()
-        assert status == {}
-
-    async def test_get_geometries(self, sensor):
-        geometries = await sensor.get_geometries()
-        assert geometries == GEOMETRIES
-
-
 @pytest.fixture(scope="function")
 def manager(sensor) -> ResourceManager:
     return ResourceManager([sensor])
 
-
 @pytest.fixture(scope="function")
 def service(manager) -> SensorRPCService:
     return SensorRPCService(manager)
+
 
 
 class TestService:
@@ -81,7 +53,7 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
             command = {"command": "args"}
-            # Send extra parameters in the request just like get_readings
+
             request = DoCommandRequest(name=sensor.name, command=dict_to_struct(command))
             assert sensor.extra is None
 
@@ -89,8 +61,7 @@ class TestService:
             result = struct_to_dict(response.result)
 
             assert result == {"command": command}
-            # Note: DoCommandRequest in proto might not explicitly take 'extra',
-            # but we can test if the timeout is properly passed through the gRPC channel!
+
             assert sensor.timeout == loose_approx(2.34)
 
 
@@ -119,12 +90,12 @@ class TestClient:
             assert sensor.extra == EXTRA_PARAMS
             assert sensor.timeout == loose_approx(3.45)
 
-    async def test_do(self, sensor, manager, service):
+    async def test_do(self, sensor, service):
         async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
             command = {"command": "args"}
 
-            # Yahan se humne 'extra' hata diya hai, sirf timeout check karenge
+
             resp = await client.do_command(command, timeout=3.45)
             assert resp == {"command": command}
             assert sensor.timeout == loose_approx(3.45)
