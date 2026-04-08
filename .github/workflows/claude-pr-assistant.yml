@@ -55,14 +55,14 @@ jobs:
   auto-review:
     needs: resolve-pr
     if: needs.resolve-pr.outputs.pr_found == 'true'
-    # viamrobotics/claude-ci-workflows@v1.17.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-auto-review.yml@c704bab2aa95a3d6519f301e9843a07bf8236a1e
+    # viamrobotics/claude-ci-workflows@v1.17.1
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-auto-review.yml@9c5197c7a93debf019a5a899c24c2c5d6504415e
     with:
       pr_number: ${{ needs.resolve-pr.outputs.pr_number }}
       pr_title: ${{ needs.resolve-pr.outputs.pr_title }}
       branch: ${{ needs.resolve-pr.outputs.branch }}
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr review*),Bash(gh pr comment*),Bash(gh pr diff*),Bash(gh pr view*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr review*),Bash(gh pr comment*),Bash(gh pr diff*),Bash(gh pr view*),Bash(gh api repos/*/pulls/*/comments*)'
       extra_review_instructions: |
         - Ensure src/viam/gen/ was not modified.
         - If you fix issues, run `uv run make format` then `uv run make lint`.
@@ -79,11 +79,11 @@ jobs:
         (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
         (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude'))
       )
-    # viamrobotics/claude-ci-workflows@v1.17.0
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-pr-assistant.yml@c704bab2aa95a3d6519f301e9843a07bf8236a1e
+    # viamrobotics/claude-ci-workflows@v1.17.1
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-pr-assistant.yml@9c5197c7a93debf019a5a899c24c2c5d6504415e
     with:
       install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr diff*),Bash(gh pr view*)'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,mcp__github_inline_comment__create_inline_comment,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr diff*),Bash(gh pr view*),Bash(gh api repos/*/pulls/*/comments*)'
       extra_review_instructions: |
         - Ensure src/viam/gen/ was not modified.
         - If you fix issues, run `uv run make format` then `uv run make lint`.
