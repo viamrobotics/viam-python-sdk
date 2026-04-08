@@ -43,10 +43,10 @@ jobs:
 
       - name: Notify Slack
         uses: slackapi/slack-github-action@v3
-        webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-        webhook-type: incoming-webhook
         if: ${{ !contains(env.VERSION, 'rc') && !contains(env.VERSION, 'a') && !contains(env.VERSION, 'b')}}
         with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
             {
               "text": "${{ env.VERSION }} was released.\n${{ github.event_name == 'workflow_dispatch' && steps.get_release.outputs.html_url || github.event.release.html_url }}",
@@ -55,11 +55,11 @@ jobs:
             }
 
       - name: Notify Slack on Failure
-        uses: slackapi/slack-github-action@v3.0.1
+        uses: slackapi/slack-github-action@v3
         if: ${{ failure() }}
-        webhook: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
-        webhook-type: incoming-webhook
         with:
+          webhook: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
             {
               "text": "Failed to publish Python SDK",

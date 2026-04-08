@@ -371,11 +371,11 @@ jobs:
               --body "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes"
 
       - name: Notify slack of failure
-        uses: slackapi/slack-github-action@v3.0.1
+        uses: slackapi/slack-github-action@v3
         if: ${{ failure() }}
-        webhook: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
-        webhook-type: incoming-webhook
         with:
+          webhook: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
             {
               "text": "Python SDK update protos job has failed",
