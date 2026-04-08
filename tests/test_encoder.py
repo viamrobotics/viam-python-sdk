@@ -24,7 +24,7 @@ from viam.proto.component.encoder import (
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockEncoder
 
 
@@ -50,18 +50,18 @@ class TestEncoder:
         pos, pos_type = await encoder.get_position(timeout=2.34)
         assert pos == 0
         assert pos_type == PositionType.POSITION_TYPE_TICKS_COUNT
-        assert encoder.timeout == loose_approx(2.34)
+        assert encoder.timeout == expected_grpc_timeout(2.34)
 
     async def test_reset_position(self, encoder: MockEncoder):
         await encoder.reset_position(timeout=5.67)
         assert encoder.position == 0
-        assert encoder.timeout == loose_approx(5.67)
+        assert encoder.timeout == expected_grpc_timeout(5.67)
 
     async def test_get_properties(self, encoder: MockEncoder):
         properties = await encoder.get_properties(timeout=6.78)
         assert properties.ticks_count_supported is True
         assert properties.angle_degrees_supported is False
-        assert encoder.timeout == loose_approx(6.78)
+        assert encoder.timeout == expected_grpc_timeout(6.78)
 
     async def test_do(self, encoder: MockEncoder):
         command = {"command": "args"}
@@ -85,7 +85,7 @@ class TestService:
             response: GetPositionResponse = await client.GetPosition(request, timeout=2.34)
             assert response.value == 0
             assert response.position_type == PositionType.POSITION_TYPE_TICKS_COUNT
-            assert encoder.timeout == loose_approx(2.34)
+            assert encoder.timeout == expected_grpc_timeout(2.34)
 
     async def test_reset_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
@@ -93,7 +93,7 @@ class TestService:
             request = ResetPositionRequest(name=encoder.name)
             await client.ResetPosition(request, timeout=5.67)
             assert encoder.position == 0
-            assert encoder.timeout == loose_approx(5.67)
+            assert encoder.timeout == expected_grpc_timeout(5.67)
 
     async def test_get_properties(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
@@ -102,7 +102,7 @@ class TestService:
             response: GetPropertiesResponse = await client.GetProperties(request, timeout=6.78)
             assert response.ticks_count_supported is True
             assert response.angle_degrees_supported is False
-            assert encoder.timeout == loose_approx(6.78)
+            assert encoder.timeout == expected_grpc_timeout(6.78)
 
     async def test_do(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
@@ -135,13 +135,13 @@ class TestClient:
             position, pos_type = await client.get_position(timeout=2.34)
             assert position == 0
             assert pos_type == PositionType.POSITION_TYPE_TICKS_COUNT
-            assert encoder.timeout == loose_approx(2.34)
+            assert encoder.timeout == expected_grpc_timeout(2.34)
 
     async def test_reset_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
             await client.reset_position(timeout=5.67)
-            assert encoder.timeout == loose_approx(5.67)
+            assert encoder.timeout == expected_grpc_timeout(5.67)
             assert encoder.position == 0
 
     async def test_get_properties(self, encoder: MockEncoder, service: EncoderRPCService):
@@ -150,7 +150,7 @@ class TestClient:
             properties = await client.get_properties(timeout=6.78)
             assert properties.ticks_count_supported is True
             assert properties.angle_degrees_supported is False
-            assert encoder.timeout == loose_approx(6.78)
+            assert encoder.timeout == expected_grpc_timeout(6.78)
 
     async def test_do(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:

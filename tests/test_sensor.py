@@ -17,7 +17,7 @@ from viam.proto.component.sensor import SensorServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
-from . import loose_approx
+from . import expected_grpc_timeout
 from .mocks.components import GEOMETRIES, MockSensor
 
 READINGS = {"a": 1, "b": 2, "c": 3}
@@ -47,7 +47,7 @@ class TestService:
             result: GetReadingsResponse = await client.GetReadings(request, timeout=2.34)
             assert sensor_readings_value_to_native(result.readings) == READINGS
             assert sensor.extra == EXTRA_PARAMS
-            assert sensor.timeout == loose_approx(2.34)
+            assert sensor.timeout == expected_grpc_timeout(2.34)
 
     async def test_do(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
@@ -62,7 +62,7 @@ class TestService:
 
             assert result == {"command": command}
 
-            assert sensor.timeout == loose_approx(2.34)
+            assert sensor.timeout ==expected_grpc_timeout(2.34)
 
 
     async def test_get_status(self, sensor: MockSensor, service: SensorRPCService):
@@ -88,7 +88,7 @@ class TestClient:
             value_readings = await client.get_readings(timeout=3.45, extra=EXTRA_PARAMS)
             assert READINGS == value_readings
             assert sensor.extra == EXTRA_PARAMS
-            assert sensor.timeout == loose_approx(3.45)
+            assert sensor.timeout == expected_grpc_timeout(3.45)
 
     async def test_do(self, sensor, service):
         async with ChannelFor([service]) as channel:
@@ -98,7 +98,7 @@ class TestClient:
 
             resp = await client.do_command(command, timeout=3.45)
             assert resp == {"command": command}
-            assert sensor.timeout == loose_approx(3.45)
+            assert sensor.timeout ==expected_grpc_timeout(3.45)
 
 
 
