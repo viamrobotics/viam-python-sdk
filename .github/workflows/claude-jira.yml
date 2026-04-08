@@ -31,7 +31,7 @@ on:
         description: 'Ticket description'
         required: true
       task_complexity:
-        description: 'Task complexity: small (50 turns), medium (75), large (100)'
+        description: 'Task complexity: small (100 turns), medium (150), large (200)'
         required: false
         default: 'small'
         type: choice
@@ -61,6 +61,8 @@ jobs:
       task_complexity: ${{ github.event.client_payload.task_complexity || inputs.task_complexity || 'small' }}
       assignee: ${{ github.event.client_payload.assignee || inputs.assignee || '' }}
       assignee_email: ${{ github.event.client_payload.assignee_email || inputs.assignee_email || '' }}
+      jira_base_url: 'https://viam.atlassian.net'
+      jira_user_email: 'ale.paredes@viam.com'
       extra_prompt: |
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
@@ -73,3 +75,4 @@ jobs:
       CI_GITHUB_APP_ID: ${{ secrets.CI_GITHUB_APP_ID }}
       CI_GITHUB_APP_PRIVATE_KEY: ${{ secrets.CI_GITHUB_APP_PRIVATE_KEY }}
       SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
