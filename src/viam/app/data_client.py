@@ -1955,6 +1955,7 @@ class DataClient:
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
         mime_type: Optional[str] = None,
+        file_name: Optional[str] = None,
     ) -> str:
         """Upload arbitrary file data.
 
@@ -1967,7 +1968,8 @@ class DataClient:
                 part_id="INSERT YOUR PART ID",
                 tags=["tag_1", "tag_2"],
                 dataset_ids=["dataset_1", "dataset_2"],
-                filepath="/Users/<your-username>/<your-directory>/<your-file.txt>"
+                filepath="/Users/<your-username>/<your-directory>/<your-file.txt>",
+                file_name="your-custom-name"
             )
 
         Args:
@@ -1980,6 +1982,7 @@ class DataClient:
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
             mime_type (Optional[str]): Optional mime type of the data.
+            file_name (Optional[str]): Optional name of the file. If not provided, the name will be derived from the filepath.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -1991,7 +1994,7 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.
         """
         path = Path(filepath)
-        file_name = path.stem
+        file_name = file_name if file_name else path.stem
         file_extension = path.suffix if path.suffix != "" else None
         with open(filepath, "rb") as f:
             data = f.read()
