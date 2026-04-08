@@ -1951,6 +1951,7 @@ class DataClient:
         component_type: Optional[str] = None,
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
+        file_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
@@ -1976,6 +1977,7 @@ class DataClient:
             component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
+            file_name (Optional[str]): Optional name of the file. If not provided, the name will be derived from the filepath.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
@@ -1991,7 +1993,7 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.
         """
         path = Path(filepath)
-        file_name = path.stem
+        file_name = file_name if file_name else path.stem
         file_extension = path.suffix if path.suffix != "" else None
         with open(filepath, "rb") as f:
             data = f.read()
