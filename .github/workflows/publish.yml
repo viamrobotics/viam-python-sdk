@@ -1,6 +1,12 @@
 name: Publish to PyPI
 
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The version to publish, including the `v`"
+        type: string
+        required: true
   release:
     types: [published]
 
@@ -8,31 +14,55 @@ jobs:
   publish:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
-
+    env:
+      VERSION: ${{ inputs.version || github.event.release.tag_name }}
     steps:
       - name: Download Release
-        uses: dsaltares/fetch-gh-release-asset@v1
+        uses: robinraju/release-downloader@v1
         with:
-          file: "viam_sdk.*\\.whl"
-          regex: true
-          target: "dist/"
-          version: tags/${{ github.event.release.tag_name }}
+          fileName: "viam_sdk.*.whl"
+          out-file-path: "dist/"
+          tag: tags/${{ env.VERSION }}
+          tarBall: false
+          zipBall: false
 
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           verbose: true
 
+      - name: Get Release URL
+        id: get_release
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          release_url=$(gh api repos/${{ github.repository }}/releases/tags/${{ env.VERSION }} --jq '.html_url')
+          echo "html_url=$release_url" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Notify Slack
         uses: slackapi/slack-github-action@v3
-        if: ${{ !contains(github.event.release.tag_name, 'rc') && !contains(github.event.release.tag_name, 'a') && !contains(github.event.release.tag_name, 'b')}}
+        if: ${{ !contains(env.VERSION, 'rc') && !contains(env.VERSION, 'a') && !contains(env.VERSION, 'b')}}
         with:
           payload: |
             {
-              "text": "${{ github.event.release.tag_name }} was released.\n${{ github.event.release.html_url }}",
+              "text": "${{ env.VERSION }} was released.\n${{ github.event_name == 'workflow_dispatch' && steps.get_release.outputs.html_url || github.event.release.html_url }}",
               "username": "Python SDK",
               "icon_url": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on Failure
+        uses: slackapi/slack-github-action@v3
+        if: ${{ failure() }}
+        with:
+          payload: |
+            {
+              "text": "Failed to publish Python SDK",
+              "username": "Python SDK",
+              "icon_url": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
