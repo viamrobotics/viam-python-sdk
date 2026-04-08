@@ -7,8 +7,8 @@ on:
 
 jobs:
   sweep:
-    # viamrobotics/claude-ci-workflows@v1.17.1
-    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@9c5197c7a93debf019a5a899c24c2c5d6504415e
+    # viamrobotics/claude-ci-workflows@v1.17.3
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-dependabot-sweep.yml@3ad96b0ccbb5ee0d7e2cde98653fae0c453e68bb
     with:
       install_command: 'pip install uv && make install'
       allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv add*),Bash(uv lock*),Bash(uv sync*),Bash(uv run make format*),Bash(uv run make lint*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(pip install uv*),Bash(make install*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr list*),Bash(gh api repos/*/pulls/*/comments*)'
@@ -23,12 +23,6 @@ jobs:
         - Do NOT edit `uv.lock` directly — always regenerate it with `uv lock`.
         - Run `uv run make format` to format code before committing.
         - Run `uv run make lint` to check for lint issues. Fix any errors.
-        - Dependency placement — determine the dependency chain, then:
-          1. Direct dependency → update its constraint in `[project] dependencies`.
-          2. Transitive via dev/doc only (`[dependency-groups]`) → use `[tool.uv] constraint-dependencies`.
-          3. Transitive via production dependency (`[project] dependencies`) → add to `[project] dependencies`
-             with minimum secure version so downstream users get the fix.
-          - In the PR description, explain the dependency chain and placement rationale.
         - TOML section ordering in `pyproject.toml`:
           - If a `[tool.uv]` section already exists, add to it. Do NOT create a duplicate section.
           - If creating a new `[tool.uv]` section, place it at the END of the file.
