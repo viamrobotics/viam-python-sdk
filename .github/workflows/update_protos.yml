@@ -373,6 +373,8 @@ jobs:
       - name: Notify slack of failure
         uses: slackapi/slack-github-action@v3.0.1
         if: ${{ failure() }}
+        webhook: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
+        webhook-type: incoming-webhook
         with:
           payload: |
             {
@@ -380,5 +382,3 @@ jobs:
               "username": "Python SDK",
               "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
