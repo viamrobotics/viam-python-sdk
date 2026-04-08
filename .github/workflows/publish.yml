@@ -20,9 +20,9 @@ jobs:
       - name: Download Release
         uses: robinraju/release-downloader@v1
         with:
-          fileName: "*.whl"
+          fileName: "viam_sdk.*.whl"
           out-file-path: "dist/"
-          tag: tags/${{ env.VERSION }}
+          tag: ${{ env.VERSION }}
           tarBall: false
           zipBall: false
 
