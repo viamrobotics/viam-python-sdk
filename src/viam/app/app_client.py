@@ -37,6 +37,10 @@ from viam.proto.app import (
     CreateRegistryItemRequest,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
+    DeleteDevicePushTokenRequest,
+    DeleteDevicePushTokenResponse,
+    DeleteFirebaseConfigRequest,
+    DeleteFirebaseConfigResponse,
     DeleteFragmentRequest,
     DeleteKeyRequest,
     DeleteLocationRequest,
@@ -50,6 +54,10 @@ from viam.proto.app import (
     DeleteRobotRequest,
     FragmentImport,
     FragmentImportList,
+    GetDevicePushTokensRequest,
+    GetDevicePushTokensResponse,
+    GetFirebaseConfigRequest,
+    GetFirebaseConfigResponse,
     GetFragmentHistoryRequest,
     GetFragmentHistoryResponse,
     GetFragmentRequest,
@@ -137,6 +145,8 @@ from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
+    SetFirebaseConfigRequest,
+    SetFirebaseConfigResponse,
     SharedSecret,
     ShareLocationRequest,
     TailRobotPartLogsRequest,
@@ -165,6 +175,8 @@ from viam.proto.app import (
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
+    UploadDevicePushTokenRequest,
+    UploadDevicePushTokenResponse,
     UploadModuleFileRequest,
     Visibility,
 )
@@ -2731,3 +2743,79 @@ class AppClient:
         """
         request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
         _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request, metadata=self._metadata)
+
+    async def upload_device_push_token(self, app_id: str, device_token: str, device_uuid: str, timeout: Optional[float] = None) -> None:
+        """Upload a device push token for mobile notifications.
+
+        Args:
+            app_id (str): The Firebase app ID.
+            device_token (str): The device push notification token.
+            device_uuid (str): The unique identifier for the device.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+        """
+        request = UploadDevicePushTokenRequest(app_id=app_id, device_token=device_token, device_uuid=device_uuid)
+        _: UploadDevicePushTokenResponse = await self._app_client.UploadDevicePushToken(request, metadata=self._metadata, timeout=timeout)
+
+    async def delete_device_push_token(self, app_id: str, device_uuid: str, timeout: Optional[float] = None) -> None:
+        """Delete a device push token.
+
+        Args:
+            app_id (str): The Firebase app ID.
+            device_uuid (str): The unique identifier for the device.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+        """
+        request = DeleteDevicePushTokenRequest(app_id=app_id, device_uuid=device_uuid)
+        _: DeleteDevicePushTokenResponse = await self._app_client.DeleteDevicePushToken(request, metadata=self._metadata, timeout=timeout)
+
+    async def get_device_push_tokens(self, app_id: str, timeout: Optional[float] = None) -> List[str]:
+        """Get all device push tokens for an app.
+
+        Args:
+            app_id (str): The Firebase app ID.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+
+        Returns:
+            List[str]: The list of device push tokens.
+        """
+        request = GetDevicePushTokensRequest(app_id=app_id)
+        response: GetDevicePushTokensResponse = await self._app_client.GetDevicePushTokens(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return list(response.device_tokens)
+
+    async def set_firebase_config(self, org_id: str, app_id: str, config_json: str, timeout: Optional[float] = None) -> None:
+        """Set the Firebase configuration for an organization.
+
+        Args:
+            org_id (str): The organization ID.
+            app_id (str): The Firebase app ID.
+            config_json (str): The Firebase configuration JSON as a string.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+        """
+        request = SetFirebaseConfigRequest(org_id=org_id, app_id=app_id, config_json=config_json)
+        _: SetFirebaseConfigResponse = await self._app_client.SetFirebaseConfig(request, metadata=self._metadata, timeout=timeout)
+
+    async def get_firebase_config(self, org_id: str, timeout: Optional[float] = None) -> str:
+        """Get the Firebase app ID for an organization.
+
+        Args:
+            org_id (str): The organization ID.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+
+        Returns:
+            str: The Firebase app ID.
+        """
+        request = GetFirebaseConfigRequest(org_id=org_id)
+        response: GetFirebaseConfigResponse = await self._app_client.GetFirebaseConfig(request, metadata=self._metadata, timeout=timeout)
+        return response.app_id
+
+    async def delete_firebase_config(self, org_id: str, app_id: str, timeout: Optional[float] = None) -> None:
+        """Delete the Firebase configuration for an organization.
+
+        Args:
+            org_id (str): The organization ID.
+            app_id (str): The Firebase app ID.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+        """
+        request = DeleteFirebaseConfigRequest(org_id=org_id, app_id=app_id)
+        _: DeleteFirebaseConfigResponse = await self._app_client.DeleteFirebaseConfig(request, metadata=self._metadata, timeout=timeout)

@@ -38,6 +38,10 @@ from viam.proto.app import (
     CreateRegistryItemResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
+    DeleteDevicePushTokenRequest,
+    DeleteDevicePushTokenResponse,
+    DeleteFirebaseConfigRequest,
+    DeleteFirebaseConfigResponse,
     DeleteFragmentRequest,
     DeleteFragmentResponse,
     DeleteKeyRequest,
@@ -61,6 +65,10 @@ from viam.proto.app import (
     DeleteRobotRequest,
     DeleteRobotResponse,
     Fragment,
+    GetDevicePushTokensRequest,
+    GetDevicePushTokensResponse,
+    GetFirebaseConfigRequest,
+    GetFirebaseConfigResponse,
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationMetadataRequest,
@@ -148,6 +156,8 @@ from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
+    SetFirebaseConfigRequest,
+    SetFirebaseConfigResponse,
     ShareLocationRequest,
     ShareLocationResponse,
     TailRobotPartLogsRequest,
@@ -179,6 +189,8 @@ from viam.proto.app import (
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
+    UploadDevicePushTokenRequest,
+    UploadDevicePushTokenResponse,
     UploadModuleFileRequest,
     UploadModuleFileResponse,
 )
@@ -1436,6 +1448,8 @@ class MockApp(UnimplementedAppServiceBase):
         self.location_metadata = {}
         self.robot_metadata = {}
         self.robot_part_metadata = {}
+        self.device_push_tokens = {}
+        self.firebase_configs = {}
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         request = await stream.recv_message()
@@ -1950,6 +1964,47 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.robot_part_metadata[request.id] = request.data
         await stream.send_message(UpdateRobotPartMetadataResponse())
+
+    async def UploadDevicePushToken(self, stream: Stream[UploadDevicePushTokenRequest, UploadDevicePushTokenResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        if request.app_id not in self.device_push_tokens:
+            self.device_push_tokens[request.app_id] = {}
+        self.device_push_tokens[request.app_id][request.device_uuid] = request.device_token
+        await stream.send_message(UploadDevicePushTokenResponse())
+
+    async def DeleteDevicePushToken(self, stream: Stream[DeleteDevicePushTokenRequest, DeleteDevicePushTokenResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        if request.app_id in self.device_push_tokens and request.device_uuid in self.device_push_tokens[request.app_id]:
+            del self.device_push_tokens[request.app_id][request.device_uuid]
+        await stream.send_message(DeleteDevicePushTokenResponse())
+
+    async def GetDevicePushTokens(self, stream: Stream[GetDevicePushTokensRequest, GetDevicePushTokensResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        tokens = list(self.device_push_tokens.get(request.app_id, {}).values())
+        await stream.send_message(GetDevicePushTokensResponse(device_tokens=tokens))
+
+    async def SetFirebaseConfig(self, stream: Stream[SetFirebaseConfigRequest, SetFirebaseConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.firebase_configs[request.org_id] = {"app_id": request.app_id, "config_json": request.config_json}
+        await stream.send_message(SetFirebaseConfigResponse())
+
+    async def GetFirebaseConfig(self, stream: Stream[GetFirebaseConfigRequest, GetFirebaseConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        config = self.firebase_configs.get(request.org_id, {})
+        app_id = config.get("app_id", "")
+        await stream.send_message(GetFirebaseConfigResponse(app_id=app_id))
+
+    async def DeleteFirebaseConfig(self, stream: Stream[DeleteFirebaseConfigRequest, DeleteFirebaseConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        if request.org_id in self.firebase_configs:
+            del self.firebase_configs[request.org_id]
+        await stream.send_message(DeleteFirebaseConfigResponse())
 
 
 class MockGenericService(GenericService):
