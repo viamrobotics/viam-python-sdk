@@ -2377,13 +2377,55 @@ Global___TailRobotPartLogsResponse: _TypeAlias = TailRobotPartLogsResponse
 class GetRobotPartHistoryRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ID_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    PAGE_LIMIT_FIELD_NUMBER: _builtins.int
+    START_FIELD_NUMBER: _builtins.int
+    END_FIELD_NUMBER: _builtins.int
     id: _builtins.str
+    page_token: _builtins.str
+    page_limit: _builtins.int
 
-    def __init__(self, *, id: _builtins.str=...) -> None:
+    @_builtins.property
+    def start(self) -> _timestamp_pb2.Timestamp:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    @_builtins.property
+    def end(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, id: _builtins.str=..., page_token: _builtins.str | None=..., page_limit: _builtins.int | None=..., start: _timestamp_pb2.Timestamp | None=..., end: _timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_end', b'_end', '_page_limit', b'_page_limit', '_page_token', b'_page_token', '_start', b'_start', 'end', b'end', 'page_limit', b'page_limit', 'page_token', b'page_token', 'start', b'start']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_end', b'_end', '_page_limit', b'_page_limit', '_page_token', b'_page_token', '_start', b'_start', 'end', b'end', 'id', b'id', 'page_limit', b'page_limit', 'page_token', b'page_token', 'start', b'start']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__end: _TypeAlias = _typing.Literal['end']
+    _WhichOneofArgType__end: _TypeAlias = _typing.Literal['_end', b'_end']
+    _WhichOneofReturnType__page_limit: _TypeAlias = _typing.Literal['page_limit']
+    _WhichOneofArgType__page_limit: _TypeAlias = _typing.Literal['_page_limit', b'_page_limit']
+    _WhichOneofReturnType__page_token: _TypeAlias = _typing.Literal['page_token']
+    _WhichOneofArgType__page_token: _TypeAlias = _typing.Literal['_page_token', b'_page_token']
+    _WhichOneofReturnType__start: _TypeAlias = _typing.Literal['start']
+    _WhichOneofArgType__start: _TypeAlias = _typing.Literal['_start', b'_start']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__end) -> _WhichOneofReturnType__end | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__page_limit) -> _WhichOneofReturnType__page_limit | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None:
         ...
 Global___GetRobotPartHistoryRequest: _TypeAlias = GetRobotPartHistoryRequest
 
@@ -2391,14 +2433,16 @@ Global___GetRobotPartHistoryRequest: _TypeAlias = GetRobotPartHistoryRequest
 class GetRobotPartHistoryResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     HISTORY_FIELD_NUMBER: _builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
 
     @_builtins.property
     def history(self) -> _containers.RepeatedCompositeFieldContainer[Global___RobotPartHistoryEntry]:
         ...
 
-    def __init__(self, *, history: _abc.Iterable[Global___RobotPartHistoryEntry] | None=...) -> None:
+    def __init__(self, *, history: _abc.Iterable[Global___RobotPartHistoryEntry] | None=..., next_page_token: _builtins.str=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['history', b'history']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['history', b'history', 'next_page_token', b'next_page_token']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -5007,6 +5051,23 @@ class UpdateModuleRequest(_message.Message):
 Global___UpdateModuleRequest: _TypeAlias = UpdateModuleRequest
 
 @_typing.final
+class AllowedOrgIDs(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    IDS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    def __init__(self, *, ids: _abc.Iterable[_builtins.str] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['ids', b'ids']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AllowedOrgIDs: _TypeAlias = AllowedOrgIDs
+
+@_typing.final
 class App(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
@@ -5015,6 +5076,7 @@ class App(_message.Message):
     FRAGMENT_IDS_FIELD_NUMBER: _builtins.int
     LOGO_PATH_FIELD_NUMBER: _builtins.int
     CUSTOMIZATIONS_FIELD_NUMBER: _builtins.int
+    ALLOWED_ORG_IDS_FIELD_NUMBER: _builtins.int
     name: _builtins.str
     'The name of the application'
     type: _builtins.str
@@ -5032,19 +5094,30 @@ class App(_message.Message):
     def customizations(self) -> Global___AppCustomizations:
         """Optional: structured customizations for the app (e.g., machine picker headings)"""
 
-    def __init__(self, *, name: _builtins.str=..., type: _builtins.str=..., entrypoint: _builtins.str=..., fragment_ids: _abc.Iterable[_builtins.str] | None=..., logo_path: _builtins.str | None=..., customizations: Global___AppCustomizations | None=...) -> None:
+    @_builtins.property
+    def allowed_org_ids(self) -> Global___AllowedOrgIDs:
+        """Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed"""
+
+    def __init__(self, *, name: _builtins.str=..., type: _builtins.str=..., entrypoint: _builtins.str=..., fragment_ids: _abc.Iterable[_builtins.str] | None=..., logo_path: _builtins.str | None=..., customizations: Global___AppCustomizations | None=..., allowed_org_ids: Global___AllowedOrgIDs | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_logo_path', b'_logo_path', 'customizations', b'customizations', 'logo_path', b'logo_path']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_allowed_org_ids', b'_allowed_org_ids', '_logo_path', b'_logo_path', 'allowed_org_ids', b'allowed_org_ids', 'customizations', b'customizations', 'logo_path', b'logo_path']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_logo_path', b'_logo_path', 'customizations', b'customizations', 'entrypoint', b'entrypoint', 'fragment_ids', b'fragment_ids', 'logo_path', b'logo_path', 'name', b'name', 'type', b'type']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_allowed_org_ids', b'_allowed_org_ids', '_logo_path', b'_logo_path', 'allowed_org_ids', b'allowed_org_ids', 'customizations', b'customizations', 'entrypoint', b'entrypoint', 'fragment_ids', b'fragment_ids', 'logo_path', b'logo_path', 'name', b'name', 'type', b'type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__allowed_org_ids: _TypeAlias = _typing.Literal['allowed_org_ids']
+    _WhichOneofArgType__allowed_org_ids: _TypeAlias = _typing.Literal['_allowed_org_ids', b'_allowed_org_ids']
     _WhichOneofReturnType__logo_path: _TypeAlias = _typing.Literal['logo_path']
     _WhichOneofArgType__logo_path: _TypeAlias = _typing.Literal['_logo_path', b'_logo_path']
 
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__allowed_org_ids) -> _WhichOneofReturnType__allowed_org_ids | None:
+        ...
+
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__logo_path) -> _WhichOneofReturnType__logo_path | None:
         ...
 Global___App: _TypeAlias = App
@@ -6334,6 +6407,7 @@ class GetAppBrandingResponse(_message.Message):
     LOGO_PATH_FIELD_NUMBER: _builtins.int
     TEXT_CUSTOMIZATIONS_FIELD_NUMBER: _builtins.int
     FRAGMENT_IDS_FIELD_NUMBER: _builtins.int
+    ALLOWED_ORG_IDS_FIELD_NUMBER: _builtins.int
     logo_path: _builtins.str
 
     @_builtins.property
@@ -6344,13 +6418,17 @@ class GetAppBrandingResponse(_message.Message):
     def fragment_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         ...
 
-    def __init__(self, *, logo_path: _builtins.str | None=..., text_customizations: _abc.Mapping[_builtins.str, Global___TextOverrides] | None=..., fragment_ids: _abc.Iterable[_builtins.str] | None=...) -> None:
+    @_builtins.property
+    def allowed_org_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    def __init__(self, *, logo_path: _builtins.str | None=..., text_customizations: _abc.Mapping[_builtins.str, Global___TextOverrides] | None=..., fragment_ids: _abc.Iterable[_builtins.str] | None=..., allowed_org_ids: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_logo_path', b'_logo_path', 'logo_path', b'logo_path']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_logo_path', b'_logo_path', 'fragment_ids', b'fragment_ids', 'logo_path', b'logo_path', 'text_customizations', b'text_customizations']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_logo_path', b'_logo_path', 'allowed_org_ids', b'allowed_org_ids', 'fragment_ids', b'fragment_ids', 'logo_path', b'logo_path', 'text_customizations', b'text_customizations']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -6413,3 +6491,162 @@ class MachinePickerCustomizations(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType__subheading) -> _WhichOneofReturnType__subheading | None:
         ...
 Global___MachinePickerCustomizations: _TypeAlias = MachinePickerCustomizations
+
+@_typing.final
+class UploadDevicePushTokenRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    APP_ID_FIELD_NUMBER: _builtins.int
+    DEVICE_TOKEN_FIELD_NUMBER: _builtins.int
+    DEVICE_UUID_FIELD_NUMBER: _builtins.int
+    app_id: _builtins.str
+    device_token: _builtins.str
+    device_uuid: _builtins.str
+
+    def __init__(self, *, app_id: _builtins.str=..., device_token: _builtins.str=..., device_uuid: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['app_id', b'app_id', 'device_token', b'device_token', 'device_uuid', b'device_uuid']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UploadDevicePushTokenRequest: _TypeAlias = UploadDevicePushTokenRequest
+
+@_typing.final
+class UploadDevicePushTokenResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___UploadDevicePushTokenResponse: _TypeAlias = UploadDevicePushTokenResponse
+
+@_typing.final
+class DeleteDevicePushTokenRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    APP_ID_FIELD_NUMBER: _builtins.int
+    DEVICE_UUID_FIELD_NUMBER: _builtins.int
+    app_id: _builtins.str
+    device_uuid: _builtins.str
+
+    def __init__(self, *, app_id: _builtins.str=..., device_uuid: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['app_id', b'app_id', 'device_uuid', b'device_uuid']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteDevicePushTokenRequest: _TypeAlias = DeleteDevicePushTokenRequest
+
+@_typing.final
+class DeleteDevicePushTokenResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteDevicePushTokenResponse: _TypeAlias = DeleteDevicePushTokenResponse
+
+@_typing.final
+class GetDevicePushTokensRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    APP_ID_FIELD_NUMBER: _builtins.int
+    app_id: _builtins.str
+
+    def __init__(self, *, app_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['app_id', b'app_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetDevicePushTokensRequest: _TypeAlias = GetDevicePushTokensRequest
+
+@_typing.final
+class GetDevicePushTokensResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    DEVICE_TOKENS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def device_tokens(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    def __init__(self, *, device_tokens: _abc.Iterable[_builtins.str] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['device_tokens', b'device_tokens']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetDevicePushTokensResponse: _TypeAlias = GetDevicePushTokensResponse
+
+@_typing.final
+class SetFirebaseConfigRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: _builtins.int
+    APP_ID_FIELD_NUMBER: _builtins.int
+    CONFIG_JSON_FIELD_NUMBER: _builtins.int
+    org_id: _builtins.str
+    app_id: _builtins.str
+    config_json: _builtins.str
+
+    def __init__(self, *, org_id: _builtins.str=..., app_id: _builtins.str=..., config_json: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['app_id', b'app_id', 'config_json', b'config_json', 'org_id', b'org_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SetFirebaseConfigRequest: _TypeAlias = SetFirebaseConfigRequest
+
+@_typing.final
+class SetFirebaseConfigResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___SetFirebaseConfigResponse: _TypeAlias = SetFirebaseConfigResponse
+
+@_typing.final
+class GetFirebaseConfigRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: _builtins.int
+    org_id: _builtins.str
+
+    def __init__(self, *, org_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['org_id', b'org_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetFirebaseConfigRequest: _TypeAlias = GetFirebaseConfigRequest
+
+@_typing.final
+class GetFirebaseConfigResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    APP_ID_FIELD_NUMBER: _builtins.int
+    app_id: _builtins.str
+
+    def __init__(self, *, app_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['app_id', b'app_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetFirebaseConfigResponse: _TypeAlias = GetFirebaseConfigResponse
+
+@_typing.final
+class DeleteFirebaseConfigRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: _builtins.int
+    APP_ID_FIELD_NUMBER: _builtins.int
+    org_id: _builtins.str
+    app_id: _builtins.str
+
+    def __init__(self, *, org_id: _builtins.str=..., app_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['app_id', b'app_id', 'org_id', b'org_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteFirebaseConfigRequest: _TypeAlias = DeleteFirebaseConfigRequest
+
+@_typing.final
+class DeleteFirebaseConfigResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteFirebaseConfigResponse: _TypeAlias = DeleteFirebaseConfigResponse

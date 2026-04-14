@@ -15,6 +15,10 @@ if sys.version_info >= (3, 10):
     from typing import TypeAlias as _TypeAlias
 else:
     from typing_extensions import TypeAlias as _TypeAlias
+if sys.version_info >= (3, 13):
+    from warnings import deprecated as _deprecated
+else:
+    from typing_extensions import deprecated as _deprecated
 DESCRIPTOR: _descriptor.FileDescriptor
 
 @_typing.final
@@ -154,13 +158,24 @@ Global___HandlerMap: _TypeAlias = HandlerMap
 class ReadyRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     PARENT_ADDRESS_FIELD_NUMBER: _builtins.int
+    RAW_PARENT_ADDRESS_FIELD_NUMBER: _builtins.int
     WEBRTC_OFFER_FIELD_NUMBER: _builtins.int
-    parent_address: _builtins.str
+
+    @_builtins.property
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def parent_address(self) -> _builtins.str:
+        ...
+
+    @parent_address.setter
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def parent_address(self, value: _builtins.str) -> None:
+        ...
+    raw_parent_address: _builtins.str
     webrtc_offer: _builtins.str
 
-    def __init__(self, *, parent_address: _builtins.str=..., webrtc_offer: _builtins.str=...) -> None:
+    def __init__(self, *, parent_address: _builtins.str=..., raw_parent_address: _builtins.str=..., webrtc_offer: _builtins.str=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['parent_address', b'parent_address', 'webrtc_offer', b'webrtc_offer']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['parent_address', b'parent_address', 'raw_parent_address', b'raw_parent_address', 'webrtc_offer', b'webrtc_offer']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
