@@ -8,6 +8,7 @@ from grpclib.testing import ChannelFor
 
 from viam.app.app_client import RobotPart
 from viam.app.viam_client import ViamClient
+from viam.proto.app import RobotPart as PBRobotPart
 from viam.rpc.dial import Credentials, DialOptions
 
 
@@ -162,13 +163,13 @@ class TestViamClient:
 
         async def test_gets_main_part_address(self, client: ViamClient):
             with patch("viam.app.app_client.AppClient.get_robot_parts") as get_robot_parts:
-                MAIN_PART = RobotPart()
+                MAIN_PART = RobotPart.from_proto(PBRobotPart())
                 MAIN_PART.fqdn = "main.part.fqdn"
                 MAIN_PART.main_part = True
 
                 ROBOT_PARTS = [MAIN_PART]
                 for _ in range(10):
-                    part = RobotPart()
+                    part = RobotPart.from_proto(PBRobotPart())
                     part.main_part = False
                     ROBOT_PARTS.append(part)
                 random.shuffle(ROBOT_PARTS)
@@ -177,6 +178,6 @@ class TestViamClient:
 
                 with patch("viam.app.viam_client.RobotClient.at_address") as get_robot_client:
                     MACHINE_ID = "MACHINE_ID"
-                    await client.connect_to_machine(id=MACHINE_ID)
+                    _ = await client.connect_to_machine(id=MACHINE_ID)
                     get_robot_parts.assert_called_once_with(MACHINE_ID)
                     assert get_robot_client.call_args.args[0] == MAIN_PART.fqdn
