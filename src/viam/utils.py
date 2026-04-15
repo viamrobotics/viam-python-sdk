@@ -1,9 +1,9 @@
 import asyncio
 import functools
 import threading
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, ParamSpec, SupportsBytes, SupportsFloat, Type, TypeVar, Union
+from typing import Any, Dict, List, Optional, ParamSpec, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
@@ -17,7 +17,7 @@ from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import API, SupportsGetGeometries
 
-ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
+ValueTypes = Union[bool, SupportsBytes, SupportsFloat, list["ValueTypes"], Mapping[str, "ValueTypes"], str, None]
 """Types that can be encoded into a protobuf `Value`"""
 
 SensorReading = Union[ValueTypes, Vector3, GeoPoint, Orientation]

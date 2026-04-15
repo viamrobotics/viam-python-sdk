@@ -1,7 +1,9 @@
 import json
+from collections.abc import AsyncIterator, Mapping
+from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Any, AsyncIterator, List, Literal, Mapping, Optional, Tuple, Union
+from typing import Any, Literal, TypeAlias
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -187,11 +189,15 @@ from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry as LogEntryPB
-from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
+_ROLE_TYPE: TypeAlias = Literal["owner", "operator"]
+_RESOURCE_TYPE_TYPE: TypeAlias = Literal["organization", "location", "robot"]
 
+
+@dataclass
 class RobotPart:
     """A class that mirrors the `RobotPart` proto message.
 
@@ -208,23 +214,24 @@ class RobotPart:
         Returns:
             RobotPart: The `RobotPart`.
         """
-        self = cls()
-        self.id = robot_part.id
-        self.name = robot_part.name
-        self.dns_name = robot_part.dns_name
-        self.secret = robot_part.secret
-        self.robot = robot_part.robot
-        self.location_id = robot_part.location_id
-        self.robot_config = struct_to_dict(robot_part.robot_config) if robot_part.HasField("robot_config") else None
-        self.last_access = robot_part.last_access.ToDatetime() if robot_part.HasField("last_access") else None
-        self.user_supplied_info = struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField("user_supplied_info") else None
-        self.main_part = robot_part.main_part
-        self.fqdn = robot_part.fqdn
-        self.local_fqdn = robot_part.local_fqdn
-        self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
-        self.secrets = list(robot_part.secrets)
-        self.last_updated = robot_part.last_updated.ToDatetime() if robot_part.HasField("last_updated") else None
-        self.robot_config_json = robot_part.robot_config_json if robot_part.HasField("robot_config_json") else None
+        self = cls(
+            id=robot_part.id,
+            name=robot_part.name,
+            dns_name=robot_part.dns_name,
+            secret=robot_part.secret,
+            robot=robot_part.robot,
+            location_id=robot_part.location_id,
+            robot_config=struct_to_dict(robot_part.robot_config) if robot_part.HasField("robot_config") else None,
+            last_access=robot_part.last_access.ToDatetime() if robot_part.HasField("last_access") else None,
+            user_supplied_info=struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField("user_supplied_info") else None,
+            main_part=robot_part.main_part,
+            fqdn=robot_part.fqdn,
+            local_fqdn=robot_part.local_fqdn,
+            created_on=robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None,
+            secrets=list(robot_part.secrets),
+            last_updated=robot_part.last_updated.ToDatetime() if robot_part.HasField("last_updated") else None,
+            robot_config_json=robot_part.robot_config_json if robot_part.HasField("robot_config_json") else None,
+        )
         return self
 
     id: str
@@ -233,16 +240,16 @@ class RobotPart:
     secret: str
     robot: str
     location_id: str
-    robot_config: Optional[Mapping[str, Any]]
-    last_access: Optional[datetime]
-    user_supplied_info: Optional[Mapping[str, Any]]
+    robot_config: Mapping[str, ValueTypes] | None
+    last_access: datetime | None
+    user_supplied_info: Mapping[str, ValueTypes] | None
     main_part: bool
     fqdn: str
     local_fqdn: str
-    created_on: Optional[datetime]
-    secrets: Optional[List[SharedSecret]]
-    last_updated: Optional[datetime]
-    robot_config_json: Optional[str]
+    created_on: datetime | None
+    secrets: list[SharedSecret] | None
+    last_updated: datetime | None
+    robot_config_json: str | None
 
     @property
     def proto(self) -> RobotPartPB:
@@ -266,6 +273,7 @@ class RobotPart:
         )
 
 
+@dataclass
 class LogEntry:
     """A class that mirrors the `LogEntry` proto message.
 
@@ -282,25 +290,25 @@ class LogEntry:
         Returns:
             LogEntry: The `LogEntry`.
         """
-        self = cls()
-        self.host = log_entry.host
-        self.level = log_entry.level
-        self.time = log_entry.time.ToDatetime() if log_entry.HasField("time") else None
-        self.logger_name = log_entry.logger_name
-        self.message = log_entry.message
-        self.caller = struct_to_dict(log_entry.caller) if log_entry.HasField("caller") else None
-        self.stack = log_entry.stack
-        self.fields = [struct_to_dict(field) for field in log_entry.fields]
-        return self
+        return cls(
+            host=log_entry.host,
+            level=log_entry.level,
+            time=log_entry.time.ToDatetime() if log_entry.HasField("time") else None,
+            logger_name=log_entry.logger_name,
+            message=log_entry.message,
+            caller=struct_to_dict(log_entry.caller) if log_entry.HasField("caller") else None,
+            stack=log_entry.stack,
+            fields=[struct_to_dict(field) for field in log_entry.fields],
+        )
 
     host: str
     level: str
-    time: Optional[datetime]
+    time: datetime | None
     logger_name: str
     message: str
-    caller: Optional[Mapping[str, Any]]
+    caller: Mapping[str, ValueTypes] | None
     stack: str
-    fields: Optional[List[Mapping[str, Any]]]
+    fields: list[Mapping[str, ValueTypes]] | None
 
     @property
     def proto(self) -> LogEntryPB:
@@ -316,6 +324,7 @@ class LogEntry:
         )
 
 
+@dataclass
 class Fragment:
     """A class that mirrors the `Fragment` proto message.
 
@@ -376,33 +385,33 @@ class Fragment:
         Returns:
             Fragment: The `Fragment`.
         """
-        self = cls()
-        self.id = fragment.id
-        self.name = fragment.name
-        self.fragment = struct_to_dict(fragment.fragment) if fragment.HasField("fragment") else None
-        self.organization_owner = fragment.organization_owner
-        self.public = fragment.public
-        self.created_on = fragment.created_on.ToDatetime() if fragment.HasField("created_on") else None
-        self.organization_name = fragment.organization_name
-        self.robot_part_count = fragment.robot_part_count
-        self.organization_count = fragment.organization_count
-        self.only_used_by_owner = fragment.only_used_by_owner
-        self.visibility = Fragment.Visibility.from_proto(fragment.visibility)
-        self.last_updated = fragment.last_updated.ToDatetime() if fragment.HasField("last_updated") else None
-        return self
+        return cls(
+            id=fragment.id,
+            name=fragment.name,
+            fragment=struct_to_dict(fragment.fragment) if fragment.HasField("fragment") else None,
+            organization_owner=fragment.organization_owner,
+            public=fragment.public,
+            created_on=fragment.created_on.ToDatetime() if fragment.HasField("created_on") else None,
+            organization_name=fragment.organization_name,
+            robot_part_count=fragment.robot_part_count,
+            organization_count=fragment.organization_count,
+            only_used_by_owner=fragment.only_used_by_owner,
+            visibility=Fragment.Visibility.from_proto(fragment.visibility),
+            last_updated=fragment.last_updated.ToDatetime() if fragment.HasField("last_updated") else None,
+        )
 
     id: str
     name: str
-    fragment: Optional[Mapping[str, Any]]
+    fragment: Mapping[str, ValueTypes] | None
     organization_owner: str
     public: bool
-    created_on: Optional[datetime]
+    created_on: datetime | None
     organization_name: str
     robot_part_count: int
     organization_count: int
     only_used_by_owner: bool
     visibility: "Fragment.Visibility"
-    last_updated: Optional[datetime]
+    last_updated: datetime | None
 
     @property
     def proto(self) -> FragmentPB:
@@ -422,6 +431,7 @@ class Fragment:
         )
 
 
+@dataclass
 class FragmentHistoryEntry:
     """A class that mirrors the `FragmentHistoryEntry` proto message.
 
@@ -438,12 +448,12 @@ class FragmentHistoryEntry:
         Returns:
             FragmentHistoryEntry: The `FragmentHistoryEntry`.
         """
-        self = cls()
-        self.fragment = fragment_history_entry.fragment
-        self.edited_on = fragment_history_entry.edited_on.ToDatetime()
-        self.old = Fragment.from_proto(fragment_history_entry.old)
-        self.edited_by = fragment_history_entry.edited_by
-        return self
+        return cls(
+            fragment=fragment_history_entry.fragment,
+            edited_on=fragment_history_entry.edited_on.ToDatetime(),
+            old=Fragment.from_proto(fragment_history_entry.old),
+            edited_by=fragment_history_entry.edited_by,
+        )
 
     fragment: str
     edited_on: datetime
@@ -460,6 +470,7 @@ class FragmentHistoryEntry:
         )
 
 
+@dataclass
 class RobotPartHistoryEntry:
     """A class that mirrors the `RobotPartHistoryEntry` proto message.
 
@@ -476,17 +487,17 @@ class RobotPartHistoryEntry:
         Returns:
             RobotPartHistoryEntry: The `RobotPartHistoryEntry`.
         """
-        self = cls()
-        self.part = robot_part_history_entry.part
-        self.robot = robot_part_history_entry.robot
-        self.when = robot_part_history_entry.when.ToDatetime() if robot_part_history_entry.HasField("when") else None
-        self.old = RobotPart.from_proto(robot_part_history_entry.old) if robot_part_history_entry.HasField("old") else None
-        return self
+        return cls(
+            part=robot_part_history_entry.part,
+            robot=robot_part_history_entry.robot,
+            when=robot_part_history_entry.when.ToDatetime() if robot_part_history_entry.HasField("when") else None,
+            old=RobotPart.from_proto(robot_part_history_entry.old) if robot_part_history_entry.HasField("old") else None,
+        )
 
     part: str
     robot: str
-    when: Optional[datetime]
-    old: Optional[RobotPart]
+    when: datetime | None
+    old: RobotPart | None
 
     @property
     def proto(self) -> RobotPartHistoryEntryPB:
@@ -506,12 +517,12 @@ class APIKeyAuthorization:
 
     def __init__(
         self,
-        role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        role: _ROLE_TYPE,
+        resource_type: _RESOURCE_TYPE_TYPE,
         resource_id: str,
     ):
-        """role (Union[Literal["owner"], Literal["operator"]]): The role to add.
-        resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+        """role (_ROLE_TYPE): The role to add.
+        resource_type (_RESOURCE_TYPE_TYPE): Type of the resource to add role to.
             Must match `resource_id`.
         resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
         """
@@ -519,9 +530,21 @@ class APIKeyAuthorization:
         self._resource_type = resource_type
         self._resource_id = resource_id
 
-    _role: str
-    _resource_type: str
+    _role: _ROLE_TYPE
+    _resource_type: _RESOURCE_TYPE_TYPE
     _resource_id: str
+
+    @property
+    def role(self) -> _ROLE_TYPE:
+        return self._role
+
+    @property
+    def resource_type(self) -> _RESOURCE_TYPE_TYPE:
+        return self._resource_type
+
+    @property
+    def resource_id(self) -> str:
+        return self._resource_id
 
 
 class AppClient:
@@ -571,15 +594,15 @@ class AppClient:
     _app_client: AppServiceStub
     _metadata: Mapping[str, str]
     _channel: Channel
-    _organization_id: Optional[str] = None
+    _organization_id: str | None = None
 
     async def _create_authorization(
         self,
         organization_id: str,
         identity_id: str,
         identity_type: str,
-        role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        role: _ROLE_TYPE,
+        resource_type: _RESOURCE_TYPE_TYPE,
         resource_id: str,
     ) -> Authorization:
         return Authorization(
@@ -598,9 +621,9 @@ class AppClient:
             organization_id=org_id,
             identity_id="",  # setting `identity_id` when creating an API key results in an error
             identity_type="api-key",
-            role=auth._role,  # type: ignore -- Ignoring because this is technically a `string`
-            resource_type=auth._resource_type,  # type: ignore -- Ignoring because this is technically a `string`
-            resource_id=auth._resource_id,
+            role=auth.role,
+            resource_type=auth.resource_type,
+            resource_id=auth.resource_id,
         )
 
     async def get_user_id_by_email(self, email: str) -> str:
@@ -641,7 +664,7 @@ class AppClient:
         response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    async def list_organizations(self) -> List[Organization]:
+    async def list_organizations(self) -> list[Organization]:
         """List the organization(s) the user is an authorized owner of.
 
         ::
@@ -649,7 +672,7 @@ class AppClient:
             org_list = await cloud.list_organizations()
 
         Returns:
-            List[viam.proto.app.Organization]: The list of organizations.
+            list[viam.proto.app.Organization]: The list of organizations.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizations>`_.
         """
@@ -657,7 +680,7 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    async def get_organizations_with_access_to_location(self, location_id: str) -> List[OrganizationIdentity]:
+    async def get_organizations_with_access_to_location(self, location_id: str) -> list[OrganizationIdentity]:
         """Get all organizations that have access to a location.
 
         ::
@@ -668,7 +691,7 @@ class AppClient:
             location_id (str): The ID of the location.
 
         Returns:
-            List[viam.proto.app.OrganizationIdentity]: The list of organizations.
+            list[viam.proto.app.OrganizationIdentity]: The list of organizations.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getorganizationswithaccesstolocation>`_.
         """
@@ -678,7 +701,7 @@ class AppClient:
         )
         return list(response.organization_identities)
 
-    async def list_organizations_by_user(self, user_id: str) -> List[OrgDetails]:
+    async def list_organizations_by_user(self, user_id: str) -> list[OrgDetails]:
         """List the organizations a user belongs to.
 
         ::
@@ -689,7 +712,7 @@ class AppClient:
             user_id (str): The ID of the user. You can retrieve this with the get_user_id_by_email() method.
 
         Returns:
-            List[OrgDetails]: The list of organizations.
+            list[OrgDetails]: The list of organizations.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizationsbyuser>`_.
         """
@@ -749,11 +772,11 @@ class AppClient:
     async def update_organization(
         self,
         org_id: str,
-        name: Optional[str] = None,
-        public_namespace: Optional[str] = None,
-        region: Optional[str] = None,
-        cid: Optional[str] = None,
-        default_fragments: Optional[List[FragmentImport]] = None,
+        name: str | None = None,
+        public_namespace: str | None = None,
+        region: str | None = None,
+        cid: str | None = None,
+        default_fragments: list[FragmentImport] | None = None,
     ) -> Organization:
         """Updates organization details.
 
@@ -767,10 +790,10 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to update.
-            name (Optional[str]): If provided, updates the org's name.
-            public_namespace (Optional[str]): If provided, sets the org's namespace if it hasn't already been set.
-            region (Optional[str]): If provided, updates the org's region.
-            cid (Optional[str]): If provided, update's the org's CRM ID.
+            name (str | None): If provided, updates the org's name.
+            public_namespace (str | None): If provided, sets the org's namespace if it hasn't already been set.
+            region (str | None): If provided, updates the org's region.
+            cid (str | None): If provided, update's the org's CRM ID.
 
         Raises:
             GRPCError: If the org's namespace has already been set, or if the provided namespace is already taken.
@@ -807,7 +830,7 @@ class AppClient:
         request = DeleteOrganizationRequest(organization_id=org_id)
         await self._app_client.DeleteOrganization(request, metadata=self._metadata)
 
-    async def list_organization_members(self, org_id: str) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
+    async def list_organization_members(self, org_id: str) -> tuple[list[OrganizationMember], list[OrganizationInvite]]:
         """List the members and invites of the currently authed-to organization.
 
         ::
@@ -819,7 +842,7 @@ class AppClient:
                 You can obtain your organization ID from the organization settings page.
 
         Returns:
-            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
+            tuple[list[viam.proto.app.OrganizationMember], list[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
             [0] of organization members, and the second [1] of organization invites.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizationmembers>`_.
@@ -832,7 +855,7 @@ class AppClient:
         self,
         org_id: str,
         email: str,
-        authorizations: Optional[List[Authorization]] = None,
+        authorizations: list[Authorization] | None = None,
         send_email_invite: bool = True,
     ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
@@ -845,10 +868,10 @@ class AppClient:
             org_id (str): The ID of the organization to create an invite for.
                 You can obtain your organization ID from the organization settings page.
             email (str): The email address to send the invite to.
-            authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the
+            authorizations (list[viam.proto.app.Authorization] | None): Specifications of the
                 authorizations to include in the invite. If not provided, full owner permissions will
                 be granted.
-            send_email_invite (Optional[bool]): Whether or not an email should be sent to the recipient of an invite.
+            send_email_invite (bool | None): Whether or not an email should be sent to the recipient of an invite.
                 The user must accept the email to be added to the associated authorizations.
                 When set to false, the user automatically receives the associated authorization
                 on the next login of the user with the associated email address.
@@ -871,8 +894,8 @@ class AppClient:
         self,
         org_id: str,
         email: str,
-        add_authorizations: Optional[List[Authorization]] = None,
-        remove_authorizations: Optional[List[Authorization]] = None,
+        add_authorizations: list[Authorization] | None = None,
+        remove_authorizations: list[Authorization] | None = None,
     ) -> OrganizationInvite:
         """Update the authorizations attached to an organization invite that has already been created.
 
@@ -903,8 +926,8 @@ class AppClient:
             org_id (str): The ID of the organization that the invite is for.
                 You can obtain your organization ID from the organization settings page.
             email (str): Email of the user the invite was sent to.
-            add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
-            remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
+            add_authorizations (list[viam.proto.app.Authorization] | None): Optional list of authorizations to add to the invite.
+            remove_authorizations (list[viam.proto.app.Authorization] | None): Optional list of authorizations to remove from the invite.
 
         Raises:
             GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an
@@ -987,7 +1010,7 @@ class AppClient:
         response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
-    async def create_location(self, org_id: str, name: str, parent_location_id: Optional[str] = None) -> Location:
+    async def create_location(self, org_id: str, name: str, parent_location_id: str | None = None) -> Location:
         """Create and name a location under the currently authed-to organization and the specified parent location.
 
         ::
@@ -998,7 +1021,7 @@ class AppClient:
             org_id (str): The ID of the organization to create the location under.
                 You can obtain your organization ID from the organization settings page.
             name (str): Name of the location.
-            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no
+            parent_location_id (str | None): Optional parent location to put the location under. Defaults to a root-level location if no
                 location ID is provided.
 
         Raises:
@@ -1013,7 +1036,7 @@ class AppClient:
         response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
         return response.location
 
-    async def get_location(self, location_id: Optional[str] = None) -> Location:
+    async def get_location(self, location_id: str | None = None) -> Location:
         """Get a location.
 
         ::
@@ -1021,7 +1044,7 @@ class AppClient:
             location = await cloud.get_location(location_id="123ab12345")
 
         Args:
-            location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
+            location_id (str | None): ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
 
         Raises:
             GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
@@ -1036,7 +1059,7 @@ class AppClient:
         response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
         return response.location
 
-    async def update_location(self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> Location:
+    async def update_location(self, location_id: str, name: str | None = None, parent_location_id: str | None = None) -> Location:
         """Change the name of a location and/or assign it a new parent location.
 
         ::
@@ -1064,9 +1087,9 @@ class AppClient:
 
         Args:
             location_id (str): ID of the location to update. Must be specified.
-            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name
+            name (str | None): Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name
                 doesn't change).
-            parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string
+            parent_location_id(str | None): Optional ID of new parent location to move the location under. Defaults to the empty string
                 "" (that is, no new parent location is assigned).
 
         Raises:
@@ -1099,7 +1122,7 @@ class AppClient:
         request = DeleteLocationRequest(location_id=location_id)
         await self._app_client.DeleteLocation(request, metadata=self._metadata)
 
-    async def list_locations(self, org_id: str) -> List[Location]:
+    async def list_locations(self, org_id: str) -> list[Location]:
         """Get a list of all locations under the currently authed-to organization.
 
         ::
@@ -1111,7 +1134,7 @@ class AppClient:
                 You can obtain your organization ID from the organization settings page.
 
         Returns:
-            List[viam.proto.app.Location]: The list of locations.
+            list[viam.proto.app.Location]: The list of locations.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listlocations>`_.
         """
@@ -1151,7 +1174,7 @@ class AppClient:
         request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
         await self._app_client.UnshareLocation(request, metadata=self._metadata)
 
-    async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
+    async def location_auth(self, location_id: str | None = None) -> LocationAuth:
         """Get a location's `LocationAuth` (location secret(s)).
 
         ::
@@ -1175,7 +1198,7 @@ class AppClient:
         response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
         return response.auth
 
-    async def create_location_secret(self, location_id: Optional[str] = None) -> LocationAuth:
+    async def create_location_secret(self, location_id: str | None = None) -> LocationAuth:
         """Create a new location secret.
 
         ::
@@ -1183,7 +1206,7 @@ class AppClient:
             new_loc_auth = await cloud.create_location_secret(location_id="123xy12345")
 
         Args:
-            location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at
+            location_id (str | None): ID of the location to generate a new secret for. Defaults to the location ID provided at
                 `AppClient` instantiation.
 
         Raises:
@@ -1199,7 +1222,7 @@ class AppClient:
         response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
         return response.auth
 
-    async def delete_location_secret(self, secret_id: str, location_id: Optional[str] = None) -> None:
+    async def delete_location_secret(self, secret_id: str, location_id: str | None = None) -> None:
         """Delete a location secret.
 
         ::
@@ -1244,7 +1267,7 @@ class AppClient:
         response: GetRobotResponse = await self._app_client.GetRobot(request, metadata=self._metadata)
         return response.robot
 
-    async def get_rover_rental_robots(self, org_id: str) -> List[RoverRentalRobot]:
+    async def get_rover_rental_robots(self, org_id: str) -> list[RoverRentalRobot]:
         """Returns a list of rover rental robots within an org.
 
         ::
@@ -1256,7 +1279,7 @@ class AppClient:
                 You can obtain your organization ID from the organization settings page.
 
         Returns:
-            List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.
+            list[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/>`_.
         """
@@ -1264,7 +1287,7 @@ class AppClient:
         response: GetRoverRentalRobotsResponse = await self._app_client.GetRoverRentalRobots(request, metadata=self._metadata)
         return list(response.robots)
 
-    async def get_robot_parts(self, robot_id: str) -> List[RobotPart]:
+    async def get_robot_parts(self, robot_id: str) -> list[RobotPart]:
         """Get a list of all the parts under a specific machine.
 
         ::
@@ -1280,7 +1303,7 @@ class AppClient:
             GRPCError: If an invalid machine ID is passed.
 
         Returns:
-            List[viam.app.app_client.RobotPart]: The list of machine parts.
+            list[viam.app.app_client.RobotPart]: The list of machine parts.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotparts>`_.
         """
@@ -1288,7 +1311,7 @@ class AppClient:
         response: GetRobotPartsResponse = await self._app_client.GetRobotParts(request, metadata=self._metadata)
         return [RobotPart.from_proto(robot_part=part) for part in response.parts]
 
-    async def get_robot_part(self, robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart:
+    async def get_robot_part(self, robot_part_id: str, dest: str | None = None, indent: int = 4) -> RobotPart:
         """Get a machine part including its part config, part address, and other information.
 
         ::
@@ -1307,7 +1330,7 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the machine part to get. You can retrieve this value by navigating to the machine's page,
                 clicking on the part status dropdown, and clicking the copy icon next to Part ID.
-            dest (Optional[str]): Optional filepath to write the machine part's config file in JSON format to.
+            dest (str | None): Optional filepath to write the machine part's config file in JSON format to.
             indent (int): Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
 
         Raises:
@@ -1334,13 +1357,13 @@ class AppClient:
     async def get_robot_part_logs(
         self,
         robot_part_id: str,
-        filter: Optional[str] = None,
-        dest: Optional[str] = None,
-        log_levels: List[str] = [],
+        filter: str | None = None,
+        dest: str | None = None,
+        log_levels: list[str] = [],
         num_log_entries: int = 100,
-        start: Optional[datetime] = None,
-        end: Optional[datetime] = None,
-    ) -> List[LogEntry]:
+        start: datetime | None = None,
+        end: datetime | None = None,
+    ) -> list[LogEntry]:
         """Get the logs associated with a robot part.
 
         ::
@@ -1352,20 +1375,20 @@ class AppClient:
 
         Args:
             robot_part_id (str): ID of the machine part to get logs from.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+            filter (str | None): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                 no filter).
-            dest (Optional[str]): Optional filepath to write the log entries to.
-            log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
+            dest (str | None): Optional filepath to write the log entries to.
+            log_levels (list[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
             num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                 `num_log_entries` logs will be returned, whichever comes first.
-            start (Optional[datetime]): Optional start time for log retrieval. Only logs created after this time will be returned.
-            end (Optional[datetime]): Optional end time for log retrieval. Only logs created before this time will be returned.
+            start (datetime | None): Optional start time for log retrieval. Only logs created after this time will be returned.
+            end (datetime | None): Optional end time for log retrieval. Only logs created before this time will be returned.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
 
         Returns:
-            List[viam.app.app_client.LogEntry]: The list of log entries.
+            list[viam.app.app_client.LogEntry]: The list of log entries.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotpartlogs>`_.
         """
@@ -1414,10 +1437,10 @@ class AppClient:
         robot_part_id: str,
         filter: str,
         page_token: str,
-        log_levels: List[str],
-        start: Optional[datetime] = None,
-        end: Optional[datetime] = None,
-    ) -> Tuple[List[LogEntry], str]:
+        log_levels: list[str],
+        start: datetime | None = None,
+        end: datetime | None = None,
+    ) -> tuple[list[LogEntry], str]:
         request = GetRobotPartLogsRequest(
             id=robot_part_id,
             filter=filter,
@@ -1430,8 +1453,8 @@ class AppClient:
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
     async def tail_robot_part_logs(
-        self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
-    ) -> _LogsStream[List[LogEntry]]:
+        self, robot_part_id: str, errors_only: bool = True, filter: str | None = None
+    ) -> _LogsStream[list[LogEntry]]:
         """Get an asynchronous iterator that receives live machine part logs.
 
         ::
@@ -1443,21 +1466,21 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the machine part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+            filter (str | None): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                 no filter).
 
         Returns:
-            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live machine part logs.
+            _LogsStream[list[LogEntry]]: The asynchronous iterator receiving live machine part logs.
         """
 
-        async def read() -> AsyncIterator[List[LogEntry]]:
+        async def read() -> AsyncIterator[list[LogEntry]]:
             async with self._app_client.TailRobotPartLogs.open(metadata=self._metadata) as stream:
                 await stream.send_message(
                     TailRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter if filter else "")
                 )
 
                 while True:
-                    response: Optional[TailRobotPartLogsResponse] = await stream.recv_message()
+                    response: TailRobotPartLogsResponse | None = await stream.recv_message()
                     if response is None or len(response.logs) == 0:
                         break
                     logs = [LogEntry.from_proto(log) for log in response.logs]
@@ -1465,7 +1488,7 @@ class AppClient:
 
         return _LogsStreamWithIterator(read())
 
-    async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
+    async def get_robot_part_history(self, robot_part_id: str) -> list[RobotPartHistoryEntry]:
         """Get a list containing the history of a machine part.
 
         ::
@@ -1481,7 +1504,7 @@ class AppClient:
             GRPCError: If an invalid machine part ID is provided.
 
         Returns:
-            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the machine part's history.
+            list[viam.app.app_client.RobotPartHistoryEntry]: The list of the machine part's history.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
         """
@@ -1493,9 +1516,9 @@ class AppClient:
         self,
         robot_part_id: str,
         name: str,
-        robot_config: Optional[Mapping[str, Any]] = None,
-        last_known_update: Optional[datetime] = None,
-        robot_config_json: Optional[str] = None,
+        robot_config: Mapping[str, ValueTypes] | None = None,
+        last_known_update: datetime | None = None,
+        robot_config_json: str | None = None,
     ) -> RobotPart:
         """Change the name and assign an optional new configuration to a machine part.
 
@@ -1508,7 +1531,7 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the robot part to update.
             name (str): New name to be updated on the robot part.
-            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the machine part. The machine
+            robot_config (Mapping[str, ValueTypes]): Optional new config represented as a dictionary to be updated on the machine part. The machine
                 part's config will remain as is (no change) if one isn't passed.
             last_known_update (datetime): Optional time of the last known update to this part's config. If provided, this will result in a
                 GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this
@@ -1578,7 +1601,7 @@ class AppClient:
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
-    async def get_robot_api_keys(self, robot_id: str) -> List[APIKeyWithAuthorizations]:
+    async def get_robot_api_keys(self, robot_id: str) -> list[APIKeyWithAuthorizations]:
         """Gets the API Keys for the machine.
 
         ::
@@ -1589,7 +1612,7 @@ class AppClient:
             robot_id (str): The ID of the machine.
 
         Returns:
-            List[APIKeyWithAuthorizations]: The list of API keys.
+            list[APIKeyWithAuthorizations]: The list of API keys.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
         """
@@ -1679,7 +1702,7 @@ class AppClient:
         request = DeleteRobotPartSecretRequest(part_id=robot_part_id, secret_id=secret_id)
         await self._app_client.DeleteRobotPartSecret(request, metadata=self._metadata)
 
-    async def list_robots(self, location_id: Optional[str] = None) -> List[Robot]:
+    async def list_robots(self, location_id: str | None = None) -> list[Robot]:
         """Get a list of all machines under the specified location.
 
         ::
@@ -1687,7 +1710,7 @@ class AppClient:
             list_of_machines = await cloud.list_robots(location_id="123ab12345")
 
         Args:
-            location_id (Optional[str]): ID of the location to retrieve the machines from. Defaults to the location ID provided at
+            location_id (str | None): ID of the location to retrieve the machines from. Defaults to the location ID provided at
                 `AppClient` instantiation.
 
         Raises:
@@ -1695,7 +1718,7 @@ class AppClient:
                 instantiation.
 
         Returns:
-            List[viam.proto.app.Robot]: The list of robots.
+            list[viam.proto.app.Robot]: The list of robots.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listrobots>`_.
         """
@@ -1703,7 +1726,7 @@ class AppClient:
         response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
         return list(response.robots)
 
-    async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
+    async def new_robot(self, name: str, location_id: str | None = None) -> str:
         """Create a new machine.
 
         ::
@@ -1712,7 +1735,7 @@ class AppClient:
 
         Args:
             name (str): Name of the new machine.
-            location_id (Optional[str]): ID of the location under which to create the machine. Defaults to the current authorized location.
+            location_id (str | None): ID of the location under which to create the machine. Defaults to the current authorized location.
 
         Raises:
             GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
@@ -1727,7 +1750,7 @@ class AppClient:
         response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
         return response.id
 
-    async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
+    async def update_robot(self, robot_id: str, name: str, location_id: str | None = None) -> Robot:
         """Change the name of an existing machine.
 
         ::
@@ -1741,7 +1764,7 @@ class AppClient:
         Args:
             robot_id (str): ID of the machine to update.
             name (str): New name to be updated on the machine.
-            location_id (Optional[str]): ID of the location under which the machine exists. Defaults to the location ID provided at
+            location_id (str | None): ID of the location under which the machine exists. Defaults to the location ID provided at
                 `AppClient` instantiation
 
         Raises:
@@ -1776,8 +1799,8 @@ class AppClient:
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
     async def list_fragments(
-        self, org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment.Visibility]] = None
-    ) -> List[Fragment]:
+        self, org_id: str, show_public: bool = True, visibilities: list[Fragment.Visibility] | None = None
+    ) -> list[Fragment]:
         """Get a list of fragments under the currently authed-to organization.
 
         ::
@@ -1792,11 +1815,11 @@ class AppClient:
 
                 .. deprecated:: 0.25.0
                     Use ``visibilities`` instead.
-            visibilities (Optional[List[Fragment.Visibility]]): List of FragmentVisibilities specifying which types of fragments to include
+            visibilities (list[Fragment.Visibility] | None): List of FragmentVisibilities specifying which types of fragments to include
                 in the results. If empty, by default only public fragments will be returned.
 
         Returns:
-            List[viam.app.app_client.Fragment]: The list of fragments.
+            list[viam.app.app_client.Fragment]: The list of fragments.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listfragments>`_.
         """
@@ -1808,7 +1831,7 @@ class AppClient:
         response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
         return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
 
-    async def get_fragment(self, fragment_id: str, version: Optional[str] = None) -> Fragment:
+    async def get_fragment(self, fragment_id: str, version: str | None = None) -> Fragment:
         """Get a fragment.
 
         ::
@@ -1834,7 +1857,7 @@ class AppClient:
         response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
         return Fragment.from_proto(fragment=response.fragment)
 
-    async def create_fragment(self, org_id: str, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
+    async def create_fragment(self, org_id: str, name: str, config: Mapping[str, ValueTypes] | None = None) -> Fragment:
         """Create a new private fragment.
 
         ::
@@ -1845,7 +1868,7 @@ class AppClient:
             org_id (str): The ID of the organization to create the fragment within.
                 You can obtain your organization ID from the organization settings page.
             name (str): Name of the fragment.
-            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be
+            config (Mapping[str, ValueTypes] | None): Optional Dictionary representation of new config to assign to specified fragment. Can be
                 assigned by updating the fragment.
 
         Raises:
@@ -1864,10 +1887,10 @@ class AppClient:
         self,
         fragment_id: str,
         name: str,
-        config: Optional[Mapping[str, Any]] = None,
-        public: Optional[bool] = None,
-        visibility: Optional[Fragment.Visibility] = None,
-        last_known_update: Optional[datetime] = None,
+        config: Mapping[str, ValueTypes] | None = None,
+        public: bool | None = None,
+        visibility: Fragment.Visibility | None = None,
+        last_known_update: datetime | None = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1880,14 +1903,14 @@ class AppClient:
         Args:
             fragment_id (str): ID of the fragment to update.
             name (str): New name to associate with the fragment.
-            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not
+            config (Mapping[str, ValueTypes] | None): Optional Dictionary representation of new config to assign to specified fragment. Not
                 passing this parameter will leave the fragment's config unchanged.
             public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment's
                 visibility unchanged. A fragment is private by default when created.
 
                 .. deprecated:: 0.25.0
                     Use ``visibility`` instead.
-            visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
+            visibility (Fragment.Visibility | None): Optional FragmentVisibility list specifying who should be allowed
                 to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
                 A fragment is private by default when created.
             last_known_update (datetime): Optional time of the last known update to this fragment's config. If provided, this will result in
@@ -1931,9 +1954,7 @@ class AppClient:
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
-    async def get_fragment_history(
-        self, id: str, page_token: Optional[str] = "", page_limit: Optional[int] = 10
-    ) -> List[FragmentHistoryEntry]:
+    async def get_fragment_history(self, id: str, page_token: str | None = "", page_limit: int | None = 10) -> list[FragmentHistoryEntry]:
         """Get fragment history.
 
         ::
@@ -1946,8 +1967,8 @@ class AppClient:
 
         Args:
             id (str): ID of the fragment to fetch history for.
-            page_token (Optional[str]): the page token for the fragment history collection
-            page_limit (Optional[int]): the number of fragment history documents to return in the result.
+            page_token (str | None): the page token for the fragment history collection
+            page_limit (int | None): the number of fragment history documents to return in the result.
                 The default page limit is 10.
 
         Raises:
@@ -1967,8 +1988,8 @@ class AppClient:
         self,
         org_id: str,
         identity_id: str,
-        role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        role: _ROLE_TYPE,
+        resource_type: _RESOURCE_TYPE_TYPE,
         resource_id: str,
     ) -> None:
         """Add a role under the currently authed-to organization.
@@ -1987,8 +2008,8 @@ class AppClient:
             org_id (str): The ID of the organization to create the role in.
                 You can obtain your organization ID from the organization settings page.
             identity_id (str): ID of the entity the role belongs to (for example, a user ID).
-            role (Union[Literal["owner"], Literal["operator"]]): The role to add.
-            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+            role (_ROLE_TYPE): The role to add.
+            resource_type (_RESOURCE_TYPE_TYPE): Type of the resource to add role to.
                 Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
@@ -2012,8 +2033,8 @@ class AppClient:
         self,
         org_id: str,
         identity_id: str,
-        role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        role: _ROLE_TYPE,
+        resource_type: _RESOURCE_TYPE_TYPE,
         resource_id: str,
     ) -> None:
         """Remove a role under the currently authed-to organization.
@@ -2032,8 +2053,8 @@ class AppClient:
             org_id (str): The ID of the organization the role exists in.
                 You can obtain your organization ID from the organization settings page.
             identity_id (str): ID of the entity the role belongs to (for example, a user ID).
-            role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
-            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
+            role (_ROLE_TYPE): The role to remove.
+            resource_type (_RESOURCE_TYPE_TYPE): Type of the resource the role is being
                 removed from. Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
@@ -2057,12 +2078,12 @@ class AppClient:
         self,
         organization_id: str,
         old_identity_id: str,
-        old_role: Union[Literal["owner"], Literal["operator"]],
-        old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        old_role: _ROLE_TYPE,
+        old_resource_type: _RESOURCE_TYPE_TYPE,
         old_resource_id: str,
         new_identity_id: str,
-        new_role: Union[Literal["owner"], Literal["operator"]],
-        new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        new_role: _ROLE_TYPE,
+        new_resource_type: _RESOURCE_TYPE_TYPE,
         new_resource_id: str,
     ) -> None:
         """Changes a role to a new role.
@@ -2084,14 +2105,14 @@ class AppClient:
         Args:
             organization_id (str): ID of the organization
             old_identity_id (str): ID of the entity the role belongs to (for example, a user ID).
-            old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
-            old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
+            old_role (_ROLE_TYPE): The role to be changed.
+            old_resource_type (_RESOURCE_TYPE_TYPE): Type of the resource the role is
                 added to. Must match `old_resource_id`.
             old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
             new_identity_id (str): New ID of the entity the role belongs to (for example, a user ID).
-            new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
-            new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+            new_role (_ROLE_TYPE): The new role.
+            new_resource_type (_RESOURCE_TYPE_TYPE): Type of the resource to add role to.
                 Must match `new_resource_id`.
             new_resource_id (str): New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
@@ -2116,7 +2137,7 @@ class AppClient:
         request = ChangeRoleRequest(old_authorization=old_authorization, new_authorization=new_authorization)
         await self._app_client.ChangeRole(request, metadata=self._metadata)
 
-    async def list_authorizations(self, org_id: str, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
+    async def list_authorizations(self, org_id: str, resource_ids: list[str] | None = None) -> list[Authorization]:
         """List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
         are provided, all resource authorizations within the organizations are returned.
 
@@ -2128,14 +2149,14 @@ class AppClient:
 
         Args:
             org_id: The ID of the organization to list authorizations for.
-            resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from.
+            resource_ids (list[str] | None): IDs of the resources to retrieve authorizations from.
                 If None, defaults to all resources.
 
         Raises:
             GRPCError: If an invalid resource ID is passed.
 
         Returns:
-            List[viam.proto.app.Authorization]: The list of authorizations.
+            list[viam.proto.app.Authorization]: The list of authorizations.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listauthorizations>`_.
         """
@@ -2143,7 +2164,7 @@ class AppClient:
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
 
-    async def check_permissions(self, permissions: List[AuthorizedPermissions]) -> List[AuthorizedPermissions]:
+    async def check_permissions(self, permissions: list[AuthorizedPermissions]) -> list[AuthorizedPermissions]:
         """Checks validity of a list of permissions.
 
         ::
@@ -2160,14 +2181,14 @@ class AppClient:
             filtered_permissions = await cloud.check_permissions(permissions)
 
         Args:
-            permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate
+            permissions (list[viam.proto.app.AuthorizedPermissions]): the permissions to validate
                 (for example, "read_organization", "control_robot")
 
         Raises:
             GRPCError: If the list of permissions to validate is empty.
 
         Returns:
-            List[viam.proto.app.AuthorizedPermissions]: The permissions argument, with invalid permissions filtered out.
+            list[viam.proto.app.AuthorizedPermissions]: The permissions argument, with invalid permissions filtered out.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#checkpermissions>`_.
         """
@@ -2249,13 +2270,13 @@ class AppClient:
     async def list_registry_items(
         self,
         organization_id: str,
-        types: List[PackageType.ValueType],
-        visibilities: List[Visibility.ValueType],
-        platforms: List[str],
-        statuses: List[RegistryItemStatus.ValueType],
-        search_term: Optional[str] = None,
-        page_token: Optional[str] = None,
-    ) -> List[RegistryItem]:
+        types: list[PackageType.ValueType],
+        visibilities: list[Visibility.ValueType],
+        platforms: list[str],
+        statuses: list[RegistryItemStatus.ValueType],
+        search_term: str | None = None,
+        page_token: str | None = None,
+    ) -> list[RegistryItem]:
         """List the registry items in an organization.
 
         ::
@@ -2283,15 +2304,15 @@ class AppClient:
 
         Args:
             organization_id (str): The ID of the organization to return registry items for.
-            types (List[PackageType.ValueType]): The types of registry items.
-            visibilities (List[Visibility.ValueType]): The visibilities of registry items.
-            platforms (List[str]): The platforms of registry items.
-            statuses (List[RegistryItemStatus.ValueType]): The types of the items in the registry.
-            search_term (Optional[str]): The search term of the registry items.
-            page_token (Optional[str]): The page token of the registry items.
+            types (list[PackageType.ValueType]): The types of registry items.
+            visibilities (list[Visibility.ValueType]): The visibilities of registry items.
+            platforms (list[str]): The platforms of registry items.
+            statuses (list[RegistryItemStatus.ValueType]): The types of the items in the registry.
+            search_term (str | None): The search term of the registry items.
+            page_token (str | None): The page token of the registry items.
 
         Returns:
-            List[RegistryItem]: The list of registry items.
+            list[RegistryItem]: The list of registry items.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listregistryitems>`_.
         """
@@ -2323,7 +2344,7 @@ class AppClient:
         request = DeleteRegistryItemRequest(item_id=item_id)
         await self._app_client.DeleteRegistryItem(request, metadata=self._metadata)
 
-    async def create_module(self, org_id: str, name: str) -> Tuple[str, str]:
+    async def create_module(self, org_id: str, name: str) -> tuple[str, str]:
         """Create a module under the currently authed-to organization.
 
         ::
@@ -2340,7 +2361,7 @@ class AppClient:
             GRPCError: If an invalid name (for example, "") is passed.
 
         Returns:
-            Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
+            tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createmodule>`_.
         """
@@ -2353,7 +2374,7 @@ class AppClient:
         module_id: str,
         url: str,
         description: str,
-        models: Optional[List[Model]],
+        models: list[Model] | None,
         entrypoint: str,
         public: bool = False,
     ) -> str:
@@ -2381,7 +2402,7 @@ class AppClient:
                 (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
             url (str): The url to reference for documentation and code (NOT the url of the module itself).
             description (str): A short description of the module that explains its purpose.
-            models (List[viam.proto.app.Model]): list of models that are available in the module.
+            models (list[viam.proto.app.Model]): list of models that are available in the module.
             entrypoint (str): The executable to run to start the module program.
             public (bool): The visibility that should be set for the module. Defaults to False (private).
 
@@ -2436,7 +2457,7 @@ class AppClient:
         async with self._app_client.UploadModuleFile.open(metadata=self._metadata) as stream:
             await stream.send_message(request_module_file_info)
             await stream.send_message(request_file, end=True)
-            response: Union[UploadModuleFileRequest, None] = await stream.recv_message()
+            response: UploadModuleFileRequest | None = await stream.recv_message()
             if not response:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
                 raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
@@ -2465,7 +2486,7 @@ class AppClient:
         response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
         return response.module
 
-    async def list_modules(self, org_id: str) -> List[Module]:
+    async def list_modules(self, org_id: str) -> list[Module]:
         """List the modules under the currently authed-to organization.
 
         ::
@@ -2477,7 +2498,7 @@ class AppClient:
                 You can obtain your organization ID from the organization settings page.
 
         Returns:
-            List[viam.proto.app.Module]: The list of modules.
+            list[viam.proto.app.Module]: The list of modules.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listmodules>`_.
         """
@@ -2487,7 +2508,7 @@ class AppClient:
 
     # TODO(RSDK-5569): when user-based auth exists, make `name` default to `None` and let
     # app deal with setting a default.
-    async def create_key(self, org_id: str, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]:
+    async def create_key(self, org_id: str, authorizations: list[APIKeyAuthorization], name: str | None = None) -> tuple[str, str]:
         """Creates a new API key.
 
         ::
@@ -2509,15 +2530,15 @@ class AppClient:
         Args:
             org_id (str): The ID of the organization to create the key for.
                 You can obtain your organization ID from the organization settings page.
-            authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
+            authorizations (list[viam.proto.app.Authorization]): A list of authorizations to associate
                 with the key.
-            name (Optional[str]): A name for the key. If None, defaults to the current timestamp.
+            name (str | None): A name for the key. If None, defaults to the current timestamp.
 
         Raises:
             GRPCError: If the authorizations list is empty.
 
         Returns:
-            Tuple[str, str]: The api key and api key ID.
+            tuple[str, str]: The api key and api key ID.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createkey>`_.
         """
@@ -2542,7 +2563,7 @@ class AppClient:
         request = DeleteKeyRequest(id=id)
         await self._app_client.DeleteKey(request, metadata=self._metadata)
 
-    async def create_key_from_existing_key_authorizations(self, id: str) -> Tuple[str, str]:
+    async def create_key_from_existing_key_authorizations(self, id: str) -> tuple[str, str]:
         """Creates a new API key with an existing key's authorizations
 
         ::
@@ -2554,7 +2575,7 @@ class AppClient:
             id (str): the ID of the API key to duplication authorizations from
 
         Returns:
-            Tuple[str, str]: The API key and API key id
+            tuple[str, str]: The API key and API key id
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createkeyfromexistingkeyauthorizations>`_.
         """
@@ -2565,7 +2586,7 @@ class AppClient:
         )
         return (response.key, response.id)
 
-    async def list_keys(self, org_id: str) -> List[APIKeyWithAuthorizations]:
+    async def list_keys(self, org_id: str) -> list[APIKeyWithAuthorizations]:
         """Lists all keys for the currently-authed-to org.
 
         ::
@@ -2577,7 +2598,7 @@ class AppClient:
                 You can obtain your organization ID from the organization settings page.
 
         Returns:
-            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.
+            list[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listkeys>`_.
         """
@@ -2585,7 +2606,7 @@ class AppClient:
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
         return list(response.api_keys)
 
-    async def rotate_key(self, id: str) -> Tuple[str, str]:
+    async def rotate_key(self, id: str) -> tuple[str, str]:
         """Rotate an API key.
 
         ::
@@ -2596,7 +2617,7 @@ class AppClient:
             id (str): The ID of the key to be rotated.
 
         Returns:
-            Tuple[str, str]: The API key and API key id
+            tuple[str, str]: The API key and API key id
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#rotatekey>`_.
         """
@@ -2744,38 +2765,38 @@ class AppClient:
         request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
         _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request, metadata=self._metadata)
 
-    async def upload_device_push_token(self, app_id: str, device_token: str, device_uuid: str, timeout: Optional[float] = None) -> None:
+    async def upload_device_push_token(self, app_id: str, device_token: str, device_uuid: str, timeout: float | None = None) -> None:
         """Upload a device push token for mobile notifications.
 
         Args:
             app_id (str): The Firebase app ID.
             device_token (str): The device push notification token.
             device_uuid (str): The unique identifier for the device.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         request = UploadDevicePushTokenRequest(app_id=app_id, device_token=device_token, device_uuid=device_uuid)
         _: UploadDevicePushTokenResponse = await self._app_client.UploadDevicePushToken(request, metadata=self._metadata, timeout=timeout)
 
-    async def delete_device_push_token(self, app_id: str, device_uuid: str, timeout: Optional[float] = None) -> None:
+    async def delete_device_push_token(self, app_id: str, device_uuid: str, timeout: float | None = None) -> None:
         """Delete a device push token.
 
         Args:
             app_id (str): The Firebase app ID.
             device_uuid (str): The unique identifier for the device.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         request = DeleteDevicePushTokenRequest(app_id=app_id, device_uuid=device_uuid)
         _: DeleteDevicePushTokenResponse = await self._app_client.DeleteDevicePushToken(request, metadata=self._metadata, timeout=timeout)
 
-    async def get_device_push_tokens(self, app_id: str, timeout: Optional[float] = None) -> List[str]:
+    async def get_device_push_tokens(self, app_id: str, timeout: float | None = None) -> list[str]:
         """Get all device push tokens for an app.
 
         Args:
             app_id (str): The Firebase app ID.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            List[str]: The list of device push tokens.
+            list[str]: The list of device push tokens.
         """
         request = GetDevicePushTokensRequest(app_id=app_id)
         response: GetDevicePushTokensResponse = await self._app_client.GetDevicePushTokens(
@@ -2783,24 +2804,24 @@ class AppClient:
         )
         return list(response.device_tokens)
 
-    async def set_firebase_config(self, org_id: str, app_id: str, config_json: str, timeout: Optional[float] = None) -> None:
+    async def set_firebase_config(self, org_id: str, app_id: str, config_json: str, timeout: float | None = None) -> None:
         """Set the Firebase configuration for an organization.
 
         Args:
             org_id (str): The organization ID.
             app_id (str): The Firebase app ID.
             config_json (str): The Firebase configuration JSON as a string.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         request = SetFirebaseConfigRequest(org_id=org_id, app_id=app_id, config_json=config_json)
         _: SetFirebaseConfigResponse = await self._app_client.SetFirebaseConfig(request, metadata=self._metadata, timeout=timeout)
 
-    async def get_firebase_config(self, org_id: str, timeout: Optional[float] = None) -> str:
+    async def get_firebase_config(self, org_id: str, timeout: float | None = None) -> str:
         """Get the Firebase app ID for an organization.
 
         Args:
             org_id (str): The organization ID.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
 
         Returns:
             str: The Firebase app ID.
@@ -2809,13 +2830,13 @@ class AppClient:
         response: GetFirebaseConfigResponse = await self._app_client.GetFirebaseConfig(request, metadata=self._metadata, timeout=timeout)
         return response.app_id
 
-    async def delete_firebase_config(self, org_id: str, app_id: str, timeout: Optional[float] = None) -> None:
+    async def delete_firebase_config(self, org_id: str, app_id: str, timeout: float | None = None) -> None:
         """Delete the Firebase configuration for an organization.
 
         Args:
             org_id (str): The organization ID.
             app_id (str): The Firebase app ID.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         request = DeleteFirebaseConfigRequest(org_id=org_id, app_id=app_id)
         _: DeleteFirebaseConfigResponse = await self._app_client.DeleteFirebaseConfig(request, metadata=self._metadata, timeout=timeout)
