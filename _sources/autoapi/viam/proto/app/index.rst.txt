@@ -42,6 +42,7 @@ Classes
    viam.proto.app.AdditionalFragment
    viam.proto.app.AddRoleRequest
    viam.proto.app.AddRoleResponse
+   viam.proto.app.AllowedOrgIDs
    viam.proto.app.APIKey
    viam.proto.app.APIKeyWithAuthorizations
    viam.proto.app.App
@@ -80,6 +81,10 @@ Classes
    viam.proto.app.CreateRegistryItemResponse
    viam.proto.app.CreateRobotPartSecretRequest
    viam.proto.app.CreateRobotPartSecretResponse
+   viam.proto.app.DeleteDevicePushTokenRequest
+   viam.proto.app.DeleteDevicePushTokenResponse
+   viam.proto.app.DeleteFirebaseConfigRequest
+   viam.proto.app.DeleteFirebaseConfigResponse
    viam.proto.app.DeleteFragmentRequest
    viam.proto.app.DeleteFragmentResponse
    viam.proto.app.DeleteFragmentTagRequest
@@ -132,6 +137,10 @@ Classes
    viam.proto.app.GetAppContentResponse
    viam.proto.app.GetBillingServiceConfigRequest
    viam.proto.app.GetBillingServiceConfigResponse
+   viam.proto.app.GetDevicePushTokensRequest
+   viam.proto.app.GetDevicePushTokensResponse
+   viam.proto.app.GetFirebaseConfigRequest
+   viam.proto.app.GetFirebaseConfigResponse
    viam.proto.app.GetFragmentHistoryRequest
    viam.proto.app.GetFragmentHistoryResponse
    viam.proto.app.GetFragmentRequest
@@ -272,6 +281,8 @@ Classes
    viam.proto.app.RoverRentalRobot
    viam.proto.app.SearchOrganizationsRequest
    viam.proto.app.SearchOrganizationsResponse
+   viam.proto.app.SetFirebaseConfigRequest
+   viam.proto.app.SetFirebaseConfigResponse
    viam.proto.app.SetFragmentTagRequest
    viam.proto.app.SetFragmentTagResponse
    viam.proto.app.SharedSecret
@@ -318,6 +329,8 @@ Classes
    viam.proto.app.UpdateRobotPartResponse
    viam.proto.app.UpdateRobotRequest
    viam.proto.app.UpdateRobotResponse
+   viam.proto.app.UploadDevicePushTokenRequest
+   viam.proto.app.UploadDevicePushTokenResponse
    viam.proto.app.UploadModuleFileRequest
    viam.proto.app.UploadModuleFileResponse
    viam.proto.app.Uploads
@@ -1103,6 +1116,48 @@ Package Contents
 
 
 
+   .. py:method:: UploadDevicePushToken(stream: grpclib.server.Stream[app.v1.app_pb2.UploadDevicePushTokenRequest, app.v1.app_pb2.UploadDevicePushTokenResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteDevicePushToken(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteDevicePushTokenRequest, app.v1.app_pb2.DeleteDevicePushTokenResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetDevicePushTokens(stream: grpclib.server.Stream[app.v1.app_pb2.GetDevicePushTokensRequest, app.v1.app_pb2.GetDevicePushTokensResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: SetFirebaseConfig(stream: grpclib.server.Stream[app.v1.app_pb2.SetFirebaseConfigRequest, app.v1.app_pb2.SetFirebaseConfigResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetFirebaseConfig(stream: grpclib.server.Stream[app.v1.app_pb2.GetFirebaseConfigRequest, app.v1.app_pb2.GetFirebaseConfigResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteFirebaseConfig(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteFirebaseConfigRequest, app.v1.app_pb2.DeleteFirebaseConfigResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -1433,6 +1488,24 @@ Package Contents
 
 
    .. py:attribute:: GetAppBranding
+
+
+   .. py:attribute:: UploadDevicePushToken
+
+
+   .. py:attribute:: DeleteDevicePushToken
+
+
+   .. py:attribute:: GetDevicePushTokens
+
+
+   .. py:attribute:: SetFirebaseConfig
+
+
+   .. py:attribute:: GetFirebaseConfig
+
+
+   .. py:attribute:: DeleteFirebaseConfig
 
 
 .. py:class:: UnimplementedAppServiceBase
@@ -1989,6 +2062,36 @@ Package Contents
 
 
 
+   .. py:method:: UploadDevicePushToken(stream: grpclib.server.Stream[app.v1.app_pb2.UploadDevicePushTokenRequest, app.v1.app_pb2.UploadDevicePushTokenResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteDevicePushToken(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteDevicePushTokenRequest, app.v1.app_pb2.DeleteDevicePushTokenResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetDevicePushTokens(stream: grpclib.server.Stream[app.v1.app_pb2.GetDevicePushTokensRequest, app.v1.app_pb2.GetDevicePushTokensResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: SetFirebaseConfig(stream: grpclib.server.Stream[app.v1.app_pb2.SetFirebaseConfigRequest, app.v1.app_pb2.SetFirebaseConfigResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetFirebaseConfig(stream: grpclib.server.Stream[app.v1.app_pb2.GetFirebaseConfigRequest, app.v1.app_pb2.GetFirebaseConfigResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteFirebaseConfig(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteFirebaseConfigRequest, app.v1.app_pb2.DeleteFirebaseConfigResponse]) -> None
+      :async:
+
+
+
 .. py:class:: PKCE
 
    Bases: :py:obj:`_PKCE`
@@ -2093,6 +2196,21 @@ Package Contents
    shown below.
 
 
+.. py:class:: AllowedOrgIDs(*, ids: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
 .. py:class:: APIKey(*, id: str = ..., key: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2174,7 +2292,7 @@ Package Contents
 
 
 
-.. py:class:: App(*, name: str = ..., type: str = ..., entrypoint: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., logo_path: str | None = ..., customizations: Global___AppCustomizations | None = ...)
+.. py:class:: App(*, name: str = ..., type: str = ..., entrypoint: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., logo_path: str | None = ..., customizations: Global___AppCustomizations | None = ..., allowed_org_ids: Global___AllowedOrgIDs | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2224,6 +2342,12 @@ Package Contents
 
 
 
+   .. py:method:: allowed_org_ids() -> Global___AllowedOrgIDs
+
+      Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -2242,7 +2366,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__logo_path) -> _WhichOneofReturnType__logo_path | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__allowed_org_ids) -> _WhichOneofReturnType__allowed_org_ids | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__logo_path) -> _WhichOneofReturnType__logo_path | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3241,6 +3366,70 @@ Package Contents
 
 
 
+.. py:class:: DeleteDevicePushTokenRequest(*, app_id: str = ..., device_uuid: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+   .. py:attribute:: device_uuid
+      :type:  str
+
+
+.. py:class:: DeleteDevicePushTokenResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: DeleteFirebaseConfigRequest(*, org_id: str = ..., app_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+.. py:class:: DeleteFirebaseConfigResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: DeleteFragmentRequest(*, id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4211,7 +4400,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, Global___TextOverrides] | None = ..., fragment_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, Global___TextOverrides] | None = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., allowed_org_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4269,6 +4458,9 @@ Package Contents
 
 
    .. py:method:: fragment_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:method:: allowed_org_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -4412,6 +4604,69 @@ Package Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: GetDevicePushTokensRequest(*, app_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+.. py:class:: GetDevicePushTokensResponse(*, device_tokens: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: device_tokens() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+.. py:class:: GetFirebaseConfigRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: GetFirebaseConfigResponse(*, app_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
 
 
 .. py:class:: GetFragmentHistoryRequest(*, id: str = ..., page_token: str | None = ..., page_limit: int | None = ...)
@@ -5207,7 +5462,7 @@ Package Contents
 
 
 
-.. py:class:: GetRobotPartHistoryRequest(*, id: str = ...)
+.. py:class:: GetRobotPartHistoryRequest(*, id: str = ..., page_token: str | None = ..., page_limit: int | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5223,7 +5478,58 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetRobotPartHistoryResponse(*, history: collections.abc.Iterable[Global___RobotPartHistoryEntry] | None = ...)
+   .. py:attribute:: page_token
+      :type:  str
+
+
+   .. py:attribute:: page_limit
+      :type:  int
+
+
+   .. py:method:: start() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: end() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__end) -> _WhichOneofReturnType__end | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__page_limit) -> _WhichOneofReturnType__page_limit | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GetRobotPartHistoryResponse(*, history: collections.abc.Iterable[Global___RobotPartHistoryEntry] | None = ..., next_page_token: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5233,6 +5539,10 @@ Package Contents
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: next_page_token
+      :type:  str
 
 
    .. py:method:: history() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___RobotPartHistoryEntry]
@@ -8770,6 +9080,42 @@ Package Contents
    .. py:method:: organizations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___OrgDetails]
 
 
+.. py:class:: SetFirebaseConfigRequest(*, org_id: str = ..., app_id: str = ..., config_json: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+   .. py:attribute:: config_json
+      :type:  str
+
+
+.. py:class:: SetFirebaseConfigResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: SetFragmentTagRequest(*, fragment_id: str = ..., tag: str = ..., revision: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -10335,6 +10681,42 @@ Package Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: UploadDevicePushTokenRequest(*, app_id: str = ..., device_token: str = ..., device_uuid: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+   .. py:attribute:: device_token
+      :type:  str
+
+
+   .. py:attribute:: device_uuid
+      :type:  str
+
+
+.. py:class:: UploadDevicePushTokenResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
 
 
 .. py:class:: UploadModuleFileRequest(*, module_file_info: Global___ModuleFileInfo | None = ..., file: bytes = ...)

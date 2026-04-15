@@ -262,7 +262,7 @@ Module Contents
    :canonical: HandlerMap
 
 
-.. py:class:: ReadyRequest(*, parent_address: str = ..., webrtc_offer: str = ...)
+.. py:class:: ReadyRequest(*, parent_address: str = ..., raw_parent_address: str = ..., webrtc_offer: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -274,7 +274,10 @@ Module Contents
    shown below.
 
 
-   .. py:attribute:: parent_address
+   .. py:method:: parent_address() -> str
+
+
+   .. py:attribute:: raw_parent_address
       :type:  str
 
 

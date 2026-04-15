@@ -81,7 +81,7 @@ Module Contents
 
 .. py:function:: struct_to_message(struct: google.protobuf.struct_pb2.Struct, message_type: Type[_T]) -> _T
 
-.. py:function:: dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> google.protobuf.struct_pb2.Struct
+.. py:function:: dict_to_struct(obj: Optional[collections.abc.Mapping[str, ValueTypes]]) -> google.protobuf.struct_pb2.Struct
 
 .. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
@@ -91,9 +91,9 @@ Module Contents
    :async:
 
 
-.. py:function:: sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, google.protobuf.struct_pb2.Value]
+.. py:function:: sensor_readings_native_to_value(readings: collections.abc.Mapping[str, Any]) -> collections.abc.Mapping[str, google.protobuf.struct_pb2.Value]
 
-.. py:function:: sensor_readings_value_to_native(readings: Mapping[str, google.protobuf.struct_pb2.Value]) -> Mapping[str, SensorReading]
+.. py:function:: sensor_readings_value_to_native(readings: collections.abc.Mapping[str, google.protobuf.struct_pb2.Value]) -> collections.abc.Mapping[str, SensorReading]
 
 .. py:class:: PointerCounter
 

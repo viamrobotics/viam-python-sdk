@@ -293,6 +293,7 @@ Attributes
    viam.gen.app.v1.app_pb2.Global___CreateModuleRequest
    viam.gen.app.v1.app_pb2.Global___CreateModuleResponse
    viam.gen.app.v1.app_pb2.Global___UpdateModuleRequest
+   viam.gen.app.v1.app_pb2.Global___AllowedOrgIDs
    viam.gen.app.v1.app_pb2.Global___App
    viam.gen.app.v1.app_pb2.Global___UpdateModuleResponse
    viam.gen.app.v1.app_pb2.Global___UpdateModuleMetadata
@@ -356,6 +357,18 @@ Attributes
    viam.gen.app.v1.app_pb2.Global___GetAppBrandingResponse
    viam.gen.app.v1.app_pb2.Global___AppCustomizations
    viam.gen.app.v1.app_pb2.Global___MachinePickerCustomizations
+   viam.gen.app.v1.app_pb2.Global___UploadDevicePushTokenRequest
+   viam.gen.app.v1.app_pb2.Global___UploadDevicePushTokenResponse
+   viam.gen.app.v1.app_pb2.Global___DeleteDevicePushTokenRequest
+   viam.gen.app.v1.app_pb2.Global___DeleteDevicePushTokenResponse
+   viam.gen.app.v1.app_pb2.Global___GetDevicePushTokensRequest
+   viam.gen.app.v1.app_pb2.Global___GetDevicePushTokensResponse
+   viam.gen.app.v1.app_pb2.Global___SetFirebaseConfigRequest
+   viam.gen.app.v1.app_pb2.Global___SetFirebaseConfigResponse
+   viam.gen.app.v1.app_pb2.Global___GetFirebaseConfigRequest
+   viam.gen.app.v1.app_pb2.Global___GetFirebaseConfigResponse
+   viam.gen.app.v1.app_pb2.Global___DeleteFirebaseConfigRequest
+   viam.gen.app.v1.app_pb2.Global___DeleteFirebaseConfigResponse
 
 
 Classes
@@ -588,6 +601,7 @@ Classes
    viam.gen.app.v1.app_pb2.CreateModuleRequest
    viam.gen.app.v1.app_pb2.CreateModuleResponse
    viam.gen.app.v1.app_pb2.UpdateModuleRequest
+   viam.gen.app.v1.app_pb2.AllowedOrgIDs
    viam.gen.app.v1.app_pb2.App
    viam.gen.app.v1.app_pb2.UpdateModuleResponse
    viam.gen.app.v1.app_pb2.UpdateModuleMetadata
@@ -651,6 +665,18 @@ Classes
    viam.gen.app.v1.app_pb2.GetAppBrandingResponse
    viam.gen.app.v1.app_pb2.AppCustomizations
    viam.gen.app.v1.app_pb2.MachinePickerCustomizations
+   viam.gen.app.v1.app_pb2.UploadDevicePushTokenRequest
+   viam.gen.app.v1.app_pb2.UploadDevicePushTokenResponse
+   viam.gen.app.v1.app_pb2.DeleteDevicePushTokenRequest
+   viam.gen.app.v1.app_pb2.DeleteDevicePushTokenResponse
+   viam.gen.app.v1.app_pb2.GetDevicePushTokensRequest
+   viam.gen.app.v1.app_pb2.GetDevicePushTokensResponse
+   viam.gen.app.v1.app_pb2.SetFirebaseConfigRequest
+   viam.gen.app.v1.app_pb2.SetFirebaseConfigResponse
+   viam.gen.app.v1.app_pb2.GetFirebaseConfigRequest
+   viam.gen.app.v1.app_pb2.GetFirebaseConfigResponse
+   viam.gen.app.v1.app_pb2.DeleteFirebaseConfigRequest
+   viam.gen.app.v1.app_pb2.DeleteFirebaseConfigResponse
 
 
 Module Contents
@@ -4257,7 +4283,7 @@ Module Contents
    :canonical: TailRobotPartLogsResponse
 
 
-.. py:class:: GetRobotPartHistoryRequest(*, id: str = ...)
+.. py:class:: GetRobotPartHistoryRequest(*, id: str = ..., page_token: str | None = ..., page_limit: int | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4273,11 +4299,62 @@ Module Contents
       :type:  str
 
 
+   .. py:attribute:: page_token
+      :type:  str
+
+
+   .. py:attribute:: page_limit
+      :type:  int
+
+
+   .. py:method:: start() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: end() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__end) -> _WhichOneofReturnType__end | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__page_limit) -> _WhichOneofReturnType__page_limit | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
 .. py:type:: Global___GetRobotPartHistoryRequest
    :canonical: GetRobotPartHistoryRequest
 
 
-.. py:class:: GetRobotPartHistoryResponse(*, history: collections.abc.Iterable[Global___RobotPartHistoryEntry] | None = ...)
+.. py:class:: GetRobotPartHistoryResponse(*, history: collections.abc.Iterable[Global___RobotPartHistoryEntry] | None = ..., next_page_token: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4287,6 +4364,10 @@ Module Contents
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: next_page_token
+      :type:  str
 
 
    .. py:method:: history() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___RobotPartHistoryEntry]
@@ -8367,7 +8448,26 @@ Module Contents
    :canonical: UpdateModuleRequest
 
 
-.. py:class:: App(*, name: str = ..., type: str = ..., entrypoint: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., logo_path: str | None = ..., customizations: Global___AppCustomizations | None = ...)
+.. py:class:: AllowedOrgIDs(*, ids: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+.. py:type:: Global___AllowedOrgIDs
+   :canonical: AllowedOrgIDs
+
+
+.. py:class:: App(*, name: str = ..., type: str = ..., entrypoint: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., logo_path: str | None = ..., customizations: Global___AppCustomizations | None = ..., allowed_org_ids: Global___AllowedOrgIDs | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8417,6 +8517,12 @@ Module Contents
 
 
 
+   .. py:method:: allowed_org_ids() -> Global___AllowedOrgIDs
+
+      Optional: list of org IDs that are allowed to use this app; if empty, all orgs are allowed
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -8435,7 +8541,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__logo_path) -> _WhichOneofReturnType__logo_path | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__allowed_org_ids) -> _WhichOneofReturnType__allowed_org_ids | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__logo_path) -> _WhichOneofReturnType__logo_path | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -10456,7 +10563,7 @@ Module Contents
    :canonical: TextOverrides
 
 
-.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, Global___TextOverrides] | None = ..., fragment_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, Global___TextOverrides] | None = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., allowed_org_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10514,6 +10621,9 @@ Module Contents
 
 
    .. py:method:: fragment_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:method:: allowed_org_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -10648,5 +10758,252 @@ Module Contents
 
 .. py:type:: Global___MachinePickerCustomizations
    :canonical: MachinePickerCustomizations
+
+
+.. py:class:: UploadDevicePushTokenRequest(*, app_id: str = ..., device_token: str = ..., device_uuid: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+   .. py:attribute:: device_token
+      :type:  str
+
+
+   .. py:attribute:: device_uuid
+      :type:  str
+
+
+.. py:type:: Global___UploadDevicePushTokenRequest
+   :canonical: UploadDevicePushTokenRequest
+
+
+.. py:class:: UploadDevicePushTokenResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:type:: Global___UploadDevicePushTokenResponse
+   :canonical: UploadDevicePushTokenResponse
+
+
+.. py:class:: DeleteDevicePushTokenRequest(*, app_id: str = ..., device_uuid: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+   .. py:attribute:: device_uuid
+      :type:  str
+
+
+.. py:type:: Global___DeleteDevicePushTokenRequest
+   :canonical: DeleteDevicePushTokenRequest
+
+
+.. py:class:: DeleteDevicePushTokenResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:type:: Global___DeleteDevicePushTokenResponse
+   :canonical: DeleteDevicePushTokenResponse
+
+
+.. py:class:: GetDevicePushTokensRequest(*, app_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+.. py:type:: Global___GetDevicePushTokensRequest
+   :canonical: GetDevicePushTokensRequest
+
+
+.. py:class:: GetDevicePushTokensResponse(*, device_tokens: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: device_tokens() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+.. py:type:: Global___GetDevicePushTokensResponse
+   :canonical: GetDevicePushTokensResponse
+
+
+.. py:class:: SetFirebaseConfigRequest(*, org_id: str = ..., app_id: str = ..., config_json: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+   .. py:attribute:: config_json
+      :type:  str
+
+
+.. py:type:: Global___SetFirebaseConfigRequest
+   :canonical: SetFirebaseConfigRequest
+
+
+.. py:class:: SetFirebaseConfigResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:type:: Global___SetFirebaseConfigResponse
+   :canonical: SetFirebaseConfigResponse
+
+
+.. py:class:: GetFirebaseConfigRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:type:: Global___GetFirebaseConfigRequest
+   :canonical: GetFirebaseConfigRequest
+
+
+.. py:class:: GetFirebaseConfigResponse(*, app_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+.. py:type:: Global___GetFirebaseConfigResponse
+   :canonical: GetFirebaseConfigResponse
+
+
+.. py:class:: DeleteFirebaseConfigRequest(*, org_id: str = ..., app_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: app_id
+      :type:  str
+
+
+.. py:type:: Global___DeleteFirebaseConfigRequest
+   :canonical: DeleteFirebaseConfigRequest
+
+
+.. py:class:: DeleteFirebaseConfigResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:type:: Global___DeleteFirebaseConfigResponse
+   :canonical: DeleteFirebaseConfigResponse
 
 

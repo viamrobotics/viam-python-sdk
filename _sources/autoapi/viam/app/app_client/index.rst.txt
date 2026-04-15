@@ -77,15 +77,15 @@ Module Contents
 
 
    .. py:attribute:: robot_config
-      :type:  Optional[Mapping[str, Any]]
+      :type:  collections.abc.Mapping[str, viam.utils.ValueTypes] | None
 
 
    .. py:attribute:: last_access
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:attribute:: user_supplied_info
-      :type:  Optional[Mapping[str, Any]]
+      :type:  collections.abc.Mapping[str, viam.utils.ValueTypes] | None
 
 
    .. py:attribute:: main_part
@@ -101,19 +101,19 @@ Module Contents
 
 
    .. py:attribute:: created_on
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:attribute:: secrets
-      :type:  Optional[List[viam.proto.app.SharedSecret]]
+      :type:  list[viam.proto.app.SharedSecret] | None
 
 
    .. py:attribute:: last_updated
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:attribute:: robot_config_json
-      :type:  Optional[str]
+      :type:  str | None
 
 
    .. py:property:: proto
@@ -151,7 +151,7 @@ Module Contents
 
 
    .. py:attribute:: time
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:attribute:: logger_name
@@ -163,7 +163,7 @@ Module Contents
 
 
    .. py:attribute:: caller
-      :type:  Optional[Mapping[str, Any]]
+      :type:  collections.abc.Mapping[str, viam.utils.ValueTypes] | None
 
 
    .. py:attribute:: stack
@@ -171,7 +171,7 @@ Module Contents
 
 
    .. py:attribute:: fields
-      :type:  Optional[List[Mapping[str, Any]]]
+      :type:  list[collections.abc.Mapping[str, viam.utils.ValueTypes]] | None
 
 
    .. py:property:: proto
@@ -254,7 +254,7 @@ Module Contents
 
 
    .. py:attribute:: fragment
-      :type:  Optional[Mapping[str, Any]]
+      :type:  collections.abc.Mapping[str, viam.utils.ValueTypes] | None
 
 
    .. py:attribute:: organization_owner
@@ -266,7 +266,7 @@ Module Contents
 
 
    .. py:attribute:: created_on
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:attribute:: organization_name
@@ -290,7 +290,7 @@ Module Contents
 
 
    .. py:attribute:: last_updated
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:property:: proto
@@ -370,11 +370,11 @@ Module Contents
 
 
    .. py:attribute:: when
-      :type:  Optional[datetime.datetime]
+      :type:  datetime.datetime | None
 
 
    .. py:attribute:: old
-      :type:  Optional[RobotPart]
+      :type:  RobotPart | None
 
 
    .. py:property:: proto
@@ -382,14 +382,29 @@ Module Contents
 
 
 
-.. py:class:: APIKeyAuthorization(role: Union[Literal['owner'], Literal['operator']], resource_type: Union[Literal['organization'], Literal['location'], Literal['robot']], resource_id: str)
+.. py:class:: APIKeyAuthorization(role: _ROLE_TYPE, resource_type: _RESOURCE_TYPE_TYPE, resource_id: str)
 
    A class with the necessary authorization data for creating an API key.
 
    Use this class when constructing API key authorizations to minimize the risk of malformed or missing data.
 
 
-.. py:class:: AppClient(channel: grpclib.client.Channel, metadata: Mapping[str, str])
+   .. py:property:: role
+      :type: _ROLE_TYPE
+
+
+
+   .. py:property:: resource_type
+      :type: _RESOURCE_TYPE_TYPE
+
+
+
+   .. py:property:: resource_id
+      :type: str
+
+
+
+.. py:class:: AppClient(channel: grpclib.client.Channel, metadata: collections.abc.Mapping[str, str])
 
    gRPC client for method calls to app.
 
@@ -463,7 +478,7 @@ Module Contents
 
 
 
-   .. py:method:: list_organizations() -> List[viam.proto.app.Organization]
+   .. py:method:: list_organizations() -> list[viam.proto.app.Organization]
       :async:
 
 
@@ -474,13 +489,13 @@ Module Contents
           org_list = await cloud.list_organizations()
 
       :returns: The list of organizations.
-      :rtype: List[viam.proto.app.Organization]
+      :rtype: list[viam.proto.app.Organization]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizations>`_.
 
 
 
-   .. py:method:: get_organizations_with_access_to_location(location_id: str) -> List[viam.proto.app.OrganizationIdentity]
+   .. py:method:: get_organizations_with_access_to_location(location_id: str) -> list[viam.proto.app.OrganizationIdentity]
       :async:
 
 
@@ -494,13 +509,13 @@ Module Contents
       :type location_id: str
 
       :returns: The list of organizations.
-      :rtype: List[viam.proto.app.OrganizationIdentity]
+      :rtype: list[viam.proto.app.OrganizationIdentity]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getorganizationswithaccesstolocation>`_.
 
 
 
-   .. py:method:: list_organizations_by_user(user_id: str) -> List[viam.proto.app.OrgDetails]
+   .. py:method:: list_organizations_by_user(user_id: str) -> list[viam.proto.app.OrgDetails]
       :async:
 
 
@@ -514,7 +529,7 @@ Module Contents
       :type user_id: str
 
       :returns: The list of organizations.
-      :rtype: List[OrgDetails]
+      :rtype: list[OrgDetails]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizationsbyuser>`_.
 
@@ -567,7 +582,7 @@ Module Contents
 
 
 
-   .. py:method:: update_organization(org_id: str, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None, cid: Optional[str] = None, default_fragments: Optional[List[viam.proto.app.FragmentImport]] = None) -> viam.proto.app.Organization
+   .. py:method:: update_organization(org_id: str, name: str | None = None, public_namespace: str | None = None, region: str | None = None, cid: str | None = None, default_fragments: list[viam.proto.app.FragmentImport] | None = None) -> viam.proto.app.Organization
       :async:
 
 
@@ -584,13 +599,13 @@ Module Contents
       :param org_id: The ID of the organization to update.
       :type org_id: str
       :param name: If provided, updates the org's name.
-      :type name: Optional[str]
+      :type name: str | None
       :param public_namespace: If provided, sets the org's namespace if it hasn't already been set.
-      :type public_namespace: Optional[str]
+      :type public_namespace: str | None
       :param region: If provided, updates the org's region.
-      :type region: Optional[str]
+      :type region: str | None
       :param cid: If provided, update's the org's CRM ID.
-      :type cid: Optional[str]
+      :type cid: str | None
 
       :raises GRPCError: If the org's namespace has already been set, or if the provided namespace is already taken.
 
@@ -619,7 +634,7 @@ Module Contents
 
 
 
-   .. py:method:: list_organization_members(org_id: str) -> Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
+   .. py:method:: list_organization_members(org_id: str) -> tuple[list[viam.proto.app.OrganizationMember], list[viam.proto.app.OrganizationInvite]]
       :async:
 
 
@@ -635,13 +650,13 @@ Module Contents
 
       :returns: A tuple containing two lists; the first
                 [0] of organization members, and the second [1] of organization invites.
-      :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
+      :rtype: tuple[list[viam.proto.app.OrganizationMember], list[viam.proto.app.OrganizationInvite]]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizationmembers>`_.
 
 
 
-   .. py:method:: create_organization_invite(org_id: str, email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None, send_email_invite: bool = True) -> viam.proto.app.OrganizationInvite
+   .. py:method:: create_organization_invite(org_id: str, email: str, authorizations: list[viam.proto.app.Authorization] | None = None, send_email_invite: bool = True) -> viam.proto.app.OrganizationInvite
       :async:
 
 
@@ -659,12 +674,12 @@ Module Contents
       :param authorizations: Specifications of the
                              authorizations to include in the invite. If not provided, full owner permissions will
                              be granted.
-      :type authorizations: Optional[List[viam.proto.app.Authorization]]
+      :type authorizations: list[viam.proto.app.Authorization] | None
       :param send_email_invite: Whether or not an email should be sent to the recipient of an invite.
                                 The user must accept the email to be added to the associated authorizations.
                                 When set to false, the user automatically receives the associated authorization
                                 on the next login of the user with the associated email address.
-      :type send_email_invite: Optional[bool]
+      :type send_email_invite: bool | None
 
       :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
@@ -675,7 +690,7 @@ Module Contents
 
 
 
-   .. py:method:: update_organization_invite_authorizations(org_id: str, email: str, add_authorizations: Optional[List[viam.proto.app.Authorization]] = None, remove_authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
+   .. py:method:: update_organization_invite_authorizations(org_id: str, email: str, add_authorizations: list[viam.proto.app.Authorization] | None = None, remove_authorizations: list[viam.proto.app.Authorization] | None = None) -> viam.proto.app.OrganizationInvite
       :async:
 
 
@@ -710,9 +725,9 @@ Module Contents
       :param email: Email of the user the invite was sent to.
       :type email: str
       :param add_authorizations: Optional list of authorizations to add to the invite.
-      :type add_authorizations: Optional[List[viam.proto.app.Authorization]]
+      :type add_authorizations: list[viam.proto.app.Authorization] | None
       :param remove_authorizations: Optional list of authorizations to remove from the invite.
-      :type remove_authorizations: Optional[List[viam.proto.app.Authorization]]
+      :type remove_authorizations: list[viam.proto.app.Authorization] | None
 
       :raises GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an
           authorization to remove when the invite only contains one authorization).
@@ -794,7 +809,7 @@ Module Contents
 
 
 
-   .. py:method:: create_location(org_id: str, name: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
+   .. py:method:: create_location(org_id: str, name: str, parent_location_id: str | None = None) -> viam.proto.app.Location
       :async:
 
 
@@ -811,7 +826,7 @@ Module Contents
       :type name: str
       :param parent_location_id: Optional parent location to put the location under. Defaults to a root-level location if no
                                  location ID is provided.
-      :type parent_location_id: Optional[str]
+      :type parent_location_id: str | None
 
       :raises GRPCError: If either an invalid name (for example, ""), or parent location ID (for example, a nonexistent ID) is passed.
 
@@ -822,7 +837,7 @@ Module Contents
 
 
 
-   .. py:method:: get_location(location_id: Optional[str] = None) -> viam.proto.app.Location
+   .. py:method:: get_location(location_id: str | None = None) -> viam.proto.app.Location
       :async:
 
 
@@ -833,7 +848,7 @@ Module Contents
           location = await cloud.get_location(location_id="123ab12345")
 
       :param location_id: ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
-      :type location_id: Optional[str]
+      :type location_id: str | None
 
       :raises GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
           instantiation.
@@ -845,7 +860,7 @@ Module Contents
 
 
 
-   .. py:method:: update_location(location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
+   .. py:method:: update_location(location_id: str, name: str | None = None, parent_location_id: str | None = None) -> viam.proto.app.Location
       :async:
 
 
@@ -878,10 +893,10 @@ Module Contents
       :type location_id: str
       :param name: Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name
                    doesn't change).
-      :type name: Optional[str]
+      :type name: str | None
       :param parent_location_id: Optional ID of new parent location to move the location under. Defaults to the empty string
                                  "" (that is, no new parent location is assigned).
-      :type parent_location_id: Optional[str]
+      :type parent_location_id: str | None
 
       :raises GRPCError: If either an invalid location ID, name, or parent location ID is passed.
 
@@ -911,7 +926,7 @@ Module Contents
 
 
 
-   .. py:method:: list_locations(org_id: str) -> List[viam.proto.app.Location]
+   .. py:method:: list_locations(org_id: str) -> list[viam.proto.app.Location]
       :async:
 
 
@@ -926,7 +941,7 @@ Module Contents
       :type org_id: str
 
       :returns: The list of locations.
-      :rtype: List[viam.proto.app.Location]
+      :rtype: list[viam.proto.app.Location]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listlocations>`_.
 
@@ -970,7 +985,7 @@ Module Contents
 
 
 
-   .. py:method:: location_auth(location_id: Optional[str] = None) -> viam.proto.app.LocationAuth
+   .. py:method:: location_auth(location_id: str | None = None) -> viam.proto.app.LocationAuth
       :async:
 
 
@@ -994,7 +1009,7 @@ Module Contents
 
 
 
-   .. py:method:: create_location_secret(location_id: Optional[str] = None) -> viam.proto.app.LocationAuth
+   .. py:method:: create_location_secret(location_id: str | None = None) -> viam.proto.app.LocationAuth
       :async:
 
 
@@ -1006,7 +1021,7 @@ Module Contents
 
       :param location_id: ID of the location to generate a new secret for. Defaults to the location ID provided at
                           `AppClient` instantiation.
-      :type location_id: Optional[str]
+      :type location_id: str | None
 
       :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
           instantiation.
@@ -1018,7 +1033,7 @@ Module Contents
 
 
 
-   .. py:method:: delete_location_secret(secret_id: str, location_id: Optional[str] = None) -> None
+   .. py:method:: delete_location_secret(secret_id: str, location_id: str | None = None) -> None
       :async:
 
 
@@ -1065,7 +1080,7 @@ Module Contents
 
 
 
-   .. py:method:: get_rover_rental_robots(org_id: str) -> List[viam.proto.app.RoverRentalRobot]
+   .. py:method:: get_rover_rental_robots(org_id: str) -> list[viam.proto.app.RoverRentalRobot]
       :async:
 
 
@@ -1080,13 +1095,13 @@ Module Contents
       :type org_id: str
 
       :returns: The list of rover rental robots.
-      :rtype: List[viam.proto.app.RoverRentalRobot]
+      :rtype: list[viam.proto.app.RoverRentalRobot]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/>`_.
 
 
 
-   .. py:method:: get_robot_parts(robot_id: str) -> List[RobotPart]
+   .. py:method:: get_robot_parts(robot_id: str) -> list[RobotPart]
       :async:
 
 
@@ -1104,13 +1119,13 @@ Module Contents
       :raises GRPCError: If an invalid machine ID is passed.
 
       :returns: The list of machine parts.
-      :rtype: List[viam.app.app_client.RobotPart]
+      :rtype: list[viam.app.app_client.RobotPart]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotparts>`_.
 
 
 
-   .. py:method:: get_robot_part(robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart
+   .. py:method:: get_robot_part(robot_part_id: str, dest: str | None = None, indent: int = 4) -> RobotPart
       :async:
 
 
@@ -1133,7 +1148,7 @@ Module Contents
                             clicking on the part status dropdown, and clicking the copy icon next to Part ID.
       :type robot_part_id: str
       :param dest: Optional filepath to write the machine part's config file in JSON format to.
-      :type dest: Optional[str]
+      :type dest: str | None
       :param indent: Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
       :type indent: int
 
@@ -1146,7 +1161,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: Optional[str] = None, dest: Optional[str] = None, log_levels: List[str] = [], num_log_entries: int = 100, start: Optional[datetime.datetime] = None, end: Optional[datetime.datetime] = None) -> List[LogEntry]
+   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: str | None = None, dest: str | None = None, log_levels: list[str] = [], num_log_entries: int = 100, start: datetime.datetime | None = None, end: datetime.datetime | None = None) -> list[LogEntry]
       :async:
 
 
@@ -1163,29 +1178,29 @@ Module Contents
       :type robot_part_id: str
       :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                      no filter).
-      :type filter: Optional[str]
+      :type filter: str | None
       :param dest: Optional filepath to write the log entries to.
-      :type dest: Optional[str]
+      :type dest: str | None
       :param log_levels: List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
-      :type log_levels: List[str]
+      :type log_levels: list[str]
       :param num_log_entries: Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                               `num_log_entries` logs will be returned, whichever comes first.
       :type num_log_entries: int
       :param start: Optional start time for log retrieval. Only logs created after this time will be returned.
-      :type start: Optional[datetime]
+      :type start: datetime | None
       :param end: Optional end time for log retrieval. Only logs created before this time will be returned.
-      :type end: Optional[datetime]
+      :type end: datetime | None
 
       :raises GRPCError: If an invalid robot part ID is passed.
 
       :returns: The list of log entries.
-      :rtype: List[viam.app.app_client.LogEntry]
+      :rtype: list[viam.app.app_client.LogEntry]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotpartlogs>`_.
 
 
 
-   .. py:method:: tail_robot_part_logs(robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None) -> viam.app._logs._LogsStream[List[LogEntry]]
+   .. py:method:: tail_robot_part_logs(robot_part_id: str, errors_only: bool = True, filter: str | None = None) -> viam.app._logs._LogsStream[list[LogEntry]]
       :async:
 
 
@@ -1203,14 +1218,14 @@ Module Contents
       :type errors_only: bool
       :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                      no filter).
-      :type filter: Optional[str]
+      :type filter: str | None
 
       :returns: The asynchronous iterator receiving live machine part logs.
-      :rtype: _LogsStream[List[LogEntry]]
+      :rtype: _LogsStream[list[LogEntry]]
 
 
 
-   .. py:method:: get_robot_part_history(robot_part_id: str) -> List[RobotPartHistoryEntry]
+   .. py:method:: get_robot_part_history(robot_part_id: str) -> list[RobotPartHistoryEntry]
       :async:
 
 
@@ -1228,13 +1243,13 @@ Module Contents
       :raises GRPCError: If an invalid machine part ID is provided.
 
       :returns: The list of the machine part's history.
-      :rtype: List[viam.app.app_client.RobotPartHistoryEntry]
+      :rtype: list[viam.app.app_client.RobotPartHistoryEntry]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
 
 
 
-   .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None, last_known_update: Optional[datetime.datetime] = None, robot_config_json: Optional[str] = None) -> RobotPart
+   .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, last_known_update: datetime.datetime | None = None, robot_config_json: str | None = None) -> RobotPart
       :async:
 
 
@@ -1252,7 +1267,7 @@ Module Contents
       :type name: str
       :param robot_config: Optional new config represented as a dictionary to be updated on the machine part. The machine
                            part's config will remain as is (no change) if one isn't passed.
-      :type robot_config: Mapping[str, Any]
+      :type robot_config: Mapping[str, ValueTypes]
       :param last_known_update: Optional time of the last known update to this part's config. If provided, this will result in a
                                 GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this
                                 parameter will result in an overwrite of the upstream config.
@@ -1318,7 +1333,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_api_keys(robot_id: str) -> List[viam.proto.app.APIKeyWithAuthorizations]
+   .. py:method:: get_robot_api_keys(robot_id: str) -> list[viam.proto.app.APIKeyWithAuthorizations]
       :async:
 
 
@@ -1332,7 +1347,7 @@ Module Contents
       :type robot_id: str
 
       :returns: The list of API keys.
-      :rtype: List[APIKeyWithAuthorizations]
+      :rtype: list[APIKeyWithAuthorizations]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
 
@@ -1424,7 +1439,7 @@ Module Contents
 
 
 
-   .. py:method:: list_robots(location_id: Optional[str] = None) -> List[viam.proto.app.Robot]
+   .. py:method:: list_robots(location_id: str | None = None) -> list[viam.proto.app.Robot]
       :async:
 
 
@@ -1436,19 +1451,19 @@ Module Contents
 
       :param location_id: ID of the location to retrieve the machines from. Defaults to the location ID provided at
                           `AppClient` instantiation.
-      :type location_id: Optional[str]
+      :type location_id: str | None
 
       :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
           instantiation.
 
       :returns: The list of robots.
-      :rtype: List[viam.proto.app.Robot]
+      :rtype: list[viam.proto.app.Robot]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listrobots>`_.
 
 
 
-   .. py:method:: new_robot(name: str, location_id: Optional[str] = None) -> str
+   .. py:method:: new_robot(name: str, location_id: str | None = None) -> str
       :async:
 
 
@@ -1461,7 +1476,7 @@ Module Contents
       :param name: Name of the new machine.
       :type name: str
       :param location_id: ID of the location under which to create the machine. Defaults to the current authorized location.
-      :type location_id: Optional[str]
+      :type location_id: str | None
 
       :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
           instantiation.
@@ -1473,7 +1488,7 @@ Module Contents
 
 
 
-   .. py:method:: update_robot(robot_id: str, name: str, location_id: Optional[str] = None) -> viam.proto.app.Robot
+   .. py:method:: update_robot(robot_id: str, name: str, location_id: str | None = None) -> viam.proto.app.Robot
       :async:
 
 
@@ -1493,7 +1508,7 @@ Module Contents
       :type name: str
       :param location_id: ID of the location under which the machine exists. Defaults to the location ID provided at
                           `AppClient` instantiation
-      :type location_id: Optional[str]
+      :type location_id: str | None
 
       :raises GRPCError: If either an invalid machine ID, name, or location ID is passed or a location ID isn't passed and there was no
           location ID provided at `AppClient` instantiation.
@@ -1524,7 +1539,7 @@ Module Contents
 
 
 
-   .. py:method:: list_fragments(org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment]] = None) -> List[Fragment]
+   .. py:method:: list_fragments(org_id: str, show_public: bool = True, visibilities: list[Fragment] | None = None) -> list[Fragment]
       :async:
 
 
@@ -1545,16 +1560,16 @@ Module Contents
       :type show_public: bool
       :param visibilities: List of FragmentVisibilities specifying which types of fragments to include
                            in the results. If empty, by default only public fragments will be returned.
-      :type visibilities: Optional[List[Fragment.Visibility]]
+      :type visibilities: list[Fragment.Visibility] | None
 
       :returns: The list of fragments.
-      :rtype: List[viam.app.app_client.Fragment]
+      :rtype: list[viam.app.app_client.Fragment]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listfragments>`_.
 
 
 
-   .. py:method:: get_fragment(fragment_id: str, version: Optional[str] = None) -> Fragment
+   .. py:method:: get_fragment(fragment_id: str, version: str | None = None) -> Fragment
       :async:
 
 
@@ -1581,7 +1596,7 @@ Module Contents
 
 
 
-   .. py:method:: create_fragment(org_id: str, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment
+   .. py:method:: create_fragment(org_id: str, name: str, config: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None) -> Fragment
       :async:
 
 
@@ -1598,7 +1613,7 @@ Module Contents
       :type name: str
       :param config: Optional Dictionary representation of new config to assign to specified fragment. Can be
                      assigned by updating the fragment.
-      :type config: Optional[Mapping[str, Any]]
+      :type config: Mapping[str, ValueTypes] | None
 
       :raises GRPCError: If an invalid name is passed.
 
@@ -1609,7 +1624,7 @@ Module Contents
 
 
 
-   .. py:method:: update_fragment(fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None, visibility: Optional[Fragment] = None, last_known_update: Optional[datetime.datetime] = None) -> Fragment
+   .. py:method:: update_fragment(fragment_id: str, name: str, config: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, public: bool | None = None, visibility: Fragment | None = None, last_known_update: datetime.datetime | None = None) -> Fragment
       :async:
 
 
@@ -1627,7 +1642,7 @@ Module Contents
       :type name: str
       :param config: Optional Dictionary representation of new config to assign to specified fragment. Not
                      passing this parameter will leave the fragment's config unchanged.
-      :type config: Optional[Mapping[str, Any]]
+      :type config: Mapping[str, ValueTypes] | None
       :param public: Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment's
                      visibility unchanged. A fragment is private by default when created.
 
@@ -1637,7 +1652,7 @@ Module Contents
       :param visibility: Optional FragmentVisibility list specifying who should be allowed
                          to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
                          A fragment is private by default when created.
-      :type visibility: Optional[FragmentVisibility]
+      :type visibility: Fragment.Visibility | None
       :param last_known_update: Optional time of the last known update to this fragment's config. If provided, this will result in
                                 a GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting
                                 this parameter will result in an overwrite of the upstream config.
@@ -1672,7 +1687,7 @@ Module Contents
 
 
 
-   .. py:method:: get_fragment_history(id: str, page_token: Optional[str] = '', page_limit: Optional[int] = 10) -> List[FragmentHistoryEntry]
+   .. py:method:: get_fragment_history(id: str, page_token: str | None = '', page_limit: int | None = 10) -> list[FragmentHistoryEntry]
       :async:
 
 
@@ -1689,10 +1704,10 @@ Module Contents
       :param id: ID of the fragment to fetch history for.
       :type id: str
       :param page_token: the page token for the fragment history collection
-      :type page_token: Optional[str]
+      :type page_token: str | None
       :param page_limit: the number of fragment history documents to return in the result.
                          The default page limit is 10.
-      :type page_limit: Optional[int]
+      :type page_limit: int | None
 
       :raises GRPCError: if an invalid fragment id, page token or page limit is passed.
 
@@ -1703,7 +1718,7 @@ Module Contents
 
 
 
-   .. py:method:: add_role(org_id: str, identity_id: str, role: Union[Literal['owner'], Literal['operator']], resource_type: Union[Literal['organization'], Literal['location'], Literal['robot']], resource_id: str) -> None
+   .. py:method:: add_role(org_id: str, identity_id: str, role: _ROLE_TYPE, resource_type: _RESOURCE_TYPE_TYPE, resource_id: str) -> None
       :async:
 
 
@@ -1725,10 +1740,10 @@ Module Contents
       :param identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type identity_id: str
       :param role: The role to add.
-      :type role: Union[Literal["owner"], Literal["operator"]]
+      :type role: _ROLE_TYPE
       :param resource_type: Type of the resource to add role to.
                             Must match `resource_id`.
-      :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
+      :type resource_type: _RESOURCE_TYPE_TYPE
       :param resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type resource_id: str
 
@@ -1738,7 +1753,7 @@ Module Contents
 
 
 
-   .. py:method:: remove_role(org_id: str, identity_id: str, role: Union[Literal['owner'], Literal['operator']], resource_type: Union[Literal['organization'], Literal['location'], Literal['robot']], resource_id: str) -> None
+   .. py:method:: remove_role(org_id: str, identity_id: str, role: _ROLE_TYPE, resource_type: _RESOURCE_TYPE_TYPE, resource_id: str) -> None
       :async:
 
 
@@ -1760,10 +1775,10 @@ Module Contents
       :param identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type identity_id: str
       :param role: The role to remove.
-      :type role: Union[Literal["owner"], Literal["operator"]]
+      :type role: _ROLE_TYPE
       :param resource_type: Type of the resource the role is being
                             removed from. Must match `resource_id`.
-      :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
+      :type resource_type: _RESOURCE_TYPE_TYPE
       :param resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type resource_id: str
 
@@ -1773,7 +1788,7 @@ Module Contents
 
 
 
-   .. py:method:: change_role(organization_id: str, old_identity_id: str, old_role: Union[Literal['owner'], Literal['operator']], old_resource_type: Union[Literal['organization'], Literal['location'], Literal['robot']], old_resource_id: str, new_identity_id: str, new_role: Union[Literal['owner'], Literal['operator']], new_resource_type: Union[Literal['organization'], Literal['location'], Literal['robot']], new_resource_id: str) -> None
+   .. py:method:: change_role(organization_id: str, old_identity_id: str, old_role: _ROLE_TYPE, old_resource_type: _RESOURCE_TYPE_TYPE, old_resource_id: str, new_identity_id: str, new_role: _ROLE_TYPE, new_resource_type: _RESOURCE_TYPE_TYPE, new_resource_id: str) -> None
       :async:
 
 
@@ -1798,19 +1813,19 @@ Module Contents
       :param old_identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type old_identity_id: str
       :param old_role: The role to be changed.
-      :type old_role: Union[Literal["owner"], Literal["operator"]]
+      :type old_role: _ROLE_TYPE
       :param old_resource_type: Type of the resource the role is
                                 added to. Must match `old_resource_id`.
-      :type old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
+      :type old_resource_type: _RESOURCE_TYPE_TYPE
       :param old_resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type old_resource_id: str
       :param new_identity_id: New ID of the entity the role belongs to (for example, a user ID).
       :type new_identity_id: str
       :param new_role: The new role.
-      :type new_role: Union[Literal["owner"], Literal["operator"]]
+      :type new_role: _ROLE_TYPE
       :param new_resource_type: Type of the resource to add role to.
                                 Must match `new_resource_id`.
-      :type new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
+      :type new_resource_type: _RESOURCE_TYPE_TYPE
       :param new_resource_id: New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type new_resource_id: str
 
@@ -1818,7 +1833,7 @@ Module Contents
 
 
 
-   .. py:method:: list_authorizations(org_id: str, resource_ids: Optional[List[str]] = None) -> List[viam.proto.app.Authorization]
+   .. py:method:: list_authorizations(org_id: str, resource_ids: list[str] | None = None) -> list[viam.proto.app.Authorization]
       :async:
 
 
@@ -1834,18 +1849,18 @@ Module Contents
       :param org_id: The ID of the organization to list authorizations for.
       :param resource_ids: IDs of the resources to retrieve authorizations from.
                            If None, defaults to all resources.
-      :type resource_ids: Optional[List[str]]
+      :type resource_ids: list[str] | None
 
       :raises GRPCError: If an invalid resource ID is passed.
 
       :returns: The list of authorizations.
-      :rtype: List[viam.proto.app.Authorization]
+      :rtype: list[viam.proto.app.Authorization]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listauthorizations>`_.
 
 
 
-   .. py:method:: check_permissions(permissions: List[viam.proto.app.AuthorizedPermissions]) -> List[viam.proto.app.AuthorizedPermissions]
+   .. py:method:: check_permissions(permissions: list[viam.proto.app.AuthorizedPermissions]) -> list[viam.proto.app.AuthorizedPermissions]
       :async:
 
 
@@ -1866,12 +1881,12 @@ Module Contents
 
       :param permissions: the permissions to validate
                           (for example, "read_organization", "control_robot")
-      :type permissions: List[viam.proto.app.AuthorizedPermissions]
+      :type permissions: list[viam.proto.app.AuthorizedPermissions]
 
       :raises GRPCError: If the list of permissions to validate is empty.
 
       :returns: The permissions argument, with invalid permissions filtered out.
-      :rtype: List[viam.proto.app.AuthorizedPermissions]
+      :rtype: list[viam.proto.app.AuthorizedPermissions]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#checkpermissions>`_.
 
@@ -1955,7 +1970,7 @@ Module Contents
 
 
 
-   .. py:method:: list_registry_items(organization_id: str, types: List[viam.proto.app.packages.PackageType.ValueType], visibilities: List[viam.proto.app.Visibility.ValueType], platforms: List[str], statuses: List[viam.proto.app.RegistryItemStatus.ValueType], search_term: Optional[str] = None, page_token: Optional[str] = None) -> List[viam.proto.app.RegistryItem]
+   .. py:method:: list_registry_items(organization_id: str, types: list[viam.proto.app.packages.PackageType.ValueType], visibilities: list[viam.proto.app.Visibility.ValueType], platforms: list[str], statuses: list[viam.proto.app.RegistryItemStatus.ValueType], search_term: str | None = None, page_token: str | None = None) -> list[viam.proto.app.RegistryItem]
       :async:
 
 
@@ -1987,20 +2002,20 @@ Module Contents
       :param organization_id: The ID of the organization to return registry items for.
       :type organization_id: str
       :param types: The types of registry items.
-      :type types: List[PackageType.ValueType]
+      :type types: list[PackageType.ValueType]
       :param visibilities: The visibilities of registry items.
-      :type visibilities: List[Visibility.ValueType]
+      :type visibilities: list[Visibility.ValueType]
       :param platforms: The platforms of registry items.
-      :type platforms: List[str]
+      :type platforms: list[str]
       :param statuses: The types of the items in the registry.
-      :type statuses: List[RegistryItemStatus.ValueType]
+      :type statuses: list[RegistryItemStatus.ValueType]
       :param search_term: The search term of the registry items.
-      :type search_term: Optional[str]
+      :type search_term: str | None
       :param page_token: The page token of the registry items.
-      :type page_token: Optional[str]
+      :type page_token: str | None
 
       :returns: The list of registry items.
-      :rtype: List[RegistryItem]
+      :rtype: list[RegistryItem]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listregistryitems>`_.
 
@@ -2024,7 +2039,7 @@ Module Contents
 
 
 
-   .. py:method:: create_module(org_id: str, name: str) -> Tuple[str, str]
+   .. py:method:: create_module(org_id: str, name: str) -> tuple[str, str]
       :async:
 
 
@@ -2044,13 +2059,13 @@ Module Contents
       :raises GRPCError: If an invalid name (for example, "") is passed.
 
       :returns: A tuple containing the ID [0] of the new module and its URL [1].
-      :rtype: Tuple[str, str]
+      :rtype: tuple[str, str]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createmodule>`_.
 
 
 
-   .. py:method:: update_module(module_id: str, url: str, description: str, models: Optional[List[viam.proto.app.Model]], entrypoint: str, public: bool = False) -> str
+   .. py:method:: update_module(module_id: str, url: str, description: str, models: list[viam.proto.app.Model] | None, entrypoint: str, public: bool = False) -> str
       :async:
 
 
@@ -2081,7 +2096,7 @@ Module Contents
       :param description: A short description of the module that explains its purpose.
       :type description: str
       :param models: list of models that are available in the module.
-      :type models: List[viam.proto.app.Model]
+      :type models: list[viam.proto.app.Model]
       :param entrypoint: The executable to run to start the module program.
       :type entrypoint: str
       :param public: The visibility that should be set for the module. Defaults to False (private).
@@ -2152,7 +2167,7 @@ Module Contents
 
 
 
-   .. py:method:: list_modules(org_id: str) -> List[viam.proto.app.Module]
+   .. py:method:: list_modules(org_id: str) -> list[viam.proto.app.Module]
       :async:
 
 
@@ -2167,13 +2182,13 @@ Module Contents
       :type org_id: str
 
       :returns: The list of modules.
-      :rtype: List[viam.proto.app.Module]
+      :rtype: list[viam.proto.app.Module]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listmodules>`_.
 
 
 
-   .. py:method:: create_key(org_id: str, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]
+   .. py:method:: create_key(org_id: str, authorizations: list[APIKeyAuthorization], name: str | None = None) -> tuple[str, str]
       :async:
 
 
@@ -2200,14 +2215,14 @@ Module Contents
       :type org_id: str
       :param authorizations: A list of authorizations to associate
                              with the key.
-      :type authorizations: List[viam.proto.app.Authorization]
+      :type authorizations: list[viam.proto.app.Authorization]
       :param name: A name for the key. If None, defaults to the current timestamp.
-      :type name: Optional[str]
+      :type name: str | None
 
       :raises GRPCError: If the authorizations list is empty.
 
       :returns: The api key and api key ID.
-      :rtype: Tuple[str, str]
+      :rtype: tuple[str, str]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createkey>`_.
 
@@ -2230,7 +2245,7 @@ Module Contents
 
 
 
-   .. py:method:: create_key_from_existing_key_authorizations(id: str) -> Tuple[str, str]
+   .. py:method:: create_key_from_existing_key_authorizations(id: str) -> tuple[str, str]
       :async:
 
 
@@ -2245,13 +2260,13 @@ Module Contents
       :type id: str
 
       :returns: The API key and API key id
-      :rtype: Tuple[str, str]
+      :rtype: tuple[str, str]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createkeyfromexistingkeyauthorizations>`_.
 
 
 
-   .. py:method:: list_keys(org_id: str) -> List[viam.proto.app.APIKeyWithAuthorizations]
+   .. py:method:: list_keys(org_id: str) -> list[viam.proto.app.APIKeyWithAuthorizations]
       :async:
 
 
@@ -2266,13 +2281,13 @@ Module Contents
       :type org_id: str
 
       :returns: The existing API keys and authorizations.
-      :rtype: List[viam.proto.app.APIKeyWithAuthorizations]
+      :rtype: list[viam.proto.app.APIKeyWithAuthorizations]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listkeys>`_.
 
 
 
-   .. py:method:: rotate_key(id: str) -> Tuple[str, str]
+   .. py:method:: rotate_key(id: str) -> tuple[str, str]
       :async:
 
 
@@ -2286,13 +2301,13 @@ Module Contents
       :type id: str
 
       :returns: The API key and API key id
-      :rtype: Tuple[str, str]
+      :rtype: tuple[str, str]
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#rotatekey>`_.
 
 
 
-   .. py:method:: get_organization_metadata(org_id: str) -> Mapping[str, Any]
+   .. py:method:: get_organization_metadata(org_id: str) -> collections.abc.Mapping[str, Any]
       :async:
 
 
@@ -2311,7 +2326,7 @@ Module Contents
 
 
 
-   .. py:method:: update_organization_metadata(org_id: str, metadata: Mapping[str, Any]) -> None
+   .. py:method:: update_organization_metadata(org_id: str, metadata: collections.abc.Mapping[str, Any]) -> None
       :async:
 
 
@@ -2331,7 +2346,7 @@ Module Contents
 
 
 
-   .. py:method:: get_location_metadata(location_id: str) -> Mapping[str, Any]
+   .. py:method:: get_location_metadata(location_id: str) -> collections.abc.Mapping[str, Any]
       :async:
 
 
@@ -2350,7 +2365,7 @@ Module Contents
 
 
 
-   .. py:method:: update_location_metadata(location_id: str, metadata: Mapping[str, Any]) -> None
+   .. py:method:: update_location_metadata(location_id: str, metadata: collections.abc.Mapping[str, Any]) -> None
       :async:
 
 
@@ -2370,7 +2385,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_metadata(robot_id: str) -> Mapping[str, Any]
+   .. py:method:: get_robot_metadata(robot_id: str) -> collections.abc.Mapping[str, Any]
       :async:
 
 
@@ -2389,7 +2404,7 @@ Module Contents
 
 
 
-   .. py:method:: update_robot_metadata(robot_id: str, metadata: Mapping[str, Any]) -> None
+   .. py:method:: update_robot_metadata(robot_id: str, metadata: collections.abc.Mapping[str, Any]) -> None
       :async:
 
 
@@ -2409,7 +2424,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_part_metadata(robot_part_id: str) -> Mapping[str, Any]
+   .. py:method:: get_robot_part_metadata(robot_part_id: str) -> collections.abc.Mapping[str, Any]
       :async:
 
 
@@ -2428,7 +2443,7 @@ Module Contents
 
 
 
-   .. py:method:: update_robot_part_metadata(robot_part_id: str, metadata: Mapping[str, Any]) -> None
+   .. py:method:: update_robot_part_metadata(robot_part_id: str, metadata: collections.abc.Mapping[str, Any]) -> None
       :async:
 
 
@@ -2445,6 +2460,102 @@ Module Contents
       :type robot_id: str
       :param metadata: The user-defined metadata converted from JSON to a Python dictionary.
       :type metadata: Mapping[str, Any]
+
+
+
+   .. py:method:: upload_device_push_token(app_id: str, device_token: str, device_uuid: str, timeout: float | None = None) -> None
+      :async:
+
+
+      Upload a device push token for mobile notifications.
+
+      :param app_id: The Firebase app ID.
+      :type app_id: str
+      :param device_token: The device push notification token.
+      :type device_token: str
+      :param device_uuid: The unique identifier for the device.
+      :type device_uuid: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+
+
+   .. py:method:: delete_device_push_token(app_id: str, device_uuid: str, timeout: float | None = None) -> None
+      :async:
+
+
+      Delete a device push token.
+
+      :param app_id: The Firebase app ID.
+      :type app_id: str
+      :param device_uuid: The unique identifier for the device.
+      :type device_uuid: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+
+
+   .. py:method:: get_device_push_tokens(app_id: str, timeout: float | None = None) -> list[str]
+      :async:
+
+
+      Get all device push tokens for an app.
+
+      :param app_id: The Firebase app ID.
+      :type app_id: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+      :returns: The list of device push tokens.
+      :rtype: list[str]
+
+
+
+   .. py:method:: set_firebase_config(org_id: str, app_id: str, config_json: str, timeout: float | None = None) -> None
+      :async:
+
+
+      Set the Firebase configuration for an organization.
+
+      :param org_id: The organization ID.
+      :type org_id: str
+      :param app_id: The Firebase app ID.
+      :type app_id: str
+      :param config_json: The Firebase configuration JSON as a string.
+      :type config_json: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+
+
+   .. py:method:: get_firebase_config(org_id: str, timeout: float | None = None) -> str
+      :async:
+
+
+      Get the Firebase app ID for an organization.
+
+      :param org_id: The organization ID.
+      :type org_id: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+      :returns: The Firebase app ID.
+      :rtype: str
+
+
+
+   .. py:method:: delete_firebase_config(org_id: str, app_id: str, timeout: float | None = None) -> None
+      :async:
+
+
+      Delete the Firebase configuration for an organization.
+
+      :param org_id: The organization ID.
+      :type org_id: str
+      :param app_id: The Firebase app ID.
+      :type app_id: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
 
 
 
