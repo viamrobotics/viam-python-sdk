@@ -1,4 +1,4 @@
-from typing import Any, List, Mapping, Optional
+from collections.abc import Mapping
 
 from grpclib.client import Channel
 
@@ -51,8 +51,8 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         return_detections: bool = False,
         return_object_point_clouds: bool = False,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> CaptureAllResult:
         md = kwargs.get("metadata", self.Metadata()).proto
@@ -68,7 +68,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout, metadata=md)
         result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
-        if return_image:
+        if return_image and response.image is not None:
             mime_type = CameraMimeType.from_string(response.image.mime_type)
             img = ViamImage(response.image.image, mime_type)
             result.image = img
@@ -84,10 +84,10 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         self,
         camera_name: str,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
-    ) -> List[Detection]:
+    ) -> list[Detection]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetDetectionsFromCameraRequest(name=self.name, camera_name=camera_name, extra=dict_to_struct(extra))
         response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout, metadata=md)
@@ -97,10 +97,10 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         self,
         image: ViamImage,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
-    ) -> List[Detection]:
+    ) -> list[Detection]:
         md = kwargs.get("metadata", self.Metadata()).proto
         mime_type = CameraMimeType.JPEG
 
@@ -123,10 +123,10 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         camera_name: str,
         count: int,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
-    ) -> List[Classification]:
+    ) -> list[Classification]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetClassificationsFromCameraRequest(name=self.name, camera_name=camera_name, n=count, extra=dict_to_struct(extra))
         response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(
@@ -139,10 +139,10 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         image: ViamImage,
         count: int,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
-    ) -> List[Classification]:
+    ) -> list[Classification]:
         md = kwargs.get("metadata", self.Metadata()).proto
 
         mime_type = CameraMimeType.JPEG
@@ -164,10 +164,10 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         self,
         camera_name: str,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
-    ) -> List[PointCloudObject]:
+    ) -> list[PointCloudObject]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetObjectPointCloudsRequest(
             name=self.name,
@@ -181,8 +181,8 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> Vision.Properties:
         md = kwargs.get("metadata", self.Metadata()).proto
@@ -197,7 +197,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         self,
         command: Mapping[str, ValueTypes],
         *,
-        timeout: Optional[float] = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
         md = kwargs.get("metadata", self.Metadata()).proto
@@ -208,7 +208,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def get_status(
         self,
         *,
-        timeout: Optional[float] = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
         md = kwargs.get("metadata", self.Metadata()).proto

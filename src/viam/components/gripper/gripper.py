@@ -2,10 +2,9 @@ import abc
 from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional
 
+from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
-
-from .. import KinematicsReturn
 
 
 class Gripper(ComponentBase):

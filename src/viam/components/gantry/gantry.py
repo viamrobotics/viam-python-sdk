@@ -1,10 +1,9 @@
 import abc
 from typing import Any, Dict, Final, List, Optional
 
+from viam.components import KinematicsReturn
+from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
-
-from .. import KinematicsReturn
-from ..component_base import ComponentBase
 
 
 class Gantry(ComponentBase):
