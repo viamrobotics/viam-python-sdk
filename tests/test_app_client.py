@@ -200,6 +200,10 @@ MODULE = Module(
 MODULES = [MODULE]
 EMAIL = "email"
 EMAILS = [EMAIL]
+FIRST_NAME = "first_name"
+LAST_NAME = "last_name"
+PASSWORD = "password"
+APPLICATION_ID = "application_id"
 MEMBER = OrganizationMember(user_id=ID, emails=EMAILS, date_added=TIME)
 MEMBERS = [MEMBER]
 INVITE = OrganizationInvite(organization_id=ID, email=EMAIL, created_on=TIME)
@@ -349,6 +353,28 @@ class TestClient:
             client = AppClient(channel, METADATA)
             await client.resend_organization_invite(org_id=ID, email=EMAIL)
             assert service.resent_invite_email == EMAIL
+
+    async def test_create_oauth_app_user(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            response = await client.create_oauth_app_user(
+                org_id=ID,
+                application_id=APPLICATION_ID,
+                email=EMAIL,
+                first_name=FIRST_NAME,
+                last_name=LAST_NAME,
+                password=PASSWORD,
+            )
+            assert service.oauth_app_org_id == ID
+            assert service.oauth_app_application_id == APPLICATION_ID
+            assert service.oauth_app_email == EMAIL
+            assert service.oauth_app_first_name == FIRST_NAME
+            assert service.oauth_app_last_name == LAST_NAME
+            assert service.oauth_app_password == PASSWORD
+            assert response.auth_token == "test_auth_token"
+            assert response.registration_id == "test_registration_id"
+            assert response.user_id == "test_user_id"
+            assert response.refresh_token == "test_refresh_token"
 
     async def test_create_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:

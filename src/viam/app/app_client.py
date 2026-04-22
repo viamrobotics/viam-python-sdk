@@ -36,6 +36,8 @@ from viam.proto.app import (
     CreateOrganizationInviteResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
+    CreateOAuthAppUserRequest,
+    CreateOAuthAppUserResponse,
     CreateRegistryItemRequest,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
@@ -1009,6 +1011,53 @@ class AppClient:
         request = ResendOrganizationInviteRequest(organization_id=org_id, email=email)
         response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
         return response.invite
+
+    async def create_oauth_app_user(
+        self,
+        org_id: str,
+        application_id: str,
+        email: str,
+        first_name: str,
+        last_name: str,
+        password: str,
+        timeout: float | None = None,
+    ) -> CreateOAuthAppUserResponse:
+        """Create a user for an OAuth application.
+
+        ::
+
+            response = await cloud.create_oauth_app_user(
+                org_id="<YOUR-ORG-ID>",
+                application_id="<YOUR-APP-ID>",
+                email="user@example.com",
+                first_name="John",
+                last_name="Doe",
+                password="securepassword"
+            )
+
+        Args:
+            org_id (str): The ID of the organization.
+            application_id (str): The ID of the OAuth application.
+            email (str): The email address of the user.
+            first_name (str): The first name of the user.
+            last_name (str): The last name of the user.
+            password (str): The password for the user.
+            timeout (float | None): Optional timeout for the request.
+
+        Returns:
+            CreateOAuthAppUserResponse: The response containing auth_token, registration_id, user_id, and refresh_token.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createoauthappuser>`_.
+        """
+        request = CreateOAuthAppUserRequest(
+            org_id=org_id,
+            application_id=application_id,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            password=password,
+        )
+        return await self._app_client.CreateOAuthAppUser(request, metadata=self._metadata, timeout=timeout)
 
     async def create_location(self, org_id: str, name: str, parent_location_id: str | None = None) -> Location:
         """Create and name a location under the currently authed-to organization and the specified parent location.
