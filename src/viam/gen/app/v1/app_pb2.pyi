@@ -6294,6 +6294,50 @@ class ListOAuthAppsResponse(_message.Message):
 Global___ListOAuthAppsResponse: _TypeAlias = ListOAuthAppsResponse
 
 @_typing.final
+class CreateOAuthAppUserRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: _builtins.int
+    APPLICATION_ID_FIELD_NUMBER: _builtins.int
+    EMAIL_FIELD_NUMBER: _builtins.int
+    FIRST_NAME_FIELD_NUMBER: _builtins.int
+    LAST_NAME_FIELD_NUMBER: _builtins.int
+    PASSWORD_FIELD_NUMBER: _builtins.int
+    org_id: _builtins.str
+    application_id: _builtins.str
+    email: _builtins.str
+    first_name: _builtins.str
+    last_name: _builtins.str
+    password: _builtins.str
+
+    def __init__(self, *, org_id: _builtins.str=..., application_id: _builtins.str=..., email: _builtins.str=..., first_name: _builtins.str=..., last_name: _builtins.str=..., password: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['application_id', b'application_id', 'email', b'email', 'first_name', b'first_name', 'last_name', b'last_name', 'org_id', b'org_id', 'password', b'password']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___CreateOAuthAppUserRequest: _TypeAlias = CreateOAuthAppUserRequest
+
+@_typing.final
+class CreateOAuthAppUserResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    AUTH_TOKEN_FIELD_NUMBER: _builtins.int
+    REGISTRATION_ID_FIELD_NUMBER: _builtins.int
+    USER_ID_FIELD_NUMBER: _builtins.int
+    REFRESH_TOKEN_FIELD_NUMBER: _builtins.int
+    auth_token: _builtins.str
+    registration_id: _builtins.str
+    user_id: _builtins.str
+    refresh_token: _builtins.str
+
+    def __init__(self, *, auth_token: _builtins.str=..., registration_id: _builtins.str=..., user_id: _builtins.str=..., refresh_token: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['auth_token', b'auth_token', 'refresh_token', b'refresh_token', 'registration_id', b'registration_id', 'user_id', b'user_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___CreateOAuthAppUserResponse: _TypeAlias = CreateOAuthAppUserResponse
+
+@_typing.final
 class OAuthConfig(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     CLIENT_AUTHENTICATION_FIELD_NUMBER: _builtins.int
