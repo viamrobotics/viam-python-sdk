@@ -167,7 +167,7 @@ Package Contents
    .. py:attribute:: channel
 
 
-   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.vision.vision.CaptureAllResult
+   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> viam.services.vision.vision.CaptureAllResult
       :async:
 
 
@@ -207,7 +207,7 @@ Package Contents
 
 
 
-   .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections_from_camera(camera_name: str, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> list[viam.proto.service.vision.Detection]
       :async:
 
 
@@ -234,7 +234,7 @@ Package Contents
 
 
 
-   .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> list[viam.proto.service.vision.Detection]
       :async:
 
 
@@ -266,7 +266,7 @@ Package Contents
 
 
 
-   .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> list[viam.proto.service.vision.Classification]
       :async:
 
 
@@ -292,7 +292,7 @@ Package Contents
 
 
 
-   .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> list[viam.proto.service.vision.Classification]
       :async:
 
 
@@ -322,7 +322,7 @@ Package Contents
 
 
 
-   .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> list[viam.proto.common.PointCloudObject]
       :async:
 
 
@@ -355,7 +355,7 @@ Package Contents
 
 
 
-   .. py:method:: get_properties(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.vision.vision.Vision.Properties
+   .. py:method:: get_properties(*, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> viam.services.vision.vision.Vision.Properties
       :async:
 
 
@@ -376,7 +376,7 @@ Package Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: collections.abc.Mapping[str, viam.utils.ValueTypes], *, timeout: float | None = None, **kwargs) -> collections.abc.Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -402,7 +402,7 @@ Package Contents
 
 
 
-   .. py:method:: get_status(*, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: get_status(*, timeout: float | None = None, **kwargs) -> collections.abc.Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
