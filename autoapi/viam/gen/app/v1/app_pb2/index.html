@@ -1101,6 +1101,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.Global___ListOAuthAppsResponse" title="viam.gen.app.v1.app_pb2.Global___ListOAuthAppsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___ListOAuthAppsResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserRequest" title="viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___CreateOAuthAppUserRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserResponse" title="viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___CreateOAuthAppUserResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.Global___OAuthConfig" title="viam.gen.app.v1.app_pb2.Global___OAuthConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___OAuthConfig</span></code></a></p></td>
 <td><p></p></td>
 </tr>
@@ -2009,6 +2015,12 @@ isort:skip_file</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListOAuthAppsResponse" title="viam.gen.app.v1.app_pb2.ListOAuthAppsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOAuthAppsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.OAuthConfig" title="viam.gen.app.v1.app_pb2.OAuthConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuthConfig</span></code></a></p></td>
@@ -13052,6 +13064,86 @@ shown below.</p>
 <dl class="py type">
 <dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.Global___ListOAuthAppsResponse">
 <span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___ListOAuthAppsResponse</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListOAuthAppsResponse" title="viam.gen.app.v1.app_pb2.ListOAuthAppsResponse"><span class="pre">ListOAuthAppsResponse</span></a></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.Global___ListOAuthAppsResponse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">CreateOAuthAppUserRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.org_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.application_id">
+<span class="sig-name descname"><span class="pre">application_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.application_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.email">
+<span class="sig-name descname"><span class="pre">email</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.first_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.last_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.password">
+<span class="sig-name descname"><span class="pre">password</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest.password" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserRequest">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___CreateOAuthAppUserRequest</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest"><span class="pre">CreateOAuthAppUserRequest</span></a></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserRequest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">CreateOAuthAppUserResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.auth_token">
+<span class="sig-name descname"><span class="pre">auth_token</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.auth_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.registration_id">
+<span class="sig-name descname"><span class="pre">registration_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.registration_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.refresh_token">
+<span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse.refresh_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserResponse">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___CreateOAuthAppUserResponse</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse"><span class="pre">CreateOAuthAppUserResponse</span></a></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.Global___CreateOAuthAppUserResponse" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

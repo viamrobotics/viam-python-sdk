@@ -115,6 +115,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateOAuthApp"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateOAuthApp()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.DeleteOAuthApp"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.DeleteOAuthApp()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListOAuthApps"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListOAuthApps()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateOAuthAppUser"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateOAuthAppUser()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateLocation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetLocation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateLocation()</span></code></a></li>
@@ -234,6 +235,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.UpdateOAuthApp"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.UpdateOAuthApp</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.DeleteOAuthApp"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.DeleteOAuthApp</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.ListOAuthApps"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.ListOAuthApps</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.CreateOAuthAppUser"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.CreateOAuthAppUser</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.CreateLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.CreateLocation</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.GetLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.GetLocation</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.UpdateLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.UpdateLocation</span></code></a></li>
@@ -352,6 +354,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.UpdateOAuthApp"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.UpdateOAuthApp()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.DeleteOAuthApp"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.DeleteOAuthApp()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.ListOAuthApps"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.ListOAuthApps()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.CreateOAuthAppUser"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.CreateOAuthAppUser()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.CreateLocation"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.CreateLocation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.GetLocation"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.GetLocation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.UpdateLocation"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.UpdateLocation()</span></code></a></li>
@@ -618,6 +621,22 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppResponse"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppResponse</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppResponse.client_id"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppResponse.client_id</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppResponse.client_secret"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppResponse.client_secret</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest.org_id"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest.org_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest.application_id"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest.application_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest.email"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest.email</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest.first_name"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest.first_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest.last_name"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest.last_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest.password"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest.password</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserResponse"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserResponse.auth_token"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse.auth_token</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserResponse.registration_id"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse.registration_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserResponse.user_id"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse.user_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserResponse.refresh_token"><code class="docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse.refresh_token</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.CreateOrganizationInviteRequest"><code class="docutils literal notranslate"><span class="pre">CreateOrganizationInviteRequest</span></code></a><ul>
@@ -2224,6 +2243,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.CreateOAuthAppResponse" title="viam.proto.app.CreateOAuthAppResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateOAuthAppResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserRequest" title="viam.proto.app.CreateOAuthAppUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateOAuthAppUserRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.CreateOAuthAppUserResponse" title="viam.proto.app.CreateOAuthAppUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateOAuthAppUserResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.CreateOrganizationInviteRequest" title="viam.proto.app.CreateOrganizationInviteRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateOrganizationInviteRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -3340,6 +3365,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.CreateOAuthAppUser">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CreateOAuthAppUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest"><span class="pre">app.v1.app_pb2.CreateOAuthAppUserRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse"><span class="pre">app.v1.app_pb2.CreateOAuthAppUserResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.CreateOAuthAppUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.CreateOAuthAppUser" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.CreateLocation">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CreateLocation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateLocationRequest" title="viam.gen.app.v1.app_pb2.CreateLocationRequest"><span class="pre">app.v1.app_pb2.CreateLocationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateLocationResponse" title="viam.gen.app.v1.app_pb2.CreateLocationResponse"><span class="pre">app.v1.app_pb2.CreateLocationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.CreateLocation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.CreateLocation" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -4249,6 +4283,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceStub.CreateOAuthAppUser">
+<span class="sig-name descname"><span class="pre">CreateOAuthAppUser</span></span><a class="headerlink" href="#viam.proto.app.AppServiceStub.CreateOAuthAppUser" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceStub.CreateLocation">
 <span class="sig-name descname"><span class="pre">CreateLocation</span></span><a class="headerlink" href="#viam.proto.app.AppServiceStub.CreateLocation" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -4829,6 +4868,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.UnimplementedAppServiceBase.ListOAuthApps">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ListOAuthApps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListOAuthAppsRequest" title="viam.gen.app.v1.app_pb2.ListOAuthAppsRequest"><span class="pre">app.v1.app_pb2.ListOAuthAppsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListOAuthAppsResponse" title="viam.gen.app.v1.app_pb2.ListOAuthAppsResponse"><span class="pre">app.v1.app_pb2.ListOAuthAppsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#UnimplementedAppServiceBase.ListOAuthApps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.UnimplementedAppServiceBase.ListOAuthApps" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.UnimplementedAppServiceBase.CreateOAuthAppUser">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CreateOAuthAppUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserRequest"><span class="pre">app.v1.app_pb2.CreateOAuthAppUserRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse"><span class="pre">app.v1.app_pb2.CreateOAuthAppUserResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#UnimplementedAppServiceBase.CreateOAuthAppUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.UnimplementedAppServiceBase.CreateOAuthAppUser" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -6383,6 +6427,76 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppResponse.client_secret">
 <span class="sig-name descname"><span class="pre">client_secret</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppResponse.client_secret" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">CreateOAuthAppUserRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest.org_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest.application_id">
+<span class="sig-name descname"><span class="pre">application_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest.application_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest.email">
+<span class="sig-name descname"><span class="pre">email</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest.email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest.first_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest.last_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserRequest.password">
+<span class="sig-name descname"><span class="pre">password</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserRequest.password" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">CreateOAuthAppUserResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserResponse.auth_token">
+<span class="sig-name descname"><span class="pre">auth_token</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserResponse.auth_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserResponse.registration_id">
+<span class="sig-name descname"><span class="pre">registration_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserResponse.registration_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserResponse.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserResponse.user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateOAuthAppUserResponse.refresh_token">
+<span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.CreateOAuthAppUserResponse.refresh_token" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

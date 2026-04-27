@@ -809,6 +809,45 @@ Module Contents
 
 
 
+   .. py:method:: create_oauth_app_user(org_id: str, application_id: str, email: str, first_name: str, last_name: str, password: str, timeout: float | None = None) -> viam.proto.app.CreateOAuthAppUserResponse
+      :async:
+
+
+      Create a user for an OAuth application.
+
+      ::
+
+          response = await cloud.create_oauth_app_user(
+              org_id="<YOUR-ORG-ID>",
+              application_id="<YOUR-APP-ID>",
+              email="user@example.com",
+              first_name="John",
+              last_name="Doe",
+              password="securepassword"
+          )
+
+      :param org_id: The ID of the organization.
+      :type org_id: str
+      :param application_id: The ID of the OAuth application.
+      :type application_id: str
+      :param email: The email address of the user.
+      :type email: str
+      :param first_name: The first name of the user.
+      :type first_name: str
+      :param last_name: The last name of the user.
+      :type last_name: str
+      :param password: The password for the user.
+      :type password: str
+      :param timeout: Optional timeout for the request.
+      :type timeout: float | None
+
+      :returns: The response containing auth_token, registration_id, user_id, and refresh_token.
+      :rtype: CreateOAuthAppUserResponse
+
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createoauthappuser>`_.
+
+
+
    .. py:method:: create_location(org_id: str, name: str, parent_location_id: str | None = None) -> viam.proto.app.Location
       :async:
 

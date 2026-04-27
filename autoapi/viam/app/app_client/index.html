@@ -162,6 +162,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_organization_member"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_organization_member()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_organization_invite"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_organization_invite()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.resend_organization_invite"><code class="docutils literal notranslate"><span class="pre">AppClient.resend_organization_invite()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_oauth_app_user"><code class="docutils literal notranslate"><span class="pre">AppClient.create_oauth_app_user()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_location"><code class="docutils literal notranslate"><span class="pre">AppClient.create_location()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_location"><code class="docutils literal notranslate"><span class="pre">AppClient.get_location()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_location"><code class="docutils literal notranslate"><span class="pre">AppClient.update_location()</span></code></a></li>
@@ -1164,6 +1165,42 @@ You can obtain your organization ID from the organization settings page.</p></li
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#resendorganizationinvite">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_oauth_app_user">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">create_oauth_app_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.CreateOAuthAppUserResponse" title="viam.proto.app.CreateOAuthAppUserResponse"><span class="pre">viam.proto.app.CreateOAuthAppUserResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_oauth_app_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_oauth_app_user" title="Link to this definition"></a></dt>
+<dd><p>Create a user for an OAuth application.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_oauth_app_user</span><span class="p">(</span>
+    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">application_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-APP-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">email</span><span class="o">=</span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+    <span class="n">first_name</span><span class="o">=</span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;securepassword&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization.</p></li>
+<li><p><strong>application_id</strong> (<em>str</em>) – The ID of the OAuth application.</p></li>
+<li><p><strong>email</strong> (<em>str</em>) – The email address of the user.</p></li>
+<li><p><strong>first_name</strong> (<em>str</em>) – The first name of the user.</p></li>
+<li><p><strong>last_name</strong> (<em>str</em>) – The last name of the user.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password for the user.</p></li>
+<li><p><strong>timeout</strong> (<em>float</em><em> | </em><em>None</em>) – Optional timeout for the request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response containing auth_token, registration_id, user_id, and refresh_token.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse" title="viam.gen.app.v1.app_pb2.CreateOAuthAppUserResponse">CreateOAuthAppUserResponse</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#createoauthappuser">Fleet Management API</a>.</p>
 </dd></dl>
 
 <dl class="py method">

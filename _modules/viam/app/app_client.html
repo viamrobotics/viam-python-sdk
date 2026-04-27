@@ -119,6 +119,8 @@
     <span class="n">CreateLocationSecretResponse</span><span class="p">,</span>
     <span class="n">CreateModuleRequest</span><span class="p">,</span>
     <span class="n">CreateModuleResponse</span><span class="p">,</span>
+    <span class="n">CreateOAuthAppUserRequest</span><span class="p">,</span>
+    <span class="n">CreateOAuthAppUserResponse</span><span class="p">,</span>
     <span class="n">CreateOrganizationInviteRequest</span><span class="p">,</span>
     <span class="n">CreateOrganizationInviteResponse</span><span class="p">,</span>
     <span class="n">CreateOrganizationRequest</span><span class="p">,</span>
@@ -1184,6 +1186,56 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">ResendOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ResendOrganizationInviteResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ResendOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">invite</span></div>
+
+
+<div class="viewcode-block" id="AppClient.create_oauth_app_user">
+<a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_oauth_app_user">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_oauth_app_user</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">application_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreateOAuthAppUserResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a user for an OAuth application.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            response = await cloud.create_oauth_app_user(</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                application_id=&quot;&lt;YOUR-APP-ID&gt;&quot;,</span>
+<span class="sd">                email=&quot;user@example.com&quot;,</span>
+<span class="sd">                first_name=&quot;John&quot;,</span>
+<span class="sd">                last_name=&quot;Doe&quot;,</span>
+<span class="sd">                password=&quot;securepassword&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization.</span>
+<span class="sd">            application_id (str): The ID of the OAuth application.</span>
+<span class="sd">            email (str): The email address of the user.</span>
+<span class="sd">            first_name (str): The first name of the user.</span>
+<span class="sd">            last_name (str): The last name of the user.</span>
+<span class="sd">            password (str): The password for the user.</span>
+<span class="sd">            timeout (float | None): Optional timeout for the request.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            CreateOAuthAppUserResponse: The response containing auth_token, registration_id, user_id, and refresh_token.</span>
+
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createoauthappuser&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateOAuthAppUserRequest</span><span class="p">(</span>
+            <span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
+            <span class="n">application_id</span><span class="o">=</span><span class="n">application_id</span><span class="p">,</span>
+            <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span>
+            <span class="n">first_name</span><span class="o">=</span><span class="n">first_name</span><span class="p">,</span>
+            <span class="n">last_name</span><span class="o">=</span><span class="n">last_name</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateOAuthAppUser</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AppClient.create_location">
