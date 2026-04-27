@@ -1954,8 +1954,8 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
-        file_name: Optional[str] = None,
         mime_type: Optional[str] = None,
+        file_name: Optional[str] = None,
     ) -> str:
         """Upload arbitrary file data.
 
@@ -1980,8 +1980,8 @@ class DataClient:
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
-            file_name (Optional[str]): Optional name of the file. If not provided, the name will be derived from the filepath.
             mime_type (Optional[str]): Optional mime type of the data.
+            file_name (Optional[str]): Optional name of the file. If not provided, the name will be derived from the filepath.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
