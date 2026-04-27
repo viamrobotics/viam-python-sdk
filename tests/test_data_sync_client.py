@@ -134,6 +134,29 @@ class TestClient:
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
+    async def test_file_upload_from_path_with_file_name(self, service: MockDataSync, tmp_path):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            path = tmp_path / (FILE_NAME + FILE_EXT)
+            path.write_bytes(BINARY_DATA)
+            custom_name = "custom_file_name"
+            file_id = await client.file_upload_from_path(
+                part_id=PART_ID,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                tags=TAGS,
+                dataset_ids=DATASET_IDS,
+                filepath=path.resolve(),
+                file_name=custom_name,
+            )
+            assert file_id == FILE_UPLOAD_RESPONSE
+            self.assert_metadata(service.metadata)
+            assert service.metadata.file_name == custom_name
+            assert service.metadata.file_extension == FILE_EXT
+            assert service.binary_data == BINARY_DATA
+
     async def test_streaming_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
