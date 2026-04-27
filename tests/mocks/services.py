@@ -30,6 +30,8 @@ from viam.proto.app import (
     CreateLocationSecretResponse,
     CreateModuleRequest,
     CreateModuleResponse,
+    CreateOAuthAppUserRequest,
+    CreateOAuthAppUserResponse,
     CreateOrganizationInviteRequest,
     CreateOrganizationInviteResponse,
     CreateOrganizationRequest,
@@ -1537,6 +1539,24 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.resent_invite_email = request.email
         await stream.send_message(ResendOrganizationInviteResponse())
+
+    async def CreateOAuthAppUser(self, stream: Stream[CreateOAuthAppUserRequest, CreateOAuthAppUserResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.oauth_app_org_id = request.org_id
+        self.oauth_app_application_id = request.application_id
+        self.oauth_app_email = request.email
+        self.oauth_app_first_name = request.first_name
+        self.oauth_app_last_name = request.last_name
+        self.oauth_app_password = request.password
+        await stream.send_message(
+            CreateOAuthAppUserResponse(
+                auth_token="test_auth_token",
+                registration_id="test_registration_id",
+                user_id="test_user_id",
+                refresh_token="test_refresh_token",
+            )
+        )
 
     async def CreateLocation(self, stream: Stream[CreateLocationRequest, CreateLocationResponse]) -> None:
         request = await stream.recv_message()
