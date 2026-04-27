@@ -1639,7 +1639,7 @@ Module Contents
 
 
 
-   .. py:method:: file_upload_from_path(filepath: str, part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, dataset_ids: Optional[List[str]] = None, mime_type: Optional[str] = None) -> str
+   .. py:method:: file_upload_from_path(filepath: str, part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, dataset_ids: Optional[List[str]] = None, mime_type: Optional[str] = None, file_name: Optional[str] = None) -> str
       :async:
 
 
@@ -1675,6 +1675,8 @@ Module Contents
       :type dataset_ids: Optional[List[str]]
       :param mime_type: Optional mime type of the data.
       :type mime_type: Optional[str]
+      :param file_name: Optional name of the file. If not provided, the name will be derived from the filepath.
+      :type file_name: Optional[str]
 
       :raises GRPCError: If an invalid part ID is passed.
       :raises FileNotFoundError: If the provided filepath is not found.
