@@ -82,6 +82,24 @@ class DialOptions:
     """Number of seconds before the dial connection times out
     Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go"""
 
+    force_relay: bool = False
+    """Force ICE transport policy to relay-only so only TURN candidates are used.
+    Useful for testing relay connectivity through a TURN server. Mutually exclusive
+    with ``force_p2p``: if both are set the connection will fail because ``force_p2p``
+    strips the very TURN servers ``force_relay`` requires."""
+
+    force_p2p: bool = False
+    """Strip TURN servers from the ICE config so only host and server-reflexive
+    candidates are used. Useful for testing direct connectivity without relay
+    fallback. Setting this alongside ``turn_uri`` is a no-op for the filter, since
+    TURN servers are removed before any filtering happens."""
+
+    turn_uri: Optional[str] = None
+    """Filter the signaling server's TURN list to only the server whose parsed URI
+    matches (compared by scheme, host, port, and transport — transport defaults to
+    UDP if unspecified). An empty host (e.g. ``"turns::443?transport=tcp"``) matches
+    any TURN provider. Example: ``"turn:turn.viam.com:443"``."""
+
     def __init__(
         self,
         *,
@@ -95,6 +113,9 @@ class DialOptions:
         timeout: float = 20,
         initial_connection_attempts: int = 3,
         initial_connection_attempt_timeout: Optional[float] = None,
+        force_relay: bool = False,
+        force_p2p: bool = False,
+        turn_uri: Optional[str] = None,
     ) -> None:
         self.disable_webrtc = disable_webrtc
         self.auth_entity = auth_entity
@@ -106,6 +127,9 @@ class DialOptions:
         self.timeout = timeout
         self.initial_connection_attempts = initial_connection_attempts
         self.initial_connection_attempt_timeout = initial_connection_attempt_timeout if initial_connection_attempt_timeout else timeout
+        self.force_relay = force_relay
+        self.force_p2p = force_p2p
+        self.turn_uri = turn_uri
 
     @classmethod
     def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
@@ -236,27 +260,30 @@ class _Runtime:
         LOGGER.debug("Creating new viam-rust-utils runtime")
         libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{suffix}"
         self._lib = ctypes.CDLL(libname.__str__())
-        self._lib.init_rust_runtime.argtypes = ()
-        self._lib.init_rust_runtime.restype = ctypes.c_void_p
+        self._lib.viam_init_rust_runtime.argtypes = ()
+        self._lib.viam_init_rust_runtime.restype = ctypes.c_void_p
 
-        self._lib.dial.argtypes = (
+        self._lib.viam_dial.argtypes = (
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.c_bool,
             ctypes.c_float,
+            ctypes.c_bool,
+            ctypes.c_bool,
+            ctypes.c_char_p,
             ctypes.c_void_p,
         )
-        self._lib.dial.restype = ctypes.c_void_p
+        self._lib.viam_dial.restype = ctypes.c_void_p
 
-        self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
-        self._lib.free_rust_runtime.restype = None
+        self._lib.viam_free_rust_runtime.argtypes = (ctypes.c_void_p,)
+        self._lib.viam_free_rust_runtime.restype = None
 
-        self._lib.free_string.argtypes = (ctypes.c_void_p,)
-        self._lib.free_string.restype = None
+        self._lib.viam_free_string.argtypes = (ctypes.c_void_p,)
+        self._lib.viam_free_string.restype = None
 
-        self._ptr = self._lib.init_rust_runtime()
+        self._ptr = self._lib.viam_init_rust_runtime()
 
     async def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
         type = options.credentials.type if options.credentials else ""
@@ -267,15 +294,29 @@ class _Runtime:
             or (not type and not payload and options.allow_insecure_downgrade)
         )
 
+        if options.force_relay and options.force_p2p:
+            LOGGER.warning(
+                "force_relay and force_p2p are both set; force_p2p strips TURN servers that "
+                "force_relay requires so the connection will fail"
+            )
+        if options.force_p2p and options.turn_uri:
+            LOGGER.warning(
+                "force_p2p is set alongside turn_uri; the TURN filter will have no effect since "
+                "TURN servers were already stripped"
+            )
+
         LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
         path_ptr = await to_thread(
-            self._lib.dial,
+            self._lib.viam_dial,
             address.encode("utf-8"),
             options.auth_entity.encode("utf-8") if options.auth_entity else None,
             type.encode("utf-8") if type else None,
             payload.encode("utf-8") if payload else None,
             insecure,
             ctypes.c_float(options.timeout),
+            options.force_relay,
+            options.force_p2p,
+            options.turn_uri.encode("utf-8") if options.turn_uri else None,
             self._ptr,
         )
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
@@ -284,11 +325,11 @@ class _Runtime:
 
     def release(self):
         LOGGER.debug("Freeing viam-rust-utils runtime")
-        self._lib.free_rust_runtime(self._ptr)
+        self._lib.viam_free_rust_runtime(self._ptr)
 
     def free_str(self, ptr: ctypes.c_void_p):
         LOGGER.debug("Freeing socket string")
-        self._lib.free_string(ptr)
+        self._lib.viam_free_string(ptr)
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
