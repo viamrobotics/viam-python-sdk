@@ -97,8 +97,8 @@ class DialOptions:
     turn_uri: Optional[str] = None
     """Filter the signaling server's TURN list to only the server whose parsed URI
     matches (compared by scheme, host, port, and transport — transport defaults to
-    UDP if unspecified). An empty host (e.g. ``"turns::443?transport=tcp"``) matches
-    any TURN provider. Example: ``"turn:turn.viam.com:443"``."""
+    UDP if unspecified). Set to ``None`` to use all TURN servers.
+    Example: ``"turn:turn.viam.com:443"``."""
 
     def __init__(
         self,
