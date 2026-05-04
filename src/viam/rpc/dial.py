@@ -294,17 +294,6 @@ class _Runtime:
             or (not type and not payload and options.allow_insecure_downgrade)
         )
 
-        if options.force_relay and options.force_p2p:
-            LOGGER.warning(
-                "force_relay and force_p2p are both set; force_p2p strips TURN servers that "
-                "force_relay requires so the connection will fail"
-            )
-        if options.force_p2p and options.turn_uri:
-            LOGGER.warning(
-                "force_p2p is set alongside turn_uri; the TURN filter will have no effect since "
-                "TURN servers were already stripped"
-            )
-
         LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
         path_ptr = await to_thread(
             self._lib.viam_dial,
