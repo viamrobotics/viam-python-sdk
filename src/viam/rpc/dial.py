@@ -270,10 +270,10 @@ class _Runtime:
             ctypes.c_char_p,
             ctypes.c_bool,
             ctypes.c_float,
+            ctypes.c_void_p,
             ctypes.c_bool,
             ctypes.c_bool,
             ctypes.c_char_p,
-            ctypes.c_void_p,
         )
         self._lib.viam_dial.restype = ctypes.c_void_p
 
@@ -303,10 +303,10 @@ class _Runtime:
             payload.encode("utf-8") if payload else None,
             insecure,
             ctypes.c_float(options.timeout),
+            self._ptr,
             options.force_relay,
             options.force_p2p,
             options.turn_uri.encode("utf-8") if options.turn_uri else None,
-            self._ptr,
         )
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
         path = path.decode("utf-8") if path else ""
