@@ -40,10 +40,10 @@ from viam.proto.robot import (
     ShutdownRequest,
     StopAllRequest,
     StopExtraParameters,
-    TransformPoseRequest,
-    TransformPoseResponse,
     TransformPCDRequest,
     TransformPCDResponse,
+    TransformPoseRequest,
+    TransformPoseResponse,
 )
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
@@ -213,9 +213,7 @@ class RobotClient:
         return machine
 
     @classmethod
-    async def with_channel(
-        cls, channel: Union[Channel, ViamChannel], options: Options
-    ) -> Self:
+    async def with_channel(cls, channel: Union[Channel, ViamChannel], options: Options) -> Self:
         """Create a machine that is connected to a machine over the given channel.
 
         Any machines created using this method will *NOT* automatically close the channel upon exit.
@@ -270,11 +268,7 @@ class RobotClient:
         self._resource_names = []
         self._should_close_channel = close_channel
         self._options = options
-        self._address = (
-            self._channel._path
-            if self._channel._path
-            else f"{self._channel._host}:{self._channel._port}"
-        )
+        self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
         self._sessions_client = SessionsClient(
             self._channel,
             self._address,
@@ -286,9 +280,7 @@ class RobotClient:
         try:
             await self.refresh()
         except Exception:
-            LOGGER.error(
-                "Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again."
-            )
+            LOGGER.error("Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.")
             await self.close()
             raise ConnectionError("Unable to establish a connection to the machine.")
 
@@ -298,10 +290,7 @@ class RobotClient:
                 name=f"{viam._TASK_PREFIX}-robot_refresh_metadata",
             )
 
-        if (
-            options.check_connection_interval > 0
-            or options.attempt_reconnect_interval > 0
-        ):
+        if options.check_connection_interval > 0 or options.attempt_reconnect_interval > 0:
             self._check_connection_task = asyncio.create_task(
                 self._check_connection(
                     options.check_connection_interval,
@@ -337,9 +326,7 @@ class RobotClient:
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
-        response: ResourceNamesResponse = await self._client.ResourceNames(
-            ResourceNamesRequest()
-        )
+        response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
         with self._lock:
             if resource_names == self._resource_names:
@@ -363,9 +350,7 @@ class RobotClient:
             res = self._manager.get_resource(ResourceBase, resourceName)
 
             # If the channel hasn't changed, we don't need to do anything for existing clients
-            if isinstance(res, ResourceRPCClientBase) or (
-                hasattr(res, "channel") and isinstance(getattr(res, "channel"), Channel)
-            ):
+            if isinstance(res, ResourceRPCClientBase) or (hasattr(res, "channel") and isinstance(getattr(res, "channel"), Channel)):
                 if self._channel is res.channel:  # type: ignore
                     return
 
@@ -374,16 +359,12 @@ class RobotClient:
             else:
                 await self._manager.remove_resource(resourceName)
                 self._manager.register(
-                    Registry.lookup_api(
-                        API.from_resource_name(resourceName)
-                    ).create_rpc_client(resourceName.name, self._channel)
+                    Registry.lookup_api(API.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
                 )
         else:
             try:
                 self._manager.register(
-                    Registry.lookup_api(
-                        API.from_resource_name(resourceName)
-                    ).create_rpc_client(resourceName.name, self._channel)
+                    Registry.lookup_api(API.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
                 )
             except ResourceNotFoundError:
                 pass
@@ -418,7 +399,9 @@ class RobotClient:
             if connection_error:
                 msg = "Lost connection to machine."
                 if reconnect_every > 0:
-                    msg += f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
+                    msg += (
+                        f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
+                    )
                 LOGGER.error(msg, exc_info=connection_error)
                 self._close_channel()
                 self._connected = False
@@ -429,19 +412,13 @@ class RobotClient:
             if self._connected:
                 continue
 
-            reconnect_attempts = (
-                self._options.dial_options.max_reconnect_attempts
-                if self._options.dial_options
-                else 3
-            )
+            reconnect_attempts = self._options.dial_options.max_reconnect_attempts if self._options.dial_options else 3
 
             for _ in range(reconnect_attempts):
                 try:
                     self._sessions_client.reset()
 
-                    channel = await _dial_inner(
-                        self._address, self._options.dial_options
-                    )
+                    channel = await _dial_inner(self._address, self._options.dial_options)
 
                     client: RobotServiceStub
                     if isinstance(channel, Channel):
@@ -457,11 +434,7 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
-                    direct_dial_address = (
-                        self._channel._path
-                        if self._channel._path
-                        else f"{self._channel._host}:{self._channel._port}"
-                    )
+                    direct_dial_address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
                     self._sessions_client = SessionsClient(
                         channel=self._channel,
                         direct_dial_address=direct_dial_address,
@@ -634,11 +607,7 @@ class RobotClient:
 
         # Cancel all tasks created by VIAM
         LOGGER.debug("Closing tasks spawned by Viam")
-        tasks = [
-            task
-            for task in asyncio.all_tasks()
-            if task.get_name().startswith(viam._TASK_PREFIX)
-        ]
+        tasks = [task for task in asyncio.all_tasks() if task.get_name().startswith(viam._TASK_PREFIX)]
         for task in tasks:
             LOGGER.debug(f"\tClosing task {task.get_name()}")
             task.cancel()
@@ -714,9 +683,7 @@ class RobotClient:
     # FRAME SYSTEM #
     ################
 
-    async def get_frame_system_config(
-        self, additional_transforms: Optional[List[Transform]] = None
-    ) -> List[FrameSystemConfig]:
+    async def get_frame_system_config(self, additional_transforms: Optional[List[Transform]] = None) -> List[FrameSystemConfig]:
         """
         Get the configuration of the frame system of a given machine.
 
@@ -731,12 +698,8 @@ class RobotClient:
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
-        request = FrameSystemConfigRequest(
-            supplemental_transforms=additional_transforms
-        )
-        response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(
-            request
-        )
+        request = FrameSystemConfigRequest(supplemental_transforms=additional_transforms)
+        response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(request)
         return list(response.frame_system_configs)
 
     async def transform_pose(
@@ -787,9 +750,7 @@ class RobotClient:
         response: TransformPoseResponse = await self._client.TransformPose(request)
         return response.pose
 
-    async def transform_pcd(
-        self, point_cloud_pcd: bytes, source: str, destination: str
-    ) -> bytes:
+    async def transform_pcd(self, point_cloud_pcd: bytes, source: str, destination: str) -> bytes:
         """
         Transform given pointcloud data from the source reference frame to a new specified destination which is a reference frame.
 
@@ -811,9 +772,7 @@ class RobotClient:
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
-        request = TransformPCDRequest(
-            point_cloud_pcd=point_cloud_pcd, source=source, destination=destination
-        )
+        request = TransformPCDRequest(point_cloud_pcd=point_cloud_pcd, source=source, destination=destination)
         response: TransformPCDResponse = await self._client.TransformPCD(request)
         return response.point_cloud_pcd
 
@@ -839,9 +798,7 @@ class RobotClient:
             List[ModuleModel]: A list of discovered models.
         """
         request = GetModelsFromModulesRequest()
-        response: GetModelsFromModulesResponse = (
-            await self._client.GetModelsFromModules(request)
-        )
+        response: GetModelsFromModulesResponse = await self._client.GetModelsFromModules(request)
         return list(response.models)
 
     ############
@@ -874,9 +831,7 @@ class RobotClient:
     # LOG #
     #######
 
-    async def log(
-        self, name: str, level: str, time: datetime, message: str, stack: str
-    ):
+    async def log(self, name: str, level: str, time: datetime, message: str, stack: str):
         """Send log from Python module over gRPC.
 
         Create a LogEntry object from the log to send to RDK.
@@ -953,9 +908,7 @@ class RobotClient:
             if e.status == Status.INTERNAL or e.status == Status.UNKNOWN:
                 LOGGER.info("robot shutdown successful")
             elif e.status == Status.UNAVAILABLE:
-                LOGGER.warn(
-                    "server unavailable, likely due to successful robot shutdown"
-                )
+                LOGGER.warn("server unavailable, likely due to successful robot shutdown")
                 raise e
             elif e.status == Status.DEADLINE_EXCEEDED:
                 LOGGER.warn("request timeout, robot shutdown may still be successful")
@@ -1016,9 +969,7 @@ class RobotClient:
     # Restart Module #
     ##################
 
-    async def restart_module(
-        self, id: Optional[str] = None, name: Optional[str] = None
-    ):
+    async def restart_module(self, id: Optional[str] = None, name: Optional[str] = None):
         """
         Restarts a module running on the machine with the given id or name.
 
