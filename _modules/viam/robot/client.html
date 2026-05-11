@@ -127,13 +127,18 @@
     <span class="n">ShutdownRequest</span><span class="p">,</span>
     <span class="n">StopAllRequest</span><span class="p">,</span>
     <span class="n">StopExtraParameters</span><span class="p">,</span>
+    <span class="n">TransformPCDRequest</span><span class="p">,</span>
+    <span class="n">TransformPCDResponse</span><span class="p">,</span>
     <span class="n">TransformPoseRequest</span><span class="p">,</span>
     <span class="n">TransformPoseResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourceManager</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Registry</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.rpc_client_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">,</span> <span class="n">ResourceRPCClientBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.rpc_client_base</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">,</span>
+    <span class="n">ResourceRPCClientBase</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.rpc.dial</span><span class="w"> </span><span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">,</span> <span class="n">_dial_inner</span><span class="p">,</span> <span class="n">dial</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.services.service_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ServiceBase</span>
@@ -340,7 +345,11 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_with_channel</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Channel</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">],</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">,</span> <span class="n">close_channel</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">robot_addr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">channel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Channel</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">],</span>
+        <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">,</span>
+        <span class="n">close_channel</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">robot_addr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;INTERNAL USE ONLY&quot;&quot;&quot;</span>
 
@@ -362,7 +371,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_path</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_path</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_port</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span> <span class="o">=</span> <span class="n">SessionsClient</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">dial_options</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">disable_sessions</span><span class="p">,</span> <span class="n">robot_addr</span><span class="o">=</span><span class="n">robot_addr</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">dial_options</span><span class="p">,</span>
+            <span class="n">disabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">disable_sessions</span><span class="p">,</span>
+            <span class="n">robot_addr</span><span class="o">=</span><span class="n">robot_addr</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -374,12 +387,16 @@
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_every</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-robot_refresh_metadata&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_every</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span><span class="p">),</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-robot_refresh_metadata&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">check_connection_interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">attempt_reconnect_interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_connection_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_check_connection</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">check_connection_interval</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">attempt_reconnect_interval</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_connection</span><span class="p">(</span>
+                    <span class="n">options</span><span class="o">.</span><span class="n">check_connection_interval</span><span class="p">,</span>
+                    <span class="n">options</span><span class="o">.</span><span class="n">attempt_reconnect_interval</span><span class="p">,</span>
+                <span class="p">),</span>
                 <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-robot_check_connection&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -535,7 +552,10 @@
                     <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Successfully reconnected machine&quot;</span><span class="p">)</span>
                     <span class="k">break</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to reconnect, trying again in </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2">sec&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Failed to reconnect, trying again in </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2">sec&quot;</span><span class="p">,</span>
+                        <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">,</span>
+                    <span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_close_channel</span><span class="p">()</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">reconnect_every</span><span class="p">)</span>
@@ -816,7 +836,10 @@
 <div class="viewcode-block" id="RobotClient.transform_pose">
 <a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_pose">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform_pose</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
+        <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</span>
@@ -852,15 +875,42 @@
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">TransformPoseRequest</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span> <span class="n">supplemental_transforms</span><span class="o">=</span><span class="n">additional_transforms</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TransformPoseRequest</span><span class="p">(</span>
+            <span class="n">source</span><span class="o">=</span><span class="n">query</span><span class="p">,</span>
+            <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
+            <span class="n">supplemental_transforms</span><span class="o">=</span><span class="n">additional_transforms</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">TransformPoseResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">TransformPose</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">pose</span></div>
 
 
-<div class="viewcode-block" id="RobotClient.transform_point_cloud">
-<a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_point_cloud">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="RobotClient.transform_pcd">
+<a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_pcd">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform_pcd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point_cloud_pcd</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transform given pointcloud data from the source reference frame to a new specified destination which is a reference frame.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, name=&quot;my_camera&quot;)</span>
+<span class="sd">            data, _ = await my_camera.get_point_cloud()</span>
+
+<span class="sd">            transformed_pcd = await machine.transform_pcd(pcd, &quot;my_camera&quot;, &quot;world&quot;)</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            point_cloud_pcd (bytes): The point cloud data to transform</span>
+<span class="sd">            source (str) : The name of the reference frame the point cloud data came from, i.e. camera resource.</span>
+<span class="sd">            destination (str) : The name of the reference frame to transform the given data to, i.e. world.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bytes: The point cloud data relative to the destination reference frame</span>
+
+<span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TransformPCDRequest</span><span class="p">(</span><span class="n">point_cloud_pcd</span><span class="o">=</span><span class="n">point_cloud_pcd</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">TransformPCDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">TransformPCD</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">point_cloud_pcd</span></div>
 
 
     <span class="c1">#################</span>
@@ -940,7 +990,13 @@
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">entry</span> <span class="o">=</span> <span class="n">LogEntry</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">logger_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="n">stack</span><span class="p">)</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">LogEntry</span><span class="p">(</span>
+            <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">time</span><span class="p">),</span>
+            <span class="n">logger_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+            <span class="n">stack</span><span class="o">=</span><span class="n">stack</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">LogRequest</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="p">[</span><span class="n">entry</span><span class="p">])</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 

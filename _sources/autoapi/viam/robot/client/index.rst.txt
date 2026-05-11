@@ -485,10 +485,30 @@ Module Contents
 
 
 
-   .. py:method:: transform_point_cloud()
-      :abstractmethod:
-
+   .. py:method:: transform_pcd(point_cloud_pcd: bytes, source: str, destination: str) -> bytes
       :async:
+
+
+      Transform given pointcloud data from the source reference frame to a new specified destination which is a reference frame.
+
+      ::
+
+          my_camera = Camera.from_robot(robot=machine, name="my_camera")
+          data, _ = await my_camera.get_point_cloud()
+
+          transformed_pcd = await machine.transform_pcd(pcd, "my_camera", "world")
+
+      :param point_cloud_pcd: The point cloud data to transform
+      :type point_cloud_pcd: bytes
+      :param source: The name of the reference frame the point cloud data came from, i.e. camera resource.
+      :type source: str
+      :param destination: The name of the reference frame to transform the given data to, i.e. world.
+      :type destination: str
+
+      :returns: The point cloud data relative to the destination reference frame
+      :rtype: bytes
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 

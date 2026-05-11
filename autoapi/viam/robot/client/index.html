@@ -86,7 +86,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.block_for_operation"><code class="docutils literal notranslate"><span class="pre">RobotClient.block_for_operation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_frame_system_config()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pose()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_point_cloud"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_point_cloud()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pcd"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pcd()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_models_from_modules"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_models_from_modules()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all"><code class="docutils literal notranslate"><span class="pre">RobotClient.stop_all()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.log"><code class="docutils literal notranslate"><span class="pre">RobotClient.log()</span></code></a></li>
@@ -643,12 +643,31 @@ has finished or has been cancelled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_point_cloud">
-<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transform_point_cloud</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.transform_point_cloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.transform_point_cloud" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Async<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_pcd">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transform_pcd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_cloud_pcd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.transform_pcd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.transform_pcd" title="Link to this definition"></a></dt>
+<dd><p>Transform given pointcloud data from the source reference frame to a new specified destination which is a reference frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_point_cloud</span><span class="p">()</span>
+
+<span class="n">transformed_pcd</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">transform_pcd</span><span class="p">(</span><span class="n">pcd</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_cloud_pcd</strong> (<em>bytes</em>) – The point cloud data to transform</p></li>
+<li><p><strong>source</strong> (<em>str</em>) – The name of the reference frame the point cloud data came from, i.e. camera resource.</p></li>
+<li><p><strong>destination</strong> (<em>str</em>) – The name of the reference frame to transform the given data to, i.e. world.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The point cloud data relative to the destination reference frame</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bytes</p>
+</dd>
 </dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
