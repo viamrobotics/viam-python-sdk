@@ -263,7 +263,7 @@ class _Runtime:
         self._lib.viam_init_rust_runtime.argtypes = ()
         self._lib.viam_init_rust_runtime.restype = ctypes.c_void_p
 
-        self._lib.viam_dial.argtypes = (
+        self._lib.viam_dial_with_opts.argtypes = (
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.c_char_p,
@@ -271,11 +271,24 @@ class _Runtime:
             ctypes.c_bool,
             ctypes.c_float,
             ctypes.c_void_p,
-            ctypes.c_bool,
-            ctypes.c_bool,
-            ctypes.c_char_p,
+            ctypes.c_void_p,
         )
-        self._lib.viam_dial.restype = ctypes.c_void_p
+        self._lib.viam_dial_with_opts.restype = ctypes.c_void_p
+
+        self._lib.viam_dial_opts_new.argtypes = ()
+        self._lib.viam_dial_opts_new.restype = ctypes.c_void_p
+
+        self._lib.viam_dial_opts_free.argtypes = (ctypes.c_void_p,)
+        self._lib.viam_dial_opts_free.restype = None
+
+        self._lib.viam_dial_opts_set_force_relay.argtypes = (ctypes.c_void_p, ctypes.c_bool)
+        self._lib.viam_dial_opts_set_force_relay.restype = None
+
+        self._lib.viam_dial_opts_set_force_p2p.argtypes = (ctypes.c_void_p, ctypes.c_bool)
+        self._lib.viam_dial_opts_set_force_p2p.restype = None
+
+        self._lib.viam_dial_opts_set_turn_uri.argtypes = (ctypes.c_void_p, ctypes.c_char_p)
+        self._lib.viam_dial_opts_set_turn_uri.restype = None
 
         self._lib.viam_free_rust_runtime.argtypes = (ctypes.c_void_p,)
         self._lib.viam_free_rust_runtime.restype = None
@@ -295,19 +308,25 @@ class _Runtime:
         )
 
         LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
-        path_ptr = await to_thread(
-            self._lib.viam_dial,
-            address.encode("utf-8"),
-            options.auth_entity.encode("utf-8") if options.auth_entity else None,
-            type.encode("utf-8") if type else None,
-            payload.encode("utf-8") if payload else None,
-            insecure,
-            ctypes.c_float(options.timeout),
-            self._ptr,
-            options.force_relay,
-            options.force_p2p,
-            options.turn_uri.encode("utf-8") if options.turn_uri else None,
-        )
+        opts_handle = self._lib.viam_dial_opts_new()
+        try:
+            self._lib.viam_dial_opts_set_force_relay(opts_handle, options.force_relay)
+            self._lib.viam_dial_opts_set_force_p2p(opts_handle, options.force_p2p)
+            if options.turn_uri:
+                self._lib.viam_dial_opts_set_turn_uri(opts_handle, options.turn_uri.encode("utf-8"))
+            path_ptr = await to_thread(
+                self._lib.viam_dial_with_opts,
+                address.encode("utf-8"),
+                options.auth_entity.encode("utf-8") if options.auth_entity else None,
+                type.encode("utf-8") if type else None,
+                payload.encode("utf-8") if payload else None,
+                insecure,
+                ctypes.c_float(options.timeout),
+                self._ptr,
+                opts_handle,
+            )
+        finally:
+            self._lib.viam_dial_opts_free(opts_handle)
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
         path = path.decode("utf-8") if path else ""
         return (path, path_ptr)
