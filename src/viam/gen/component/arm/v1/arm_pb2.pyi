@@ -345,41 +345,59 @@ Global___IsMovingResponse: _TypeAlias = IsMovingResponse
 
 @_typing.final
 class MoveOptions(_message.Message):
+    """MoveOptions specifies kinematic constraints for an arm motion. All fields
+    are optional ceilings; any combination may be set. Every constraint that
+    is set is respected at every point along the executed trajectory.
+    The limiting constraint may change throughout execution.
+    """
     DESCRIPTOR: _descriptor.Descriptor
     MAX_VEL_DEGS_PER_SEC_FIELD_NUMBER: _builtins.int
     MAX_ACC_DEGS_PER_SEC2_FIELD_NUMBER: _builtins.int
     MAX_VEL_DEGS_PER_SEC_JOINTS_FIELD_NUMBER: _builtins.int
     MAX_ACC_DEGS_PER_SEC2_JOINTS_FIELD_NUMBER: _builtins.int
+    MAX_TCP_SPEED_FIELD_NUMBER: _builtins.int
     max_vel_degs_per_sec: _builtins.float
-    'Maximum allowable velocity of an arm joint, in degrees per second.\n    Ignored when max_vel_degs_per_sec_joints is set.\n    '
+    'Maximum allowable velocity of an arm joint, in degrees per second.\n    The arm driver will move as fast as possible up to the set value.\n    Ignored when max_vel_degs_per_sec_joints is set.\n    '
     max_acc_degs_per_sec2: _builtins.float
-    'Maximum allowable acceleration of an arm joint, in degrees per second squared.\n    ignored when max_acc_degs_per_sec2_joints is set.\n    '
+    'Maximum allowable acceleration of an arm joint, in degrees per second squared.\n    The arm driver will accelerate as fast as possible up to the set value.\n    ignored when max_acc_degs_per_sec2_joints is set.\n    '
+    max_tcp_speed: _builtins.float
+    "Maximum allowable speed of an arm's tool center point in meters per second.\n    The arm driver will move the tool center point as fast as possible up to this set value.\n    "
 
     @_builtins.property
     def max_vel_degs_per_sec_joints(self) -> _containers.RepeatedScalarFieldContainer[_builtins.float]:
-        """Per-joint maximum velocity in degrees per second."""
+        """Per-joint maximum velocity in degrees per second.
+        The arm driver will move each joint as fast as possible up to its respective set value.
+        """
 
     @_builtins.property
     def max_acc_degs_per_sec2_joints(self) -> _containers.RepeatedScalarFieldContainer[_builtins.float]:
-        """Per-joint maximum acceleration in degrees per second squared."""
+        """Per-joint maximum acceleration in degrees per second squared.
+        The arm driver will accelerate each joint as fast as possible up to its respective set value.
+        """
 
-    def __init__(self, *, max_vel_degs_per_sec: _builtins.float | None=..., max_acc_degs_per_sec2: _builtins.float | None=..., max_vel_degs_per_sec_joints: _abc.Iterable[_builtins.float] | None=..., max_acc_degs_per_sec2_joints: _abc.Iterable[_builtins.float] | None=...) -> None:
+    def __init__(self, *, max_vel_degs_per_sec: _builtins.float | None=..., max_acc_degs_per_sec2: _builtins.float | None=..., max_vel_degs_per_sec_joints: _abc.Iterable[_builtins.float] | None=..., max_acc_degs_per_sec2_joints: _abc.Iterable[_builtins.float] | None=..., max_tcp_speed: _builtins.float | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_tcp_speed', b'_max_tcp_speed', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_tcp_speed', b'max_tcp_speed', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_acc_degs_per_sec2_joints', b'max_acc_degs_per_sec2_joints', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec', 'max_vel_degs_per_sec_joints', b'max_vel_degs_per_sec_joints']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_tcp_speed', b'_max_tcp_speed', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_acc_degs_per_sec2_joints', b'max_acc_degs_per_sec2_joints', 'max_tcp_speed', b'max_tcp_speed', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec', 'max_vel_degs_per_sec_joints', b'max_vel_degs_per_sec_joints']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
     _WhichOneofReturnType__max_acc_degs_per_sec2: _TypeAlias = _typing.Literal['max_acc_degs_per_sec2']
     _WhichOneofArgType__max_acc_degs_per_sec2: _TypeAlias = _typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2']
+    _WhichOneofReturnType__max_tcp_speed: _TypeAlias = _typing.Literal['max_tcp_speed']
+    _WhichOneofArgType__max_tcp_speed: _TypeAlias = _typing.Literal['_max_tcp_speed', b'_max_tcp_speed']
     _WhichOneofReturnType__max_vel_degs_per_sec: _TypeAlias = _typing.Literal['max_vel_degs_per_sec']
     _WhichOneofArgType__max_vel_degs_per_sec: _TypeAlias = _typing.Literal['_max_vel_degs_per_sec', b'_max_vel_degs_per_sec']
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__max_acc_degs_per_sec2) -> _WhichOneofReturnType__max_acc_degs_per_sec2 | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_tcp_speed) -> _WhichOneofReturnType__max_tcp_speed | None:
         ...
 
     @_typing.overload

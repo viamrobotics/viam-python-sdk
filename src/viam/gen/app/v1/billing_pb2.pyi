@@ -145,9 +145,13 @@ class InvoiceSummary(_message.Message):
     STATUS_FIELD_NUMBER: _builtins.int
     DUE_DATE_FIELD_NUMBER: _builtins.int
     PAID_DATE_FIELD_NUMBER: _builtins.int
+    LAST_PAYMENT_FAILURE_REASON_FIELD_NUMBER: _builtins.int
+    LAST_PAYMENT_FAILURE_AT_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     invoice_amount: _builtins.float
     status: _builtins.str
+    last_payment_failure_reason: _builtins.str
+    'Category of the most recent payment failure. One of: card_declined,\n    insufficient_funds, expired_card, incorrect_cvc, incorrect_card_number,\n    authentication_required, processing_error, other. Empty when no failure\n    is recorded. Clients must tolerate unknown values.\n    '
 
     @_builtins.property
     def invoice_date(self) -> _timestamp_pb2.Timestamp:
@@ -161,13 +165,17 @@ class InvoiceSummary(_message.Message):
     def paid_date(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., invoice_date: _timestamp_pb2.Timestamp | None=..., invoice_amount: _builtins.float=..., status: _builtins.str=..., due_date: _timestamp_pb2.Timestamp | None=..., paid_date: _timestamp_pb2.Timestamp | None=...) -> None:
+    @_builtins.property
+    def last_payment_failure_at(self) -> _timestamp_pb2.Timestamp:
+        """Time of the most recent payment failure. Empty when no failure recorded."""
+
+    def __init__(self, *, id: _builtins.str=..., invoice_date: _timestamp_pb2.Timestamp | None=..., invoice_amount: _builtins.float=..., status: _builtins.str=..., due_date: _timestamp_pb2.Timestamp | None=..., paid_date: _timestamp_pb2.Timestamp | None=..., last_payment_failure_reason: _builtins.str=..., last_payment_failure_at: _timestamp_pb2.Timestamp | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['due_date', b'due_date', 'invoice_date', b'invoice_date', 'paid_date', b'paid_date']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['due_date', b'due_date', 'invoice_date', b'invoice_date', 'last_payment_failure_at', b'last_payment_failure_at', 'paid_date', b'paid_date']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['due_date', b'due_date', 'id', b'id', 'invoice_amount', b'invoice_amount', 'invoice_date', b'invoice_date', 'paid_date', b'paid_date', 'status', b'status']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['due_date', b'due_date', 'id', b'id', 'invoice_amount', b'invoice_amount', 'invoice_date', b'invoice_date', 'last_payment_failure_at', b'last_payment_failure_at', 'last_payment_failure_reason', b'last_payment_failure_reason', 'paid_date', b'paid_date', 'status', b'status']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
