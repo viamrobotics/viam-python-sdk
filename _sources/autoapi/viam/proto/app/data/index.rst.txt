@@ -48,6 +48,8 @@ Classes
    viam.proto.app.data.CreateIndexResponse
    viam.proto.app.data.CreateSavedQueryRequest
    viam.proto.app.data.CreateSavedQueryResponse
+   viam.proto.app.data.CreateSequenceRequest
+   viam.proto.app.data.CreateSequenceResponse
    viam.proto.app.data.DataRequest
    viam.proto.app.data.DeleteBinaryDataByFilterRequest
    viam.proto.app.data.DeleteBinaryDataByFilterResponse
@@ -57,6 +59,8 @@ Classes
    viam.proto.app.data.DeleteIndexResponse
    viam.proto.app.data.DeleteSavedQueryRequest
    viam.proto.app.data.DeleteSavedQueryResponse
+   viam.proto.app.data.DeleteSequenceRequest
+   viam.proto.app.data.DeleteSequenceResponse
    viam.proto.app.data.DeleteTabularDataRequest
    viam.proto.app.data.DeleteTabularDataResponse
    viam.proto.app.data.DeleteTabularFilter
@@ -69,6 +73,8 @@ Classes
    viam.proto.app.data.GetLatestTabularDataResponse
    viam.proto.app.data.GetSavedQueryRequest
    viam.proto.app.data.GetSavedQueryResponse
+   viam.proto.app.data.GetSequenceRequest
+   viam.proto.app.data.GetSequenceResponse
    viam.proto.app.data.Index
    viam.proto.app.data.IndexableCollection
    viam.proto.app.data.IndexCreator
@@ -76,6 +82,8 @@ Classes
    viam.proto.app.data.ListIndexesResponse
    viam.proto.app.data.ListSavedQueriesRequest
    viam.proto.app.data.ListSavedQueriesResponse
+   viam.proto.app.data.ListSequencesRequest
+   viam.proto.app.data.ListSequencesResponse
    viam.proto.app.data.Order
    viam.proto.app.data.Query
    viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest
@@ -86,6 +94,8 @@ Classes
    viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse
    viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest
    viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse
+   viam.proto.app.data.Sequence
+   viam.proto.app.data.SequenceResourceFilter
    viam.proto.app.data.TabularData
    viam.proto.app.data.TabularDataByFilterRequest
    viam.proto.app.data.TabularDataByFilterResponse
@@ -103,6 +113,8 @@ Classes
    viam.proto.app.data.UpdateBoundingBoxResponse
    viam.proto.app.data.UpdateSavedQueryRequest
    viam.proto.app.data.UpdateSavedQueryResponse
+   viam.proto.app.data.UpdateSequenceRequest
+   viam.proto.app.data.UpdateSequenceResponse
 
 
 Package Contents
@@ -341,6 +353,41 @@ Package Contents
 
 
 
+   .. py:method:: CreateSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateSequenceRequest, app.data.v1.data_pb2.CreateSequenceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.GetSequenceRequest, app.data.v1.data_pb2.GetSequenceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.UpdateSequenceRequest, app.data.v1.data_pb2.UpdateSequenceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteSequenceRequest, app.data.v1.data_pb2.DeleteSequenceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListSequences(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListSequencesRequest, app.data.v1.data_pb2.ListSequencesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -440,6 +487,21 @@ Package Contents
 
 
    .. py:attribute:: CreateBinaryDataSignedURL
+
+
+   .. py:attribute:: CreateSequence
+
+
+   .. py:attribute:: GetSequence
+
+
+   .. py:attribute:: UpdateSequence
+
+
+   .. py:attribute:: DeleteSequence
+
+
+   .. py:attribute:: ListSequences
 
 
 .. py:class:: UnimplementedDataServiceBase
@@ -607,6 +669,31 @@ Package Contents
 
 
    .. py:method:: CreateBinaryDataSignedURL(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateBinaryDataSignedURLRequest, app.data.v1.data_pb2.CreateBinaryDataSignedURLResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: CreateSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateSequenceRequest, app.data.v1.data_pb2.CreateSequenceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.GetSequenceRequest, app.data.v1.data_pb2.GetSequenceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.UpdateSequenceRequest, app.data.v1.data_pb2.UpdateSequenceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteSequence(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteSequenceRequest, app.data.v1.data_pb2.DeleteSequenceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListSequences(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListSequencesRequest, app.data.v1.data_pb2.ListSequencesResponse]) -> None
       :async:
 
 
@@ -1559,6 +1646,68 @@ Package Contents
       :type:  str
 
 
+.. py:class:: CreateSequenceRequest(*, part_id: str = ..., resources: collections.abc.Iterable[Global___SequenceResourceFilter] | None = ..., sequence_tags: collections.abc.Iterable[str] | None = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:method:: resources() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]
+
+
+   .. py:method:: sequence_tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:method:: start_time() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: end_time() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: CreateSequenceResponse(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
 .. py:class:: DataRequest(*, filter: Global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: Global___Order = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1759,6 +1908,34 @@ Package Contents
 
 
 .. py:class:: DeleteSavedQueryResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: DeleteSequenceRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: DeleteSequenceResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2290,6 +2467,55 @@ Package Contents
 
 
 
+.. py:class:: GetSequenceRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: GetSequenceResponse(*, sequence: Global___Sequence | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: sequence() -> Global___Sequence
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
 .. py:class:: Index(*, collection_type: Global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ..., index_spec: collections.abc.Iterable[bytes] | None = ..., created_by: Global___IndexCreator = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2472,6 +2698,49 @@ Package Contents
 
 
    .. py:method:: queries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Query]
+
+
+.. py:class:: ListSequencesRequest(*, organization_id: str = ..., page_token: str = ..., page_size: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: page_token
+      :type:  str
+
+
+   .. py:attribute:: page_size
+      :type:  int
+
+
+.. py:class:: ListSequencesResponse(*, sequences: collections.abc.Iterable[Global___Sequence] | None = ..., next_page_token: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: next_page_token
+      :type:  str
+
+
+   .. py:method:: sequences() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Sequence]
 
 
 .. py:class:: Order
@@ -2683,6 +2952,86 @@ Package Contents
 
    .. py:attribute:: deleted_count
       :type:  int
+
+
+.. py:class:: Sequence(*, id: str = ..., part_id: str = ..., sequence_tags: collections.abc.Iterable[str] | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., resources: collections.abc.Iterable[Global___SequenceResourceFilter] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      Metadata associated with the sequence.
+
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:method:: sequence_tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:method:: created_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: updated_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: start_time() -> google.protobuf.timestamp_pb2.Timestamp
+
+      The time range the sequence applies to.
+
+
+
+   .. py:method:: end_time() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: resources() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]
+
+      Resources whose data is associated with this sequence.
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SequenceResourceFilter(*, resource_name: str = ..., method_name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   SequenceResourceFilter filters binary and/or tabular data by source identifiers.
+
+
+   .. py:attribute:: resource_name
+      :type:  str
+
+
+   .. py:attribute:: method_name
+      :type:  str
 
 
 .. py:class:: TabularData(*, data: google.protobuf.struct_pb2.Struct | None = ..., metadata_index: int = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
@@ -3145,6 +3494,65 @@ Package Contents
 
 
 .. py:class:: UpdateSavedQueryResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UpdateSequenceRequest(*, id: str = ..., resources: collections.abc.Iterable[Global___SequenceResourceFilter] | None = ..., sequence_tags: collections.abc.Iterable[str] | None = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., field_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   UpdateSequenceRequest updates the mutable fields of a sequence.
+   Only fields listed in field_mask will be updated; others are left unchanged.
+   Fields 2-5 are allowed fields for the field_mask.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:method:: resources() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]
+
+
+   .. py:method:: sequence_tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:method:: start_time() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: end_time() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: field_mask() -> google.protobuf.field_mask_pb2.FieldMask
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateSequenceResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

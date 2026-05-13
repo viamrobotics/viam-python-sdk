@@ -61,6 +61,20 @@ Module Contents
 
 
 
+   .. py:method:: GetCurrentInputs(stream: grpclib.server.Stream[component.gripper.v1.gripper_pb2.GetCurrentInputsRequest, component.gripper.v1.gripper_pb2.GetCurrentInputsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GoToInputs(stream: grpclib.server.Stream[component.gripper.v1.gripper_pb2.GoToInputsRequest, component.gripper.v1.gripper_pb2.GoToInputsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
 
@@ -126,6 +140,16 @@ Module Contents
 
 
 
+   .. py:method:: GetCurrentInputs(stream: grpclib.server.Stream[component.gripper.v1.gripper_pb2.GetCurrentInputsRequest, component.gripper.v1.gripper_pb2.GetCurrentInputsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToInputs(stream: grpclib.server.Stream[component.gripper.v1.gripper_pb2.GoToInputsRequest, component.gripper.v1.gripper_pb2.GoToInputsResponse]) -> None
+      :async:
+
+
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
 
@@ -161,6 +185,12 @@ Module Contents
 
 
    .. py:attribute:: IsHoldingSomething
+
+
+   .. py:attribute:: GetCurrentInputs
+
+
+   .. py:attribute:: GoToInputs
 
 
    .. py:attribute:: DoCommand

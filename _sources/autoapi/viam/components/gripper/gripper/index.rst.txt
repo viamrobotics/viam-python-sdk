@@ -197,6 +197,50 @@ Module Contents
 
 
 
+   .. py:method:: get_current_inputs(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the current input values of the gripper.
+
+      ::
+
+          my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+          # Get the current input values of the gripper.
+          inputs = await my_gripper.get_current_inputs()
+
+      :returns: The current input values of the gripper.
+      :rtype: List[float]
+
+      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+
+
+
+   .. py:method:: go_to_inputs(values: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
+      :async:
+
+
+      Move the gripper to the specified input values.
+
+      ::
+
+          my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+          # Move the gripper to specific input values.
+          await my_gripper.go_to_inputs([0.5, 0.8])
+
+      :param values: The input values to move the gripper to.
+      :type values: List[float]
+
+      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 

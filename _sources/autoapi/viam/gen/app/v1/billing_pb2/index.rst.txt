@@ -254,7 +254,7 @@ Module Contents
    :canonical: SourceType
 
 
-.. py:class:: InvoiceSummary(*, id: str = ..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_amount: float = ..., status: str = ..., due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., paid_date: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: InvoiceSummary(*, id: str = ..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_amount: float = ..., status: str = ..., due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., paid_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_payment_failure_reason: str = ..., last_payment_failure_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -278,6 +278,17 @@ Module Contents
       :type:  str
 
 
+   .. py:attribute:: last_payment_failure_reason
+      :type:  str
+
+      card_declined,
+      insufficient_funds, expired_card, incorrect_cvc, incorrect_card_number,
+      authentication_required, processing_error, other. Empty when no failure
+      is recorded. Clients must tolerate unknown values.
+
+      :type: Category of the most recent payment failure. One of
+
+
    .. py:method:: invoice_date() -> google.protobuf.timestamp_pb2.Timestamp
 
 
@@ -285,6 +296,12 @@ Module Contents
 
 
    .. py:method:: paid_date() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: last_payment_failure_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+      Time of the most recent payment failure. Empty when no failure recorded.
+
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool

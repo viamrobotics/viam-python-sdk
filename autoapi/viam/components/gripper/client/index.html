@@ -82,6 +82,8 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_status"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_status()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_geometries"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_geometries()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_kinematics"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_kinematics()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_current_inputs"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_current_inputs()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.go_to_inputs"><code class="docutils literal notranslate"><span class="pre">GripperClient.go_to_inputs()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.from_robot"><code class="docutils literal notranslate"><span class="pre">GripperClient.from_robot()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_resource_name()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_operation"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_operation()</span></code></a></li>
@@ -363,6 +365,45 @@ If available, a third [2] value provides meshes keyed by URDF filepath.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics">Gripper component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.client.GripperClient.get_current_inputs">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_current_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/client.html#GripperClient.get_current_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.client.GripperClient.get_current_inputs" title="Link to this definition"></a></dt>
+<dd><p>Get the current input values of the gripper.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the current input values of the gripper.</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">get_current_inputs</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current input values of the gripper.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/gripper/">Gripper component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.client.GripperClient.go_to_inputs">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">go_to_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/client.html#GripperClient.go_to_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.client.GripperClient.go_to_inputs" title="Link to this definition"></a></dt>
+<dd><p>Move the gripper to the specified input values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+
+<span class="c1"># Move the gripper to specific input values.</span>
+<span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">go_to_inputs</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – The input values to move the gripper to.</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/gripper/">Gripper component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
