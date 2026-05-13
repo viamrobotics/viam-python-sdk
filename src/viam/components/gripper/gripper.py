@@ -1,6 +1,6 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Final, Optional
+from typing import Any, Dict, Final, List, Optional
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
@@ -185,5 +185,56 @@ class Gripper(ComponentBase):
             If available, a third [2] value provides meshes keyed by URDF filepath.
 
         For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_current_inputs(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[float]:
+        """
+        Get the current input values of the gripper.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            # Get the current input values of the gripper.
+            inputs = await my_gripper.get_current_inputs()
+
+        Returns:
+            List[float]: The current input values of the gripper.
+
+        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def go_to_inputs(
+        self,
+        values: List[float],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Move the gripper to the specified input values.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            # Move the gripper to specific input values.
+            await my_gripper.go_to_inputs([0.5, 0.8])
+
+        Args:
+            values (List[float]): The input values to move the gripper to.
+
+        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
         """
         ...

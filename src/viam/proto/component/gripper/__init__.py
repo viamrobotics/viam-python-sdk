@@ -5,6 +5,10 @@ Do not edit manually!
 
 from ....gen.component.gripper.v1.gripper_grpc import GripperServiceBase, GripperServiceStub, UnimplementedGripperServiceBase
 from ....gen.component.gripper.v1.gripper_pb2 import (
+    GetCurrentInputsRequest,
+    GetCurrentInputsResponse,
+    GoToInputsRequest,
+    GoToInputsResponse,
     GrabRequest,
     GrabResponse,
     IsHoldingSomethingRequest,
@@ -21,6 +25,10 @@ __all__ = [
     "GripperServiceBase",
     "GripperServiceStub",
     "UnimplementedGripperServiceBase",
+    "GetCurrentInputsRequest",
+    "GetCurrentInputsResponse",
+    "GoToInputsRequest",
+    "GoToInputsResponse",
     "GrabRequest",
     "GrabResponse",
     "IsHoldingSomethingRequest",

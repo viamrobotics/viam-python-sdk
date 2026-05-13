@@ -5,6 +5,7 @@ isort:skip_file
 from collections import abc as _abc
 from google.protobuf import any_pb2 as _any_pb2
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import field_mask_pb2 as _field_mask_pb2
 from google.protobuf import message as _message
 from google.protobuf import struct_pb2 as _struct_pb2
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
@@ -2157,3 +2158,272 @@ class CreateBinaryDataSignedURLResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___CreateBinaryDataSignedURLResponse: _TypeAlias = CreateBinaryDataSignedURLResponse
+
+@_typing.final
+class SequenceResourceFilter(_message.Message):
+    """SequenceResourceFilter filters binary and/or tabular data by source identifiers."""
+    DESCRIPTOR: _descriptor.Descriptor
+    RESOURCE_NAME_FIELD_NUMBER: _builtins.int
+    METHOD_NAME_FIELD_NUMBER: _builtins.int
+    resource_name: _builtins.str
+    method_name: _builtins.str
+
+    def __init__(self, *, resource_name: _builtins.str=..., method_name: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['method_name', b'method_name', 'resource_name', b'resource_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SequenceResourceFilter: _TypeAlias = SequenceResourceFilter
+
+@_typing.final
+class Sequence(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    PART_ID_FIELD_NUMBER: _builtins.int
+    SEQUENCE_TAGS_FIELD_NUMBER: _builtins.int
+    CREATED_AT_FIELD_NUMBER: _builtins.int
+    UPDATED_AT_FIELD_NUMBER: _builtins.int
+    START_TIME_FIELD_NUMBER: _builtins.int
+    END_TIME_FIELD_NUMBER: _builtins.int
+    RESOURCES_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+    'Metadata associated with the sequence.'
+    part_id: _builtins.str
+
+    @_builtins.property
+    def sequence_tags(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    @_builtins.property
+    def created_at(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def updated_at(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def start_time(self) -> _timestamp_pb2.Timestamp:
+        """The time range the sequence applies to."""
+
+    @_builtins.property
+    def end_time(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def resources(self) -> _containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]:
+        """Resources whose data is associated with this sequence."""
+
+    def __init__(self, *, id: _builtins.str=..., part_id: _builtins.str=..., sequence_tags: _abc.Iterable[_builtins.str] | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=..., resources: _abc.Iterable[Global___SequenceResourceFilter] | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'end_time', b'end_time', 'start_time', b'start_time', 'updated_at', b'updated_at']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'end_time', b'end_time', 'id', b'id', 'part_id', b'part_id', 'resources', b'resources', 'sequence_tags', b'sequence_tags', 'start_time', b'start_time', 'updated_at', b'updated_at']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Sequence: _TypeAlias = Sequence
+
+@_typing.final
+class CreateSequenceRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: _builtins.int
+    RESOURCES_FIELD_NUMBER: _builtins.int
+    SEQUENCE_TAGS_FIELD_NUMBER: _builtins.int
+    START_TIME_FIELD_NUMBER: _builtins.int
+    END_TIME_FIELD_NUMBER: _builtins.int
+    part_id: _builtins.str
+
+    @_builtins.property
+    def resources(self) -> _containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]:
+        ...
+
+    @_builtins.property
+    def sequence_tags(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    @_builtins.property
+    def start_time(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def end_time(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, part_id: _builtins.str=..., resources: _abc.Iterable[Global___SequenceResourceFilter] | None=..., sequence_tags: _abc.Iterable[_builtins.str] | None=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['end_time', b'end_time', 'start_time', b'start_time']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['end_time', b'end_time', 'part_id', b'part_id', 'resources', b'resources', 'sequence_tags', b'sequence_tags', 'start_time', b'start_time']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___CreateSequenceRequest: _TypeAlias = CreateSequenceRequest
+
+@_typing.final
+class CreateSequenceResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___CreateSequenceResponse: _TypeAlias = CreateSequenceResponse
+
+@_typing.final
+class GetSequenceRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetSequenceRequest: _TypeAlias = GetSequenceRequest
+
+@_typing.final
+class GetSequenceResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    SEQUENCE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def sequence(self) -> Global___Sequence:
+        ...
+
+    def __init__(self, *, sequence: Global___Sequence | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['sequence', b'sequence']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['sequence', b'sequence']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetSequenceResponse: _TypeAlias = GetSequenceResponse
+
+@_typing.final
+class UpdateSequenceRequest(_message.Message):
+    """UpdateSequenceRequest updates the mutable fields of a sequence.
+    Only fields listed in field_mask will be updated; others are left unchanged.
+    Fields 2-5 are allowed fields for the field_mask.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    RESOURCES_FIELD_NUMBER: _builtins.int
+    SEQUENCE_TAGS_FIELD_NUMBER: _builtins.int
+    START_TIME_FIELD_NUMBER: _builtins.int
+    END_TIME_FIELD_NUMBER: _builtins.int
+    FIELD_MASK_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    @_builtins.property
+    def resources(self) -> _containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]:
+        ...
+
+    @_builtins.property
+    def sequence_tags(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    @_builtins.property
+    def start_time(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def end_time(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def field_mask(self) -> _field_mask_pb2.FieldMask:
+        ...
+
+    def __init__(self, *, id: _builtins.str=..., resources: _abc.Iterable[Global___SequenceResourceFilter] | None=..., sequence_tags: _abc.Iterable[_builtins.str] | None=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=..., field_mask: _field_mask_pb2.FieldMask | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['end_time', b'end_time', 'field_mask', b'field_mask', 'start_time', b'start_time']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['end_time', b'end_time', 'field_mask', b'field_mask', 'id', b'id', 'resources', b'resources', 'sequence_tags', b'sequence_tags', 'start_time', b'start_time']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UpdateSequenceRequest: _TypeAlias = UpdateSequenceRequest
+
+@_typing.final
+class UpdateSequenceResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___UpdateSequenceResponse: _TypeAlias = UpdateSequenceResponse
+
+@_typing.final
+class DeleteSequenceRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteSequenceRequest: _TypeAlias = DeleteSequenceRequest
+
+@_typing.final
+class DeleteSequenceResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteSequenceResponse: _TypeAlias = DeleteSequenceResponse
+
+@_typing.final
+class ListSequencesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    organization_id: _builtins.str
+    page_token: _builtins.str
+    page_size: _builtins.int
+
+    def __init__(self, *, organization_id: _builtins.str=..., page_token: _builtins.str=..., page_size: _builtins.int=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['organization_id', b'organization_id', 'page_size', b'page_size', 'page_token', b'page_token']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListSequencesRequest: _TypeAlias = ListSequencesRequest
+
+@_typing.final
+class ListSequencesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    SEQUENCES_FIELD_NUMBER: _builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
+
+    @_builtins.property
+    def sequences(self) -> _containers.RepeatedCompositeFieldContainer[Global___Sequence]:
+        ...
+
+    def __init__(self, *, sequences: _abc.Iterable[Global___Sequence] | None=..., next_page_token: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['next_page_token', b'next_page_token', 'sequences', b'sequences']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListSequencesResponse: _TypeAlias = ListSequencesResponse

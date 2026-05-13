@@ -818,6 +818,27 @@ class Get3DModelsResponse(_message.Message):
 Global___Get3DModelsResponse: _TypeAlias = Get3DModelsResponse
 
 @_typing.final
+class GetWorldPoseResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    POSE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def pose(self) -> Global___Pose:
+        """Pose of the component in the world reference frame"""
+
+    def __init__(self, *, pose: Global___Pose | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['pose', b'pose']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['pose', b'pose']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetWorldPoseResponse: _TypeAlias = GetWorldPoseResponse
+
+@_typing.final
 class GetReadingsRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int

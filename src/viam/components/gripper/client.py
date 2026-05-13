@@ -13,6 +13,9 @@ from viam.proto.common import (
     GetStatusResponse,
 )
 from viam.proto.component.gripper import (
+    GetCurrentInputsRequest,
+    GetCurrentInputsResponse,
+    GoToInputsRequest,
     GrabRequest,
     GrabResponse,
     GripperServiceStub,
@@ -125,3 +128,27 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
+
+    async def get_current_inputs(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[float]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetCurrentInputsRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetCurrentInputsResponse = await self.client.GetCurrentInputs(request, timeout=timeout, metadata=md)
+        return list(response.values)
+
+    async def go_to_inputs(
+        self,
+        values: List[float],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GoToInputsRequest(name=self.name, values=values, extra=dict_to_struct(extra))
+        await self.client.GoToInputs(request, timeout=timeout, metadata=md)

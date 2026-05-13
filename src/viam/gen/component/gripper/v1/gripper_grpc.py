@@ -33,6 +33,14 @@ class GripperServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def GetCurrentInputs(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.GetCurrentInputsRequest, component.gripper.v1.gripper_pb2.GetCurrentInputsResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def GoToInputs(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.GoToInputsRequest, component.gripper.v1.gripper_pb2.GoToInputsResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
@@ -49,7 +57,7 @@ class GripperServiceBase(abc.ABC):
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.gripper.v1.GripperService/Open': grpclib.const.Handler(self.Open, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.OpenRequest, component.gripper.v1.gripper_pb2.OpenResponse), '/viam.component.gripper.v1.GripperService/Grab': grpclib.const.Handler(self.Grab, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.GrabRequest, component.gripper.v1.gripper_pb2.GrabResponse), '/viam.component.gripper.v1.GripperService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.StopRequest, component.gripper.v1.gripper_pb2.StopResponse), '/viam.component.gripper.v1.GripperService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.IsMovingRequest, component.gripper.v1.gripper_pb2.IsMovingResponse), '/viam.component.gripper.v1.GripperService/IsHoldingSomething': grpclib.const.Handler(self.IsHoldingSomething, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest, component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse), '/viam.component.gripper.v1.GripperService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.gripper.v1.GripperService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse), '/viam.component.gripper.v1.GripperService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse), '/viam.component.gripper.v1.GripperService/GetKinematics': grpclib.const.Handler(self.GetKinematics, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse)}
+        return {'/viam.component.gripper.v1.GripperService/Open': grpclib.const.Handler(self.Open, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.OpenRequest, component.gripper.v1.gripper_pb2.OpenResponse), '/viam.component.gripper.v1.GripperService/Grab': grpclib.const.Handler(self.Grab, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.GrabRequest, component.gripper.v1.gripper_pb2.GrabResponse), '/viam.component.gripper.v1.GripperService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.StopRequest, component.gripper.v1.gripper_pb2.StopResponse), '/viam.component.gripper.v1.GripperService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.IsMovingRequest, component.gripper.v1.gripper_pb2.IsMovingResponse), '/viam.component.gripper.v1.GripperService/IsHoldingSomething': grpclib.const.Handler(self.IsHoldingSomething, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest, component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse), '/viam.component.gripper.v1.GripperService/GetCurrentInputs': grpclib.const.Handler(self.GetCurrentInputs, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.GetCurrentInputsRequest, component.gripper.v1.gripper_pb2.GetCurrentInputsResponse), '/viam.component.gripper.v1.GripperService/GoToInputs': grpclib.const.Handler(self.GoToInputs, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.GoToInputsRequest, component.gripper.v1.gripper_pb2.GoToInputsResponse), '/viam.component.gripper.v1.GripperService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.gripper.v1.GripperService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse), '/viam.component.gripper.v1.GripperService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse), '/viam.component.gripper.v1.GripperService/GetKinematics': grpclib.const.Handler(self.GetKinematics, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse)}
 
 class UnimplementedGripperServiceBase(GripperServiceBase):
 
@@ -66,6 +74,12 @@ class UnimplementedGripperServiceBase(GripperServiceBase):
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def IsHoldingSomething(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest, component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetCurrentInputs(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.GetCurrentInputsRequest, component.gripper.v1.gripper_pb2.GetCurrentInputsResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GoToInputs(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.GoToInputsRequest, component.gripper.v1.gripper_pb2.GoToInputsResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
@@ -88,6 +102,8 @@ class GripperServiceStub:
         self.Stop = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/Stop', component.gripper.v1.gripper_pb2.StopRequest, component.gripper.v1.gripper_pb2.StopResponse)
         self.IsMoving = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/IsMoving', component.gripper.v1.gripper_pb2.IsMovingRequest, component.gripper.v1.gripper_pb2.IsMovingResponse)
         self.IsHoldingSomething = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/IsHoldingSomething', component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest, component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse)
+        self.GetCurrentInputs = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/GetCurrentInputs', component.gripper.v1.gripper_pb2.GetCurrentInputsRequest, component.gripper.v1.gripper_pb2.GetCurrentInputsResponse)
+        self.GoToInputs = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/GoToInputs', component.gripper.v1.gripper_pb2.GoToInputsRequest, component.gripper.v1.gripper_pb2.GoToInputsResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
         self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
         self.GetGeometries = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.gripper.v1.GripperService/GetGeometries', common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)
