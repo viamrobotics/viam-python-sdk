@@ -521,6 +521,7 @@ class ExampleGripper(Gripper):
         self.is_stopped = True
         self.holding_something = False
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
+        self.current_inputs = []
         super().__init__(name)
 
     async def open(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
@@ -552,6 +553,17 @@ class ExampleGripper(Gripper):
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {}
 
+    async def get_current_inputs(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[float]:
+        return self.current_inputs
+
+    async def go_to_inputs(self, values: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.current_inputs = values
 
 class ExampleMotor(Motor):
     def __init__(self, name: str):
