@@ -2,7 +2,8 @@ import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union, cast
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union, cast
+from typing import Sequence as TSequence
 
 import bson
 from google.protobuf.struct_pb2 import Struct
@@ -1413,7 +1414,7 @@ class DataClient:
         response: MergeDatasetsResponse = await self._dataset_client.MergeDatasets(request, metadata=self._metadata)
         return response.dataset_id
 
-    async def list_dataset_by_ids(self, ids: List[str]) -> Sequence[Dataset]:
+    async def list_dataset_by_ids(self, ids: List[str]) -> TSequence[Dataset]:
         """Get a list of datasets using their IDs.
 
         ::
@@ -1432,7 +1433,7 @@ class DataClient:
                 - Select **Copy dataset ID**.
 
         Returns:
-            Sequence[Dataset]: The list of datasets.
+            TSequence[Dataset]: The list of datasets.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyids>`_.
         """
@@ -1441,7 +1442,7 @@ class DataClient:
 
         return response.datasets
 
-    async def list_datasets_by_organization_id(self, organization_id: str) -> Sequence[Dataset]:
+    async def list_datasets_by_organization_id(self, organization_id: str) -> TSequence[Dataset]:
         """Get the datasets in an organization.
 
         ::
@@ -1456,7 +1457,7 @@ class DataClient:
                 To find your organization ID, visit the organization settings page.
 
         Returns:
-            Sequence[Dataset]: The list of datasets in the organization.
+            TSequence[Dataset]: The list of datasets in the organization.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
         """
@@ -2203,7 +2204,7 @@ class DataClient:
         organization_id: str,
         collection_type: IndexableCollection.ValueType,
         pipeline_name: Optional[str] = None,
-    ) -> Sequence[Index]:
+    ) -> TSequence[Index]:
         """Returns all the indexes for a given collection.
 
         Args:
