@@ -631,6 +631,7 @@ class MockGripper(Gripper):
         self.extra = None
         self.is_stopped = True
         self.timeout: Optional[float] = None
+        self.current_inputs = [0.5, 0.7]
         super().__init__(name)
 
     async def open(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
@@ -679,6 +680,16 @@ class MockGripper(Gripper):
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {}
+
+    async def get_current_inputs(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.current_inputs
+
+    async def go_to_inputs(self, values: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.current_inputs = values
+        self.extra = extra
+        self.timeout = timeout
 
 
 class MockInputController(Controller):

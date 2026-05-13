@@ -11,6 +11,10 @@ from viam.proto.common import (
     GetStatusResponse,
 )
 from viam.proto.component.gripper import (
+    GetCurrentInputsRequest,
+    GetCurrentInputsResponse,
+    GoToInputsRequest,
+    GoToInputsResponse,
     GrabRequest,
     GrabResponse,
     GripperServiceBase,
@@ -124,3 +128,20 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
             format, kinematics_data, meshes = kinematics
         response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data, meshes_by_urdf_filepath=meshes)
         await stream.send_message(response)
+
+    async def GetCurrentInputs(self, stream: Stream[GetCurrentInputsRequest, GetCurrentInputsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gripper = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        values = await gripper.get_current_inputs(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetCurrentInputsResponse(values=values)
+        await stream.send_message(response)
+
+    async def GoToInputs(self, stream: Stream[GoToInputsRequest, GoToInputsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gripper = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await gripper.go_to_inputs(list(request.values), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await stream.send_message(GoToInputsResponse())

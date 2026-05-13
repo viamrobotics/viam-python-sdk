@@ -15,6 +15,9 @@ from viam.proto.common import (
     GetStatusResponse,
 )
 from viam.proto.component.gripper import (
+    GetCurrentInputsRequest,
+    GetCurrentInputsResponse,
+    GoToInputsRequest,
     GrabRequest,
     GrabResponse,
     GripperServiceStub,
@@ -98,6 +101,17 @@ class TestGripper:
         assert kd == kinematics
         assert gripper.extra == {"1": "2"}
 
+    async def test_get_current_inputs(self, gripper: MockGripper):
+        inputs = await gripper.get_current_inputs(timeout=1.5)
+        assert inputs == [0.5, 0.7]
+        assert gripper.timeout == expected_grpc_timeout(1.5)
+
+    async def test_go_to_inputs(self, gripper: MockGripper):
+        new_inputs = [0.2, 0.9]
+        await gripper.go_to_inputs(new_inputs, timeout=2.3)
+        assert gripper.current_inputs == new_inputs
+        assert gripper.timeout == expected_grpc_timeout(2.3)
+
 
 class TestService:
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):
@@ -180,6 +194,23 @@ class TestService:
             response: GetKinematicsResponse = await client.GetKinematics(request)
             assert (response.format, response.kinematics_data, response.meshes_by_urdf_filepath) == kinematics
 
+    async def test_get_current_inputs(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            request = GetCurrentInputsRequest(name=gripper.name)
+            response: GetCurrentInputsResponse = await client.GetCurrentInputs(request, timeout=1.5)
+            assert list(response.values) == [0.5, 0.7]
+            assert gripper.timeout == expected_grpc_timeout(1.5)
+
+    async def test_go_to_inputs(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            new_inputs = [0.2, 0.9]
+            request = GoToInputsRequest(name=gripper.name, values=new_inputs)
+            await client.GoToInputs(request, timeout=2.3)
+            assert gripper.current_inputs == new_inputs
+            assert gripper.timeout == expected_grpc_timeout(2.3)
+
 
 class TestClient:
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):
@@ -249,3 +280,18 @@ class TestClient:
             kd = await client.get_kinematics(extra={"1": "2"})
             assert kd == kinematics
             assert gripper.extra == {"1": "2"}
+
+    async def test_get_current_inputs(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            inputs = await client.get_current_inputs(timeout=1.5)
+            assert inputs == [0.5, 0.7]
+            assert gripper.timeout == expected_grpc_timeout(1.5)
+
+    async def test_go_to_inputs(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            new_inputs = [0.2, 0.9]
+            await client.go_to_inputs(new_inputs, timeout=2.3)
+            assert gripper.current_inputs == new_inputs
+            assert gripper.timeout == expected_grpc_timeout(2.3)
