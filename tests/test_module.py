@@ -50,29 +50,32 @@ def service(module: Module) -> ModuleRPCService:
 
 class TestResourceDataConsumer:
     async def test_historical_data(self):
-        with mock.patch("viam.app.data_client.DataClient.tabular_data_by_mql", new=mock.AsyncMock()) as mocked:
-            with mock.patch("viam.app.viam_client._get_access_token") as patched_auth:
-                ACCESS_TOKEN = "MY_ACCESS_TOKEN"
-                patched_auth.return_value = ACCESS_TOKEN
+        async with ChannelFor([]) as channel:
+            with mock.patch("viam.app.data_client.DataClient.tabular_data_by_mql", new=mock.AsyncMock()) as mocked:
+                with mock.patch("viam.app.viam_client._dial_app") as patched_dial:
+                    patched_dial.return_value = channel
+                    with mock.patch("viam.app.viam_client._get_access_token") as patched_auth:
+                        ACCESS_TOKEN = "MY_ACCESS_TOKEN"
+                        patched_auth.return_value = ACCESS_TOKEN
 
-                os.environ["VIAM_API_KEY"] = "MY_API_KEY"
-                os.environ["VIAM_API_KEY_ID"] = str(uuid.uuid4())
-                os.environ["VIAM_PRIMARY_ORG_ID"] = "my_org"
-                os.environ["VIAM_MACHINE_PART_ID"] = "my_part"
+                        os.environ["VIAM_API_KEY"] = "MY_API_KEY"
+                        os.environ["VIAM_API_KEY_ID"] = str(uuid.uuid4())
+                        os.environ["VIAM_PRIMARY_ORG_ID"] = "my_org"
+                        os.environ["VIAM_MACHINE_PART_ID"] = "my_part"
 
-                delta = datetime.timedelta(hours=2)
+                        delta = datetime.timedelta(hours=2)
 
-                # Define a helper approx matcher because the time received fields will vary slightly
-                class DeltaApprox:
-                    def __eq__(self, other):
-                        gte = datetime.datetime.now() - delta
-                        return other - gte < datetime.timedelta(seconds=1)
+                        # Define a helper approx matcher because the time received fields will vary slightly
+                        class DeltaApprox:
+                            def __eq__(self, other):
+                                gte = datetime.datetime.now() - delta
+                                return other - gte < datetime.timedelta(seconds=1)
 
-                query = ResourceDataConsumer.construct_query("my_part", "resource", delta)
-                query[0]["$match"]["time_received"]["$gte"] = DeltaApprox()
+                        query = ResourceDataConsumer.construct_query("my_part", "resource", delta)
+                        query[0]["$match"]["time_received"]["$gte"] = DeltaApprox()
 
-                await ResourceDataConsumer.query_tabular_data("resource", delta)
-                mocked.assert_called_once_with("my_org", query)
+                        await ResourceDataConsumer.query_tabular_data("resource", delta)
+                        mocked.assert_called_once_with("my_org", query)
 
 
 class TestModule:
