@@ -188,6 +188,9 @@ class MockAudioOut(AudioOut):
         self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
+        self.play_stream_called = False
+        self.last_streamed_info: Optional[AudioInfo] = None
+        self.streamed_chunks: list[bytes] = []
 
     async def play(
         self,
@@ -201,6 +204,21 @@ class MockAudioOut(AudioOut):
         self.play_called = True
         self.last_audio_data = data
         self.last_audio_info = info
+
+    async def play_stream(
+        self,
+        info: AudioInfo,
+        chunks,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        self.play_stream_called = True
+        self.last_streamed_info = info
+        self.streamed_chunks = []
+        async for chunk in chunks:
+            self.streamed_chunks.append(chunk)
 
     async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.timeout = timeout
