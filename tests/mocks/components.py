@@ -182,9 +182,11 @@ class MockAudioOut(AudioOut):
     def __init__(self, name: str, properties: AudioOut.Properties):
         super().__init__(name)
         self.play_called = False
+        self.play_stream_called = False
         self.properties = properties
         self.last_audio_data = None
         self.last_audio_info = None
+        self.streamed_chunks: List[bytes] = []
         self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
@@ -201,6 +203,23 @@ class MockAudioOut(AudioOut):
         self.play_called = True
         self.last_audio_data = data
         self.last_audio_info = info
+
+    async def play_stream(
+        self,
+        chunks: AsyncIterator[bytes],
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        self.play_stream_called = True
+        self.last_audio_info = info
+        self.extra = extra
+        self.timeout = timeout
+        self.streamed_chunks = []
+        async for chunk in chunks:
+            self.streamed_chunks.append(chunk)
 
     async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.timeout = timeout
