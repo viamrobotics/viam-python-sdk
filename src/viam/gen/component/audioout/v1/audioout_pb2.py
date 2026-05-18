@@ -9,7 +9,7 @@ _sym_db = _symbol_database.Default()
 from ....common.v1 import common_pb2 as common_dot_v1_dot_common__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$component/audioout/v1/audioout.proto\x12\x1aviam.component.audioout.v1\x1a\x16common/v1/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto"\xa9\x01\n\x0bPlayRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n\naudio_data\x18\x02 \x01(\x0cR\taudioData\x128\n\naudio_info\x18\x03 \x01(\x0b2\x19.viam.common.v1.AudioInfoR\taudioInfo\x12-\n\x05extra\x18c \x01(\x0b2\x17.google.protobuf.StructR\x05extra"\x0e\n\x0cPlayResponse2\xee\x05\n\x0fAudioOutService\x12\x8e\x01\n\x04Play\x12\'.viam.component.audioout.v1.PlayRequest\x1a(.viam.component.audioout.v1.PlayResponse"3\x82\xd3\xe4\x93\x02-"+/viam/api/v1/component/audioout/{name}/play\x12\x97\x01\n\rGetProperties\x12$.viam.common.v1.GetPropertiesRequest\x1a%.viam.common.v1.GetPropertiesResponse"9\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/audioout/{name}/properties\x12\x89\x01\n\tDoCommand\x12 .viam.common.v1.DoCommandRequest\x1a!.viam.common.v1.DoCommandResponse"7\x82\xd3\xe4\x93\x021"//viam/api/v1/service/audioout/{name}/do_command\x12\x89\x01\n\tGetStatus\x12 .viam.common.v1.GetStatusRequest\x1a!.viam.common.v1.GetStatusResponse"7\x82\xd3\xe4\x93\x021\x12//viam/api/v1/service/audioout/{name}/get_status\x12\x97\x01\n\rGetGeometries\x12$.viam.common.v1.GetGeometriesRequest\x1a%.viam.common.v1.GetGeometriesResponse"9\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/audioout/{name}/geometriesBG\n\x1ecom.viam.component.audioout.v1Z%go.viam.com/api/component/audioout/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$component/audioout/v1/audioout.proto\x12\x1aviam.component.audioout.v1\x1a\x16common/v1/common.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto"\xa9\x01\n\x0bPlayRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n\naudio_data\x18\x02 \x01(\x0cR\taudioData\x128\n\naudio_info\x18\x03 \x01(\x0b2\x19.viam.common.v1.AudioInfoR\taudioInfo\x12-\n\x05extra\x18c \x01(\x0b2\x17.google.protobuf.StructR\x05extra"\xb0\x01\n\x11PlayStreamRequest\x12@\n\x04init\x18\x01 \x01(\x0b2*.viam.component.audioout.v1.PlayStreamInitH\x00R\x04init\x12N\n\x0baudio_chunk\x18\x02 \x01(\x0b2+.viam.component.audioout.v1.PlayStreamChunkH\x00R\naudioChunkB\t\n\x07payload"0\n\x0fPlayStreamChunk\x12\x1d\n\naudio_data\x18\x01 \x01(\x0cR\taudioData"\x8d\x01\n\x0ePlayStreamInit\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x128\n\naudio_info\x18\x02 \x01(\x0b2\x19.viam.common.v1.AudioInfoR\taudioInfo\x12-\n\x05extra\x18c \x01(\x0b2\x17.google.protobuf.StructR\x05extra"\x0e\n\x0cPlayResponse"\x14\n\x12PlayStreamResponse2\x93\x07\n\x0fAudioOutService\x12\x8e\x01\n\x04Play\x12\'.viam.component.audioout.v1.PlayRequest\x1a(.viam.component.audioout.v1.PlayResponse"3\x82\xd3\xe4\x93\x02-"+/viam/api/v1/component/audioout/{name}/play\x12\xa2\x01\n\nPlayStream\x12-.viam.component.audioout.v1.PlayStreamRequest\x1a..viam.component.audioout.v1.PlayStreamResponse"3\x82\xd3\xe4\x93\x02-"+/viam/api/v1/component/audioout/play_stream(\x01\x12\x97\x01\n\rGetProperties\x12$.viam.common.v1.GetPropertiesRequest\x1a%.viam.common.v1.GetPropertiesResponse"9\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/audioout/{name}/properties\x12\x89\x01\n\tDoCommand\x12 .viam.common.v1.DoCommandRequest\x1a!.viam.common.v1.DoCommandResponse"7\x82\xd3\xe4\x93\x021"//viam/api/v1/service/audioout/{name}/do_command\x12\x89\x01\n\tGetStatus\x12 .viam.common.v1.GetStatusRequest\x1a!.viam.common.v1.GetStatusResponse"7\x82\xd3\xe4\x93\x021\x12//viam/api/v1/service/audioout/{name}/get_status\x12\x97\x01\n\rGetGeometries\x12$.viam.common.v1.GetGeometriesRequest\x1a%.viam.common.v1.GetGeometriesResponse"9\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/audioout/{name}/geometriesBG\n\x1ecom.viam.component.audioout.v1Z%go.viam.com/api/component/audioout/v1b\x06proto3')
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'component.audioout.v1.audioout_pb2', _globals)
@@ -18,6 +18,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals['DESCRIPTOR']._serialized_options = b'\n\x1ecom.viam.component.audioout.v1Z%go.viam.com/api/component/audioout/v1'
     _globals['_AUDIOOUTSERVICE'].methods_by_name['Play']._loaded_options = None
     _globals['_AUDIOOUTSERVICE'].methods_by_name['Play']._serialized_options = b'\x82\xd3\xe4\x93\x02-"+/viam/api/v1/component/audioout/{name}/play'
+    _globals['_AUDIOOUTSERVICE'].methods_by_name['PlayStream']._loaded_options = None
+    _globals['_AUDIOOUTSERVICE'].methods_by_name['PlayStream']._serialized_options = b'\x82\xd3\xe4\x93\x02-"+/viam/api/v1/component/audioout/play_stream'
     _globals['_AUDIOOUTSERVICE'].methods_by_name['GetProperties']._loaded_options = None
     _globals['_AUDIOOUTSERVICE'].methods_by_name['GetProperties']._serialized_options = b'\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/audioout/{name}/properties'
     _globals['_AUDIOOUTSERVICE'].methods_by_name['DoCommand']._loaded_options = None
@@ -28,7 +30,15 @@ if not _descriptor._USE_C_DESCRIPTORS:
     _globals['_AUDIOOUTSERVICE'].methods_by_name['GetGeometries']._serialized_options = b'\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/audioout/{name}/geometries'
     _globals['_PLAYREQUEST']._serialized_start = 153
     _globals['_PLAYREQUEST']._serialized_end = 322
-    _globals['_PLAYRESPONSE']._serialized_start = 324
-    _globals['_PLAYRESPONSE']._serialized_end = 338
-    _globals['_AUDIOOUTSERVICE']._serialized_start = 341
-    _globals['_AUDIOOUTSERVICE']._serialized_end = 1091
+    _globals['_PLAYSTREAMREQUEST']._serialized_start = 325
+    _globals['_PLAYSTREAMREQUEST']._serialized_end = 501
+    _globals['_PLAYSTREAMCHUNK']._serialized_start = 503
+    _globals['_PLAYSTREAMCHUNK']._serialized_end = 551
+    _globals['_PLAYSTREAMINIT']._serialized_start = 554
+    _globals['_PLAYSTREAMINIT']._serialized_end = 695
+    _globals['_PLAYRESPONSE']._serialized_start = 697
+    _globals['_PLAYRESPONSE']._serialized_end = 711
+    _globals['_PLAYSTREAMRESPONSE']._serialized_start = 713
+    _globals['_PLAYSTREAMRESPONSE']._serialized_end = 733
+    _globals['_AUDIOOUTSERVICE']._serialized_start = 736
+    _globals['_AUDIOOUTSERVICE']._serialized_end = 1651

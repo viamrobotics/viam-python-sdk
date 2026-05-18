@@ -17,6 +17,10 @@ class AudioOutServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def PlayStream(self, stream: 'grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayStreamRequest, component.audioout.v1.audioout_pb2.PlayStreamResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def GetProperties(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse]') -> None:
         pass
 
@@ -33,11 +37,14 @@ class AudioOutServiceBase(abc.ABC):
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.audioout.v1.AudioOutService/Play': grpclib.const.Handler(self.Play, grpclib.const.Cardinality.UNARY_UNARY, component.audioout.v1.audioout_pb2.PlayRequest, component.audioout.v1.audioout_pb2.PlayResponse), '/viam.component.audioout.v1.AudioOutService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse), '/viam.component.audioout.v1.AudioOutService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.audioout.v1.AudioOutService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse), '/viam.component.audioout.v1.AudioOutService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)}
+        return {'/viam.component.audioout.v1.AudioOutService/Play': grpclib.const.Handler(self.Play, grpclib.const.Cardinality.UNARY_UNARY, component.audioout.v1.audioout_pb2.PlayRequest, component.audioout.v1.audioout_pb2.PlayResponse), '/viam.component.audioout.v1.AudioOutService/PlayStream': grpclib.const.Handler(self.PlayStream, grpclib.const.Cardinality.STREAM_UNARY, component.audioout.v1.audioout_pb2.PlayStreamRequest, component.audioout.v1.audioout_pb2.PlayStreamResponse), '/viam.component.audioout.v1.AudioOutService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse), '/viam.component.audioout.v1.AudioOutService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.audioout.v1.AudioOutService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse), '/viam.component.audioout.v1.AudioOutService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)}
 
 class UnimplementedAudioOutServiceBase(AudioOutServiceBase):
 
     async def Play(self, stream: 'grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayRequest, component.audioout.v1.audioout_pb2.PlayResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def PlayStream(self, stream: 'grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayStreamRequest, component.audioout.v1.audioout_pb2.PlayStreamResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def GetProperties(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse]') -> None:
@@ -56,6 +63,7 @@ class AudioOutServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.Play = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioout.v1.AudioOutService/Play', component.audioout.v1.audioout_pb2.PlayRequest, component.audioout.v1.audioout_pb2.PlayResponse)
+        self.PlayStream = grpclib.client.StreamUnaryMethod(channel, '/viam.component.audioout.v1.AudioOutService/PlayStream', component.audioout.v1.audioout_pb2.PlayStreamRequest, component.audioout.v1.audioout_pb2.PlayStreamResponse)
         self.GetProperties = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioout.v1.AudioOutService/GetProperties', common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioout.v1.AudioOutService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
         self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.audioout.v1.AudioOutService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
