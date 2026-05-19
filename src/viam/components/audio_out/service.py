@@ -49,8 +49,9 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
         if not first.HasField("init"):
             raise GRPCError(Status.INVALID_ARGUMENT, "PlayStream: first message must be PlayStreamInit")
         init = first.init
+        if not init.HasField("audio_info"):
+            raise GRPCError(Status.INVALID_ARGUMENT, "PlayStream: audio_info is required on PlayStreamInit")
         audio_out = self.get_resource(init.name)
-        audio_info = init.audio_info if init.HasField("audio_info") else None
 
         async def chunks() -> AsyncIterator[bytes]:
             async for msg in stream:
@@ -59,7 +60,7 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await audio_out.play_stream(
-            audio_info,
+            init.audio_info,
             chunks(),
             extra=struct_to_dict(init.extra),
             timeout=timeout,
