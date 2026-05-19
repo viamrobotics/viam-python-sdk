@@ -588,8 +588,8 @@
 
 
 
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_dial_app</span><span class="p">(</span><span class="n">app_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">app_url</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_dial_app</span><span class="p">(</span><span class="n">app_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">app_url</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 </pre></div>
 
            </div>
