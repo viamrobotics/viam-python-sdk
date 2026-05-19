@@ -4,7 +4,14 @@ Do not edit manually!
 """
 
 from ....gen.component.audioout.v1.audioout_grpc import AudioOutServiceBase, AudioOutServiceStub, UnimplementedAudioOutServiceBase
-from ....gen.component.audioout.v1.audioout_pb2 import PlayRequest, PlayResponse
+from ....gen.component.audioout.v1.audioout_pb2 import (
+    PlayRequest,
+    PlayResponse,
+    PlayStreamChunk,
+    PlayStreamInit,
+    PlayStreamRequest,
+    PlayStreamResponse,
+)
 
 __all__ = [
     "AudioOutServiceBase",
@@ -12,4 +19,8 @@ __all__ = [
     "UnimplementedAudioOutServiceBase",
     "PlayRequest",
     "PlayResponse",
+    "PlayStreamChunk",
+    "PlayStreamInit",
+    "PlayStreamRequest",
+    "PlayStreamResponse",
 ]

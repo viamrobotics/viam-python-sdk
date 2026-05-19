@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, Final, Optional, TypeAlias
+from typing import Any, AsyncIterator, Dict, Final, Optional, TypeAlias
 
 from viam.proto.common import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
@@ -48,6 +48,35 @@ class AudioOut(ComponentBase):
 
         Args:
             data: audio bytes to play
+            info: (optional) information about the audio data such as codec, sample rate, and channel count
+        """
+
+    @abc.abstractmethod
+    async def play_stream(
+        self,
+        chunks: AsyncIterator[bytes],
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        """
+        Play audio data from a stream of chunks.
+
+        ::
+
+            my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
+
+            async def audio_generator():
+                for chunk in audio_chunks:
+                    yield chunk
+
+            audio_info = AudioInfo(codec=AudioCodec.PCM16, sample_rate_hz=44100, num_channels=2)
+            await my_audio_out.play_stream(audio_generator(), audio_info)
+
+        Args:
+            chunks: async iterator of audio data chunks to play
             info: (optional) information about the audio data such as codec, sample rate, and channel count
         """
 

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -11,7 +11,13 @@ from viam.proto.common import (
     GetStatusRequest,
     GetStatusResponse,
 )
-from viam.proto.component.audioout import AudioOutServiceStub, PlayRequest
+from viam.proto.component.audioout import (
+    AudioOutServiceStub,
+    PlayRequest,
+    PlayStreamChunk,
+    PlayStreamInit,
+    PlayStreamRequest,
+)
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
@@ -46,6 +52,35 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
             extra=dict_to_struct(extra),
         )
         await self.client.Play(request, timeout=timeout, metadata=md)
+
+    async def play_stream(
+        self,
+        chunks: AsyncIterator[bytes],
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        if extra is None:
+            extra = {}
+
+        md = kwargs.get("metadata", self.Metadata()).proto
+
+        async with self.client.PlayStream.open(timeout=timeout, metadata=md) as stream:
+            await stream.send_message(
+                PlayStreamRequest(
+                    init=PlayStreamInit(
+                        name=self.name,
+                        audio_info=info,
+                        extra=dict_to_struct(extra),
+                    )
+                )
+            )
+            async for chunk in chunks:
+                await stream.send_message(PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=chunk)))
+            await stream.end()
+            await stream.recv_message()
 
     async def get_properties(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
