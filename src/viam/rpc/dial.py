@@ -465,5 +465,5 @@ async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Ch
     return await _dial_direct(address, options)
 
 
-async def _dial_app(app_url: str) -> Channel:
-    return await _dial_direct(app_url)
+async def _dial_app(app_url: str, options: Optional[DialOptions] = None) -> Channel:
+    return await _dial_direct(app_url, options)

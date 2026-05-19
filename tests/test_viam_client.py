@@ -44,6 +44,34 @@ class TestViamClient:
                     assert DIAL_OPTIONS.auth_entity is not None
                     assert client._metadata == {"authorization": f"Bearer {ACCESS_TOKEN}"}
 
+    async def test_passes_dial_options_to_dial_app(self):
+        async with ChannelFor([]) as channel:
+            with patch("viam.app.viam_client._dial_app") as patched_dial:
+                patched_dial.return_value = channel
+                with patch("viam.app.viam_client._get_access_token") as patched_auth:
+                    patched_auth.return_value = "MY_ACCESS_TOKEN"
+
+                    creds = Credentials("api-key", "SOME_API_KEY")
+                    dial_options = DialOptions(credentials=creds, auth_entity=str(uuid4()), insecure=True)
+
+                    await ViamClient.create_from_dial_options(dial_options)
+
+                    patched_dial.assert_called_once_with("app.viam.com", dial_options)
+
+    async def test_passes_dial_options_with_custom_url(self):
+        async with ChannelFor([]) as channel:
+            with patch("viam.app.viam_client._dial_app") as patched_dial:
+                patched_dial.return_value = channel
+                with patch("viam.app.viam_client._get_access_token") as patched_auth:
+                    patched_auth.return_value = "MY_ACCESS_TOKEN"
+
+                    creds = Credentials("api-key", "SOME_API_KEY")
+                    dial_options = DialOptions(credentials=creds, auth_entity=str(uuid4()), insecure=True)
+
+                    await ViamClient.create_from_dial_options(dial_options, app_url="localhost:8080")
+
+                    patched_dial.assert_called_once_with("localhost:8080", dial_options)
+
     async def test_clients(self):
         async with ChannelFor([]) as channel:
             with patch("viam.app.viam_client._dial_app") as patched_dial:
