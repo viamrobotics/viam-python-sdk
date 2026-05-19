@@ -65,6 +65,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.API"><code class="docutils literal notranslate"><span class="pre">AudioOut.API</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.Properties"><code class="docutils literal notranslate"><span class="pre">AudioOut.Properties</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.play"><code class="docutils literal notranslate"><span class="pre">AudioOut.play()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.play_stream"><code class="docutils literal notranslate"><span class="pre">AudioOut.play_stream()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.get_properties"><code class="docutils literal notranslate"><span class="pre">AudioOut.get_properties()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.from_robot"><code class="docutils literal notranslate"><span class="pre">AudioOut.from_robot()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_out.audio_out.AudioOut.do_command"><code class="docutils literal notranslate"><span class="pre">AudioOut.do_command()</span></code></a></li>
@@ -200,6 +201,34 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – audio bytes to play</p></li>
+<li><p><strong>info</strong> – (optional) information about the audio data such as codec, sample rate, and channel count</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_out.audio_out.AudioOut.play_stream">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">play_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chunks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.audio_out.AudioInfo" title="viam.components.audio_out.AudioInfo"><span class="pre">viam.components.audio_out.AudioInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_out/audio_out.html#AudioOut.play_stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_out.audio_out.AudioOut.play_stream" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Play audio data from a stream of chunks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_audio_out</span> <span class="o">=</span> <span class="n">AudioOut</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_audio_out&quot;</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">audio_generator</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">audio_chunks</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">chunk</span>
+
+<span class="n">audio_info</span> <span class="o">=</span> <span class="n">AudioInfo</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="n">AudioCodec</span><span class="o">.</span><span class="n">PCM16</span><span class="p">,</span> <span class="n">sample_rate_hz</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">my_audio_out</span><span class="o">.</span><span class="n">play_stream</span><span class="p">(</span><span class="n">audio_generator</span><span class="p">(),</span> <span class="n">audio_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chunks</strong> – async iterator of audio data chunks to play</p></li>
 <li><p><strong>info</strong> – (optional) information about the audio data such as codec, sample rate, and channel count</p></li>
 </ul>
 </dd>

@@ -73,6 +73,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceBase"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceBase.Play"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceBase.Play()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceBase.PlayStream"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceBase.PlayStream()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceBase.GetProperties()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceBase.GetStatus()</span></code></a></li>
@@ -82,6 +83,7 @@
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceStub"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceStub</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceStub.Play"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceStub.Play</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceStub.PlayStream"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceStub.PlayStream</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceStub.GetProperties"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceStub.GetProperties</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceStub.DoCommand</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.AudioOutServiceStub.GetStatus"><code class="docutils literal notranslate"><span class="pre">AudioOutServiceStub.GetStatus</span></code></a></li>
@@ -90,6 +92,7 @@
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioOutServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.Play"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioOutServiceBase.Play()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.PlayStream"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioOutServiceBase.PlayStream()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioOutServiceBase.GetProperties()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioOutServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioOutServiceBase.GetStatus()</span></code></a></li>
@@ -105,6 +108,25 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.PlayResponse"><code class="docutils literal notranslate"><span class="pre">PlayResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamChunk"><code class="docutils literal notranslate"><span class="pre">PlayStreamChunk</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamChunk.audio_data"><code class="docutils literal notranslate"><span class="pre">PlayStreamChunk.audio_data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamInit"><code class="docutils literal notranslate"><span class="pre">PlayStreamInit</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamInit.name"><code class="docutils literal notranslate"><span class="pre">PlayStreamInit.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamInit.audio_info"><code class="docutils literal notranslate"><span class="pre">PlayStreamInit.audio_info()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamInit.extra"><code class="docutils literal notranslate"><span class="pre">PlayStreamInit.extra()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamInit.HasField"><code class="docutils literal notranslate"><span class="pre">PlayStreamInit.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamRequest"><code class="docutils literal notranslate"><span class="pre">PlayStreamRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamRequest.init"><code class="docutils literal notranslate"><span class="pre">PlayStreamRequest.init()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamRequest.audio_chunk"><code class="docutils literal notranslate"><span class="pre">PlayStreamRequest.audio_chunk()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamRequest.HasField"><code class="docutils literal notranslate"><span class="pre">PlayStreamRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">PlayStreamRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamResponse"><code class="docutils literal notranslate"><span class="pre">PlayStreamResponse</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -193,6 +215,18 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.audioout.PlayResponse" title="viam.proto.component.audioout.PlayResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlayResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamChunk" title="viam.proto.component.audioout.PlayStreamChunk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlayStreamChunk</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamInit" title="viam.proto.component.audioout.PlayStreamInit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlayStreamInit</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamRequest" title="viam.proto.component.audioout.PlayStreamRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlayStreamRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.audioout.PlayStreamResponse" title="viam.proto.component.audioout.PlayStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlayStreamResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -207,6 +241,15 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.audioout.AudioOutServiceBase.Play">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayRequest" title="viam.gen.component.audioout.v1.audioout_pb2.PlayRequest"><span class="pre">component.audioout.v1.audioout_pb2.PlayRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayResponse" title="viam.gen.component.audioout.v1.audioout_pb2.PlayResponse"><span class="pre">component.audioout.v1.audioout_pb2.PlayResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioout/v1/audioout_grpc.html#AudioOutServiceBase.Play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioout.AudioOutServiceBase.Play" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.AudioOutServiceBase.PlayStream">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">PlayStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayStreamRequest" title="viam.gen.component.audioout.v1.audioout_pb2.PlayStreamRequest"><span class="pre">component.audioout.v1.audioout_pb2.PlayStreamRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayStreamResponse" title="viam.gen.component.audioout.v1.audioout_pb2.PlayStreamResponse"><span class="pre">component.audioout.v1.audioout_pb2.PlayStreamResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioout/v1/audioout_grpc.html#AudioOutServiceBase.PlayStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioout.AudioOutServiceBase.PlayStream" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
@@ -265,6 +308,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.AudioOutServiceStub.PlayStream">
+<span class="sig-name descname"><span class="pre">PlayStream</span></span><a class="headerlink" href="#viam.proto.component.audioout.AudioOutServiceStub.PlayStream" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.audioout.AudioOutServiceStub.GetProperties">
 <span class="sig-name descname"><span class="pre">GetProperties</span></span><a class="headerlink" href="#viam.proto.component.audioout.AudioOutServiceStub.GetProperties" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -295,6 +343,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.audioout.UnimplementedAudioOutServiceBase.Play">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayRequest" title="viam.gen.component.audioout.v1.audioout_pb2.PlayRequest"><span class="pre">component.audioout.v1.audioout_pb2.PlayRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayResponse" title="viam.gen.component.audioout.v1.audioout_pb2.PlayResponse"><span class="pre">component.audioout.v1.audioout_pb2.PlayResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioout/v1/audioout_grpc.html#UnimplementedAudioOutServiceBase.Play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.Play" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.UnimplementedAudioOutServiceBase.PlayStream">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">PlayStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayStreamRequest" title="viam.gen.component.audioout.v1.audioout_pb2.PlayStreamRequest"><span class="pre">component.audioout.v1.audioout_pb2.PlayStreamRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.PlayStreamResponse" title="viam.gen.component.audioout.v1.audioout_pb2.PlayStreamResponse"><span class="pre">component.audioout.v1.audioout_pb2.PlayStreamResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioout/v1/audioout_grpc.html#UnimplementedAudioOutServiceBase.PlayStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioout.UnimplementedAudioOutServiceBase.PlayStream" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -376,6 +429,144 @@ be raised.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.audioout.PlayResponse">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioout.</span></span><span class="sig-name descname"><span class="pre">PlayResponse</span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamChunk">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioout.</span></span><span class="sig-name descname"><span class="pre">PlayStreamChunk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamChunk" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamChunk.audio_data">
+<span class="sig-name descname"><span class="pre">audio_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamChunk.audio_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamInit">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioout.</span></span><span class="sig-name descname"><span class="pre">PlayStreamInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AudioInfo" title="viam.gen.common.v1.common_pb2.AudioInfo"><span class="pre">common.v1.common_pb2.AudioInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamInit" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamInit.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamInit.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamInit.audio_info">
+<span class="sig-name descname"><span class="pre">audio_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AudioInfo" title="viam.gen.common.v1.common_pb2.AudioInfo"><span class="pre">common.v1.common_pb2.AudioInfo</span></a></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamInit.audio_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamInit.extra">
+<span class="sig-name descname"><span class="pre">extra</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamInit.extra" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamInit.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamInit.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioout.</span></span><span class="sig-name descname"><span class="pre">PlayStreamRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamInit" title="viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamInit"><span class="pre">Global___PlayStreamInit</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_chunk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamChunk" title="viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamChunk"><span class="pre">Global___PlayStreamChunk</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamRequest.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamInit" title="viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamInit"><span class="pre">Global___PlayStreamInit</span></a></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamRequest.init" title="Link to this definition"></a></dt>
+<dd><p>sent on first message</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamRequest.audio_chunk">
+<span class="sig-name descname"><span class="pre">audio_chunk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/component/audioout/v1/audioout_pb2/index.html#viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamChunk" title="viam.gen.component.audioout.v1.audioout_pb2.Global___PlayStreamChunk"><span class="pre">Global___PlayStreamChunk</span></a></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamRequest.audio_chunk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamRequest.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType_payload</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType_payload</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamRequest.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioout.PlayStreamResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioout.</span></span><span class="sig-name descname"><span class="pre">PlayStreamResponse</span></span><a class="headerlink" href="#viam.proto.component.audioout.PlayStreamResponse" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol

@@ -33,6 +33,13 @@ Module Contents
 
 
 
+   .. py:method:: PlayStream(stream: grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayStreamRequest, component.audioout.v1.audioout_pb2.PlayStreamResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: GetProperties(stream: grpclib.server.Stream[common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
 
@@ -78,6 +85,11 @@ Module Contents
 
 
 
+   .. py:method:: PlayStream(stream: grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayStreamRequest, component.audioout.v1.audioout_pb2.PlayStreamResponse]) -> None
+      :async:
+
+
+
    .. py:method:: GetProperties(stream: grpclib.server.Stream[common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse]) -> None
       :async:
 
@@ -101,6 +113,9 @@ Module Contents
 .. py:class:: AudioOutServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: Play
+
+
+   .. py:attribute:: PlayStream
 
 
    .. py:attribute:: GetProperties
