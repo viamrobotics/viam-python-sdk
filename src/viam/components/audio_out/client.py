@@ -67,20 +67,20 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
 
         md = kwargs.get("metadata", self.Metadata()).proto
 
-        async def request_iterator() -> AsyncIterator[PlayStreamRequest]:
-            # Send the init message first
-            yield PlayStreamRequest(
-                init=PlayStreamInit(
-                    name=self.name,
-                    audio_info=info,
-                    extra=dict_to_struct(extra),
+        async with self.client.PlayStream.open(timeout=timeout, metadata=md) as stream:
+            await stream.send_message(
+                PlayStreamRequest(
+                    init=PlayStreamInit(
+                        name=self.name,
+                        audio_info=info,
+                        extra=dict_to_struct(extra),
+                    )
                 )
             )
-            # Then send audio chunks
             async for chunk in chunks:
-                yield PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=chunk))
-
-        await self.client.PlayStream(request_iterator(), timeout=timeout, metadata=md)
+                await stream.send_message(PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=chunk)))
+            await stream.end()
+            await stream.recv_message()
 
     async def get_properties(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs

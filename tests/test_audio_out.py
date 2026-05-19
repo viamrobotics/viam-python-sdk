@@ -187,21 +187,20 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = AudioOutServiceStub(channel)
 
-            async def request_generator():
-                # Send init message first
-                yield PlayStreamRequest(
-                    init=PlayStreamInit(
-                        name=audio_out.name,
-                        audio_info=audio_info,
-                        extra=dict_to_struct({"test": "extra"}),
+            async with client.PlayStream.open() as stream:
+                await stream.send_message(
+                    PlayStreamRequest(
+                        init=PlayStreamInit(
+                            name=audio_out.name,
+                            audio_info=audio_info,
+                            extra=dict_to_struct({"test": "extra"}),
+                        )
                     )
                 )
-                # Send audio chunks
-                yield PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=b"chunk1"))
-                yield PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=b"chunk2"))
-                yield PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=b"chunk3"))
-
-            await client.PlayStream(request_generator())
+                for chunk_data in [b"chunk1", b"chunk2", b"chunk3"]:
+                    await stream.send_message(PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=chunk_data)))
+                await stream.end()
+                await stream.recv_message()
 
             assert audio_out.play_stream_called
             assert audio_out.last_audio_info == audio_info
