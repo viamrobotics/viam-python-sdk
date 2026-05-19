@@ -54,7 +54,7 @@ Module Contents
       The credential
 
 
-.. py:class:: DialOptions(*, disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3, timeout: float = 20, initial_connection_attempts: int = 3, initial_connection_attempt_timeout: Optional[float] = None)
+.. py:class:: DialOptions(*, disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3, timeout: float = 20, initial_connection_attempts: int = 3, initial_connection_attempt_timeout: Optional[float] = None, force_relay: bool = False, force_p2p: bool = False, turn_uri: Optional[str] = None)
 
    .. py:attribute:: disable_webrtc
       :type:  bool
@@ -134,6 +134,39 @@ Module Contents
 
       Number of seconds before the dial connection times out
       Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
+
+
+   .. py:attribute:: force_relay
+      :type:  bool
+      :value: False
+
+
+      Force ICE transport policy to relay-only so only TURN candidates are used.
+      Useful for testing relay connectivity through a TURN server. Mutually exclusive
+      with ``force_p2p``: if both are set the connection will fail because ``force_p2p``
+      strips the very TURN servers ``force_relay`` requires.
+
+
+   .. py:attribute:: force_p2p
+      :type:  bool
+      :value: False
+
+
+      Strip TURN servers from the ICE config so only host and server-reflexive
+      candidates are used. Useful for testing direct connectivity without relay
+      fallback. Setting this alongside ``turn_uri`` is a no-op for the filter, since
+      TURN servers are removed before any filtering happens.
+
+
+   .. py:attribute:: turn_uri
+      :type:  Optional[str]
+      :value: None
+
+
+      Filter the signaling server's TURN list to only the server whose parsed URI
+      matches (compared by scheme, host, port, and transport — transport defaults to
+      UDP if unspecified). Set to ``None`` to use all TURN servers.
+      Example: ``"turn:turn.viam.com:443"``.
 
 
    .. py:method:: with_api_key(api_key: str, api_key_id: str) -> Self

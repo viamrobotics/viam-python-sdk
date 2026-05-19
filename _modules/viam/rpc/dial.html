@@ -174,6 +174,24 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Number of seconds before the dial connection times out</span>
 <span class="sd">    Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go&quot;&quot;&quot;</span>
 
+    <span class="n">force_relay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Force ICE transport policy to relay-only so only TURN candidates are used.</span>
+<span class="sd">    Useful for testing relay connectivity through a TURN server. Mutually exclusive</span>
+<span class="sd">    with ``force_p2p``: if both are set the connection will fail because ``force_p2p``</span>
+<span class="sd">    strips the very TURN servers ``force_relay`` requires.&quot;&quot;&quot;</span>
+
+    <span class="n">force_p2p</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strip TURN servers from the ICE config so only host and server-reflexive</span>
+<span class="sd">    candidates are used. Useful for testing direct connectivity without relay</span>
+<span class="sd">    fallback. Setting this alongside ``turn_uri`` is a no-op for the filter, since</span>
+<span class="sd">    TURN servers are removed before any filtering happens.&quot;&quot;&quot;</span>
+
+    <span class="n">turn_uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter the signaling server&#39;s TURN list to only the server whose parsed URI</span>
+<span class="sd">    matches (compared by scheme, host, port, and transport — transport defaults to</span>
+<span class="sd">    UDP if unspecified). Set to ``None`` to use all TURN servers.</span>
+<span class="sd">    Example: ``&quot;turn:turn.viam.com:443&quot;``.&quot;&quot;&quot;</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -187,6 +205,9 @@
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
         <span class="n">initial_connection_attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
         <span class="n">initial_connection_attempt_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">force_relay</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">force_p2p</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">turn_uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_webrtc</span> <span class="o">=</span> <span class="n">disable_webrtc</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auth_entity</span> <span class="o">=</span> <span class="n">auth_entity</span>
@@ -198,6 +219,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initial_connection_attempts</span> <span class="o">=</span> <span class="n">initial_connection_attempts</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initial_connection_attempt_timeout</span> <span class="o">=</span> <span class="n">initial_connection_attempt_timeout</span> <span class="k">if</span> <span class="n">initial_connection_attempt_timeout</span> <span class="k">else</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_relay</span> <span class="o">=</span> <span class="n">force_relay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_p2p</span> <span class="o">=</span> <span class="n">force_p2p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turn_uri</span> <span class="o">=</span> <span class="n">turn_uri</span>
 
 <div class="viewcode-block" id="DialOptions.with_api_key">
 <a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.with_api_key">[docs]</a>
@@ -353,10 +377,10 @@
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new viam-rust-utils runtime&quot;</span><span class="p">)</span>
         <span class="n">libname</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;libviam_rust_utils.</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">libname</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">init_rust_runtime</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">init_rust_runtime</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_init_rust_runtime</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_init_rust_runtime</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">dial</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_with_opts</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span>
             <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span>
             <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span>
@@ -364,16 +388,32 @@
             <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">,</span>
             <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">,</span>
             <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">dial</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_with_opts</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_rust_runtime</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_rust_runtime</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_new</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_new</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_string</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_string</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_free</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_free</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">init_rust_runtime</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_force_relay</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_force_relay</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_force_p2p</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_force_p2p</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_turn_uri</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_turn_uri</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_free_rust_runtime</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_free_rust_runtime</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_free_string</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_free_string</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_init_rust_runtime</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]:</span>
         <span class="nb">type</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">credentials</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
@@ -385,27 +425,36 @@
         <span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dialing </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2"> using viam-rust-utils library&quot;</span><span class="p">)</span>
-        <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">to_thread</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">dial</span><span class="p">,</span>
-            <span class="n">address</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
-            <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="nb">type</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">payload</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">insecure</span><span class="p">,</span>
-            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">timeout</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="n">opts_handle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_new</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_force_relay</span><span class="p">(</span><span class="n">opts_handle</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">force_relay</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_force_p2p</span><span class="p">(</span><span class="n">opts_handle</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">force_p2p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">turn_uri</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_set_turn_uri</span><span class="p">(</span><span class="n">opts_handle</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">turn_uri</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+            <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">to_thread</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_with_opts</span><span class="p">,</span>
+                <span class="n">address</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
+                <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="nb">type</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">payload</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">payload</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">insecure</span><span class="p">,</span>
+                <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">timeout</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span><span class="p">,</span>
+                <span class="n">opts_handle</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_dial_opts_free</span><span class="p">(</span><span class="n">opts_handle</span><span class="p">)</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">path_ptr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">path</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_ptr</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Freeing viam-rust-utils runtime&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_rust_runtime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_free_rust_runtime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">free_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ptr</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">):</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Freeing socket string&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_string</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_free_string</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="dial">
