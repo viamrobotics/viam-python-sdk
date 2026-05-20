@@ -1157,6 +1157,7 @@ class MockDataset(DatasetServiceBase):
         assert request is not None
         self.name = request.name
         self.org_id = request.organization_id
+        self.type = request.type if request.HasField("type") else None
         await stream.send_message(CreateDatasetResponse(id=self.create_response))
 
     async def DeleteDataset(self, stream: Stream[DeleteDatasetRequest, DeleteDatasetResponse]) -> None:
