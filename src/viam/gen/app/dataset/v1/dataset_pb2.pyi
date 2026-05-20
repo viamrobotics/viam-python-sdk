@@ -7,6 +7,7 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
 from google.protobuf.internal import containers as _containers
+from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 import builtins as _builtins
 import sys
 import typing as _typing
@@ -16,6 +17,27 @@ else:
     from typing_extensions import TypeAlias as _TypeAlias
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class _DatasetType:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _DatasetTypeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_DatasetType.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    DATASET_TYPE_BINARY_DATA: _DatasetType.ValueType
+    'DATASET_TYPE_BINARY_DATA is a dataset whose members are individual binary data objects (frames).\n    This is the default for datasets created without an explicit type, including all pre-existing\n    datasets.\n    '
+    DATASET_TYPE_SEQUENCE_DATA: _DatasetType.ValueType
+    'DATASET_TYPE_SEQUENCE_DATA is a dataset whose members are sequences. Binary-data writes\n    (AddBinaryDataToDatasetByIDs, AddBinaryDataToDatasetByFilter) are rejected against datasets\n    of this type; sequences are added/removed via AddSequencesToDataset / RemoveSequencesFromDataset.\n    '
+
+class DatasetType(_DatasetType, metaclass=_DatasetTypeEnumTypeWrapper):
+    """DatasetType describes the kind of membership a dataset stores.
+    buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
+    """
+DATASET_TYPE_BINARY_DATA: DatasetType.ValueType
+'DATASET_TYPE_BINARY_DATA is a dataset whose members are individual binary data objects (frames).\nThis is the default for datasets created without an explicit type, including all pre-existing\ndatasets.\n'
+DATASET_TYPE_SEQUENCE_DATA: DatasetType.ValueType
+'DATASET_TYPE_SEQUENCE_DATA is a dataset whose members are sequences. Binary-data writes\n(AddBinaryDataToDatasetByIDs, AddBinaryDataToDatasetByFilter) are rejected against datasets\nof this type; sequences are added/removed via AddSequencesToDataset / RemoveSequencesFromDataset.\n'
+Global___DatasetType: _TypeAlias = DatasetType
+
 @_typing.final
 class Dataset(_message.Message):
     """Dataset stores the metadata of a dataset."""
@@ -24,21 +46,24 @@ class Dataset(_message.Message):
     NAME_FIELD_NUMBER: _builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
     TIME_CREATED_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
     organization_id: _builtins.str
+    type: Global___DatasetType.ValueType
+    'type is the membership kind of this dataset. Immutable after creation; defaults to\n    DATASET_TYPE_BINARY_DATA when unset (including for pre-existing datasets).\n    '
 
     @_builtins.property
     def time_created(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., organization_id: _builtins.str=..., time_created: _timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., organization_id: _builtins.str=..., time_created: _timestamp_pb2.Timestamp | None=..., type: Global___DatasetType.ValueType=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['time_created', b'time_created']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id', 'name', b'name', 'organization_id', b'organization_id', 'time_created', b'time_created']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id', 'name', b'name', 'organization_id', b'organization_id', 'time_created', b'time_created', 'type', b'type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -50,14 +75,26 @@ class CreateDatasetRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
     name: _builtins.str
     organization_id: _builtins.str
+    type: Global___DatasetType.ValueType
+    'type is the membership kind for the new dataset. Defaults to DATASET_TYPE_BINARY_DATA when unset.'
 
-    def __init__(self, *, name: _builtins.str=..., organization_id: _builtins.str=...) -> None:
+    def __init__(self, *, name: _builtins.str=..., organization_id: _builtins.str=..., type: Global___DatasetType.ValueType | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['name', b'name', 'organization_id', b'organization_id']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_type', b'_type', 'type', b'type']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_type', b'_type', 'name', b'name', 'organization_id', b'organization_id', 'type', b'type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__type: _TypeAlias = _typing.Literal['type']
+    _WhichOneofArgType__type: _TypeAlias = _typing.Literal['_type', b'_type']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None:
         ...
 Global___CreateDatasetRequest: _TypeAlias = CreateDatasetRequest
 
