@@ -3,7 +3,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.dataset import Dataset
+from viam.proto.app.dataset import Dataset, DatasetType
 
 from .mocks.services import MockDataset
 
@@ -35,6 +35,16 @@ class TestClient:
             id = await client.create_dataset(NAME, ORG_ID)
             assert service.name == NAME
             assert service.org_id == ORG_ID
+            assert service.type is None
+            assert id == CREATED_ID
+
+    async def test_create_dataset_with_type(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            id = await client.create_dataset(NAME, ORG_ID, type=DatasetType.DATASET_TYPE_SEQUENCE_DATA)
+            assert service.name == NAME
+            assert service.org_id == ORG_ID
+            assert service.type == DatasetType.DATASET_TYPE_SEQUENCE_DATA
             assert id == CREATED_ID
 
     async def test_merge_datasets(self, service: MockDataset):

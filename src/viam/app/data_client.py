@@ -96,6 +96,7 @@ from viam.proto.app.dataset import (
     CreateDatasetResponse,
     Dataset,
     DatasetServiceStub,
+    DatasetType,
     DeleteDatasetRequest,
     ListDatasetsByIDsRequest,
     ListDatasetsByIDsResponse,
@@ -1363,7 +1364,7 @@ class DataClient:
         request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
         await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
 
-    async def create_dataset(self, name: str, organization_id: str) -> str:
+    async def create_dataset(self, name: str, organization_id: str, type: Optional[DatasetType.ValueType] = None) -> str:
         """Create a new dataset.
 
         ::
@@ -1378,13 +1379,15 @@ class DataClient:
             name (str): The name of the dataset being created.
             organization_id (str): The ID of the organization where the dataset is being created.
                 To find your organization ID, visit the organization settings page.
+            type (Optional[DatasetType.ValueType]): The membership kind for the new dataset.
+                Defaults to DATASET_TYPE_BINARY_DATA when unset.
 
         Returns:
             str: The dataset ID of the created dataset.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createdataset>`_.
         """
-        request = CreateDatasetRequest(name=name, organization_id=organization_id)
+        request = CreateDatasetRequest(name=name, organization_id=organization_id, type=type)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
 

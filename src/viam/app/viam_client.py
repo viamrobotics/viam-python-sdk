@@ -88,7 +88,7 @@ class ViamClient:
         self._dial_options = dial_options
         if app_url is None:
             app_url = "app.viam.com"
-        self._channel = await _dial_app(app_url)
+        self._channel = await _dial_app(app_url, dial_options)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
         self._metadata = {"authorization": f"Bearer {access_token}"}
         return self

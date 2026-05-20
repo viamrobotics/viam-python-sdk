@@ -33,106 +33,98 @@ class PlayRequest(_message.Message):
         """Info describing the audio_data"""
 
     @_builtins.property
-    def extra(self) -> _struct_pb2.Struct: ...
-    def __init__(
-        self,
-        *,
-        name: _builtins.str = ...,
-        audio_data: _builtins.bytes = ...,
-        audio_info: _common_pb2.AudioInfo | None = ...,
-        extra: _struct_pb2.Struct | None = ...,
-    ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["audio_info", b"audio_info", "extra", b"extra"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["audio_data", b"audio_data", "audio_info", b"audio_info", "extra", b"extra", "name", b"name"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def extra(self) -> _struct_pb2.Struct:
+        ...
 
-Global___PlayRequest: _TypeAlias = PlayRequest  # noqa: Y015
+    def __init__(self, *, name: _builtins.str=..., audio_data: _builtins.bytes=..., audio_info: _common_pb2.AudioInfo | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['audio_info', b'audio_info', 'extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['audio_data', b'audio_data', 'audio_info', b'audio_info', 'extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PlayRequest: _TypeAlias = PlayRequest
 
 @_typing.final
 class PlayStreamRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
-
     INIT_FIELD_NUMBER: _builtins.int
     AUDIO_CHUNK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def init(self) -> Global___PlayStreamInit: ...
-    @_builtins.property
-    def audio_chunk(self) -> Global___PlayStreamChunk: ...
-    def __init__(
-        self,
-        *,
-        init: Global___PlayStreamInit | None = ...,
-        audio_chunk: Global___PlayStreamChunk | None = ...,
-    ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["audio_chunk", b"audio_chunk", "init", b"init", "payload", b"payload"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["audio_chunk", b"audio_chunk", "init", b"init", "payload", b"payload"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    _WhichOneofReturnType_payload: _TypeAlias = _typing.Literal["init", "audio_chunk"]  # noqa: Y015
-    _WhichOneofArgType_payload: _TypeAlias = _typing.Literal["payload", b"payload"]  # noqa: Y015
-    def WhichOneof(self, oneof_group: _WhichOneofArgType_payload) -> _WhichOneofReturnType_payload | None: ...
 
-Global___PlayStreamRequest: _TypeAlias = PlayStreamRequest  # noqa: Y015
+    @_builtins.property
+    def init(self) -> Global___PlayStreamInit:
+        """sent on first message"""
+
+    @_builtins.property
+    def audio_chunk(self) -> Global___PlayStreamChunk:
+        ...
+
+    def __init__(self, *, init: Global___PlayStreamInit | None=..., audio_chunk: Global___PlayStreamChunk | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['audio_chunk', b'audio_chunk', 'init', b'init', 'payload', b'payload']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['audio_chunk', b'audio_chunk', 'init', b'init', 'payload', b'payload']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_payload: _TypeAlias = _typing.Literal['init', 'audio_chunk']
+    _WhichOneofArgType_payload: _TypeAlias = _typing.Literal['payload', b'payload']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_payload) -> _WhichOneofReturnType_payload | None:
+        ...
+Global___PlayStreamRequest: _TypeAlias = PlayStreamRequest
 
 @_typing.final
 class PlayStreamChunk(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
-
     AUDIO_DATA_FIELD_NUMBER: _builtins.int
     audio_data: _builtins.bytes
-    def __init__(
-        self,
-        *,
-        audio_data: _builtins.bytes = ...,
-    ) -> None: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["audio_data", b"audio_data"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
 
-Global___PlayStreamChunk: _TypeAlias = PlayStreamChunk  # noqa: Y015
+    def __init__(self, *, audio_data: _builtins.bytes=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['audio_data', b'audio_data']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PlayStreamChunk: _TypeAlias = PlayStreamChunk
 
 @_typing.final
 class PlayStreamInit(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
-
     NAME_FIELD_NUMBER: _builtins.int
     AUDIO_INFO_FIELD_NUMBER: _builtins.int
     EXTRA_FIELD_NUMBER: _builtins.int
     name: _builtins.str
-    @_builtins.property
-    def audio_info(self) -> _common_pb2.AudioInfo: ...
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct: ...
-    def __init__(
-        self,
-        *,
-        name: _builtins.str = ...,
-        audio_info: _common_pb2.AudioInfo | None = ...,
-        extra: _struct_pb2.Struct | None = ...,
-    ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["audio_info", b"audio_info", "extra", b"extra"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["audio_info", b"audio_info", "extra", b"extra", "name", b"name"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
 
-Global___PlayStreamInit: _TypeAlias = PlayStreamInit  # noqa: Y015
+    @_builtins.property
+    def audio_info(self) -> _common_pb2.AudioInfo:
+        ...
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., audio_info: _common_pb2.AudioInfo | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['audio_info', b'audio_info', 'extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['audio_info', b'audio_info', 'extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PlayStreamInit: _TypeAlias = PlayStreamInit
 
 @_typing.final
 class PlayResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___PlayResponse: _TypeAlias = PlayResponse  # noqa: Y015
-
-@_typing.final
-class PlayStreamResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___PlayStreamResponse: _TypeAlias = PlayStreamResponse  # noqa: Y015
+    def __init__(self) -> None:
+        ...
+Global___PlayResponse: _TypeAlias = PlayResponse

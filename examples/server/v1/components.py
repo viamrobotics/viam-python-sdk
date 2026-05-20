@@ -173,6 +173,23 @@ class ExampleAudioOut(AudioOut):
 
         return AudioOut.Properties(supported_codecs=self.supported_codecs, sample_rate_hz=self.sample_rate, num_channels=self.num_channels)
 
+    async def play_stream(
+        self,
+        chunks: AsyncIterator[bytes],
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        """Play audio data from a stream of chunks."""
+        self.is_playing = True
+        if info:
+            print(f"Streaming audio: codec={info.codec}, sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
+        async for chunk in chunks:
+            print(f"Streaming audio chunk: {len(chunk)} bytes")
+        self.is_playing = False
+
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 

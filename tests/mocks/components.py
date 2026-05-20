@@ -182,9 +182,11 @@ class MockAudioOut(AudioOut):
     def __init__(self, name: str, properties: AudioOut.Properties):
         super().__init__(name)
         self.play_called = False
+        self.play_stream_called = False
         self.properties = properties
         self.last_audio_data = None
         self.last_audio_info = None
+        self.streamed_chunks: List[bytes] = []
         self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
