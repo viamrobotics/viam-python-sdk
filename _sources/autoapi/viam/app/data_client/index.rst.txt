@@ -1162,7 +1162,7 @@ Module Contents
 
 
 
-   .. py:method:: create_dataset(name: str, organization_id: str) -> str
+   .. py:method:: create_dataset(name: str, organization_id: str, type: Optional[viam.proto.app.dataset.DatasetType.ValueType] = None) -> str
       :async:
 
 
@@ -1181,6 +1181,9 @@ Module Contents
       :param organization_id: The ID of the organization where the dataset is being created.
                               To find your organization ID, visit the organization settings page.
       :type organization_id: str
+      :param type: The membership kind for the new dataset.
+                   Defaults to DATASET_TYPE_BINARY_DATA when unset.
+      :type type: Optional[DatasetType.ValueType]
 
       :returns: The dataset ID of the created dataset.
       :rtype: str

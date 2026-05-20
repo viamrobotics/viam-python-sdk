@@ -16,6 +16,9 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.dataset.v1.dataset_pb2.DESCRIPTOR
+   viam.gen.app.dataset.v1.dataset_pb2.DATASET_TYPE_BINARY_DATA
+   viam.gen.app.dataset.v1.dataset_pb2.DATASET_TYPE_SEQUENCE_DATA
+   viam.gen.app.dataset.v1.dataset_pb2.Global___DatasetType
    viam.gen.app.dataset.v1.dataset_pb2.Global___Dataset
    viam.gen.app.dataset.v1.dataset_pb2.Global___CreateDatasetRequest
    viam.gen.app.dataset.v1.dataset_pb2.Global___CreateDatasetResponse
@@ -36,6 +39,7 @@ Classes
 
 .. autoapisummary::
 
+   viam.gen.app.dataset.v1.dataset_pb2.DatasetType
    viam.gen.app.dataset.v1.dataset_pb2.Dataset
    viam.gen.app.dataset.v1.dataset_pb2.CreateDatasetRequest
    viam.gen.app.dataset.v1.dataset_pb2.CreateDatasetResponse
@@ -57,7 +61,34 @@ Module Contents
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
 
-.. py:class:: Dataset(*, id: str = ..., name: str = ..., organization_id: str = ..., time_created: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: DatasetType
+
+   Bases: :py:obj:`_DatasetType`
+
+
+   DatasetType describes the kind of membership a dataset stores.
+   buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
+
+
+.. py:data:: DATASET_TYPE_BINARY_DATA
+   :type:  DatasetType
+
+   DATASET_TYPE_BINARY_DATA is a dataset whose members are individual binary data objects (frames).
+   This is the default for datasets created without an explicit type, including all pre-existing
+   datasets.
+
+.. py:data:: DATASET_TYPE_SEQUENCE_DATA
+   :type:  DatasetType
+
+   DATASET_TYPE_SEQUENCE_DATA is a dataset whose members are sequences. Binary-data writes
+   (AddBinaryDataToDatasetByIDs, AddBinaryDataToDatasetByFilter) are rejected against datasets
+   of this type; sequences are added/removed via AddSequencesToDataset / RemoveSequencesFromDataset.
+
+.. py:type:: Global___DatasetType
+   :canonical: DatasetType
+
+
+.. py:class:: Dataset(*, id: str = ..., name: str = ..., organization_id: str = ..., time_created: google.protobuf.timestamp_pb2.Timestamp | None = ..., type: Global___DatasetType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -75,6 +106,13 @@ Module Contents
 
    .. py:attribute:: organization_id
       :type:  str
+
+
+   .. py:attribute:: type
+      :type:  Global___DatasetType
+
+      type is the membership kind of this dataset. Immutable after creation; defaults to
+      DATASET_TYPE_BINARY_DATA when unset (including for pre-existing datasets).
 
 
    .. py:method:: time_created() -> google.protobuf.timestamp_pb2.Timestamp
@@ -102,7 +140,7 @@ Module Contents
    :canonical: Dataset
 
 
-.. py:class:: CreateDatasetRequest(*, name: str = ..., organization_id: str = ...)
+.. py:class:: CreateDatasetRequest(*, name: str = ..., organization_id: str = ..., type: Global___DatasetType | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -116,6 +154,46 @@ Module Contents
 
    .. py:attribute:: organization_id
       :type:  str
+
+
+   .. py:attribute:: type
+      :type:  Global___DatasetType
+
+      type is the membership kind for the new dataset. Defaults to DATASET_TYPE_BINARY_DATA when unset.
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:type:: Global___CreateDatasetRequest

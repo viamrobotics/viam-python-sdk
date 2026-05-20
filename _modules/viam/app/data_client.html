@@ -183,6 +183,7 @@
     <span class="n">CreateDatasetResponse</span><span class="p">,</span>
     <span class="n">Dataset</span><span class="p">,</span>
     <span class="n">DatasetServiceStub</span><span class="p">,</span>
+    <span class="n">DatasetType</span><span class="p">,</span>
     <span class="n">DeleteDatasetRequest</span><span class="p">,</span>
     <span class="n">ListDatasetsByIDsRequest</span><span class="p">,</span>
     <span class="n">ListDatasetsByIDsResponse</span><span class="p">,</span>
@@ -1559,7 +1560,7 @@
 
 <div class="viewcode-block" id="DataClient.create_dataset">
 <a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_dataset">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DatasetType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new dataset.</span>
 
 <span class="sd">        ::</span>
@@ -1574,13 +1575,15 @@
 <span class="sd">            name (str): The name of the dataset being created.</span>
 <span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
 <span class="sd">                To find your organization ID, visit the organization settings page.</span>
+<span class="sd">            type (Optional[DatasetType.ValueType]): The membership kind for the new dataset.</span>
+<span class="sd">                Defaults to DATASET_TYPE_BINARY_DATA when unset.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createdataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 

@@ -21,6 +21,7 @@ Classes
    viam.proto.app.dataset.CreateDatasetRequest
    viam.proto.app.dataset.CreateDatasetResponse
    viam.proto.app.dataset.Dataset
+   viam.proto.app.dataset.DatasetType
    viam.proto.app.dataset.DeleteDatasetRequest
    viam.proto.app.dataset.DeleteDatasetResponse
    viam.proto.app.dataset.ListDatasetsByIDsRequest
@@ -149,7 +150,7 @@ Package Contents
 
 
 
-.. py:class:: CreateDatasetRequest(*, name: str = ..., organization_id: str = ...)
+.. py:class:: CreateDatasetRequest(*, name: str = ..., organization_id: str = ..., type: Global___DatasetType | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -165,6 +166,46 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: type
+      :type:  Global___DatasetType
+
+      type is the membership kind for the new dataset. Defaults to DATASET_TYPE_BINARY_DATA when unset.
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
 .. py:class:: CreateDatasetResponse(*, id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -177,7 +218,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: Dataset(*, id: str = ..., name: str = ..., organization_id: str = ..., time_created: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: Dataset(*, id: str = ..., name: str = ..., organization_id: str = ..., time_created: google.protobuf.timestamp_pb2.Timestamp | None = ..., type: Global___DatasetType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -195,6 +236,13 @@ Package Contents
 
    .. py:attribute:: organization_id
       :type:  str
+
+
+   .. py:attribute:: type
+      :type:  Global___DatasetType
+
+      type is the membership kind of this dataset. Immutable after creation; defaults to
+      DATASET_TYPE_BINARY_DATA when unset (including for pre-existing datasets).
 
 
    .. py:method:: time_created() -> google.protobuf.timestamp_pb2.Timestamp
@@ -216,6 +264,15 @@ Package Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: DatasetType
+
+   Bases: :py:obj:`_DatasetType`
+
+
+   DatasetType describes the kind of membership a dataset stores.
+   buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
 
 
 .. py:class:: DeleteDatasetRequest(*, id: str = ...)
