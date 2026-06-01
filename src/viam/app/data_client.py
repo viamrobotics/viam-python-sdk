@@ -61,6 +61,7 @@ from viam.proto.app.data import (
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
+    Sequence,
     SequencesByDatasetIDRequest,
     SequencesByDatasetIDResponse,
     TabularDataByFilterRequest,
@@ -74,9 +75,6 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
     UpdateBoundingBoxRequest,
-)
-from viam.proto.app.data import (
-    Sequence,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -2418,7 +2416,9 @@ class DataClient:
             request.page_token = page_token
         if page_size is not None:
             request.page_size = page_size
-        response: SequencesByDatasetIDResponse = await self._data_client.SequencesByDatasetID(request, metadata=self._metadata, timeout=timeout)
+        response: SequencesByDatasetIDResponse = await self._data_client.SequencesByDatasetID(
+            request, metadata=self._metadata, timeout=timeout
+        )
         return list(response.sequences), response.next_page_token
 
     @staticmethod

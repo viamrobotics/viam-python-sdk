@@ -1162,7 +1162,9 @@ class MockData(UnimplementedDataServiceBase):
         self.sequence_ids = request.sequence_ids
         await stream.send_message(AddSequencesToDatasetResponse())
 
-    async def RemoveSequencesFromDataset(self, stream: Stream[RemoveSequencesFromDatasetRequest, RemoveSequencesFromDatasetResponse]) -> None:
+    async def RemoveSequencesFromDataset(
+        self, stream: Stream[RemoveSequencesFromDatasetRequest, RemoveSequencesFromDatasetResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.dataset_id = request.dataset_id
@@ -1237,9 +1239,7 @@ class MockDataset(DatasetServiceBase):
         self.dataset_id = request.dataset_id
         await stream.send_message(StartSequenceDatasetExportResponse(job_id="test-job-id"))
 
-    async def GetSequenceDatasetExport(
-        self, stream: Stream[GetSequenceDatasetExportRequest, GetSequenceDatasetExportResponse]
-    ) -> None:
+    async def GetSequenceDatasetExport(self, stream: Stream[GetSequenceDatasetExportRequest, GetSequenceDatasetExportResponse]) -> None:
         from google.protobuf.timestamp_pb2 import Timestamp
 
         from viam.proto.app.dataset import SequenceDatasetExportStatus
