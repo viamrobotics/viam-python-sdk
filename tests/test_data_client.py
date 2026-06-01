@@ -55,6 +55,8 @@ TAGS = ["tag"]
 BBOX_LABEL = "bbox_label"
 BBOX_LABELS = [BBOX_LABEL]
 DATASET_ID = "VIAM_DATASET_1"
+SEQUENCE_ID = "sequence_1"
+SEQUENCE_IDS = ["sequence_1", "sequence_2"]
 FILTER = create_filter(
     component_name=COMPONENT_NAME,
     component_type=COMPONENT_TYPE,
@@ -572,6 +574,32 @@ class TestClient:
             assert service.expiration_minutes is None
             assert signed_url == "https://example.com/signed-url"
             assert expires_at == datetime(2024, 12, 25, 12, 0, 0)
+
+    async def test_add_sequences_to_dataset(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.add_sequences_to_dataset(dataset_id=DATASET_ID, sequence_ids=SEQUENCE_IDS)
+            assert service.dataset_id == DATASET_ID
+            assert list(service.sequence_ids) == SEQUENCE_IDS
+
+    async def test_remove_sequences_from_dataset(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.remove_sequences_from_dataset(dataset_id=DATASET_ID, sequence_ids=SEQUENCE_IDS)
+            assert service.dataset_id == DATASET_ID
+            assert list(service.sequence_ids) == SEQUENCE_IDS
+
+    async def test_sequences_by_dataset_id(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            sequences, next_page_token = await client.sequences_by_dataset_id(
+                dataset_id=DATASET_ID, page_token="page1", page_size=10
+            )
+            assert service.dataset_id == DATASET_ID
+            assert service.page_token == "page1"
+            assert service.page_size == 10
+            assert sequences == []
+            assert next_page_token == ""
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME

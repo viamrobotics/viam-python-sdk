@@ -81,3 +81,27 @@ class TestClient:
             await client.rename_dataset(ID, NAME)
             assert service.id == ID
             assert service.name == NAME
+
+    async def test_start_sequence_dataset_export(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            job_id = await client.start_sequence_dataset_export(dataset_id=ID)
+            assert service.dataset_id == ID
+            assert job_id == "test-job-id"
+
+    async def test_get_sequence_dataset_export(self, service: MockDataset):
+        from datetime import datetime
+
+        from viam.proto.app.dataset import SequenceDatasetExportStatus
+
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            response = await client.get_sequence_dataset_export(job_id="test-job-id")
+            assert service.job_id == "test-job-id"
+            assert response.job_id == "test-job-id"
+            assert response.status == SequenceDatasetExportStatus.SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED
+            assert response.download_url == "https://example.com/export.parquet"
+            assert response.expires_at.ToDatetime() == datetime(2024, 12, 25, 18, 0, 0)
+            assert response.error_message == ""
+            assert response.created_at.ToDatetime() == datetime(2024, 12, 25, 10, 0, 0)
+            assert response.completed_at.ToDatetime() == datetime(2024, 12, 25, 11, 0, 0)
