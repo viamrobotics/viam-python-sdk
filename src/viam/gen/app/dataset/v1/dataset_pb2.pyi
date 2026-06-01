@@ -38,6 +38,31 @@ DATASET_TYPE_SEQUENCE_DATA: DatasetType.ValueType
 'DATASET_TYPE_SEQUENCE_DATA is a dataset whose members are sequences. Binary-data writes\n(AddBinaryDataToDatasetByIDs, AddBinaryDataToDatasetByFilter) are rejected against datasets\nof this type; sequences are added/removed via AddSequencesToDataset / RemoveSequencesFromDataset.\n'
 Global___DatasetType: _TypeAlias = DatasetType
 
+class _SequenceDatasetExportStatus:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _SequenceDatasetExportStatusEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_SequenceDatasetExportStatus.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED: _SequenceDatasetExportStatus.ValueType
+    SEQUENCE_DATASET_EXPORT_STATUS_RUNNING: _SequenceDatasetExportStatus.ValueType
+    'PENDING — accepted, not yet picked up.'
+    SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED: _SequenceDatasetExportStatus.ValueType
+    'COMPLETED — Parquet file is uploaded; download_url is set.'
+    SEQUENCE_DATASET_EXPORT_STATUS_FAILED: _SequenceDatasetExportStatus.ValueType
+    'FAILED — terminal; error_message describes the cause.'
+
+class SequenceDatasetExportStatus(_SequenceDatasetExportStatus, metaclass=_SequenceDatasetExportStatusEnumTypeWrapper):
+    """SequenceDatasetExportStatus is the lifecycle state of an export job."""
+SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED: SequenceDatasetExportStatus.ValueType
+SEQUENCE_DATASET_EXPORT_STATUS_RUNNING: SequenceDatasetExportStatus.ValueType
+'PENDING — accepted, not yet picked up.'
+SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED: SequenceDatasetExportStatus.ValueType
+'COMPLETED — Parquet file is uploaded; download_url is set.'
+SEQUENCE_DATASET_EXPORT_STATUS_FAILED: SequenceDatasetExportStatus.ValueType
+'FAILED — terminal; error_message describes the cause.'
+Global___SequenceDatasetExportStatus: _TypeAlias = SequenceDatasetExportStatus
+
 @_typing.final
 class Dataset(_message.Message):
     """Dataset stores the metadata of a dataset."""
@@ -266,3 +291,93 @@ class MergeDatasetsResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___MergeDatasetsResponse: _TypeAlias = MergeDatasetsResponse
+
+@_typing.final
+class StartSequenceDatasetExportRequest(_message.Message):
+    """StartSequenceDatasetExportRequest specifies the sequence dataset to export."""
+    DESCRIPTOR: _descriptor.Descriptor
+    DATASET_ID_FIELD_NUMBER: _builtins.int
+    dataset_id: _builtins.str
+
+    def __init__(self, *, dataset_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['dataset_id', b'dataset_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___StartSequenceDatasetExportRequest: _TypeAlias = StartSequenceDatasetExportRequest
+
+@_typing.final
+class StartSequenceDatasetExportResponse(_message.Message):
+    """StartSequenceDatasetExportResponse returns the job_id to poll with"""
+    DESCRIPTOR: _descriptor.Descriptor
+    JOB_ID_FIELD_NUMBER: _builtins.int
+    job_id: _builtins.str
+
+    def __init__(self, *, job_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['job_id', b'job_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___StartSequenceDatasetExportResponse: _TypeAlias = StartSequenceDatasetExportResponse
+
+@_typing.final
+class GetSequenceDatasetExportRequest(_message.Message):
+    """GetSequenceDatasetExportRequest looks up an export job by its job_id."""
+    DESCRIPTOR: _descriptor.Descriptor
+    JOB_ID_FIELD_NUMBER: _builtins.int
+    job_id: _builtins.str
+
+    def __init__(self, *, job_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['job_id', b'job_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetSequenceDatasetExportRequest: _TypeAlias = GetSequenceDatasetExportRequest
+
+@_typing.final
+class GetSequenceDatasetExportResponse(_message.Message):
+    """GetSequenceDatasetExportResponse reports the current status of an export
+    job. download_url and expires_at are set only when status is COMPLETED;
+    error_message is set only when status is FAILED.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    JOB_ID_FIELD_NUMBER: _builtins.int
+    STATUS_FIELD_NUMBER: _builtins.int
+    DOWNLOAD_URL_FIELD_NUMBER: _builtins.int
+    EXPIRES_AT_FIELD_NUMBER: _builtins.int
+    ERROR_MESSAGE_FIELD_NUMBER: _builtins.int
+    CREATED_AT_FIELD_NUMBER: _builtins.int
+    COMPLETED_AT_FIELD_NUMBER: _builtins.int
+    job_id: _builtins.str
+    status: Global___SequenceDatasetExportStatus.ValueType
+    download_url: _builtins.str
+    'Short-lived (e.g. 1h) signed URL for direct download from backing\n    storage. Empty unless status is COMPLETED.\n    '
+    error_message: _builtins.str
+    'Human-readable cause; empty unless status is FAILED.'
+
+    @_builtins.property
+    def expires_at(self) -> _timestamp_pb2.Timestamp:
+        """When download_url stops working. Empty unless status is COMPLETED."""
+
+    @_builtins.property
+    def created_at(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def completed_at(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, job_id: _builtins.str=..., status: Global___SequenceDatasetExportStatus.ValueType=..., download_url: _builtins.str=..., expires_at: _timestamp_pb2.Timestamp | None=..., error_message: _builtins.str=..., created_at: _timestamp_pb2.Timestamp | None=..., completed_at: _timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['completed_at', b'completed_at', 'created_at', b'created_at', 'expires_at', b'expires_at']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['completed_at', b'completed_at', 'created_at', b'created_at', 'download_url', b'download_url', 'error_message', b'error_message', 'expires_at', b'expires_at', 'job_id', b'job_id', 'status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetSequenceDatasetExportResponse: _TypeAlias = GetSequenceDatasetExportResponse
