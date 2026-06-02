@@ -147,7 +147,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..services.slam</span><span class="w"> </span><span class="kn">import</span> <span class="n">SLAM</span>  <span class="c1"># noqa: F401</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..services.vision</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vision</span>  <span class="c1"># noqa: F401</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.service</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleRPCService</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Reconfigurable</span><span class="p">,</span> <span class="n">Stoppable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stoppable</span>
 
 <span class="n">NO_MODULE_PARENT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;VIAM_NO_MODULE_PARENT&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
 
@@ -345,23 +345,19 @@
 <div class="viewcode-block" id="Module.reconfigure_resource">
 <a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.reconfigure_resource">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">reconfigure_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReconfigureResourceRequest</span><span class="p">):</span>
-        <span class="n">dependencies</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dependencies</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
         <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">config</span>
         <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">api</span><span class="p">)</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span>
         <span class="n">rn</span> <span class="o">=</span> <span class="n">ResourceName</span><span class="p">(</span><span class="n">namespace</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">api</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">resource</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ResourceBase</span><span class="p">,</span> <span class="n">rn</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Reconfigurable</span><span class="p">):</span>
-            <span class="n">resource</span><span class="o">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Stoppable</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
-                    <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-            <span class="n">add_request</span> <span class="o">=</span> <span class="n">AddResourceRequest</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">add_request</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Stoppable</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+                <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="n">add_request</span> <span class="o">=</span> <span class="n">AddResourceRequest</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">add_request</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Module.remove_resource">

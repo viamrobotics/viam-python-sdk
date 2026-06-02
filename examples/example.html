@@ -50,7 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#create-custom-modules">Create custom modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subclass-a-resource">1. Subclass a resource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#register-the-new-modular-resource">2. Register the new modular resource</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#optional-validator-and-reconfiguration-functions">Optional Validator and Reconfiguration Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-validator-function">Optional Validator Function</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#start-the-module">3. Start the module</a></li>
@@ -162,7 +162,7 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f038440e520&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f038440e610&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7f038440c900&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f038440e660&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f038440e6b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f038440e700&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f038440e750&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f038440e7a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f038440e7f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f038440e840&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f038440e890&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f038440e8e0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f038440e930&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f038440e980&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f038440e9d0&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fcf446164d0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fcf44616520&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fcf44616480&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fcf44616570&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fcf446165c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7fcf44616610&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fcf44616660&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fcf446166b0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fcf44616700&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fcf44616750&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fcf446167a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fcf446167f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fcf44616840&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fcf44616890&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fcf446168e0&gt;]
 </pre></div>
 </div>
 </div>
@@ -306,12 +306,11 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 </pre></div>
 </div>
 <p>Click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step2.py">here</a> to see the file with its new <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> variable, creator function, and <code class="docutils literal notranslate"><span class="pre">main()</span></code> function.</p>
-<section id="optional-validator-and-reconfiguration-functions">
-<h4>Optional Validator and Reconfiguration Functions<a class="headerlink" href="#optional-validator-and-reconfiguration-functions" title="Link to this heading"></a></h4>
-<p>Modules also have support for validator and reconfiguration functions.</p>
+<section id="optional-validator-function">
+<h4>Optional Validator Function<a class="headerlink" href="#optional-validator-function" title="Link to this heading"></a></h4>
+<p>Modules also have support for validator functions.</p>
 <p>Custom validation can be done by specifying a validate function. Validate functions can raise errors that will be returned to the parent through gRPC. Validate functions return two sequences of strings: the first represents the implicit required dependencies and the second represents the optional dependencies. If there are none for either, return an empty sequence <code class="docutils literal notranslate"><span class="pre">[]</span></code> (if there are no required dependencies and no optional dependencies, return <code class="docutils literal notranslate"><span class="pre">[],</span> <span class="pre">[]</span></code>) .</p>
 <p>For example, let’s say <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> had a <code class="docutils literal notranslate"><span class="pre">multiplier</span></code> argument that is used to multiply the returned readings in <code class="docutils literal notranslate"><span class="pre">get_readings()</span></code>. The validation function can check if a multiplier attribute was provided and prevent erroneous resource start ups.</p>
-<p>Reconfiguration specifies what values can change based on a new configuration. To allow this, add a <code class="docutils literal notranslate"><span class="pre">reconfigure()</span></code> function to the <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> class. A good pattern is to call <code class="docutils literal notranslate"><span class="pre">reconfigure()</span></code> within <code class="docutils literal notranslate"><span class="pre">new()</span></code>, since initialization and reconfiguration are usually very similar.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADD `Sequence` and `Tuple` FROM `typing`.</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 
@@ -361,7 +360,7 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
             <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MySensor</span><span class="o">.</span><span class="n">new</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">validate_config</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step2_optional.py">here</a> to see the new <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> with the optional validator and reconfiguration functions.</p>
+<p>Click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step2_optional.py">here</a> to see the new <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> with the optional validator function.</p>
 </section>
 </section>
 <section id="start-the-module">
@@ -1122,10 +1121,10 @@ robot-3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line: 922.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Function: go.viam.com/rdk/robot/impl.(*resourceManager).updateResources
 File: /__w/rdk/rdk/robot/impl/resource_manager.go
 Defined: True
-Function: go.viam.com/rdk/robot/impl.(*resourceManager).updateResources
+Line: 922.0
 
 *****PROTO*****
 
