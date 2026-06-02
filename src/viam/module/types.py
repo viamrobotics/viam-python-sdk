@@ -1,15 +1,12 @@
 from typing import Any, Mapping, Optional, Protocol, runtime_checkable
-
-from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import ResourceName
-from viam.resource.base import ResourceBase
+import warnings
 
 
 @runtime_checkable
 class Reconfigurable(Protocol):
     """The Reconfigurable protocol defines the requirements for making a resource Reconfigurable"""
-
-    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]): ...
+    def __init_subclass__(*args, **kwargs):
+        warnings.warn("Reconfigure is deprecated, and resources will always rebuild. It is not necessary to implement Reconfigurable.", DeprecationWarning, stacklevel=2)
 
 
 @runtime_checkable
