@@ -68,6 +68,20 @@ Module Contents
 
 
 
+   .. py:method:: StartSequenceDatasetExport(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetSequenceDatasetExport(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -110,6 +124,16 @@ Module Contents
 
 
 
+   .. py:method:: StartSequenceDatasetExport(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetSequenceDatasetExport(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse]) -> None
+      :async:
+
+
+
 .. py:class:: DatasetServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: CreateDataset
@@ -128,5 +152,11 @@ Module Contents
 
 
    .. py:attribute:: MergeDatasets
+
+
+   .. py:attribute:: StartSequenceDatasetExport
+
+
+   .. py:attribute:: GetSequenceDatasetExport
 
 

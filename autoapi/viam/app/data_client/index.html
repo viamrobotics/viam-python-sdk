@@ -154,6 +154,8 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_datasets_by_organization_id"><code class="docutils literal notranslate"><span class="pre">DataClient.list_datasets_by_organization_id()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.rename_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.rename_dataset()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_dataset()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.start_sequence_dataset_export"><code class="docutils literal notranslate"><span class="pre">DataClient.start_sequence_dataset_export()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_sequence_dataset_export"><code class="docutils literal notranslate"><span class="pre">DataClient.get_sequence_dataset_export()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids"><code class="docutils literal notranslate"><span class="pre">DataClient.add_binary_data_to_dataset_by_ids()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids"><code class="docutils literal notranslate"><span class="pre">DataClient.remove_binary_data_from_dataset_by_ids()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.binary_data_capture_upload"><code class="docutils literal notranslate"><span class="pre">DataClient.binary_data_capture_upload()</span></code></a></li>
@@ -171,6 +173,9 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_indexes"><code class="docutils literal notranslate"><span class="pre">DataClient.list_indexes()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_index"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_index()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_binary_data_signed_url"><code class="docutils literal notranslate"><span class="pre">DataClient.create_binary_data_signed_url()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.add_sequences_to_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.add_sequences_to_dataset()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.remove_sequences_from_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.remove_sequences_from_dataset()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.sequences_by_dataset_id"><code class="docutils literal notranslate"><span class="pre">DataClient.sequences_by_dataset_id()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.create_filter()</span></code></a></li>
 </ul>
 </li>
@@ -1570,6 +1575,60 @@ To find your organization ID, visit the organization settings page.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.start_sequence_dataset_export">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start_sequence_dataset_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.start_sequence_dataset_export"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.start_sequence_dataset_export" title="Link to this definition"></a></dt>
+<dd><p>Start an export job for a sequence dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the sequence dataset to export.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The job ID of the export job.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.get_sequence_dataset_export">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_sequence_dataset_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/dataset/index.html#viam.proto.app.dataset.GetSequenceDatasetExportResponse" title="viam.proto.app.dataset.GetSequenceDatasetExportResponse"><span class="pre">viam.proto.app.dataset.GetSequenceDatasetExportResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.get_sequence_dataset_export"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.get_sequence_dataset_export" title="Link to this definition"></a></dt>
+<dd><p>Get the status and result of a sequence dataset export job.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_id</strong> (<em>str</em>) – The job ID returned by start_sequence_dataset_export.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The export job status and details, including:</dt><dd><ul class="simple">
+<li><p>job_id: The ID of the export job.</p></li>
+<li><p>status: The current status (UNSPECIFIED, RUNNING, COMPLETED, or FAILED).</p></li>
+<li><p>download_url: A short-lived signed URL for downloading the export (only when COMPLETED).</p></li>
+<li><p>expires_at: When the download_url expires (only when COMPLETED).</p></li>
+<li><p>error_message: Error description if the job failed (only when FAILED).</p></li>
+<li><p>created_at: When the job was created.</p></li>
+<li><p>completed_at: When the job completed (if applicable).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/app/dataset/v1/dataset_pb2/index.html#viam.gen.app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse" title="viam.gen.app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse">GetSequenceDatasetExportResponse</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">add_binary_data_to_dataset_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_binary_data_to_dataset_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids" title="Link to this definition"></a></dt>
 <dd><p>Add the BinaryData to the provided dataset.</p>
@@ -2138,6 +2197,68 @@ Maximum allowed is 10080 minutes (7 days).</p></li>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_sequences_to_dataset">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">add_sequences_to_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_sequences_to_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_sequences_to_dataset" title="Link to this definition"></a></dt>
+<dd><p>Add sequences to a dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the dataset to add sequences to.</p></li>
+<li><p><strong>sequence_ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The IDs of the sequences to add to the dataset.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_sequences_from_dataset">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">remove_sequences_from_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_sequences_from_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_sequences_from_dataset" title="Link to this definition"></a></dt>
+<dd><p>Remove sequences from a dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the dataset to remove sequences from.</p></li>
+<li><p><strong>sequence_ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The IDs of the sequences to remove from the dataset.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.sequences_by_dataset_id">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">sequences_by_dataset_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Sequence" title="viam.proto.app.data.Sequence"><span class="pre">viam.proto.app.data.Sequence</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.sequences_by_dataset_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.sequences_by_dataset_id" title="Link to this definition"></a></dt>
+<dd><p>Get sequences in a dataset by dataset ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the dataset.</p></li>
+<li><p><strong>page_token</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional page token for pagination.</p></li>
+<li><p><strong>page_size</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Optional page size for pagination.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>A list of sequences in the dataset.</p></li>
+<li><p>The next page token (empty string if no more pages).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[List[<a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence">Sequence</a>], str]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid">Data Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">

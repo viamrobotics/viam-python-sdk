@@ -1325,6 +1325,51 @@ Module Contents
 
 
 
+   .. py:method:: start_sequence_dataset_export(dataset_id: str, timeout: Optional[float] = None) -> str
+      :async:
+
+
+      Start an export job for a sequence dataset.
+
+      :param dataset_id: The ID of the sequence dataset to export.
+      :type dataset_id: str
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns: The job ID of the export job.
+      :rtype: str
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport>`_.
+
+
+
+   .. py:method:: get_sequence_dataset_export(job_id: str, timeout: Optional[float] = None) -> viam.proto.app.dataset.GetSequenceDatasetExportResponse
+      :async:
+
+
+      Get the status and result of a sequence dataset export job.
+
+      :param job_id: The job ID returned by start_sequence_dataset_export.
+      :type job_id: str
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns:
+
+                The export job status and details, including:
+                    - job_id: The ID of the export job.
+                    - status: The current status (UNSPECIFIED, RUNNING, COMPLETED, or FAILED).
+                    - download_url: A short-lived signed URL for downloading the export (only when COMPLETED).
+                    - expires_at: When the download_url expires (only when COMPLETED).
+                    - error_message: Error description if the job failed (only when FAILED).
+                    - created_at: When the job was created.
+                    - completed_at: When the job completed (if applicable).
+      :rtype: GetSequenceDatasetExportResponse
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport>`_.
+
+
+
    .. py:method:: add_binary_data_to_dataset_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]], dataset_id: str) -> None
       :async:
 
@@ -1910,6 +1955,66 @@ Module Contents
       :rtype: Tuple[str, datetime]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl>`_.
+
+
+
+   .. py:method:: add_sequences_to_dataset(dataset_id: str, sequence_ids: List[str], timeout: Optional[float] = None) -> None
+      :async:
+
+
+      Add sequences to a dataset.
+
+      :param dataset_id: The ID of the dataset to add sequences to.
+      :type dataset_id: str
+      :param sequence_ids: The IDs of the sequences to add to the dataset.
+      :type sequence_ids: List[str]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset>`_.
+
+
+
+   .. py:method:: remove_sequences_from_dataset(dataset_id: str, sequence_ids: List[str], timeout: Optional[float] = None) -> None
+      :async:
+
+
+      Remove sequences from a dataset.
+
+      :param dataset_id: The ID of the dataset to remove sequences from.
+      :type dataset_id: str
+      :param sequence_ids: The IDs of the sequences to remove from the dataset.
+      :type sequence_ids: List[str]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset>`_.
+
+
+
+   .. py:method:: sequences_by_dataset_id(dataset_id: str, page_token: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[float] = None) -> Tuple[Sequence[viam.proto.app.data.Sequence], str]
+      :async:
+
+
+      Get sequences in a dataset by dataset ID.
+
+      :param dataset_id: The ID of the dataset.
+      :type dataset_id: str
+      :param page_token: Optional page token for pagination.
+      :type page_token: Optional[str]
+      :param page_size: Optional page size for pagination.
+      :type page_size: Optional[int]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns:
+
+                A tuple containing:
+                    - A list of sequences in the dataset.
+                    - The next page token (empty string if no more pages).
+      :rtype: Tuple[List[Sequence], str]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid>`_.
 
 
 

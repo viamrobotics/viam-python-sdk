@@ -187,6 +187,20 @@ Module Contents
 
 
 
+   .. py:method:: AddSequencesToDataset(stream: grpclib.server.Stream[app.data.v1.data_pb2.AddSequencesToDatasetRequest, app.data.v1.data_pb2.AddSequencesToDatasetResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: RemoveSequencesFromDataset(stream: grpclib.server.Stream[app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest, app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: CreateIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateIndexRequest, app.data.v1.data_pb2.CreateIndexResponse]) -> None
       :abstractmethod:
 
@@ -279,6 +293,13 @@ Module Contents
 
 
    .. py:method:: ListSequences(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListSequencesRequest, app.data.v1.data_pb2.ListSequencesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: SequencesByDatasetID(stream: grpclib.server.Stream[app.data.v1.data_pb2.SequencesByDatasetIDRequest, app.data.v1.data_pb2.SequencesByDatasetIDResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -412,6 +433,16 @@ Module Contents
 
 
 
+   .. py:method:: AddSequencesToDataset(stream: grpclib.server.Stream[app.data.v1.data_pb2.AddSequencesToDatasetRequest, app.data.v1.data_pb2.AddSequencesToDatasetResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: RemoveSequencesFromDataset(stream: grpclib.server.Stream[app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest, app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse]) -> None
+      :async:
+
+
+
    .. py:method:: CreateIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateIndexRequest, app.data.v1.data_pb2.CreateIndexResponse]) -> None
       :async:
 
@@ -478,6 +509,11 @@ Module Contents
 
 
    .. py:method:: ListSequences(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListSequencesRequest, app.data.v1.data_pb2.ListSequencesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: SequencesByDatasetID(stream: grpclib.server.Stream[app.data.v1.data_pb2.SequencesByDatasetIDRequest, app.data.v1.data_pb2.SequencesByDatasetIDResponse]) -> None
       :async:
 
 
@@ -553,6 +589,12 @@ Module Contents
    .. py:attribute:: RemoveBinaryDataFromDatasetByIDs
 
 
+   .. py:attribute:: AddSequencesToDataset
+
+
+   .. py:attribute:: RemoveSequencesFromDataset
+
+
    .. py:attribute:: CreateIndex
 
 
@@ -593,5 +635,8 @@ Module Contents
 
 
    .. py:attribute:: ListSequences
+
+
+   .. py:attribute:: SequencesByDatasetID
 
 

@@ -19,6 +19,11 @@ Attributes
    viam.gen.app.dataset.v1.dataset_pb2.DATASET_TYPE_BINARY_DATA
    viam.gen.app.dataset.v1.dataset_pb2.DATASET_TYPE_SEQUENCE_DATA
    viam.gen.app.dataset.v1.dataset_pb2.Global___DatasetType
+   viam.gen.app.dataset.v1.dataset_pb2.SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED
+   viam.gen.app.dataset.v1.dataset_pb2.SEQUENCE_DATASET_EXPORT_STATUS_RUNNING
+   viam.gen.app.dataset.v1.dataset_pb2.SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED
+   viam.gen.app.dataset.v1.dataset_pb2.SEQUENCE_DATASET_EXPORT_STATUS_FAILED
+   viam.gen.app.dataset.v1.dataset_pb2.Global___SequenceDatasetExportStatus
    viam.gen.app.dataset.v1.dataset_pb2.Global___Dataset
    viam.gen.app.dataset.v1.dataset_pb2.Global___CreateDatasetRequest
    viam.gen.app.dataset.v1.dataset_pb2.Global___CreateDatasetResponse
@@ -32,6 +37,10 @@ Attributes
    viam.gen.app.dataset.v1.dataset_pb2.Global___ListDatasetsByIDsResponse
    viam.gen.app.dataset.v1.dataset_pb2.Global___MergeDatasetsRequest
    viam.gen.app.dataset.v1.dataset_pb2.Global___MergeDatasetsResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___StartSequenceDatasetExportRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___StartSequenceDatasetExportResponse
+   viam.gen.app.dataset.v1.dataset_pb2.Global___GetSequenceDatasetExportRequest
+   viam.gen.app.dataset.v1.dataset_pb2.Global___GetSequenceDatasetExportResponse
 
 
 Classes
@@ -40,6 +49,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.app.dataset.v1.dataset_pb2.DatasetType
+   viam.gen.app.dataset.v1.dataset_pb2.SequenceDatasetExportStatus
    viam.gen.app.dataset.v1.dataset_pb2.Dataset
    viam.gen.app.dataset.v1.dataset_pb2.CreateDatasetRequest
    viam.gen.app.dataset.v1.dataset_pb2.CreateDatasetResponse
@@ -53,6 +63,10 @@ Classes
    viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse
    viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest
    viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse
+   viam.gen.app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest
+   viam.gen.app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse
+   viam.gen.app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest
+   viam.gen.app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse
 
 
 Module Contents
@@ -86,6 +100,36 @@ Module Contents
 
 .. py:type:: Global___DatasetType
    :canonical: DatasetType
+
+
+.. py:class:: SequenceDatasetExportStatus
+
+   Bases: :py:obj:`_SequenceDatasetExportStatus`
+
+
+   SequenceDatasetExportStatus is the lifecycle state of an export job.
+
+
+.. py:data:: SEQUENCE_DATASET_EXPORT_STATUS_UNSPECIFIED
+   :type:  SequenceDatasetExportStatus
+
+.. py:data:: SEQUENCE_DATASET_EXPORT_STATUS_RUNNING
+   :type:  SequenceDatasetExportStatus
+
+   PENDING — accepted, not yet picked up.
+
+.. py:data:: SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED
+   :type:  SequenceDatasetExportStatus
+
+   COMPLETED — Parquet file is uploaded; download_url is set.
+
+.. py:data:: SEQUENCE_DATASET_EXPORT_STATUS_FAILED
+   :type:  SequenceDatasetExportStatus
+
+   FAILED — terminal; error_message describes the cause.
+
+.. py:type:: Global___SequenceDatasetExportStatus
+   :canonical: SequenceDatasetExportStatus
 
 
 .. py:class:: Dataset(*, id: str = ..., name: str = ..., organization_id: str = ..., time_created: google.protobuf.timestamp_pb2.Timestamp | None = ..., type: Global___DatasetType = ...)
@@ -382,5 +426,118 @@ Module Contents
 
 .. py:type:: Global___MergeDatasetsResponse
    :canonical: MergeDatasetsResponse
+
+
+.. py:class:: StartSequenceDatasetExportRequest(*, dataset_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   StartSequenceDatasetExportRequest specifies the sequence dataset to export.
+
+
+   .. py:attribute:: dataset_id
+      :type:  str
+
+
+.. py:type:: Global___StartSequenceDatasetExportRequest
+   :canonical: StartSequenceDatasetExportRequest
+
+
+.. py:class:: StartSequenceDatasetExportResponse(*, job_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   StartSequenceDatasetExportResponse returns the job_id to poll with
+
+
+   .. py:attribute:: job_id
+      :type:  str
+
+
+.. py:type:: Global___StartSequenceDatasetExportResponse
+   :canonical: StartSequenceDatasetExportResponse
+
+
+.. py:class:: GetSequenceDatasetExportRequest(*, job_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetSequenceDatasetExportRequest looks up an export job by its job_id.
+
+
+   .. py:attribute:: job_id
+      :type:  str
+
+
+.. py:type:: Global___GetSequenceDatasetExportRequest
+   :canonical: GetSequenceDatasetExportRequest
+
+
+.. py:class:: GetSequenceDatasetExportResponse(*, job_id: str = ..., status: Global___SequenceDatasetExportStatus = ..., download_url: str = ..., expires_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., error_message: str = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., completed_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetSequenceDatasetExportResponse reports the current status of an export
+   job. download_url and expires_at are set only when status is COMPLETED;
+   error_message is set only when status is FAILED.
+
+
+   .. py:attribute:: job_id
+      :type:  str
+
+
+   .. py:attribute:: status
+      :type:  Global___SequenceDatasetExportStatus
+
+
+   .. py:attribute:: download_url
+      :type:  str
+
+      Short-lived (e.g. 1h) signed URL for direct download from backing
+      storage. Empty unless status is COMPLETED.
+
+
+   .. py:attribute:: error_message
+      :type:  str
+
+      Human-readable cause; empty unless status is FAILED.
+
+
+   .. py:method:: expires_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+      When download_url stops working. Empty unless status is COMPLETED.
+
+
+
+   .. py:method:: created_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: completed_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:type:: Global___GetSequenceDatasetExportResponse
+   :canonical: GetSequenceDatasetExportResponse
 
 

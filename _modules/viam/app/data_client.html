@@ -102,6 +102,7 @@
     <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDResponse</span><span class="p">,</span>
+    <span class="n">AddSequencesToDatasetRequest</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">BinaryData</span><span class="p">,</span>
@@ -142,10 +143,14 @@
     <span class="n">Order</span><span class="p">,</span>
     <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">,</span>
+    <span class="n">RemoveSequencesFromDatasetRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterResponse</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByIDsResponse</span><span class="p">,</span>
+    <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">SequencesByDatasetIDRequest</span><span class="p">,</span>
+    <span class="n">SequencesByDatasetIDResponse</span><span class="p">,</span>
     <span class="n">TabularDataByFilterRequest</span><span class="p">,</span>
     <span class="n">TabularDataByFilterResponse</span><span class="p">,</span>
     <span class="n">TabularDataByMQLRequest</span><span class="p">,</span>
@@ -185,6 +190,8 @@
     <span class="n">DatasetServiceStub</span><span class="p">,</span>
     <span class="n">DatasetType</span><span class="p">,</span>
     <span class="n">DeleteDatasetRequest</span><span class="p">,</span>
+    <span class="n">GetSequenceDatasetExportRequest</span><span class="p">,</span>
+    <span class="n">GetSequenceDatasetExportResponse</span><span class="p">,</span>
     <span class="n">ListDatasetsByIDsRequest</span><span class="p">,</span>
     <span class="n">ListDatasetsByIDsResponse</span><span class="p">,</span>
     <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">,</span>
@@ -192,6 +199,8 @@
     <span class="n">MergeDatasetsRequest</span><span class="p">,</span>
     <span class="n">MergeDatasetsResponse</span><span class="p">,</span>
     <span class="n">RenameDatasetRequest</span><span class="p">,</span>
+    <span class="n">StartSequenceDatasetExportRequest</span><span class="p">,</span>
+    <span class="n">StartSequenceDatasetExportResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datasync</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataCaptureUploadMetadata</span><span class="p">,</span>
@@ -1729,6 +1738,60 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">DeleteDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="DataClient.start_sequence_dataset_export">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.start_sequence_dataset_export">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start_sequence_dataset_export</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start an export job for a sequence dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_id (str): The ID of the sequence dataset to export.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The job ID of the export job.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">StartSequenceDatasetExportRequest</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">StartSequenceDatasetExportResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">StartSequenceDatasetExport</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">job_id</span></div>
+
+
+<div class="viewcode-block" id="DataClient.get_sequence_dataset_export">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_sequence_dataset_export">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_sequence_dataset_export</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">job_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetSequenceDatasetExportResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the status and result of a sequence dataset export job.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            job_id (str): The job ID returned by start_sequence_dataset_export.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            GetSequenceDatasetExportResponse: The export job status and details, including:</span>
+<span class="sd">                - job_id: The ID of the export job.</span>
+<span class="sd">                - status: The current status (UNSPECIFIED, RUNNING, COMPLETED, or FAILED).</span>
+<span class="sd">                - download_url: A short-lived signed URL for downloading the export (only when COMPLETED).</span>
+<span class="sd">                - expires_at: When the download_url expires (only when COMPLETED).</span>
+<span class="sd">                - error_message: Error description if the job failed (only when FAILED).</span>
+<span class="sd">                - created_at: When the job was created.</span>
+<span class="sd">                - completed_at: When the job completed (if applicable).</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetSequenceDatasetExportRequest</span><span class="p">(</span><span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">GetSequenceDatasetExport</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="DataClient.add_binary_data_to_dataset_by_ids">
 <a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_binary_data_to_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2551,6 +2614,89 @@
             <span class="n">request</span><span class="o">.</span><span class="n">expiration_minutes</span> <span class="o">=</span> <span class="n">expiration_minutes</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateBinaryDataSignedURLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">CreateBinaryDataSignedURL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">signed_url</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">expires_at</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="DataClient.add_sequences_to_dataset">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_sequences_to_dataset">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_sequences_to_dataset</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sequence_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add sequences to a dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to add sequences to.</span>
+<span class="sd">            sequence_ids (List[str]): The IDs of the sequences to add to the dataset.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddSequencesToDatasetRequest</span><span class="p">(</span>
+            <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+            <span class="n">sequence_ids</span><span class="o">=</span><span class="n">sequence_ids</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddSequencesToDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataClient.remove_sequences_from_dataset">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_sequences_from_dataset">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_sequences_from_dataset</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sequence_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove sequences from a dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to remove sequences from.</span>
+<span class="sd">            sequence_ids (List[str]): The IDs of the sequences to remove from the dataset.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveSequencesFromDatasetRequest</span><span class="p">(</span>
+            <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+            <span class="n">sequence_ids</span><span class="o">=</span><span class="n">sequence_ids</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveSequencesFromDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataClient.sequences_by_dataset_id">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.sequences_by_dataset_id">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">sequences_by_dataset_id</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">page_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">page_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">TSequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get sequences in a dataset by dataset ID.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_id (str): The ID of the dataset.</span>
+<span class="sd">            page_token (Optional[str]): Optional page token for pagination.</span>
+<span class="sd">            page_size (Optional[int]): Optional page size for pagination.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[List[Sequence], str]: A tuple containing:</span>
+<span class="sd">                - A list of sequences in the dataset.</span>
+<span class="sd">                - The next page token (empty string if no more pages).</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SequencesByDatasetIDRequest</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">page_token</span> <span class="o">=</span> <span class="n">page_token</span>
+        <span class="k">if</span> <span class="n">page_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">page_size</span> <span class="o">=</span> <span class="n">page_size</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">SequencesByDatasetIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">SequencesByDatasetID</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">sequences</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span></div>
 
 
 <div class="viewcode-block" id="DataClient.create_filter">

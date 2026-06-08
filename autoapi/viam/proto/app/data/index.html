@@ -94,6 +94,8 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddBinaryDataToDatasetByIDs()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.RemoveBinaryDataFromDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.RemoveBinaryDataFromDatasetByIDs()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddSequencesToDataset"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddSequencesToDataset()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.RemoveSequencesFromDataset"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.RemoveSequencesFromDataset()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.CreateIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.CreateIndex()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ListIndexes"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ListIndexes()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteIndex()</span></code></a></li>
@@ -108,6 +110,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.UpdateSequence"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.UpdateSequence()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteSequence"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteSequence()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ListSequences"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ListSequences()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.SequencesByDatasetID"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.SequencesByDatasetID()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -135,6 +138,8 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.ConfigureDatabaseUser</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.AddBinaryDataToDatasetByIDs</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.RemoveBinaryDataFromDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.RemoveBinaryDataFromDatasetByIDs</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.AddSequencesToDataset"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.AddSequencesToDataset</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.RemoveSequencesFromDataset"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.RemoveSequencesFromDataset</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.CreateIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.CreateIndex</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.ListIndexes"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.ListIndexes</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.DeleteIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.DeleteIndex</span></code></a></li>
@@ -149,6 +154,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.UpdateSequence"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.UpdateSequence</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.DeleteSequence"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.DeleteSequence</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.ListSequences"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.ListSequences</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.SequencesByDatasetID"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.SequencesByDatasetID</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase</span></code></a><ul>
@@ -175,6 +181,8 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.AddBinaryDataToDatasetByIDs()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.AddSequencesToDataset"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.AddSequencesToDataset()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.RemoveSequencesFromDataset"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.RemoveSequencesFromDataset()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.CreateIndex"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.CreateIndex()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.ListIndexes"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.ListIndexes()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.DeleteIndex"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.DeleteIndex()</span></code></a></li>
@@ -189,6 +197,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.UpdateSequence"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.UpdateSequence()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.DeleteSequence"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.DeleteSequence()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.ListSequences"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.ListSequences()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.SequencesByDatasetID"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.SequencesByDatasetID()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.AddBinaryDataToDatasetByIDsRequest"><code class="docutils literal notranslate"><span class="pre">AddBinaryDataToDatasetByIDsRequest</span></code></a><ul>
@@ -215,6 +224,12 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.AddBoundingBoxToImageByIDResponse.bbox_id"><code class="docutils literal notranslate"><span class="pre">AddBoundingBoxToImageByIDResponse.bbox_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.AddSequencesToDatasetRequest"><code class="docutils literal notranslate"><span class="pre">AddSequencesToDatasetRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.AddSequencesToDatasetRequest.dataset_id"><code class="docutils literal notranslate"><span class="pre">AddSequencesToDatasetRequest.dataset_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.AddSequencesToDatasetRequest.sequence_ids"><code class="docutils literal notranslate"><span class="pre">AddSequencesToDatasetRequest.sequence_ids()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.AddSequencesToDatasetResponse"><code class="docutils literal notranslate"><span class="pre">AddSequencesToDatasetResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.AddTagsToBinaryDataByFilterRequest"><code class="docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.AddTagsToBinaryDataByFilterRequest.filter"><code class="docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterRequest.filter()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.AddTagsToBinaryDataByFilterRequest.tags"><code class="docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterRequest.tags()</span></code></a></li>
@@ -626,6 +641,12 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest"><code class="docutils literal notranslate"><span class="pre">RemoveSequencesFromDatasetRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest.dataset_id"><code class="docutils literal notranslate"><span class="pre">RemoveSequencesFromDatasetRequest.dataset_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest.sequence_ids"><code class="docutils literal notranslate"><span class="pre">RemoveSequencesFromDatasetRequest.sequence_ids()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.RemoveSequencesFromDatasetResponse"><code class="docutils literal notranslate"><span class="pre">RemoveSequencesFromDatasetResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest.filter"><code class="docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest.filter()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest.tags"><code class="docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest.tags()</span></code></a></li>
@@ -655,12 +676,24 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Sequence.start_time"><code class="docutils literal notranslate"><span class="pre">Sequence.start_time()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Sequence.end_time"><code class="docutils literal notranslate"><span class="pre">Sequence.end_time()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Sequence.resources"><code class="docutils literal notranslate"><span class="pre">Sequence.resources()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Sequence.dataset_ids"><code class="docutils literal notranslate"><span class="pre">Sequence.dataset_ids()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Sequence.HasField"><code class="docutils literal notranslate"><span class="pre">Sequence.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.SequenceResourceFilter"><code class="docutils literal notranslate"><span class="pre">SequenceResourceFilter</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequenceResourceFilter.resource_name"><code class="docutils literal notranslate"><span class="pre">SequenceResourceFilter.resource_name</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequenceResourceFilter.method_name"><code class="docutils literal notranslate"><span class="pre">SequenceResourceFilter.method_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDRequest"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDRequest.dataset_id"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDRequest.dataset_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDRequest.page_token"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDRequest.page_token</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDRequest.page_size"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDRequest.page_size</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDResponse"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDResponse.next_page_token"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDResponse.next_page_token</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDResponse.sequences"><code class="docutils literal notranslate"><span class="pre">SequencesByDatasetIDResponse.sequences()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TabularData"><code class="docutils literal notranslate"><span class="pre">TabularData</span></code></a><ul>
@@ -853,6 +886,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.AddBoundingBoxToImageByIDResponse" title="viam.proto.app.data.AddBoundingBoxToImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddBoundingBoxToImageByIDResponse</span></code></a></p></td>
 <td><p>AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.AddSequencesToDatasetRequest" title="viam.proto.app.data.AddSequencesToDatasetRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddSequencesToDatasetRequest</span></code></a></p></td>
+<td><p>AddSequencesToDatasetRequest adds the sequences with the given IDs to the dataset with dataset_id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.AddSequencesToDatasetResponse" title="viam.proto.app.data.AddSequencesToDatasetResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddSequencesToDatasetResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.AddTagsToBinaryDataByFilterRequest" title="viam.proto.app.data.AddTagsToBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.</p></td>
@@ -1058,6 +1097,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest" title="viam.proto.app.data.RemoveSequencesFromDatasetRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveSequencesFromDatasetRequest</span></code></a></p></td>
+<td><p>RemoveSequencesFromDatasetRequest removes the sequences with the given IDs from the dataset with dataset_id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveSequencesFromDatasetResponse" title="viam.proto.app.data.RemoveSequencesFromDatasetResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveSequencesFromDatasetResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.</p></td>
 </tr>
@@ -1075,6 +1120,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.SequenceResourceFilter" title="viam.proto.app.data.SequenceResourceFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SequenceResourceFilter</span></code></a></p></td>
 <td><p>SequenceResourceFilter filters binary and/or tabular data by source identifiers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDRequest" title="viam.proto.app.data.SequencesByDatasetIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SequencesByDatasetIDRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.SequencesByDatasetIDResponse" title="viam.proto.app.data.SequencesByDatasetIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SequencesByDatasetIDResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
 <td><p>TabularData contains data and metadata associated with tabular data.</p></td>
@@ -1352,6 +1403,24 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.AddSequencesToDataset">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AddSequencesToDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetRequest" title="viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetRequest"><span class="pre">app.data.v1.data_pb2.AddSequencesToDatasetRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetResponse" title="viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetResponse"><span class="pre">app.data.v1.data_pb2.AddSequencesToDatasetResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.AddSequencesToDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.AddSequencesToDataset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.RemoveSequencesFromDataset">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">RemoveSequencesFromDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest" title="viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest"><span class="pre">app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse" title="viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse"><span class="pre">app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.RemoveSequencesFromDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.RemoveSequencesFromDataset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.CreateIndex">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CreateIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexRequest" title="viam.gen.app.data.v1.data_pb2.CreateIndexRequest"><span class="pre">app.data.v1.data_pb2.CreateIndexRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexResponse" title="viam.gen.app.data.v1.data_pb2.CreateIndexResponse"><span class="pre">app.data.v1.data_pb2.CreateIndexResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.CreateIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.CreateIndex" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -1471,6 +1540,15 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.ListSequences">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ListSequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListSequencesRequest" title="viam.gen.app.data.v1.data_pb2.ListSequencesRequest"><span class="pre">app.data.v1.data_pb2.ListSequencesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListSequencesResponse" title="viam.gen.app.data.v1.data_pb2.ListSequencesResponse"><span class="pre">app.data.v1.data_pb2.ListSequencesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.ListSequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.ListSequences" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.SequencesByDatasetID">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SequencesByDatasetID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDRequest" title="viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDRequest"><span class="pre">app.data.v1.data_pb2.SequencesByDatasetIDRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDResponse" title="viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDResponse"><span class="pre">app.data.v1.data_pb2.SequencesByDatasetIDResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.SequencesByDatasetID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.SequencesByDatasetID" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
@@ -1603,6 +1681,16 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.AddSequencesToDataset">
+<span class="sig-name descname"><span class="pre">AddSequencesToDataset</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.AddSequencesToDataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.RemoveSequencesFromDataset">
+<span class="sig-name descname"><span class="pre">RemoveSequencesFromDataset</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.RemoveSequencesFromDataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.CreateIndex">
 <span class="sig-name descname"><span class="pre">CreateIndex</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.CreateIndex" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -1670,6 +1758,11 @@ inheritance.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.ListSequences">
 <span class="sig-name descname"><span class="pre">ListSequences</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.ListSequences" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.SequencesByDatasetID">
+<span class="sig-name descname"><span class="pre">SequencesByDatasetID</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.SequencesByDatasetID" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1796,6 +1889,16 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.AddSequencesToDataset">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AddSequencesToDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetRequest" title="viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetRequest"><span class="pre">app.data.v1.data_pb2.AddSequencesToDatasetRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetResponse" title="viam.gen.app.data.v1.data_pb2.AddSequencesToDatasetResponse"><span class="pre">app.data.v1.data_pb2.AddSequencesToDatasetResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.AddSequencesToDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.AddSequencesToDataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.RemoveSequencesFromDataset">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">RemoveSequencesFromDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest" title="viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest"><span class="pre">app.data.v1.data_pb2.RemoveSequencesFromDatasetRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse" title="viam.gen.app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse"><span class="pre">app.data.v1.data_pb2.RemoveSequencesFromDatasetResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.RemoveSequencesFromDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.RemoveSequencesFromDataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.CreateIndex">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CreateIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexRequest" title="viam.gen.app.data.v1.data_pb2.CreateIndexRequest"><span class="pre">app.data.v1.data_pb2.CreateIndexRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexResponse" title="viam.gen.app.data.v1.data_pb2.CreateIndexResponse"><span class="pre">app.data.v1.data_pb2.CreateIndexResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.CreateIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.CreateIndex" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -1863,6 +1966,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.ListSequences">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ListSequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListSequencesRequest" title="viam.gen.app.data.v1.data_pb2.ListSequencesRequest"><span class="pre">app.data.v1.data_pb2.ListSequencesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListSequencesResponse" title="viam.gen.app.data.v1.data_pb2.ListSequencesResponse"><span class="pre">app.data.v1.data_pb2.ListSequencesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.ListSequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.ListSequences" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.SequencesByDatasetID">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SequencesByDatasetID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDRequest" title="viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDRequest"><span class="pre">app.data.v1.data_pb2.SequencesByDatasetIDRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDResponse" title="viam.gen.app.data.v1.data_pb2.SequencesByDatasetIDResponse"><span class="pre">app.data.v1.data_pb2.SequencesByDatasetIDResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.SequencesByDatasetID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.SequencesByDatasetID" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2001,6 +2109,33 @@ be raised.</p>
 <span class="sig-name descname"><span class="pre">bbox_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.AddBoundingBoxToImageByIDResponse.bbox_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.AddSequencesToDatasetRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">AddSequencesToDatasetRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.AddSequencesToDatasetRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>AddSequencesToDatasetRequest adds the sequences with the given IDs to the dataset with dataset_id.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.AddSequencesToDatasetRequest.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.AddSequencesToDatasetRequest.dataset_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.AddSequencesToDatasetRequest.sequence_ids">
+<span class="sig-name descname"><span class="pre">sequence_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.data.AddSequencesToDatasetRequest.sequence_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.AddSequencesToDatasetResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">AddSequencesToDatasetResponse</span></span><a class="headerlink" href="#viam.proto.app.data.AddSequencesToDatasetResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -4415,6 +4550,33 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.RemoveSequencesFromDatasetRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">RemoveSequencesFromDatasetRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>RemoveSequencesFromDatasetRequest removes the sequences with the given IDs from the dataset with dataset_id.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.RemoveSequencesFromDatasetRequest.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest.dataset_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.RemoveSequencesFromDatasetRequest.sequence_ids">
+<span class="sig-name descname"><span class="pre">sequence_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.data.RemoveSequencesFromDatasetRequest.sequence_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.RemoveSequencesFromDatasetResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">RemoveSequencesFromDatasetResponse</span></span><a class="headerlink" href="#viam.proto.app.data.RemoveSequencesFromDatasetResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Global___Filter" title="viam.gen.app.data.v1.data_pb2.Global___Filter"><span class="pre">Global___Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -4502,7 +4664,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.Sequence">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Global___SequenceResourceFilter" title="viam.gen.app.data.v1.data_pb2.Global___SequenceResourceFilter"><span class="pre">Global___SequenceResourceFilter</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Sequence" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Global___SequenceResourceFilter" title="viam.gen.app.data.v1.data_pb2.Global___SequenceResourceFilter"><span class="pre">Global___SequenceResourceFilter</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Sequence" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -4552,6 +4714,13 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.Sequence.dataset_ids">
+<span class="sig-name descname"><span class="pre">dataset_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.data.Sequence.dataset_ids" title="Link to this definition"></a></dt>
+<dd><p>Datasets this sequence is a member of. Membership is added/removed via
+AddSequencesToDataset / RemoveSequencesFromDataset.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.Sequence.HasField">
 <span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.Sequence.HasField" title="Link to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
@@ -4589,6 +4758,51 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.SequenceResourceFilter.method_name">
 <span class="sig-name descname"><span class="pre">method_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.SequenceResourceFilter.method_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">SequencesByDatasetIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDRequest.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDRequest.dataset_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDRequest.page_token">
+<span class="sig-name descname"><span class="pre">page_token</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDRequest.page_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDRequest.page_size">
+<span class="sig-name descname"><span class="pre">page_size</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDRequest.page_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">SequencesByDatasetIDResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Global___Sequence" title="viam.gen.app.data.v1.data_pb2.Global___Sequence"><span class="pre">Global___Sequence</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDResponse.next_page_token">
+<span class="sig-name descname"><span class="pre">next_page_token</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDResponse.next_page_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.SequencesByDatasetIDResponse.sequences">
+<span class="sig-name descname"><span class="pre">sequences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Global___Sequence" title="viam.gen.app.data.v1.data_pb2.Global___Sequence"><span class="pre">Global___Sequence</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.data.SequencesByDatasetIDResponse.sequences" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
