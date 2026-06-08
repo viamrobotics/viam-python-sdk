@@ -11,6 +11,8 @@ from ....gen.app.dataset.v1.dataset_pb2 import (
     DatasetType,
     DeleteDatasetRequest,
     DeleteDatasetResponse,
+    GetSequenceDatasetExportRequest,
+    GetSequenceDatasetExportResponse,
     ListDatasetsByIDsRequest,
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
@@ -19,6 +21,9 @@ from ....gen.app.dataset.v1.dataset_pb2 import (
     MergeDatasetsResponse,
     RenameDatasetRequest,
     RenameDatasetResponse,
+    SequenceDatasetExportStatus,
+    StartSequenceDatasetExportRequest,
+    StartSequenceDatasetExportResponse,
 )
 
 __all__ = [
@@ -31,6 +36,8 @@ __all__ = [
     "DatasetType",
     "DeleteDatasetRequest",
     "DeleteDatasetResponse",
+    "GetSequenceDatasetExportRequest",
+    "GetSequenceDatasetExportResponse",
     "ListDatasetsByIDsRequest",
     "ListDatasetsByIDsResponse",
     "ListDatasetsByOrganizationIDRequest",
@@ -39,4 +46,7 @@ __all__ = [
     "MergeDatasetsResponse",
     "RenameDatasetRequest",
     "RenameDatasetResponse",
+    "SequenceDatasetExportStatus",
+    "StartSequenceDatasetExportRequest",
+    "StartSequenceDatasetExportResponse",
 ]

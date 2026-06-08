@@ -1755,6 +1755,62 @@ class RemoveBinaryDataFromDatasetByIDsResponse(_message.Message):
 Global___RemoveBinaryDataFromDatasetByIDsResponse: _TypeAlias = RemoveBinaryDataFromDatasetByIDsResponse
 
 @_typing.final
+class AddSequencesToDatasetRequest(_message.Message):
+    """AddSequencesToDatasetRequest adds the sequences with the given IDs to the dataset with dataset_id."""
+    DESCRIPTOR: _descriptor.Descriptor
+    DATASET_ID_FIELD_NUMBER: _builtins.int
+    SEQUENCE_IDS_FIELD_NUMBER: _builtins.int
+    dataset_id: _builtins.str
+
+    @_builtins.property
+    def sequence_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    def __init__(self, *, dataset_id: _builtins.str=..., sequence_ids: _abc.Iterable[_builtins.str] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['dataset_id', b'dataset_id', 'sequence_ids', b'sequence_ids']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AddSequencesToDatasetRequest: _TypeAlias = AddSequencesToDatasetRequest
+
+@_typing.final
+class AddSequencesToDatasetResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___AddSequencesToDatasetResponse: _TypeAlias = AddSequencesToDatasetResponse
+
+@_typing.final
+class RemoveSequencesFromDatasetRequest(_message.Message):
+    """RemoveSequencesFromDatasetRequest removes the sequences with the given IDs from the dataset with dataset_id."""
+    DESCRIPTOR: _descriptor.Descriptor
+    DATASET_ID_FIELD_NUMBER: _builtins.int
+    SEQUENCE_IDS_FIELD_NUMBER: _builtins.int
+    dataset_id: _builtins.str
+
+    @_builtins.property
+    def sequence_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        ...
+
+    def __init__(self, *, dataset_id: _builtins.str=..., sequence_ids: _abc.Iterable[_builtins.str] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['dataset_id', b'dataset_id', 'sequence_ids', b'sequence_ids']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RemoveSequencesFromDatasetRequest: _TypeAlias = RemoveSequencesFromDatasetRequest
+
+@_typing.final
+class RemoveSequencesFromDatasetResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___RemoveSequencesFromDatasetResponse: _TypeAlias = RemoveSequencesFromDatasetResponse
+
+@_typing.final
 class CreateIndexRequest(_message.Message):
     """CreateIndexRequest starts a custom index build"""
     DESCRIPTOR: _descriptor.Descriptor
@@ -2187,6 +2243,7 @@ class Sequence(_message.Message):
     START_TIME_FIELD_NUMBER: _builtins.int
     END_TIME_FIELD_NUMBER: _builtins.int
     RESOURCES_FIELD_NUMBER: _builtins.int
+    DATASET_IDS_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     'Metadata associated with the sequence.'
     part_id: _builtins.str
@@ -2215,13 +2272,19 @@ class Sequence(_message.Message):
     def resources(self) -> _containers.RepeatedCompositeFieldContainer[Global___SequenceResourceFilter]:
         """Resources whose data is associated with this sequence."""
 
-    def __init__(self, *, id: _builtins.str=..., part_id: _builtins.str=..., sequence_tags: _abc.Iterable[_builtins.str] | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=..., resources: _abc.Iterable[Global___SequenceResourceFilter] | None=...) -> None:
+    @_builtins.property
+    def dataset_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Datasets this sequence is a member of. Membership is added/removed via
+        AddSequencesToDataset / RemoveSequencesFromDataset.
+        """
+
+    def __init__(self, *, id: _builtins.str=..., part_id: _builtins.str=..., sequence_tags: _abc.Iterable[_builtins.str] | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=..., resources: _abc.Iterable[Global___SequenceResourceFilter] | None=..., dataset_ids: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'end_time', b'end_time', 'start_time', b'start_time', 'updated_at', b'updated_at']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'end_time', b'end_time', 'id', b'id', 'part_id', b'part_id', 'resources', b'resources', 'sequence_tags', b'sequence_tags', 'start_time', b'start_time', 'updated_at', b'updated_at']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'dataset_ids', b'dataset_ids', 'end_time', b'end_time', 'id', b'id', 'part_id', b'part_id', 'resources', b'resources', 'sequence_tags', b'sequence_tags', 'start_time', b'start_time', 'updated_at', b'updated_at']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -2427,3 +2490,40 @@ class ListSequencesResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___ListSequencesResponse: _TypeAlias = ListSequencesResponse
+
+@_typing.final
+class SequencesByDatasetIDRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    DATASET_ID_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    dataset_id: _builtins.str
+    page_token: _builtins.str
+    page_size: _builtins.int
+
+    def __init__(self, *, dataset_id: _builtins.str=..., page_token: _builtins.str=..., page_size: _builtins.int=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['dataset_id', b'dataset_id', 'page_size', b'page_size', 'page_token', b'page_token']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SequencesByDatasetIDRequest: _TypeAlias = SequencesByDatasetIDRequest
+
+@_typing.final
+class SequencesByDatasetIDResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    SEQUENCES_FIELD_NUMBER: _builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
+
+    @_builtins.property
+    def sequences(self) -> _containers.RepeatedCompositeFieldContainer[Global___Sequence]:
+        ...
+
+    def __init__(self, *, sequences: _abc.Iterable[Global___Sequence] | None=..., next_page_token: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['next_page_token', b'next_page_token', 'sequences', b'sequences']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SequencesByDatasetIDResponse: _TypeAlias = SequencesByDatasetIDResponse
