@@ -34,6 +34,7 @@ from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERV
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions, _host_port_from_url
 from viam.rpc.server import Server
+from viam.rpc.tracing import install_parent_send_exporter
 
 # These imports are required to register built-in resources with the registry
 from ..components.arm import Arm  # noqa: F401
@@ -171,6 +172,7 @@ class Module:
             )
             self.logger.debug("Starting module logging")
             logging.setParent(self.parent)
+            install_parent_send_exporter(self.parent)
 
     async def _get_resource(self, name: ResourceName) -> ResourceBase:
         await self._connect_to_parent()

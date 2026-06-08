@@ -22,6 +22,7 @@ from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
+from viam.rpc.tracing import inject_trace_context
 from viam.version_metadata import API_VERSION, SDK_VERSION
 
 LOGGER = logging.getLogger(__name__)
@@ -373,6 +374,7 @@ def _create_chan(path: str) -> Channel:
 async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
         event.metadata["viam_client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
+        inject_trace_context(event.metadata)
 
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
