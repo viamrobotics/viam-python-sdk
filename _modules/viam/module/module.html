@@ -121,6 +121,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.robot.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.rpc.dial</span><span class="w"> </span><span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">_host_port_from_url</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.rpc.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">Server</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.rpc.tracing</span><span class="w"> </span><span class="kn">import</span> <span class="n">install_parent_send_exporter</span>
 
 <span class="c1"># These imports are required to register built-in resources with the registry</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..components.arm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arm</span>  <span class="c1"># noqa: F401</span>
@@ -269,6 +270,7 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Starting module logging&quot;</span><span class="p">)</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+            <span class="n">install_parent_send_exporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceBase</span><span class="p">:</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_to_parent</span><span class="p">()</span>

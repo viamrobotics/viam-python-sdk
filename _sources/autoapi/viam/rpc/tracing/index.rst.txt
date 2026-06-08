@@ -1,0 +1,79 @@
+viam.rpc.tracing
+================
+
+.. py:module:: viam.rpc.tracing
+
+.. autoapi-nested-parse::
+
+   Automated OpenTelemetry tracing for gRPC RPCs in the Viam Python SDK.
+
+   Tracing is an *optional* feature. Install the ``tracing`` extra to enable
+   it::
+
+       pip install "viam-sdk[tracing]"
+
+   Without the extra, every function in this module is a safe no-op so the
+   rest of the SDK works unchanged. With the extra, spans are emitted only
+   when the ``VIAM_MODULE_TRACING`` environment variable is set to a truthy
+   value, mirroring viam-cpp-sdk.
+
+   When enabled, the W3C Trace Context propagator is installed so incoming
+   trace context is honored, and a custom exporter ships spans to the parent
+   ``viam-server`` via the ``RobotService.SendTraces`` RPC.
+
+   OTLP encoding is implemented locally against the protobuf types bundled
+   under ``viam.gen.opentelemetry`` so that the SDK does not depend on the
+   PyPI ``opentelemetry-proto`` package, which would conflict with those
+   bundled types in the protobuf descriptor pool.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.rpc.tracing.LOGGER
+   viam.rpc.tracing.TRACING_ENV_VAR
+   viam.rpc.tracing.INSTRUMENTATION_SCOPE
+   viam.rpc.tracing.SERVICE_NAME_VALUE
+   viam.rpc.tracing.OTEL_AVAILABLE
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.rpc.tracing.tracing_enabled
+
+
+Module Contents
+---------------
+
+.. py:data:: LOGGER
+
+.. py:data:: TRACING_ENV_VAR
+   :value: 'VIAM_MODULE_TRACING'
+
+
+.. py:data:: INSTRUMENTATION_SCOPE
+   :value: 'viam-python-sdk'
+
+
+.. py:data:: SERVICE_NAME_VALUE
+   :value: 'viam-python-sdk'
+
+
+.. py:data:: OTEL_AVAILABLE
+   :value: True
+
+
+.. py:function:: tracing_enabled() -> bool
+
+   Return whether tracing is enabled via the ``VIAM_MODULE_TRACING`` env var.
+
+   Returns ``False`` when the ``tracing`` extra is not installed, warning
+   once if the env var is set but the extra is missing.
+
+
