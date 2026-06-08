@@ -94,6 +94,8 @@ if OTEL_AVAILABLE:
     from viam.gen.opentelemetry.proto.trace.v1.trace_pb2 import (
         ScopeSpans,
         Span,
+    )
+    from viam.gen.opentelemetry.proto.trace.v1.trace_pb2 import (
         Status as PbStatus,
     )
     from viam.proto.robot import SendTracesRequest

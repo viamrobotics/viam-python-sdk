@@ -7,7 +7,6 @@ import pytest
 
 from viam.rpc import tracing
 
-
 pytestmark = pytest.mark.skipif(not tracing.OTEL_AVAILABLE, reason="opentelemetry extra not installed")
 
 
