@@ -89,10 +89,7 @@ class ViamClient:
         self._dial_options = dial_options
         if app_url is None:
             app_url = "app.viam.com"
-        # Forward connection options (insecure, timeout, …) so they're honored, but strip
-        # credentials so _dial_direct does NOT authenticate — ViamClient authenticates once
-        # below using auth_entity. Passing credentials here caused a double-Authenticate
-        # ("already authenticated; cannot re-authenticate"). See RSDK-13800.
+        # dial_app will authenticate again when given credentials in dial_options, so remove to prevent error
         dial_options_without_credentials = copy(dial_options)
         dial_options_without_credentials.credentials = None
         self._channel = await _dial_app(app_url, dial_options_without_credentials)
