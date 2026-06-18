@@ -53,6 +53,10 @@ from viam.proto.app import (
     DeleteOrganizationMemberRequest,
     DeleteOrganizationRequest,
     DeleteRegistryItemRequest,
+    DeprecateRegistryItemRequest,
+    DeprecateRegistryItemResponse,
+    DeprecateRegistryItemVersionRequest,
+    DeprecateRegistryItemVersionResponse,
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
@@ -171,6 +175,10 @@ from viam.proto.app import (
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
+    UndeprecateRegistryItemRequest,
+    UndeprecateRegistryItemResponse,
+    UndeprecateRegistryItemVersionRequest,
+    UndeprecateRegistryItemVersionResponse,
     UpdateRobotMetadataRequest,
     UpdateRobotMetadataResponse,
     UpdateRobotPartMetadataRequest,
@@ -2392,6 +2400,74 @@ class AppClient:
         """
         request = DeleteRegistryItemRequest(item_id=item_id)
         await self._app_client.DeleteRegistryItem(request, metadata=self._metadata)
+
+    async def deprecate_registry_item(self, item_id: str, message: str) -> None:
+        """Deprecate a registry item.
+
+        ::
+
+            await cloud.deprecate_registry_item("your-namespace:your-name", "This item is deprecated")
+
+        Args:
+            item_id (str): The ID of the registry item to deprecate, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+            message (str): Message explaining the reason for deprecation.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deprecateregistryitem>`_.
+        """
+        request = DeprecateRegistryItemRequest(item_id=item_id, message=message)
+        await self._app_client.DeprecateRegistryItem(request, metadata=self._metadata)
+
+    async def undeprecate_registry_item(self, item_id: str) -> None:
+        """Undeprecate a registry item.
+
+        ::
+
+            await cloud.undeprecate_registry_item("your-namespace:your-name")
+
+        Args:
+            item_id (str): The ID of the registry item to undeprecate, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+
+        For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#undeprecateregistryitem>`_.
+        """
+        request = UndeprecateRegistryItemRequest(item_id=item_id)
+        await self._app_client.UndeprecateRegistryItem(request, metadata=self._metadata)
+
+    async def deprecate_registry_item_version(self, item_id: str, version: str, message: str) -> None:
+        """Deprecate a specific version of a registry item.
+
+        ::
+
+            await cloud.deprecate_registry_item_version("your-namespace:your-name", "1.0.0", "This version has a bug")
+
+        Args:
+            item_id (str): The ID of the registry item, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+            version (str): The semver string of the version to deprecate.
+            message (str): Message explaining the reason for deprecation.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deprecateregistryitemversion>`_.
+        """
+        request = DeprecateRegistryItemVersionRequest(item_id=item_id, version=version, message=message)
+        await self._app_client.DeprecateRegistryItemVersion(request, metadata=self._metadata)
+
+    async def undeprecate_registry_item_version(self, item_id: str, version: str) -> None:
+        """Undeprecate a specific version of a registry item.
+
+        ::
+
+            await cloud.undeprecate_registry_item_version("your-namespace:your-name", "1.0.0")
+
+        Args:
+            item_id (str): The ID of the registry item, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+            version (str): The semver string of the version to undeprecate.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#undeprecateregistryitemversion>`_.
+        """
+        request = UndeprecateRegistryItemVersionRequest(item_id=item_id, version=version)
+        await self._app_client.UndeprecateRegistryItemVersion(request, metadata=self._metadata)
 
     async def create_module(self, org_id: str, name: str) -> tuple[str, str]:
         """Create a module under the currently authed-to organization.

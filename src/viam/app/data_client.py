@@ -1454,7 +1454,9 @@ class DataClient:
 
         return response.datasets
 
-    async def list_datasets_by_organization_id(self, organization_id: str) -> TSequence[Dataset]:
+    async def list_datasets_by_organization_id(
+        self, organization_id: str, dataset_type: Optional[DatasetType.ValueType] = None
+    ) -> TSequence[Dataset]:
         """Get the datasets in an organization.
 
         ::
@@ -1467,13 +1469,15 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization you'd like to retrieve datasets from.
                 To find your organization ID, visit the organization settings page.
+            dataset_type (Optional[DatasetType.ValueType]): Optional filter on dataset type.
+                If not provided, all dataset types will be returned.
 
         Returns:
             TSequence[Dataset]: The list of datasets in the organization.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
         """
-        request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
+        request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id, type=dataset_type)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
             request, metadata=self._metadata
         )
