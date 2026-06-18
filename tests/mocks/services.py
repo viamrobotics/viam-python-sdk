@@ -60,16 +60,16 @@ from viam.proto.app import (
     DeleteOrganizationResponse,
     DeleteRegistryItemRequest,
     DeleteRegistryItemResponse,
-    DeprecateRegistryItemRequest,
-    DeprecateRegistryItemResponse,
-    DeprecateRegistryItemVersionRequest,
-    DeprecateRegistryItemVersionResponse,
     DeleteRobotPartRequest,
     DeleteRobotPartResponse,
     DeleteRobotPartSecretRequest,
     DeleteRobotPartSecretResponse,
     DeleteRobotRequest,
     DeleteRobotResponse,
+    DeprecateRegistryItemRequest,
+    DeprecateRegistryItemResponse,
+    DeprecateRegistryItemVersionRequest,
+    DeprecateRegistryItemVersionResponse,
     Fragment,
     GetDevicePushTokensRequest,
     GetDevicePushTokensResponse,
@@ -168,6 +168,10 @@ from viam.proto.app import (
     ShareLocationResponse,
     TailRobotPartLogsRequest,
     TailRobotPartLogsResponse,
+    UndeprecateRegistryItemRequest,
+    UndeprecateRegistryItemResponse,
+    UndeprecateRegistryItemVersionRequest,
+    UndeprecateRegistryItemVersionResponse,
     UnimplementedAppServiceBase,
     UnshareLocationRequest,
     UnshareLocationResponse,
@@ -187,10 +191,6 @@ from viam.proto.app import (
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
     UpdateRegistryItemResponse,
-    UndeprecateRegistryItemRequest,
-    UndeprecateRegistryItemResponse,
-    UndeprecateRegistryItemVersionRequest,
-    UndeprecateRegistryItemVersionResponse,
     UpdateRobotMetadataRequest,
     UpdateRobotMetadataResponse,
     UpdateRobotPartMetadataRequest,
@@ -2010,18 +2010,14 @@ class MockApp(UnimplementedAppServiceBase):
         self.delete_item_called = True
         await stream.send_message(DeleteRegistryItemResponse())
 
-    async def DeprecateRegistryItem(
-        self, stream: Stream[DeprecateRegistryItemRequest, DeprecateRegistryItemResponse]
-    ) -> None:
+    async def DeprecateRegistryItem(self, stream: Stream[DeprecateRegistryItemRequest, DeprecateRegistryItemResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.id = request.item_id
         self.deprecation_message = request.message
         await stream.send_message(DeprecateRegistryItemResponse())
 
-    async def UndeprecateRegistryItem(
-        self, stream: Stream[UndeprecateRegistryItemRequest, UndeprecateRegistryItemResponse]
-    ) -> None:
+    async def UndeprecateRegistryItem(self, stream: Stream[UndeprecateRegistryItemRequest, UndeprecateRegistryItemResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.id = request.item_id
