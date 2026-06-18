@@ -131,6 +131,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
             classifications_supported=properties.classifications_supported,
             detections_supported=properties.detections_supported,
             object_point_clouds_supported=properties.object_point_clouds_supported,
+            default_camera=properties.default_camera if properties.HasField("default_camera") else None,
         )
         await stream.send_message(response)
 

@@ -68,6 +68,7 @@ class Vision(ServiceBase):
     - classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
     - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
     - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
+    - default_camera (str | None): The default camera used for *FromCamera and GetObjectPointClouds calls.
     """
 
     @abc.abstractmethod
