@@ -1659,7 +1659,9 @@
 
 <div class="viewcode-block" id="DataClient.list_datasets_by_organization_id">
 <a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_datasets_by_organization_id">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_datasets_by_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TSequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_datasets_by_organization_id</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DatasetType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TSequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the datasets in an organization.</span>
 
 <span class="sd">        ::</span>
@@ -1672,13 +1674,15 @@
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization you&#39;d like to retrieve datasets from.</span>
 <span class="sd">                To find your organization ID, visit the organization settings page.</span>
+<span class="sd">            dataset_type (Optional[DatasetType.ValueType]): Optional filter on dataset type.</span>
+<span class="sd">                If not provided, all dataset types will be returned.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            TSequence[Dataset]: The list of datasets in the organization.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">dataset_type</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByOrganizationIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByOrganizationID</span><span class="p">(</span>
             <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
         <span class="p">)</span>

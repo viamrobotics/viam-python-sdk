@@ -328,16 +328,58 @@ Module Contents
    :canonical: RenameDatasetResponse
 
 
-.. py:class:: ListDatasetsByOrganizationIDRequest(*, organization_id: str = ...)
+.. py:class:: ListDatasetsByOrganizationIDRequest(*, organization_id: str = ..., type: Global___DatasetType | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.
+   ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization,
+   optionally filtering on DatasetType
 
 
    .. py:attribute:: organization_id
       :type:  str
+
+
+   .. py:attribute:: type
+      :type:  Global___DatasetType
+
+      Optional DataseType to filter on.
+      If unset, will return all types.
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:type:: Global___ListDatasetsByOrganizationIDRequest

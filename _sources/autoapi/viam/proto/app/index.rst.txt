@@ -113,6 +113,11 @@ Classes
    viam.proto.app.DeleteRobotPartSecretResponse
    viam.proto.app.DeleteRobotRequest
    viam.proto.app.DeleteRobotResponse
+   viam.proto.app.DeprecatedStatus
+   viam.proto.app.DeprecateRegistryItemRequest
+   viam.proto.app.DeprecateRegistryItemResponse
+   viam.proto.app.DeprecateRegistryItemVersionRequest
+   viam.proto.app.DeprecateRegistryItemVersionResponse
    viam.proto.app.DisableAuthServiceRequest
    viam.proto.app.DisableAuthServiceResponse
    viam.proto.app.DisableBillingServiceRequest
@@ -296,6 +301,10 @@ Classes
    viam.proto.app.TextOverrides
    viam.proto.app.TransferRegistryItemRequest
    viam.proto.app.TransferRegistryItemResponse
+   viam.proto.app.UndeprecateRegistryItemRequest
+   viam.proto.app.UndeprecateRegistryItemResponse
+   viam.proto.app.UndeprecateRegistryItemVersionRequest
+   viam.proto.app.UndeprecateRegistryItemVersionResponse
    viam.proto.app.UnshareLocationRequest
    viam.proto.app.UnshareLocationResponse
    viam.proto.app.UpdateBillingServiceRequest
@@ -1034,6 +1043,20 @@ Package Contents
 
 
 
+   .. py:method:: DeprecateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.DeprecateRegistryItemRequest, app.v1.app_pb2.DeprecateRegistryItemResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UndeprecateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.UndeprecateRegistryItemRequest, app.v1.app_pb2.UndeprecateRegistryItemResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: CreateModule(stream: grpclib.server.Stream[app.v1.app_pb2.CreateModuleRequest, app.v1.app_pb2.CreateModuleResponse]) -> None
       :abstractmethod:
 
@@ -1063,6 +1086,20 @@ Package Contents
 
 
    .. py:method:: ListModules(stream: grpclib.server.Stream[app.v1.app_pb2.ListModulesRequest, app.v1.app_pb2.ListModulesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeprecateRegistryItemVersion(stream: grpclib.server.Stream[app.v1.app_pb2.DeprecateRegistryItemVersionRequest, app.v1.app_pb2.DeprecateRegistryItemVersionResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UndeprecateRegistryItemVersion(stream: grpclib.server.Stream[app.v1.app_pb2.UndeprecateRegistryItemVersionRequest, app.v1.app_pb2.UndeprecateRegistryItemVersionResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -1463,6 +1500,12 @@ Package Contents
    .. py:attribute:: TransferRegistryItem
 
 
+   .. py:attribute:: DeprecateRegistryItem
+
+
+   .. py:attribute:: UndeprecateRegistryItem
+
+
    .. py:attribute:: CreateModule
 
 
@@ -1476,6 +1519,12 @@ Package Contents
 
 
    .. py:attribute:: ListModules
+
+
+   .. py:attribute:: DeprecateRegistryItemVersion
+
+
+   .. py:attribute:: UndeprecateRegistryItemVersion
 
 
    .. py:attribute:: CreateKey
@@ -2014,6 +2063,16 @@ Package Contents
 
 
 
+   .. py:method:: DeprecateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.DeprecateRegistryItemRequest, app.v1.app_pb2.DeprecateRegistryItemResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UndeprecateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.UndeprecateRegistryItemRequest, app.v1.app_pb2.UndeprecateRegistryItemResponse]) -> None
+      :async:
+
+
+
    .. py:method:: CreateModule(stream: grpclib.server.Stream[app.v1.app_pb2.CreateModuleRequest, app.v1.app_pb2.CreateModuleResponse]) -> None
       :async:
 
@@ -2035,6 +2094,16 @@ Package Contents
 
 
    .. py:method:: ListModules(stream: grpclib.server.Stream[app.v1.app_pb2.ListModulesRequest, app.v1.app_pb2.ListModulesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeprecateRegistryItemVersion(stream: grpclib.server.Stream[app.v1.app_pb2.DeprecateRegistryItemVersionRequest, app.v1.app_pb2.DeprecateRegistryItemVersionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UndeprecateRegistryItemVersion(stream: grpclib.server.Stream[app.v1.app_pb2.UndeprecateRegistryItemVersionRequest, app.v1.app_pb2.UndeprecateRegistryItemVersionResponse]) -> None
       :async:
 
 
@@ -3908,6 +3977,115 @@ Package Contents
    shown below.
 
 
+.. py:class:: DeprecatedStatus(*, deprecated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., message: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   note: current project will only support deprecation of modules;
+   Training Script and ML Model aren't supported yet.
+
+
+   .. py:attribute:: message
+      :type:  str
+
+      msg explaining reason for deprecation
+
+
+   .. py:method:: deprecated_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+      time of deprecation
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DeprecateRegistryItemRequest(*, item_id: str = ..., message: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: item_id
+      :type:  str
+
+
+   .. py:attribute:: message
+      :type:  str
+
+
+.. py:class:: DeprecateRegistryItemResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: DeprecateRegistryItemVersionRequest(*, item_id: str = ..., version: str = ..., message: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Deprecates a specific version of a registry item.
+
+
+   .. py:attribute:: item_id
+      :type:  str
+
+      The id of the registry item
+
+
+   .. py:attribute:: version
+      :type:  str
+
+      The semver string of the version to deprecate.
+
+
+   .. py:attribute:: message
+      :type:  str
+
+      msg explaining reason for deprecation
+
+
+.. py:class:: DeprecateRegistryItemVersionResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: DisableAuthServiceRequest(*, org_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4215,7 +4393,7 @@ Package Contents
 
 
 
-.. py:class:: FragmentImport(*, fragment_id: str = ..., version: str = ..., prefix: str | None = ..., variables: collections.abc.Mapping[str, str] | None = ...)
+.. py:class:: FragmentImport(*, fragment_id: str = ..., version: str = ..., prefix: str | None = ..., variables: collections.abc.Mapping[str, str] | None = ..., fragment_variables: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4266,8 +4444,12 @@ Package Contents
 
    .. py:method:: variables() -> google.protobuf.internal.containers.ScalarMap[str, str]
 
+      Deprecated: use fragment_variables
       key-value pairs for fragment variables
 
+
+
+   .. py:method:: fragment_variables() -> google.protobuf.struct_pb2.Struct
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -4288,7 +4470,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__prefix) -> _WhichOneofReturnType__prefix | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__fragment_variables) -> _WhichOneofReturnType__fragment_variables | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__prefix) -> _WhichOneofReturnType__prefix | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -6537,7 +6720,7 @@ Package Contents
    .. py:method:: organizations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Organization]
 
 
-.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[Global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[Global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ..., include_markdown_documentation: bool | None = ..., module_source_types: collections.abc.Iterable[Global___ModuleSourceType] | None = ..., module_languages: collections.abc.Iterable[Global___ModuleLanguage] | None = ...)
+.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[Global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[Global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ..., include_markdown_documentation: bool | None = ..., module_source_types: collections.abc.Iterable[Global___ModuleSourceType] | None = ..., module_languages: collections.abc.Iterable[Global___ModuleLanguage] | None = ..., show_owned_deprecated: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6564,6 +6747,10 @@ Package Contents
 
 
    .. py:attribute:: include_markdown_documentation
+      :type:  bool
+
+
+   .. py:attribute:: show_owned_deprecated
       :type:  bool
 
 
@@ -6613,6 +6800,7 @@ Package Contents
                   WhichOneof(oneof_group: _WhichOneofArgType__organization_id) -> _WhichOneofReturnType__organization_id | None
                   WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
                   WhichOneof(oneof_group: _WhichOneofArgType__search_term) -> _WhichOneofReturnType__search_term | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__show_owned_deprecated) -> _WhichOneofReturnType__show_owned_deprecated | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7303,7 +7491,7 @@ Package Contents
 
 
 
-.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: Global___Visibility = ..., versions: collections.abc.Iterable[Global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[Global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ...)
+.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: Global___Visibility = ..., versions: collections.abc.Iterable[Global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[Global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., deprecated_status: Global___DeprecatedStatus | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7409,6 +7597,12 @@ Package Contents
 
 
 
+   .. py:method:: deprecated_status() -> Global___DeprecatedStatus
+
+      Deprecated status of an individual module
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -7427,7 +7621,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
                   WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -7592,7 +7787,7 @@ Package Contents
    Bases: :py:obj:`_ModuleSourceType`
 
 
-.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[Global___Uploads] | None = ..., models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ...)
+.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[Global___Uploads] | None = ..., models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., deprecated_status: Global___DeprecatedStatus | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7646,6 +7841,12 @@ Package Contents
 
 
 
+   .. py:method:: deprecated_status() -> Global___DeprecatedStatus
+
+      When set, marks this specific version as deprecated
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -7664,7 +7865,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
                   WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -8366,7 +8568,7 @@ Package Contents
 
 
 
-.. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: Global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: Global___ModuleMetadata | None = ..., ml_model_metadata: Global___MLModelMetadata | None = ..., ml_training_metadata: Global___MLTrainingMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: Global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: Global___ModuleMetadata | None = ..., ml_model_metadata: Global___MLModelMetadata | None = ..., ml_training_metadata: Global___MLTrainingMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., deprecated_status: Global___DeprecatedStatus | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8474,6 +8676,12 @@ Package Contents
 
 
 
+   .. py:method:: deprecated_status() -> Global___DeprecatedStatus
+
+      Whether the item is deprecated
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -8492,7 +8700,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_metadata) -> _WhichOneofReturnType_metadata | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
+                  WhichOneof(oneof_group: _WhichOneofArgType_metadata) -> _WhichOneofReturnType_metadata | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -9491,6 +9700,66 @@ Package Contents
 
 
 .. py:class:: TransferRegistryItemResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UndeprecateRegistryItemRequest(*, item_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: item_id
+      :type:  str
+
+
+.. py:class:: UndeprecateRegistryItemResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UndeprecateRegistryItemVersionRequest(*, item_id: str = ..., version: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: item_id
+      :type:  str
+
+
+   .. py:attribute:: version
+      :type:  str
+
+
+.. py:class:: UndeprecateRegistryItemVersionResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10923,7 +11192,7 @@ Package Contents
    Bases: :py:obj:`_URLValidation`
 
 
-.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[Global___Uploads] | None = ..., models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ...)
+.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[Global___Uploads] | None = ..., models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., deprecated_status: Global___DeprecatedStatus | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10977,6 +11246,12 @@ Package Contents
 
 
 
+   .. py:method:: deprecated_status() -> Global___DeprecatedStatus
+
+      Deprecated status of an individual module version
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -10995,7 +11270,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
                   WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
 
       Returns the name of the field that is set inside a oneof group.

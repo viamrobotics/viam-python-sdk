@@ -206,7 +206,7 @@ isort:skip_file</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest" title="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListDatasetsByOrganizationIDRequest</span></code></a></p></td>
-<td><p>ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.</p></td>
+<td><p>ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization,</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse" title="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListDatasetsByOrganizationIDResponse</span></code></a></p></td>
 <td><p>ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization.</p></td>
@@ -531,13 +531,65 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">ListDatasetsByOrganizationIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">ListDatasetsByOrganizationIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.Global___DatasetType" title="viam.gen.app.dataset.v1.dataset_pb2.Global___DatasetType"><span class="pre">Global___DatasetType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization.</p>
+<p>ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization,
+optionally filtering on DatasetType</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.organization_id">
 <span class="sig-name descname"><span class="pre">organization_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.organization_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.Global___DatasetType" title="viam.gen.app.dataset.v1.dataset_pb2.Global___DatasetType"><span class="pre">Global___DatasetType</span></a></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.type" title="Link to this definition"></a></dt>
+<dd><p>Optional DataseType to filter on.
+If unset, will return all types.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__type</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

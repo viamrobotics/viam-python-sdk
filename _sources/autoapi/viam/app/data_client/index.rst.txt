@@ -1250,7 +1250,7 @@ Module Contents
 
 
 
-   .. py:method:: list_datasets_by_organization_id(organization_id: str) -> Sequence[viam.proto.app.dataset.Dataset]
+   .. py:method:: list_datasets_by_organization_id(organization_id: str, dataset_type: Optional[viam.proto.app.dataset.DatasetType.ValueType] = None) -> Sequence[viam.proto.app.dataset.Dataset]
       :async:
 
 
@@ -1266,6 +1266,9 @@ Module Contents
       :param organization_id: The ID of the organization you'd like to retrieve datasets from.
                               To find your organization ID, visit the organization settings page.
       :type organization_id: str
+      :param dataset_type: Optional filter on dataset type.
+                           If not provided, all dataset types will be returned.
+      :type dataset_type: Optional[DatasetType.ValueType]
 
       :returns: The list of datasets in the organization.
       :rtype: TSequence[Dataset]

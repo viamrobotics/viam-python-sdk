@@ -2078,6 +2078,86 @@ Module Contents
 
 
 
+   .. py:method:: deprecate_registry_item(item_id: str, message: str) -> None
+      :async:
+
+
+      Deprecate a registry item.
+
+      ::
+
+          await cloud.deprecate_registry_item("your-namespace:your-name", "This item is deprecated")
+
+      :param item_id: The ID of the registry item to deprecate, containing either the namespace and module name
+                      (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+      :type item_id: str
+      :param message: Message explaining the reason for deprecation.
+      :type message: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deprecateregistryitem>`_.
+
+
+
+   .. py:method:: undeprecate_registry_item(item_id: str) -> None
+      :async:
+
+
+      Undeprecate a registry item.
+
+      ::
+
+          await cloud.undeprecate_registry_item("your-namespace:your-name")
+
+      :param item_id: The ID of the registry item to undeprecate, containing either the namespace and module name
+                      (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+      :type item_id: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#undeprecateregistryitem>`_.
+
+
+
+   .. py:method:: deprecate_registry_item_version(item_id: str, version: str, message: str) -> None
+      :async:
+
+
+      Deprecate a specific version of a registry item.
+
+      ::
+
+          await cloud.deprecate_registry_item_version("your-namespace:your-name", "1.0.0", "This version has a bug")
+
+      :param item_id: The ID of the registry item, containing either the namespace and module name
+                      (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+      :type item_id: str
+      :param version: The semver string of the version to deprecate.
+      :type version: str
+      :param message: Message explaining the reason for deprecation.
+      :type message: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deprecateregistryitemversion>`_.
+
+
+
+   .. py:method:: undeprecate_registry_item_version(item_id: str, version: str) -> None
+      :async:
+
+
+      Undeprecate a specific version of a registry item.
+
+      ::
+
+          await cloud.undeprecate_registry_item_version("your-namespace:your-name", "1.0.0")
+
+      :param item_id: The ID of the registry item, containing either the namespace and module name
+                      (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
+      :type item_id: str
+      :param version: The semver string of the version to undeprecate.
+      :type version: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#undeprecateregistryitemversion>`_.
+
+
+
    .. py:method:: create_module(org_id: str, name: str) -> tuple[str, str]
       :async:
 

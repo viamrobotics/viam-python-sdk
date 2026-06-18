@@ -208,6 +208,10 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_registry_item"><code class="docutils literal notranslate"><span class="pre">AppClient.update_registry_item()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.list_registry_items"><code class="docutils literal notranslate"><span class="pre">AppClient.list_registry_items()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_registry_item"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_registry_item()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.deprecate_registry_item"><code class="docutils literal notranslate"><span class="pre">AppClient.deprecate_registry_item()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.undeprecate_registry_item"><code class="docutils literal notranslate"><span class="pre">AppClient.undeprecate_registry_item()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.deprecate_registry_item_version"><code class="docutils literal notranslate"><span class="pre">AppClient.deprecate_registry_item_version()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.undeprecate_registry_item_version"><code class="docutils literal notranslate"><span class="pre">AppClient.undeprecate_registry_item_version()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_module"><code class="docutils literal notranslate"><span class="pre">AppClient.create_module()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_module"><code class="docutils literal notranslate"><span class="pre">AppClient.update_module()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.upload_module_file"><code class="docutils literal notranslate"><span class="pre">AppClient.upload_module_file()</span></code></a></li>
@@ -2448,6 +2452,80 @@ would be <cite>viam:csi-cam-pi</cite>. You can also use <cite>org-id:name</cite>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#deleteregistryitem">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.deprecate_registry_item">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deprecate_registry_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.deprecate_registry_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.deprecate_registry_item" title="Link to this definition"></a></dt>
+<dd><p>Deprecate a registry item.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">deprecate_registry_item</span><span class="p">(</span><span class="s2">&quot;your-namespace:your-name&quot;</span><span class="p">,</span> <span class="s2">&quot;This item is deprecated&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item_id</strong> (<em>str</em>) – The ID of the registry item to deprecate, containing either the namespace and module name
+(for example, <cite>my-org:my-module</cite>) or organization ID and module name (<cite>org-id:my-module</cite>).</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Message explaining the reason for deprecation.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#deprecateregistryitem">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.undeprecate_registry_item">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">undeprecate_registry_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.undeprecate_registry_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.undeprecate_registry_item" title="Link to this definition"></a></dt>
+<dd><p>Undeprecate a registry item.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">undeprecate_registry_item</span><span class="p">(</span><span class="s2">&quot;your-namespace:your-name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item_id</strong> (<em>str</em>) – The ID of the registry item to undeprecate, containing either the namespace and module name
+(for example, <cite>my-org:my-module</cite>) or organization ID and module name (<cite>org-id:my-module</cite>).</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#undeprecateregistryitem">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.deprecate_registry_item_version">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deprecate_registry_item_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.deprecate_registry_item_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.deprecate_registry_item_version" title="Link to this definition"></a></dt>
+<dd><p>Deprecate a specific version of a registry item.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">deprecate_registry_item_version</span><span class="p">(</span><span class="s2">&quot;your-namespace:your-name&quot;</span><span class="p">,</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;This version has a bug&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item_id</strong> (<em>str</em>) – The ID of the registry item, containing either the namespace and module name
+(for example, <cite>my-org:my-module</cite>) or organization ID and module name (<cite>org-id:my-module</cite>).</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – The semver string of the version to deprecate.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Message explaining the reason for deprecation.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#deprecateregistryitemversion">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.undeprecate_registry_item_version">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">undeprecate_registry_item_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.undeprecate_registry_item_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.undeprecate_registry_item_version" title="Link to this definition"></a></dt>
+<dd><p>Undeprecate a specific version of a registry item.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">undeprecate_registry_item_version</span><span class="p">(</span><span class="s2">&quot;your-namespace:your-name&quot;</span><span class="p">,</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item_id</strong> (<em>str</em>) – The ID of the registry item, containing either the namespace and module name
+(for example, <cite>my-org:my-module</cite>) or organization ID and module name (<cite>org-id:my-module</cite>).</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – The semver string of the version to undeprecate.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#undeprecateregistryitemversion">Fleet Management API</a>.</p>
 </dd></dl>
 
 <dl class="py method">

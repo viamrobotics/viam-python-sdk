@@ -796,11 +796,12 @@ shutting down when response is ready.</p>
 <span class="n">resource_statuses</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">resources</span>
 <span class="n">cloud_metadata</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">resources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cloud_metadata</span>
 <span class="n">config_status</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">config</span>
+<span class="n">module_statuses</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">modules</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]) and the revision of the config of the machine.</p>
+<dd class="field-odd"><p>current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, and the status of modules (List[ModuleStatus]).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse">viam.proto.robot.GetMachineStatusResponse</a></p>
