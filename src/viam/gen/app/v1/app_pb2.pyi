@@ -2897,6 +2897,7 @@ class FragmentImport(_message.Message):
     VERSION_FIELD_NUMBER: _builtins.int
     PREFIX_FIELD_NUMBER: _builtins.int
     VARIABLES_FIELD_NUMBER: _builtins.int
+    FRAGMENT_VARIABLES_FIELD_NUMBER: _builtins.int
     fragment_id: _builtins.str
     version: _builtins.str
     'revision or tag'
@@ -2904,22 +2905,36 @@ class FragmentImport(_message.Message):
     'namespace prefix'
 
     @_builtins.property
+    @_deprecated('This field has been marked as deprecated using proto field options.')
     def variables(self) -> _containers.ScalarMap[_builtins.str, _builtins.str]:
-        """key-value pairs for fragment variables"""
+        """Deprecated: use fragment_variables
+        key-value pairs for fragment variables
+        """
 
-    def __init__(self, *, fragment_id: _builtins.str=..., version: _builtins.str=..., prefix: _builtins.str | None=..., variables: _abc.Mapping[_builtins.str, _builtins.str] | None=...) -> None:
+    @_builtins.property
+    def fragment_variables(self) -> _struct_pb2.Struct:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_prefix', b'_prefix', 'prefix', b'prefix']
+
+    def __init__(self, *, fragment_id: _builtins.str=..., version: _builtins.str=..., prefix: _builtins.str | None=..., variables: _abc.Mapping[_builtins.str, _builtins.str] | None=..., fragment_variables: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_fragment_variables', b'_fragment_variables', '_prefix', b'_prefix', 'fragment_variables', b'fragment_variables', 'prefix', b'prefix']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_prefix', b'_prefix', 'fragment_id', b'fragment_id', 'prefix', b'prefix', 'variables', b'variables', 'version', b'version']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_fragment_variables', b'_fragment_variables', '_prefix', b'_prefix', 'fragment_id', b'fragment_id', 'fragment_variables', b'fragment_variables', 'prefix', b'prefix', 'variables', b'variables', 'version', b'version']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__fragment_variables: _TypeAlias = _typing.Literal['fragment_variables']
+    _WhichOneofArgType__fragment_variables: _TypeAlias = _typing.Literal['_fragment_variables', b'_fragment_variables']
     _WhichOneofReturnType__prefix: _TypeAlias = _typing.Literal['prefix']
     _WhichOneofArgType__prefix: _TypeAlias = _typing.Literal['_prefix', b'_prefix']
 
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__fragment_variables) -> _WhichOneofReturnType__fragment_variables | None:
+        ...
+
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__prefix) -> _WhichOneofReturnType__prefix | None:
         ...
 Global___FragmentImport: _TypeAlias = FragmentImport
@@ -4330,6 +4345,7 @@ class ModuleVersion(_message.Message):
     FIRST_RUN_FIELD_NUMBER: _builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: _builtins.int
     APPS_FIELD_NUMBER: _builtins.int
+    DEPRECATED_STATUS_FIELD_NUMBER: _builtins.int
     version: _builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: _builtins.str
@@ -4351,20 +4367,30 @@ class ModuleVersion(_message.Message):
     def apps(self) -> _containers.RepeatedCompositeFieldContainer[Global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, version: _builtins.str=..., files: _abc.Iterable[Global___Uploads] | None=..., models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=...) -> None:
+    @_builtins.property
+    def deprecated_status(self) -> Global___DeprecatedStatus:
+        """When set, marks this specific version as deprecated"""
+
+    def __init__(self, *, version: _builtins.str=..., files: _abc.Iterable[Global___Uploads] | None=..., models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., deprecated_status: Global___DeprecatedStatus | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'deprecated_status', b'deprecated_status', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'deprecated_status', b'deprecated_status', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__deprecated_status: _TypeAlias = _typing.Literal['deprecated_status']
+    _WhichOneofArgType__deprecated_status: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status']
     _WhichOneofReturnType__first_run: _TypeAlias = _typing.Literal['first_run']
     _WhichOneofArgType__first_run: _TypeAlias = _typing.Literal['_first_run', b'_first_run']
     _WhichOneofReturnType__markdown_description: _TypeAlias = _typing.Literal['markdown_description']
     _WhichOneofArgType__markdown_description: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None:
@@ -4544,6 +4570,33 @@ class MLTrainingMetadata(_message.Message):
 Global___MLTrainingMetadata: _TypeAlias = MLTrainingMetadata
 
 @_typing.final
+class DeprecatedStatus(_message.Message):
+    """note: current project will only support deprecation of modules;
+    Training Script and ML Model aren't supported yet.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    DEPRECATED_AT_FIELD_NUMBER: _builtins.int
+    MESSAGE_FIELD_NUMBER: _builtins.int
+    message: _builtins.str
+    'msg explaining reason for deprecation'
+
+    @_builtins.property
+    def deprecated_at(self) -> _timestamp_pb2.Timestamp:
+        """time of deprecation"""
+
+    def __init__(self, *, deprecated_at: _timestamp_pb2.Timestamp | None=..., message: _builtins.str=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['deprecated_at', b'deprecated_at']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['deprecated_at', b'deprecated_at', 'message', b'message']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeprecatedStatus: _TypeAlias = DeprecatedStatus
+
+@_typing.final
 class RegistryItem(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: _builtins.int
@@ -4563,6 +4616,7 @@ class RegistryItem(_message.Message):
     ML_TRAINING_METADATA_FIELD_NUMBER: _builtins.int
     CREATED_AT_FIELD_NUMBER: _builtins.int
     UPDATED_AT_FIELD_NUMBER: _builtins.int
+    DEPRECATED_STATUS_FIELD_NUMBER: _builtins.int
     item_id: _builtins.str
     'The id of the item, containing either:\n    namespace:item_name when a namespace exists on the org.\n    org_id:item_name when a namespace does not exist.\n    '
     organization_id: _builtins.str
@@ -4608,19 +4662,30 @@ class RegistryItem(_message.Message):
     def updated_at(self) -> _timestamp_pb2.Timestamp:
         """When the item was last updated, either through an update or upload."""
 
-    def __init__(self, *, item_id: _builtins.str=..., organization_id: _builtins.str=..., public_namespace: _builtins.str=..., name: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., visibility: Global___Visibility.ValueType=..., url: _builtins.str=..., description: _builtins.str=..., total_robot_usage: _builtins.int=..., total_external_robot_usage: _builtins.int=..., total_organization_usage: _builtins.int=..., total_external_organization_usage: _builtins.int=..., module_metadata: Global___ModuleMetadata | None=..., ml_model_metadata: Global___MLModelMetadata | None=..., ml_training_metadata: Global___MLTrainingMetadata | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=...) -> None:
+    @_builtins.property
+    def deprecated_status(self) -> Global___DeprecatedStatus:
+        """Whether the item is deprecated"""
+
+    def __init__(self, *, item_id: _builtins.str=..., organization_id: _builtins.str=..., public_namespace: _builtins.str=..., name: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., visibility: Global___Visibility.ValueType=..., url: _builtins.str=..., description: _builtins.str=..., total_robot_usage: _builtins.int=..., total_external_robot_usage: _builtins.int=..., total_organization_usage: _builtins.int=..., total_external_organization_usage: _builtins.int=..., module_metadata: Global___ModuleMetadata | None=..., ml_model_metadata: Global___MLModelMetadata | None=..., ml_training_metadata: Global___MLTrainingMetadata | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., deprecated_status: Global___DeprecatedStatus | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', 'created_at', b'created_at', 'deprecated_status', b'deprecated_status', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_at', b'created_at', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', 'created_at', b'created_at', 'deprecated_status', b'deprecated_status', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__deprecated_status: _TypeAlias = _typing.Literal['deprecated_status']
+    _WhichOneofArgType__deprecated_status: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status']
     _WhichOneofReturnType_metadata: _TypeAlias = _typing.Literal['module_metadata', 'ml_model_metadata', 'ml_training_metadata']
     _WhichOneofArgType_metadata: _TypeAlias = _typing.Literal['metadata', b'metadata']
 
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None:
+        ...
+
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType_metadata) -> _WhichOneofReturnType_metadata | None:
         ...
 Global___RegistryItem: _TypeAlias = RegistryItem
@@ -4783,11 +4848,13 @@ class ListRegistryItemsRequest(_message.Message):
     INCLUDE_MARKDOWN_DOCUMENTATION_FIELD_NUMBER: _builtins.int
     MODULE_SOURCE_TYPES_FIELD_NUMBER: _builtins.int
     MODULE_LANGUAGES_FIELD_NUMBER: _builtins.int
+    SHOW_OWNED_DEPRECATED_FIELD_NUMBER: _builtins.int
     organization_id: _builtins.str
     'The id of the organization to return registry items for.'
     search_term: _builtins.str
     page_token: _builtins.str
     include_markdown_documentation: _builtins.bool
+    show_owned_deprecated: _builtins.bool
 
     @_builtins.property
     def types(self) -> _containers.RepeatedScalarFieldContainer[_packages_pb2.PackageType.ValueType]:
@@ -4817,13 +4884,13 @@ class ListRegistryItemsRequest(_message.Message):
     def module_languages(self) -> _containers.RepeatedScalarFieldContainer[Global___ModuleLanguage.ValueType]:
         ...
 
-    def __init__(self, *, organization_id: _builtins.str | None=..., types: _abc.Iterable[_packages_pb2.PackageType.ValueType] | None=..., visibilities: _abc.Iterable[Global___Visibility.ValueType] | None=..., platforms: _abc.Iterable[_builtins.str] | None=..., statuses: _abc.Iterable[Global___RegistryItemStatus.ValueType] | None=..., search_term: _builtins.str | None=..., page_token: _builtins.str | None=..., public_namespaces: _abc.Iterable[_builtins.str] | None=..., include_markdown_documentation: _builtins.bool | None=..., module_source_types: _abc.Iterable[Global___ModuleSourceType.ValueType] | None=..., module_languages: _abc.Iterable[Global___ModuleLanguage.ValueType] | None=...) -> None:
+    def __init__(self, *, organization_id: _builtins.str | None=..., types: _abc.Iterable[_packages_pb2.PackageType.ValueType] | None=..., visibilities: _abc.Iterable[Global___Visibility.ValueType] | None=..., platforms: _abc.Iterable[_builtins.str] | None=..., statuses: _abc.Iterable[Global___RegistryItemStatus.ValueType] | None=..., search_term: _builtins.str | None=..., page_token: _builtins.str | None=..., public_namespaces: _abc.Iterable[_builtins.str] | None=..., include_markdown_documentation: _builtins.bool | None=..., module_source_types: _abc.Iterable[Global___ModuleSourceType.ValueType] | None=..., module_languages: _abc.Iterable[Global___ModuleLanguage.ValueType] | None=..., show_owned_deprecated: _builtins.bool | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', '_show_owned_deprecated', b'_show_owned_deprecated', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term', 'show_owned_deprecated', b'show_owned_deprecated']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'module_languages', b'module_languages', 'module_source_types', b'module_source_types', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', '_show_owned_deprecated', b'_show_owned_deprecated', 'include_markdown_documentation', b'include_markdown_documentation', 'module_languages', b'module_languages', 'module_source_types', b'module_source_types', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'show_owned_deprecated', b'show_owned_deprecated', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -4835,6 +4902,8 @@ class ListRegistryItemsRequest(_message.Message):
     _WhichOneofArgType__page_token: _TypeAlias = _typing.Literal['_page_token', b'_page_token']
     _WhichOneofReturnType__search_term: _TypeAlias = _typing.Literal['search_term']
     _WhichOneofArgType__search_term: _TypeAlias = _typing.Literal['_search_term', b'_search_term']
+    _WhichOneofReturnType__show_owned_deprecated: _TypeAlias = _typing.Literal['show_owned_deprecated']
+    _WhichOneofArgType__show_owned_deprecated: _TypeAlias = _typing.Literal['_show_owned_deprecated', b'_show_owned_deprecated']
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__include_markdown_documentation) -> _WhichOneofReturnType__include_markdown_documentation | None:
@@ -4850,6 +4919,10 @@ class ListRegistryItemsRequest(_message.Message):
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__search_term) -> _WhichOneofReturnType__search_term | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__show_owned_deprecated) -> _WhichOneofReturnType__show_owned_deprecated | None:
         ...
 Global___ListRegistryItemsRequest: _TypeAlias = ListRegistryItemsRequest
 
@@ -4953,6 +5026,52 @@ class TransferRegistryItemResponse(_message.Message):
     def __init__(self) -> None:
         ...
 Global___TransferRegistryItemResponse: _TypeAlias = TransferRegistryItemResponse
+
+@_typing.final
+class DeprecateRegistryItemRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: _builtins.int
+    MESSAGE_FIELD_NUMBER: _builtins.int
+    item_id: _builtins.str
+    message: _builtins.str
+
+    def __init__(self, *, item_id: _builtins.str=..., message: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['item_id', b'item_id', 'message', b'message']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeprecateRegistryItemRequest: _TypeAlias = DeprecateRegistryItemRequest
+
+@_typing.final
+class DeprecateRegistryItemResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeprecateRegistryItemResponse: _TypeAlias = DeprecateRegistryItemResponse
+
+@_typing.final
+class UndeprecateRegistryItemRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: _builtins.int
+    item_id: _builtins.str
+
+    def __init__(self, *, item_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['item_id', b'item_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UndeprecateRegistryItemRequest: _TypeAlias = UndeprecateRegistryItemRequest
+
+@_typing.final
+class UndeprecateRegistryItemResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___UndeprecateRegistryItemResponse: _TypeAlias = UndeprecateRegistryItemResponse
 
 @_typing.final
 class CreateModuleRequest(_message.Message):
@@ -5401,6 +5520,7 @@ class Module(_message.Message):
     FIRST_RUN_FIELD_NUMBER: _builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: _builtins.int
     APPS_FIELD_NUMBER: _builtins.int
+    DEPRECATED_STATUS_FIELD_NUMBER: _builtins.int
     module_id: _builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     name: _builtins.str
@@ -5440,20 +5560,30 @@ class Module(_message.Message):
     def apps(self) -> _containers.RepeatedCompositeFieldContainer[Global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, module_id: _builtins.str=..., name: _builtins.str=..., visibility: Global___Visibility.ValueType=..., versions: _abc.Iterable[Global___VersionHistory] | None=..., url: _builtins.str=..., description: _builtins.str=..., models: _abc.Iterable[Global___Model] | None=..., total_robot_usage: _builtins.int=..., total_organization_usage: _builtins.int=..., organization_id: _builtins.str=..., entrypoint: _builtins.str=..., public_namespace: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=...) -> None:
+    @_builtins.property
+    def deprecated_status(self) -> Global___DeprecatedStatus:
+        """Deprecated status of an individual module"""
+
+    def __init__(self, *, module_id: _builtins.str=..., name: _builtins.str=..., visibility: Global___Visibility.ValueType=..., versions: _abc.Iterable[Global___VersionHistory] | None=..., url: _builtins.str=..., description: _builtins.str=..., models: _abc.Iterable[Global___Model] | None=..., total_robot_usage: _builtins.int=..., total_organization_usage: _builtins.int=..., organization_id: _builtins.str=..., entrypoint: _builtins.str=..., public_namespace: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., deprecated_status: Global___DeprecatedStatus | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'deprecated_status', b'deprecated_status', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'deprecated_status', b'deprecated_status', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__deprecated_status: _TypeAlias = _typing.Literal['deprecated_status']
+    _WhichOneofArgType__deprecated_status: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status']
     _WhichOneofReturnType__first_run: _TypeAlias = _typing.Literal['first_run']
     _WhichOneofArgType__first_run: _TypeAlias = _typing.Literal['_first_run', b'_first_run']
     _WhichOneofReturnType__markdown_description: _TypeAlias = _typing.Literal['markdown_description']
     _WhichOneofArgType__markdown_description: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None:
@@ -5474,6 +5604,7 @@ class VersionHistory(_message.Message):
     FIRST_RUN_FIELD_NUMBER: _builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: _builtins.int
     APPS_FIELD_NUMBER: _builtins.int
+    DEPRECATED_STATUS_FIELD_NUMBER: _builtins.int
     version: _builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: _builtins.str
@@ -5495,20 +5626,30 @@ class VersionHistory(_message.Message):
     def apps(self) -> _containers.RepeatedCompositeFieldContainer[Global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, version: _builtins.str=..., files: _abc.Iterable[Global___Uploads] | None=..., models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=...) -> None:
+    @_builtins.property
+    def deprecated_status(self) -> Global___DeprecatedStatus:
+        """Deprecated status of an individual module version"""
+
+    def __init__(self, *, version: _builtins.str=..., files: _abc.Iterable[Global___Uploads] | None=..., models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., deprecated_status: Global___DeprecatedStatus | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'deprecated_status', b'deprecated_status', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'deprecated_status', b'deprecated_status', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__deprecated_status: _TypeAlias = _typing.Literal['deprecated_status']
+    _WhichOneofArgType__deprecated_status: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status']
     _WhichOneofReturnType__first_run: _TypeAlias = _typing.Literal['first_run']
     _WhichOneofArgType__first_run: _TypeAlias = _typing.Literal['_first_run', b'_first_run']
     _WhichOneofReturnType__markdown_description: _TypeAlias = _typing.Literal['markdown_description']
     _WhichOneofArgType__markdown_description: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None:
@@ -5592,6 +5733,60 @@ class ListModulesResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___ListModulesResponse: _TypeAlias = ListModulesResponse
+
+@_typing.final
+class DeprecateRegistryItemVersionRequest(_message.Message):
+    """Deprecates a specific version of a registry item."""
+    DESCRIPTOR: _descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: _builtins.int
+    VERSION_FIELD_NUMBER: _builtins.int
+    MESSAGE_FIELD_NUMBER: _builtins.int
+    item_id: _builtins.str
+    'The id of the registry item'
+    version: _builtins.str
+    'The semver string of the version to deprecate.'
+    message: _builtins.str
+    'msg explaining reason for deprecation'
+
+    def __init__(self, *, item_id: _builtins.str=..., version: _builtins.str=..., message: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['item_id', b'item_id', 'message', b'message', 'version', b'version']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeprecateRegistryItemVersionRequest: _TypeAlias = DeprecateRegistryItemVersionRequest
+
+@_typing.final
+class DeprecateRegistryItemVersionResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeprecateRegistryItemVersionResponse: _TypeAlias = DeprecateRegistryItemVersionResponse
+
+@_typing.final
+class UndeprecateRegistryItemVersionRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: _builtins.int
+    VERSION_FIELD_NUMBER: _builtins.int
+    item_id: _builtins.str
+    version: _builtins.str
+
+    def __init__(self, *, item_id: _builtins.str=..., version: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['item_id', b'item_id', 'version', b'version']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UndeprecateRegistryItemVersionRequest: _TypeAlias = UndeprecateRegistryItemVersionRequest
+
+@_typing.final
+class UndeprecateRegistryItemVersionResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___UndeprecateRegistryItemVersionResponse: _TypeAlias = UndeprecateRegistryItemVersionResponse
 
 @_typing.final
 class GetUserIDByEmailRequest(_message.Message):
