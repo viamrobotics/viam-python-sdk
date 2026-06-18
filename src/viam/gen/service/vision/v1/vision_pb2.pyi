@@ -138,7 +138,7 @@ class Detection(_message.Message):
     class_name: _builtins.str
     'label associated with the detected object'
     x_min_normalized: _builtins.float
-    'the four corners of the box, in proportion to the respective image dimension'
+    'the four corners of the box, in proportion to the respective image\n    dimension\n    '
     y_min_normalized: _builtins.float
     x_max_normalized: _builtins.float
     y_max_normalized: _builtins.float
@@ -484,17 +484,29 @@ class GetPropertiesResponse(_message.Message):
     CLASSIFICATIONS_SUPPORTED_FIELD_NUMBER: _builtins.int
     DETECTIONS_SUPPORTED_FIELD_NUMBER: _builtins.int
     OBJECT_POINT_CLOUDS_SUPPORTED_FIELD_NUMBER: _builtins.int
+    DEFAULT_CAMERA_FIELD_NUMBER: _builtins.int
     classifications_supported: _builtins.bool
     'whether or not classifactions are supported by the vision service'
     detections_supported: _builtins.bool
     'whether or not detections are supported by the vision service'
     object_point_clouds_supported: _builtins.bool
     'whether or not 3d segmentation is supported by the vision service'
+    default_camera: _builtins.str
+    'the default camera used for *FromCamera and GetObjectPointClouds calls'
 
-    def __init__(self, *, classifications_supported: _builtins.bool=..., detections_supported: _builtins.bool=..., object_point_clouds_supported: _builtins.bool=...) -> None:
+    def __init__(self, *, classifications_supported: _builtins.bool=..., detections_supported: _builtins.bool=..., object_point_clouds_supported: _builtins.bool=..., default_camera: _builtins.str | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['classifications_supported', b'classifications_supported', 'detections_supported', b'detections_supported', 'object_point_clouds_supported', b'object_point_clouds_supported']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_default_camera', b'_default_camera', 'default_camera', b'default_camera']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_default_camera', b'_default_camera', 'classifications_supported', b'classifications_supported', 'default_camera', b'default_camera', 'detections_supported', b'detections_supported', 'object_point_clouds_supported', b'object_point_clouds_supported']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__default_camera: _TypeAlias = _typing.Literal['default_camera']
+    _WhichOneofArgType__default_camera: _TypeAlias = _typing.Literal['_default_camera', b'_default_camera']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__default_camera) -> _WhichOneofReturnType__default_camera | None:
         ...
 Global___GetPropertiesResponse: _TypeAlias = GetPropertiesResponse
