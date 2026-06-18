@@ -188,16 +188,30 @@ Global___RenameDatasetResponse: _TypeAlias = RenameDatasetResponse
 
 @_typing.final
 class ListDatasetsByOrganizationIDRequest(_message.Message):
-    """ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization."""
+    """ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization,
+    optionally filtering on DatasetType
+    """
     DESCRIPTOR: _descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
     organization_id: _builtins.str
+    type: Global___DatasetType.ValueType
+    'Optional DataseType to filter on.\n    If unset, will return all types.\n    '
 
-    def __init__(self, *, organization_id: _builtins.str=...) -> None:
+    def __init__(self, *, organization_id: _builtins.str=..., type: Global___DatasetType.ValueType | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['organization_id', b'organization_id']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_type', b'_type', 'type', b'type']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_type', b'_type', 'organization_id', b'organization_id', 'type', b'type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__type: _TypeAlias = _typing.Literal['type']
+    _WhichOneofArgType__type: _TypeAlias = _typing.Literal['_type', b'_type']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None:
         ...
 Global___ListDatasetsByOrganizationIDRequest: _TypeAlias = ListDatasetsByOrganizationIDRequest
 

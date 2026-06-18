@@ -960,6 +960,7 @@ class GetMachineStatusResponse(_message.Message):
     CONFIG_FIELD_NUMBER: _builtins.int
     STATE_FIELD_NUMBER: _builtins.int
     JOB_STATUSES_FIELD_NUMBER: _builtins.int
+    MODULES_FIELD_NUMBER: _builtins.int
     state: Global___GetMachineStatusResponse.State.ValueType
 
     @_builtins.property
@@ -974,13 +975,17 @@ class GetMachineStatusResponse(_message.Message):
     def job_statuses(self) -> _containers.RepeatedCompositeFieldContainer[Global___JobStatus]:
         ...
 
-    def __init__(self, *, resources: _abc.Iterable[Global___ResourceStatus] | None=..., config: Global___ConfigStatus | None=..., state: Global___GetMachineStatusResponse.State.ValueType=..., job_statuses: _abc.Iterable[Global___JobStatus] | None=...) -> None:
+    @_builtins.property
+    def modules(self) -> _containers.RepeatedCompositeFieldContainer[Global___ModuleStatus]:
+        ...
+
+    def __init__(self, *, resources: _abc.Iterable[Global___ResourceStatus] | None=..., config: Global___ConfigStatus | None=..., state: Global___GetMachineStatusResponse.State.ValueType=..., job_statuses: _abc.Iterable[Global___JobStatus] | None=..., modules: _abc.Iterable[Global___ModuleStatus] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['config', b'config']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'resources', b'resources', 'state', b'state']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'modules', b'modules', 'resources', b'resources', 'state', b'state']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -1086,6 +1091,71 @@ class ResourceStatus(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType__cloud_metadata) -> _WhichOneofReturnType__cloud_metadata | None:
         ...
 Global___ResourceStatus: _TypeAlias = ResourceStatus
+
+@_typing.final
+class ModuleStatus(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    class _State:
+        ValueType = _typing.NewType('ValueType', _builtins.int)
+        V: _TypeAlias = ValueType
+
+    class _StateEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[ModuleStatus._State.ValueType], _builtins.type):
+        DESCRIPTOR: _descriptor.EnumDescriptor
+        STATE_UNSPECIFIED: ModuleStatus._State.ValueType
+        'state is unknown or has not been set yet'
+        STATE_PENDING: ModuleStatus._State.ValueType
+        'module is configured but viam-server has not yet attempted to start it\n        (because e.g. a required package is still downloading)\n        transitions -> state_starting after pre-setup completes\n        '
+        STATE_STARTING: ModuleStatus._State.ValueType
+        'module process has been spawned and viam-server is waiting for it\n        to send a Ready response and register its models\n        transitions -> state_ready on success\n        '
+        STATE_READY: ModuleStatus._State.ValueType
+        'module has sent a Ready response, registered its models, and is running\n        transitions -> state_unhealthy on bad exit\n        '
+        STATE_UNHEALTHY: ModuleStatus._State.ValueType
+        'module failed to start, exited unexpectedly,\n        or is being restarted after a crash. any failure in any other state goes to this state\n        '
+        STATE_CLOSING: ModuleStatus._State.ValueType
+        "module process is shutting down, either because the module is being\n        removed from the machine or because it is restarting during a reconfigure.\n        on removal the module's status stops being tracked once shutdown completes;\n        on restart it transitions -> state_starting\n        "
+
+    class State(_State, metaclass=_StateEnumTypeWrapper):
+        ...
+    STATE_UNSPECIFIED: ModuleStatus.State.ValueType
+    'state is unknown or has not been set yet'
+    STATE_PENDING: ModuleStatus.State.ValueType
+    'module is configured but viam-server has not yet attempted to start it\n    (because e.g. a required package is still downloading)\n    transitions -> state_starting after pre-setup completes\n    '
+    STATE_STARTING: ModuleStatus.State.ValueType
+    'module process has been spawned and viam-server is waiting for it\n    to send a Ready response and register its models\n    transitions -> state_ready on success\n    '
+    STATE_READY: ModuleStatus.State.ValueType
+    'module has sent a Ready response, registered its models, and is running\n    transitions -> state_unhealthy on bad exit\n    '
+    STATE_UNHEALTHY: ModuleStatus.State.ValueType
+    'module failed to start, exited unexpectedly,\n    or is being restarted after a crash. any failure in any other state goes to this state\n    '
+    STATE_CLOSING: ModuleStatus.State.ValueType
+    "module process is shutting down, either because the module is being\n    removed from the machine or because it is restarting during a reconfigure.\n    on removal the module's status stops being tracked once shutdown completes;\n    on restart it transitions -> state_starting\n    "
+    MODULE_NAME_FIELD_NUMBER: _builtins.int
+    STATE_FIELD_NUMBER: _builtins.int
+    LAST_UPDATED_FIELD_NUMBER: _builtins.int
+    ERROR_FIELD_NUMBER: _builtins.int
+    CONSECUTIVE_FAILURES_FIELD_NUMBER: _builtins.int
+    module_name: _builtins.str
+    state: Global___ModuleStatus.State.ValueType
+    error: _builtins.str
+    'when a module transitions to unhealthy, this field is populated with the error that caused the transition.\n    the error persists until the module reenters the Ready state, guaranteed to be nil in the Ready state\n    '
+    consecutive_failures: _builtins.int
+    'number of times this module has entered the unhealthy state since the last time this module was in the ready state\n    this will increment if the module is in a restart loop (state transitioning between pending and starting repeatedly)\n    Resets to zero when the module enters the ready state or is reconfigured.\n    Useful for detecting modules stuck in a restart loop (like a python module with a syntax error)\n    '
+
+    @_builtins.property
+    def last_updated(self) -> _timestamp_pb2.Timestamp:
+        """updated on every state transition"""
+
+    def __init__(self, *, module_name: _builtins.str=..., state: Global___ModuleStatus.State.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., error: _builtins.str=..., consecutive_failures: _builtins.int=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['last_updated', b'last_updated']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['consecutive_failures', b'consecutive_failures', 'error', b'error', 'last_updated', b'last_updated', 'module_name', b'module_name', 'state', b'state']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ModuleStatus: _TypeAlias = ModuleStatus
 
 @_typing.final
 class ConfigStatus(_message.Message):
