@@ -1,3 +1,4 @@
+import math
 import weakref
 from typing import List
 
@@ -7,7 +8,10 @@ from . import _ffi
 
 
 class OrientationVector:
-    """An orientation vector (o_x, o_y, o_z, theta) backed by the spatialmath FFI."""
+    """An orientation vector (o_x, o_y, o_z, theta) backed by the spatialmath FFI.
+
+    ``theta`` is in RADIANS for this class. The proto bridge converts to/from the proto's degrees.
+    """
 
     __slots__ = ("_handle", "__weakref__")
 
@@ -25,11 +29,11 @@ class OrientationVector:
 
     @classmethod
     def from_proto(cls, proto: Orientation) -> "OrientationVector":
-        return cls(proto.o_x, proto.o_y, proto.o_z, proto.theta)
+        return cls(proto.o_x, proto.o_y, proto.o_z, math.radians(proto.theta))
 
     def to_proto(self) -> Orientation:
         c = self._components()
-        return Orientation(o_x=c[0], o_y=c[1], o_z=c[2], theta=c[3])
+        return Orientation(o_x=c[0], o_y=c[1], o_z=c[2], theta=math.degrees(c[3]))
 
     def _components(self) -> List[float]:
         lib = _ffi.lib()

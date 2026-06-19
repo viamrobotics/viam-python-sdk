@@ -1,3 +1,4 @@
+import math
 import weakref
 from typing import List
 
@@ -79,7 +80,7 @@ class Quaternion:
     def from_pose(cls, pose) -> "Quaternion":
         from .orientation_vector import OrientationVector
 
-        ov = OrientationVector(pose.o_x, pose.o_y, pose.o_z, pose.theta)
+        ov = OrientationVector(pose.o_x, pose.o_y, pose.o_z, math.radians(pose.theta))
         return ov.to_quaternion()
 
     def to_pose(self, x: float, y: float, z: float):
@@ -87,7 +88,7 @@ class Quaternion:
 
         ov = self.to_orientation_vector()
         c = ov._components()
-        return Pose(x=x, y=y, z=z, o_x=c[0], o_y=c[1], o_z=c[2], theta=c[3])
+        return Pose(x=x, y=y, z=z, o_x=c[0], o_y=c[1], o_z=c[2], theta=math.degrees(c[3]))
 
     def to_orientation_vector(self):
         from .orientation_vector import OrientationVector

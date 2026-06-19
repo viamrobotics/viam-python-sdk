@@ -144,6 +144,23 @@ def test_vector3_proto_bridge():
     assert (out.x, out.y, out.z) == (1.0, 2.0, 3.0)
 
 
+def test_orientation_vector_proto_theta_is_degrees():
+    # proto theta is degrees; OrientationVector is radians-native
+    proto = Orientation(o_x=0.0, o_y=0.0, o_z=1.0, theta=90.0)
+    ov = OrientationVector.from_proto(proto)
+    assert round(ov.theta, 9) == round(math.radians(90.0), 9)  # stored internally as radians
+    out = ov.to_proto()
+    assert round(out.theta, 6) == 90.0  # converted back to degrees
+
+
+def test_quaternion_pose_theta_is_degrees():
+    pose = Pose(x=1, y=2, z=3, o_x=0, o_y=0, o_z=1, theta=90.0)
+    q = Quaternion.from_pose(pose)
+    out = q.to_pose(1, 2, 3)
+    assert (out.x, out.y, out.z) == (1.0, 2.0, 3.0)
+    assert round(out.theta, 6) == 90.0  # degrees round-trip through radians-native quaternion
+
+
 _GOLDEN = json.loads((pathlib.Path(__file__).parent / "spatialmath" / "fixtures" / "golden.json").read_text())
 
 
