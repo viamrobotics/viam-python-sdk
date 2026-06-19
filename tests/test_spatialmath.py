@@ -1,4 +1,5 @@
-from viam.spatialmath import Quaternion, Vector3, _ffi
+from viam.proto.common import Orientation
+from viam.spatialmath import OrientationVector, Quaternion, Vector3, _ffi
 
 
 def test_ffi_new_and_free_quaternion():
@@ -49,3 +50,17 @@ def test_quaternion_rotate_vector():
     q = Quaternion(0, 0, 0, 1)
     r = q.rotate_vector(Vector3(1, 0, 0))
     assert (round(r.x, 6), round(r.y, 6), round(r.z, 6)) == (-1.0, 0.0, 0.0)
+
+
+def test_orientation_vector_roundtrip_with_quaternion():
+    ov = OrientationVector(0.0, 0.0, 1.0, 0.0)
+    q = ov.to_quaternion()
+    back = q.to_orientation_vector()
+    assert (round(back.o_x, 6), round(back.o_y, 6), round(back.o_z, 6), round(back.theta, 6)) == (0.0, 0.0, 1.0, 0.0)
+
+
+def test_orientation_vector_proto_bridge():
+    proto = Orientation(o_x=0.0, o_y=0.0, o_z=1.0, theta=0.5)
+    ov = OrientationVector.from_proto(proto)
+    out = ov.to_proto()
+    assert (out.o_x, out.o_y, out.o_z, round(out.theta, 6)) == (0.0, 0.0, 1.0, 0.5)

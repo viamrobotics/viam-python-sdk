@@ -75,6 +75,11 @@ class Quaternion:
     def rotate_vector(self, v: Vector3) -> Vector3:
         return Vector3._from_handle(_ffi.lib().viam_quaternion_rotate_vector(self._handle, v._handle))
 
+    def to_orientation_vector(self):
+        from .orientation_vector import OrientationVector
+
+        return OrientationVector._from_handle(_ffi.lib().viam_orientation_vector_from_quaternion(self._handle))
+
     def __repr__(self) -> str:
         c = self._components()
         return f"Quaternion(w={c[0]}, i={c[1]}, j={c[2]}, k={c[3]})"
