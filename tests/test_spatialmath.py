@@ -1,3 +1,4 @@
+import gc
 import json
 import math
 import pathlib
@@ -185,3 +186,40 @@ def test_quaternion_conversions_match_go(case):
 
     rm = q.to_rotation_matrix()
     assert all(_close(g, v) for g, v in zip(case["rotation_matrix"], rm.elements)), f"rotation_matrix mismatch for {case['name']}"
+
+
+def test_no_crash_under_churn():
+    # Many construct/convert/drop cycles must not segfault or double-free.
+    for _ in range(10000):
+        q = Quaternion(0.5, 0.5, 0.5, 0.5)
+        _ = (q * q).to_orientation_vector()
+        _ = Vector3(1, 2, 3).cross(Vector3(4, 5, 6))
+    gc.collect()  # finalizers run without crashing
+
+
+def test_components_freed_path_repeatable():
+    # Each property access allocates + frees the component array via the FFI;
+    # repeated reads must stay stable (no corruption, no leak-driven drift).
+    q = Quaternion(1, 0, 0, 0)
+    for _ in range(1000):
+        assert q.w == 1.0
+
+
+def test_all_conversions_under_churn():
+    # Exercise every conversion path + repr in a tight loop so all six wrappers'
+    # finalizers are stressed together.
+    for _ in range(2000):
+        q = Quaternion(0.5, 0.5, 0.5, 0.5)
+        ov = q.to_orientation_vector()
+        ea = q.to_euler_angles()
+        aa = q.to_axis_angle()
+        rm = q.to_rotation_matrix()
+        _ = (repr(q), repr(ov), repr(ea), repr(aa), repr(rm))
+        _ = ov.to_quaternion()
+    gc.collect()
+
+
+def test_null_pointer_raises_value_error():
+    # _ffi.check must raise ValueError on a null pointer (invalid FFI input).
+    with pytest.raises(ValueError):
+        _ffi.check(None)
