@@ -33,7 +33,11 @@ class AxisAngle:
     @property
     def axis(self) -> Axis:
         s = self._struct()
-        return Axis(s.axis.x, s.axis.y, s.axis.z)
+        x, y, z = s.axis.x, s.axis.y, s.axis.z
+        if x == 0.0 and y == 0.0 and z == 0.0:
+            # zero rotation: the axis is mathematically undefined; match Go rdk's canonical (0, 0, 1)
+            return Axis(0.0, 0.0, 1.0)
+        return Axis(x, y, z)
 
     @property
     def theta(self) -> float:

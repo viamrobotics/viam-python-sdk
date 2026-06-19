@@ -1,4 +1,8 @@
+import json
 import math
+import pathlib
+
+import pytest
 
 from viam.proto.common import Orientation, Pose
 from viam.proto.common import Vector3 as ProtoVector3
@@ -107,15 +111,22 @@ def test_rotation_matrix_construct_roundtrip():
 
 
 def test_rotation_matrix_elements_roundtrip_asymmetric():
-    # 90 deg about Z is ASYMMETRIC, so this catches a missing/incorrect transpose:
-    # read (col-major storage -> row-major elements) then construct (row-major -> col-major)
-    # must be exact inverses, recovering the same elements.
+    # 90 deg about Z is ASYMMETRIC, so this guards construct/read mutual consistency:
+    # reading an FFI-produced matrix then constructing from those elements must
+    # recover the same elements exactly.
     q = Quaternion(0.7071067811865476, 0.0, 0.0, 0.7071067811865476)
     e = q.to_rotation_matrix().elements
     e2 = RotationMatrix(e).elements
     assert [round(x, 9) for x in e2] == [round(x, 9) for x in e]
     # and the matrix must actually be asymmetric (otherwise the test proves nothing)
     assert round(e[1], 6) != round(e[3], 6)
+
+
+def test_rotation_matrix_construct_from_external_elements():
+    # An externally-supplied asymmetric matrix (rdk row-major convention) must read
+    # back unchanged, documenting the construct-from-elements contract directly.
+    e = [0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0]
+    assert RotationMatrix(e).elements == e
 
 
 def test_quaternion_from_and_to_pose():
@@ -131,3 +142,29 @@ def test_vector3_proto_bridge():
     v = Vector3.from_proto(ProtoVector3(x=1, y=2, z=3))
     out = v.to_proto()
     assert (out.x, out.y, out.z) == (1.0, 2.0, 3.0)
+
+
+_GOLDEN = json.loads((pathlib.Path(__file__).parent / "spatialmath" / "fixtures" / "golden.json").read_text())
+
+
+def _close(a, b, tol=1e-9):
+    return math.isclose(a, b, rel_tol=0, abs_tol=tol)
+
+
+@pytest.mark.parametrize("case", _GOLDEN["quaternion_conversions"], ids=lambda c: c["name"])
+def test_quaternion_conversions_match_go(case):
+    q = Quaternion(*case["quat"])
+
+    ov = q.to_orientation_vector()
+    assert all(_close(g, v) for g, v in zip(case["ov"], [ov.o_x, ov.o_y, ov.o_z, ov.theta])), f"ov mismatch for {case['name']}"
+
+    ea = q.to_euler_angles()
+    assert all(_close(g, v) for g, v in zip(case["euler"], [ea.roll, ea.pitch, ea.yaw])), f"euler mismatch for {case['name']}"
+
+    aa = q.to_axis_angle()
+    assert all(_close(g, v) for g, v in zip(case["axis_angle"], [aa.axis.x, aa.axis.y, aa.axis.z, aa.theta])), (
+        f"axis_angle mismatch for {case['name']}"
+    )
+
+    rm = q.to_rotation_matrix()
+    assert all(_close(g, v) for g, v in zip(case["rotation_matrix"], rm.elements)), f"rotation_matrix mismatch for {case['name']}"
