@@ -1,7 +1,7 @@
 import math
 
 from viam.proto.common import Orientation
-from viam.spatialmath import AxisAngle, EulerAngles, OrientationVector, Quaternion, Vector3, _ffi
+from viam.spatialmath import AxisAngle, EulerAngles, OrientationVector, Quaternion, RotationMatrix, Vector3, _ffi
 
 
 def test_ffi_new_and_free_quaternion():
@@ -91,3 +91,27 @@ def test_axis_angle_readback():
 def test_quaternion_to_axis_angle_identity():
     aa = Quaternion(1, 0, 0, 0).to_axis_angle()
     assert round(aa.theta, 9) == 0.0
+
+
+def test_rotation_matrix_identity_from_quaternion():
+    rm = Quaternion(1, 0, 0, 0).to_rotation_matrix()
+    e = rm.elements
+    assert [round(x, 6) for x in e] == [1, 0, 0, 0, 1, 0, 0, 0, 1]
+
+
+def test_rotation_matrix_construct_roundtrip():
+    rm = RotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1])
+    q = rm.to_quaternion()
+    assert (round(q.w, 6), round(q.i, 6), round(q.j, 6), round(q.k, 6)) == (1.0, 0.0, 0.0, 0.0)
+
+
+def test_rotation_matrix_elements_roundtrip_asymmetric():
+    # 90 deg about Z is ASYMMETRIC, so this catches a missing/incorrect transpose:
+    # read (col-major storage -> row-major elements) then construct (row-major -> col-major)
+    # must be exact inverses, recovering the same elements.
+    q = Quaternion(0.7071067811865476, 0.0, 0.0, 0.7071067811865476)
+    e = q.to_rotation_matrix().elements
+    e2 = RotationMatrix(e).elements
+    assert [round(x, 9) for x in e2] == [round(x, 9) for x in e]
+    # and the matrix must actually be asymmetric (otherwise the test proves nothing)
+    assert round(e[1], 6) != round(e[3], 6)
