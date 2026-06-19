@@ -85,6 +85,11 @@ class Quaternion:
 
         return EulerAngles._from_handle(_ffi.lib().viam_euler_angles_from_quaternion(self._handle))
 
+    def to_axis_angle(self):
+        from .axis_angle import AxisAngle
+
+        return AxisAngle._from_handle(_ffi.lib().viam_axis_angle_from_quaternion(self._handle))
+
     def __repr__(self) -> str:
         c = self._components()
         return f"Quaternion(w={c[0]}, i={c[1]}, j={c[2]}, k={c[3]})"

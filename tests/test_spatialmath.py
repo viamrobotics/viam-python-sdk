@@ -1,5 +1,7 @@
+import math
+
 from viam.proto.common import Orientation
-from viam.spatialmath import EulerAngles, OrientationVector, Quaternion, Vector3, _ffi
+from viam.spatialmath import AxisAngle, EulerAngles, OrientationVector, Quaternion, Vector3, _ffi
 
 
 def test_ffi_new_and_free_quaternion():
@@ -74,3 +76,18 @@ def test_euler_angles_readback():
 def test_quaternion_to_euler_identity():
     ea = Quaternion(1, 0, 0, 0).to_euler_angles()
     assert (round(ea.roll, 9), round(ea.pitch, 9), round(ea.yaw, 9)) == (0.0, 0.0, 0.0)
+
+
+def test_axis_angle_readback():
+    # Use three distinct nonzero axis components so any x/y/z field swap or
+    # theta-vs-axis bleed in the nested repr(C) struct is caught.
+    n = math.sqrt(1 + 4 + 9)  # ||(1, 2, 3)|| = sqrt(14)
+    x, y, z = 1 / n, 2 / n, 3 / n
+    aa = AxisAngle(x, y, z, 1.5707963267948966)
+    assert (round(aa.axis.x, 6), round(aa.axis.y, 6), round(aa.axis.z, 6)) == (round(x, 6), round(y, 6), round(z, 6))
+    assert round(aa.theta, 6) == round(1.5707963267948966, 6)
+
+
+def test_quaternion_to_axis_angle_identity():
+    aa = Quaternion(1, 0, 0, 0).to_axis_angle()
+    assert round(aa.theta, 9) == 0.0
