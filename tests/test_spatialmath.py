@@ -1,5 +1,5 @@
 from viam.proto.common import Orientation
-from viam.spatialmath import OrientationVector, Quaternion, Vector3, _ffi
+from viam.spatialmath import EulerAngles, OrientationVector, Quaternion, Vector3, _ffi
 
 
 def test_ffi_new_and_free_quaternion():
@@ -64,3 +64,13 @@ def test_orientation_vector_proto_bridge():
     ov = OrientationVector.from_proto(proto)
     out = ov.to_proto()
     assert (out.o_x, out.o_y, out.o_z, round(out.theta, 6)) == (0.0, 0.0, 1.0, 0.5)
+
+
+def test_euler_angles_readback():
+    ea = EulerAngles(0.1, 0.2, 0.3)
+    assert (round(ea.roll, 9), round(ea.pitch, 9), round(ea.yaw, 9)) == (0.1, 0.2, 0.3)
+
+
+def test_quaternion_to_euler_identity():
+    ea = Quaternion(1, 0, 0, 0).to_euler_angles()
+    assert (round(ea.roll, 9), round(ea.pitch, 9), round(ea.yaw, 9)) == (0.0, 0.0, 0.0)
