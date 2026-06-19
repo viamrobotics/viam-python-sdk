@@ -37,6 +37,16 @@ class Vector3:
     def z(self) -> float:
         return self._components()[2]
 
+    @classmethod
+    def from_proto(cls, proto) -> "Vector3":
+        return cls(proto.x, proto.y, proto.z)
+
+    def to_proto(self):
+        from viam.proto.common import Vector3 as ProtoVector3
+
+        c = self._components()
+        return ProtoVector3(x=c[0], y=c[1], z=c[2])
+
     def dot(self, other: "Vector3") -> float:
         return _ffi.lib().viam_vector_dot_product(self._handle, other._handle)
 

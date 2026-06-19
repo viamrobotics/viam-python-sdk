@@ -1,6 +1,7 @@
 import math
 
-from viam.proto.common import Orientation
+from viam.proto.common import Orientation, Pose
+from viam.proto.common import Vector3 as ProtoVector3
 from viam.spatialmath import AxisAngle, EulerAngles, OrientationVector, Quaternion, RotationMatrix, Vector3, _ffi
 
 
@@ -115,3 +116,18 @@ def test_rotation_matrix_elements_roundtrip_asymmetric():
     assert [round(x, 9) for x in e2] == [round(x, 9) for x in e]
     # and the matrix must actually be asymmetric (otherwise the test proves nothing)
     assert round(e[1], 6) != round(e[3], 6)
+
+
+def test_quaternion_from_and_to_pose():
+    pose = Pose(x=1, y=2, z=3, o_x=0, o_y=0, o_z=1, theta=0)
+    q = Quaternion.from_pose(pose)
+    out = q.to_pose(1, 2, 3)
+    assert (out.x, out.y, out.z) == (1.0, 2.0, 3.0)
+    # identity orientation -> o_z = 1
+    assert round(out.o_z, 6) == 1.0
+
+
+def test_vector3_proto_bridge():
+    v = Vector3.from_proto(ProtoVector3(x=1, y=2, z=3))
+    out = v.to_proto()
+    assert (out.x, out.y, out.z) == (1.0, 2.0, 3.0)
