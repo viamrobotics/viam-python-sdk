@@ -112,6 +112,7 @@ PROPERTIES = Vision.Properties(
     classifications_supported=True,
     detections_supported=True,
     object_point_clouds_supported=True,
+    default_camera="my_camera",
 )
 
 
@@ -227,6 +228,7 @@ class TestService:
             assert response.classifications_supported == PROPERTIES.classifications_supported
             assert response.detections_supported == PROPERTIES.detections_supported
             assert response.object_point_clouds_supported == PROPERTIES.object_point_clouds_supported
+            assert response.default_camera == PROPERTIES.default_camera
             assert vision.extra == extra
 
     async def test_get_detections_from_camera(self, vision: MockVision, service: VisionRPCService):
