@@ -95,7 +95,8 @@ Package Contents
    .. py:attribute:: x_min_normalized
       :type:  float
 
-      the four corners of the box, in proportion to the respective image dimension
+      the four corners of the box, in proportion to the respective image
+      dimension
 
 
    .. py:attribute:: y_min_normalized
@@ -565,6 +566,7 @@ Package Contents
       - classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
       - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
       - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
+      - default_camera (str | None): The default camera used for *FromCamera and GetObjectPointClouds calls.
 
 
    .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> CaptureAllResult

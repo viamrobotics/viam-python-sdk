@@ -277,7 +277,8 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.vision.Detection.x_min_normalized">
 <span class="sig-name descname"><span class="pre">x_min_normalized</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.services.vision.Detection.x_min_normalized" title="Link to this definition"></a></dt>
-<dd><p>the four corners of the box, in proportion to the respective image dimension</p>
+<dd><p>the four corners of the box, in proportion to the respective image
+dimension</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -781,7 +782,8 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 Currently, these are the following properties:
 - classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
 - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
-- object_point_clouds_supported (bool): GetObjectPointClouds is implemented.</p>
+- object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
+- default_camera (str | None): The default camera used for <a href="#id8"><span class="problematic" id="id9">*</span></a>FromCamera and GetObjectPointClouds calls.</p>
 </dd></dl>
 
 <dl class="py method">

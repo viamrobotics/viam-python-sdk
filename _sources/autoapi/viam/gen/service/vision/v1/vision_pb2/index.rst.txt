@@ -271,7 +271,8 @@ Module Contents
    .. py:attribute:: x_min_normalized
       :type:  float
 
-      the four corners of the box, in proportion to the respective image dimension
+      the four corners of the box, in proportion to the respective image
+      dimension
 
 
    .. py:attribute:: y_min_normalized
@@ -779,7 +780,7 @@ Module Contents
    :canonical: CaptureAllFromCameraResponse
 
 
-.. py:class:: GetPropertiesResponse(*, classifications_supported: bool = ..., detections_supported: bool = ..., object_point_clouds_supported: bool = ...)
+.. py:class:: GetPropertiesResponse(*, classifications_supported: bool = ..., detections_supported: bool = ..., object_point_clouds_supported: bool = ..., default_camera: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -807,6 +808,46 @@ Module Contents
       :type:  bool
 
       whether or not 3d segmentation is supported by the vision service
+
+
+   .. py:attribute:: default_camera
+      :type:  str
+
+      the default camera used for *FromCamera and GetObjectPointClouds calls
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__default_camera) -> _WhichOneofReturnType__default_camera | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:type:: Global___GetPropertiesResponse

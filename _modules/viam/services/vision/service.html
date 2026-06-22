@@ -240,6 +240,7 @@
             <span class="n">classifications_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">classifications_supported</span><span class="p">,</span>
             <span class="n">detections_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span><span class="p">,</span>
             <span class="n">object_point_clouds_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">object_point_clouds_supported</span><span class="p">,</span>
+            <span class="n">default_camera</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">default_camera</span> <span class="k">if</span> <span class="n">properties</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;default_camera&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
