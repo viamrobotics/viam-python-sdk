@@ -1,4 +1,17 @@
 {
+  "_meta": {
+    "description": "Source-of-truth orientation conversion vectors for spatialmath parity tests. Asserts the Rust-FFI-backed Python bindings produce numerically identical results to canonical Go rdk.",
+    "source_package": "go.viam.com/rdk/spatialmath",
+    "rdk_version": "v0.98.1-0.20251023194042-e97069d07515",
+    "conventions": {
+      "quat": "[w, i, j, k] (Real, Imag, Jmag, Kmag)",
+      "ov": "orientation-vector radians [OX, OY, OZ, Theta] from OrientationVectorRadians()",
+      "euler": "[Roll, Pitch, Yaw] radians, ZYX Tait-Bryan (z-y'-x\") from EulerAngles()",
+      "axis_angle": "[RX, RY, RZ, Theta] radians from AxisAngles()",
+      "rotation_matrix": "9 elements ROW-MAJOR (rotation_matrix[3*r + c] = row r, col c)"
+    },
+    "regeneration": "Frozen fixture. To regenerate, build a small Go program against the pinned rdk_version that emits each case's quat plus the outputs of OrientationVectorRadians(), EulerAngles(), AxisAngles(), and the row-major RotationMatrix for that quaternion."
+  },
   "quaternion_conversions": [
     {
       "name": "identity",
