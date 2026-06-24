@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Mapping, Optional
+import asyncio
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -22,6 +23,8 @@ from viam.proto.component.arm import (
     IsMovingResponse,
     JointPositions,
     MoveToJointPositionsRequest,
+    MoveThroughJointPositionsRequest,
+    MoveThroughJointPositionsStreamedRequest,
     MoveToPositionRequest,
     StopRequest,
 )
@@ -90,6 +93,75 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
         await self.client.MoveToJointPositions(request, timeout=timeout, metadata=md)
+
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = MoveThroughJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
+        await self.client.MoveThroughJointPositions(request, timeout=timeout, metadata=md)
+
+    async def move_through_joint_positions_streamed(  # type: ignore
+        self,
+        points: AsyncIterator[Arm.TrajectoryPoint],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[Arm.Response]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        async with self.client.MoveThroughJointPositionsStreamed.open(timeout=timeout, metadata=md) as stream:
+            await stream.send_message(
+                MoveThroughJointPositionsStreamedRequest(
+                    init=MoveThroughJointPositionsStreamedRequest.Init(
+                        name=self.name,
+                        extra=dict_to_struct(extra),
+                    ),
+                )
+            )
+
+            # Drive the caller-supplied point iterator on a background task so that send
+            # and receive proceed independently -- arm-side acknowledgements and errors
+            # may surface at any time, including while the caller is still producing points.
+            async def send_loop() -> None:
+                try:
+                    async for point in points:
+                        await stream.send_message(
+                            MoveThroughJointPositionsStreamedRequest(
+                                batch=MoveThroughJointPositionsStreamedRequest.TrajectoryBatch(
+                                    points=[point.to_proto()],
+                                ),
+                            )
+                        )
+                finally:
+                    await stream.end()
+
+            send_task = asyncio.create_task(send_loop())
+            try:
+                async for response in stream:
+                    yield Arm.Response.from_proto(response)
+            except BaseException:
+                # Recv side raised (a gRPC status from the server, the generator being
+                # closed by the consumer, or cancellation). Tear down the send side
+                # and suppress whatever it produces -- the recv-side cause is what
+                # the caller needs to see, not a downstream send-side cleanup error.
+                send_task.cancel()
+                try:
+                    await send_task
+                except BaseException:
+                    pass
+                raise
+            else:
+                # Recv side completed normally. Surface any send-side failure --
+                # most importantly, an exception from the caller's points iterator,
+                # which would otherwise be silently swallowed and defeat the whole
+                # point of the bidi shape.
+                await send_task
 
     async def stop(
         self,

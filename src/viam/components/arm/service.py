@@ -1,3 +1,5 @@
+from typing import AsyncIterator
+
 from grpclib.server import Stream
 
 from viam.proto.common import (
@@ -17,6 +19,10 @@ from viam.proto.component.arm import (
     GetJointPositionsResponse,
     IsMovingRequest,
     IsMovingResponse,
+    MoveThroughJointPositionsRequest,
+    MoveThroughJointPositionsResponse,
+    MoveThroughJointPositionsStreamedRequest,
+    MoveThroughJointPositionsStreamedResponse,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
@@ -77,6 +83,58 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
+
+    async def MoveThroughJointPositions(
+        self,
+        stream: Stream[MoveThroughJointPositionsRequest, MoveThroughJointPositionsResponse],
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        arm = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await arm.move_through_joint_positions(
+            list(request.positions),
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
+        response = MoveThroughJointPositionsResponse()
+        await stream.send_message(response)
+
+    async def MoveThroughJointPositionsStreamed(
+        self,
+        stream: Stream[MoveThroughJointPositionsStreamedRequest, MoveThroughJointPositionsStreamedResponse],
+    ) -> None:
+        # The first message on the request stream is the Init.
+        first_request = await stream.recv_message()
+        assert first_request is not None
+        assert first_request.HasField("init"), "First message must contain init"
+
+        init = first_request.init
+        name = init.name
+        arm = self.get_resource(name)
+        extra = struct_to_dict(init.extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+
+        # Surface subsequent TrajectoryBatch messages as a flat async iterator of
+        # TrajectoryPoint values, which is what driver code consumes.
+        async def point_iterator() -> AsyncIterator[Arm.TrajectoryPoint]:
+            while True:
+                request = await stream.recv_message()
+                if request is None:
+                    break
+                if request.HasField("batch"):
+                    for point_proto in request.batch.points:
+                        yield Arm.TrajectoryPoint.from_proto(point_proto)
+
+        async for response in arm.move_through_joint_positions_streamed(  # pyright: ignore [reportGeneralTypeIssues]
+            point_iterator(),
+            extra=extra,
+            timeout=timeout,
+            metadata=stream.metadata,
+        ):
+            await stream.send_message(response.to_proto())
 
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
         request = await stream.recv_message()
