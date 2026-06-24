@@ -263,7 +263,7 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def move_through_joint_positions_streamed(
         self,
-        points: AsyncIterator["Arm.TrajectoryPoint"],
+        batches: AsyncIterator[List["Arm.TrajectoryPoint"]],
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -272,28 +272,36 @@ class Arm(ComponentBase):
         """
         Move the arm through a time-parameterized stream of joint waypoints.
 
-        The caller supplies an asynchronous iterator of ``TrajectoryPoint`` values; the
-        arm executes them in order as they arrive. Per-message responses are yielded back
-        to the caller as they are produced by the arm. Arm-side errors raised during
-        execution surface as a gRPC status on the response iteration -- the
+        The caller supplies an asynchronous iterator of batches, where each batch is a
+        ``list`` of ``TrajectoryPoint`` values. Each list yielded by the caller is sent
+        as one wire ``TrajectoryBatch``; the caller therefore controls the wire cadence
+        directly, and can pack enough points into the first send to ride out network
+        jitter on tight-cadence trajectories. A caller that genuinely wants per-point
+        granularity yields ``[point]`` for each point. Per-message responses are yielded
+        back to the caller as they are produced by the arm. Arm-side errors raised
+        during execution surface as a gRPC status on the response iteration -- the
         ``async for`` raises rather than returning.
 
         ::
 
             my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
-            async def points():
-                yield Arm.TrajectoryPoint(time=timedelta(seconds=0.0), positions=[0.0, 0.0, 0.0, 0.0, 0.0])
-                yield Arm.TrajectoryPoint(time=timedelta(seconds=1.0), positions=[10.0, 0.0, 0.0, 0.0, 0.0])
+            async def batches():
+                yield [
+                    Arm.TrajectoryPoint(time=timedelta(seconds=0.0), positions=[0.0, 0.0, 0.0, 0.0, 0.0]),
+                    Arm.TrajectoryPoint(time=timedelta(seconds=1.0), positions=[10.0, 0.0, 0.0, 0.0, 0.0]),
+                ]
 
-            async for resp in my_arm.move_through_joint_positions_streamed(points()):
+            async for resp in my_arm.move_through_joint_positions_streamed(batches()):
                 # Observe arm-side acknowledgements; errors raise out of this iteration.
                 pass
 
         Args:
-            points: an asynchronous iterator of ``TrajectoryPoint`` values. Point times
-                must be strictly monotonically increasing across the stream, and the first
-                point's time must be zero.
+            batches: an asynchronous iterator of lists of ``TrajectoryPoint`` values.
+                Each list maps to one wire ``TrajectoryBatch``. Point times must be
+                strictly monotonically increasing across the entire stream (not just
+                within each batch), and the first point of the very first batch must
+                have time zero.
 
         Returns:
             AsyncIterator[Arm.Response]: a live stream of per-message responses.

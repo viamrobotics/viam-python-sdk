@@ -108,7 +108,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
 
     async def move_through_joint_positions_streamed(  # type: ignore
         self,
-        points: AsyncIterator[Arm.TrajectoryPoint],
+        batches: AsyncIterator[List[Arm.TrajectoryPoint]],
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -125,16 +125,17 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
                 )
             )
 
-            # Drive the caller-supplied point iterator on a background task so that send
+            # Drive the caller-supplied batch iterator on a background task so that send
             # and receive proceed independently -- arm-side acknowledgements and errors
-            # may surface at any time, including while the caller is still producing points.
+            # may surface at any time, including while the caller is still producing
+            # batches. Each list yielded by the caller maps 1:1 to one wire TrajectoryBatch.
             async def send_loop() -> None:
                 try:
-                    async for point in points:
+                    async for batch in batches:
                         await stream.send_message(
                             MoveThroughJointPositionsStreamedRequest(
                                 batch=MoveThroughJointPositionsStreamedRequest.TrajectoryBatch(
-                                    points=[point.to_proto()],
+                                    points=[point.to_proto() for point in batch],
                                 ),
                             )
                         )

@@ -1,4 +1,4 @@
-from typing import AsyncIterator
+from typing import AsyncIterator, List
 
 from grpclib.server import Stream
 
@@ -116,19 +116,20 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         extra = struct_to_dict(first_request.init.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        # Surface subsequent TrajectoryBatch messages as a flat async iterator of
-        # TrajectoryPoint values, which is what driver code consumes.
-        async def point_iterator() -> AsyncIterator[Arm.TrajectoryPoint]:
+        # Surface subsequent TrajectoryBatch messages as an async iterator of lists of
+        # TrajectoryPoint values -- one yielded list per wire TrajectoryBatch -- which
+        # is what driver code consumes. Empty batches and non-Batch messages are
+        # filtered out by the dispatcher and never surface to the driver.
+        async def batch_iterator() -> AsyncIterator[List[Arm.TrajectoryPoint]]:
             while True:
                 request = await stream.recv_message()
                 if request is None:
                     break
-                if request.HasField("batch"):
-                    for point_proto in request.batch.points:
-                        yield Arm.TrajectoryPoint.from_proto(point_proto)
+                if request.HasField("batch") and request.batch.points:
+                    yield [Arm.TrajectoryPoint.from_proto(point_proto) for point_proto in request.batch.points]
 
         async for response in arm.move_through_joint_positions_streamed(  # pyright: ignore [reportGeneralTypeIssues]
-            point_iterator(),
+            batch_iterator(),
             extra=extra,
             timeout=timeout,
             metadata=stream.metadata,
