@@ -13,6 +13,7 @@ from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
 from viam.errors import ResourceNotFoundError
+from viam.proto.app.datasync import UploadMetadata
 from viam.proto.common import Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
 from viam.proto.component.arm import JointPositions
 from viam.proto.robot import (
@@ -44,6 +45,8 @@ from viam.proto.robot import (
     StopExtraParameters,
     TransformPoseRequest,
     TransformPoseResponse,
+    UploadDataFromPathRequest,
+    UploadDataFromPathResponse,
 )
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
@@ -109,6 +112,14 @@ GET_MACHINE_STATUS_RESPONSE = GetMachineStatusResponse(
             state=ResourceStatus.State.STATE_READY,
         )
     ]
+)
+
+UPLOAD_DATA_FROM_PATH_RESPONSE = UploadDataFromPathResponse(
+    files_uploaded=5,
+    files_failed=1,
+    bytes_uploaded=1024,
+    bytes_total=2048,
+    ids=["id1", "id2", "id3"],
 )
 
 
@@ -187,6 +198,11 @@ def service() -> RobotService:
         assert request.module_id == MODULE_ID
         await stream.send_message(RestartModuleResponse())
 
+    async def UploadDataFromPath(stream: Stream[UploadDataFromPathRequest, UploadDataFromPathResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(UPLOAD_DATA_FROM_PATH_RESPONSE)
+
     manager = ResourceManager(resources)
     service = RobotService(manager)
     service.FrameSystemConfig = Config
@@ -196,6 +212,7 @@ def service() -> RobotService:
     service.Shutdown = Shutdown
     service.GetVersion = GetVersion
     service.GetMachineStatus = GetMachineStatus
+    service.UploadDataFromPath = UploadDataFromPath
 
     return service
 
@@ -541,3 +558,15 @@ class TestRobotClient:
                 with mock.patch("viam.robot.client.RobotClient.restart_module") as restart_module_mock:
                     await client.restart_module(id=MODULE_ID, name=MODULE_NAME)
                     restart_module_mock.assert_called_once()
+
+    async def test_upload_data_from_path(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                metadata = UploadMetadata(component_name="camera1", component_type="camera")
+                response = await client.upload_data_from_path(path="/test/path", upload_metadata=metadata)
+                assert response == UPLOAD_DATA_FROM_PATH_RESPONSE
+                assert response.files_uploaded == 5
+                assert response.files_failed == 1
+                assert response.bytes_uploaded == 1024
+                assert response.bytes_total == 2048
+                assert list(response.ids) == ["id1", "id2", "id3"]

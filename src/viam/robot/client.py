@@ -13,6 +13,7 @@ import viam
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
+from viam.proto.app.datasync import UploadMetadata
 from viam.proto.common import LogEntry, PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
     BlockForOperationRequest,
@@ -44,6 +45,8 @@ from viam.proto.robot import (
     TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
+    UploadDataFromPathRequest,
+    UploadDataFromPathResponse,
 )
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
@@ -992,3 +995,43 @@ class RobotClient:
         name = name if name else ""
         request = RestartModuleRequest(module_id=id, module_name=name)
         await self._client.RestartModule(request)
+
+    #########################
+    # Upload Data From Path #
+    #########################
+
+    async def upload_data_from_path(
+        self,
+        path: str,
+        *,
+        upload_metadata: Optional[UploadMetadata] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> UploadDataFromPathResponse:
+        """
+        Upload data from a file or folder path on the robot to the cloud.
+
+        ::
+
+            response = await machine.upload_data_from_path(
+                path="/path/to/data",
+                upload_metadata=UploadMetadata(component_name="camera", tags=["tag1"])
+            )
+
+        Args:
+            path (str): File or folder path on the robot to upload.
+            upload_metadata (Optional[UploadMetadata]): Optional metadata to apply to uploaded files.
+            extra (Optional[Dict[str, Any]]): Additional arguments to the method.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+
+        Returns:
+            UploadDataFromPathResponse: Response containing files_uploaded, files_failed, bytes_uploaded, bytes_total, and ids.
+
+        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        """
+        request = UploadDataFromPathRequest(
+            path=path,
+            upload_metadata=upload_metadata,
+            extra=dict_to_struct(extra),
+        )
+        return await self._client.UploadDataFromPath(request, timeout=timeout)
