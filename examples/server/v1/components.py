@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 from multiprocessing import Lock
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, AsyncIterable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
@@ -142,6 +142,28 @@ class ExampleAudioOut(AudioOut):
 
         await asyncio.sleep(0.1)
 
+        self.is_playing = False
+
+    async def play_stream(
+        self,
+        info: AudioInfo,
+        chunks: AsyncIterable[bytes],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        """Play streamed audio chunks."""
+
+        self.is_playing = True
+        print(
+            f"Streaming audio: codec={info.codec}, sample_rate={info.sample_rate_hz}, channels={info.num_channels}"
+        )
+        total = 0
+        async for chunk in chunks:
+            total += len(chunk)
+            await asyncio.sleep(0)
+        print(f"Stream complete: {total} bytes")
         self.is_playing = False
 
     async def get_properties(

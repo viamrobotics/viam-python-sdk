@@ -1,5 +1,6 @@
 from typing import AsyncIterator
 
+from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.proto.common import (
@@ -42,29 +43,29 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
         await stream.send_message(PlayResponse())
 
     async def PlayStream(self, stream: Stream[PlayStreamRequest, PlayStreamResponse]) -> None:
-        # Receive the first message which should be the init
-        first_request = await stream.recv_message()
-        assert first_request is not None
-        assert first_request.HasField("init"), "First message must contain init"
+        first = await stream.recv_message()
+        if first is None:
+            raise GRPCError(Status.INVALID_ARGUMENT, "PlayStream: stream closed before init message")
+        if not first.HasField("init"):
+            raise GRPCError(Status.INVALID_ARGUMENT, "PlayStream: first message must be PlayStreamInit")
+        init = first.init
+        if not init.HasField("audio_info"):
+            raise GRPCError(Status.INVALID_ARGUMENT, "PlayStream: audio_info is required on PlayStreamInit")
+        audio_out = self.get_resource(init.name)
 
-        init = first_request.init
-        name = init.name
-        audio_out = self.get_resource(name)
-        audio_info = init.audio_info if init.HasField("audio_info") else None
-        extra = struct_to_dict(init.extra)
+        async def chunks() -> AsyncIterator[bytes]:
+            async for msg in stream:
+                if msg.HasField("audio_chunk"):
+                    yield msg.audio_chunk.audio_data
+
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-
-        # Create an async generator for the audio chunks
-        async def chunk_iterator() -> AsyncIterator[bytes]:
-            # Read remaining messages from the stream
-            while True:
-                request = await stream.recv_message()
-                if request is None:
-                    break
-                if request.HasField("audio_chunk"):
-                    yield request.audio_chunk.audio_data
-
-        await audio_out.play_stream(chunk_iterator(), audio_info, extra=extra, timeout=timeout, metadata=stream.metadata)
+        await audio_out.play_stream(
+            init.audio_info,
+            chunks(),
+            extra=struct_to_dict(init.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         await stream.send_message(PlayStreamResponse())
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
