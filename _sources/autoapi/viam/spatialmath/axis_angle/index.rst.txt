@@ -1,0 +1,61 @@
+viam.spatialmath.axis_angle
+===========================
+
+.. py:module:: viam.spatialmath.axis_angle
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.axis_angle.Axis
+   viam.spatialmath.axis_angle.AxisAngle
+
+
+Module Contents
+---------------
+
+.. py:class:: Axis
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   .. py:attribute:: x
+      :type:  float
+
+
+   .. py:attribute:: y
+      :type:  float
+
+
+   .. py:attribute:: z
+      :type:  float
+
+
+.. py:class:: AxisAngle(x: float, y: float, z: float, theta: float)
+
+   Axis-angle (axis x/y/z, theta) backed by the spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: axis
+      :type: Axis
+
+
+
+   .. py:property:: theta
+      :type: float
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+

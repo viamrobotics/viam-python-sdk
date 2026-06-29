@@ -1,0 +1,107 @@
+viam.spatialmath.quaternion
+===========================
+
+.. py:module:: viam.spatialmath.quaternion
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.quaternion.Quaternion
+
+
+Module Contents
+---------------
+
+.. py:class:: Quaternion(w: float, i: float, j: float, k: float)
+
+   A quaternion (w, i, j, k) backed by the rust-utils spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:method:: from_imaginary_vector(real: float, imag: viam.spatialmath.vector3.Vector3) -> Quaternion
+      :classmethod:
+
+
+
+   .. py:property:: w
+      :type: float
+
+
+
+   .. py:property:: i
+      :type: float
+
+
+
+   .. py:property:: j
+      :type: float
+
+
+
+   .. py:property:: k
+      :type: float
+
+
+
+   .. py:property:: imaginary_vector
+      :type: viam.spatialmath.vector3.Vector3
+
+
+
+   .. py:method:: __mul__(other: Quaternion) -> Quaternion
+
+
+   .. py:method:: __add__(other: Quaternion) -> Quaternion
+
+
+   .. py:method:: __sub__(other: Quaternion) -> Quaternion
+
+
+   .. py:method:: conjugate() -> Quaternion
+
+
+   .. py:method:: scaled(factor: float) -> Quaternion
+
+
+   .. py:method:: normalized() -> Quaternion
+
+
+   .. py:method:: normalize() -> None
+
+      Normalize this quaternion in place.
+
+
+
+   .. py:method:: rotate_vector(v: viam.spatialmath.vector3.Vector3) -> viam.spatialmath.vector3.Vector3
+
+
+   .. py:method:: from_pose(pose) -> Quaternion
+      :classmethod:
+
+
+
+   .. py:method:: to_pose(x: float, y: float, z: float)
+
+
+   .. py:method:: to_orientation_vector()
+
+
+   .. py:method:: to_euler_angles()
+
+
+   .. py:method:: to_axis_angle()
+
+
+   .. py:method:: to_rotation_matrix()
+
+
+   .. py:method:: __repr__() -> str
+
+

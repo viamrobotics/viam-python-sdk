@@ -1,0 +1,71 @@
+viam.spatialmath.vector3
+========================
+
+.. py:module:: viam.spatialmath.vector3
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.vector3.Vector3
+
+
+Module Contents
+---------------
+
+.. py:class:: Vector3(x: float, y: float, z: float)
+
+   A 3-vector backed by the rust-utils spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: x
+      :type: float
+
+
+
+   .. py:property:: y
+      :type: float
+
+
+
+   .. py:property:: z
+      :type: float
+
+
+
+   .. py:method:: from_proto(proto) -> Vector3
+      :classmethod:
+
+
+
+   .. py:method:: to_proto()
+
+
+   .. py:method:: dot(other: Vector3) -> float
+
+
+   .. py:method:: cross(other: Vector3) -> Vector3
+
+
+   .. py:method:: __add__(other: Vector3) -> Vector3
+
+
+   .. py:method:: __sub__(other: Vector3) -> Vector3
+
+
+   .. py:method:: scaled(factor: float) -> Vector3
+
+
+   .. py:method:: normalized() -> Vector3
+
+
+   .. py:method:: __repr__() -> str
+
+

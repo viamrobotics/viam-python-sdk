@@ -1,0 +1,63 @@
+viam.spatialmath.orientation_vector
+===================================
+
+.. py:module:: viam.spatialmath.orientation_vector
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.orientation_vector.OrientationVector
+
+
+Module Contents
+---------------
+
+.. py:class:: OrientationVector(o_x: float, o_y: float, o_z: float, theta: float)
+
+   An orientation vector (o_x, o_y, o_z, theta) backed by the spatialmath FFI.
+
+   ``theta`` is in RADIANS for this class. The proto bridge converts to/from the proto's degrees.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:method:: from_proto(proto: viam.proto.common.Orientation) -> OrientationVector
+      :classmethod:
+
+
+
+   .. py:method:: to_proto() -> viam.proto.common.Orientation
+
+
+   .. py:property:: o_x
+      :type: float
+
+
+
+   .. py:property:: o_y
+      :type: float
+
+
+
+   .. py:property:: o_z
+      :type: float
+
+
+
+   .. py:property:: theta
+      :type: float
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+

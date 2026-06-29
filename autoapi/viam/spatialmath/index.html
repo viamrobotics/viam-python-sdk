@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.spatialmath &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="viam.spatialmath.axis_angle" href="axis_angle/index.html" />
+    <link rel="prev" title="viam.media.video" href="../media/video/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../media/index.html">viam.media</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">viam.spatialmath</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="axis_angle/index.html">viam.spatialmath.axis_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="euler_angles/index.html">viam.spatialmath.euler_angles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orientation_vector/index.html">viam.spatialmath.orientation_vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quaternion/index.html">viam.spatialmath.quaternion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotation_matrix/index.html">viam.spatialmath.rotation_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector3/index.html">viam.spatialmath.vector3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.Axis"><code class="docutils literal notranslate"><span class="pre">Axis</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Axis.x"><code class="docutils literal notranslate"><span class="pre">Axis.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Axis.y"><code class="docutils literal notranslate"><span class="pre">Axis.y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Axis.z"><code class="docutils literal notranslate"><span class="pre">Axis.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.AxisAngle"><code class="docutils literal notranslate"><span class="pre">AxisAngle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.AxisAngle.__slots__"><code class="docutils literal notranslate"><span class="pre">AxisAngle.__slots__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.AxisAngle.axis"><code class="docutils literal notranslate"><span class="pre">AxisAngle.axis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.AxisAngle.theta"><code class="docutils literal notranslate"><span class="pre">AxisAngle.theta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.AxisAngle.to_quaternion"><code class="docutils literal notranslate"><span class="pre">AxisAngle.to_quaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.AxisAngle.__repr__"><code class="docutils literal notranslate"><span class="pre">AxisAngle.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.EulerAngles"><code class="docutils literal notranslate"><span class="pre">EulerAngles</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.EulerAngles.__slots__"><code class="docutils literal notranslate"><span class="pre">EulerAngles.__slots__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.EulerAngles.roll"><code class="docutils literal notranslate"><span class="pre">EulerAngles.roll</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.EulerAngles.pitch"><code class="docutils literal notranslate"><span class="pre">EulerAngles.pitch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.EulerAngles.yaw"><code class="docutils literal notranslate"><span class="pre">EulerAngles.yaw</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.EulerAngles.to_quaternion"><code class="docutils literal notranslate"><span class="pre">EulerAngles.to_quaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.EulerAngles.__repr__"><code class="docutils literal notranslate"><span class="pre">EulerAngles.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.OrientationVector"><code class="docutils literal notranslate"><span class="pre">OrientationVector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.__slots__"><code class="docutils literal notranslate"><span class="pre">OrientationVector.__slots__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.from_proto"><code class="docutils literal notranslate"><span class="pre">OrientationVector.from_proto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.to_proto"><code class="docutils literal notranslate"><span class="pre">OrientationVector.to_proto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.o_x"><code class="docutils literal notranslate"><span class="pre">OrientationVector.o_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.o_y"><code class="docutils literal notranslate"><span class="pre">OrientationVector.o_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.o_z"><code class="docutils literal notranslate"><span class="pre">OrientationVector.o_z</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.theta"><code class="docutils literal notranslate"><span class="pre">OrientationVector.theta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.to_quaternion"><code class="docutils literal notranslate"><span class="pre">OrientationVector.to_quaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.OrientationVector.__repr__"><code class="docutils literal notranslate"><span class="pre">OrientationVector.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.Quaternion"><code class="docutils literal notranslate"><span class="pre">Quaternion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.__slots__"><code class="docutils literal notranslate"><span class="pre">Quaternion.__slots__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.from_imaginary_vector"><code class="docutils literal notranslate"><span class="pre">Quaternion.from_imaginary_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.w"><code class="docutils literal notranslate"><span class="pre">Quaternion.w</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.i"><code class="docutils literal notranslate"><span class="pre">Quaternion.i</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.j"><code class="docutils literal notranslate"><span class="pre">Quaternion.j</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.k"><code class="docutils literal notranslate"><span class="pre">Quaternion.k</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.imaginary_vector"><code class="docutils literal notranslate"><span class="pre">Quaternion.imaginary_vector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.__mul__"><code class="docutils literal notranslate"><span class="pre">Quaternion.__mul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.__add__"><code class="docutils literal notranslate"><span class="pre">Quaternion.__add__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.__sub__"><code class="docutils literal notranslate"><span class="pre">Quaternion.__sub__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.conjugate"><code class="docutils literal notranslate"><span class="pre">Quaternion.conjugate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.scaled"><code class="docutils literal notranslate"><span class="pre">Quaternion.scaled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.normalized"><code class="docutils literal notranslate"><span class="pre">Quaternion.normalized()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.normalize"><code class="docutils literal notranslate"><span class="pre">Quaternion.normalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.rotate_vector"><code class="docutils literal notranslate"><span class="pre">Quaternion.rotate_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.from_pose"><code class="docutils literal notranslate"><span class="pre">Quaternion.from_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.to_pose"><code class="docutils literal notranslate"><span class="pre">Quaternion.to_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.to_orientation_vector"><code class="docutils literal notranslate"><span class="pre">Quaternion.to_orientation_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.to_euler_angles"><code class="docutils literal notranslate"><span class="pre">Quaternion.to_euler_angles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.to_axis_angle"><code class="docutils literal notranslate"><span class="pre">Quaternion.to_axis_angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.to_rotation_matrix"><code class="docutils literal notranslate"><span class="pre">Quaternion.to_rotation_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Quaternion.__repr__"><code class="docutils literal notranslate"><span class="pre">Quaternion.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.RotationMatrix"><code class="docutils literal notranslate"><span class="pre">RotationMatrix</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.RotationMatrix.__slots__"><code class="docutils literal notranslate"><span class="pre">RotationMatrix.__slots__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.RotationMatrix.elements"><code class="docutils literal notranslate"><span class="pre">RotationMatrix.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.RotationMatrix.to_quaternion"><code class="docutils literal notranslate"><span class="pre">RotationMatrix.to_quaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.RotationMatrix.__repr__"><code class="docutils literal notranslate"><span class="pre">RotationMatrix.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#viam.spatialmath.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.__slots__"><code class="docutils literal notranslate"><span class="pre">Vector3.__slots__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.x"><code class="docutils literal notranslate"><span class="pre">Vector3.x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.y"><code class="docutils literal notranslate"><span class="pre">Vector3.y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.z"><code class="docutils literal notranslate"><span class="pre">Vector3.z</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.from_proto"><code class="docutils literal notranslate"><span class="pre">Vector3.from_proto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.to_proto"><code class="docutils literal notranslate"><span class="pre">Vector3.to_proto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.dot"><code class="docutils literal notranslate"><span class="pre">Vector3.dot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.cross"><code class="docutils literal notranslate"><span class="pre">Vector3.cross()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.__add__"><code class="docutils literal notranslate"><span class="pre">Vector3.__add__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector3.__sub__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.scaled"><code class="docutils literal notranslate"><span class="pre">Vector3.scaled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.normalized"><code class="docutils literal notranslate"><span class="pre">Vector3.normalized()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.spatialmath.Vector3.__repr__"><code class="docutils literal notranslate"><span class="pre">Vector3.__repr__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proto/index.html">viam.proto</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">viam.spatialmath</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/viam/spatialmath/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.spatialmath">
+<span id="viam-spatialmath"></span><h1>viam.spatialmath<a class="headerlink" href="#module-viam.spatialmath" title="Link to this heading"></a></h1>
+<p>Pythonic spatial-math types backed by the shared Rust FFI (<code class="docutils literal notranslate"><span class="pre">libviam_rust_utils</span></code>).</p>
+<p>Results are parity-tested against Go <code class="docutils literal notranslate"><span class="pre">rdk/spatialmath</span></code> using golden vectors.</p>
+<p><strong>Angle convention</strong> — ALL angles in these classes are in <strong>radians</strong>.
+Euler angles follow the Z-Y’-X’’ (yaw → pitch → roll) intrinsic convention.</p>
+<p><strong>Proto bridge</strong> — the <code class="docutils literal notranslate"><span class="pre">from_proto</span></code> / <code class="docutils literal notranslate"><span class="pre">to_proto</span></code> / <code class="docutils literal notranslate"><span class="pre">from_pose</span></code> / <code class="docutils literal notranslate"><span class="pre">to_pose</span></code>
+class methods convert to and from the Viam protobuf API, which uses <strong>degrees</strong>.
+Those methods handle the conversion automatically; callers should not pre-convert.</p>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#viam.spatialmath.AxisAngle" title="viam.spatialmath.AxisAngle"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxisAngle</span></code></a>       — axis-angle representation (axis x/y/z + theta in radians)</p></li>
+<li><p><a class="reference internal" href="#viam.spatialmath.Axis" title="viam.spatialmath.Axis"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axis</span></code></a>            — <code class="docutils literal notranslate"><span class="pre">NamedTuple(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code> returned by <a class="reference internal" href="#viam.spatialmath.AxisAngle.axis" title="viam.spatialmath.AxisAngle.axis"><code class="xref py py-attr docutils literal notranslate"><span class="pre">AxisAngle.axis</span></code></a></p></li>
+<li><p><a class="reference internal" href="#viam.spatialmath.EulerAngles" title="viam.spatialmath.EulerAngles"><code class="xref py py-class docutils literal notranslate"><span class="pre">EulerAngles</span></code></a>     — roll, pitch, yaw in radians (Z-Y’-X’’ order)</p></li>
+<li><p><a class="reference internal" href="#viam.spatialmath.OrientationVector" title="viam.spatialmath.OrientationVector"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrientationVector</span></code></a> — orientation vector (ox, oy, oz + theta in radians)</p></li>
+<li><p><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quaternion</span></code></a>      — unit quaternion (w, x, y, z)</p></li>
+<li><p><a class="reference internal" href="#viam.spatialmath.RotationMatrix" title="viam.spatialmath.RotationMatrix"><code class="xref py py-class docutils literal notranslate"><span class="pre">RotationMatrix</span></code></a>  — 3×3 rotation matrix</p></li>
+<li><p><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector3</span></code></a>         — 3-D Cartesian vector (x, y, z)</p></li>
+</ul>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="axis_angle/index.html">viam.spatialmath.axis_angle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="euler_angles/index.html">viam.spatialmath.euler_angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orientation_vector/index.html">viam.spatialmath.orientation_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quaternion/index.html">viam.spatialmath.quaternion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rotation_matrix/index.html">viam.spatialmath.rotation_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vector3/index.html">viam.spatialmath.vector3</a></li>
+</ul>
+</div>
+</section>
+<section id="id1">
+<h2>Classes<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.spatialmath.Axis" title="viam.spatialmath.Axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Axis</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.spatialmath.AxisAngle" title="viam.spatialmath.AxisAngle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AxisAngle</span></code></a></p></td>
+<td><p>Axis-angle (axis x/y/z, theta) backed by the spatialmath FFI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.spatialmath.EulerAngles" title="viam.spatialmath.EulerAngles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EulerAngles</span></code></a></p></td>
+<td><p>Euler angles (roll, pitch, yaw; Z-Y'-X&quot; order) backed by the spatialmath FFI.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.spatialmath.OrientationVector" title="viam.spatialmath.OrientationVector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientationVector</span></code></a></p></td>
+<td><p>An orientation vector (o_x, o_y, o_z, theta) backed by the spatialmath FFI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quaternion</span></code></a></p></td>
+<td><p>A quaternion (w, i, j, k) backed by the rust-utils spatialmath FFI.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.spatialmath.RotationMatrix" title="viam.spatialmath.RotationMatrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotationMatrix</span></code></a></p></td>
+<td><p>A 3x3 rotation matrix backed by the spatialmath FFI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<td><p>A 3-vector backed by the rust-utils spatialmath FFI.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.Axis">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">Axis</span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/axis_angle.html#Axis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Axis" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.Axis.x">
+<span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Axis.x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.Axis.y">
+<span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Axis.y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.Axis.z">
+<span class="sig-name descname"><span class="pre">z</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Axis.z" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.AxisAngle">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">AxisAngle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/axis_angle.html#AxisAngle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.AxisAngle" title="Link to this definition"></a></dt>
+<dd><p>Axis-angle (axis x/y/z, theta) backed by the spatialmath FFI.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.AxisAngle.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.AxisAngle.__slots__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.AxisAngle.axis">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">axis</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.spatialmath.Axis" title="viam.spatialmath.Axis"><span class="pre">Axis</span></a></span><a class="headerlink" href="#viam.spatialmath.AxisAngle.axis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.AxisAngle.theta">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">theta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.AxisAngle.theta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.AxisAngle.to_quaternion">
+<span class="sig-name descname"><span class="pre">to_quaternion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/axis_angle.html#AxisAngle.to_quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.AxisAngle.to_quaternion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.AxisAngle.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/axis_angle.html#AxisAngle.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.AxisAngle.__repr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">EulerAngles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/euler_angles.html#EulerAngles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.EulerAngles" title="Link to this definition"></a></dt>
+<dd><p>Euler angles (roll, pitch, yaw; Z-Y’-X” order) backed by the spatialmath FFI.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.EulerAngles.__slots__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles.roll">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">roll</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.EulerAngles.roll" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles.pitch">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pitch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.EulerAngles.pitch" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles.yaw">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">yaw</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.EulerAngles.yaw" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles.to_quaternion">
+<span class="sig-name descname"><span class="pre">to_quaternion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/euler_angles.html#EulerAngles.to_quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.EulerAngles.to_quaternion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.EulerAngles.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/euler_angles.html#EulerAngles.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.EulerAngles.__repr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">OrientationVector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/orientation_vector.html#OrientationVector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.OrientationVector" title="Link to this definition"></a></dt>
+<dd><p>An orientation vector (o_x, o_y, o_z, theta) backed by the spatialmath FFI.</p>
+<p><code class="docutils literal notranslate"><span class="pre">theta</span></code> is in RADIANS for this class. The proto bridge converts to/from the proto’s degrees.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.OrientationVector.__slots__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.from_proto">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../proto/common/index.html#viam.proto.common.Orientation" title="viam.proto.common.Orientation"><span class="pre">viam.proto.common.Orientation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.OrientationVector" title="viam.spatialmath.OrientationVector"><span class="pre">OrientationVector</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/orientation_vector.html#OrientationVector.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.OrientationVector.from_proto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.to_proto">
+<span class="sig-name descname"><span class="pre">to_proto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../proto/common/index.html#viam.proto.common.Orientation" title="viam.proto.common.Orientation"><span class="pre">viam.proto.common.Orientation</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/orientation_vector.html#OrientationVector.to_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.OrientationVector.to_proto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.o_x">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">o_x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.OrientationVector.o_x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.o_y">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">o_y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.OrientationVector.o_y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.o_z">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">o_z</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.OrientationVector.o_z" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.theta">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">theta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.OrientationVector.theta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.to_quaternion">
+<span class="sig-name descname"><span class="pre">to_quaternion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/orientation_vector.html#OrientationVector.to_quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.OrientationVector.to_quaternion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.OrientationVector.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/orientation_vector.html#OrientationVector.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.OrientationVector.__repr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">Quaternion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion" title="Link to this definition"></a></dt>
+<dd><p>A quaternion (w, i, j, k) backed by the rust-utils spatialmath FFI.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.Quaternion.__slots__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.from_imaginary_vector">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_imaginary_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vector3/index.html#viam.spatialmath.vector3.Vector3" title="viam.spatialmath.vector3.Vector3"><span class="pre">viam.spatialmath.vector3.Vector3</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.from_imaginary_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.from_imaginary_vector" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.w">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">w</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Quaternion.w" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.i">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">i</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Quaternion.i" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.j">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">j</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Quaternion.j" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.k">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">k</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Quaternion.k" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.imaginary_vector">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">imaginary_vector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vector3/index.html#viam.spatialmath.vector3.Vector3" title="viam.spatialmath.vector3.Vector3"><span class="pre">viam.spatialmath.vector3.Vector3</span></a></span><a class="headerlink" href="#viam.spatialmath.Quaternion.imaginary_vector" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.__mul__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.__add__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.__sub__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.conjugate">
+<span class="sig-name descname"><span class="pre">conjugate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.conjugate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.conjugate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.scaled">
+<span class="sig-name descname"><span class="pre">scaled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.scaled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.scaled" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.normalized">
+<span class="sig-name descname"><span class="pre">normalized</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.normalized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.normalized" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.normalize" title="Link to this definition"></a></dt>
+<dd><p>Normalize this quaternion in place.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.rotate_vector">
+<span class="sig-name descname"><span class="pre">rotate_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vector3/index.html#viam.spatialmath.vector3.Vector3" title="viam.spatialmath.vector3.Vector3"><span class="pre">viam.spatialmath.vector3.Vector3</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="vector3/index.html#viam.spatialmath.vector3.Vector3" title="viam.spatialmath.vector3.Vector3"><span class="pre">viam.spatialmath.vector3.Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.rotate_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.rotate_vector" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.from_pose">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Quaternion" title="viam.spatialmath.Quaternion"><span class="pre">Quaternion</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.from_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.from_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.to_pose">
+<span class="sig-name descname"><span class="pre">to_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.to_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.to_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.to_orientation_vector">
+<span class="sig-name descname"><span class="pre">to_orientation_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.to_orientation_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.to_orientation_vector" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.to_euler_angles">
+<span class="sig-name descname"><span class="pre">to_euler_angles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.to_euler_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.to_euler_angles" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.to_axis_angle">
+<span class="sig-name descname"><span class="pre">to_axis_angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.to_axis_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.to_axis_angle" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.to_rotation_matrix">
+<span class="sig-name descname"><span class="pre">to_rotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.to_rotation_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.to_rotation_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Quaternion.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/quaternion.html#Quaternion.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Quaternion.__repr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">RotationMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/rotation_matrix.html#RotationMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.RotationMatrix" title="Link to this definition"></a></dt>
+<dd><p>A 3x3 rotation matrix backed by the spatialmath FFI.</p>
+<p><code class="docutils literal notranslate"><span class="pre">elements</span></code> is a 9-value list following Go <code class="docutils literal notranslate"><span class="pre">rdk/spatialmath</span></code>’s row-major
+rotation-matrix convention (<code class="docutils literal notranslate"><span class="pre">elements[3*row</span> <span class="pre">+</span> <span class="pre">col]</span></code>). Construction and
+readback are both raw pass-throughs of the underlying nalgebra buffer, so
+they are mutually consistent by construction; that this raw buffer coincides
+with rdk’s row-major convention is an empirical fact pinned by the golden
+parity tests (it is not a general column-major/row-major identity).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.RotationMatrix.__slots__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix.elements">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">elements</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#viam.spatialmath.RotationMatrix.elements" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix.to_quaternion">
+<span class="sig-name descname"><span class="pre">to_quaternion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/rotation_matrix.html#RotationMatrix.to_quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.RotationMatrix.to_quaternion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/rotation_matrix.html#RotationMatrix.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.RotationMatrix.__repr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">Vector3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3" title="Link to this definition"></a></dt>
+<dd><p>A 3-vector backed by the rust-utils spatialmath FFI.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.Vector3.__slots__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.x">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Vector3.x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.y">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Vector3.y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.z">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">z</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.spatialmath.Vector3.z" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.from_proto">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proto</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.from_proto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.to_proto">
+<span class="sig-name descname"><span class="pre">to_proto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.to_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.to_proto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.dot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.cross">
+<span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.cross" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.__add__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.__sub__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.scaled">
+<span class="sig-name descname"><span class="pre">scaled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.scaled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.scaled" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.normalized">
+<span class="sig-name descname"><span class="pre">normalized</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.spatialmath.Vector3" title="viam.spatialmath.Vector3"><span class="pre">Vector3</span></a></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.normalized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.normalized" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.spatialmath.Vector3.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/viam/spatialmath/vector3.html#Vector3.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.Vector3.__repr__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../media/video/index.html" class="btn btn-neutral float-left" title="viam.media.video" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="axis_angle/index.html" class="btn btn-neutral float-right" title="viam.spatialmath.axis_angle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

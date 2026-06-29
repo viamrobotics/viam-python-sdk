@@ -56,6 +56,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html">viam.resource</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html">viam.module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/spatialmath/index.html">viam.spatialmath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
@@ -106,6 +107,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam._native</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_native_lib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">InsecureConnectionError</span><span class="p">,</span> <span class="n">ViamError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.rpc.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">AuthenticateRequest</span><span class="p">,</span> <span class="n">AuthServiceStub</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.rpc.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span> <span class="k">as</span> <span class="n">PBCredentials</span>
@@ -374,10 +376,8 @@
     <span class="n">_ptr</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;dylib&quot;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span> <span class="k">else</span> <span class="s2">&quot;so&quot;</span> <span class="k">if</span> <span class="s2">&quot;linux&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="k">else</span> <span class="s2">&quot;dll&quot;</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new viam-rust-utils runtime&quot;</span><span class="p">)</span>
-        <span class="n">libname</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;libviam_rust_utils.</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">libname</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span> <span class="o">=</span> <span class="n">load_native_lib</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_init_rust_runtime</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">viam_init_rust_runtime</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
 

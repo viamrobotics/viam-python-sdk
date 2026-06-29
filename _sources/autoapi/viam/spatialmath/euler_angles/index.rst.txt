@@ -1,0 +1,48 @@
+viam.spatialmath.euler_angles
+=============================
+
+.. py:module:: viam.spatialmath.euler_angles
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.euler_angles.EulerAngles
+
+
+Module Contents
+---------------
+
+.. py:class:: EulerAngles(roll: float, pitch: float, yaw: float)
+
+   Euler angles (roll, pitch, yaw; Z-Y'-X" order) backed by the spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: roll
+      :type: float
+
+
+
+   .. py:property:: pitch
+      :type: float
+
+
+
+   .. py:property:: yaw
+      :type: float
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+

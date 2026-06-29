@@ -1,0 +1,45 @@
+viam.spatialmath.rotation_matrix
+================================
+
+.. py:module:: viam.spatialmath.rotation_matrix
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.rotation_matrix.RotationMatrix
+
+
+Module Contents
+---------------
+
+.. py:class:: RotationMatrix(elements: Sequence[float])
+
+   A 3x3 rotation matrix backed by the spatialmath FFI.
+
+   ``elements`` is a 9-value list following Go ``rdk/spatialmath``'s row-major
+   rotation-matrix convention (``elements[3*row + col]``). Construction and
+   readback are both raw pass-throughs of the underlying nalgebra buffer, so
+   they are mutually consistent by construction; that this raw buffer coincides
+   with rdk's row-major convention is an empirical fact pinned by the golden
+   parity tests (it is not a general column-major/row-major identity).
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: elements
+      :type: List[float]
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+

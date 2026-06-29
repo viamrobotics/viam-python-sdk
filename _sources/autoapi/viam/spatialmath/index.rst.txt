@@ -1,0 +1,353 @@
+viam.spatialmath
+================
+
+.. py:module:: viam.spatialmath
+
+.. autoapi-nested-parse::
+
+   Pythonic spatial-math types backed by the shared Rust FFI (``libviam_rust_utils``).
+
+   Results are parity-tested against Go ``rdk/spatialmath`` using golden vectors.
+
+   **Angle convention** — ALL angles in these classes are in **radians**.
+   Euler angles follow the Z-Y'-X'' (yaw → pitch → roll) intrinsic convention.
+
+   **Proto bridge** — the ``from_proto`` / ``to_proto`` / ``from_pose`` / ``to_pose``
+   class methods convert to and from the Viam protobuf API, which uses **degrees**.
+   Those methods handle the conversion automatically; callers should not pre-convert.
+
+   Classes
+   -------
+   - :class:`AxisAngle`       — axis-angle representation (axis x/y/z + theta in radians)
+   - :class:`Axis`            — ``NamedTuple(x, y, z)`` returned by :attr:`AxisAngle.axis`
+   - :class:`EulerAngles`     — roll, pitch, yaw in radians (Z-Y'-X'' order)
+   - :class:`OrientationVector` — orientation vector (ox, oy, oz + theta in radians)
+   - :class:`Quaternion`      — unit quaternion (w, x, y, z)
+   - :class:`RotationMatrix`  — 3×3 rotation matrix
+   - :class:`Vector3`         — 3-D Cartesian vector (x, y, z)
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/viam/spatialmath/axis_angle/index
+   /autoapi/viam/spatialmath/euler_angles/index
+   /autoapi/viam/spatialmath/orientation_vector/index
+   /autoapi/viam/spatialmath/quaternion/index
+   /autoapi/viam/spatialmath/rotation_matrix/index
+   /autoapi/viam/spatialmath/vector3/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.spatialmath.Axis
+   viam.spatialmath.AxisAngle
+   viam.spatialmath.EulerAngles
+   viam.spatialmath.OrientationVector
+   viam.spatialmath.Quaternion
+   viam.spatialmath.RotationMatrix
+   viam.spatialmath.Vector3
+
+
+Package Contents
+----------------
+
+.. py:class:: Axis
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   .. py:attribute:: x
+      :type:  float
+
+
+   .. py:attribute:: y
+      :type:  float
+
+
+   .. py:attribute:: z
+      :type:  float
+
+
+.. py:class:: AxisAngle(x: float, y: float, z: float, theta: float)
+
+   Axis-angle (axis x/y/z, theta) backed by the spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: axis
+      :type: Axis
+
+
+
+   .. py:property:: theta
+      :type: float
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:class:: EulerAngles(roll: float, pitch: float, yaw: float)
+
+   Euler angles (roll, pitch, yaw; Z-Y'-X" order) backed by the spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: roll
+      :type: float
+
+
+
+   .. py:property:: pitch
+      :type: float
+
+
+
+   .. py:property:: yaw
+      :type: float
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:class:: OrientationVector(o_x: float, o_y: float, o_z: float, theta: float)
+
+   An orientation vector (o_x, o_y, o_z, theta) backed by the spatialmath FFI.
+
+   ``theta`` is in RADIANS for this class. The proto bridge converts to/from the proto's degrees.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:method:: from_proto(proto: viam.proto.common.Orientation) -> OrientationVector
+      :classmethod:
+
+
+
+   .. py:method:: to_proto() -> viam.proto.common.Orientation
+
+
+   .. py:property:: o_x
+      :type: float
+
+
+
+   .. py:property:: o_y
+      :type: float
+
+
+
+   .. py:property:: o_z
+      :type: float
+
+
+
+   .. py:property:: theta
+      :type: float
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:class:: Quaternion(w: float, i: float, j: float, k: float)
+
+   A quaternion (w, i, j, k) backed by the rust-utils spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:method:: from_imaginary_vector(real: float, imag: viam.spatialmath.vector3.Vector3) -> Quaternion
+      :classmethod:
+
+
+
+   .. py:property:: w
+      :type: float
+
+
+
+   .. py:property:: i
+      :type: float
+
+
+
+   .. py:property:: j
+      :type: float
+
+
+
+   .. py:property:: k
+      :type: float
+
+
+
+   .. py:property:: imaginary_vector
+      :type: viam.spatialmath.vector3.Vector3
+
+
+
+   .. py:method:: __mul__(other: Quaternion) -> Quaternion
+
+
+   .. py:method:: __add__(other: Quaternion) -> Quaternion
+
+
+   .. py:method:: __sub__(other: Quaternion) -> Quaternion
+
+
+   .. py:method:: conjugate() -> Quaternion
+
+
+   .. py:method:: scaled(factor: float) -> Quaternion
+
+
+   .. py:method:: normalized() -> Quaternion
+
+
+   .. py:method:: normalize() -> None
+
+      Normalize this quaternion in place.
+
+
+
+   .. py:method:: rotate_vector(v: viam.spatialmath.vector3.Vector3) -> viam.spatialmath.vector3.Vector3
+
+
+   .. py:method:: from_pose(pose) -> Quaternion
+      :classmethod:
+
+
+
+   .. py:method:: to_pose(x: float, y: float, z: float)
+
+
+   .. py:method:: to_orientation_vector()
+
+
+   .. py:method:: to_euler_angles()
+
+
+   .. py:method:: to_axis_angle()
+
+
+   .. py:method:: to_rotation_matrix()
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:class:: RotationMatrix(elements: Sequence[float])
+
+   A 3x3 rotation matrix backed by the spatialmath FFI.
+
+   ``elements`` is a 9-value list following Go ``rdk/spatialmath``'s row-major
+   rotation-matrix convention (``elements[3*row + col]``). Construction and
+   readback are both raw pass-throughs of the underlying nalgebra buffer, so
+   they are mutually consistent by construction; that this raw buffer coincides
+   with rdk's row-major convention is an empirical fact pinned by the golden
+   parity tests (it is not a general column-major/row-major identity).
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: elements
+      :type: List[float]
+
+
+
+   .. py:method:: to_quaternion()
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:class:: Vector3(x: float, y: float, z: float)
+
+   A 3-vector backed by the rust-utils spatialmath FFI.
+
+
+   .. py:attribute:: __slots__
+      :value: ('_handle', '__weakref__')
+
+
+
+   .. py:property:: x
+      :type: float
+
+
+
+   .. py:property:: y
+      :type: float
+
+
+
+   .. py:property:: z
+      :type: float
+
+
+
+   .. py:method:: from_proto(proto) -> Vector3
+      :classmethod:
+
+
+
+   .. py:method:: to_proto()
+
+
+   .. py:method:: dot(other: Vector3) -> float
+
+
+   .. py:method:: cross(other: Vector3) -> Vector3
+
+
+   .. py:method:: __add__(other: Vector3) -> Vector3
+
+
+   .. py:method:: __sub__(other: Vector3) -> Vector3
+
+
+   .. py:method:: scaled(factor: float) -> Vector3
+
+
+   .. py:method:: normalized() -> Vector3
+
+
+   .. py:method:: __repr__() -> str
+
+
