@@ -4597,6 +4597,60 @@ class DeprecatedStatus(_message.Message):
 Global___DeprecatedStatus: _TypeAlias = DeprecatedStatus
 
 @_typing.final
+class RegistryItemBilling(_message.Message):
+    """RegistryItemBilling stores usage cost information for a registry item. Its shape mirrors the
+    billing block used by fragments so that billing jobs can consume registry item costs the same
+    way. For now only cost_per_month.per_machine is supported; the additional fields that fragment
+    billing supports (cost_per_year, tier_name, in_arrears, etc.) are intentionally omitted.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    COST_PER_MONTH_FIELD_NUMBER: _builtins.int
+    COST_PER_YEAR_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def cost_per_month(self) -> Global___RegistryItemCostByResource:
+        """The recurring monthly cost of the item, broken down by billable resource."""
+
+    @_builtins.property
+    def cost_per_year(self) -> Global___RegistryItemCostByResource:
+        """The recurring yearly cost of the item, broken down by billable resource."""
+
+    def __init__(self, *, cost_per_month: Global___RegistryItemCostByResource | None=..., cost_per_year: Global___RegistryItemCostByResource | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['cost_per_month', b'cost_per_month', 'cost_per_year', b'cost_per_year', 'frequency', b'frequency']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['cost_per_month', b'cost_per_month', 'cost_per_year', b'cost_per_year', 'frequency', b'frequency']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_frequency: _TypeAlias = _typing.Literal['cost_per_month', 'cost_per_year']
+    _WhichOneofArgType_frequency: _TypeAlias = _typing.Literal['frequency', b'frequency']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_frequency) -> _WhichOneofReturnType_frequency | None:
+        ...
+Global___RegistryItemBilling: _TypeAlias = RegistryItemBilling
+
+@_typing.final
+class RegistryItemCostByResource(_message.Message):
+    """RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
+    Only the per_machine resource is currently supported.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    PER_MACHINE_FIELD_NUMBER: _builtins.int
+    per_machine: _builtins.float
+    'The cost charged per machine using the item, in USD.'
+
+    def __init__(self, *, per_machine: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['per_machine', b'per_machine']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RegistryItemCostByResource: _TypeAlias = RegistryItemCostByResource
+
+@_typing.final
 class RegistryItem(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: _builtins.int
@@ -4617,6 +4671,7 @@ class RegistryItem(_message.Message):
     CREATED_AT_FIELD_NUMBER: _builtins.int
     UPDATED_AT_FIELD_NUMBER: _builtins.int
     DEPRECATED_STATUS_FIELD_NUMBER: _builtins.int
+    BILLING_FIELD_NUMBER: _builtins.int
     item_id: _builtins.str
     'The id of the item, containing either:\n    namespace:item_name when a namespace exists on the org.\n    org_id:item_name when a namespace does not exist.\n    '
     organization_id: _builtins.str
@@ -4666,20 +4721,32 @@ class RegistryItem(_message.Message):
     def deprecated_status(self) -> Global___DeprecatedStatus:
         """Whether the item is deprecated"""
 
-    def __init__(self, *, item_id: _builtins.str=..., organization_id: _builtins.str=..., public_namespace: _builtins.str=..., name: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., visibility: Global___Visibility.ValueType=..., url: _builtins.str=..., description: _builtins.str=..., total_robot_usage: _builtins.int=..., total_external_robot_usage: _builtins.int=..., total_organization_usage: _builtins.int=..., total_external_organization_usage: _builtins.int=..., module_metadata: Global___ModuleMetadata | None=..., ml_model_metadata: Global___MLModelMetadata | None=..., ml_training_metadata: Global___MLTrainingMetadata | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., deprecated_status: Global___DeprecatedStatus | None=...) -> None:
+    @_builtins.property
+    def billing(self) -> Global___RegistryItemBilling:
+        """Usage cost information used by billing jobs to bill for monthly usage of the item.
+        This is unset when no cost has been configured for the item.
+        """
+
+    def __init__(self, *, item_id: _builtins.str=..., organization_id: _builtins.str=..., public_namespace: _builtins.str=..., name: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., visibility: Global___Visibility.ValueType=..., url: _builtins.str=..., description: _builtins.str=..., total_robot_usage: _builtins.int=..., total_external_robot_usage: _builtins.int=..., total_organization_usage: _builtins.int=..., total_external_organization_usage: _builtins.int=..., module_metadata: Global___ModuleMetadata | None=..., ml_model_metadata: Global___MLModelMetadata | None=..., ml_training_metadata: Global___MLTrainingMetadata | None=..., created_at: _timestamp_pb2.Timestamp | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., deprecated_status: Global___DeprecatedStatus | None=..., billing: Global___RegistryItemBilling | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', 'created_at', b'created_at', 'deprecated_status', b'deprecated_status', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_billing', b'_billing', '_deprecated_status', b'_deprecated_status', 'billing', b'billing', 'created_at', b'created_at', 'deprecated_status', b'deprecated_status', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', 'created_at', b'created_at', 'deprecated_status', b'deprecated_status', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_billing', b'_billing', '_deprecated_status', b'_deprecated_status', 'billing', b'billing', 'created_at', b'created_at', 'deprecated_status', b'deprecated_status', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__billing: _TypeAlias = _typing.Literal['billing']
+    _WhichOneofArgType__billing: _TypeAlias = _typing.Literal['_billing', b'_billing']
     _WhichOneofReturnType__deprecated_status: _TypeAlias = _typing.Literal['deprecated_status']
     _WhichOneofArgType__deprecated_status: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status']
     _WhichOneofReturnType_metadata: _TypeAlias = _typing.Literal['module_metadata', 'ml_model_metadata', 'ml_training_metadata']
     _WhichOneofArgType_metadata: _TypeAlias = _typing.Literal['metadata', b'metadata']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__billing) -> _WhichOneofReturnType__billing | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None:
@@ -4777,6 +4844,7 @@ class UpdateRegistryItemRequest(_message.Message):
     UPDATE_ML_MODEL_METADATA_FIELD_NUMBER: _builtins.int
     UPDATE_ML_TRAINING_METADATA_FIELD_NUMBER: _builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: _builtins.int
+    BILLING_FIELD_NUMBER: _builtins.int
     item_id: _builtins.str
     type: _packages_pb2.PackageType.ValueType
     description: _builtins.str
@@ -4796,22 +4864,34 @@ class UpdateRegistryItemRequest(_message.Message):
     def update_ml_training_metadata(self) -> Global___UpdateMLTrainingMetadata:
         ...
 
-    def __init__(self, *, item_id: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., description: _builtins.str=..., visibility: Global___Visibility.ValueType=..., url: _builtins.str | None=..., update_module_metadata: Global___UpdateModuleMetadata | None=..., update_ml_model_metadata: Global___UpdateMLModelMetadata | None=..., update_ml_training_metadata: Global___UpdateMLTrainingMetadata | None=..., markdown_description: _builtins.str | None=...) -> None:
+    @_builtins.property
+    def billing(self) -> Global___RegistryItemBilling:
+        """The usage cost information to store on the item. When unset, the existing billing
+        configuration is left unchanged.
+        """
+
+    def __init__(self, *, item_id: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., description: _builtins.str=..., visibility: Global___Visibility.ValueType=..., url: _builtins.str | None=..., update_module_metadata: Global___UpdateModuleMetadata | None=..., update_ml_model_metadata: Global___UpdateMLModelMetadata | None=..., update_ml_training_metadata: Global___UpdateMLTrainingMetadata | None=..., markdown_description: _builtins.str | None=..., billing: Global___RegistryItemBilling | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description', '_url', b'_url', 'markdown_description', b'markdown_description', 'metadata', b'metadata', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_billing', b'_billing', '_markdown_description', b'_markdown_description', '_url', b'_url', 'billing', b'billing', 'markdown_description', b'markdown_description', 'metadata', b'metadata', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description', '_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'markdown_description', b'markdown_description', 'metadata', b'metadata', 'type', b'type', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_billing', b'_billing', '_markdown_description', b'_markdown_description', '_url', b'_url', 'billing', b'billing', 'description', b'description', 'item_id', b'item_id', 'markdown_description', b'markdown_description', 'metadata', b'metadata', 'type', b'type', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__billing: _TypeAlias = _typing.Literal['billing']
+    _WhichOneofArgType__billing: _TypeAlias = _typing.Literal['_billing', b'_billing']
     _WhichOneofReturnType__markdown_description: _TypeAlias = _typing.Literal['markdown_description']
     _WhichOneofArgType__markdown_description: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description']
     _WhichOneofReturnType__url: _TypeAlias = _typing.Literal['url']
     _WhichOneofArgType__url: _TypeAlias = _typing.Literal['_url', b'_url']
     _WhichOneofReturnType_metadata: _TypeAlias = _typing.Literal['update_module_metadata', 'update_ml_model_metadata', 'update_ml_training_metadata']
     _WhichOneofArgType_metadata: _TypeAlias = _typing.Literal['metadata', b'metadata']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__billing) -> _WhichOneofReturnType__billing | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None:

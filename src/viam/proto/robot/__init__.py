@@ -69,6 +69,8 @@ from ...gen.robot.v1.robot_pb2 import (
     Tunnel,
     TunnelRequest,
     TunnelResponse,
+    UploadDataFromPathRequest,
+    UploadDataFromPathResponse,
 )
 
 __all__ = [
@@ -139,4 +141,6 @@ __all__ = [
     "Tunnel",
     "TunnelRequest",
     "TunnelResponse",
+    "UploadDataFromPathRequest",
+    "UploadDataFromPathResponse",
 ]
