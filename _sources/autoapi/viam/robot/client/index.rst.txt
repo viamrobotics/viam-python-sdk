@@ -676,3 +676,32 @@ Module Contents
 
 
 
+   .. py:method:: upload_data_from_path(path: str, *, upload_metadata: Optional[viam.proto.app.datasync.UploadMetadata] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.robot.UploadDataFromPathResponse
+      :async:
+
+
+      Upload data from a file or folder path on the robot to the cloud.
+
+      ::
+
+          response = await machine.upload_data_from_path(
+              path="/path/to/data",
+              upload_metadata=UploadMetadata(component_name="camera", tags=["tag1"])
+          )
+
+      :param path: File or folder path on the robot to upload.
+      :type path: str
+      :param upload_metadata: Optional metadata to apply to uploaded files.
+      :type upload_metadata: Optional[UploadMetadata]
+      :param extra: Additional arguments to the method.
+      :type extra: Optional[Dict[str, Any]]
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: Response containing files_uploaded, files_failed, bytes_uploaded, bytes_total, and ids.
+      :rtype: UploadDataFromPathResponse
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
+
+

@@ -115,6 +115,12 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.Global___SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.Global___SendTracesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___SendTracesResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathRequest" title="viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___UploadDataFromPathRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathResponse" title="viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___UploadDataFromPathResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.Global___TunnelRequest" title="viam.gen.robot.v1.robot_pb2.Global___TunnelRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___TunnelRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
@@ -312,6 +318,12 @@ isort:skip_file</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.SendTracesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendTracesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest" title="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadDataFromPathRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse" title="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadDataFromPathResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.TunnelRequest" title="viam.gen.robot.v1.robot_pb2.TunnelRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TunnelRequest</span></code></a></p></td>
@@ -566,6 +578,128 @@ shown below.</p>
 <dl class="py type">
 <dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.Global___SendTracesResponse">
 <span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___SendTracesResponse</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.SendTracesResponse"><span class="pre">SendTracesResponse</span></a></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.Global___SendTracesResponse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">UploadDataFromPathRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.UploadMetadata" title="viam.gen.app.datasync.v1.data_sync_pb2.UploadMetadata"><span class="pre">app.datasync.v1.data_sync_pb2.UploadMetadata</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.path">
+<span class="sig-name descname"><span class="pre">path</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.path" title="Link to this definition"></a></dt>
+<dd><p>File or folder path on the robot to upload.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.upload_metadata">
+<span class="sig-name descname"><span class="pre">upload_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.UploadMetadata" title="viam.gen.app.datasync.v1.data_sync_pb2.UploadMetadata"><span class="pre">app.datasync.v1.data_sync_pb2.UploadMetadata</span></a></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.upload_metadata" title="Link to this definition"></a></dt>
+<dd><p>Optional metadata to apply to uploaded files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.extra">
+<span class="sig-name descname"><span class="pre">extra</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.extra" title="Link to this definition"></a></dt>
+<dd><p>Additional arguments to the method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__upload_metadata</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__upload_metadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathRequest">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___UploadDataFromPathRequest</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest" title="viam.gen.robot.v1.robot_pb2.UploadDataFromPathRequest"><span class="pre">UploadDataFromPathRequest</span></a></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathRequest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">UploadDataFromPathResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">files_uploaded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files_failed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytes_uploaded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytes_total</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.files_uploaded">
+<span class="sig-name descname"><span class="pre">files_uploaded</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.files_uploaded" title="Link to this definition"></a></dt>
+<dd><p>Total number of files successfully uploaded.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.files_failed">
+<span class="sig-name descname"><span class="pre">files_failed</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.files_failed" title="Link to this definition"></a></dt>
+<dd><p>Total number of files that failed to upload.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.bytes_uploaded">
+<span class="sig-name descname"><span class="pre">bytes_uploaded</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.bytes_uploaded" title="Link to this definition"></a></dt>
+<dd><p>Total bytes successfully uploaded.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.bytes_total">
+<span class="sig-name descname"><span class="pre">bytes_total</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.bytes_total" title="Link to this definition"></a></dt>
+<dd><p>Total bytes discovered in the directory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.ids">
+<span class="sig-name descname"><span class="pre">ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse.ids" title="Link to this definition"></a></dt>
+<dd><p>Successfully uploaded binary data ids.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathResponse">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___UploadDataFromPathResponse</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse" title="viam.gen.robot.v1.robot_pb2.UploadDataFromPathResponse"><span class="pre">UploadDataFromPathResponse</span></a></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.Global___UploadDataFromPathResponse" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

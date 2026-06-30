@@ -270,6 +270,8 @@ Classes
    viam.proto.app.ReadOAuthAppRequest
    viam.proto.app.ReadOAuthAppResponse
    viam.proto.app.RegistryItem
+   viam.proto.app.RegistryItemBilling
+   viam.proto.app.RegistryItemCostByResource
    viam.proto.app.RegistryItemStatus
    viam.proto.app.RemoveRoleRequest
    viam.proto.app.RemoveRoleResponse
@@ -8568,7 +8570,7 @@ Package Contents
 
 
 
-.. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: Global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: Global___ModuleMetadata | None = ..., ml_model_metadata: Global___MLModelMetadata | None = ..., ml_training_metadata: Global___MLTrainingMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., deprecated_status: Global___DeprecatedStatus | None = ...)
+.. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: Global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: Global___ModuleMetadata | None = ..., ml_model_metadata: Global___MLModelMetadata | None = ..., ml_training_metadata: Global___MLTrainingMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., deprecated_status: Global___DeprecatedStatus | None = ..., billing: Global___RegistryItemBilling | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8682,6 +8684,13 @@ Package Contents
 
 
 
+   .. py:method:: billing() -> Global___RegistryItemBilling
+
+      Usage cost information used by billing jobs to bill for monthly usage of the item.
+      This is unset when no cost has been configured for the item.
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -8700,7 +8709,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__billing) -> _WhichOneofReturnType__billing | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
                   WhichOneof(oneof_group: _WhichOneofArgType_metadata) -> _WhichOneofReturnType_metadata | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -8715,6 +8725,78 @@ Package Contents
 
       :raises ValueError: no group with the given name exists
 
+
+
+.. py:class:: RegistryItemBilling(*, cost_per_month: Global___RegistryItemCostByResource | None = ..., cost_per_year: Global___RegistryItemCostByResource | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   RegistryItemBilling stores usage cost information for a registry item. Its shape mirrors the
+   billing block used by fragments so that billing jobs can consume registry item costs the same
+   way. For now only cost_per_month.per_machine is supported; the additional fields that fragment
+   billing supports (cost_per_year, tier_name, in_arrears, etc.) are intentionally omitted.
+
+
+   .. py:method:: cost_per_month() -> Global___RegistryItemCostByResource
+
+      The recurring monthly cost of the item, broken down by billable resource.
+
+
+
+   .. py:method:: cost_per_year() -> Global___RegistryItemCostByResource
+
+      The recurring yearly cost of the item, broken down by billable resource.
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_frequency) -> _WhichOneofReturnType_frequency | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: RegistryItemCostByResource(*, per_machine: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   RegistryItemCostByResource holds the cost of a registry item broken down by billable resource.
+   Only the per_machine resource is currently supported.
+
+
+   .. py:attribute:: per_machine
+      :type:  float
+
+      The cost charged per machine using the item, in USD.
 
 
 .. py:class:: RegistryItemStatus
@@ -10684,7 +10766,7 @@ Package Contents
 
 
 
-.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: Global___Visibility = ..., url: str | None = ..., update_module_metadata: Global___UpdateModuleMetadata | None = ..., update_ml_model_metadata: Global___UpdateMLModelMetadata | None = ..., update_ml_training_metadata: Global___UpdateMLTrainingMetadata | None = ..., markdown_description: str | None = ...)
+.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: Global___Visibility = ..., url: str | None = ..., update_module_metadata: Global___UpdateModuleMetadata | None = ..., update_ml_model_metadata: Global___UpdateMLModelMetadata | None = ..., update_ml_training_metadata: Global___UpdateMLTrainingMetadata | None = ..., markdown_description: str | None = ..., billing: Global___RegistryItemBilling | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10729,6 +10811,13 @@ Package Contents
    .. py:method:: update_ml_training_metadata() -> Global___UpdateMLTrainingMetadata
 
 
+   .. py:method:: billing() -> Global___RegistryItemBilling
+
+      The usage cost information to store on the item. When unset, the existing billing
+      configuration is left unchanged.
+
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -10747,7 +10836,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__billing) -> _WhichOneofReturnType__billing | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
                   WhichOneof(oneof_group: _WhichOneofArgType__url) -> _WhichOneofReturnType__url | None
                   WhichOneof(oneof_group: _WhichOneofArgType_metadata) -> _WhichOneofReturnType_metadata | None
 

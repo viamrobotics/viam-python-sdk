@@ -101,6 +101,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components.component_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datasync</span><span class="w"> </span><span class="kn">import</span> <span class="n">UploadMetadata</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogEntry</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.robot</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BlockForOperationRequest</span><span class="p">,</span>
@@ -132,6 +133,8 @@
     <span class="n">TransformPCDResponse</span><span class="p">,</span>
     <span class="n">TransformPoseRequest</span><span class="p">,</span>
     <span class="n">TransformPoseResponse</span><span class="p">,</span>
+    <span class="n">UploadDataFromPathRequest</span><span class="p">,</span>
+    <span class="n">UploadDataFromPathResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourceManager</span>
@@ -1153,6 +1156,49 @@
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RestartModuleRequest</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">RestartModule</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+
+    <span class="c1">#########################</span>
+    <span class="c1"># Upload Data From Path #</span>
+    <span class="c1">#########################</span>
+
+<div class="viewcode-block" id="RobotClient.upload_data_from_path">
+<a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.upload_data_from_path">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upload_data_from_path</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">upload_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UploadMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UploadDataFromPathResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Upload data from a file or folder path on the robot to the cloud.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            response = await machine.upload_data_from_path(</span>
+<span class="sd">                path=&quot;/path/to/data&quot;,</span>
+<span class="sd">                upload_metadata=UploadMetadata(component_name=&quot;camera&quot;, tags=[&quot;tag1&quot;])</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str): File or folder path on the robot to upload.</span>
+<span class="sd">            upload_metadata (Optional[UploadMetadata]): Optional metadata to apply to uploaded files.</span>
+<span class="sd">            extra (Optional[Dict[str, Any]]): Additional arguments to the method.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            UploadDataFromPathResponse: Response containing files_uploaded, files_failed, bytes_uploaded, bytes_total, and ids.</span>
+
+<span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UploadDataFromPathRequest</span><span class="p">(</span>
+            <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+            <span class="n">upload_metadata</span><span class="o">=</span><span class="n">upload_metadata</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">UploadDataFromPath</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
