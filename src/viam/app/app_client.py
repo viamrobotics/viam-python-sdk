@@ -12,6 +12,7 @@ from viam import logging
 from viam.app._logs import _LogsStream, _LogsStreamWithIterator
 from viam.proto.app import (
     AddRoleRequest,
+    AllowedLoginMethods,
     APIKeyWithAuthorizations,
     AppServiceStub,
     AuthenticatorInfo,
@@ -783,6 +784,7 @@ class AppClient:
         region: str | None = None,
         cid: str | None = None,
         default_fragments: list[FragmentImport] | None = None,
+        allowed_login_methods: AllowedLoginMethods | None = None,
     ) -> Organization:
         """Updates organization details.
 
@@ -800,6 +802,7 @@ class AppClient:
             public_namespace (str | None): If provided, sets the org's namespace if it hasn't already been set.
             region (str | None): If provided, updates the org's region.
             cid (str | None): If provided, update's the org's CRM ID.
+            allowed_login_methods (AllowedLoginMethods | None): If provided, updates the allowed login methods for the org.
 
         Raises:
             GRPCError: If the org's namespace has already been set, or if the provided namespace is already taken.
@@ -816,6 +819,7 @@ class AppClient:
             cid=cid,
             name=name,
             default_fragments=(FragmentImportList(fragments=default_fragments) if default_fragments is not None else None),
+            allowed_login_methods=allowed_login_methods,
         )
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
