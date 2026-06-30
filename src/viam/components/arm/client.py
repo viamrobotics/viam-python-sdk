@@ -118,8 +118,8 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         async with self.client.MoveThroughJointPositionsStreamed.open(timeout=timeout, metadata=md) as stream:
             await stream.send_message(
                 MoveThroughJointPositionsStreamedRequest(
+                    name=self.name,
                     init=MoveThroughJointPositionsStreamedRequest.Init(
-                        name=self.name,
                         extra=dict_to_struct(extra),
                     ),
                 )

@@ -111,10 +111,9 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         assert first_request is not None
         assert first_request.HasField("init"), "First message must contain init"
 
-        init = first_request.init
-        name = init.name
+        name = first_request.name
         arm = self.get_resource(name)
-        extra = struct_to_dict(init.extra)
+        extra = struct_to_dict(first_request.init.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
         # Surface subsequent TrajectoryBatch messages as a flat async iterator of
