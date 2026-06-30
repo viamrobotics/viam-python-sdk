@@ -129,7 +129,6 @@ from viam.proto.app import (
     LocationAuth,
     LocationAuthRequest,
     LocationAuthResponse,
-    LoginMethod,
     MarkPartAsMainRequest,
     MarkPartForRestartRequest,
     Model,
