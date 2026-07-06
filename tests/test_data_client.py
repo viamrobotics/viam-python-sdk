@@ -602,9 +602,7 @@ class TestClient:
     async def test_get_sequence_binary_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            binary_data, next_page_token = await client.get_sequence_binary_data(
-                sequence_id=SEQUENCE_ID, page_token="page1", page_size=10
-            )
+            binary_data, next_page_token = await client.get_sequence_binary_data(sequence_id=SEQUENCE_ID, page_token="page1", page_size=10)
             assert service.sequence_id == SEQUENCE_ID
             assert service.page_token == "page1"
             assert service.page_size == 10
