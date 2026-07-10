@@ -27,6 +27,12 @@ Attributes
    viam.gen.app.v1.app_pb2.AUTHENTICATION_TYPE_ROBOT_PART_SECRET
    viam.gen.app.v1.app_pb2.AUTHENTICATION_TYPE_LOCATION_SECRET
    viam.gen.app.v1.app_pb2.Global___AuthenticationType
+   viam.gen.app.v1.app_pb2.LOGIN_METHOD_UNSPECIFIED
+   viam.gen.app.v1.app_pb2.LOGIN_METHOD_PASSWORD
+   viam.gen.app.v1.app_pb2.LOGIN_METHOD_GOOGLE
+   viam.gen.app.v1.app_pb2.LOGIN_METHOD_GITHUB
+   viam.gen.app.v1.app_pb2.LOGIN_METHOD_APPLE
+   viam.gen.app.v1.app_pb2.Global___LoginMethod
    viam.gen.app.v1.app_pb2.FRAGMENT_VISIBILITY_UNSPECIFIED
    viam.gen.app.v1.app_pb2.FRAGMENT_VISIBILITY_PRIVATE
    viam.gen.app.v1.app_pb2.FRAGMENT_VISIBILITY_PUBLIC
@@ -86,6 +92,7 @@ Attributes
    viam.gen.app.v1.app_pb2.Global___RobotPartHistoryEntry
    viam.gen.app.v1.app_pb2.Global___AuthenticatorInfo
    viam.gen.app.v1.app_pb2.Global___ListOrganizationsRequest
+   viam.gen.app.v1.app_pb2.Global___AllowedLoginMethods
    viam.gen.app.v1.app_pb2.Global___Organization
    viam.gen.app.v1.app_pb2.Global___OrganizationMember
    viam.gen.app.v1.app_pb2.Global___ListOrganizationsResponse
@@ -391,6 +398,7 @@ Classes
 
    viam.gen.app.v1.app_pb2.OnlineState
    viam.gen.app.v1.app_pb2.AuthenticationType
+   viam.gen.app.v1.app_pb2.LoginMethod
    viam.gen.app.v1.app_pb2.FragmentVisibility
    viam.gen.app.v1.app_pb2.FragmentErrorType
    viam.gen.app.v1.app_pb2.ModuleSourceType
@@ -407,6 +415,7 @@ Classes
    viam.gen.app.v1.app_pb2.RobotPartHistoryEntry
    viam.gen.app.v1.app_pb2.AuthenticatorInfo
    viam.gen.app.v1.app_pb2.ListOrganizationsRequest
+   viam.gen.app.v1.app_pb2.AllowedLoginMethods
    viam.gen.app.v1.app_pb2.Organization
    viam.gen.app.v1.app_pb2.OrganizationMember
    viam.gen.app.v1.app_pb2.ListOrganizationsResponse
@@ -754,6 +763,33 @@ Module Contents
 
 .. py:type:: Global___AuthenticationType
    :canonical: AuthenticationType
+
+
+.. py:class:: LoginMethod
+
+   Bases: :py:obj:`_LoginMethod`
+
+
+   LoginMethod is an interactive login mechanism an organization may allow.
+
+
+.. py:data:: LOGIN_METHOD_UNSPECIFIED
+   :type:  LoginMethod
+
+.. py:data:: LOGIN_METHOD_PASSWORD
+   :type:  LoginMethod
+
+.. py:data:: LOGIN_METHOD_GOOGLE
+   :type:  LoginMethod
+
+.. py:data:: LOGIN_METHOD_GITHUB
+   :type:  LoginMethod
+
+.. py:data:: LOGIN_METHOD_APPLE
+   :type:  LoginMethod
+
+.. py:type:: Global___LoginMethod
+   :canonical: LoginMethod
 
 
 .. py:class:: FragmentVisibility
@@ -1278,7 +1314,22 @@ Module Contents
    :canonical: ListOrganizationsRequest
 
 
-.. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ...)
+.. py:class:: AllowedLoginMethods(*, methods: collections.abc.Iterable[Global___LoginMethod] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   An empty list means that all methods are allowed.
+
+
+   .. py:method:: methods() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Global___LoginMethod]
+
+
+.. py:type:: Global___AllowedLoginMethods
+   :canonical: AllowedLoginMethods
+
+
+.. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ..., allowed_login_methods: Global___AllowedLoginMethods | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1319,6 +1370,9 @@ Module Contents
    .. py:method:: default_fragments() -> Global___FragmentImportList
 
 
+   .. py:method:: allowed_login_methods() -> Global___AllowedLoginMethods
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -1337,7 +1391,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__allowed_login_methods) -> _WhichOneofReturnType__allowed_login_methods | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
                   WhichOneof(oneof_group: _WhichOneofArgType__default_fragments) -> _WhichOneofReturnType__default_fragments | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -1669,7 +1724,7 @@ Module Contents
    :canonical: FragmentImportList
 
 
-.. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ...)
+.. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ..., allowed_login_methods: Global___AllowedLoginMethods | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1706,6 +1761,9 @@ Module Contents
    .. py:method:: default_fragments() -> Global___FragmentImportList
 
 
+   .. py:method:: allowed_login_methods() -> Global___AllowedLoginMethods
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -1724,7 +1782,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__allowed_login_methods) -> _WhichOneofReturnType__allowed_login_methods | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
                   WhichOneof(oneof_group: _WhichOneofArgType__default_fragments) -> _WhichOneofReturnType__default_fragments | None
                   WhichOneof(oneof_group: _WhichOneofArgType__name) -> _WhichOneofReturnType__name | None
                   WhichOneof(oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None
@@ -4794,7 +4853,7 @@ Module Contents
    :canonical: DeleteRobotPartResponse
 
 
-.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: Global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ...)
+.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: Global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., public_namespace: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4854,6 +4913,10 @@ Module Contents
       :type:  str
 
 
+   .. py:attribute:: public_namespace
+      :type:  str
+
+
    .. py:method:: fragment() -> google.protobuf.struct_pb2.Struct
 
 
@@ -4881,6 +4944,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

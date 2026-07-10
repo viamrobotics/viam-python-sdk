@@ -2021,6 +2021,32 @@ Module Contents
 
 
 
+   .. py:method:: get_sequence_binary_data(sequence_id: str, page_token: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[float] = None) -> Tuple[List[viam.proto.app.data.BinaryData], str]
+      :async:
+
+
+      Get binary data for a sequence by sequence ID.
+
+      :param sequence_id: The ID of the sequence.
+      :type sequence_id: str
+      :param page_token: Optional page token for pagination.
+      :type page_token: Optional[str]
+      :param page_size: Optional page size for pagination.
+      :type page_size: Optional[int]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns:
+
+                A tuple containing:
+                    - A list of binary data in the sequence.
+                    - The next page token (empty string if no more pages).
+      :rtype: Tuple[List[BinaryData], str]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata>`_.
+
+
+
    .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None, dataset_id: Optional[str] = None) -> viam.proto.app.data.Filter
       :staticmethod:
 

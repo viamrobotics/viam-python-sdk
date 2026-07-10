@@ -42,6 +42,7 @@ Classes
    viam.proto.app.AdditionalFragment
    viam.proto.app.AddRoleRequest
    viam.proto.app.AddRoleResponse
+   viam.proto.app.AllowedLoginMethods
    viam.proto.app.AllowedOrgIDs
    viam.proto.app.APIKey
    viam.proto.app.APIKeyWithAuthorizations
@@ -230,6 +231,7 @@ Classes
    viam.proto.app.LocationAuthResponse
    viam.proto.app.LocationOrganization
    viam.proto.app.LocationSummary
+   viam.proto.app.LoginMethod
    viam.proto.app.MachinePickerCustomizations
    viam.proto.app.MachineSummary
    viam.proto.app.MarkPartAsMainRequest
@@ -2284,6 +2286,17 @@ Package Contents
    shown below.
 
 
+.. py:class:: AllowedLoginMethods(*, methods: collections.abc.Iterable[Global___LoginMethod] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   An empty list means that all methods are allowed.
+
+
+   .. py:method:: methods() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Global___LoginMethod]
+
+
 .. py:class:: AllowedOrgIDs(*, ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4226,7 +4239,7 @@ Package Contents
    Bases: :py:obj:`_EnabledGrant`
 
 
-.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: Global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ...)
+.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: Global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., public_namespace: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4286,6 +4299,10 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: public_namespace
+      :type:  str
+
+
    .. py:method:: fragment() -> google.protobuf.struct_pb2.Struct
 
 
@@ -4313,6 +4330,22 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -7149,6 +7182,14 @@ Package Contents
    .. py:method:: machine_summaries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MachineSummary]
 
 
+.. py:class:: LoginMethod
+
+   Bases: :py:obj:`_LoginMethod`
+
+
+   LoginMethod is an interactive login mechanism an organization may allow.
+
+
 .. py:class:: MachinePickerCustomizations(*, heading: str | None = ..., subheading: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -8003,7 +8044,7 @@ Package Contents
    Bases: :py:obj:`_OnlineState`
 
 
-.. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ...)
+.. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ..., allowed_login_methods: Global___AllowedLoginMethods | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8044,6 +8085,9 @@ Package Contents
    .. py:method:: default_fragments() -> Global___FragmentImportList
 
 
+   .. py:method:: allowed_login_methods() -> Global___AllowedLoginMethods
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -8062,7 +8106,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__allowed_login_methods) -> _WhichOneofReturnType__allowed_login_methods | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
                   WhichOneof(oneof_group: _WhichOneofArgType__default_fragments) -> _WhichOneofReturnType__default_fragments | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -10658,7 +10703,7 @@ Package Contents
 
 
 
-.. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ...)
+.. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ..., cid: str | None = ..., default_fragments: Global___FragmentImportList | None = ..., allowed_login_methods: Global___AllowedLoginMethods | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10695,6 +10740,9 @@ Package Contents
    .. py:method:: default_fragments() -> Global___FragmentImportList
 
 
+   .. py:method:: allowed_login_methods() -> Global___AllowedLoginMethods
+
+
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
 
       Checks if a certain field is set for the message.
@@ -10713,7 +10761,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__allowed_login_methods) -> _WhichOneofReturnType__allowed_login_methods | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None
                   WhichOneof(oneof_group: _WhichOneofArgType__default_fragments) -> _WhichOneofReturnType__default_fragments | None
                   WhichOneof(oneof_group: _WhichOneofArgType__name) -> _WhichOneofReturnType__name | None
                   WhichOneof(oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None

@@ -137,6 +137,8 @@
     <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
     <span class="n">GetLatestTabularDataRequest</span><span class="p">,</span>
     <span class="n">GetLatestTabularDataResponse</span><span class="p">,</span>
+    <span class="n">GetSequenceBinaryDataRequest</span><span class="p">,</span>
+    <span class="n">GetSequenceBinaryDataResponse</span><span class="p">,</span>
     <span class="n">Index</span><span class="p">,</span>
     <span class="n">IndexableCollection</span><span class="p">,</span>
     <span class="n">ListIndexesRequest</span><span class="p">,</span>
@@ -2702,6 +2704,41 @@
             <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">sequences</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span></div>
+
+
+<div class="viewcode-block" id="DataClient.get_sequence_binary_data">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_sequence_binary_data">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_sequence_binary_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">sequence_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">page_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">page_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get binary data for a sequence by sequence ID.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sequence_id (str): The ID of the sequence.</span>
+<span class="sd">            page_token (Optional[str]): Optional page token for pagination.</span>
+<span class="sd">            page_size (Optional[int]): Optional page size for pagination.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[List[BinaryData], str]: A tuple containing:</span>
+<span class="sd">                - A list of binary data in the sequence.</span>
+<span class="sd">                - The next page token (empty string if no more pages).</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetSequenceBinaryDataRequest</span><span class="p">(</span><span class="n">sequence_id</span><span class="o">=</span><span class="n">sequence_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">page_token</span> <span class="o">=</span> <span class="n">page_token</span>
+        <span class="k">if</span> <span class="n">page_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">page_size</span> <span class="o">=</span> <span class="n">page_size</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetSequenceBinaryDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetSequenceBinaryData</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span></div>
 
 
 <div class="viewcode-block" id="DataClient.create_filter">
