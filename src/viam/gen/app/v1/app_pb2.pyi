@@ -65,6 +65,27 @@ AUTHENTICATION_TYPE_ROBOT_PART_SECRET: AuthenticationType.ValueType
 AUTHENTICATION_TYPE_LOCATION_SECRET: AuthenticationType.ValueType
 Global___AuthenticationType: _TypeAlias = AuthenticationType
 
+class _LoginMethod:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _LoginMethodEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_LoginMethod.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    LOGIN_METHOD_UNSPECIFIED: _LoginMethod.ValueType
+    LOGIN_METHOD_PASSWORD: _LoginMethod.ValueType
+    LOGIN_METHOD_GOOGLE: _LoginMethod.ValueType
+    LOGIN_METHOD_GITHUB: _LoginMethod.ValueType
+    LOGIN_METHOD_APPLE: _LoginMethod.ValueType
+
+class LoginMethod(_LoginMethod, metaclass=_LoginMethodEnumTypeWrapper):
+    """LoginMethod is an interactive login mechanism an organization may allow."""
+LOGIN_METHOD_UNSPECIFIED: LoginMethod.ValueType
+LOGIN_METHOD_PASSWORD: LoginMethod.ValueType
+LOGIN_METHOD_GOOGLE: LoginMethod.ValueType
+LOGIN_METHOD_GITHUB: LoginMethod.ValueType
+LOGIN_METHOD_APPLE: LoginMethod.ValueType
+Global___LoginMethod: _TypeAlias = LoginMethod
+
 class _FragmentVisibility:
     ValueType = _typing.NewType('ValueType', _builtins.int)
     V: _TypeAlias = ValueType
@@ -458,6 +479,24 @@ class ListOrganizationsRequest(_message.Message):
 Global___ListOrganizationsRequest: _TypeAlias = ListOrganizationsRequest
 
 @_typing.final
+class AllowedLoginMethods(_message.Message):
+    """An empty list means that all methods are allowed."""
+    DESCRIPTOR: _descriptor.Descriptor
+    METHODS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def methods(self) -> _containers.RepeatedScalarFieldContainer[Global___LoginMethod.ValueType]:
+        ...
+
+    def __init__(self, *, methods: _abc.Iterable[Global___LoginMethod.ValueType] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['methods', b'methods']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AllowedLoginMethods: _TypeAlias = AllowedLoginMethods
+
+@_typing.final
 class Organization(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ID_FIELD_NUMBER: _builtins.int
@@ -467,6 +506,7 @@ class Organization(_message.Message):
     DEFAULT_REGION_FIELD_NUMBER: _builtins.int
     CID_FIELD_NUMBER: _builtins.int
     DEFAULT_FRAGMENTS_FIELD_NUMBER: _builtins.int
+    ALLOWED_LOGIN_METHODS_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
     public_namespace: _builtins.str
@@ -482,20 +522,30 @@ class Organization(_message.Message):
     def default_fragments(self) -> Global___FragmentImportList:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., created_on: _timestamp_pb2.Timestamp | None=..., public_namespace: _builtins.str=..., default_region: _builtins.str=..., cid: _builtins.str | None=..., default_fragments: Global___FragmentImportList | None=...) -> None:
+    @_builtins.property
+    def allowed_login_methods(self) -> Global___AllowedLoginMethods:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', 'cid', b'cid', 'created_on', b'created_on', 'default_fragments', b'default_fragments']
+
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., created_on: _timestamp_pb2.Timestamp | None=..., public_namespace: _builtins.str=..., default_region: _builtins.str=..., cid: _builtins.str | None=..., default_fragments: Global___FragmentImportList | None=..., allowed_login_methods: Global___AllowedLoginMethods | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_allowed_login_methods', b'_allowed_login_methods', '_cid', b'_cid', '_default_fragments', b'_default_fragments', 'allowed_login_methods', b'allowed_login_methods', 'cid', b'cid', 'created_on', b'created_on', 'default_fragments', b'default_fragments']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', 'cid', b'cid', 'created_on', b'created_on', 'default_fragments', b'default_fragments', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_allowed_login_methods', b'_allowed_login_methods', '_cid', b'_cid', '_default_fragments', b'_default_fragments', 'allowed_login_methods', b'allowed_login_methods', 'cid', b'cid', 'created_on', b'created_on', 'default_fragments', b'default_fragments', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__allowed_login_methods: _TypeAlias = _typing.Literal['allowed_login_methods']
+    _WhichOneofArgType__allowed_login_methods: _TypeAlias = _typing.Literal['_allowed_login_methods', b'_allowed_login_methods']
     _WhichOneofReturnType__cid: _TypeAlias = _typing.Literal['cid']
     _WhichOneofArgType__cid: _TypeAlias = _typing.Literal['_cid', b'_cid']
     _WhichOneofReturnType__default_fragments: _TypeAlias = _typing.Literal['default_fragments']
     _WhichOneofArgType__default_fragments: _TypeAlias = _typing.Literal['_default_fragments', b'_default_fragments']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__allowed_login_methods) -> _WhichOneofReturnType__allowed_login_methods | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None:
@@ -729,6 +779,7 @@ class UpdateOrganizationRequest(_message.Message):
     REGION_FIELD_NUMBER: _builtins.int
     CID_FIELD_NUMBER: _builtins.int
     DEFAULT_FRAGMENTS_FIELD_NUMBER: _builtins.int
+    ALLOWED_LOGIN_METHODS_FIELD_NUMBER: _builtins.int
     organization_id: _builtins.str
     name: _builtins.str
     public_namespace: _builtins.str
@@ -740,16 +791,22 @@ class UpdateOrganizationRequest(_message.Message):
     def default_fragments(self) -> Global___FragmentImportList:
         ...
 
-    def __init__(self, *, organization_id: _builtins.str=..., name: _builtins.str | None=..., public_namespace: _builtins.str | None=..., region: _builtins.str | None=..., cid: _builtins.str | None=..., default_fragments: Global___FragmentImportList | None=...) -> None:
+    @_builtins.property
+    def allowed_login_methods(self) -> Global___AllowedLoginMethods:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'default_fragments', b'default_fragments', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']
+
+    def __init__(self, *, organization_id: _builtins.str=..., name: _builtins.str | None=..., public_namespace: _builtins.str | None=..., region: _builtins.str | None=..., cid: _builtins.str | None=..., default_fragments: Global___FragmentImportList | None=..., allowed_login_methods: Global___AllowedLoginMethods | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_allowed_login_methods', b'_allowed_login_methods', '_cid', b'_cid', '_default_fragments', b'_default_fragments', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'allowed_login_methods', b'allowed_login_methods', 'cid', b'cid', 'default_fragments', b'default_fragments', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'default_fragments', b'default_fragments', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_allowed_login_methods', b'_allowed_login_methods', '_cid', b'_cid', '_default_fragments', b'_default_fragments', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'allowed_login_methods', b'allowed_login_methods', 'cid', b'cid', 'default_fragments', b'default_fragments', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__allowed_login_methods: _TypeAlias = _typing.Literal['allowed_login_methods']
+    _WhichOneofArgType__allowed_login_methods: _TypeAlias = _typing.Literal['_allowed_login_methods', b'_allowed_login_methods']
     _WhichOneofReturnType__cid: _TypeAlias = _typing.Literal['cid']
     _WhichOneofArgType__cid: _TypeAlias = _typing.Literal['_cid', b'_cid']
     _WhichOneofReturnType__default_fragments: _TypeAlias = _typing.Literal['default_fragments']
@@ -760,6 +817,10 @@ class UpdateOrganizationRequest(_message.Message):
     _WhichOneofArgType__public_namespace: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace']
     _WhichOneofReturnType__region: _TypeAlias = _typing.Literal['region']
     _WhichOneofArgType__region: _TypeAlias = _typing.Literal['_region', b'_region']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__allowed_login_methods) -> _WhichOneofReturnType__allowed_login_methods | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__cid) -> _WhichOneofReturnType__cid | None:
@@ -2706,6 +2767,7 @@ class Fragment(_message.Message):
     VISIBILITY_FIELD_NUMBER: _builtins.int
     LAST_UPDATED_FIELD_NUMBER: _builtins.int
     REVISION_FIELD_NUMBER: _builtins.int
+    PUBLIC_NAMESPACE_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
     organization_owner: _builtins.str
@@ -2720,6 +2782,7 @@ class Fragment(_message.Message):
     visibility: Global___FragmentVisibility.ValueType
     'the visibility of a fragment; public, private or unlisted'
     revision: _builtins.str
+    public_namespace: _builtins.str
 
     @_builtins.property
     def fragment(self) -> _struct_pb2.Struct:
@@ -2733,15 +2796,20 @@ class Fragment(_message.Message):
     def last_updated(self) -> _timestamp_pb2.Timestamp:
         """latest timestamp when fragment was updated"""
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., fragment: _struct_pb2.Struct | None=..., organization_owner: _builtins.str=..., public: _builtins.bool=..., created_on: _timestamp_pb2.Timestamp | None=..., organization_name: _builtins.str=..., robot_part_count: _builtins.int=..., organization_count: _builtins.int=..., only_used_by_owner: _builtins.bool=..., visibility: Global___FragmentVisibility.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., revision: _builtins.str=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., fragment: _struct_pb2.Struct | None=..., organization_owner: _builtins.str=..., public: _builtins.bool=..., created_on: _timestamp_pb2.Timestamp | None=..., organization_name: _builtins.str=..., robot_part_count: _builtins.int=..., organization_count: _builtins.int=..., only_used_by_owner: _builtins.bool=..., visibility: Global___FragmentVisibility.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., revision: _builtins.str=..., public_namespace: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'last_updated', b'last_updated']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace', 'created_on', b'created_on', 'fragment', b'fragment', 'last_updated', b'last_updated', 'public_namespace', b'public_namespace']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'revision', b'revision', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace', 'created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'public_namespace', b'public_namespace', 'revision', b'revision', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__public_namespace: _TypeAlias = _typing.Literal['public_namespace']
+    _WhichOneofArgType__public_namespace: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None:
         ...
 Global___Fragment: _TypeAlias = Fragment
 

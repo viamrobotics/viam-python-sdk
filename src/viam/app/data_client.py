@@ -49,6 +49,8 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    GetSequenceBinaryDataRequest,
+    GetSequenceBinaryDataResponse,
     Index,
     IndexableCollection,
     ListIndexesRequest,
@@ -2424,6 +2426,38 @@ class DataClient:
             request, metadata=self._metadata, timeout=timeout
         )
         return list(response.sequences), response.next_page_token
+
+    async def get_sequence_binary_data(
+        self,
+        sequence_id: str,
+        page_token: Optional[str] = None,
+        page_size: Optional[int] = None,
+        timeout: Optional[float] = None,
+    ) -> Tuple[List[BinaryData], str]:
+        """Get binary data for a sequence by sequence ID.
+
+        Args:
+            sequence_id (str): The ID of the sequence.
+            page_token (Optional[str]): Optional page token for pagination.
+            page_size (Optional[int]): Optional page size for pagination.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            Tuple[List[BinaryData], str]: A tuple containing:
+                - A list of binary data in the sequence.
+                - The next page token (empty string if no more pages).
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata>`_.
+        """
+        request = GetSequenceBinaryDataRequest(sequence_id=sequence_id)
+        if page_token is not None:
+            request.page_token = page_token
+        if page_size is not None:
+            request.page_size = page_size
+        response: GetSequenceBinaryDataResponse = await self._data_client.GetSequenceBinaryData(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return list(response.data), response.next_page_token
 
     @staticmethod
     def create_filter(

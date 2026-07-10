@@ -255,6 +255,8 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    GetSequenceBinaryDataRequest,
+    GetSequenceBinaryDataResponse,
     Index,
     ListIndexesRequest,
     ListIndexesResponse,
@@ -1187,6 +1189,15 @@ class MockData(UnimplementedDataServiceBase):
         self.page_size = request.page_size
         # Return empty list for testing - tests can override this behavior
         await stream.send_message(SequencesByDatasetIDResponse(sequences=[], next_page_token=""))
+
+    async def GetSequenceBinaryData(self, stream: Stream[GetSequenceBinaryDataRequest, GetSequenceBinaryDataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sequence_id = request.sequence_id
+        self.page_token = request.page_token
+        self.page_size = request.page_size
+        # Return empty list for testing - tests can override this behavior
+        await stream.send_message(GetSequenceBinaryDataResponse(data=[], next_page_token=""))
 
 
 class MockDataset(DatasetServiceBase):

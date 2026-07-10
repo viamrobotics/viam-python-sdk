@@ -2527,3 +2527,40 @@ class SequencesByDatasetIDResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___SequencesByDatasetIDResponse: _TypeAlias = SequencesByDatasetIDResponse
+
+@_typing.final
+class GetSequenceBinaryDataRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    SEQUENCE_ID_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    sequence_id: _builtins.str
+    page_token: _builtins.str
+    page_size: _builtins.int
+
+    def __init__(self, *, sequence_id: _builtins.str=..., page_token: _builtins.str=..., page_size: _builtins.int=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['page_size', b'page_size', 'page_token', b'page_token', 'sequence_id', b'sequence_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetSequenceBinaryDataRequest: _TypeAlias = GetSequenceBinaryDataRequest
+
+@_typing.final
+class GetSequenceBinaryDataResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    DATA_FIELD_NUMBER: _builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
+
+    @_builtins.property
+    def data(self) -> _containers.RepeatedCompositeFieldContainer[Global___BinaryData]:
+        ...
+
+    def __init__(self, *, data: _abc.Iterable[Global___BinaryData] | None=..., next_page_token: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['data', b'data', 'next_page_token', b'next_page_token']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetSequenceBinaryDataResponse: _TypeAlias = GetSequenceBinaryDataResponse
