@@ -45,10 +45,9 @@ class Arm(ComponentBase):
         """
         Optional per-waypoint kinematic constraints attached to a ``TrajectoryPoint``.
 
-        Joint velocities are required; joint accelerations are optional. The presence
-        of velocities is what unlocks the option to pass accelerations -- accelerations
-        cannot be specified without velocities. Each list is ordered spatially from the
-        base toward the end effector of the arm and must match the arm's DOF.
+        Velocities are required whenever constraints are present; accelerations are optional and
+        may only be given alongside velocities. Each list runs from the base joint out to the end
+        effector and must match the arm's degrees of freedom.
         """
 
         velocities: List[float]
@@ -62,11 +61,11 @@ class Arm(ComponentBase):
     @dataclass
     class TrajectoryPoint:
         """
-        A single waypoint of a kinematized trajectory consumed by
+        A single waypoint of a kinematized trajectory, as consumed by
         ``move_through_joint_positions_streamed``.
 
-        Times across a streamed trajectory must be strictly monotonically increasing.
-        The first point in a stream must have ``time`` equal to zero.
+        Point times must strictly increase across a stream, and the first point must have a
+        ``time`` of zero.
         """
 
         time: timedelta
@@ -114,13 +113,12 @@ class Arm(ComponentBase):
             )
 
     @dataclass
-    class Response:
+    class TrajectoryUpdate:
         """
-        Per-message response from ``move_through_joint_positions_streamed``.
+        An update reported by the arm as it executes a ``move_through_joint_positions_streamed`` trajectory.
 
-        For the proof-of-concept the response payload is empty; the type exists so that
-        callers can iterate the response stream today and pick up future per-batch
-        status fields without an API reshape.
+        Today it carries only ``extra``. The type exists as its own message so that
+        per-batch execution status can be added later without reshaping the streaming API.
         """
 
         extra: Optional[Dict[str, Any]] = None
@@ -130,7 +128,7 @@ class Arm(ComponentBase):
             return MoveThroughJointPositionsStreamedResponse(extra=dict_to_struct(self.extra))
 
         @classmethod
-        def from_proto(cls, proto: MoveThroughJointPositionsStreamedResponse) -> "Arm.Response":
+        def from_proto(cls, proto: MoveThroughJointPositionsStreamedResponse) -> "Arm.TrajectoryUpdate":
             return cls(extra=struct_to_dict(proto.extra) if proto.HasField("extra") else None)
 
     @abc.abstractmethod
@@ -268,19 +266,28 @@ class Arm(ComponentBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> AsyncIterator["Arm.Response"]:
+    ) -> AsyncIterator["Arm.TrajectoryUpdate"]:
         """
         Move the arm through a time-parameterized stream of joint waypoints.
 
-        The caller supplies an asynchronous iterator of batches, where each batch is a
-        ``list`` of ``TrajectoryPoint`` values. Each list yielded by the caller is sent
-        as one wire ``TrajectoryBatch``; the caller therefore controls the wire cadence
-        directly, and can pack enough points into the first send to ride out network
-        jitter on tight-cadence trajectories. A caller that genuinely wants per-point
-        granularity yields ``[point]`` for each point. Per-message responses are yielded
-        back to the caller as they are produced by the arm. Arm-side errors raised
-        during execution surface as a gRPC status on the response iteration -- the
-        ``async for`` raises rather than returning.
+        The caller supplies an asynchronous iterator of batches, each batch a ``list`` of
+        ``TrajectoryPoint``. Each list the caller yields is sent as one wire ``TrajectoryBatch``,
+        so the caller sets the wire cadence by choosing how many points go in each list; a caller
+        that wants to send one point at a time yields a single-element list. The arm's updates are
+        yielded back as they arrive, so iterating the return value observes execution in real time.
+        If the arm faults mid-trajectory, that fault arrives as a gRPC error on the iteration, so the
+        ``async for`` raises instead of ending normally. Delivering faults mid-execution, not only at
+        the end, is the point of streaming this call.
+
+        The first point of the stream must have time zero, and if it carries velocity constraints
+        those velocities must all be zero, since the trajectory starts from rest. Point times must
+        strictly increase across the whole stream, not merely within a batch. A ``timeout``, if
+        given, bounds the entire stream, not a single message, so an open-ended trajectory should
+        normally leave it unset.
+
+        An implementation must yield at least one ``TrajectoryUpdate`` before returning. Besides
+        reporting progress, this is what makes the implementation an asynchronous generator; a
+        coroutine that never yields cannot be iterated as a stream and fails at runtime.
 
         ::
 
@@ -292,19 +299,16 @@ class Arm(ComponentBase):
                     Arm.TrajectoryPoint(time=timedelta(seconds=1.0), positions=[10.0, 0.0, 0.0, 0.0, 0.0]),
                 ]
 
-            async for resp in my_arm.move_through_joint_positions_streamed(batches()):
-                # Observe arm-side acknowledgements; errors raise out of this iteration.
+            async for update in my_arm.move_through_joint_positions_streamed(batches()):
+                # Observe the arm's updates; a fault raises out of this iteration.
                 pass
 
         Args:
-            batches: an asynchronous iterator of lists of ``TrajectoryPoint`` values.
-                Each list maps to one wire ``TrajectoryBatch``. Point times must be
-                strictly monotonically increasing across the entire stream (not just
-                within each batch), and the first point of the very first batch must
-                have time zero.
+            batches: an asynchronous iterator of lists of ``TrajectoryPoint``. Each list becomes
+                one wire ``TrajectoryBatch``.
 
         Returns:
-            AsyncIterator[Arm.Response]: a live stream of per-message responses.
+            AsyncIterator[Arm.TrajectoryUpdate]: the arm's updates, yielded as they arrive.
         """
         ...
 

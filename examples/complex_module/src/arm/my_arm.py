@@ -1,6 +1,6 @@
 import asyncio
 import os
-from typing import Any, ClassVar, Dict, List, Mapping, Optional, Tuple
+from typing import Any, AsyncIterator, ClassVar, Dict, List, Mapping, Optional, Tuple
 
 from typing_extensions import Self
 
@@ -91,6 +91,33 @@ class MyArm(Arm):
                 break
 
         self.joint_positions = positions
+        self.is_stopped = True
+
+    async def move_through_joint_positions(
+        self, positions: List[JointPositions], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        # Move through the waypoints in order. A real arm would plan a smooth path across them.
+        self.is_stopped = False
+        for jp in positions:
+            self.joint_positions = jp
+        self.is_stopped = True
+
+    async def move_through_joint_positions_streamed(  # type: ignore
+        self,
+        batches: AsyncIterator[List[Arm.TrajectoryPoint]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[Arm.TrajectoryUpdate]:
+        # Each list the framework hands us is one wire batch. Walk it point by point to drive the
+        # arm, then send one update back per batch so the caller can watch progress and so a fault
+        # reaches it while the trajectory is still running.
+        self.is_stopped = False
+        async for batch in batches:
+            for point in batch:
+                self.joint_positions = JointPositions(values=point.positions)
+            yield Arm.TrajectoryUpdate()
         self.is_stopped = True
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
