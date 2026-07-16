@@ -128,72 +128,88 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
                 )
             )
 
-            # Sending and receiving have to proceed at the same time. The arm can report an update
-            # or a fault at any point, including while the caller is still producing batches, so we
-            # run the sends on a background task and drain the arm's updates here. Each list the
-            # caller yields becomes one wire TrajectoryBatch.
+            # Sending and receiving proceed at the same time: the arm can report an update or a
+            # fault at any point, including while the caller is still producing batches. The sends
+            # run on their own task and the receives on another; this loop watches both and yields
+            # each update to the caller as it arrives. Each list the caller yields becomes one wire
+            # TrajectoryBatch.
             #
-            # We hold onto a failure of the caller's own iterator separately. If the caller's batch
-            # production raises, that is the caller's bug and the fault they need to see, so it wins
-            # over whatever the receive side reports once we tear the stream down (which is usually
-            # just a consequence of that same failure).
+            # A failure of the caller's own batch iterator is held separately. It is the caller's
+            # bug and the fault they need to see, so it wins over whatever the receive side reports
+            # while the stream is torn down.
             producer_exception: Optional[BaseException] = None
 
             async def send_batches() -> None:
                 nonlocal producer_exception
-                try:
-                    iterator = batches.__aiter__()
-                    while True:
-                        try:
-                            batch = await iterator.__anext__()
-                            message = MoveThroughJointPositionsStreamedRequest(
-                                batch=MoveThroughJointPositionsStreamedRequest.TrajectoryBatch(
-                                    points=[point.to_proto() for point in batch],
-                                )
+                iterator = batches.__aiter__()
+                while True:
+                    try:
+                        batch = await iterator.__anext__()
+                        message = MoveThroughJointPositionsStreamedRequest(
+                            batch=MoveThroughJointPositionsStreamedRequest.TrajectoryBatch(
+                                points=[point.to_proto() for point in batch],
                             )
-                        except StopAsyncIteration:
-                            break
-                        except asyncio.CancelledError:
-                            # Our own teardown, not the caller's failure; do not claim it as one.
-                            raise
-                        except BaseException as exc:
-                            producer_exception = exc
-                            raise
-                        await stream.send_message(message)
-                finally:
-                    # TODO: half-closing is right when the caller's batches are exhausted, but it
-                    # also runs when the caller's batch production raised, and there it is wrong. A
-                    # half-close tells the arm the trajectory completed normally, when a producer
-                    # failure has actually left it truncated, so the arm may be brought to rest at a
-                    # point that was never meant to be its last. The C++ SDK cancels the RPC in this
-                    # case so the arm sees an abort. Matching that here is not a one-line change:
-                    # awaiting stream.cancel() from this task deadlocks against the concurrent
-                    # receive loop. A correct fix restructures the teardown to await the receive and
-                    # the send together, cancel the pending receive when the producer fails, and let
-                    # the producer exception propagate out of the `async with` so grpclib resets the
-                    # stream. Deferred to a focused follow-up.
-                    await stream.end()
+                        )
+                    except StopAsyncIteration:
+                        break
+                    except asyncio.CancelledError:
+                        raise
+                    except BaseException as exc:
+                        # Record the caller's producer failure and stop. The main loop surfaces it
+                        # and aborts the stream. We deliberately do not tear the stream down here:
+                        # calling stream.cancel() from this task deadlocks against the concurrent
+                        # receive (confirmed end to end against a real server, not just in tests).
+                        producer_exception = exc
+                        raise
+                    await stream.send_message(message)
+                # Batches exhausted cleanly; half-close so the arm knows the trajectory completed.
+                await stream.end()
 
             send_task = asyncio.create_task(send_batches())
+            recv_task = asyncio.ensure_future(stream.recv_message())
+            watch_send = True
             try:
-                async for update in stream:
-                    yield Arm.TrajectoryUpdate.from_proto(update)
+                while True:
+                    wait_set = {recv_task, send_task} if watch_send else {recv_task}
+                    await asyncio.wait(wait_set, return_when=asyncio.FIRST_COMPLETED)
+
+                    # Handle the send task finishing before consuming any ready update. A clean
+                    # finish (batches exhausted and half-closed) just means we stop watching it and
+                    # keep receiving until the server closes. A failure means the caller's producer
+                    # broke, so we abort by raising into the handler below. The handler tears down
+                    # the still-pending receive before the `async with` resets the stream, so nothing
+                    # is parked in a read when the reset happens; that is precisely what a direct
+                    # stream.cancel() from the send task cannot manage without deadlocking.
+                    if watch_send and send_task.done():
+                        watch_send = False
+                        send_error = send_task.exception()
+                        if send_error is not None:
+                            raise send_error
+
+                    if recv_task.done():
+                        update = recv_task.result()
+                        if update is None:
+                            # The server closed the response stream: the trajectory is complete.
+                            break
+                        yield Arm.TrajectoryUpdate.from_proto(update)
+                        recv_task = asyncio.ensure_future(stream.recv_message())
             except BaseException:
-                # The receive side ended abnormally: the arm faulted, the caller closed this
-                # generator, or the call was cancelled. Cancel the send task, discard whatever it
-                # unwinds with, and re-raise, preferring a producer failure over the receive-side
-                # error.
-                send_task.cancel()
-                try:
-                    await send_task
-                except BaseException:
-                    pass
+                # The receive side raised (a server fault or cancellation), the producer failed, or
+                # the caller closed this generator. Cancel both tasks and wait them out so neither is
+                # left parked in a read or write when the `async with` resets the stream. Prefer the
+                # caller's producer failure when there is one.
+                for task in (send_task, recv_task):
+                    task.cancel()
+                    try:
+                        await task
+                    except BaseException:
+                        pass
                 if producer_exception is not None:
                     raise producer_exception
                 raise
             else:
-                # The receive side finished cleanly. Wait on the send task so that a failure in the
-                # caller's batch production still surfaces rather than being swallowed.
+                # Clean completion: the server closed the response stream after we half-closed. Wait
+                # on the send task so a producer failure that raced in right at the end still surfaces.
                 await send_task
 
     async def stop(
