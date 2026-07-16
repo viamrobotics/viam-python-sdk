@@ -128,89 +128,95 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
                 )
             )
 
-            # Sending and receiving proceed at the same time: the arm can report an update or a
-            # fault at any point, including while the caller is still producing batches. The sends
-            # run on their own task and the receives on another; this loop watches both and yields
-            # each update to the caller as it arrives. Each list the caller yields becomes one wire
+            # Sending and receiving run concurrently as tasks: the arm can report an update or a
+            # fault at any point, including while the caller is still producing batches. An async
+            # generator cannot yield a value produced inside a task, so the receive task feeds a
+            # queue that this generator drains and yields from; a sentinel marks the point past
+            # which no more updates will arrive. Each list the caller yields becomes one wire
             # TrajectoryBatch.
             #
-            # A failure of the caller's own batch iterator is held separately. It is the caller's
-            # bug and the fault they need to see, so it wins over whatever the receive side reports
-            # while the stream is torn down.
+            # A failure of the caller's own batch iterator is recorded separately. It is the
+            # caller's bug and the fault they need to see, so it wins over whatever the receive side
+            # reports while the stream is torn down.
             producer_exception: Optional[BaseException] = None
+            updates: asyncio.Queue = asyncio.Queue()
+            end_of_updates = object()
 
             async def send_batches() -> None:
                 nonlocal producer_exception
-                iterator = batches.__aiter__()
-                while True:
-                    try:
-                        batch = await iterator.__anext__()
-                        message = MoveThroughJointPositionsStreamedRequest(
-                            batch=MoveThroughJointPositionsStreamedRequest.TrajectoryBatch(
-                                points=[point.to_proto() for point in batch],
+                try:
+                    async for batch in batches:
+                        await stream.send_message(
+                            MoveThroughJointPositionsStreamedRequest(
+                                batch=MoveThroughJointPositionsStreamedRequest.TrajectoryBatch(
+                                    points=[point.to_proto() for point in batch],
+                                )
                             )
                         )
-                    except StopAsyncIteration:
-                        break
-                    except asyncio.CancelledError:
-                        raise
-                    except BaseException as exc:
-                        # Record the caller's producer failure and stop. The main loop surfaces it
-                        # and aborts the stream. We deliberately do not tear the stream down here:
-                        # calling stream.cancel() from this task deadlocks against the concurrent
-                        # receive (confirmed end to end against a real server, not just in tests).
-                        producer_exception = exc
-                        raise
-                    await stream.send_message(message)
-                # Batches exhausted cleanly; half-close so the arm knows the trajectory completed.
-                await stream.end()
+                    # Batches exhausted cleanly; half-close so the arm knows the trajectory completed.
+                    await stream.end()
+                except asyncio.CancelledError:
+                    # Our own teardown cancelling this task, not the caller's failure.
+                    raise
+                except BaseException as exc:
+                    producer_exception = exc
+                    raise
+
+            async def receive_updates() -> None:
+                try:
+                    while True:
+                        update = await stream.recv_message()
+                        if update is None:
+                            break
+                        updates.put_nowait(update)
+                finally:
+                    updates.put_nowait(end_of_updates)
 
             send_task = asyncio.create_task(send_batches())
-            recv_task = asyncio.ensure_future(stream.recv_message())
-            watch_send = True
+            receive_task = asyncio.create_task(receive_updates())
+
+            # If the producer fails, stop receiving so the queue terminates and the fault can be
+            # surfaced. A clean producer finish leaves the receive alone: the arm still has updates
+            # to send until it closes the response stream itself.
+            def stop_receiving_if_producer_failed(task: asyncio.Task) -> None:
+                if not task.cancelled() and task.exception() is not None:
+                    receive_task.cancel()
+
+            send_task.add_done_callback(stop_receiving_if_producer_failed)
+
             try:
                 while True:
-                    wait_set = {recv_task, send_task} if watch_send else {recv_task}
-                    await asyncio.wait(wait_set, return_when=asyncio.FIRST_COMPLETED)
+                    update = await updates.get()
+                    if update is end_of_updates:
+                        break
+                    yield Arm.TrajectoryUpdate.from_proto(update)
+            finally:
+                # Before the `async with` resets the stream, make sure both tasks have finished and
+                # their outcomes have been retrieved, so neither is parked in a read or write during
+                # the reset. A parked read is exactly what deadlocks a direct stream.cancel(); the
+                # reset that aborts the arm comes from leaving the `async with` instead. A finished
+                # task's result is retrieved with `.exception()` rather than by awaiting it, which
+                # keeps a recorded producer failure's traceback pointed at the caller's code.
+                for task in (send_task, receive_task):
+                    if task.done():
+                        if not task.cancelled():
+                            task.exception()
+                    else:
+                        task.cancel()
+                        try:
+                            await task
+                        except BaseException:
+                            pass
 
-                    # Handle the send task finishing before consuming any ready update. A clean
-                    # finish (batches exhausted and half-closed) just means we stop watching it and
-                    # keep receiving until the server closes. A failure means the caller's producer
-                    # broke, so we abort by raising into the handler below. The handler tears down
-                    # the still-pending receive before the `async with` resets the stream, so nothing
-                    # is parked in a read when the reset happens; that is precisely what a direct
-                    # stream.cancel() from the send task cannot manage without deadlocking.
-                    if watch_send and send_task.done():
-                        watch_send = False
-                        send_error = send_task.exception()
-                        if send_error is not None:
-                            raise send_error
-
-                    if recv_task.done():
-                        update = recv_task.result()
-                        if update is None:
-                            # The server closed the response stream: the trajectory is complete.
-                            break
-                        yield Arm.TrajectoryUpdate.from_proto(update)
-                        recv_task = asyncio.ensure_future(stream.recv_message())
-            except BaseException:
-                # The receive side raised (a server fault or cancellation), the producer failed, or
-                # the caller closed this generator. Cancel both tasks and wait them out so neither is
-                # left parked in a read or write when the `async with` resets the stream. Prefer the
-                # caller's producer failure when there is one.
-                for task in (send_task, recv_task):
-                    task.cancel()
-                    try:
-                        await task
-                    except BaseException:
-                        pass
-                if producer_exception is not None:
-                    raise producer_exception
-                raise
-            else:
-                # Clean completion: the server closed the response stream after we half-closed. Wait
-                # on the send task so a producer failure that raced in right at the end still surfaces.
-                await send_task
+            # Surface the terminal cause: the caller's producer failure first, then a fault from the
+            # receive side, otherwise the stream completed cleanly. Raising leaves the `async with`,
+            # which resets the stream so the arm sees an abort rather than a clean end.
+            if producer_exception is not None:
+                raise producer_exception
+            if not receive_task.cancelled():
+                receive_error = receive_task.exception()
+                if receive_error is not None:
+                    raise receive_error
 
     async def stop(
         self,
