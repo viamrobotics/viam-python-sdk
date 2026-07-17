@@ -387,5 +387,5 @@ class TestTrajectoryConversions:
         assert restored.constraints.accelerations is None
 
     def test_trajectory_update_round_trip(self):
-        restored = Arm.TrajectoryUpdate.from_proto(Arm.TrajectoryUpdate(extra={"foo": "bar"}).to_proto())
-        assert restored.extra == {"foo": "bar"}
+        restored = Arm.TrajectoryUpdate.from_proto(Arm.TrajectoryUpdate().to_proto())
+        assert isinstance(restored, Arm.TrajectoryUpdate)

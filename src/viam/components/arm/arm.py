@@ -14,7 +14,6 @@ from viam.proto.component.arm import (
     TrajectoryPoint as TrajectoryPointPb,
 )
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
-from viam.utils import dict_to_struct, struct_to_dict
 
 from . import JointPositions, Pose
 
@@ -117,19 +116,21 @@ class Arm(ComponentBase):
         """
         An update reported by the arm as it executes a ``move_through_joint_positions_streamed`` trajectory.
 
-        Today it carries only ``extra``. The type exists as its own message so that
-        per-batch execution status can be added later without reshaping the streaming API.
+        The type is intentionally empty. The response is a ``oneof`` whose only branch today is an empty
+        ``BatchAck``, so receiving a response is itself the acknowledgment. The ``oneof`` exists so the arm's
+        replies can grow new branches without breaking existing clients on the wire; when a branch carries
+        data worth surfacing (``BatchAck``'s ``extra``, or a new branch entirely), this type grows to match.
         """
 
-        extra: Optional[Dict[str, Any]] = None
-        """Arm-side reply data."""
-
         def to_proto(self) -> MoveThroughJointPositionsStreamedResponse:
-            return MoveThroughJointPositionsStreamedResponse(extra=dict_to_struct(self.extra))
+            # A received response is itself the acknowledgment, so send the default message and leave the
+            # oneof unset: the only branch is empty, nothing reads it today, and RDK and the C++ SDK send
+            # it unset as well. If a future branch carries data, set it here.
+            return MoveThroughJointPositionsStreamedResponse()
 
         @classmethod
         def from_proto(cls, proto: MoveThroughJointPositionsStreamedResponse) -> "Arm.TrajectoryUpdate":
-            return cls(extra=struct_to_dict(proto.extra) if proto.HasField("extra") else None)
+            return cls()
 
     @abc.abstractmethod
     async def get_end_position(
