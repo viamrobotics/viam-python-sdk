@@ -118,7 +118,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NavigationClient</span><span class="p">(</span><span class="n">Navigation</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to the NavigationService, which allows the robot to navigate to specified locations.</span>
@@ -132,7 +132,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="NavigationClient.get_paths">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_paths">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_paths">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetPathsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -141,7 +141,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.get_location">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_location">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_location">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeoPoint</span><span class="p">:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -150,7 +150,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.get_obstacles">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_obstacles">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_obstacles">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_obstacles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">GeoGeometry</span><span class="p">]:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetObstaclesRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -159,7 +159,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.get_waypoints">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_waypoints">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_waypoints">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_waypoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Waypoint</span><span class="p">]:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetWaypointsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -168,7 +168,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.add_waypoint">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.add_waypoint">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.add_waypoint">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_waypoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddWaypointRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">point</span><span class="p">)</span>
@@ -176,7 +176,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.remove_waypoint">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.remove_waypoint">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.remove_waypoint">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_waypoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveWaypointRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
@@ -184,7 +184,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.get_mode">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_mode">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_mode">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetModeRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -193,7 +193,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.set_mode">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.set_mode">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.set_mode">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">SetModeRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
@@ -201,7 +201,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.get_properties">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_properties">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_properties">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MapType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetPropertiesRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -210,7 +210,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.do_command">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.do_command">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.do_command">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
@@ -219,7 +219,7 @@
 
 
 <div class="viewcode-block" id="NavigationClient.get_status">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/index.html#viam.services.navigation.client.NavigationClient.get_status">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_status">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
