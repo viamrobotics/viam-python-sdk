@@ -25,11 +25,6 @@ class _AxisAngleStruct(ctypes.Structure):
     _fields_ = [("axis", _Vec3Struct), ("theta", c_double)]
 
 
-class _Rotation3Struct(ctypes.Structure):
-    # nalgebra Rotation3 wraps a column-major Matrix3<f64>. Validated by golden tests.
-    _fields_ = [("m", c_double * 9)]
-
-
 # (restype, argtypes) for every viam_-prefixed spatialmath export we use.
 _SIGNATURES = {
     # vector3
@@ -89,10 +84,12 @@ _SIGNATURES = {
     "viam_new_axis_angle": (c_void_p, (c_double, c_double, c_double, c_double)),
     "viam_free_axis_angles_memory": (None, (c_void_p,)),
     "viam_axis_angle_from_quaternion": (c_void_p, (c_void_p,)),
-    # rotation matrix (no getter; read via _Rotation3Struct)
+    # rotation matrix
     "viam_new_rotation_matrix": (c_void_p, (POINTER(c_double * 9),)),
     "viam_free_rotation_matrix_memory": (None, (c_void_p,)),
     "viam_rotation_matrix_from_quaternion": (c_void_p, (c_void_p,)),
+    "viam_rotation_matrix_get_elements": (POINTER(c_double), (c_void_p,)),
+    "viam_free_rotation_matrix_elements": (None, (c_void_p,)),
 }
 
 

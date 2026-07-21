@@ -8,12 +8,8 @@ from . import _ffi
 class RotationMatrix:
     """A 3x3 rotation matrix backed by the spatialmath FFI.
 
-    ``elements`` is a 9-value list following Go ``rdk/spatialmath``'s row-major
-    rotation-matrix convention (``elements[3*row + col]``). Construction and
-    readback are both raw pass-throughs of the underlying nalgebra buffer, so
-    they are mutually consistent by construction; that this raw buffer coincides
-    with rdk's row-major convention is an empirical fact pinned by the golden
-    parity tests (it is not a general column-major/row-major identity).
+    ``elements`` is a 9-value list in row-major order:
+    ``elements[3*row + col]`` is the entry at (row, col).
     """
 
     __slots__ = ("_handle", "__weakref__")
@@ -35,8 +31,10 @@ class RotationMatrix:
 
     @property
     def elements(self) -> List[float]:
-        s = _ffi.read_struct(self._handle, _ffi._Rotation3Struct)
-        return [s.m[idx] for idx in range(9)]
+        lib = _ffi.lib()
+        return _ffi.read_components(
+            lib.viam_rotation_matrix_get_elements, self._handle, 9, lib.viam_free_rotation_matrix_elements
+        )
 
     def to_quaternion(self):
         from .quaternion import Quaternion
