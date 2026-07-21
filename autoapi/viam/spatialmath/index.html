@@ -512,12 +512,8 @@ Those methods handle the conversion automatically; callers should not pre-conver
 <dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.spatialmath.</span></span><span class="sig-name descname"><span class="pre">RotationMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/spatialmath/rotation_matrix.html#RotationMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.spatialmath.RotationMatrix" title="Link to this definition"></a></dt>
 <dd><p>A 3x3 rotation matrix backed by the spatialmath FFI.</p>
-<p><code class="docutils literal notranslate"><span class="pre">elements</span></code> is a 9-value list following Go <code class="docutils literal notranslate"><span class="pre">rdk/spatialmath</span></code>’s row-major
-rotation-matrix convention (<code class="docutils literal notranslate"><span class="pre">elements[3*row</span> <span class="pre">+</span> <span class="pre">col]</span></code>). Construction and
-readback are both raw pass-throughs of the underlying nalgebra buffer, so
-they are mutually consistent by construction; that this raw buffer coincides
-with rdk’s row-major convention is an empirical fact pinned by the golden
-parity tests (it is not a general column-major/row-major identity).</p>
+<p><code class="docutils literal notranslate"><span class="pre">elements</span></code> is a 9-value list in row-major order:
+<code class="docutils literal notranslate"><span class="pre">elements[3*row</span> <span class="pre">+</span> <span class="pre">col]</span></code> is the entry at (row, col).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.spatialmath.RotationMatrix.__slots__">
 <span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_handle',</span> <span class="pre">'__weakref__')</span></span><a class="headerlink" href="#viam.spatialmath.RotationMatrix.__slots__" title="Link to this definition"></a></dt>

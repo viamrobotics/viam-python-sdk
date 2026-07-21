@@ -98,12 +98,8 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">RotationMatrix</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A 3x3 rotation matrix backed by the spatialmath FFI.</span>
 
-<span class="sd">    ``elements`` is a 9-value list following Go ``rdk/spatialmath``&#39;s row-major</span>
-<span class="sd">    rotation-matrix convention (``elements[3*row + col]``). Construction and</span>
-<span class="sd">    readback are both raw pass-throughs of the underlying nalgebra buffer, so</span>
-<span class="sd">    they are mutually consistent by construction; that this raw buffer coincides</span>
-<span class="sd">    with rdk&#39;s row-major convention is an empirical fact pinned by the golden</span>
-<span class="sd">    parity tests (it is not a general column-major/row-major identity).</span>
+<span class="sd">    ``elements`` is a 9-value list in row-major order:</span>
+<span class="sd">    ``elements[3*row + col]`` is the entry at (row, col).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_handle&quot;</span><span class="p">,</span> <span class="s2">&quot;__weakref__&quot;</span><span class="p">)</span>
@@ -125,8 +121,10 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">read_struct</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">_Rotation3Struct</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]</span>
+        <span class="n">lib</span> <span class="o">=</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">lib</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">read_components</span><span class="p">(</span>
+            <span class="n">lib</span><span class="o">.</span><span class="n">viam_rotation_matrix_get_elements</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">viam_free_rotation_matrix_elements</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="RotationMatrix.to_quaternion">
 <a class="viewcode-back" href="../../../autoapi/viam/spatialmath/rotation_matrix/index.html#viam.spatialmath.RotationMatrix.to_quaternion">[docs]</a>
