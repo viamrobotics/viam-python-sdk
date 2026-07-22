@@ -5,6 +5,7 @@ isort:skip_file
 from collections import abc as _abc
 from common.v1 import common_pb2 as _common_pb2
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import duration_pb2 as _duration_pb2
 from google.protobuf import message as _message
 from google.protobuf import struct_pb2 as _struct_pb2
 from google.protobuf.internal import containers as _containers
@@ -82,6 +83,44 @@ class JointPositions(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___JointPositions: _TypeAlias = JointPositions
+
+@_typing.final
+class JointVelocities(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    VALUES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def values(self) -> _containers.RepeatedScalarFieldContainer[_builtins.float]:
+        """A list of joint velocities. Rotational values are in degrees per second, translational values in mm per second.
+        There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm.
+        """
+
+    def __init__(self, *, values: _abc.Iterable[_builtins.float] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['values', b'values']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___JointVelocities: _TypeAlias = JointVelocities
+
+@_typing.final
+class JointAccelerations(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    VALUES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def values(self) -> _containers.RepeatedScalarFieldContainer[_builtins.float]:
+        """A list of joint accelerations. Rotational values are in degrees per second squared, translational values in mm per second squared.
+        There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm.
+        """
+
+    def __init__(self, *, values: _abc.Iterable[_builtins.float] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['values', b'values']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___JointAccelerations: _TypeAlias = JointAccelerations
 
 @_typing.final
 class GetJointPositionsRequest(_message.Message):
@@ -254,6 +293,208 @@ class MoveThroughJointPositionsResponse(_message.Message):
     def __init__(self) -> None:
         ...
 Global___MoveThroughJointPositionsResponse: _TypeAlias = MoveThroughJointPositionsResponse
+
+@_typing.final
+class TrajectoryPoint(_message.Message):
+    """One waypoint in a streamed joint-space trajectory."""
+    DESCRIPTOR: _descriptor.Descriptor
+
+    @_typing.final
+    class KinematicConstraints(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
+        VELOCITIES_FIELD_NUMBER: _builtins.int
+        ACCELERATIONS_FIELD_NUMBER: _builtins.int
+
+        @_builtins.property
+        def velocities(self) -> Global___JointVelocities:
+            """Target joint velocities at this waypoint. If provided, the first point of the stream (the t=0 sample)
+            must have zero velocity. Server implementations should validate this constraint.
+            """
+
+        @_builtins.property
+        def accelerations(self) -> Global___JointAccelerations:
+            """Optional target joint accelerations at this waypoint."""
+
+        def __init__(self, *, velocities: Global___JointVelocities | None=..., accelerations: Global___JointAccelerations | None=...) -> None:
+            ...
+        _HasFieldArgType: _TypeAlias = _typing.Literal['_accelerations', b'_accelerations', 'accelerations', b'accelerations', 'velocities', b'velocities']
+
+        def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['_accelerations', b'_accelerations', 'accelerations', b'accelerations', 'velocities', b'velocities']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
+        _WhichOneofReturnType__accelerations: _TypeAlias = _typing.Literal['accelerations']
+        _WhichOneofArgType__accelerations: _TypeAlias = _typing.Literal['_accelerations', b'_accelerations']
+
+        def WhichOneof(self, oneof_group: _WhichOneofArgType__accelerations) -> _WhichOneofReturnType__accelerations | None:
+            ...
+    TIME_FIELD_NUMBER: _builtins.int
+    POSITIONS_FIELD_NUMBER: _builtins.int
+    CONSTRAINTS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def time(self) -> _duration_pb2.Duration:
+        """Time from the start of the motion at which this waypoint should be reached. Must be zero
+        for the first point of the stream and strictly increasing thereafter. Server implementations
+        should validate these constraints.
+        """
+
+    @_builtins.property
+    def positions(self) -> Global___JointPositions:
+        """Joint positions at this waypoint."""
+
+    @_builtins.property
+    def constraints(self) -> Global___TrajectoryPoint.KinematicConstraints:
+        """Optional target kinematic constraints at this waypoint."""
+
+    def __init__(self, *, time: _duration_pb2.Duration | None=..., positions: Global___JointPositions | None=..., constraints: Global___TrajectoryPoint.KinematicConstraints | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_constraints', b'_constraints', 'constraints', b'constraints', 'positions', b'positions', 'time', b'time']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_constraints', b'_constraints', 'constraints', b'constraints', 'positions', b'positions', 'time', b'time']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__constraints: _TypeAlias = _typing.Literal['constraints']
+    _WhichOneofArgType__constraints: _TypeAlias = _typing.Literal['_constraints', b'_constraints']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__constraints) -> _WhichOneofReturnType__constraints | None:
+        ...
+Global___TrajectoryPoint: _TypeAlias = TrajectoryPoint
+
+@_typing.final
+class MoveThroughJointPositionsStreamedRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    @_typing.final
+    class Init(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
+        EXTRA_FIELD_NUMBER: _builtins.int
+
+        @_builtins.property
+        def extra(self) -> _struct_pb2.Struct:
+            """Additional sticky arguments to the method."""
+
+        def __init__(self, *, extra: _struct_pb2.Struct | None=...) -> None:
+            ...
+        _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+        def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
+
+    @_typing.final
+    class TrajectoryBatch(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
+        POINTS_FIELD_NUMBER: _builtins.int
+
+        @_builtins.property
+        def points(self) -> _containers.RepeatedCompositeFieldContainer[Global___TrajectoryPoint]:
+            """Trajectory points to append to the motion, in order. Append-only; points cannot be
+            replaced or revoked.
+            """
+
+        def __init__(self, *, points: _abc.Iterable[Global___TrajectoryPoint] | None=...) -> None:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['points', b'points']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
+    NAME_FIELD_NUMBER: _builtins.int
+    INIT_FIELD_NUMBER: _builtins.int
+    BATCH_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the arm to control.'
+
+    @_builtins.property
+    def init(self) -> Global___MoveThroughJointPositionsStreamedRequest.Init:
+        """Stream initiation. Sent exactly once and must be the first message on the stream."""
+
+    @_builtins.property
+    def batch(self) -> Global___MoveThroughJointPositionsStreamedRequest.TrajectoryBatch:
+        """A batch of trajectory points to append to the running motion. Sent N times after init."""
+
+    def __init__(self, *, name: _builtins.str=..., init: Global___MoveThroughJointPositionsStreamedRequest.Init | None=..., batch: Global___MoveThroughJointPositionsStreamedRequest.TrajectoryBatch | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['batch', b'batch', 'init', b'init', 'message', b'message']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['batch', b'batch', 'init', b'init', 'message', b'message', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_message: _TypeAlias = _typing.Literal['init', 'batch']
+    _WhichOneofArgType_message: _TypeAlias = _typing.Literal['message', b'message']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_message) -> _WhichOneofReturnType_message | None:
+        ...
+Global___MoveThroughJointPositionsStreamedRequest: _TypeAlias = MoveThroughJointPositionsStreamedRequest
+
+@_typing.final
+class MoveThroughJointPositionsStreamedResponse(_message.Message):
+    """Streamed back to the client while an arm is performing a streaming move."""
+    DESCRIPTOR: _descriptor.Descriptor
+
+    @_typing.final
+    class BatchAck(_message.Message):
+        """BatchAck is returned by arm implementations to ack a
+        `TrajectoryBatch`. Due to the lack of actionable payload in
+        `BatchAck`, Arm implementations are not currently obligated to
+        ack every batch, or even any batch. It is currently unspecified
+        whether ack'ing a batch indicates its acceptance, issue to the
+        arm, or completion. These very relaxed requirements may become
+        tighter if and when `BatchAck` messages begin carrying meaningful
+        payloads back to the client. For now, the recommended practice
+        for arm implementors is to ack each batch that has been
+        successfully issued/enqueued to the arm.
+        """
+        DESCRIPTOR: _descriptor.Descriptor
+        EXTRA_FIELD_NUMBER: _builtins.int
+
+        @_builtins.property
+        def extra(self) -> _struct_pb2.Struct:
+            """Additional reply data"""
+
+        def __init__(self, *, extra: _struct_pb2.Struct | None=...) -> None:
+            ...
+        _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+        def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
+    ACK_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def ack(self) -> Global___MoveThroughJointPositionsStreamedResponse.BatchAck:
+        ...
+
+    def __init__(self, *, ack: Global___MoveThroughJointPositionsStreamedResponse.BatchAck | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['ack', b'ack', 'message', b'message']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['ack', b'ack', 'message', b'message']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_message: _TypeAlias = _typing.Literal['ack']
+    _WhichOneofArgType_message: _TypeAlias = _typing.Literal['message', b'message']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_message) -> _WhichOneofReturnType_message | None:
+        ...
+Global___MoveThroughJointPositionsStreamedResponse: _TypeAlias = MoveThroughJointPositionsStreamedResponse
 
 @_typing.final
 class StopRequest(_message.Message):

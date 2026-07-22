@@ -3,6 +3,7 @@
 isort:skip_file
 """
 from app.datasync.v1 import data_sync_pb2 as _data_sync_pb2
+from app.packages.v1 import packages_pb2 as _packages_pb2
 from collections import abc as _abc
 from common.v1 import common_pb2 as _common_pb2
 from google.protobuf import descriptor as _descriptor
@@ -1025,6 +1026,7 @@ class GetMachineStatusResponse(_message.Message):
     STATE_FIELD_NUMBER: _builtins.int
     JOB_STATUSES_FIELD_NUMBER: _builtins.int
     MODULES_FIELD_NUMBER: _builtins.int
+    PACKAGES_FIELD_NUMBER: _builtins.int
     state: Global___GetMachineStatusResponse.State.ValueType
 
     @_builtins.property
@@ -1043,13 +1045,17 @@ class GetMachineStatusResponse(_message.Message):
     def modules(self) -> _containers.RepeatedCompositeFieldContainer[Global___ModuleStatus]:
         ...
 
-    def __init__(self, *, resources: _abc.Iterable[Global___ResourceStatus] | None=..., config: Global___ConfigStatus | None=..., state: Global___GetMachineStatusResponse.State.ValueType=..., job_statuses: _abc.Iterable[Global___JobStatus] | None=..., modules: _abc.Iterable[Global___ModuleStatus] | None=...) -> None:
+    @_builtins.property
+    def packages(self) -> _containers.RepeatedCompositeFieldContainer[Global___PackageStatus]:
+        ...
+
+    def __init__(self, *, resources: _abc.Iterable[Global___ResourceStatus] | None=..., config: Global___ConfigStatus | None=..., state: Global___GetMachineStatusResponse.State.ValueType=..., job_statuses: _abc.Iterable[Global___JobStatus] | None=..., modules: _abc.Iterable[Global___ModuleStatus] | None=..., packages: _abc.Iterable[Global___PackageStatus] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['config', b'config']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'modules', b'modules', 'resources', b'resources', 'state', b'state']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'modules', b'modules', 'packages', b'packages', 'resources', b'resources', 'state', b'state']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -1220,6 +1226,82 @@ class ModuleStatus(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___ModuleStatus: _TypeAlias = ModuleStatus
+
+@_typing.final
+class PackageStatus(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    class _State:
+        ValueType = _typing.NewType('ValueType', _builtins.int)
+        V: _TypeAlias = ValueType
+
+    class _StateEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[PackageStatus._State.ValueType], _builtins.type):
+        DESCRIPTOR: _descriptor.EnumDescriptor
+        STATE_UNSPECIFIED: PackageStatus._State.ValueType
+        'state is unknown or has not been set yet'
+        STATE_DOWNLOADING: PackageStatus._State.ValueType
+        'package tarball is actively being fetched from the cloud'
+        STATE_LOADING: PackageStatus._State.ValueType
+        'tarball has been downloaded and is being extracted/verified'
+        STATE_FIRST_RUN: PackageStatus._State.ValueType
+        'first_run.sh script is executing (module packages only)'
+        STATE_READY: PackageStatus._State.ValueType
+        'package is fully installed and available for use'
+        STATE_FAILED: PackageStatus._State.ValueType
+        'package failed to download, extract, or complete first run'
+
+    class State(_State, metaclass=_StateEnumTypeWrapper):
+        ...
+    STATE_UNSPECIFIED: PackageStatus.State.ValueType
+    'state is unknown or has not been set yet'
+    STATE_DOWNLOADING: PackageStatus.State.ValueType
+    'package tarball is actively being fetched from the cloud'
+    STATE_LOADING: PackageStatus.State.ValueType
+    'tarball has been downloaded and is being extracted/verified'
+    STATE_FIRST_RUN: PackageStatus.State.ValueType
+    'first_run.sh script is executing (module packages only)'
+    STATE_READY: PackageStatus.State.ValueType
+    'package is fully installed and available for use'
+    STATE_FAILED: PackageStatus.State.ValueType
+    'package failed to download, extract, or complete first run'
+    NAME_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    STATE_FIELD_NUMBER: _builtins.int
+    ERROR_FIELD_NUMBER: _builtins.int
+    LAST_UPDATED_FIELD_NUMBER: _builtins.int
+    VERSION_FIELD_NUMBER: _builtins.int
+    BYTES_DOWNLOADED_FIELD_NUMBER: _builtins.int
+    TOTAL_BYTES_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'the package name as declared in the robot config (PackageConfig.Name)'
+    type: _packages_pb2.PackageType.ValueType
+    'the package type (module, ml_model, slam_map, etc.)'
+    state: Global___PackageStatus.State.ValueType
+    'current lifecycle state'
+    error: _builtins.str
+    'human-readable error detail when state == STATE_FAILED'
+    version: _builtins.str
+    'the version string from PackageConfig'
+    bytes_downloaded: _builtins.int
+    'number of bytes of the package tarball downloaded so far. Only populated\n    while state == STATE_DOWNLOADING; equals total_bytes once the download completes.\n    '
+    total_bytes: _builtins.int
+    'total size of the package tarball in bytes. Zero if the size is unknown.'
+
+    @_builtins.property
+    def last_updated(self) -> _timestamp_pb2.Timestamp:
+        """when this status was last updated"""
+
+    def __init__(self, *, name: _builtins.str=..., type: _packages_pb2.PackageType.ValueType=..., state: Global___PackageStatus.State.ValueType=..., error: _builtins.str=..., last_updated: _timestamp_pb2.Timestamp | None=..., version: _builtins.str=..., bytes_downloaded: _builtins.int=..., total_bytes: _builtins.int=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['last_updated', b'last_updated']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['bytes_downloaded', b'bytes_downloaded', 'error', b'error', 'last_updated', b'last_updated', 'name', b'name', 'state', b'state', 'total_bytes', b'total_bytes', 'type', b'type', 'version', b'version']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PackageStatus: _TypeAlias = PackageStatus
 
 @_typing.final
 class ConfigStatus(_message.Message):

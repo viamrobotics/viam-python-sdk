@@ -4414,6 +4414,7 @@ class ModuleVersion(_message.Message):
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: _builtins.int
     APPS_FIELD_NUMBER: _builtins.int
     DEPRECATED_STATUS_FIELD_NUMBER: _builtins.int
+    MIN_VIAM_SERVER_VERSION_FIELD_NUMBER: _builtins.int
     version: _builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: _builtins.str
@@ -4422,6 +4423,8 @@ class ModuleVersion(_message.Message):
     'The path to a setup script that is run before a newly downloaded module starts.'
     markdown_description: _builtins.str
     'The markdown documentation for this version of the module'
+    min_viam_server_version: _builtins.str
+    'The minimum version of viam-server required to run this version of the module.'
 
     @_builtins.property
     def files(self) -> _containers.RepeatedCompositeFieldContainer[Global___Uploads]:
@@ -4439,13 +4442,13 @@ class ModuleVersion(_message.Message):
     def deprecated_status(self) -> Global___DeprecatedStatus:
         """When set, marks this specific version as deprecated"""
 
-    def __init__(self, *, version: _builtins.str=..., files: _abc.Iterable[Global___Uploads] | None=..., models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., deprecated_status: Global___DeprecatedStatus | None=...) -> None:
+    def __init__(self, *, version: _builtins.str=..., files: _abc.Iterable[Global___Uploads] | None=..., models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., deprecated_status: Global___DeprecatedStatus | None=..., min_viam_server_version: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'deprecated_status', b'deprecated_status', 'first_run', b'first_run', 'markdown_description', b'markdown_description']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', '_min_viam_server_version', b'_min_viam_server_version', 'deprecated_status', b'deprecated_status', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'min_viam_server_version', b'min_viam_server_version']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'deprecated_status', b'deprecated_status', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deprecated_status', b'_deprecated_status', '_first_run', b'_first_run', '_markdown_description', b'_markdown_description', '_min_viam_server_version', b'_min_viam_server_version', 'apps', b'apps', 'deprecated_status', b'deprecated_status', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'min_viam_server_version', b'min_viam_server_version', 'models', b'models', 'version', b'version']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -4455,6 +4458,8 @@ class ModuleVersion(_message.Message):
     _WhichOneofArgType__first_run: _TypeAlias = _typing.Literal['_first_run', b'_first_run']
     _WhichOneofReturnType__markdown_description: _TypeAlias = _typing.Literal['markdown_description']
     _WhichOneofArgType__markdown_description: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description']
+    _WhichOneofReturnType__min_viam_server_version: _TypeAlias = _typing.Literal['min_viam_server_version']
+    _WhichOneofArgType__min_viam_server_version: _TypeAlias = _typing.Literal['_min_viam_server_version', b'_min_viam_server_version']
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None:
@@ -4466,6 +4471,10 @@ class ModuleVersion(_message.Message):
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__min_viam_server_version) -> _WhichOneofReturnType__min_viam_server_version | None:
         ...
 Global___ModuleVersion: _TypeAlias = ModuleVersion
 
@@ -4480,6 +4489,7 @@ class ModuleMetadata(_message.Message):
     APPS_FIELD_NUMBER: _builtins.int
     SOURCE_TYPE_FIELD_NUMBER: _builtins.int
     LANGUAGE_FIELD_NUMBER: _builtins.int
+    MIN_VIAM_SERVER_VERSION_FIELD_NUMBER: _builtins.int
     entrypoint: _builtins.str
     'The executable to run to start the module program'
     first_run: _builtins.str
@@ -4490,6 +4500,8 @@ class ModuleMetadata(_message.Message):
     'Determines the type of module, either a registry module or an inline module.'
     language: Global___ModuleLanguage.ValueType
     'Specifies the language that the module is written in.'
+    min_viam_server_version: _builtins.str
+    'The minimum version of viam-server required to run the module.'
 
     @_builtins.property
     def models(self) -> _containers.RepeatedCompositeFieldContainer[Global___Model]:
@@ -4505,13 +4517,13 @@ class ModuleMetadata(_message.Message):
     def apps(self) -> _containers.RepeatedCompositeFieldContainer[Global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, models: _abc.Iterable[Global___Model] | None=..., versions: _abc.Iterable[Global___ModuleVersion] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., source_type: Global___ModuleSourceType.ValueType | None=..., language: Global___ModuleLanguage.ValueType | None=...) -> None:
+    def __init__(self, *, models: _abc.Iterable[Global___Model] | None=..., versions: _abc.Iterable[Global___ModuleVersion] | None=..., entrypoint: _builtins.str=..., first_run: _builtins.str | None=..., markdown_description: _builtins.str | None=..., apps: _abc.Iterable[Global___App] | None=..., source_type: Global___ModuleSourceType.ValueType | None=..., language: Global___ModuleLanguage.ValueType | None=..., min_viam_server_version: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_source_type', b'_source_type', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'source_type', b'source_type']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_min_viam_server_version', b'_min_viam_server_version', '_source_type', b'_source_type', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'min_viam_server_version', b'min_viam_server_version', 'source_type', b'source_type']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_source_type', b'_source_type', 'apps', b'apps', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'models', b'models', 'source_type', b'source_type', 'versions', b'versions']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_min_viam_server_version', b'_min_viam_server_version', '_source_type', b'_source_type', 'apps', b'apps', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'min_viam_server_version', b'min_viam_server_version', 'models', b'models', 'source_type', b'source_type', 'versions', b'versions']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -4521,6 +4533,8 @@ class ModuleMetadata(_message.Message):
     _WhichOneofArgType__language: _TypeAlias = _typing.Literal['_language', b'_language']
     _WhichOneofReturnType__markdown_description: _TypeAlias = _typing.Literal['markdown_description']
     _WhichOneofArgType__markdown_description: _TypeAlias = _typing.Literal['_markdown_description', b'_markdown_description']
+    _WhichOneofReturnType__min_viam_server_version: _TypeAlias = _typing.Literal['min_viam_server_version']
+    _WhichOneofArgType__min_viam_server_version: _TypeAlias = _typing.Literal['_min_viam_server_version', b'_min_viam_server_version']
     _WhichOneofReturnType__source_type: _TypeAlias = _typing.Literal['source_type']
     _WhichOneofArgType__source_type: _TypeAlias = _typing.Literal['_source_type', b'_source_type']
 
@@ -4534,6 +4548,10 @@ class ModuleMetadata(_message.Message):
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__min_viam_server_version) -> _WhichOneofReturnType__min_viam_server_version | None:
         ...
 
     @_typing.overload
@@ -5412,12 +5430,15 @@ class UpdateModuleMetadata(_message.Message):
     APPS_FIELD_NUMBER: _builtins.int
     SOURCE_TYPE_FIELD_NUMBER: _builtins.int
     LANGUAGE_FIELD_NUMBER: _builtins.int
+    MIN_VIAM_SERVER_VERSION_FIELD_NUMBER: _builtins.int
     entrypoint: _builtins.str
     'The executable to run to start the module program'
     source_type: Global___ModuleSourceType.ValueType
     'Determines where the source code of module is managed, either externally or hosted by viam.'
     language: Global___ModuleLanguage.ValueType
     'The language the module is written in'
+    min_viam_server_version: _builtins.str
+    'The minimum version of viam-server required to run the module.'
 
     @_builtins.property
     def models(self) -> _containers.RepeatedCompositeFieldContainer[Global___Model]:
@@ -5427,23 +5448,29 @@ class UpdateModuleMetadata(_message.Message):
     def apps(self) -> _containers.RepeatedCompositeFieldContainer[Global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., apps: _abc.Iterable[Global___App] | None=..., source_type: Global___ModuleSourceType.ValueType | None=..., language: Global___ModuleLanguage.ValueType | None=...) -> None:
+    def __init__(self, *, models: _abc.Iterable[Global___Model] | None=..., entrypoint: _builtins.str=..., apps: _abc.Iterable[Global___App] | None=..., source_type: Global___ModuleSourceType.ValueType | None=..., language: Global___ModuleLanguage.ValueType | None=..., min_viam_server_version: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_language', b'_language', '_source_type', b'_source_type', 'language', b'language', 'source_type', b'source_type']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_language', b'_language', '_min_viam_server_version', b'_min_viam_server_version', '_source_type', b'_source_type', 'language', b'language', 'min_viam_server_version', b'min_viam_server_version', 'source_type', b'source_type']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_language', b'_language', '_source_type', b'_source_type', 'apps', b'apps', 'entrypoint', b'entrypoint', 'language', b'language', 'models', b'models', 'source_type', b'source_type']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_language', b'_language', '_min_viam_server_version', b'_min_viam_server_version', '_source_type', b'_source_type', 'apps', b'apps', 'entrypoint', b'entrypoint', 'language', b'language', 'min_viam_server_version', b'min_viam_server_version', 'models', b'models', 'source_type', b'source_type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
     _WhichOneofReturnType__language: _TypeAlias = _typing.Literal['language']
     _WhichOneofArgType__language: _TypeAlias = _typing.Literal['_language', b'_language']
+    _WhichOneofReturnType__min_viam_server_version: _TypeAlias = _typing.Literal['min_viam_server_version']
+    _WhichOneofArgType__min_viam_server_version: _TypeAlias = _typing.Literal['_min_viam_server_version', b'_min_viam_server_version']
     _WhichOneofReturnType__source_type: _TypeAlias = _typing.Literal['source_type']
     _WhichOneofArgType__source_type: _TypeAlias = _typing.Literal['_source_type', b'_source_type']
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__language) -> _WhichOneofReturnType__language | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__min_viam_server_version) -> _WhichOneofReturnType__min_viam_server_version | None:
         ...
 
     @_typing.overload
