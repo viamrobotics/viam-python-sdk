@@ -32,9 +32,7 @@ class RotationMatrix:
     @property
     def elements(self) -> List[float]:
         lib = _ffi.lib()
-        return _ffi.read_components(
-            lib.viam_rotation_matrix_get_elements, self._handle, 9, lib.viam_free_rotation_matrix_elements
-        )
+        return _ffi.read_components(lib.viam_rotation_matrix_get_elements, self._handle, 9, lib.viam_free_rotation_matrix_elements)
 
     def to_quaternion(self):
         from .quaternion import Quaternion
