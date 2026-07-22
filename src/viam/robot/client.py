@@ -959,9 +959,10 @@ class RobotClient:
             cloud_metadata = machine_status.resources[0].cloud_metadata
             config_status = machine_status.config
             module_statuses = machine_status.modules
+            package_statuses = machine_status.packages
 
         Returns:
-            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, and the status of modules (List[ModuleStatus]).
+            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, the status of modules (List[ModuleStatus]), and the status of packages (List[PackageStatus]).
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
