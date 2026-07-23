@@ -2,7 +2,7 @@
 
 import asyncio
 import json
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Tuple, Union
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
@@ -89,6 +89,33 @@ class MyCoolArm(Arm):
                 await self.stop()
                 break
 
+        self.is_stopped = True
+
+    async def move_through_joint_positions(
+        self, positions: List[JointPositions], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        # Move through the waypoints in order. A real arm would plan a smooth path across them.
+        self.is_stopped = False
+        for jp in positions:
+            self.joint_positions = jp
+        self.is_stopped = True
+
+    async def move_through_joint_positions_streamed(  # type: ignore
+        self,
+        batches: AsyncIterator[List[Arm.TrajectoryPoint]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[Arm.TrajectoryUpdate]:
+        # Each list the framework hands us is one wire batch. Walk it point by point to drive the
+        # arm, then send one update back per batch so the caller can watch progress and so a fault
+        # reaches it while the trajectory is still running.
+        self.is_stopped = False
+        async for batch in batches:
+            for point in batch:
+                self.joint_positions = JointPositions(values=point.positions)
+            yield Arm.TrajectoryUpdate()
         self.is_stopped = True
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):

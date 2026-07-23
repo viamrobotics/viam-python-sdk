@@ -67,6 +67,8 @@ class MockArm(Arm):
         self.geometries = GEOMETRIES
         self.extra = None
         self.timeout: Optional[float] = None
+        self.move_through_positions: Optional[List[JointPositions]] = None
+        self.streamed_points: List[Arm.TrajectoryPoint] = []
         super().__init__(name)
 
     async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:
@@ -101,6 +103,36 @@ class MockArm(Arm):
         self.is_stopped = False
         self.extra = extra
         self.timeout = timeout
+
+    async def move_through_joint_positions(
+        self, positions: List[JointPositions], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        self.move_through_positions = positions
+        if positions:
+            self.joint_positions = positions[-1]
+        self.is_stopped = False
+        self.extra = extra
+        self.timeout = timeout
+
+    async def move_through_joint_positions_streamed(  # type: ignore
+        self,
+        batches: AsyncIterator[List[Arm.TrajectoryPoint]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[Arm.TrajectoryUpdate]:
+        self.is_stopped = False
+        self.extra = extra
+        self.timeout = timeout
+        self.streamed_points = []
+        async for batch in batches:
+            for point in batch:
+                self.streamed_points.append(point)
+                self.joint_positions = JointPositions(values=point.positions)
+            # Acknowledge each batch with one update, as a real driver would.
+            yield Arm.TrajectoryUpdate()
+        self.is_stopped = True
 
     async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True

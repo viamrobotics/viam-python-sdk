@@ -1,8 +1,18 @@
 import abc
-from typing import Any, Dict, Final, Optional
+from dataclasses import dataclass
+from datetime import timedelta
+from typing import Any, AsyncIterator, Dict, Final, List, Optional
+
+from google.protobuf.duration_pb2 import Duration
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
+from viam.proto.component.arm import (
+    JointAccelerations,
+    JointVelocities,
+    MoveThroughJointPositionsStreamedResponse,
+    TrajectoryPoint as TrajectoryPointPb,
+)
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from . import JointPositions, Pose
@@ -28,6 +38,99 @@ class Arm(ComponentBase):
     """
 
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
+
+    @dataclass
+    class KinematicConstraints:
+        """
+        Optional per-waypoint kinematic constraints attached to a ``TrajectoryPoint``.
+
+        Velocities are required whenever constraints are present; accelerations are optional and
+        may only be given alongside velocities. Each list runs from the base joint out to the end
+        effector and must match the arm's degrees of freedom.
+        """
+
+        velocities: List[float]
+        """Target joint velocities at this waypoint. Rotational values in degrees per second,
+        translational values in mm per second."""
+
+        accelerations: Optional[List[float]] = None
+        """Optional target joint accelerations at this waypoint. Rotational values in
+        degrees per second squared, translational values in mm per second squared."""
+
+    @dataclass
+    class TrajectoryPoint:
+        """
+        A single waypoint of a kinematized trajectory, as consumed by
+        ``move_through_joint_positions_streamed``.
+
+        Point times must strictly increase across a stream, and the first point must have a
+        ``time`` of zero.
+        """
+
+        time: timedelta
+        """Time at which this waypoint should be reached, measured from the start of the motion."""
+
+        positions: List[float]
+        """Joint positions at this waypoint. Rotational values in degrees, translational values in mm."""
+
+        constraints: Optional["Arm.KinematicConstraints"] = None
+        """Optional kinematic constraints at this waypoint."""
+
+        def to_proto(self) -> TrajectoryPointPb:
+            duration = Duration()
+            duration.FromTimedelta(self.time)
+            constraints_pb = None
+            if self.constraints is not None:
+                accelerations_pb = None
+                if self.constraints.accelerations is not None:
+                    accelerations_pb = JointAccelerations(values=self.constraints.accelerations)
+                constraints_pb = TrajectoryPointPb.KinematicConstraints(
+                    velocities=JointVelocities(values=self.constraints.velocities),
+                    accelerations=accelerations_pb,
+                )
+            return TrajectoryPointPb(
+                time=duration,
+                positions=JointPositions(values=self.positions),
+                constraints=constraints_pb,
+            )
+
+        @classmethod
+        def from_proto(cls, proto: TrajectoryPointPb) -> "Arm.TrajectoryPoint":
+            constraints = None
+            if proto.HasField("constraints"):
+                accelerations = None
+                if proto.constraints.HasField("accelerations"):
+                    accelerations = list(proto.constraints.accelerations.values)
+                constraints = Arm.KinematicConstraints(
+                    velocities=list(proto.constraints.velocities.values),
+                    accelerations=accelerations,
+                )
+            return cls(
+                time=proto.time.ToTimedelta(),
+                positions=list(proto.positions.values),
+                constraints=constraints,
+            )
+
+    @dataclass
+    class TrajectoryUpdate:
+        """
+        An update reported by the arm as it executes a ``move_through_joint_positions_streamed`` trajectory.
+
+        The type is intentionally empty. The response is a ``oneof`` whose only branch today is an empty
+        ``BatchAck``, so receiving a response is itself the acknowledgment. The ``oneof`` exists so the arm's
+        replies can grow new branches without breaking existing clients on the wire; when a branch carries
+        data worth surfacing (``BatchAck``'s ``extra``, or a new branch entirely), this type grows to match.
+        """
+
+        def to_proto(self) -> MoveThroughJointPositionsStreamedResponse:
+            # A received response is itself the acknowledgment, so send the default message and leave the
+            # oneof unset: the only branch is empty, nothing reads it today, and RDK and the C++ SDK send
+            # it unset as well. If a future branch carries data, set it here.
+            return MoveThroughJointPositionsStreamedResponse()
+
+        @classmethod
+        def from_proto(cls, proto: MoveThroughJointPositionsStreamedResponse) -> "Arm.TrajectoryUpdate":
+            return cls()
 
     @abc.abstractmethod
     async def get_end_position(
@@ -119,6 +222,94 @@ class Arm(ComponentBase):
             positions (JointPositions): The destination ``JointPositions`` for the arm.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Move each joint on the arm to through the corresponding angles specified in each entry of ``positions``.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Declare a list of values with your desired rotational value for each joint on
+            # the arm. This example is for a 5dof arm.
+            degrees1 = [0.0, 45.0, 0.0, 0.0, 0.0]
+            degrees2 = [0.0, 45.0, 45.0, 0.0, 0.0]
+
+            # Declare a new JointPositions with these values.
+            positions = [JointPositions(values=degrees1), JointPositions(values=degrees2)]
+
+            # Move each joint of the arm to the position these values specify.
+            await my_arm.move_through_joint_positions(positions=positions)
+
+        Args:
+            positions (JointPositions): A list of destination ``JointPositions`` for the arm.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def move_through_joint_positions_streamed(
+        self,
+        batches: AsyncIterator[List["Arm.TrajectoryPoint"]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator["Arm.TrajectoryUpdate"]:
+        """
+        Move the arm through a time-parameterized stream of joint waypoints.
+
+        The caller supplies an asynchronous iterator of batches, each batch a ``list`` of
+        ``TrajectoryPoint``. Each list the caller yields is sent as one wire ``TrajectoryBatch``,
+        so the caller sets the wire cadence by choosing how many points go in each list; a caller
+        that wants to send one point at a time yields a single-element list. The arm's updates are
+        yielded back as they arrive, so iterating the return value observes execution in real time.
+        If the arm faults mid-trajectory, that fault arrives as a gRPC error on the iteration, so the
+        ``async for`` raises instead of ending normally. Delivering faults mid-execution, not only at
+        the end, is the point of streaming this call.
+
+        The first point of the stream must have time zero, and if it carries velocity constraints
+        those velocities must all be zero, since the trajectory starts from rest. Point times must
+        strictly increase across the whole stream, not merely within a batch. A ``timeout``, if
+        given, bounds the entire stream, not a single message, so an open-ended trajectory should
+        normally leave it unset.
+
+        An implementation must yield at least one ``TrajectoryUpdate`` before returning. Besides
+        reporting progress, this is what makes the implementation an asynchronous generator; a
+        coroutine that never yields cannot be iterated as a stream and fails at runtime.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            async def batches():
+                yield [
+                    Arm.TrajectoryPoint(time=timedelta(seconds=0.0), positions=[0.0, 0.0, 0.0, 0.0, 0.0]),
+                    Arm.TrajectoryPoint(time=timedelta(seconds=1.0), positions=[10.0, 0.0, 0.0, 0.0, 0.0]),
+                ]
+
+            async for update in my_arm.move_through_joint_positions_streamed(batches()):
+                # Observe the arm's updates; a fault raises out of this iteration.
+                pass
+
+        Args:
+            batches: an asynchronous iterator of lists of ``TrajectoryPoint``. Each list becomes
+                one wire ``TrajectoryBatch``.
+
+        Returns:
+            AsyncIterator[Arm.TrajectoryUpdate]: the arm's updates, yielded as they arrive.
         """
         ...
 

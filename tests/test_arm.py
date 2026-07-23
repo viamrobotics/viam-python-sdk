@@ -1,6 +1,11 @@
+from datetime import timedelta
+from typing import AsyncIterator, List
+
+import pytest
+from grpclib import GRPCError, Status
 from grpclib.testing import ChannelFor
 
-from viam.components.arm import ArmClient, KinematicsFileFormat
+from viam.components.arm import Arm, ArmClient, KinematicsFileFormat
 from viam.components.arm.service import ArmRPCService
 from viam.proto.common import (
     DoCommandRequest,
@@ -268,3 +273,119 @@ class TestClient:
             client = ArmClient(self.name, channel)
             await client.get_end_position(extra={"foo": "bar"})
             assert self.arm.extra == {"foo": "bar"}
+
+
+async def _batches(batch_lists: List[List[Arm.TrajectoryPoint]]) -> AsyncIterator[List[Arm.TrajectoryPoint]]:
+    for batch in batch_lists:
+        yield batch
+
+
+class TestArmStreamed:
+    @classmethod
+    def setup_class(cls):
+        cls.name = "arm"
+        cls.arm = MockArm(name=cls.name)
+        cls.manager = ResourceManager([cls.arm])
+        cls.service = ArmRPCService(cls.manager)
+
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            positions = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+            await client.move_through_joint_positions(positions)
+            assert self.arm.move_through_positions == positions
+
+    async def test_streamed_round_trip(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            first = [
+                Arm.TrajectoryPoint(time=timedelta(0), positions=[0.0, 0.0, 0.0]),
+                Arm.TrajectoryPoint(time=timedelta(seconds=1), positions=[1.0, 2.0, 3.0]),
+            ]
+            second = [Arm.TrajectoryPoint(time=timedelta(seconds=2), positions=[4.0, 5.0, 6.0])]
+            updates = [update async for update in client.move_through_joint_positions_streamed(_batches([first, second]))]
+            assert len(updates) == 2
+            assert len(self.arm.streamed_points) == 3
+            assert self.arm.streamed_points[-1].positions == [4.0, 5.0, 6.0]
+
+    async def test_streamed_rejects_nonzero_first_time(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            bad = [Arm.TrajectoryPoint(time=timedelta(seconds=1), positions=[0.0])]
+            with pytest.raises(GRPCError) as excinfo:
+                async for _ in client.move_through_joint_positions_streamed(_batches([bad])):
+                    pass
+            assert excinfo.value.status == Status.INVALID_ARGUMENT
+
+    async def test_streamed_rejects_nonmonotonic_time(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            bad = [
+                Arm.TrajectoryPoint(time=timedelta(0), positions=[0.0]),
+                Arm.TrajectoryPoint(time=timedelta(0), positions=[0.0]),
+            ]
+            with pytest.raises(GRPCError) as excinfo:
+                async for _ in client.move_through_joint_positions_streamed(_batches([bad])):
+                    pass
+            assert excinfo.value.status == Status.INVALID_ARGUMENT
+
+    async def test_streamed_rejects_first_point_in_motion(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            bad = [
+                Arm.TrajectoryPoint(
+                    time=timedelta(0), positions=[0.0], constraints=Arm.KinematicConstraints(velocities=[1.0])
+                )
+            ]
+            with pytest.raises(GRPCError) as excinfo:
+                async for _ in client.move_through_joint_positions_streamed(_batches([bad])):
+                    pass
+            assert excinfo.value.status == Status.INVALID_ARGUMENT
+
+    async def test_streamed_producer_error_surfaces(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+
+            class ProducerError(Exception):
+                pass
+
+            async def failing_batches() -> AsyncIterator[List[Arm.TrajectoryPoint]]:
+                yield [Arm.TrajectoryPoint(time=timedelta(0), positions=[0.0])]
+                raise ProducerError()
+
+            with pytest.raises(ProducerError):
+                async for _ in client.move_through_joint_positions_streamed(failing_batches()):
+                    pass
+
+
+class TestTrajectoryConversions:
+    def test_trajectory_point_round_trip_with_accelerations(self):
+        point = Arm.TrajectoryPoint(
+            time=timedelta(seconds=1, milliseconds=500),
+            positions=[1.0, 2.0, 3.0],
+            constraints=Arm.KinematicConstraints(velocities=[0.5, 0.5, 0.5], accelerations=[0.25, 0.25, 0.25]),
+        )
+        restored = Arm.TrajectoryPoint.from_proto(point.to_proto())
+        assert restored.time == point.time
+        assert restored.positions == point.positions
+        assert restored.constraints is not None
+        assert restored.constraints.velocities == [0.5, 0.5, 0.5]
+        assert restored.constraints.accelerations == [0.25, 0.25, 0.25]
+
+    def test_trajectory_point_round_trip_without_constraints(self):
+        point = Arm.TrajectoryPoint(time=timedelta(0), positions=[0.0, 0.0])
+        restored = Arm.TrajectoryPoint.from_proto(point.to_proto())
+        assert restored.time == timedelta(0)
+        assert restored.positions == [0.0, 0.0]
+        assert restored.constraints is None
+
+    def test_kinematic_constraints_without_accelerations(self):
+        point = Arm.TrajectoryPoint(time=timedelta(seconds=2), positions=[1.0], constraints=Arm.KinematicConstraints(velocities=[0.0]))
+        restored = Arm.TrajectoryPoint.from_proto(point.to_proto())
+        assert restored.constraints is not None
+        assert restored.constraints.velocities == [0.0]
+        assert restored.constraints.accelerations is None
+
+    def test_trajectory_update_round_trip(self):
+        restored = Arm.TrajectoryUpdate.from_proto(Arm.TrajectoryUpdate().to_proto())
+        assert isinstance(restored, Arm.TrajectoryUpdate)
