@@ -11,10 +11,14 @@ from ....gen.component.arm.v1.arm_pb2 import (
     GetJointPositionsResponse,
     IsMovingRequest,
     IsMovingResponse,
+    JointAccelerations,
     JointPositions,
+    JointVelocities,
     MoveOptions,
     MoveThroughJointPositionsRequest,
     MoveThroughJointPositionsResponse,
+    MoveThroughJointPositionsStreamedRequest,
+    MoveThroughJointPositionsStreamedResponse,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
@@ -22,6 +26,7 @@ from ....gen.component.arm.v1.arm_pb2 import (
     Status,
     StopRequest,
     StopResponse,
+    TrajectoryPoint,
 )
 
 __all__ = [
@@ -34,10 +39,14 @@ __all__ = [
     "GetJointPositionsResponse",
     "IsMovingRequest",
     "IsMovingResponse",
+    "JointAccelerations",
     "JointPositions",
+    "JointVelocities",
     "MoveOptions",
     "MoveThroughJointPositionsRequest",
     "MoveThroughJointPositionsResponse",
+    "MoveThroughJointPositionsStreamedRequest",
+    "MoveThroughJointPositionsStreamedResponse",
     "MoveToJointPositionsRequest",
     "MoveToJointPositionsResponse",
     "MoveToPositionRequest",
@@ -45,4 +54,5 @@ __all__ = [
     "Status",
     "StopRequest",
     "StopResponse",
+    "TrajectoryPoint",
 ]
