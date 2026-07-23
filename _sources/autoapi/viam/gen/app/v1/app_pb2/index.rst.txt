@@ -7406,7 +7406,7 @@ Module Contents
    :canonical: CheckPermissionsResponse
 
 
-.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[Global___Uploads] | None = ..., models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., deprecated_status: Global___DeprecatedStatus | None = ...)
+.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[Global___Uploads] | None = ..., models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., deprecated_status: Global___DeprecatedStatus | None = ..., min_viam_server_version: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7440,6 +7440,12 @@ Module Contents
       :type:  str
 
       The markdown documentation for this version of the module
+
+
+   .. py:attribute:: min_viam_server_version
+      :type:  str
+
+      The minimum version of viam-server required to run this version of the module.
 
 
    .. py:method:: files() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Uploads]
@@ -7487,6 +7493,7 @@ Module Contents
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__deprecated_status) -> _WhichOneofReturnType__deprecated_status | None
                   WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
                   WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__min_viam_server_version) -> _WhichOneofReturnType__min_viam_server_version | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7506,7 +7513,7 @@ Module Contents
    :canonical: ModuleVersion
 
 
-.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[Global___Model] | None = ..., versions: collections.abc.Iterable[Global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., source_type: Global___ModuleSourceType | None = ..., language: Global___ModuleLanguage | None = ...)
+.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[Global___Model] | None = ..., versions: collections.abc.Iterable[Global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[Global___App] | None = ..., source_type: Global___ModuleSourceType | None = ..., language: Global___ModuleLanguage | None = ..., min_viam_server_version: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7546,6 +7553,12 @@ Module Contents
       :type:  Global___ModuleLanguage
 
       Specifies the language that the module is written in.
+
+
+   .. py:attribute:: min_viam_server_version
+      :type:  str
+
+      The minimum version of viam-server required to run the module.
 
 
    .. py:method:: models() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Model]
@@ -7588,6 +7601,7 @@ Module Contents
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__first_run) -> _WhichOneofReturnType__first_run | None
                   WhichOneof(oneof_group: _WhichOneofArgType__language) -> _WhichOneofReturnType__language | None
                   WhichOneof(oneof_group: _WhichOneofArgType__markdown_description) -> _WhichOneofReturnType__markdown_description | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__min_viam_server_version) -> _WhichOneofReturnType__min_viam_server_version | None
                   WhichOneof(oneof_group: _WhichOneofArgType__source_type) -> _WhichOneofReturnType__source_type | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -8928,7 +8942,7 @@ Module Contents
    :canonical: UpdateModuleResponse
 
 
-.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., apps: collections.abc.Iterable[Global___App] | None = ..., source_type: Global___ModuleSourceType | None = ..., language: Global___ModuleLanguage | None = ...)
+.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., apps: collections.abc.Iterable[Global___App] | None = ..., source_type: Global___ModuleSourceType | None = ..., language: Global___ModuleLanguage | None = ..., min_viam_server_version: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8956,6 +8970,12 @@ Module Contents
       :type:  Global___ModuleLanguage
 
       The language the module is written in
+
+
+   .. py:attribute:: min_viam_server_version
+      :type:  str
+
+      The minimum version of viam-server required to run the module.
 
 
    .. py:method:: models() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Model]
@@ -8989,6 +9009,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__language) -> _WhichOneofReturnType__language | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__min_viam_server_version) -> _WhichOneofReturnType__min_viam_server_version | None
                   WhichOneof(oneof_group: _WhichOneofArgType__source_type) -> _WhichOneofReturnType__source_type | None
 
       Returns the name of the field that is set inside a oneof group.

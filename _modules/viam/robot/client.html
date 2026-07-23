@@ -1117,9 +1117,10 @@
 <span class="sd">            cloud_metadata = machine_status.resources[0].cloud_metadata</span>
 <span class="sd">            config_status = machine_status.config</span>
 <span class="sd">            module_statuses = machine_status.modules</span>
+<span class="sd">            package_statuses = machine_status.packages</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, and the status of modules (List[ModuleStatus]).</span>
+<span class="sd">            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, the status of modules (List[ModuleStatus]), and the status of packages (List[PackageStatus]).</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

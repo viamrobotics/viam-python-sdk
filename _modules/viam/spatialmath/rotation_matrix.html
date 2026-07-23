@@ -122,9 +122,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
         <span class="n">lib</span> <span class="o">=</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">lib</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">read_components</span><span class="p">(</span>
-            <span class="n">lib</span><span class="o">.</span><span class="n">viam_rotation_matrix_get_elements</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">viam_free_rotation_matrix_elements</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">_ffi</span><span class="o">.</span><span class="n">read_components</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">viam_rotation_matrix_get_elements</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">viam_free_rotation_matrix_elements</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RotationMatrix.to_quaternion">
 <a class="viewcode-back" href="../../../autoapi/viam/spatialmath/rotation_matrix/index.html#viam.spatialmath.RotationMatrix.to_quaternion">[docs]</a>
