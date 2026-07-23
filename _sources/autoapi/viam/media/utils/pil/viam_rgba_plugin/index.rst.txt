@@ -88,7 +88,7 @@ Module Contents
    See :ref:`Writing Your Own File Codec in Python<file-codecs-py>`
 
 
-   .. py:method:: decode(buffer: bytes | PIL.Image.SupportsArrayInterface) -> tuple[int, int]
+   .. py:method:: decode(buffer: bytes | bytearray | memoryview | PIL.Image.SupportsArrayInterface) -> tuple[int, int]
 
       Override to perform the decoding process.
 
