@@ -1,5 +1,5 @@
 import abc
-from typing import Any, AsyncIterator, Dict, Final, Optional, TypeAlias
+from typing import Any, AsyncIterable, Dict, Final, Optional, TypeAlias
 
 from viam.proto.common import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
@@ -54,30 +54,32 @@ class AudioOut(ComponentBase):
     @abc.abstractmethod
     async def play_stream(
         self,
-        chunks: AsyncIterator[bytes],
-        info: Optional[AudioInfo] = None,
+        info: AudioInfo,
+        chunks: AsyncIterable[bytes],
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> None:
         """
-        Play audio data from a stream of chunks.
+        Stream audio chunks to the audio output device for playback.
+
+        The caller provides an async iterable of raw audio bytes. Each chunk
+        must match the codec and format described by ``info``. Implementations
+        consume the iterable until it is exhausted, playing chunks as they arrive.
 
         ::
 
-            my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
-
-            async def audio_generator():
-                for chunk in audio_chunks:
+            async def chunk_source():
+                for chunk in pcm_chunks:
                     yield chunk
 
-            audio_info = AudioInfo(codec=AudioCodec.PCM16, sample_rate_hz=44100, num_channels=2)
-            await my_audio_out.play_stream(audio_generator(), audio_info)
+            audio_info = AudioInfo(codec="pcm16", sample_rate_hz=22050, num_channels=1)
+            await my_audio_out.play_stream(audio_info, chunk_source())
 
         Args:
-            chunks: async iterator of audio data chunks to play
-            info: (optional) information about the audio data such as codec, sample rate, and channel count
+            info: information about the audio stream such as codec, sample rate, and channel count
+            chunks: async iterable of audio bytes to play in order
         """
 
     @abc.abstractmethod
