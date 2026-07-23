@@ -62,7 +62,8 @@ class RGBAImage(ImageFile):
 class RGBADecoder(PyDecoder):
     _pulls_fd = True
 
-    def decode(self, buffer: bytes | Image.SupportsArrayInterface) -> tuple[int, int]:
+    # Image.DecoderInput spelled out for Pillow < 12.3 compatibility
+    def decode(self, buffer: bytes | bytearray | memoryview | Image.SupportsArrayInterface) -> tuple[int, int]:
         assert self.im is not None
         assert self.fd is not None
         width, height = self.im.size
