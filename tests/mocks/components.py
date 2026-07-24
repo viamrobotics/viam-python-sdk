@@ -190,9 +190,7 @@ class MockAudioOut(AudioOut):
         self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
-        self.play_stream_called = False
         self.last_streamed_info: Optional[AudioInfo] = None
-        self.streamed_chunks: list[bytes] = []
 
     async def play(
         self,
