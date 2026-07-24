@@ -17,6 +17,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.robot.service import RobotService
+from viam.rpc.tracing import start_server_span
 
 from .signaling import SignalingService
 
@@ -63,23 +64,25 @@ class Server(ResourceManager):
             host = address[0]
             port = address[1]
         method_func = event.method_func
+        method_name = event.method_name
 
         async def log_resource_name(stream: Stream):
             recv_msg = stream.recv_message
 
             async def rcv_and_log_msg():
                 msg = await recv_msg()
-                log_msg = f"[gRPC] Received message from {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
+                log_msg = f"[gRPC] Received message from {host or 'xxxx'}:{port or 'xxxx'} - {method_name}"
                 if msg and hasattr(msg, "name"):
                     log_msg += f" for resource named: {msg.name}"
                 LOGGER.debug(log_msg)
                 return msg
 
             stream.recv_message = rcv_and_log_msg
-            try:
-                return await method_func(stream)
-            finally:
-                LOGGER.debug(f"[gRPC] Finished call from {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}")
+            with start_server_span(method_name, stream.metadata or {}):
+                try:
+                    return await method_func(stream)
+                finally:
+                    LOGGER.debug(f"[gRPC] Finished call from {host or 'xxxx'}:{port or 'xxxx'} - {method_name}")
 
         event.method_func = log_resource_name
 

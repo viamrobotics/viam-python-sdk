@@ -66,6 +66,10 @@ from viam.proto.app import (
     DeleteRobotPartSecretResponse,
     DeleteRobotRequest,
     DeleteRobotResponse,
+    DeprecateRegistryItemRequest,
+    DeprecateRegistryItemResponse,
+    DeprecateRegistryItemVersionRequest,
+    DeprecateRegistryItemVersionResponse,
     Fragment,
     GetDevicePushTokensRequest,
     GetDevicePushTokensResponse,
@@ -164,6 +168,10 @@ from viam.proto.app import (
     ShareLocationResponse,
     TailRobotPartLogsRequest,
     TailRobotPartLogsResponse,
+    UndeprecateRegistryItemRequest,
+    UndeprecateRegistryItemResponse,
+    UndeprecateRegistryItemVersionRequest,
+    UndeprecateRegistryItemVersionResponse,
     UnimplementedAppServiceBase,
     UnshareLocationRequest,
     UnshareLocationResponse,
@@ -214,6 +222,8 @@ from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsResponse,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
+    AddSequencesToDatasetRequest,
+    AddSequencesToDatasetResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
@@ -245,6 +255,8 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    GetSequenceBinaryDataRequest,
+    GetSequenceBinaryDataResponse,
     Index,
     ListIndexesRequest,
     ListIndexesResponse,
@@ -252,10 +264,14 @@ from viam.proto.app.data import (
     RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveBoundingBoxFromImageByIDResponse,
+    RemoveSequencesFromDatasetRequest,
+    RemoveSequencesFromDatasetResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
+    SequencesByDatasetIDRequest,
+    SequencesByDatasetIDResponse,
     TabularData,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
@@ -296,6 +312,8 @@ from viam.proto.app.dataset import (
     DatasetServiceBase,
     DeleteDatasetRequest,
     DeleteDatasetResponse,
+    GetSequenceDatasetExportRequest,
+    GetSequenceDatasetExportResponse,
     ListDatasetsByIDsRequest,
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
@@ -304,6 +322,8 @@ from viam.proto.app.dataset import (
     MergeDatasetsResponse,
     RenameDatasetRequest,
     RenameDatasetResponse,
+    StartSequenceDatasetExportRequest,
+    StartSequenceDatasetExportResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -1145,6 +1165,40 @@ class MockData(UnimplementedDataServiceBase):
         expires_at.FromDatetime(datetime(2024, 12, 25, 12, 0, 0))
         await stream.send_message(CreateBinaryDataSignedURLResponse(signed_url="https://example.com/signed-url", expires_at=expires_at))
 
+    async def AddSequencesToDataset(self, stream: Stream[AddSequencesToDatasetRequest, AddSequencesToDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.dataset_id = request.dataset_id
+        self.sequence_ids = request.sequence_ids
+        await stream.send_message(AddSequencesToDatasetResponse())
+
+    async def RemoveSequencesFromDataset(
+        self, stream: Stream[RemoveSequencesFromDatasetRequest, RemoveSequencesFromDatasetResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.dataset_id = request.dataset_id
+        self.sequence_ids = request.sequence_ids
+        await stream.send_message(RemoveSequencesFromDatasetResponse())
+
+    async def SequencesByDatasetID(self, stream: Stream[SequencesByDatasetIDRequest, SequencesByDatasetIDResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.dataset_id = request.dataset_id
+        self.page_token = request.page_token
+        self.page_size = request.page_size
+        # Return empty list for testing - tests can override this behavior
+        await stream.send_message(SequencesByDatasetIDResponse(sequences=[], next_page_token=""))
+
+    async def GetSequenceBinaryData(self, stream: Stream[GetSequenceBinaryDataRequest, GetSequenceBinaryDataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sequence_id = request.sequence_id
+        self.page_token = request.page_token
+        self.page_size = request.page_size
+        # Return empty list for testing - tests can override this behavior
+        await stream.send_message(GetSequenceBinaryDataResponse(data=[], next_page_token=""))
+
 
 class MockDataset(DatasetServiceBase):
     def __init__(self, create_response: str, datasets_response: Sequence[Dataset], merged_response: Optional[str] = None):
@@ -1178,6 +1232,7 @@ class MockDataset(DatasetServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.org_id = request.organization_id
+        self.dataset_type = request.type if request.HasField("type") else None
         await stream.send_message(ListDatasetsByOrganizationIDResponse(datasets=self.datasets_response))
 
     async def MergeDatasets(self, stream: Stream[MergeDatasetsRequest, MergeDatasetsResponse]) -> None:
@@ -1195,6 +1250,40 @@ class MockDataset(DatasetServiceBase):
         self.id = request.id
         self.name = request.name
         await stream.send_message((RenameDatasetResponse()))
+
+    async def StartSequenceDatasetExport(
+        self, stream: Stream[StartSequenceDatasetExportRequest, StartSequenceDatasetExportResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.dataset_id = request.dataset_id
+        await stream.send_message(StartSequenceDatasetExportResponse(job_id="test-job-id"))
+
+    async def GetSequenceDatasetExport(self, stream: Stream[GetSequenceDatasetExportRequest, GetSequenceDatasetExportResponse]) -> None:
+        from google.protobuf.timestamp_pb2 import Timestamp
+
+        from viam.proto.app.dataset import SequenceDatasetExportStatus
+
+        request = await stream.recv_message()
+        assert request is not None
+        self.job_id = request.job_id
+        created_at = Timestamp()
+        created_at.FromDatetime(datetime(2024, 12, 25, 10, 0, 0))
+        completed_at = Timestamp()
+        completed_at.FromDatetime(datetime(2024, 12, 25, 11, 0, 0))
+        expires_at = Timestamp()
+        expires_at.FromDatetime(datetime(2024, 12, 25, 18, 0, 0))
+        await stream.send_message(
+            GetSequenceDatasetExportResponse(
+                job_id="test-job-id",
+                status=SequenceDatasetExportStatus.SEQUENCE_DATASET_EXPORT_STATUS_COMPLETED,
+                download_url="https://example.com/export.parquet",
+                expires_at=expires_at,
+                error_message="",
+                created_at=created_at,
+                completed_at=completed_at,
+            )
+        )
 
 
 class MockDataSync(DataSyncServiceBase):
@@ -1931,6 +2020,38 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.delete_item_called = True
         await stream.send_message(DeleteRegistryItemResponse())
+
+    async def DeprecateRegistryItem(self, stream: Stream[DeprecateRegistryItemRequest, DeprecateRegistryItemResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.item_id
+        self.deprecation_message = request.message
+        await stream.send_message(DeprecateRegistryItemResponse())
+
+    async def UndeprecateRegistryItem(self, stream: Stream[UndeprecateRegistryItemRequest, UndeprecateRegistryItemResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.item_id
+        await stream.send_message(UndeprecateRegistryItemResponse())
+
+    async def DeprecateRegistryItemVersion(
+        self, stream: Stream[DeprecateRegistryItemVersionRequest, DeprecateRegistryItemVersionResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.item_id
+        self.version = request.version
+        self.version_deprecation_message = request.message
+        await stream.send_message(DeprecateRegistryItemVersionResponse())
+
+    async def UndeprecateRegistryItemVersion(
+        self, stream: Stream[UndeprecateRegistryItemVersionRequest, UndeprecateRegistryItemVersionResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.item_id
+        self.version = request.version
+        await stream.send_message(UndeprecateRegistryItemVersionResponse())
 
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         request = await stream.recv_message()

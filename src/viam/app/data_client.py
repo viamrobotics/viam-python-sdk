@@ -15,6 +15,7 @@ from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
+    AddSequencesToDatasetRequest,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryData,
@@ -48,6 +49,8 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    GetSequenceBinaryDataRequest,
+    GetSequenceBinaryDataResponse,
     Index,
     IndexableCollection,
     ListIndexesRequest,
@@ -55,10 +58,14 @@ from viam.proto.app.data import (
     Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
+    RemoveSequencesFromDatasetRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
+    Sequence,
+    SequencesByDatasetIDRequest,
+    SequencesByDatasetIDResponse,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
     TabularDataByMQLRequest,
@@ -98,6 +105,8 @@ from viam.proto.app.dataset import (
     DatasetServiceStub,
     DatasetType,
     DeleteDatasetRequest,
+    GetSequenceDatasetExportRequest,
+    GetSequenceDatasetExportResponse,
     ListDatasetsByIDsRequest,
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
@@ -105,6 +114,8 @@ from viam.proto.app.dataset import (
     MergeDatasetsRequest,
     MergeDatasetsResponse,
     RenameDatasetRequest,
+    StartSequenceDatasetExportRequest,
+    StartSequenceDatasetExportResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadMetadata,
@@ -1445,7 +1456,9 @@ class DataClient:
 
         return response.datasets
 
-    async def list_datasets_by_organization_id(self, organization_id: str) -> TSequence[Dataset]:
+    async def list_datasets_by_organization_id(
+        self, organization_id: str, dataset_type: Optional[DatasetType.ValueType] = None
+    ) -> TSequence[Dataset]:
         """Get the datasets in an organization.
 
         ::
@@ -1458,13 +1471,15 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization you'd like to retrieve datasets from.
                 To find your organization ID, visit the organization settings page.
+            dataset_type (Optional[DatasetType.ValueType]): Optional filter on dataset type.
+                If not provided, all dataset types will be returned.
 
         Returns:
             TSequence[Dataset]: The list of datasets in the organization.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
         """
-        request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
+        request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id, type=dataset_type)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
             request, metadata=self._metadata
         )
@@ -1516,6 +1531,54 @@ class DataClient:
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
+
+    async def start_sequence_dataset_export(
+        self,
+        dataset_id: str,
+        timeout: Optional[float] = None,
+    ) -> str:
+        """Start an export job for a sequence dataset.
+
+        Args:
+            dataset_id (str): The ID of the sequence dataset to export.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            str: The job ID of the export job.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport>`_.
+        """
+        request = StartSequenceDatasetExportRequest(dataset_id=dataset_id)
+        response: StartSequenceDatasetExportResponse = await self._dataset_client.StartSequenceDatasetExport(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return response.job_id
+
+    async def get_sequence_dataset_export(
+        self,
+        job_id: str,
+        timeout: Optional[float] = None,
+    ) -> GetSequenceDatasetExportResponse:
+        """Get the status and result of a sequence dataset export job.
+
+        Args:
+            job_id (str): The job ID returned by start_sequence_dataset_export.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            GetSequenceDatasetExportResponse: The export job status and details, including:
+                - job_id: The ID of the export job.
+                - status: The current status (UNSPECIFIED, RUNNING, COMPLETED, or FAILED).
+                - download_url: A short-lived signed URL for downloading the export (only when COMPLETED).
+                - expires_at: When the download_url expires (only when COMPLETED).
+                - error_message: Error description if the job failed (only when FAILED).
+                - created_at: When the job was created.
+                - completed_at: When the job completed (if applicable).
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport>`_.
+        """
+        request = GetSequenceDatasetExportRequest(job_id=job_id)
+        return await self._dataset_client.GetSequenceDatasetExport(request, metadata=self._metadata, timeout=timeout)
 
     async def add_binary_data_to_dataset_by_ids(self, binary_ids: Union[List[BinaryID], List[str]], dataset_id: str) -> None:
         """Add the BinaryData to the provided dataset.
@@ -2289,6 +2352,112 @@ class DataClient:
             request.expiration_minutes = expiration_minutes
         response: CreateBinaryDataSignedURLResponse = await self._data_client.CreateBinaryDataSignedURL(request, metadata=self._metadata)
         return response.signed_url, response.expires_at.ToDatetime()
+
+    async def add_sequences_to_dataset(
+        self,
+        dataset_id: str,
+        sequence_ids: List[str],
+        timeout: Optional[float] = None,
+    ) -> None:
+        """Add sequences to a dataset.
+
+        Args:
+            dataset_id (str): The ID of the dataset to add sequences to.
+            sequence_ids (List[str]): The IDs of the sequences to add to the dataset.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset>`_.
+        """
+        request = AddSequencesToDatasetRequest(
+            dataset_id=dataset_id,
+            sequence_ids=sequence_ids,
+        )
+        await self._data_client.AddSequencesToDataset(request, metadata=self._metadata, timeout=timeout)
+
+    async def remove_sequences_from_dataset(
+        self,
+        dataset_id: str,
+        sequence_ids: List[str],
+        timeout: Optional[float] = None,
+    ) -> None:
+        """Remove sequences from a dataset.
+
+        Args:
+            dataset_id (str): The ID of the dataset to remove sequences from.
+            sequence_ids (List[str]): The IDs of the sequences to remove from the dataset.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset>`_.
+        """
+        request = RemoveSequencesFromDatasetRequest(
+            dataset_id=dataset_id,
+            sequence_ids=sequence_ids,
+        )
+        await self._data_client.RemoveSequencesFromDataset(request, metadata=self._metadata, timeout=timeout)
+
+    async def sequences_by_dataset_id(
+        self,
+        dataset_id: str,
+        page_token: Optional[str] = None,
+        page_size: Optional[int] = None,
+        timeout: Optional[float] = None,
+    ) -> Tuple[TSequence[Sequence], str]:
+        """Get sequences in a dataset by dataset ID.
+
+        Args:
+            dataset_id (str): The ID of the dataset.
+            page_token (Optional[str]): Optional page token for pagination.
+            page_size (Optional[int]): Optional page size for pagination.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            Tuple[List[Sequence], str]: A tuple containing:
+                - A list of sequences in the dataset.
+                - The next page token (empty string if no more pages).
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid>`_.
+        """
+        request = SequencesByDatasetIDRequest(dataset_id=dataset_id)
+        if page_token is not None:
+            request.page_token = page_token
+        if page_size is not None:
+            request.page_size = page_size
+        response: SequencesByDatasetIDResponse = await self._data_client.SequencesByDatasetID(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return list(response.sequences), response.next_page_token
+
+    async def get_sequence_binary_data(
+        self,
+        sequence_id: str,
+        page_token: Optional[str] = None,
+        page_size: Optional[int] = None,
+        timeout: Optional[float] = None,
+    ) -> Tuple[List[BinaryData], str]:
+        """Get binary data for a sequence by sequence ID.
+
+        Args:
+            sequence_id (str): The ID of the sequence.
+            page_token (Optional[str]): Optional page token for pagination.
+            page_size (Optional[int]): Optional page size for pagination.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            Tuple[List[BinaryData], str]: A tuple containing:
+                - A list of binary data in the sequence.
+                - The next page token (empty string if no more pages).
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata>`_.
+        """
+        request = GetSequenceBinaryDataRequest(sequence_id=sequence_id)
+        if page_token is not None:
+            request.page_token = page_token
+        if page_size is not None:
+            request.page_size = page_size
+        response: GetSequenceBinaryDataResponse = await self._data_client.GetSequenceBinaryData(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return list(response.data), response.next_page_token
 
     @staticmethod
     def create_filter(

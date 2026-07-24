@@ -1,6 +1,6 @@
 import os
 import random
-from unittest.mock import patch
+from unittest.mock import AsyncMock, patch
 from uuid import uuid4
 
 import pytest
@@ -56,7 +56,12 @@ class TestViamClient:
 
                     await ViamClient.create_from_dial_options(dial_options)
 
-                    patched_dial.assert_called_once_with("app.viam.com", dial_options)
+                    patched_dial.assert_called_once()
+                    url, forwarded = patched_dial.call_args.args
+                    assert url == "app.viam.com"
+                    assert forwarded.credentials is None
+                    assert forwarded.insecure == dial_options.insecure
+                    assert forwarded.auth_entity == dial_options.auth_entity
 
     async def test_passes_dial_options_with_custom_url(self):
         async with ChannelFor([]) as channel:
@@ -70,7 +75,25 @@ class TestViamClient:
 
                     await ViamClient.create_from_dial_options(dial_options, app_url="localhost:8080")
 
-                    patched_dial.assert_called_once_with("localhost:8080", dial_options)
+                    patched_dial.assert_called_once()
+                    url, forwarded = patched_dial.call_args.args
+                    assert url == "localhost:8080"
+                    assert forwarded.credentials is None
+
+    async def test_authenticates_exactly_once(self):
+        auth_mock = AsyncMock(return_value="FAKE_ACCESS_TOKEN")
+
+        creds = Credentials("api-key", "SOME_API_KEY")
+        # insecure=True so the real _dial_direct does not open a socket (the TLS-downgrade probe
+        # is skipped and the only RPC -- Authenticate -- is mocked below).
+        dial_options = DialOptions(credentials=creds, auth_entity=str(uuid4()), insecure=True)
+
+        with patch("viam.rpc.dial._get_access_token", auth_mock):
+            with patch("viam.app.viam_client._get_access_token", auth_mock):
+                client = await ViamClient.create_from_dial_options(dial_options, app_url="localhost:8080")
+
+        assert auth_mock.call_count == 1
+        assert client._metadata == {"authorization": "Bearer FAKE_ACCESS_TOKEN"}
 
     async def test_clients(self):
         async with ChannelFor([]) as channel:

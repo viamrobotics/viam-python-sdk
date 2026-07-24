@@ -34,6 +34,7 @@ from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERV
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions, _host_port_from_url
 from viam.rpc.server import Server
+from viam.rpc.tracing import install_parent_send_exporter
 
 # These imports are required to register built-in resources with the registry
 from ..components.arm import Arm  # noqa: F401
@@ -60,7 +61,7 @@ from ..services.navigation import Navigation  # noqa: F401
 from ..services.slam import SLAM  # noqa: F401
 from ..services.vision import Vision  # noqa: F401
 from .service import ModuleRPCService
-from .types import Reconfigurable, Stoppable
+from .types import Stoppable
 
 NO_MODULE_PARENT = os.environ.get("VIAM_NO_MODULE_PARENT", "").lower() == "true"
 
@@ -171,6 +172,7 @@ class Module:
             )
             self.logger.debug("Starting module logging")
             logging.setParent(self.parent)
+            install_parent_send_exporter(self.parent)
 
     async def _get_resource(self, name: ResourceName) -> ResourceBase:
         await self._connect_to_parent()
@@ -233,23 +235,19 @@ class Module:
         self.server.register(resource)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
-        dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
         api = API.from_string(config.api)
         name = config.name
         rn = ResourceName(namespace=api.namespace, type=api.resource_type, subtype=api.resource_subtype, name=name)
         resource = self.server.get_resource(ResourceBase, rn)
-        if isinstance(resource, Reconfigurable):
-            resource.reconfigure(config, dependencies)
-        else:
-            if isinstance(resource, Stoppable):
-                if iscoroutinefunction(resource.stop):
-                    await resource.stop()
-                else:
-                    resource.stop()
-            add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
-            await self.server.remove_resource(rn)
-            await self.add_resource(add_request)
+        if isinstance(resource, Stoppable):
+            if iscoroutinefunction(resource.stop):
+                await resource.stop()
+            else:
+                resource.stop()
+        add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
+        await self.server.remove_resource(rn)
+        await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
         rn = resource_name_from_string(request.name)

@@ -34,8 +34,16 @@ class DatasetServiceBase(abc.ABC):
     async def MergeDatasets(self, stream: 'grpclib.server.Stream[app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def StartSequenceDatasetExport(self, stream: 'grpclib.server.Stream[app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def GetSequenceDatasetExport(self, stream: 'grpclib.server.Stream[app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.app.dataset.v1.DatasetService/CreateDataset': grpclib.const.Handler(self.CreateDataset, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.CreateDatasetRequest, app.dataset.v1.dataset_pb2.CreateDatasetResponse), '/viam.app.dataset.v1.DatasetService/DeleteDataset': grpclib.const.Handler(self.DeleteDataset, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.DeleteDatasetRequest, app.dataset.v1.dataset_pb2.DeleteDatasetResponse), '/viam.app.dataset.v1.DatasetService/RenameDataset': grpclib.const.Handler(self.RenameDataset, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.RenameDatasetRequest, app.dataset.v1.dataset_pb2.RenameDatasetResponse), '/viam.app.dataset.v1.DatasetService/ListDatasetsByOrganizationID': grpclib.const.Handler(self.ListDatasetsByOrganizationID, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest, app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse), '/viam.app.dataset.v1.DatasetService/ListDatasetsByIDs': grpclib.const.Handler(self.ListDatasetsByIDs, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.ListDatasetsByIDsRequest, app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse), '/viam.app.dataset.v1.DatasetService/MergeDatasets': grpclib.const.Handler(self.MergeDatasets, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse)}
+        return {'/viam.app.dataset.v1.DatasetService/CreateDataset': grpclib.const.Handler(self.CreateDataset, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.CreateDatasetRequest, app.dataset.v1.dataset_pb2.CreateDatasetResponse), '/viam.app.dataset.v1.DatasetService/DeleteDataset': grpclib.const.Handler(self.DeleteDataset, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.DeleteDatasetRequest, app.dataset.v1.dataset_pb2.DeleteDatasetResponse), '/viam.app.dataset.v1.DatasetService/RenameDataset': grpclib.const.Handler(self.RenameDataset, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.RenameDatasetRequest, app.dataset.v1.dataset_pb2.RenameDatasetResponse), '/viam.app.dataset.v1.DatasetService/ListDatasetsByOrganizationID': grpclib.const.Handler(self.ListDatasetsByOrganizationID, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest, app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse), '/viam.app.dataset.v1.DatasetService/ListDatasetsByIDs': grpclib.const.Handler(self.ListDatasetsByIDs, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.ListDatasetsByIDsRequest, app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse), '/viam.app.dataset.v1.DatasetService/MergeDatasets': grpclib.const.Handler(self.MergeDatasets, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse), '/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport': grpclib.const.Handler(self.StartSequenceDatasetExport, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse), '/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport': grpclib.const.Handler(self.GetSequenceDatasetExport, grpclib.const.Cardinality.UNARY_UNARY, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse)}
 
 class UnimplementedDatasetServiceBase(DatasetServiceBase):
 
@@ -57,6 +65,12 @@ class UnimplementedDatasetServiceBase(DatasetServiceBase):
     async def MergeDatasets(self, stream: 'grpclib.server.Stream[app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def StartSequenceDatasetExport(self, stream: 'grpclib.server.Stream[app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetSequenceDatasetExport(self, stream: 'grpclib.server.Stream[app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class DatasetServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -66,3 +80,5 @@ class DatasetServiceStub:
         self.ListDatasetsByOrganizationID = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.dataset.v1.DatasetService/ListDatasetsByOrganizationID', app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest, app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse)
         self.ListDatasetsByIDs = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.dataset.v1.DatasetService/ListDatasetsByIDs', app.dataset.v1.dataset_pb2.ListDatasetsByIDsRequest, app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse)
         self.MergeDatasets = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.dataset.v1.DatasetService/MergeDatasets', app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse)
+        self.StartSequenceDatasetExport = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.dataset.v1.DatasetService/StartSequenceDatasetExport', app.dataset.v1.dataset_pb2.StartSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.StartSequenceDatasetExportResponse)
+        self.GetSequenceDatasetExport = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.dataset.v1.DatasetService/GetSequenceDatasetExport', app.dataset.v1.dataset_pb2.GetSequenceDatasetExportRequest, app.dataset.v1.dataset_pb2.GetSequenceDatasetExportResponse)

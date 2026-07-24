@@ -19,9 +19,11 @@ from grpclib.stream import _RecvType, _SendType
 from typing_extensions import Self
 
 from viam import logging
+from viam._native import load_native_lib
 from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
+from viam.rpc.tracing import inject_trace_context
 from viam.version_metadata import API_VERSION, SDK_VERSION
 
 LOGGER = logging.getLogger(__name__)
@@ -256,10 +258,8 @@ class _Runtime:
     _ptr: ctypes.c_void_p
 
     def __init__(self) -> None:
-        suffix = "dylib" if sys.platform == "darwin" else "so" if "linux" in sys.platform else "dll"
         LOGGER.debug("Creating new viam-rust-utils runtime")
-        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{suffix}"
-        self._lib = ctypes.CDLL(libname.__str__())
+        self._lib = load_native_lib()
         self._lib.viam_init_rust_runtime.argtypes = ()
         self._lib.viam_init_rust_runtime.restype = ctypes.c_void_p
 
@@ -373,6 +373,7 @@ def _create_chan(path: str) -> Channel:
 async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
         event.metadata["viam_client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
+        inject_trace_context(event.metadata)
 
     opts = options if options else DialOptions()
     if opts.disable_webrtc:

@@ -35,7 +35,9 @@ from ...gen.robot.v1.robot_pb2 import (
     LogRequest,
     LogResponse,
     ModuleModel,
+    ModuleStatus,
     Operation,
+    PackageStatus,
     PeerConnectionInfo,
     PeerConnectionType,
     ResourceNamesRequest,
@@ -68,6 +70,8 @@ from ...gen.robot.v1.robot_pb2 import (
     Tunnel,
     TunnelRequest,
     TunnelResponse,
+    UploadDataFromPathRequest,
+    UploadDataFromPathResponse,
 )
 
 __all__ = [
@@ -104,7 +108,9 @@ __all__ = [
     "LogRequest",
     "LogResponse",
     "ModuleModel",
+    "ModuleStatus",
     "Operation",
+    "PackageStatus",
     "PeerConnectionInfo",
     "PeerConnectionType",
     "ResourceNamesRequest",
@@ -137,4 +143,6 @@ __all__ = [
     "Tunnel",
     "TunnelRequest",
     "TunnelResponse",
+    "UploadDataFromPathRequest",
+    "UploadDataFromPathResponse",
 ]

@@ -756,6 +756,34 @@ class TestClient:
             assert service.id == ID
             assert service.delete_item_called is True
 
+    async def test_deprecate_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.deprecate_registry_item(ID, "deprecation message")
+            assert service.id == ID
+            assert service.deprecation_message == "deprecation message"
+
+    async def test_undeprecate_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.undeprecate_registry_item(ID)
+            assert service.id == ID
+
+    async def test_deprecate_registry_item_version(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.deprecate_registry_item_version(ID, "1.0.0", "version deprecation message")
+            assert service.id == ID
+            assert service.version == "1.0.0"
+            assert service.version_deprecation_message == "version deprecation message"
+
+    async def test_undeprecate_registry_item_version(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.undeprecate_registry_item_version(ID, "1.0.0")
+            assert service.id == ID
+            assert service.version == "1.0.0"
+
     async def test_create_module(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)

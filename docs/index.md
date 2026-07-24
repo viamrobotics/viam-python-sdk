@@ -21,6 +21,7 @@ autoapi/viam/app/index
 autoapi/viam/resource/index
 autoapi/viam/module/index
 autoapi/viam/media/index
+autoapi/viam/spatialmath/index
 autoapi/viam/rpc/index
 autoapi/viam/proto/index
 ```

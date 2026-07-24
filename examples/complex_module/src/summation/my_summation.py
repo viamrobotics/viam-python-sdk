@@ -2,7 +2,6 @@ from typing import ClassVar, Mapping, Optional, Sequence
 
 from typing_extensions import Self
 
-from viam.module.types import Reconfigurable
 from viam.utils import ValueTypes
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -13,7 +12,7 @@ from viam.resource.types import Model
 from ..summation.api import SummationService
 
 
-class MySummationService(SummationService, Reconfigurable):
+class MySummationService(SummationService):
     """This is the specific implementation of a ``SummationService`` (defined in api.py)
 
     It inherits from SummationService, as well as conforms to the ``Reconfigurable`` protocol, which signifies that this component can be
