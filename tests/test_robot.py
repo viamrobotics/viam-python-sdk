@@ -505,7 +505,7 @@ class TestRobotClient:
                     extra: Optional[Dict[str, Any]] = None,
                     timeout: Optional[float] = None,
                 ):
-                    return await self.actual_client.move_through_joint_positions(positions, options, extra=extra, timeout=timeout)
+                    return await self.actual_client.move_through_joint_positions(positions, options=options, extra=extra, timeout=timeout)
 
                 async def get_3d_models(
                     self,
