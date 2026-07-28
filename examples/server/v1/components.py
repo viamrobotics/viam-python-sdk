@@ -49,7 +49,7 @@ from viam.proto.common import (
     Vector3,
     Mesh,
 )
-from viam.proto.component.arm import JointPositions
+from viam.proto.component.arm import JointPositions, MoveOptions
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
@@ -94,6 +94,20 @@ class ExampleArm(Arm):
     async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = False
         self.joint_positions = positions
+
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
+        self.is_stopped = False
+        for position in positions:
+            self.joint_positions = position
+
+    async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
+        return {}
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True

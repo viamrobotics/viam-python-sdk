@@ -8,7 +8,8 @@ from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.logging import getLogger
 from viam.operations import run_with_operation
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import Capsule, Geometry, ResourceName, Sphere
+from viam.proto.common import Capsule, Geometry, Mesh, ResourceName, Sphere
+from viam.proto.component.arm import MoveOptions
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
@@ -92,6 +93,34 @@ class MyArm(Arm):
 
         self.joint_positions = positions
         self.is_stopped = True
+
+    @run_with_operation
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
+        operation = self.get_operation(kwargs)
+
+        self.is_stopped = False
+
+        # Move through each waypoint in order, honoring cancellation between them.
+        for position in positions:
+            await asyncio.sleep(1)
+
+            if await operation.is_cancelled():
+                await self.stop()
+                break
+
+            self.joint_positions = position
+
+        self.is_stopped = True
+
+    async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
+        # This arm has no meshes to report.
+        return {}
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True

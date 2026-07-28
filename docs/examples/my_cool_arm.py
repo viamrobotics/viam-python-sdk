@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
 from viam.proto.common import Capsule, Geometry, Mesh, Sphere
+from viam.proto.component.arm import MoveOptions
 
 
 class MyCoolArm(Arm):
@@ -90,6 +91,34 @@ class MyCoolArm(Arm):
                 break
 
         self.is_stopped = True
+
+    @run_with_operation
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
+        operation = self.get_operation(kwargs)
+
+        self.is_stopped = False
+
+        # Move through each waypoint in order, honoring cancellation between them.
+        for position in positions:
+            await asyncio.sleep(1)
+
+            if await operation.is_cancelled():
+                await self.stop()
+                break
+
+            self.joint_positions = position
+
+        self.is_stopped = True
+
+    async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
+        # Return the 3D meshes for this arm, keyed by link name. This arm has none.
+        return {}
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
