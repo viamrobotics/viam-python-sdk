@@ -20,9 +20,9 @@ class Arm(ComponentBase):
 
         from viam.components.arm import Arm
         # To use move_to_position:
-        from viam.proto.common import Pose
+        from viam.components.arm import Pose
         # To use move_to_joint_positions and move_through_joint_positions:
-        from viam.proto.component.arm import JointPositions
+        from viam.components.arm import JointPositions
         # To use move_through_joint_positions:
         from viam.components.arm import MoveOptions
         # To use get_3d_models:
@@ -280,6 +280,7 @@ class Arm(ComponentBase):
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
             and the second [1] value represents the byte contents of the file.
             If available, a third [2] value provides meshes keyed by URDF filepath.
+            See ``get_3d_models`` for meshes keyed by model name instead.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
         """
@@ -305,7 +306,11 @@ class Arm(ComponentBase):
         Returns:
             Mapping[str, Mesh]: The arm's 3D models keyed by name. Each ``Mesh`` carries a
             ``content_type`` (for example ``"ply"``) and the raw ``mesh`` bytes in that format.
-            An arm with no models returns an empty mapping.
+            This is distinct from ``get_kinematics``'s third return value, which keys meshes
+            by URDF filepath rather than by model name.
+
+        Note:
+            Implementations with no models must return an empty mapping, not ``None``.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
         """

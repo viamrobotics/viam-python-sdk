@@ -164,7 +164,10 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = Get3DModelsRequest(name=self.name, extra=dict_to_struct(extra))
         response: Get3DModelsResponse = await self.client.Get3DModels(request, timeout=timeout, metadata=md)
-        return response.models
+        # Copy out of the protobuf map container: `__getitem__` on an absent key would
+        # otherwise create and insert a default-constructed value instead of raising
+        # KeyError, silently violating the Mapping contract.
+        return dict(response.models)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())

@@ -1,3 +1,4 @@
+import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, KinematicsFileFormat
@@ -343,9 +344,12 @@ class TestClient:
     async def test_get_3d_models(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            models = await client.get_3d_models(extra={"1": "2"})
-            assert dict(models) == MODELS_3D
+            models = await client.get_3d_models(extra={"1": "2"}, timeout=1.23)
+            assert models == MODELS_3D
+            with pytest.raises(KeyError):
+                models["does_not_exist"]
             assert self.arm.extra == {"1": "2"}
+            assert self.arm.timeout == expected_grpc_timeout(1.23)
 
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:

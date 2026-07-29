@@ -152,15 +152,6 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data, meshes_by_urdf_filepath=meshes)
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        arm = self.get_resource(request.name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
-        response = GetGeometriesResponse(geometries=geometries)
-        await stream.send_message(response)
-
     async def Get3DModels(self, stream: Stream[Get3DModelsRequest, Get3DModelsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -168,4 +159,13 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         models = await arm.get_3d_models(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = Get3DModelsResponse(models=models)
+        await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

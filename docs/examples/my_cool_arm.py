@@ -119,7 +119,7 @@ class MyCoolArm(Arm):
         self.is_stopped = True
 
     async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
-        # Return the 3D meshes for this arm, keyed by link name. This arm has none.
+        # Return the 3D meshes for this arm, keyed by name. This arm has none.
         return {}
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
