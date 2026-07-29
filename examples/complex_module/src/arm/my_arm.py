@@ -108,8 +108,9 @@ class MyArm(Arm):
 
         # Move through each waypoint in order, honoring cancellation between them.
         # A real driver is expected to honor the velocity/acceleration ceilings in
-        # `options` (e.g. options.max_vel_degs_per_sec); this example ignores them
-        # and just sleeps for a fixed interval between waypoints.
+        # `options`, checking e.g. options.HasField("max_vel_degs_per_sec") before
+        # applying it (an unset field reads as 0.0); this example ignores them and
+        # just sleeps for a fixed interval between waypoints.
         for position in positions:
             await asyncio.sleep(1)
 

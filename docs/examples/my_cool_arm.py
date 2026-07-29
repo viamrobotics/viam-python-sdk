@@ -105,8 +105,8 @@ class MyCoolArm(Arm):
         self.is_stopped = False
 
         # Move through each waypoint in order, honoring cancellation between them.
-        # A real driver would clamp its motion to options.max_vel_degs_per_sec and
-        # options.max_acc_degs_per_sec2 here; this example moves at a fixed rate.
+        # A real driver would check options.HasField("max_vel_degs_per_sec") etc. and
+        # clamp its motion accordingly; this example moves at a fixed rate.
         for position in positions:
             await asyncio.sleep(1)
 

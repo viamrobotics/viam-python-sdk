@@ -21,8 +21,10 @@ class Arm(ComponentBase):
         from viam.components.arm import Arm
         # To use move_to_position:
         from viam.proto.common import Pose
-        # To use move_to_joint_positions:
+        # To use move_to_joint_positions and move_through_joint_positions:
         from viam.proto.component.arm import JointPositions
+        # To use move_through_joint_positions:
+        from viam.components.arm import MoveOptions
 
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
@@ -123,33 +125,6 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_joint_positions(
-        self,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs,
-    ) -> JointPositions:
-        """
-        Get the JointPositions representing the current position of the arm.
-
-        ::
-
-            my_arm = Arm.from_robot(robot=machine, name="my_arm")
-
-            # Get the current position of each joint on the arm as JointPositions.
-            pos = await my_arm.get_joint_positions()
-
-        Returns:
-            JointPositions: The current ``JointPositions`` for the arm.
-            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
-            and translational values (mm).
-
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
-        """
-        ...
-
-    @abc.abstractmethod
     async def move_through_joint_positions(
         self,
         positions: List[JointPositions],
@@ -187,7 +162,49 @@ class Arm(ComponentBase):
             cannot yet parse a kinematics model. Implementations are responsible for
             their own limit checking.
 
+            Every scalar field on ``MoveOptions`` (``max_vel_degs_per_sec``,
+            ``max_acc_degs_per_sec2``, ``max_tcp_speed``) also has explicit presence: an
+            unset field reads back as ``0.0``, indistinguishable from an explicitly-set
+            zero. Implementations must check ``options.HasField("max_vel_degs_per_sec")``
+            (and likewise for the other scalar fields) before applying it as a ceiling —
+            reading an unset field's ``0.0`` directly would misread "no limit requested"
+            as "do not move". Per the proto definition, ``max_vel_degs_per_sec`` is
+            ignored whenever ``max_vel_degs_per_sec_joints`` is set, and likewise
+            ``max_acc_degs_per_sec2`` is ignored whenever ``max_acc_degs_per_sec2_joints``
+            is set; implementations should honor only the per-joint limit in that case,
+            not both.
+
+            An empty ``positions`` list is passed through to the implementation
+            unchanged; implementations must handle it, typically as a no-op.
+
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_joint_positions(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> JointPositions:
+        """
+        Get the JointPositions representing the current position of the arm.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the current position of each joint on the arm as JointPositions.
+            pos = await my_arm.get_joint_positions()
+
+        Returns:
+            JointPositions: The current ``JointPositions`` for the arm.
+            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
+            and translational values (mm).
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
         """
         ...
 

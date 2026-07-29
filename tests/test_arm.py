@@ -270,10 +270,11 @@ class TestClient:
             client = ArmClient(self.name, channel)
             waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
             options = MoveOptions(max_vel_degs_per_sec=15.0, max_tcp_speed=0.25)
-            await client.move_through_joint_positions(waypoints, options, extra={"foo": "bar"})
+            await client.move_through_joint_positions(waypoints, options=options, extra={"foo": "bar"}, timeout=1.23)
             assert self.arm.waypoints == waypoints
             assert self.arm.move_options == options
             assert self.arm.extra == {"foo": "bar"}
+            assert self.arm.timeout == expected_grpc_timeout(1.23)
 
     async def test_move_through_joint_positions_without_options(self):
         async with ChannelFor([self.service]) as channel:

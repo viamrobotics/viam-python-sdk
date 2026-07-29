@@ -91,7 +91,7 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         options = request.options if request.HasField("options") else None
         await arm.move_through_joint_positions(
             list(request.positions),
-            options,
+            options=options,
             extra=struct_to_dict(request.extra),
             timeout=timeout,
             metadata=stream.metadata,
