@@ -1,11 +1,11 @@
 import abc
-from typing import Any, Dict, Final, Optional
+from typing import Any, Dict, Final, List, Optional
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
-from . import JointPositions, Pose
+from . import JointPositions, MoveOptions, Pose
 
 
 class Arm(ComponentBase):
@@ -146,6 +146,48 @@ class Arm(ComponentBase):
             and translational values (mm).
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Move the arm through the given joint positions in the order they are specified,
+        obeying the velocity and acceleration limits in ``options``.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Move through two waypoints, capping joint speed and acceleration.
+            await my_arm.move_through_joint_positions(
+                positions=[
+                    JointPositions(values=[0, 45, 0, 0, 0, 0]),
+                    JointPositions(values=[0, 0, 0, 0, 0, 0]),
+                ],
+                options=MoveOptions(max_vel_degs_per_sec=15.0, max_acc_degs_per_sec2=30.0),
+            )
+
+        Args:
+            positions (List[JointPositions]): The waypoints to move through, in order.
+            options (Optional[MoveOptions]): Optional kinematic ceilings obeyed at every
+                point along the trajectory. ``None`` means no limits are requested.
+
+        Note:
+            Unlike the Go SDK, this method does not validate the requested positions
+            against the arm's joint limits before sending them, because the Python SDK
+            cannot yet parse a kinematics model. Implementations are responsible for
+            their own limit checking.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
         """
         ...
 

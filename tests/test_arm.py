@@ -22,6 +22,8 @@ from viam.proto.component.arm import (
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
+    MoveOptions,
+    MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
@@ -54,6 +56,14 @@ class TestArm:
     async def test_get_joint_positions(self):
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
+
+    async def test_move_through_joint_positions(self):
+        waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+        options = MoveOptions(max_vel_degs_per_sec=15.0, max_acc_degs_per_sec2=30.0)
+        await self.arm.move_through_joint_positions(waypoints, options)
+        assert self.arm.waypoints == waypoints
+        assert self.arm.move_options == options
+        assert self.arm.joint_positions == waypoints[-1]
 
     async def test_stop(self):
         assert self.arm.is_stopped is False
@@ -127,6 +137,40 @@ class TestService:
             request = GetJointPositionsRequest(name=self.name)
             response: GetJointPositionsResponse = await client.GetJointPositions(request)
             assert response.positions == self.joint_pos
+
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+            options = MoveOptions(
+                max_vel_degs_per_sec=15.0,
+                max_acc_degs_per_sec2=30.0,
+                max_vel_degs_per_sec_joints=[1.0, 2.0, 3.0],
+                max_acc_degs_per_sec2_joints=[4.0, 5.0, 6.0],
+                max_tcp_speed=0.25,
+            )
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=waypoints, options=options)
+            await client.MoveThroughJointPositions(request)
+            assert self.arm.waypoints == waypoints
+            assert self.arm.move_options == options
+
+    async def test_move_through_joint_positions_without_options(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            waypoints = [JointPositions(values=[7, 8, 9])]
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=waypoints)
+            await client.MoveThroughJointPositions(request)
+            assert self.arm.waypoints == waypoints
+            # Must be None, NOT a zeroed MoveOptions: a driver reading
+            # max_vel_degs_per_sec == 0.0 could interpret that as "do not move".
+            assert self.arm.move_options is None
+
+    async def test_move_through_joint_positions_empty(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=[])
+            await client.MoveThroughJointPositions(request)
+            assert self.arm.waypoints == []
 
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
@@ -220,6 +264,24 @@ class TestClient:
             client = ArmClient(self.name, channel)
             jp = await client.get_joint_positions()
             assert jp == self.joint_pos
+
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+            options = MoveOptions(max_vel_degs_per_sec=15.0, max_tcp_speed=0.25)
+            await client.move_through_joint_positions(waypoints, options, extra={"foo": "bar"})
+            assert self.arm.waypoints == waypoints
+            assert self.arm.move_options == options
+            assert self.arm.extra == {"foo": "bar"}
+
+    async def test_move_through_joint_positions_without_options(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            waypoints = [JointPositions(values=[7, 8, 9])]
+            await client.move_through_joint_positions(waypoints)
+            assert self.arm.waypoints == waypoints
+            assert self.arm.move_options is None
 
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:

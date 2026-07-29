@@ -17,6 +17,8 @@ from viam.proto.component.arm import (
     GetJointPositionsResponse,
     IsMovingRequest,
     IsMovingResponse,
+    MoveThroughJointPositionsRequest,
+    MoveThroughJointPositionsResponse,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
@@ -76,6 +78,25 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = MoveToJointPositionsResponse()
+        await stream.send_message(response)
+
+    async def MoveThroughJointPositions(self, stream: Stream[MoveThroughJointPositionsRequest, MoveThroughJointPositionsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        arm = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        # `options` has explicit presence; passing a zeroed message when the caller sent
+        # nothing would be indistinguishable from a real zero limit.
+        options = request.options if request.HasField("options") else None
+        await arm.move_through_joint_positions(
+            list(request.positions),
+            options,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
+        response = MoveThroughJointPositionsResponse()
         await stream.send_message(response)
 
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:

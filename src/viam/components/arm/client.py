@@ -21,6 +21,8 @@ from viam.proto.component.arm import (
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
+    MoveOptions,
+    MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
@@ -90,6 +92,20 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
         await self.client.MoveToJointPositions(request, timeout=timeout, metadata=md)
+
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        # Passing options=None leaves the optional field genuinely unset.
+        request = MoveThroughJointPositionsRequest(name=self.name, positions=positions, options=options, extra=dict_to_struct(extra))
+        await self.client.MoveThroughJointPositions(request, timeout=timeout, metadata=md)
 
     async def stop(
         self,
