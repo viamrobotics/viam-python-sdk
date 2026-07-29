@@ -1,11 +1,11 @@
 import abc
-from typing import Any, Dict, Final, List, Optional
+from typing import Any, Dict, Final, List, Mapping, Optional
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
-from . import JointPositions, MoveOptions, Pose
+from . import JointPositions, Mesh, MoveOptions, Pose
 
 
 class Arm(ComponentBase):
@@ -25,6 +25,8 @@ class Arm(ComponentBase):
         from viam.proto.component.arm import JointPositions
         # To use move_through_joint_positions:
         from viam.components.arm import MoveOptions
+        # To use get_3d_models:
+        from viam.components.arm import Mesh
 
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
@@ -280,5 +282,31 @@ class Arm(ComponentBase):
             If available, a third [2] value provides meshes keyed by URDF filepath.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        """
+        Get the 3D models associated with the arm, keyed by name.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the arm's 3D models.
+            models = await my_arm.get_3d_models()
+
+            for name, mesh in models.items():
+                print(name, mesh.content_type, len(mesh.mesh))
+
+        Returns:
+            Mapping[str, Mesh]: The arm's 3D models keyed by name. Each ``Mesh`` carries a
+            ``content_type`` (for example ``"ply"``) and the raw ``mesh`` bytes in that format.
+            An arm with no models returns an empty mapping.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
         """
         ...

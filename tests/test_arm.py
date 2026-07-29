@@ -5,6 +5,8 @@ from viam.components.arm.service import ArmRPCService
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetGeometriesRequest,
     GetGeometriesResponse,
     GetKinematicsRequest,
@@ -32,7 +34,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import expected_grpc_timeout
-from .mocks.components import GEOMETRIES, MockArm
+from .mocks.components import GEOMETRIES, MODELS_3D, MockArm
 
 
 class TestArm:
@@ -84,6 +86,11 @@ class TestArm:
     async def test_get_geometries(self):
         geometries = await self.arm.get_geometries()
         assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        models = await self.arm.get_3d_models(extra={"1": "2"})
+        assert models == MODELS_3D
+        assert self.arm.extra == {"1": "2"}
 
     async def test_do(self):
         command = {"command": "args"}
@@ -221,6 +228,26 @@ class TestService:
             response: GetGeometriesResponse = await client.GetGeometries(request)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
 
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = Get3DModelsRequest(name=self.name)
+            response: Get3DModelsResponse = await client.Get3DModels(request)
+            assert dict(response.models) == MODELS_3D
+            assert response.models["base_link"].content_type == "ply"
+            assert response.models["base_link"].mesh == b"\x00\x01"
+
+    async def test_get_3d_models_empty(self):
+        async with ChannelFor([self.service]) as channel:
+            self.arm.models_3d = {}
+            try:
+                client = ArmServiceStub(channel)
+                request = Get3DModelsRequest(name=self.name)
+                response: Get3DModelsResponse = await client.Get3DModels(request)
+                assert dict(response.models) == {}
+            finally:
+                self.arm.models_3d = MODELS_3D
+
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -312,6 +339,13 @@ class TestClient:
             client = ArmClient(self.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            models = await client.get_3d_models(extra={"1": "2"})
+            assert dict(models) == MODELS_3D
+            assert self.arm.extra == {"1": "2"}
 
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:

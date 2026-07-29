@@ -7,10 +7,13 @@ from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
     Geometry,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    Mesh,
 )
 from viam.proto.component.arm import (
     ArmServiceStub,
@@ -154,6 +157,14 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
+
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = Get3DModelsRequest(name=self.name, extra=dict_to_struct(extra))
+        response: Get3DModelsResponse = await self.client.Get3DModels(request, timeout=timeout, metadata=md)
+        return response.models
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())
