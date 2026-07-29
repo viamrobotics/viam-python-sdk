@@ -1,4 +1,4 @@
-from typing import Any, AsyncIterator, Dict, List, Mapping, Optional
+from typing import Any, AsyncIterable, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -55,8 +55,8 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
 
     async def play_stream(
         self,
-        chunks: AsyncIterator[bytes],
-        info: Optional[AudioInfo] = None,
+        info: AudioInfo,
+        chunks: AsyncIterable[bytes],
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -66,17 +66,9 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
             extra = {}
 
         md = kwargs.get("metadata", self.Metadata()).proto
-
+        init = PlayStreamRequest(init=PlayStreamInit(name=self.name, audio_info=info, extra=dict_to_struct(extra)))
         async with self.client.PlayStream.open(timeout=timeout, metadata=md) as stream:
-            await stream.send_message(
-                PlayStreamRequest(
-                    init=PlayStreamInit(
-                        name=self.name,
-                        audio_info=info,
-                        extra=dict_to_struct(extra),
-                    )
-                )
-            )
+            await stream.send_message(init)
             async for chunk in chunks:
                 await stream.send_message(PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=chunk)))
             await stream.end()

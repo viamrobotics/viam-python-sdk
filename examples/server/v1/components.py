@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 from multiprocessing import Lock
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, AsyncIterable, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
@@ -101,7 +101,9 @@ class ExampleArm(Arm):
     async def is_moving(self):
         return not self.is_stopped
 
-    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    async def get_kinematics(
+        self, extra: Optional[Dict[str, Any]] = None, **kwargs
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return self.kinematics
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
@@ -134,14 +136,32 @@ class ExampleAudioOut(AudioOut):
         # Simulate playing audio
         self.is_playing = True
         if info:
-            print(
-                f"Playing audio: {len(data)} bytes, codec={info.codec}, " f"sample_rate={info.sample_rate_hz}, channels={info.num_channels}"
-            )
+            print(f"Playing audio: {len(data)} bytes, codec={info.codec}, sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
         else:
             print(f"Playing audio: {len(data)} bytes (no audio info provided)")
 
         await asyncio.sleep(0.1)
 
+        self.is_playing = False
+
+    async def play_stream(
+        self,
+        info: AudioInfo,
+        chunks: AsyncIterable[bytes],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        """Play streamed audio chunks."""
+
+        self.is_playing = True
+        print(f"Streaming audio: codec={info.codec}, sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
+        total = 0
+        async for chunk in chunks:
+            total += len(chunk)
+            await asyncio.sleep(0)
+        print(f"Stream complete: {total} bytes")
         self.is_playing = False
 
     async def get_properties(
@@ -334,7 +354,14 @@ class ExampleCamera(Camera):
         img.close()
         super().__init__(name)
 
-    async def get_images(self, *, filter_source_names: Optional[Sequence[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+    async def get_images(
+        self,
+        *,
+        filter_source_names: Optional[Sequence[str]] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[List[NamedImage], ResponseMetadata]:
         ts = Timestamp()
         ts.FromDatetime(datetime.now())
         metadata = ResponseMetadata(captured_at=ts)
@@ -525,7 +552,9 @@ class ExampleGantry(Gantry):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
-    async def get_kinematics(self, *, extra=None, timeout=None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    async def get_kinematics(
+        self, *, extra=None, timeout=None, **kwargs
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_UNSPECIFIED, b"abc", {})
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -564,7 +593,9 @@ class ExampleGripper(Gripper):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
-    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    async def get_kinematics(
+        self, extra: Optional[Dict[str, Any]] = None, **kwargs
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return self.kinematics
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -581,6 +612,7 @@ class ExampleGripper(Gripper):
 
     async def go_to_inputs(self, values: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.current_inputs = values
+
 
 class ExampleMotor(Motor):
     def __init__(self, name: str):
