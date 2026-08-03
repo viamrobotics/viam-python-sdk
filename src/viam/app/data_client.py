@@ -335,6 +335,9 @@ class DataClient:
         error_message: str
         """The error message of the data pipeline run. Only set if the run failed."""
 
+        data_source_type: TabularDataSourceType.ValueType
+        """The data source type the run executed against. Runs that predate this field report the pipeline's configured data source type."""
+
         @classmethod
         def from_proto(cls, data_pipeline_run: ProtoDataPipelineRun) -> Self:
             return cls(
@@ -345,6 +348,7 @@ class DataClient:
                 data_start_time=data_pipeline_run.data_start_time.ToDatetime(),
                 data_end_time=data_pipeline_run.data_end_time.ToDatetime(),
                 error_message=data_pipeline_run.error_message,
+                data_source_type=data_pipeline_run.data_source_type,
             )
 
     @dataclass
@@ -2400,20 +2404,23 @@ class DataClient:
         dataset_id: str,
         page_token: Optional[str] = None,
         page_size: Optional[int] = None,
+        count_only: Optional[bool] = None,
         timeout: Optional[float] = None,
-    ) -> Tuple[TSequence[Sequence], str]:
+    ) -> Tuple[TSequence[Sequence], str, int]:
         """Get sequences in a dataset by dataset ID.
 
         Args:
             dataset_id (str): The ID of the dataset.
             page_token (Optional[str]): Optional page token for pagination.
             page_size (Optional[int]): Optional page size for pagination.
+            count_only (Optional[bool]): If True, return only the count of sequences without fetching the actual data.
             timeout (Optional[float]): An optional deadline for the call to complete in seconds.
 
         Returns:
-            Tuple[List[Sequence], str]: A tuple containing:
+            Tuple[List[Sequence], str, int]: A tuple containing:
                 - A list of sequences in the dataset.
                 - The next page token (empty string if no more pages).
+                - The total count of sequences.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid>`_.
         """
@@ -2422,10 +2429,12 @@ class DataClient:
             request.page_token = page_token
         if page_size is not None:
             request.page_size = page_size
+        if count_only is not None:
+            request.count_only = count_only
         response: SequencesByDatasetIDResponse = await self._data_client.SequencesByDatasetID(
             request, metadata=self._metadata, timeout=timeout
         )
-        return list(response.sequences), response.next_page_token
+        return list(response.sequences), response.next_page_token, response.count
 
     async def get_sequence_binary_data(
         self,

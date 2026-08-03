@@ -1187,8 +1187,9 @@ class MockData(UnimplementedDataServiceBase):
         self.dataset_id = request.dataset_id
         self.page_token = request.page_token
         self.page_size = request.page_size
+        self.count_only = request.count_only
         # Return empty list for testing - tests can override this behavior
-        await stream.send_message(SequencesByDatasetIDResponse(sequences=[], next_page_token=""))
+        await stream.send_message(SequencesByDatasetIDResponse(sequences=[], next_page_token="", count=0))
 
     async def GetSequenceBinaryData(self, stream: Stream[GetSequenceBinaryDataRequest, GetSequenceBinaryDataResponse]) -> None:
         request = await stream.recv_message()
@@ -1745,6 +1746,8 @@ class MockApp(UnimplementedAppServiceBase):
         self.levels = request.levels
         self.start = request.start
         self.end = request.end
+        self.order = request.order if request.HasField("order") else None
+        self.range = request.range if request.HasField("range") else None
         await stream.send_message(GetRobotPartLogsResponse(logs=[self.log_entry]))
 
     async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:
