@@ -7,6 +7,7 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
 from google.protobuf.internal import containers as _containers
+from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.rpc import status_pb2 as _status_pb2
 import builtins as _builtins
 import sys
@@ -16,6 +17,101 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import TypeAlias as _TypeAlias
 DESCRIPTOR: _descriptor.FileDescriptor
+
+class _ICECandidateType:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _ICECandidateTypeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_ICECandidateType.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    ICE_CANDIDATE_TYPE_UNSPECIFIED: _ICECandidateType.ValueType
+    ICE_CANDIDATE_TYPE_HOST: _ICECandidateType.ValueType
+    'ICE_CANDIDATE_TYPE_HOST indicates a direct connection was established.'
+    ICE_CANDIDATE_TYPE_STUN: _ICECandidateType.ValueType
+    'ICE_CANDIDATE_TYPE_STUN indicates a STUN-assisted connection was established.'
+    ICE_CANDIDATE_TYPE_RELAY: _ICECandidateType.ValueType
+    'ICE_CANDIDATE_TYPE_RELAY indicates a TURN relay candidate was selected.'
+
+class ICECandidateType(_ICECandidateType, metaclass=_ICECandidateTypeEnumTypeWrapper):
+    """ICECandidateType represents the type of ICE candidate selected for a WebRTC connection.
+    The signaling server further classifies RELAY by relay server specific provider from the address.
+    """
+ICE_CANDIDATE_TYPE_UNSPECIFIED: ICECandidateType.ValueType
+ICE_CANDIDATE_TYPE_HOST: ICECandidateType.ValueType
+'ICE_CANDIDATE_TYPE_HOST indicates a direct connection was established.'
+ICE_CANDIDATE_TYPE_STUN: ICECandidateType.ValueType
+'ICE_CANDIDATE_TYPE_STUN indicates a STUN-assisted connection was established.'
+ICE_CANDIDATE_TYPE_RELAY: ICECandidateType.ValueType
+'ICE_CANDIDATE_TYPE_RELAY indicates a TURN relay candidate was selected.'
+Global___ICECandidateType: _TypeAlias = ICECandidateType
+
+class _DialStage:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _DialStageEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_DialStage.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    DIAL_STAGE_UNSPECIFIED: _DialStage.ValueType
+    DIAL_STAGE_SIGNALING_CONNECTED: _DialStage.ValueType
+    'DIAL_STAGE_SIGNALING_CONNECTED: the signaling channel was established.'
+    DIAL_STAGE_CONFIG_FETCHED: _DialStage.ValueType
+    'DIAL_STAGE_CONFIG_FETCHED: ICE/TURN configuration was fetched from the signaling server.'
+    DIAL_STAGE_OFFER_SENT: _DialStage.ValueType
+    'DIAL_STAGE_OFFER_SENT: the SDP offer was sent to the signaling server (the Call was accepted).'
+    DIAL_STAGE_ANSWER_RECEIVED: _DialStage.ValueType
+    "DIAL_STAGE_ANSWER_RECEIVED: the answerer's SDP answer was received and applied."
+    DIAL_STAGE_ICE_CONNECTED: _DialStage.ValueType
+    'DIAL_STAGE_ICE_CONNECTED: ICE connectivity was established (a candidate pair connected).'
+    DIAL_STAGE_DTLS_CONNECTED: _DialStage.ValueType
+    'DIAL_STAGE_DTLS_CONNECTED: the DTLS handshake completed (peer connection connected) but the\n    data channel is not yet open.\n    '
+    DIAL_STAGE_READY: _DialStage.ValueType
+    'DIAL_STAGE_READY: the connection is fully ready (data channel open). This is success.'
+
+class DialStage(_DialStage, metaclass=_DialStageEnumTypeWrapper):
+    """DialStage is the furthest checkpoint a WebRTC dial reached. READY means the dial succeeded; any
+    earlier value is the stage at which a failed dial stopped.
+    """
+DIAL_STAGE_UNSPECIFIED: DialStage.ValueType
+DIAL_STAGE_SIGNALING_CONNECTED: DialStage.ValueType
+'DIAL_STAGE_SIGNALING_CONNECTED: the signaling channel was established.'
+DIAL_STAGE_CONFIG_FETCHED: DialStage.ValueType
+'DIAL_STAGE_CONFIG_FETCHED: ICE/TURN configuration was fetched from the signaling server.'
+DIAL_STAGE_OFFER_SENT: DialStage.ValueType
+'DIAL_STAGE_OFFER_SENT: the SDP offer was sent to the signaling server (the Call was accepted).'
+DIAL_STAGE_ANSWER_RECEIVED: DialStage.ValueType
+"DIAL_STAGE_ANSWER_RECEIVED: the answerer's SDP answer was received and applied."
+DIAL_STAGE_ICE_CONNECTED: DialStage.ValueType
+'DIAL_STAGE_ICE_CONNECTED: ICE connectivity was established (a candidate pair connected).'
+DIAL_STAGE_DTLS_CONNECTED: DialStage.ValueType
+'DIAL_STAGE_DTLS_CONNECTED: the DTLS handshake completed (peer connection connected) but the\ndata channel is not yet open.\n'
+DIAL_STAGE_READY: DialStage.ValueType
+'DIAL_STAGE_READY: the connection is fully ready (data channel open). This is success.'
+Global___DialStage: _TypeAlias = DialStage
+
+class _ConnectionSignalingPath:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _ConnectionSignalingPathEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_ConnectionSignalingPath.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    CONNECTION_SIGNALING_PATH_UNSPECIFIED: _ConnectionSignalingPath.ValueType
+    CONNECTION_SIGNALING_PATH_CLOUD_SIGNALED: _ConnectionSignalingPath.ValueType
+    "CONNECTION_SIGNALING_PATH_CLOUD_SIGNALED: signaled through app's signaling server."
+    CONNECTION_SIGNALING_PATH_MDNS_LOCAL: _ConnectionSignalingPath.ValueType
+    'CONNECTION_SIGNALING_PATH_MDNS_LOCAL: signaled over an mDNS-discovered local-network path.'
+    CONNECTION_SIGNALING_PATH_LOCAL: _ConnectionSignalingPath.ValueType
+    "CONNECTION_SIGNALING_PATH_LOCAL: signaled through a loopback/private-address signaling server\n    (e.g. a machine's own signaling server) without mDNS discovery.\n    "
+
+class ConnectionSignalingPath(_ConnectionSignalingPath, metaclass=_ConnectionSignalingPathEnumTypeWrapper):
+    """ConnectionSignalingPath is how a WebRTC dial was signaled, derived from the signaling address."""
+CONNECTION_SIGNALING_PATH_UNSPECIFIED: ConnectionSignalingPath.ValueType
+CONNECTION_SIGNALING_PATH_CLOUD_SIGNALED: ConnectionSignalingPath.ValueType
+"CONNECTION_SIGNALING_PATH_CLOUD_SIGNALED: signaled through app's signaling server."
+CONNECTION_SIGNALING_PATH_MDNS_LOCAL: ConnectionSignalingPath.ValueType
+'CONNECTION_SIGNALING_PATH_MDNS_LOCAL: signaled over an mDNS-discovered local-network path.'
+CONNECTION_SIGNALING_PATH_LOCAL: ConnectionSignalingPath.ValueType
+"CONNECTION_SIGNALING_PATH_LOCAL: signaled through a loopback/private-address signaling server\n(e.g. a machine's own signaling server) without mDNS discovery.\n"
+Global___ConnectionSignalingPath: _TypeAlias = ConnectionSignalingPath
 
 @_typing.final
 class ICECandidate(_message.Message):
@@ -544,3 +640,71 @@ class OptionalWebRTCConfigResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___OptionalWebRTCConfigResponse: _TypeAlias = OptionalWebRTCConfigResponse
+
+@_typing.final
+class ConnectionCandidate(_message.Message):
+    """ConnectionCandidate describes the selected ICE candidate for one side of a WebRTC connection."""
+    DESCRIPTOR: _descriptor.Descriptor
+    TYPE_FIELD_NUMBER: _builtins.int
+    RELAY_ADDRESS_FIELD_NUMBER: _builtins.int
+    type: Global___ICECandidateType.ValueType
+    relay_address: _builtins.str
+    'relay_address is the relay server address of this candidate; set only when type is\n    RELAY, so the signaling server can classify the provider by matching against known\n    coturn addresses.\n    '
+
+    def __init__(self, *, type: Global___ICECandidateType.ValueType=..., relay_address: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['relay_address', b'relay_address', 'type', b'type']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ConnectionCandidate: _TypeAlias = ConnectionCandidate
+
+@_typing.final
+class ReportConnectionMetadataRequest(_message.Message):
+    """ReportConnectionMetadataRequest reports metadata about a WebRTC dial, per side: local is the
+    dialing SDK and remote is the robot.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    LOCAL_FIELD_NUMBER: _builtins.int
+    REMOTE_FIELD_NUMBER: _builtins.int
+    REACHED_STAGE_FIELD_NUMBER: _builtins.int
+    DURATION_MS_FIELD_NUMBER: _builtins.int
+    SIGNALING_PATH_FIELD_NUMBER: _builtins.int
+    FAILURE_CODE_FIELD_NUMBER: _builtins.int
+    reached_stage: Global___DialStage.ValueType
+    'reached_stage is the furthest dial checkpoint reached. READY indicates success; any earlier\n    value is where a failed dial stopped.\n    '
+    duration_ms: _builtins.int
+    'duration_ms is the wall-clock time from dial start to connection ready or to the failure.'
+    signaling_path: Global___ConnectionSignalingPath.ValueType
+    'signaling_path is how the dial was signaled (cloud / local / mDNS); reported regardless of outcome.'
+    failure_code: _builtins.int
+    'failure_code is the gRPC status code of a failed dial'
+
+    @_builtins.property
+    def local(self) -> Global___ConnectionCandidate:
+        ...
+
+    @_builtins.property
+    def remote(self) -> Global___ConnectionCandidate:
+        ...
+
+    def __init__(self, *, local: Global___ConnectionCandidate | None=..., remote: Global___ConnectionCandidate | None=..., reached_stage: Global___DialStage.ValueType=..., duration_ms: _builtins.int=..., signaling_path: Global___ConnectionSignalingPath.ValueType=..., failure_code: _builtins.int=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['local', b'local', 'remote', b'remote']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['duration_ms', b'duration_ms', 'failure_code', b'failure_code', 'local', b'local', 'reached_stage', b'reached_stage', 'remote', b'remote', 'signaling_path', b'signaling_path']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ReportConnectionMetadataRequest: _TypeAlias = ReportConnectionMetadataRequest
+
+@_typing.final
+class ReportConnectionMetadataResponse(_message.Message):
+    """ReportConnectionMetadataResponse is empty."""
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___ReportConnectionMetadataResponse: _TypeAlias = ReportConnectionMetadataResponse

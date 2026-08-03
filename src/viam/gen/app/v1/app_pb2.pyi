@@ -86,6 +86,29 @@ LOGIN_METHOD_GITHUB: LoginMethod.ValueType
 LOGIN_METHOD_APPLE: LoginMethod.ValueType
 Global___LoginMethod: _TypeAlias = LoginMethod
 
+class _LogOrder:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _LogOrderEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_LogOrder.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    LOG_ORDER_UNSPECIFIED: _LogOrder.ValueType
+    'LOG_ORDER_UNSPECIFIED is treated as LOG_ORDER_DESCENDING.'
+    LOG_ORDER_ASCENDING: _LogOrder.ValueType
+    'oldest logs first'
+    LOG_ORDER_DESCENDING: _LogOrder.ValueType
+    'newest logs first'
+
+class LogOrder(_LogOrder, metaclass=_LogOrderEnumTypeWrapper):
+    """LogOrder is the order in which logs are returned, by time."""
+LOG_ORDER_UNSPECIFIED: LogOrder.ValueType
+'LOG_ORDER_UNSPECIFIED is treated as LOG_ORDER_DESCENDING.'
+LOG_ORDER_ASCENDING: LogOrder.ValueType
+'oldest logs first'
+LOG_ORDER_DESCENDING: LogOrder.ValueType
+'newest logs first'
+Global___LogOrder: _TypeAlias = LogOrder
+
 class _FragmentVisibility:
     ValueType = _typing.NewType('ValueType', _builtins.int)
     V: _TypeAlias = ValueType
@@ -2288,6 +2311,8 @@ class GetRobotPartLogsRequest(_message.Message):
     LIMIT_FIELD_NUMBER: _builtins.int
     SOURCE_FIELD_NUMBER: _builtins.int
     USER_FACING_ONLY_FIELD_NUMBER: _builtins.int
+    ORDER_FIELD_NUMBER: _builtins.int
+    RANGE_FIELD_NUMBER: _builtins.int
     id: _builtins.str
 
     @_builtins.property
@@ -2304,6 +2329,10 @@ class GetRobotPartLogsRequest(_message.Message):
     limit: _builtins.int
     source: _builtins.str
     user_facing_only: _builtins.bool
+    order: Global___LogOrder.ValueType
+    'logs are returned newest first when the order field is empty'
+    range: _builtins.str
+    'range is a duration string in minutes, hours, or days (e.g. "10m", "10h", "10d")\n    that is resolved against whichever of start and end is present:\n      end only:     [end - range, end]\n      start only:   [start, start + range]\n      neither:      [now - range, now]\n    Specifying range together with both start and end is an error.\n    '
 
     @_builtins.property
     def levels(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
@@ -2317,13 +2346,13 @@ class GetRobotPartLogsRequest(_message.Message):
     def end(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., errors_only: _builtins.bool=..., filter: _builtins.str | None=..., page_token: _builtins.str | None=..., levels: _abc.Iterable[_builtins.str] | None=..., start: _timestamp_pb2.Timestamp | None=..., end: _timestamp_pb2.Timestamp | None=..., limit: _builtins.int | None=..., source: _builtins.str | None=..., user_facing_only: _builtins.bool | None=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., errors_only: _builtins.bool=..., filter: _builtins.str | None=..., page_token: _builtins.str | None=..., levels: _abc.Iterable[_builtins.str] | None=..., start: _timestamp_pb2.Timestamp | None=..., end: _timestamp_pb2.Timestamp | None=..., limit: _builtins.int | None=..., source: _builtins.str | None=..., user_facing_only: _builtins.bool | None=..., order: Global___LogOrder.ValueType | None=..., range: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_order', b'_order', '_page_token', b'_page_token', '_range', b'_range', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'order', b'order', 'page_token', b'page_token', 'range', b'range', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_order', b'_order', '_page_token', b'_page_token', '_range', b'_range', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'order', b'order', 'page_token', b'page_token', 'range', b'range', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -2333,8 +2362,12 @@ class GetRobotPartLogsRequest(_message.Message):
     _WhichOneofArgType__filter: _TypeAlias = _typing.Literal['_filter', b'_filter']
     _WhichOneofReturnType__limit: _TypeAlias = _typing.Literal['limit']
     _WhichOneofArgType__limit: _TypeAlias = _typing.Literal['_limit', b'_limit']
+    _WhichOneofReturnType__order: _TypeAlias = _typing.Literal['order']
+    _WhichOneofArgType__order: _TypeAlias = _typing.Literal['_order', b'_order']
     _WhichOneofReturnType__page_token: _TypeAlias = _typing.Literal['page_token']
     _WhichOneofArgType__page_token: _TypeAlias = _typing.Literal['_page_token', b'_page_token']
+    _WhichOneofReturnType__range: _TypeAlias = _typing.Literal['range']
+    _WhichOneofArgType__range: _TypeAlias = _typing.Literal['_range', b'_range']
     _WhichOneofReturnType__source: _TypeAlias = _typing.Literal['source']
     _WhichOneofArgType__source: _TypeAlias = _typing.Literal['_source', b'_source']
     _WhichOneofReturnType__start: _TypeAlias = _typing.Literal['start']
@@ -2355,7 +2388,15 @@ class GetRobotPartLogsRequest(_message.Message):
         ...
 
     @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__order) -> _WhichOneofReturnType__order | None:
+        ...
+
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__range) -> _WhichOneofReturnType__range | None:
         ...
 
     @_typing.overload
