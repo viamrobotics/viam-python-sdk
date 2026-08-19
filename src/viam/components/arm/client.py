@@ -156,6 +156,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
+        # TODO: handle empty meshes in the response to prevent silent mapping
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
 
     async def get_3d_models(
