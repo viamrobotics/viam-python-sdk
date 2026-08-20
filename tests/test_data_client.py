@@ -592,12 +592,16 @@ class TestClient:
     async def test_sequences_by_dataset_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            sequences, next_page_token = await client.sequences_by_dataset_id(dataset_id=DATASET_ID, page_token="page1", page_size=10)
+            sequences, next_page_token, count = await client.sequences_by_dataset_id(
+                dataset_id=DATASET_ID, page_token="page1", page_size=10, count_only=True
+            )
             assert service.dataset_id == DATASET_ID
             assert service.page_token == "page1"
             assert service.page_size == 10
+            assert service.count_only is True
             assert sequences == []
             assert next_page_token == ""
+            assert count == 0
 
     async def test_get_sequence_binary_data(self, service: MockData):
         async with ChannelFor([service]) as channel:

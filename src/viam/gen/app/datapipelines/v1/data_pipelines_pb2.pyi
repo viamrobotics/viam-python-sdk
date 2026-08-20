@@ -375,12 +375,15 @@ class DataPipelineRun(_message.Message):
     DATA_END_TIME_FIELD_NUMBER: _builtins.int
     STATUS_FIELD_NUMBER: _builtins.int
     ERROR_MESSAGE_FIELD_NUMBER: _builtins.int
+    DATA_SOURCE_TYPE_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     'The ID of the run.'
     status: Global___DataPipelineRunStatus.ValueType
     'The status of the run.'
     error_message: _builtins.str
     'The error message if the run failed.'
+    data_source_type: _data_pb2.TabularDataSourceType.ValueType
+    "The data source type the run executed against. Runs that predate this field\n    report the pipeline's configured data source type.\n    "
 
     @_builtins.property
     def start_time(self) -> _timestamp_pb2.Timestamp:
@@ -398,13 +401,13 @@ class DataPipelineRun(_message.Message):
     def data_end_time(self) -> _timestamp_pb2.Timestamp:
         """The end time of the data that was processed in the run."""
 
-    def __init__(self, *, id: _builtins.str=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=..., data_start_time: _timestamp_pb2.Timestamp | None=..., data_end_time: _timestamp_pb2.Timestamp | None=..., status: Global___DataPipelineRunStatus.ValueType=..., error_message: _builtins.str=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., start_time: _timestamp_pb2.Timestamp | None=..., end_time: _timestamp_pb2.Timestamp | None=..., data_start_time: _timestamp_pb2.Timestamp | None=..., data_end_time: _timestamp_pb2.Timestamp | None=..., status: Global___DataPipelineRunStatus.ValueType=..., error_message: _builtins.str=..., data_source_type: _data_pb2.TabularDataSourceType.ValueType=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'start_time', b'start_time']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'error_message', b'error_message', 'id', b'id', 'start_time', b'start_time', 'status', b'status']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['data_end_time', b'data_end_time', 'data_source_type', b'data_source_type', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'error_message', b'error_message', 'id', b'id', 'start_time', b'start_time', 'status', b'status']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
