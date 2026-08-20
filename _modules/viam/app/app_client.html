@@ -216,6 +216,7 @@
     <span class="n">LocationAuth</span><span class="p">,</span>
     <span class="n">LocationAuthRequest</span><span class="p">,</span>
     <span class="n">LocationAuthResponse</span><span class="p">,</span>
+    <span class="n">LogOrder</span><span class="p">,</span>
     <span class="n">MarkPartAsMainRequest</span><span class="p">,</span>
     <span class="n">MarkPartForRestartRequest</span><span class="p">,</span>
     <span class="n">Model</span><span class="p">,</span>
@@ -1640,6 +1641,8 @@
         <span class="n">num_log_entries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
         <span class="n">start</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">LogOrder</span><span class="o">.</span><span class="n">ValueType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="nb">range</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the logs associated with a robot part.</span>
 
@@ -1660,6 +1663,9 @@
 <span class="sd">                `num_log_entries` logs will be returned, whichever comes first.</span>
 <span class="sd">            start (datetime | None): Optional start time for log retrieval. Only logs created after this time will be returned.</span>
 <span class="sd">            end (datetime | None): Optional end time for log retrieval. Only logs created before this time will be returned.</span>
+<span class="sd">            order (LogOrder.ValueType | None): The order in which logs are returned by time. Defaults to descending (newest first).</span>
+<span class="sd">            range (str | None): A duration string (e.g., &quot;10m&quot;, &quot;10h&quot;, &quot;10d&quot;) that is resolved against whichever of start and end is</span>
+<span class="sd">                present. Cannot be used with both start and end.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
@@ -1683,6 +1689,8 @@
                 <span class="n">log_levels</span><span class="o">=</span><span class="n">log_levels</span><span class="p">,</span>
                 <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
                 <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span>
+                <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+                <span class="nb">range</span><span class="o">=</span><span class="nb">range</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">num_log_entries</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_logs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">logs_left</span><span class="p">:</span>
                 <span class="n">logs</span> <span class="o">+=</span> <span class="n">new_logs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">logs_left</span><span class="p">]</span>
@@ -1718,6 +1726,8 @@
         <span class="n">log_levels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">start</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">end</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">LogOrder</span><span class="o">.</span><span class="n">ValueType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="nb">range</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartLogsRequest</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span>
@@ -1727,6 +1737,10 @@
             <span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
             <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
         <span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="k">if</span> <span class="nb">range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="nb">range</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartLogsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartLogs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">LogEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">logs</span><span class="p">],</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span>
 

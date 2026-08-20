@@ -35,10 +35,16 @@ Classes
    viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage
    viam.proto.rpc.webrtc.signaling.CallUpdateRequest
    viam.proto.rpc.webrtc.signaling.CallUpdateResponse
+   viam.proto.rpc.webrtc.signaling.ConnectionCandidate
+   viam.proto.rpc.webrtc.signaling.ConnectionSignalingPath
+   viam.proto.rpc.webrtc.signaling.DialStage
    viam.proto.rpc.webrtc.signaling.ICECandidate
+   viam.proto.rpc.webrtc.signaling.ICECandidateType
    viam.proto.rpc.webrtc.signaling.ICEServer
    viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest
    viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse
+   viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest
+   viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataResponse
    viam.proto.rpc.webrtc.signaling.WebRTCConfig
 
 
@@ -82,6 +88,13 @@ Module Contents
 
 
 
+   .. py:method:: ReportConnectionMetadata(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataRequest, proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -97,6 +110,9 @@ Module Contents
 
 
    .. py:attribute:: OptionalWebRTCConfig
+
+
+   .. py:attribute:: ReportConnectionMetadata
 
 
 .. py:class:: UnimplementedSignalingServiceBase
@@ -124,6 +140,11 @@ Module Contents
 
 
    .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ReportConnectionMetadata(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataRequest, proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataResponse]) -> None
       :async:
 
 
@@ -650,6 +671,43 @@ Module Contents
    CallUpdateResponse contains nothing in response to a call update.
 
 
+.. py:class:: ConnectionCandidate(*, type: Global___ICECandidateType = ..., relay_address: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ConnectionCandidate describes the selected ICE candidate for one side of a WebRTC connection.
+
+
+   .. py:attribute:: type
+      :type:  Global___ICECandidateType
+
+
+   .. py:attribute:: relay_address
+      :type:  str
+
+      relay_address is the relay server address of this candidate; set only when type is
+      RELAY, so the signaling server can classify the provider by matching against known
+      coturn addresses.
+
+
+.. py:class:: ConnectionSignalingPath
+
+   Bases: :py:obj:`_ConnectionSignalingPath`
+
+
+   ConnectionSignalingPath is how a WebRTC dial was signaled, derived from the signaling address.
+
+
+.. py:class:: DialStage
+
+   Bases: :py:obj:`_DialStage`
+
+
+   DialStage is the furthest checkpoint a WebRTC dial reached. READY means the dial succeeded; any
+   earlier value is the stage at which a failed dial stopped.
+
+
 .. py:class:: ICECandidate(*, candidate: str = ..., sdp_mid: str | None = ..., sdpm_line_index: int | None = ..., username_fragment: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -711,6 +769,15 @@ Module Contents
 
 
 
+.. py:class:: ICECandidateType
+
+   Bases: :py:obj:`_ICECandidateType`
+
+
+   ICECandidateType represents the type of ICE candidate selected for a WebRTC connection.
+   The signaling server further classifies RELAY by relay server specific provider from the address.
+
+
 .. py:class:: ICEServer(*, urls: collections.abc.Iterable[str] | None = ..., username: str = ..., credential: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -767,6 +834,72 @@ Module Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: ReportConnectionMetadataRequest(*, local: Global___ConnectionCandidate | None = ..., remote: Global___ConnectionCandidate | None = ..., reached_stage: Global___DialStage = ..., duration_ms: int = ..., signaling_path: Global___ConnectionSignalingPath = ..., failure_code: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ReportConnectionMetadataRequest reports metadata about a WebRTC dial, per side: local is the
+   dialing SDK and remote is the robot.
+
+
+   .. py:attribute:: reached_stage
+      :type:  Global___DialStage
+
+      reached_stage is the furthest dial checkpoint reached. READY indicates success; any earlier
+      value is where a failed dial stopped.
+
+
+   .. py:attribute:: duration_ms
+      :type:  int
+
+      duration_ms is the wall-clock time from dial start to connection ready or to the failure.
+
+
+   .. py:attribute:: signaling_path
+      :type:  Global___ConnectionSignalingPath
+
+      signaling_path is how the dial was signaled (cloud / local / mDNS); reported regardless of outcome.
+
+
+   .. py:attribute:: failure_code
+      :type:  int
+
+      failure_code is the gRPC status code of a failed dial
+
+
+   .. py:method:: local() -> Global___ConnectionCandidate
+
+
+   .. py:method:: remote() -> Global___ConnectionCandidate
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ReportConnectionMetadataResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ReportConnectionMetadataResponse is empty.
 
 
 .. py:class:: WebRTCConfig(*, additional_ice_servers: collections.abc.Iterable[Global___ICEServer] | None = ..., disable_trickle: bool = ...)

@@ -3656,7 +3656,7 @@ Module Contents
    :canonical: ListSequencesResponse
 
 
-.. py:class:: SequencesByDatasetIDRequest(*, dataset_id: str = ..., page_token: str = ..., page_size: int = ...)
+.. py:class:: SequencesByDatasetIDRequest(*, dataset_id: str = ..., page_token: str = ..., page_size: int = ..., count_only: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3680,11 +3680,15 @@ Module Contents
       :type:  int
 
 
+   .. py:attribute:: count_only
+      :type:  bool
+
+
 .. py:type:: Global___SequencesByDatasetIDRequest
    :canonical: SequencesByDatasetIDRequest
 
 
-.. py:class:: SequencesByDatasetIDResponse(*, sequences: collections.abc.Iterable[Global___Sequence] | None = ..., next_page_token: str = ...)
+.. py:class:: SequencesByDatasetIDResponse(*, sequences: collections.abc.Iterable[Global___Sequence] | None = ..., next_page_token: str = ..., count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3698,6 +3702,10 @@ Module Contents
 
    .. py:attribute:: next_page_token
       :type:  str
+
+
+   .. py:attribute:: count
+      :type:  int
 
 
    .. py:method:: sequences() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Sequence]

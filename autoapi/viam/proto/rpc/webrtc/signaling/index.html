@@ -85,6 +85,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.CallUpdate"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.CallUpdate()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Answer"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.Answer()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.OptionalWebRTCConfig()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.ReportConnectionMetadata"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.ReportConnectionMetadata()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -93,6 +94,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub.CallUpdate"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.CallUpdate</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub.Answer"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.Answer</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.OptionalWebRTCConfig</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub.ReportConnectionMetadata"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.ReportConnectionMetadata</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase</span></code></a><ul>
@@ -100,6 +102,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.CallUpdate"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.CallUpdate()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Answer"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.Answer()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.OptionalWebRTCConfig()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.ReportConnectionMetadata"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.ReportConnectionMetadata()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest"><code class="docutils literal notranslate"><span class="pre">AnswerRequest</span></code></a><ul>
@@ -190,6 +193,13 @@
 </ul>
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse"><code class="docutils literal notranslate"><span class="pre">CallUpdateResponse</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate"><code class="docutils literal notranslate"><span class="pre">ConnectionCandidate</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate.type"><code class="docutils literal notranslate"><span class="pre">ConnectionCandidate.type</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate.relay_address"><code class="docutils literal notranslate"><span class="pre">ConnectionCandidate.relay_address</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ConnectionSignalingPath"><code class="docutils literal notranslate"><span class="pre">ConnectionSignalingPath</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.DialStage"><code class="docutils literal notranslate"><span class="pre">DialStage</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate"><code class="docutils literal notranslate"><span class="pre">ICECandidate</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.candidate"><code class="docutils literal notranslate"><span class="pre">ICECandidate.candidate</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.sdp_mid"><code class="docutils literal notranslate"><span class="pre">ICECandidate.sdp_mid</span></code></a></li>
@@ -199,6 +209,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.WhichOneof"><code class="docutils literal notranslate"><span class="pre">ICECandidate.WhichOneof()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidateType"><code class="docutils literal notranslate"><span class="pre">ICECandidateType</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer"><code class="docutils literal notranslate"><span class="pre">ICEServer</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer.username"><code class="docutils literal notranslate"><span class="pre">ICEServer.username</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer.credential"><code class="docutils literal notranslate"><span class="pre">ICEServer.credential</span></code></a></li>
@@ -211,6 +222,17 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.HasField"><code class="docutils literal notranslate"><span class="pre">OptionalWebRTCConfigResponse.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.reached_stage"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.reached_stage</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.duration_ms"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.duration_ms</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.signaling_path"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.signaling_path</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.failure_code"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.failure_code</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.local"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.local()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.remote"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.remote()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataResponse"><code class="docutils literal notranslate"><span class="pre">ReportConnectionMetadataResponse</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig"><code class="docutils literal notranslate"><span class="pre">WebRTCConfig</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig.disable_trickle"><code class="docutils literal notranslate"><span class="pre">WebRTCConfig.disable_trickle</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig.additional_ice_servers"><code class="docutils literal notranslate"><span class="pre">WebRTCConfig.additional_ice_servers()</span></code></a></li>
@@ -332,8 +354,20 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse" title="viam.proto.rpc.webrtc.signaling.CallUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateResponse</span></code></a></p></td>
 <td><p>CallUpdateResponse contains nothing in response to a call update.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="viam.proto.rpc.webrtc.signaling.ICECandidate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICECandidate</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate" title="viam.proto.rpc.webrtc.signaling.ConnectionCandidate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionCandidate</span></code></a></p></td>
+<td><p>ConnectionCandidate describes the selected ICE candidate for one side of a WebRTC connection.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ConnectionSignalingPath" title="viam.proto.rpc.webrtc.signaling.ConnectionSignalingPath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionSignalingPath</span></code></a></p></td>
+<td><p>ConnectionSignalingPath is how a WebRTC dial was signaled, derived from the signaling address.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.DialStage" title="viam.proto.rpc.webrtc.signaling.DialStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DialStage</span></code></a></p></td>
+<td><p>DialStage is the furthest checkpoint a WebRTC dial reached. READY means the dial succeeded; any</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="viam.proto.rpc.webrtc.signaling.ICECandidate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICECandidate</span></code></a></p></td>
 <td><p>ICECandidate represents an ICE candidate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidateType" title="viam.proto.rpc.webrtc.signaling.ICECandidateType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICECandidateType</span></code></a></p></td>
+<td><p>ICECandidateType represents the type of ICE candidate selected for a WebRTC connection.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer" title="viam.proto.rpc.webrtc.signaling.ICEServer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICEServer</span></code></a></p></td>
 <td><p>ICEServer describes an ICE server.</p></td>
@@ -343,6 +377,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigResponse</span></code></a></p></td>
 <td><p>OptionalWebRTCConfigResponse contains the optional WebRTC config</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest" title="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReportConnectionMetadataRequest</span></code></a></p></td>
+<td><p>ReportConnectionMetadataRequest reports metadata about a WebRTC dial, per side: local is the</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataResponse" title="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReportConnectionMetadataResponse</span></code></a></p></td>
+<td><p>ReportConnectionMetadataResponse is empty.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig" title="viam.proto.rpc.webrtc.signaling.WebRTCConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WebRTCConfig</span></code></a></p></td>
 <td><p>WebRTCConfig represents parts of a WebRTC config.</p></td>
@@ -395,6 +435,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.ReportConnectionMetadata">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ReportConnectionMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.ReportConnectionMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.ReportConnectionMetadata" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -424,6 +473,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub.OptionalWebRTCConfig" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceStub.ReportConnectionMetadata">
+<span class="sig-name descname"><span class="pre">ReportConnectionMetadata</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub.ReportConnectionMetadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -450,6 +504,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.OptionalWebRTCConfig">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.OptionalWebRTCConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.OptionalWebRTCConfig" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.ReportConnectionMetadata">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ReportConnectionMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.ReportConnectionMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.ReportConnectionMetadata" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1074,6 +1133,41 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ConnectionCandidate">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ConnectionCandidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___ICECandidateType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relay_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>ConnectionCandidate describes the selected ICE candidate for one side of a WebRTC connection.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ConnectionCandidate.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Global___ICECandidateType</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate.type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ConnectionCandidate.relay_address">
+<span class="sig-name descname"><span class="pre">relay_address</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ConnectionCandidate.relay_address" title="Link to this definition"></a></dt>
+<dd><p>relay_address is the relay server address of this candidate; set only when type is
+RELAY, so the signaling server can classify the provider by matching against known
+coturn addresses.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ConnectionSignalingPath">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ConnectionSignalingPath</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ConnectionSignalingPath" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_ConnectionSignalingPath</span></code></p>
+<p>ConnectionSignalingPath is how a WebRTC dial was signaled, derived from the signaling address.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.DialStage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">DialStage</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.DialStage" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_DialStage</span></code></p>
+<p>DialStage is the furthest checkpoint a WebRTC dial reached. READY means the dial succeeded; any
+earlier value is the stage at which a failed dial stopped.</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ICECandidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdpm_line_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username_fragment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -1150,6 +1244,14 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidateType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ICECandidateType</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidateType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_ICECandidateType</span></code></p>
+<p>ICECandidateType represents the type of ICE candidate selected for a WebRTC connection.
+The signaling server further classifies RELAY by relay server specific provider from the address.</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICEServer">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ICEServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credential</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICEServer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -1213,6 +1315,79 @@ be raised.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ReportConnectionMetadataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___ConnectionCandidate</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___ConnectionCandidate</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reached_stage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___DialStage</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signaling_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___ConnectionSignalingPath</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">failure_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>ReportConnectionMetadataRequest reports metadata about a WebRTC dial, per side: local is the
+dialing SDK and remote is the robot.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.reached_stage">
+<span class="sig-name descname"><span class="pre">reached_stage</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Global___DialStage</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.reached_stage" title="Link to this definition"></a></dt>
+<dd><p>reached_stage is the furthest dial checkpoint reached. READY indicates success; any earlier
+value is where a failed dial stopped.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.duration_ms">
+<span class="sig-name descname"><span class="pre">duration_ms</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.duration_ms" title="Link to this definition"></a></dt>
+<dd><p>duration_ms is the wall-clock time from dial start to connection ready or to the failure.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.signaling_path">
+<span class="sig-name descname"><span class="pre">signaling_path</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Global___ConnectionSignalingPath</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.signaling_path" title="Link to this definition"></a></dt>
+<dd><p>signaling_path is how the dial was signaled (cloud / local / mDNS); reported regardless of outcome.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.failure_code">
+<span class="sig-name descname"><span class="pre">failure_code</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.failure_code" title="Link to this definition"></a></dt>
+<dd><p>failure_code is the gRPC status code of a failed dial</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.local">
+<span class="sig-name descname"><span class="pre">local</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Global___ConnectionCandidate</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.local" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.remote">
+<span class="sig-name descname"><span class="pre">remote</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Global___ConnectionCandidate</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.remote" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataRequest.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ReportConnectionMetadataResponse</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ReportConnectionMetadataResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>ReportConnectionMetadataResponse is empty.</p>
 </dd></dl>
 
 <dl class="py class">

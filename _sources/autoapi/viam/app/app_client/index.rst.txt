@@ -1200,7 +1200,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: str | None = None, dest: str | None = None, log_levels: list[str] = [], num_log_entries: int = 100, start: datetime.datetime | None = None, end: datetime.datetime | None = None) -> list[LogEntry]
+   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: str | None = None, dest: str | None = None, log_levels: list[str] = [], num_log_entries: int = 100, start: datetime.datetime | None = None, end: datetime.datetime | None = None, order: viam.proto.app.LogOrder.ValueType | None = None, range: str | None = None) -> list[LogEntry]
       :async:
 
 
@@ -1229,6 +1229,11 @@ Module Contents
       :type start: datetime | None
       :param end: Optional end time for log retrieval. Only logs created before this time will be returned.
       :type end: datetime | None
+      :param order: The order in which logs are returned by time. Defaults to descending (newest first).
+      :type order: LogOrder.ValueType | None
+      :param range: A duration string (e.g., "10m", "10h", "10d") that is resolved against whichever of start and end is
+                    present. Cannot be used with both start and end.
+      :type range: str | None
 
       :raises GRPCError: If an invalid robot part ID is passed.
 

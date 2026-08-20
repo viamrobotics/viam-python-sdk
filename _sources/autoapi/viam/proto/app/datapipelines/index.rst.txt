@@ -388,7 +388,7 @@ Package Contents
 
 
 
-.. py:class:: DataPipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: Global___DataPipelineRunStatus = ..., error_message: str = ...)
+.. py:class:: DataPipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: Global___DataPipelineRunStatus = ..., error_message: str = ..., data_source_type: app.data.v1.data_pb2.TabularDataSourceType.ValueType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -416,6 +416,13 @@ Package Contents
       :type:  str
 
       The error message if the run failed.
+
+
+   .. py:attribute:: data_source_type
+      :type:  app.data.v1.data_pb2.TabularDataSourceType.ValueType
+
+      The data source type the run executed against. Runs that predate this field
+      report the pipeline's configured data source type.
 
 
    .. py:method:: start_time() -> google.protobuf.timestamp_pb2.Timestamp

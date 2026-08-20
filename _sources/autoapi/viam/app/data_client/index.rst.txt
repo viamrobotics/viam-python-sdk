@@ -306,6 +306,12 @@ Module Contents
          The error message of the data pipeline run. Only set if the run failed.
 
 
+      .. py:attribute:: data_source_type
+         :type:  viam.proto.app.data.TabularDataSourceType.ValueType
+
+         The data source type the run executed against. Runs that predate this field report the pipeline's configured data source type.
+
+
       .. py:method:: from_proto(data_pipeline_run: viam.proto.app.datapipelines.DataPipelineRun) -> Self
          :classmethod:
 
@@ -1995,7 +2001,7 @@ Module Contents
 
 
 
-   .. py:method:: sequences_by_dataset_id(dataset_id: str, page_token: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[float] = None) -> Tuple[Sequence[viam.proto.app.data.Sequence], str]
+   .. py:method:: sequences_by_dataset_id(dataset_id: str, page_token: Optional[str] = None, page_size: Optional[int] = None, count_only: Optional[bool] = None, timeout: Optional[float] = None) -> Tuple[Sequence[viam.proto.app.data.Sequence], str, int]
       :async:
 
 
@@ -2007,6 +2013,8 @@ Module Contents
       :type page_token: Optional[str]
       :param page_size: Optional page size for pagination.
       :type page_size: Optional[int]
+      :param count_only: If True, return only the count of sequences without fetching the actual data.
+      :type count_only: Optional[bool]
       :param timeout: An optional deadline for the call to complete in seconds.
       :type timeout: Optional[float]
 
@@ -2015,7 +2023,8 @@ Module Contents
                 A tuple containing:
                     - A list of sequences in the dataset.
                     - The next page token (empty string if no more pages).
-      :rtype: Tuple[List[Sequence], str]
+                    - The total count of sequences.
+      :rtype: Tuple[List[Sequence], str, int]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid>`_.
 

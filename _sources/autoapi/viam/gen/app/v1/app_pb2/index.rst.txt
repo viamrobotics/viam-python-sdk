@@ -33,6 +33,10 @@ Attributes
    viam.gen.app.v1.app_pb2.LOGIN_METHOD_GITHUB
    viam.gen.app.v1.app_pb2.LOGIN_METHOD_APPLE
    viam.gen.app.v1.app_pb2.Global___LoginMethod
+   viam.gen.app.v1.app_pb2.LOG_ORDER_UNSPECIFIED
+   viam.gen.app.v1.app_pb2.LOG_ORDER_ASCENDING
+   viam.gen.app.v1.app_pb2.LOG_ORDER_DESCENDING
+   viam.gen.app.v1.app_pb2.Global___LogOrder
    viam.gen.app.v1.app_pb2.FRAGMENT_VISIBILITY_UNSPECIFIED
    viam.gen.app.v1.app_pb2.FRAGMENT_VISIBILITY_PRIVATE
    viam.gen.app.v1.app_pb2.FRAGMENT_VISIBILITY_PUBLIC
@@ -399,6 +403,7 @@ Classes
    viam.gen.app.v1.app_pb2.OnlineState
    viam.gen.app.v1.app_pb2.AuthenticationType
    viam.gen.app.v1.app_pb2.LoginMethod
+   viam.gen.app.v1.app_pb2.LogOrder
    viam.gen.app.v1.app_pb2.FragmentVisibility
    viam.gen.app.v1.app_pb2.FragmentErrorType
    viam.gen.app.v1.app_pb2.ModuleSourceType
@@ -790,6 +795,33 @@ Module Contents
 
 .. py:type:: Global___LoginMethod
    :canonical: LoginMethod
+
+
+.. py:class:: LogOrder
+
+   Bases: :py:obj:`_LogOrder`
+
+
+   LogOrder is the order in which logs are returned, by time.
+
+
+.. py:data:: LOG_ORDER_UNSPECIFIED
+   :type:  LogOrder
+
+   LOG_ORDER_UNSPECIFIED is treated as LOG_ORDER_DESCENDING.
+
+.. py:data:: LOG_ORDER_ASCENDING
+   :type:  LogOrder
+
+   oldest logs first
+
+.. py:data:: LOG_ORDER_DESCENDING
+   :type:  LogOrder
+
+   newest logs first
+
+.. py:type:: Global___LogOrder
+   :canonical: LogOrder
 
 
 .. py:class:: FragmentVisibility
@@ -4166,7 +4198,7 @@ Module Contents
    :canonical: GetRobotPartByNameAndLocationResponse
 
 
-.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ..., user_facing_only: bool | None = ...)
+.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ..., user_facing_only: bool | None = ..., order: Global___LogOrder | None = ..., range: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4208,6 +4240,23 @@ Module Contents
       :type:  bool
 
 
+   .. py:attribute:: order
+      :type:  Global___LogOrder
+
+      logs are returned newest first when the order field is empty
+
+
+   .. py:attribute:: range
+      :type:  str
+
+      range is a duration string in minutes, hours, or days (e.g. "10m", "10h", "10d")
+      that is resolved against whichever of start and end is present:
+        end only:     [end - range, end]
+        start only:   [start, start + range]
+        neither:      [now - range, now]
+      Specifying range together with both start and end is an error.
+
+
    .. py:method:: levels() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       logs of all levels are returned when the levels field is empty
@@ -4241,7 +4290,9 @@ Module Contents
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__end) -> _WhichOneofReturnType__end | None
                   WhichOneof(oneof_group: _WhichOneofArgType__filter) -> _WhichOneofReturnType__filter | None
                   WhichOneof(oneof_group: _WhichOneofArgType__limit) -> _WhichOneofReturnType__limit | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__order) -> _WhichOneofReturnType__order | None
                   WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__range) -> _WhichOneofReturnType__range | None
                   WhichOneof(oneof_group: _WhichOneofArgType__source) -> _WhichOneofReturnType__source | None
                   WhichOneof(oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None
                   WhichOneof(oneof_group: _WhichOneofArgType__user_facing_only) -> _WhichOneofReturnType__user_facing_only | None

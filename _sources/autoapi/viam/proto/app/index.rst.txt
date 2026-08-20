@@ -232,6 +232,7 @@ Classes
    viam.proto.app.LocationOrganization
    viam.proto.app.LocationSummary
    viam.proto.app.LoginMethod
+   viam.proto.app.LogOrder
    viam.proto.app.MachinePickerCustomizations
    viam.proto.app.MachineSummary
    viam.proto.app.MarkPartAsMainRequest
@@ -5847,7 +5848,7 @@ Package Contents
    .. py:method:: history() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___RobotPartHistoryEntry]
 
 
-.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ..., user_facing_only: bool | None = ...)
+.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ..., user_facing_only: bool | None = ..., order: Global___LogOrder | None = ..., range: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5889,6 +5890,23 @@ Package Contents
       :type:  bool
 
 
+   .. py:attribute:: order
+      :type:  Global___LogOrder
+
+      logs are returned newest first when the order field is empty
+
+
+   .. py:attribute:: range
+      :type:  str
+
+      range is a duration string in minutes, hours, or days (e.g. "10m", "10h", "10d")
+      that is resolved against whichever of start and end is present:
+        end only:     [end - range, end]
+        start only:   [start, start + range]
+        neither:      [now - range, now]
+      Specifying range together with both start and end is an error.
+
+
    .. py:method:: levels() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       logs of all levels are returned when the levels field is empty
@@ -5922,7 +5940,9 @@ Package Contents
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__end) -> _WhichOneofReturnType__end | None
                   WhichOneof(oneof_group: _WhichOneofArgType__filter) -> _WhichOneofReturnType__filter | None
                   WhichOneof(oneof_group: _WhichOneofArgType__limit) -> _WhichOneofReturnType__limit | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__order) -> _WhichOneofReturnType__order | None
                   WhichOneof(oneof_group: _WhichOneofArgType__page_token) -> _WhichOneofReturnType__page_token | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__range) -> _WhichOneofReturnType__range | None
                   WhichOneof(oneof_group: _WhichOneofArgType__source) -> _WhichOneofReturnType__source | None
                   WhichOneof(oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None
                   WhichOneof(oneof_group: _WhichOneofArgType__user_facing_only) -> _WhichOneofReturnType__user_facing_only | None
@@ -7188,6 +7208,14 @@ Package Contents
 
 
    LoginMethod is an interactive login mechanism an organization may allow.
+
+
+.. py:class:: LogOrder
+
+   Bases: :py:obj:`_LogOrder`
+
+
+   LogOrder is the order in which logs are returned, by time.
 
 
 .. py:class:: MachinePickerCustomizations(*, heading: str | None = ..., subheading: str | None = ...)

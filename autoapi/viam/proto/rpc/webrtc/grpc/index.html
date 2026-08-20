@@ -155,6 +155,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.CallUpdate"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.CallUpdate()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.Answer"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.Answer()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.OptionalWebRTCConfig()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.ReportConnectionMetadata"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.ReportConnectionMetadata()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -163,6 +164,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub.CallUpdate"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.CallUpdate</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub.Answer"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.Answer</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.OptionalWebRTCConfig</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub.ReportConnectionMetadata"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub.ReportConnectionMetadata</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase</span></code></a><ul>
@@ -170,6 +172,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.CallUpdate"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.CallUpdate()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.Answer"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.Answer()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.OptionalWebRTCConfig()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.ReportConnectionMetadata"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.ReportConnectionMetadata()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -768,6 +771,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.SignalingServiceBase.ReportConnectionMetadata">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ReportConnectionMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.ReportConnectionMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.ReportConnectionMetadata" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.SignalingServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.__mapping__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -797,6 +809,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub.OptionalWebRTCConfig" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.SignalingServiceStub.ReportConnectionMetadata">
+<span class="sig-name descname"><span class="pre">ReportConnectionMetadata</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub.ReportConnectionMetadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -823,6 +840,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.OptionalWebRTCConfig">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.OptionalWebRTCConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.OptionalWebRTCConfig" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.ReportConnectionMetadata">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ReportConnectionMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.ReportConnectionMetadataResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.ReportConnectionMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase.ReportConnectionMetadata" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
