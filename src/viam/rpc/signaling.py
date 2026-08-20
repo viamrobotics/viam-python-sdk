@@ -11,6 +11,8 @@ from viam.proto.rpc.webrtc.signaling import (
     CallUpdateResponse,
     OptionalWebRTCConfigRequest,
     OptionalWebRTCConfigResponse,
+    ReportConnectionMetadataRequest,
+    ReportConnectionMetadataResponse,
     SignalingServiceBase,
 )
 
@@ -26,4 +28,7 @@ class SignalingService(SignalingServiceBase):
         raise GRPCError(Status.UNIMPLEMENTED, "SignalingService is unimplemented")
 
     async def OptionalWebRTCConfig(self, stream: Stream[OptionalWebRTCConfigRequest, OptionalWebRTCConfigResponse]) -> None:
+        raise GRPCError(Status.UNIMPLEMENTED, "SignalingService is unimplemented")
+
+    async def ReportConnectionMetadata(self, stream: Stream[ReportConnectionMetadataRequest, ReportConnectionMetadataResponse]) -> None:
         raise GRPCError(Status.UNIMPLEMENTED, "SignalingService is unimplemented")
