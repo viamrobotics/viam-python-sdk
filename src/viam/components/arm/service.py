@@ -3,6 +3,8 @@ from grpclib.server import Stream
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetGeometriesRequest,
     GetGeometriesResponse,
     GetKinematicsRequest,
@@ -17,6 +19,8 @@ from viam.proto.component.arm import (
     GetJointPositionsResponse,
     IsMovingRequest,
     IsMovingResponse,
+    MoveThroughJointPositionsRequest,
+    MoveThroughJointPositionsResponse,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
@@ -78,6 +82,25 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
 
+    async def MoveThroughJointPositions(self, stream: Stream[MoveThroughJointPositionsRequest, MoveThroughJointPositionsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        arm = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        # `options` has explicit presence; passing a zeroed message when the caller sent
+        # nothing would be indistinguishable from a real zero limit.
+        options = request.options if request.HasField("options") else None
+        await arm.move_through_joint_positions(
+            list(request.positions),
+            options=options,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
+        response = MoveThroughJointPositionsResponse()
+        await stream.send_message(response)
+
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -127,6 +150,15 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         else:
             format, kinematics_data, meshes = kinematics
         response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data, meshes_by_urdf_filepath=meshes)
+        await stream.send_message(response)
+
+    async def Get3DModels(self, stream: Stream[Get3DModelsRequest, Get3DModelsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        models = await arm.get_3d_models(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = Get3DModelsResponse(models=models)
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
