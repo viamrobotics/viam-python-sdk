@@ -204,13 +204,13 @@ def _getDimensionsFromPNG(image: bytes) -> Tuple[int, int]:
 
     # PNG will always start with this signature
     signature = image[:8]
-    if signature != [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]:
-        ValueError("Invalid PNG: Invalid signature")
+    if signature != bytes([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]):
+        raise ValueError("Invalid PNG: Invalid signature")
 
     header = image[12:24]
     chunk_type = header[:4].decode()
     if chunk_type != "IHDR":
-        ValueError("Invalid PNG: Invalid headers")
+        raise ValueError("Invalid PNG: Invalid headers")
 
     width = int.from_bytes(header[4:8], byteorder="big")
     height = int.from_bytes(header[8:], byteorder="big")
