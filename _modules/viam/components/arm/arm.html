@@ -87,13 +87,13 @@
              
   <h1>Source code for viam.components.arm.arm</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components</span><span class="w"> </span><span class="kn">import</span> <span class="n">KinematicsReturn</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components.component_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Pose</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">MoveOptions</span><span class="p">,</span> <span class="n">Pose</span>
 
 
 <div class="viewcode-block" id="Arm">
@@ -110,9 +110,13 @@
 
 <span class="sd">        from viam.components.arm import Arm</span>
 <span class="sd">        # To use move_to_position:</span>
-<span class="sd">        from viam.proto.common import Pose</span>
-<span class="sd">        # To use move_to_joint_positions:</span>
-<span class="sd">        from viam.proto.component.arm import JointPositions</span>
+<span class="sd">        from viam.components.arm import Pose</span>
+<span class="sd">        # To use move_to_joint_positions and move_through_joint_positions:</span>
+<span class="sd">        from viam.components.arm import JointPositions</span>
+<span class="sd">        # To use move_through_joint_positions:</span>
+<span class="sd">        from viam.components.arm import MoveOptions</span>
+<span class="sd">        # To use get_3d_models:</span>
+<span class="sd">        from viam.components.arm import Mesh</span>
 
 <span class="sd">    For more information, see `Arm component &lt;https://docs.viam.com/dev/reference/apis/components/arm/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -217,6 +221,66 @@
 <span class="sd">            positions (JointPositions): The destination ``JointPositions`` for the arm.</span>
 
 <span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Arm.move_through_joint_positions">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.move_through_joint_positions">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">move_through_joint_positions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">positions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">JointPositions</span><span class="p">],</span>
+        <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MoveOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move the arm through the given joint positions in the order they are specified,</span>
+<span class="sd">        obeying the velocity and acceleration limits in ``options``.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
+
+<span class="sd">            # Move through two waypoints, capping joint speed and acceleration.</span>
+<span class="sd">            await my_arm.move_through_joint_positions(</span>
+<span class="sd">                positions=[</span>
+<span class="sd">                    JointPositions(values=[0, 45, 0, 0, 0, 0]),</span>
+<span class="sd">                    JointPositions(values=[0, 0, 0, 0, 0, 0]),</span>
+<span class="sd">                ],</span>
+<span class="sd">                options=MoveOptions(max_vel_degs_per_sec=15.0, max_acc_degs_per_sec2=30.0),</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            positions (List[JointPositions]): The waypoints to move through, in order.</span>
+<span class="sd">            options (Optional[MoveOptions]): Optional kinematic ceilings obeyed at every</span>
+<span class="sd">                point along the trajectory. ``None`` means no limits are requested.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Unlike the Go SDK, this method does not validate the requested positions</span>
+<span class="sd">            against the arm&#39;s joint limits before sending them, because the Python SDK</span>
+<span class="sd">            cannot yet parse a kinematics model. Implementations are responsible for</span>
+<span class="sd">            their own limit checking.</span>
+
+<span class="sd">            Every scalar field on ``MoveOptions`` (``max_vel_degs_per_sec``,</span>
+<span class="sd">            ``max_acc_degs_per_sec2``, ``max_tcp_speed``) also has explicit presence: an</span>
+<span class="sd">            unset field reads back as ``0.0``, indistinguishable from an explicitly-set</span>
+<span class="sd">            zero. Implementations must check ``options.HasField(&quot;max_vel_degs_per_sec&quot;)``</span>
+<span class="sd">            (and likewise for the other scalar fields) before applying it as a ceiling —</span>
+<span class="sd">            reading an unset field&#39;s ``0.0`` directly would misread &quot;no limit requested&quot;</span>
+<span class="sd">            as &quot;do not move&quot;. Per the proto definition, ``max_vel_degs_per_sec`` is</span>
+<span class="sd">            ignored whenever ``max_vel_degs_per_sec_joints`` is set, and likewise</span>
+<span class="sd">            ``max_acc_degs_per_sec2`` is ignored whenever ``max_acc_degs_per_sec2_joints``</span>
+<span class="sd">            is set; implementations should honor only the per-joint limit in that case,</span>
+<span class="sd">            not both.</span>
+
+<span class="sd">            An empty ``positions`` list is passed through to the implementation</span>
+<span class="sd">            unchanged; implementations must handle it, typically as a no-op.</span>
+
+<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -329,8 +393,42 @@
 <span class="sd">            Viam&#39;s kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),</span>
 <span class="sd">            and the second [1] value represents the byte contents of the file.</span>
 <span class="sd">            If available, a third [2] value provides meshes keyed by URDF filepath.</span>
+<span class="sd">            See ``get_3d_models`` for meshes keyed by model name instead.</span>
 
 <span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Arm.get_3d_models">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.get_3d_models">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_3d_models</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the 3D models associated with the arm, keyed by name.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
+
+<span class="sd">            # Get the arm&#39;s 3D models.</span>
+<span class="sd">            models = await my_arm.get_3d_models()</span>
+
+<span class="sd">            for name, mesh in models.items():</span>
+<span class="sd">                print(name, mesh.content_type, len(mesh.mesh))</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mapping[str, Mesh]: The arm&#39;s 3D models keyed by name. Each ``Mesh`` carries a</span>
+<span class="sd">            ``content_type`` (for example ``&quot;ply&quot;``) and the raw ``mesh`` bytes in that format.</span>
+<span class="sd">            This is distinct from ``get_kinematics``&#39;s third return value, which keys meshes</span>
+<span class="sd">            by URDF filepath rather than by model name.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Implementations with no models must return an empty mapping, not ``None``.</span>
+
+<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 </div>

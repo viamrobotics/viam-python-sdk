@@ -95,10 +95,13 @@
     <span class="n">DoCommandRequest</span><span class="p">,</span>
     <span class="n">DoCommandResponse</span><span class="p">,</span>
     <span class="n">Geometry</span><span class="p">,</span>
+    <span class="n">Get3DModelsRequest</span><span class="p">,</span>
+    <span class="n">Get3DModelsResponse</span><span class="p">,</span>
     <span class="n">GetKinematicsRequest</span><span class="p">,</span>
     <span class="n">GetKinematicsResponse</span><span class="p">,</span>
     <span class="n">GetStatusRequest</span><span class="p">,</span>
     <span class="n">GetStatusResponse</span><span class="p">,</span>
+    <span class="n">Mesh</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.arm</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ArmServiceStub</span><span class="p">,</span>
@@ -109,6 +112,8 @@
     <span class="n">IsMovingRequest</span><span class="p">,</span>
     <span class="n">IsMovingResponse</span><span class="p">,</span>
     <span class="n">JointPositions</span><span class="p">,</span>
+    <span class="n">MoveOptions</span><span class="p">,</span>
+    <span class="n">MoveThroughJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToPositionRequest</span><span class="p">,</span>
     <span class="n">StopRequest</span><span class="p">,</span>
@@ -193,6 +198,23 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveToJointPositions</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="ArmClient.move_through_joint_positions">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.move_through_joint_positions">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">move_through_joint_positions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">positions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">JointPositions</span><span class="p">],</span>
+        <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MoveOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="c1"># Passing options=None leaves the optional field genuinely unset.</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveThroughJointPositionsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">positions</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveThroughJointPositions</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="ArmClient.stop">
 <a class="viewcode-back" href="../../../../autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.stop">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span>
@@ -253,7 +275,22 @@
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetKinematicsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetKinematicsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetKinematics</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
+        <span class="c1"># TODO: handle empty meshes in the response to prevent silent mapping</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">kinematics_data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">meshes_by_urdf_filepath</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArmClient.get_3d_models">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_3d_models">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_3d_models</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">]:</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">Get3DModelsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">Get3DModelsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Get3DModels</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
+        <span class="c1"># Copy out of the protobuf map container: `__getitem__` on an absent key would</span>
+        <span class="c1"># otherwise create and insert a default-constructed value instead of raising</span>
+        <span class="c1"># KeyError, silently violating the Mapping contract.</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">models</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ArmClient.get_geometries">

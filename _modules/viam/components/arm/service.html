@@ -91,6 +91,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DoCommandRequest</span><span class="p">,</span>
     <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">Get3DModelsRequest</span><span class="p">,</span>
+    <span class="n">Get3DModelsResponse</span><span class="p">,</span>
     <span class="n">GetGeometriesRequest</span><span class="p">,</span>
     <span class="n">GetGeometriesResponse</span><span class="p">,</span>
     <span class="n">GetKinematicsRequest</span><span class="p">,</span>
@@ -105,6 +107,8 @@
     <span class="n">GetJointPositionsResponse</span><span class="p">,</span>
     <span class="n">IsMovingRequest</span><span class="p">,</span>
     <span class="n">IsMovingResponse</span><span class="p">,</span>
+    <span class="n">MoveThroughJointPositionsRequest</span><span class="p">,</span>
+    <span class="n">MoveThroughJointPositionsResponse</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsResponse</span><span class="p">,</span>
     <span class="n">MoveToPositionRequest</span><span class="p">,</span>
@@ -180,6 +184,28 @@
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="ArmRPCService.MoveThroughJointPositions">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService.MoveThroughJointPositions">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">MoveThroughJointPositions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveThroughJointPositionsRequest</span><span class="p">,</span> <span class="n">MoveThroughJointPositionsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="c1"># `options` has explicit presence; passing a zeroed message when the caller sent</span>
+        <span class="c1"># nothing would be indistinguishable from a real zero limit.</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">options</span> <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">move_through_joint_positions</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">positions</span><span class="p">),</span>
+            <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">),</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">MoveThroughJointPositionsResponse</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="ArmRPCService.Stop">
 <a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService.Stop">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">Stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StopRequest</span><span class="p">,</span> <span class="n">StopResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -243,6 +269,18 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">format</span><span class="p">,</span> <span class="n">kinematics_data</span><span class="p">,</span> <span class="n">meshes</span> <span class="o">=</span> <span class="n">kinematics</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetKinematicsResponse</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">kinematics_data</span><span class="o">=</span><span class="n">kinematics_data</span><span class="p">,</span> <span class="n">meshes_by_urdf_filepath</span><span class="o">=</span><span class="n">meshes</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArmRPCService.Get3DModels">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService.Get3DModels">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">Get3DModels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">Get3DModelsRequest</span><span class="p">,</span> <span class="n">Get3DModelsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_3d_models</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">Get3DModelsResponse</span><span class="p">(</span><span class="n">models</span><span class="o">=</span><span class="n">models</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 
