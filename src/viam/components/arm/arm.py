@@ -1,11 +1,11 @@
 import abc
-from typing import Any, Dict, Final, Optional
+from typing import Any, Dict, Final, List, Mapping, Optional
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
-from . import JointPositions, Pose
+from . import JointPositions, Mesh, MoveOptions, Pose
 
 
 class Arm(ComponentBase):
@@ -20,9 +20,13 @@ class Arm(ComponentBase):
 
         from viam.components.arm import Arm
         # To use move_to_position:
-        from viam.proto.common import Pose
-        # To use move_to_joint_positions:
-        from viam.proto.component.arm import JointPositions
+        from viam.components.arm import Pose
+        # To use move_to_joint_positions and move_through_joint_positions:
+        from viam.components.arm import JointPositions
+        # To use move_through_joint_positions:
+        from viam.components.arm import MoveOptions
+        # To use get_3d_models:
+        from viam.components.arm import Mesh
 
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
@@ -123,6 +127,63 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Move the arm through the given joint positions in the order they are specified,
+        obeying the velocity and acceleration limits in ``options``.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Move through two waypoints, capping joint speed and acceleration.
+            await my_arm.move_through_joint_positions(
+                positions=[
+                    JointPositions(values=[0, 45, 0, 0, 0, 0]),
+                    JointPositions(values=[0, 0, 0, 0, 0, 0]),
+                ],
+                options=MoveOptions(max_vel_degs_per_sec=15.0, max_acc_degs_per_sec2=30.0),
+            )
+
+        Args:
+            positions (List[JointPositions]): The waypoints to move through, in order.
+            options (Optional[MoveOptions]): Optional kinematic ceilings obeyed at every
+                point along the trajectory. ``None`` means no limits are requested.
+
+        Note:
+            Unlike the Go SDK, this method does not validate the requested positions
+            against the arm's joint limits before sending them, because the Python SDK
+            cannot yet parse a kinematics model. Implementations are responsible for
+            their own limit checking.
+
+            Every scalar field on ``MoveOptions`` (``max_vel_degs_per_sec``,
+            ``max_acc_degs_per_sec2``, ``max_tcp_speed``) also has explicit presence: an
+            unset field reads back as ``0.0``, indistinguishable from an explicitly-set
+            zero. Implementations must check ``options.HasField("max_vel_degs_per_sec")``
+            (and likewise for the other scalar fields) before applying it as a ceiling —
+            reading an unset field's ``0.0`` directly would misread "no limit requested"
+            as "do not move". Per the proto definition, ``max_vel_degs_per_sec`` is
+            ignored whenever ``max_vel_degs_per_sec_joints`` is set, and likewise
+            ``max_acc_degs_per_sec2`` is ignored whenever ``max_acc_degs_per_sec2_joints``
+            is set; implementations should honor only the per-joint limit in that case,
+            not both.
+
+            An empty ``positions`` list is passed through to the implementation
+            unchanged; implementations must handle it, typically as a no-op.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
+        """
+        ...
+
+    @abc.abstractmethod
     async def get_joint_positions(
         self,
         *,
@@ -219,7 +280,38 @@ class Arm(ComponentBase):
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
             and the second [1] value represents the byte contents of the file.
             If available, a third [2] value provides meshes keyed by URDF filepath.
+            See ``get_3d_models`` for meshes keyed by model name instead.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        """
+        Get the 3D models associated with the arm, keyed by name.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the arm's 3D models.
+            models = await my_arm.get_3d_models()
+
+            for name, mesh in models.items():
+                print(name, mesh.content_type, len(mesh.mesh))
+
+        Returns:
+            Mapping[str, Mesh]: The arm's 3D models keyed by name. Each ``Mesh`` carries a
+            ``content_type`` (for example ``"ply"``) and the raw ``mesh`` bytes in that format.
+            This is distinct from ``get_kinematics``'s third return value, which keys meshes
+            by URDF filepath rather than by model name.
+
+        Note:
+            Implementations with no models must return an empty mapping, not ``None``.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
         """
         ...

@@ -1,6 +1,6 @@
 from viam.components import KinematicsReturn
-from viam.proto.common import KinematicsFileFormat, Pose
-from viam.proto.component.arm import JointPositions
+from viam.proto.common import KinematicsFileFormat, Mesh, Pose
+from viam.proto.component.arm import JointPositions, MoveOptions
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .arm import Arm
@@ -12,6 +12,8 @@ __all__ = [
     "JointPositions",
     "KinematicsFileFormat",
     "KinematicsReturn",
+    "Mesh",
+    "MoveOptions",
     "Pose",
 ]
 

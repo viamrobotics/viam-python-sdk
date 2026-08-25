@@ -1,5 +1,5 @@
 import asyncio
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 from unittest import mock
 
 import pytest
@@ -14,8 +14,8 @@ from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
 from viam.errors import ResourceNotFoundError
 from viam.proto.app.datasync import UploadMetadata
-from viam.proto.common import Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
-from viam.proto.component.arm import JointPositions
+from viam.proto.common import Geometry, GeoPoint, Mesh, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
+from viam.proto.component.arm import JointPositions, MoveOptions
 from viam.proto.robot import (
     BlockForOperationRequest,
     BlockForOperationResponse,
@@ -496,6 +496,24 @@ class TestRobotClient:
                     timeout: Optional[float] = None,
                 ):
                     return await self.actual_client.move_to_joint_positions(positions, extra=extra, timeout=timeout)
+
+                async def move_through_joint_positions(
+                    self,
+                    positions: List[JointPositions],
+                    options: Optional[MoveOptions] = None,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ):
+                    return await self.actual_client.move_through_joint_positions(positions, options=options, extra=extra, timeout=timeout)
+
+                async def get_3d_models(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> Mapping[str, Mesh]:
+                    return await self.actual_client.get_3d_models(extra=extra, timeout=timeout)
 
                 async def get_joint_positions(
                     self,

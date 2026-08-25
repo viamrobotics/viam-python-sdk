@@ -7,10 +7,13 @@ from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
     Geometry,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    Mesh,
 )
 from viam.proto.component.arm import (
     ArmServiceStub,
@@ -21,6 +24,8 @@ from viam.proto.component.arm import (
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
+    MoveOptions,
+    MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
@@ -91,6 +96,20 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
         await self.client.MoveToJointPositions(request, timeout=timeout, metadata=md)
 
+    async def move_through_joint_positions(
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        # Passing options=None leaves the optional field genuinely unset.
+        request = MoveThroughJointPositionsRequest(name=self.name, positions=positions, options=options, extra=dict_to_struct(extra))
+        await self.client.MoveThroughJointPositions(request, timeout=timeout, metadata=md)
+
     async def stop(
         self,
         *,
@@ -137,7 +156,19 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
+        # TODO: handle empty meshes in the response to prevent silent mapping
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
+
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = Get3DModelsRequest(name=self.name, extra=dict_to_struct(extra))
+        response: Get3DModelsResponse = await self.client.Get3DModels(request, timeout=timeout, metadata=md)
+        # Copy out of the protobuf map container: `__getitem__` on an absent key would
+        # otherwise create and insert a default-constructed value instead of raising
+        # KeyError, silently violating the Mapping contract.
+        return dict(response.models)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())
