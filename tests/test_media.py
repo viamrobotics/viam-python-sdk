@@ -47,6 +47,19 @@ class TestViamImage:
         assert img5.width is None
         assert img5.height is None
 
+    @pytest.mark.parametrize(
+        "data",
+        [
+            b"INVALID!" + (13).to_bytes(4, "big") + b"IHDR" + (640).to_bytes(4, "big") + (480).to_bytes(4, "big"),
+            b"\x89PNG\r\n\x1a\n" + (13).to_bytes(4, "big") + b"IDAT" + (640).to_bytes(4, "big") + (480).to_bytes(4, "big"),
+        ],
+    )
+    def test_invalid_png_has_no_dimensions(self, data: bytes):
+        img = ViamImage(data, CameraMimeType.PNG)
+
+        assert img.width is None
+        assert img.height is None
+
     def test_bytes_to_depth_array(self):
         with open(f"{os.path.dirname(__file__)}/data/fakeDM.vnd.viam.dep", "rb") as depth_map:
             img = ViamImage(depth_map.read(), CameraMimeType.VIAM_RAW_DEPTH)
