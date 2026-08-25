@@ -121,6 +121,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.handlers"><code class="docutils literal notranslate"><span class="pre">AuthConfig.handlers()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.tls_auth_entities"><code class="docutils literal notranslate"><span class="pre">AuthConfig.tls_auth_entities()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.external_auth_config"><code class="docutils literal notranslate"><span class="pre">AuthConfig.external_auth_config()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.user_permissions"><code class="docutils literal notranslate"><span class="pre">AuthConfig.user_permissions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.HasField"><code class="docutils literal notranslate"><span class="pre">AuthConfig.HasField()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.WhichOneof"><code class="docutils literal notranslate"><span class="pre">AuthConfig.WhichOneof()</span></code></a></li>
 </ul>
@@ -332,6 +333,11 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.PackageConfig.HasField"><code class="docutils literal notranslate"><span class="pre">PackageConfig.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.robot.Permission"><code class="docutils literal notranslate"><span class="pre">Permission</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Permission.resources"><code class="docutils literal notranslate"><span class="pre">Permission.resources()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Permission.allowed_methods"><code class="docutils literal notranslate"><span class="pre">Permission.allowed_methods()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig"><code class="docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.EnvEntry"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.EnvEntry</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.EnvEntry.key"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.EnvEntry.key</span></code></a></li>
@@ -442,6 +448,17 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Translation.x"><code class="docutils literal notranslate"><span class="pre">Translation.x</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Translation.y"><code class="docutils literal notranslate"><span class="pre">Translation.y</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Translation.z"><code class="docutils literal notranslate"><span class="pre">Translation.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.robot.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.User.type"><code class="docutils literal notranslate"><span class="pre">User.type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.robot.UserPermission"><code class="docutils literal notranslate"><span class="pre">UserPermission</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.UserPermission.user"><code class="docutils literal notranslate"><span class="pre">UserPermission.user()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.UserPermission.permissions"><code class="docutils literal notranslate"><span class="pre">UserPermission.permissions()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.UserPermission.HasField"><code class="docutils literal notranslate"><span class="pre">UserPermission.HasField()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -594,35 +611,44 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.PackageConfig" title="viam.proto.app.robot.PackageConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageConfig</span></code></a></p></td>
 <td><p>PackageConfig is the configration for deployed Packages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig" title="viam.proto.app.robot.ProcessConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.Permission" title="viam.proto.app.robot.Permission"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Permission</span></code></a></p></td>
+<td><p>A Permission describes a User's ability to invoke methods on resources.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig" title="viam.proto.app.robot.ProcessConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a></p></td>
 <td><p>A ProcessConfig describes how to manage a system process.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth" title="viam.proto.app.robot.RemoteAuth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteAuth</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth" title="viam.proto.app.robot.RemoteAuth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteAuth</span></code></a></p></td>
 <td><p>RemoteAuth specifies how to authenticate against a remote. If no credentials are</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig" title="viam.proto.app.robot.RemoteConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig" title="viam.proto.app.robot.RemoteConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteConfig</span></code></a></p></td>
 <td><p>A RemoteConfig describes a remote robot that should be integrated.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig" title="viam.proto.app.robot.ResourceLevelServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig" title="viam.proto.app.robot.ResourceLevelServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig</span></code></a></p></td>
 <td><p>A ResourceLevelServiceConfig describes component or remote configuration for a service.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.RobotConfig" title="viam.proto.app.robot.RobotConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.RobotConfig" title="viam.proto.app.robot.RobotConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig" title="viam.proto.app.robot.ServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig" title="viam.proto.app.robot.ServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.SessionsConfig" title="viam.proto.app.robot.SessionsConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SessionsConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.SessionsConfig" title="viam.proto.app.robot.SessionsConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SessionsConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.TracingConfig" title="viam.proto.app.robot.TracingConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TracingConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.TracingConfig" title="viam.proto.app.robot.TracingConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TracingConfig</span></code></a></p></td>
 <td><p>TracingConfig configures whether viam-server will record traces and if so</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.TrafficTunnelEndpoint" title="viam.proto.app.robot.TrafficTunnelEndpoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrafficTunnelEndpoint</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.TrafficTunnelEndpoint" title="viam.proto.app.robot.TrafficTunnelEndpoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrafficTunnelEndpoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.Translation" title="viam.proto.app.robot.Translation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Translation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.Translation" title="viam.proto.app.robot.Translation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Translation</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.User" title="viam.proto.app.robot.User"><code class="xref py py-obj docutils literal notranslate"><span class="pre">User</span></code></a></p></td>
+<td><p>A User describes a single user that a set of Permissions applies to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.UserPermission" title="viam.proto.app.robot.UserPermission"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UserPermission</span></code></a></p></td>
+<td><p>A UserPermission describes a User and the permissions granted to</p></td>
 </tr>
 </tbody>
 </table>
@@ -842,7 +868,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">AuthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___AuthHandlerConfig" title="viam.gen.app.v1.robot_pb2.Global___AuthHandlerConfig"><span class="pre">Global___AuthHandlerConfig</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tls_auth_entities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_auth_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___ExternalAuthConfig" title="viam.gen.app.v1.robot_pb2.Global___ExternalAuthConfig"><span class="pre">Global___ExternalAuthConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">AuthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___AuthHandlerConfig" title="viam.gen.app.v1.robot_pb2.Global___AuthHandlerConfig"><span class="pre">Global___AuthHandlerConfig</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tls_auth_entities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_auth_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___ExternalAuthConfig" title="viam.gen.app.v1.robot_pb2.Global___ExternalAuthConfig"><span class="pre">Global___ExternalAuthConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_permissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___UserPermission" title="viam.gen.app.v1.robot_pb2.Global___UserPermission"><span class="pre">Global___UserPermission</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -862,6 +888,13 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.external_auth_config">
 <span class="sig-name descname"><span class="pre">external_auth_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___ExternalAuthConfig" title="viam.gen.app.v1.robot_pb2.Global___ExternalAuthConfig"><span class="pre">Global___ExternalAuthConfig</span></a></span></span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig.external_auth_config" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.user_permissions">
+<span class="sig-name descname"><span class="pre">user_permissions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___UserPermission" title="viam.gen.app.v1.robot_pb2.Global___UserPermission"><span class="pre">Global___UserPermission</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig.user_permissions" title="Link to this definition"></a></dt>
+<dd><p>user_permissions represents the map of Users to Permissions for
+this machine.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.HasField">
@@ -2125,6 +2158,29 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.robot.Permission">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">Permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_methods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.Permission" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A Permission describes a User’s ability to invoke methods on resources.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.Permission.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.robot.Permission.resources" title="Link to this definition"></a></dt>
+<dd><p>resources are the names of the resources this permission applies to,
+e.g. [“cam1”, “cam2”, “cam3”].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.Permission.allowed_methods">
+<span class="sig-name descname"><span class="pre">allowed_methods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.robot.Permission.allowed_methods" title="Link to this definition"></a></dt>
+<dd><p>allowed_methods is a list of fully qualified gRPC methods the user
+may invoke on the listed resources, e.g.
+[“/viam.component.camera.v1.CameraService/GetImages”,
+“/viam.component.camera.v1.CameraService/GetProperties”].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.robot.ProcessConfig">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">ProcessConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cwd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">one_shot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.duration_pb2.Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.ProcessConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -2795,6 +2851,69 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.robot.Translation.z">
 <span class="sig-name descname"><span class="pre">z</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.app.robot.Translation.z" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.robot.User">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.User" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A User describes a single user that a set of Permissions applies to.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.robot.User.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.robot.User.type" title="Link to this definition"></a></dt>
+<dd><p>type is the type of user. Can be “api-key-id”, “app-user-id”, or “default”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.robot.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.app.robot.User.id" title="Link to this definition"></a></dt>
+<dd><p>id is the API Key ID if type is “api-key-id”, the Viam app user ID if
+type is “app-user-id”, and empty if type is “default”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.robot.UserPermission">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">UserPermission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___User" title="viam.gen.app.v1.robot_pb2.Global___User"><span class="pre">Global___User</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___Permission" title="viam.gen.app.v1.robot_pb2.Global___Permission"><span class="pre">Global___Permission</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.UserPermission" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A UserPermission describes a User and the permissions granted to
+that user.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.UserPermission.user">
+<span class="sig-name descname"><span class="pre">user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___User" title="viam.gen.app.v1.robot_pb2.Global___User"><span class="pre">Global___User</span></a></span></span><a class="headerlink" href="#viam.proto.app.robot.UserPermission.user" title="Link to this definition"></a></dt>
+<dd><p>user is the User this UserPermission applies to. A User can only be
+listed in a single UserPermission for a set of UserPermissions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.UserPermission.permissions">
+<span class="sig-name descname"><span class="pre">permissions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___Permission" title="viam.gen.app.v1.robot_pb2.Global___Permission"><span class="pre">Global___Permission</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.app.robot.UserPermission.permissions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.UserPermission.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.robot.UserPermission.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

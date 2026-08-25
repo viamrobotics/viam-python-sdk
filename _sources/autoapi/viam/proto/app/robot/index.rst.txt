@@ -45,6 +45,7 @@ Classes
    viam.proto.app.robot.NetworkConfig
    viam.proto.app.robot.Orientation
    viam.proto.app.robot.PackageConfig
+   viam.proto.app.robot.Permission
    viam.proto.app.robot.ProcessConfig
    viam.proto.app.robot.RemoteAuth
    viam.proto.app.robot.RemoteConfig
@@ -55,6 +56,8 @@ Classes
    viam.proto.app.robot.TracingConfig
    viam.proto.app.robot.TrafficTunnelEndpoint
    viam.proto.app.robot.Translation
+   viam.proto.app.robot.User
+   viam.proto.app.robot.UserPermission
 
 
 Module Contents
@@ -243,7 +246,7 @@ Module Contents
       :type:  str
 
 
-.. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[Global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[str] | None = ..., external_auth_config: Global___ExternalAuthConfig | None = ...)
+.. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[Global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[str] | None = ..., external_auth_config: Global___ExternalAuthConfig | None = ..., user_permissions: collections.abc.Iterable[Global___UserPermission] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -262,6 +265,13 @@ Module Contents
 
 
    .. py:method:: external_auth_config() -> Global___ExternalAuthConfig
+
+
+   .. py:method:: user_permissions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UserPermission]
+
+      user_permissions represents the map of Users to Permissions for
+      this machine.
+
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -1397,6 +1407,30 @@ Module Contents
 
 
 
+.. py:class:: Permission(*, resources: collections.abc.Iterable[str] | None = ..., allowed_methods: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   A Permission describes a User's ability to invoke methods on resources.
+
+
+   .. py:method:: resources() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      resources are the names of the resources this permission applies to,
+      e.g. ["cam1", "cam2", "cam3"].
+
+
+
+   .. py:method:: allowed_methods() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      allowed_methods is a list of fully qualified gRPC methods the user
+      may invoke on the listed resources, e.g.
+      ["/viam.component.camera.v1.CameraService/GetImages",
+      "/viam.component.camera.v1.CameraService/GetProperties"].
+
+
+
 .. py:class:: ProcessConfig(*, id: str = ..., name: str = ..., args: collections.abc.Iterable[str] | None = ..., cwd: str = ..., one_shot: bool = ..., log: bool = ..., stop_signal: int = ..., stop_timeout: google.protobuf.duration_pb2.Duration | None = ..., env: collections.abc.Mapping[str, str] | None = ..., username: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1958,5 +1992,63 @@ Module Contents
 
    .. py:attribute:: z
       :type:  float
+
+
+.. py:class:: User(*, type: str = ..., id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   A User describes a single user that a set of Permissions applies to.
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      type is the type of user. Can be "api-key-id", "app-user-id", or "default".
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      id is the API Key ID if type is "api-key-id", the Viam app user ID if
+      type is "app-user-id", and empty if type is "default".
+
+
+.. py:class:: UserPermission(*, user: Global___User | None = ..., permissions: collections.abc.Iterable[Global___Permission] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   A UserPermission describes a User and the permissions granted to
+   that user.
+
+
+   .. py:method:: user() -> Global___User
+
+      user is the User this UserPermission applies to. A User can only be
+      listed in a single UserPermission for a set of UserPermissions.
+
+
+
+   .. py:method:: permissions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Permission]
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
