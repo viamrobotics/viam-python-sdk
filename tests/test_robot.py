@@ -1,5 +1,5 @@
 import asyncio
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Tuple
 from unittest import mock
 
 import pytest
@@ -506,6 +506,16 @@ class TestRobotClient:
                     timeout: Optional[float] = None,
                 ):
                     return await self.actual_client.move_through_joint_positions(positions, options=options, extra=extra, timeout=timeout)
+
+                async def move_through_joint_positions_streamed(
+                    self,
+                    batches: AsyncIterator[List[Arm.TrajectoryPoint]],
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> AsyncIterator[Arm.TrajectoryUpdate]:
+                    async for update in self.actual_client.move_through_joint_positions_streamed(batches, extra=extra, timeout=timeout):
+                        yield update
 
                 async def get_3d_models(
                     self,

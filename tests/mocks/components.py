@@ -75,6 +75,7 @@ class MockArm(Arm):
         self.timeout: Optional[float] = None
         self.waypoints: List[JointPositions] = []
         self.move_options: Optional[MoveOptions] = None
+        self.streamed_points: List[Arm.TrajectoryPoint] = []
         self.models_3d = MODELS_3D
         super().__init__(name)
 
@@ -127,6 +128,26 @@ class MockArm(Arm):
         self.is_stopped = False
         self.extra = extra
         self.timeout = timeout
+
+    async def move_through_joint_positions_streamed(  # type: ignore
+        self,
+        batches: AsyncIterator[List[Arm.TrajectoryPoint]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[Arm.TrajectoryUpdate]:
+        self.is_stopped = False
+        self.extra = extra
+        self.timeout = timeout
+        self.streamed_points = []
+        async for batch in batches:
+            for point in batch:
+                self.streamed_points.append(point)
+                self.joint_positions = JointPositions(values=point.positions)
+            # Acknowledge each batch with one update, as a real driver would.
+            yield Arm.TrajectoryUpdate()
+        self.is_stopped = True
 
     async def get_3d_models(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
