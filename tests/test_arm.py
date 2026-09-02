@@ -1,4 +1,5 @@
 import pytest
+from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, KinematicsFileFormat
@@ -22,6 +23,9 @@ from viam.proto.component.arm import (
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    GetManualModeRequest,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
@@ -29,6 +33,7 @@ from viam.proto.component.arm import (
     MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
+    SetManualModeRequest,
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
@@ -92,6 +97,19 @@ class TestArm:
         models = await self.arm.get_3d_models(extra={"1": "2"})
         assert models == MODELS_3D
         assert self.arm.extra == {"1": "2"}
+
+    async def test_set_manual_mode(self):
+        with pytest.raises(NotImplementedError):
+            await self.arm.set_manual_mode(True)
+
+    async def test_get_manual_mode(self):
+        with pytest.raises(NotImplementedError):
+            await self.arm.get_manual_mode()
+
+    async def test_get_properties(self):
+        properties = await self.arm.get_properties()
+        assert properties.support_manual_mode is False
+        assert properties.support_cartesian_commands is True
 
     async def test_do(self):
         command = {"command": "args"}
@@ -249,6 +267,28 @@ class TestService:
             finally:
                 self.arm.models_3d = MODELS_3D
 
+    async def test_set_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = SetManualModeRequest(name=self.name, manual_mode=True, enabled_for=30)
+            with pytest.raises(GRPCError):
+                await client.SetManualMode(request)
+
+    async def test_get_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = GetManualModeRequest(name=self.name)
+            with pytest.raises(GRPCError):
+                await client.GetManualMode(request)
+
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = GetPropertiesRequest(name=self.name)
+            response: GetPropertiesResponse = await client.GetProperties(request)
+            assert response.support_manual_mode is False
+            assert response.support_cartesian_commands is True
+
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -363,6 +403,26 @@ class TestClient:
             client = ArmClient(self.name, channel)
             status = await client.get_status()
             assert status == {}
+
+    async def test_set_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            with pytest.raises(GRPCError):
+                await client.set_manual_mode(True, enabled_for=30)
+
+    async def test_get_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            with pytest.raises(GRPCError):
+                await client.get_manual_mode()
+
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            properties = await client.get_properties(extra={"1": "2"})
+            assert properties.support_manual_mode is False
+            assert properties.support_cartesian_commands is True
+            assert self.arm.extra == {"1": "2"}
 
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:

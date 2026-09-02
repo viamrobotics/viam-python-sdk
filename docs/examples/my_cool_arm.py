@@ -122,6 +122,17 @@ class MyCoolArm(Arm):
         # Return the 3D meshes for this arm, keyed by name. This arm has none.
         return {}
 
+    async def set_manual_mode(self, manual_mode: bool, enabled_for: int = 0, extra: Optional[Dict[str, Any]] = None, **kwargs):
+        # This arm does not support manual mode.
+        raise NotImplementedError()
+
+    async def get_manual_mode(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+        # This arm does not support manual mode.
+        raise NotImplementedError()
+
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Arm.Properties:
+        return Arm.Properties(support_manual_mode=False, support_cartesian_commands=True)
+
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
 

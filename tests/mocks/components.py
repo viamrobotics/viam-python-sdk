@@ -155,6 +155,19 @@ class MockArm(Arm):
         self.timeout = timeout
         return self.geometries
 
+    async def set_manual_mode(
+        self, manual_mode: bool, enabled_for: int = 0, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        raise NotImplementedError()
+
+    async def get_manual_mode(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
+        raise NotImplementedError()
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Arm.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return Arm.Properties(support_manual_mode=False, support_cartesian_commands=True)
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 

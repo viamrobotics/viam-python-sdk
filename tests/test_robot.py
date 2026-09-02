@@ -515,6 +515,32 @@ class TestRobotClient:
                 ) -> Mapping[str, Mesh]:
                     return await self.actual_client.get_3d_models(extra=extra, timeout=timeout)
 
+                async def set_manual_mode(
+                    self,
+                    manual_mode: bool,
+                    enabled_for: int = 0,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ):
+                    return await self.actual_client.set_manual_mode(manual_mode, enabled_for=enabled_for, extra=extra, timeout=timeout)
+
+                async def get_manual_mode(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> bool:
+                    return await self.actual_client.get_manual_mode(extra=extra, timeout=timeout)
+
+                async def get_properties(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> Arm.Properties:
+                    return await self.actual_client.get_properties(extra=extra, timeout=timeout)
+
                 async def get_joint_positions(
                     self,
                     *,
