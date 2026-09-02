@@ -28,7 +28,6 @@ from viam.proto.component.arm import (
     MoveOptions,
     MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
-    MoveThroughJointPositionsRequest,
     MoveThroughJointPositionsStreamedRequest,
     MoveToPositionRequest,
     StopRequest,
