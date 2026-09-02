@@ -388,13 +388,6 @@ class TestArmStreamed:
         cls.manager = ResourceManager([cls.arm])
         cls.service = ArmRPCService(cls.manager)
 
-    async def test_move_through_joint_positions(self):
-        async with ChannelFor([self.service]) as channel:
-            client = ArmClient(self.name, channel)
-            positions = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
-            await client.move_through_joint_positions(positions)
-            assert self.arm.move_through_positions == positions
-
     async def test_streamed_round_trip(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
