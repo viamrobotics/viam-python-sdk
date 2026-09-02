@@ -62,6 +62,33 @@ class TestAudioOut:
         assert audio_out.last_audio_info is None
 
     @pytest.mark.asyncio
+    async def test_play_stream(self, audio_out: MockAudioOut):
+        audio_info = AudioInfo(codec="pcm16", sample_rate_hz=22050, num_channels=1)
+        chunks = [b"chunk_one", b"chunk_two", b"chunk_three"]
+
+        async def source():
+            for c in chunks:
+                yield c
+
+        await audio_out.play_stream(audio_info, source())
+        assert audio_out.play_stream_called
+        assert audio_out.last_streamed_info == audio_info
+        assert audio_out.streamed_chunks == chunks
+
+    @pytest.mark.asyncio
+    async def test_play_stream_no_chunks(self, audio_out: MockAudioOut):
+        audio_info = AudioInfo(codec="pcm16", sample_rate_hz=48000, num_channels=1)
+
+        async def empty():
+            if False:
+                yield b""
+
+        await audio_out.play_stream(audio_info, empty())
+        assert audio_out.play_stream_called
+        assert audio_out.last_streamed_info == audio_info
+        assert audio_out.streamed_chunks == []
+
+    @pytest.mark.asyncio
     async def test_get_properties(self, audio_out: MockAudioOut):
         properties = await audio_out.get_properties()
         assert isinstance(properties, GetPropertiesResponse)
@@ -83,20 +110,6 @@ class TestAudioOut:
     async def test_get_geometries(self, audio_out: MockAudioOut):
         geometries = await audio_out.get_geometries()
         assert geometries == GEOMETRIES
-
-    @pytest.mark.asyncio
-    async def test_play_stream(self, audio_out: MockAudioOut):
-        audio_info = AudioInfo(codec="pcm16", sample_rate_hz=44100, num_channels=2)
-
-        async def chunk_generator():
-            yield b"chunk1"
-            yield b"chunk2"
-            yield b"chunk3"
-
-        await audio_out.play_stream(chunk_generator(), audio_info)
-        assert audio_out.play_stream_called
-        assert audio_out.last_audio_info == audio_info
-        assert audio_out.streamed_chunks == [b"chunk1", b"chunk2", b"chunk3"]
 
 
 class TestService:
@@ -140,6 +153,26 @@ class TestService:
             assert audio_out.last_audio_info is None
 
     @pytest.mark.asyncio
+    async def test_play_stream(self, audio_out: MockAudioOut, service: AudioOutRPCService):
+        audio_info = AudioInfo(codec="pcm16", sample_rate_hz=22050, num_channels=1)
+        chunks = [b"a" * 4, b"b" * 4, b"c" * 4]
+
+        async with ChannelFor([service]) as channel:
+            client = AudioOutServiceStub(channel)
+            async with client.PlayStream.open() as stream:
+                await stream.send_message(
+                    PlayStreamRequest(init=PlayStreamInit(name=audio_out.name, audio_info=audio_info, extra=dict_to_struct({})))
+                )
+                for c in chunks:
+                    await stream.send_message(PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=c)))
+                await stream.end()
+                await stream.recv_message()
+
+            assert audio_out.play_stream_called
+            assert audio_out.last_streamed_info == audio_info
+            assert audio_out.streamed_chunks == chunks
+
+    @pytest.mark.asyncio
     async def test_get_properties(self, audio_out: MockAudioOut, service: AudioOutRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioOutServiceStub(channel)
@@ -180,33 +213,6 @@ class TestService:
             assert isinstance(response, GetGeometriesResponse)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
 
-    @pytest.mark.asyncio
-    async def test_play_stream(self, audio_out: MockAudioOut, service: AudioOutRPCService):
-        audio_info = AudioInfo(codec="pcm16", sample_rate_hz=44100, num_channels=2)
-
-        async with ChannelFor([service]) as channel:
-            client = AudioOutServiceStub(channel)
-
-            async with client.PlayStream.open() as stream:
-                await stream.send_message(
-                    PlayStreamRequest(
-                        init=PlayStreamInit(
-                            name=audio_out.name,
-                            audio_info=audio_info,
-                            extra=dict_to_struct({"test": "extra"}),
-                        )
-                    )
-                )
-                for chunk_data in [b"chunk1", b"chunk2", b"chunk3"]:
-                    await stream.send_message(PlayStreamRequest(audio_chunk=PlayStreamChunk(audio_data=chunk_data)))
-                await stream.end()
-                await stream.recv_message()
-
-            assert audio_out.play_stream_called
-            assert audio_out.last_audio_info == audio_info
-            assert audio_out.streamed_chunks == [b"chunk1", b"chunk2", b"chunk3"]
-            assert audio_out.extra == {"test": "extra"}
-
 
 class TestClient:
     @pytest.mark.asyncio
@@ -233,6 +239,39 @@ class TestClient:
             assert audio_out.play_called
             assert audio_out.last_audio_data == audio_data
             assert audio_out.last_audio_info is None
+
+    @pytest.mark.asyncio
+    async def test_play_stream(self, audio_out: MockAudioOut, service: AudioOutRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioOutClient(audio_out.name, channel)
+            audio_info = AudioInfo(codec="pcm16", sample_rate_hz=22050, num_channels=1)
+            chunks = [b"hello ", b"world", b"!"]
+
+            async def source():
+                for c in chunks:
+                    yield c
+
+            await client.play_stream(audio_info, source())
+
+            assert audio_out.play_stream_called
+            assert audio_out.last_streamed_info == audio_info
+            assert audio_out.streamed_chunks == chunks
+
+    @pytest.mark.asyncio
+    async def test_play_stream_no_chunks(self, audio_out: MockAudioOut, service: AudioOutRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioOutClient(audio_out.name, channel)
+            audio_info = AudioInfo(codec="pcm16", sample_rate_hz=44100, num_channels=2)
+
+            async def empty():
+                if False:
+                    yield b""
+
+            await client.play_stream(audio_info, empty())
+
+            assert audio_out.play_stream_called
+            assert audio_out.last_streamed_info == audio_info
+            assert audio_out.streamed_chunks == []
 
     @pytest.mark.asyncio
     async def test_get_properties(self, audio_out: MockAudioOut, service: AudioOutRPCService):
@@ -265,21 +304,3 @@ class TestClient:
             client = AudioOutClient(audio_out.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
-
-    @pytest.mark.asyncio
-    async def test_play_stream(self, audio_out: MockAudioOut, service: AudioOutRPCService):
-        async with ChannelFor([service]) as channel:
-            client = AudioOutClient(audio_out.name, channel)
-            audio_info = AudioInfo(codec="pcm16", sample_rate_hz=44100, num_channels=2)
-
-            async def chunk_generator():
-                yield b"chunk1"
-                yield b"chunk2"
-                yield b"chunk3"
-
-            await client.play_stream(chunk_generator(), audio_info, extra={"test": "extra"})
-
-            assert audio_out.play_stream_called
-            assert audio_out.last_audio_info == audio_info
-            assert audio_out.streamed_chunks == [b"chunk1", b"chunk2", b"chunk3"]
-            assert audio_out.extra == {"test": "extra"}

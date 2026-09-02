@@ -60,6 +60,7 @@ DATA_PIPELINE_RUNS = [
         data_start_time=TIMESTAMP,
         data_end_time=TIMESTAMP,
         error_message="",
+        data_source_type=TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED,
     )
 ]
 

@@ -46,6 +46,7 @@ from viam.proto.common import (
     Sphere,
     Vector3,
 )
+from viam.proto.component.arm import MoveOptions
 from viam.proto.component.audioin import AudioChunk, GetAudioResponse
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
@@ -57,6 +58,11 @@ GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
 ]
 
+MODELS_3D = {
+    "base_link": Mesh(content_type="ply", mesh=b"\x00\x01"),
+    "link_1": Mesh(content_type="ply", mesh=b"\x02\x03"),
+}
+
 
 class MockArm(Arm):
     def __init__(self, name: str):
@@ -67,8 +73,10 @@ class MockArm(Arm):
         self.geometries = GEOMETRIES
         self.extra = None
         self.timeout: Optional[float] = None
-        self.move_through_positions: Optional[List[JointPositions]] = None
+        self.waypoints: List[JointPositions] = []
+        self.move_options: Optional[MoveOptions] = None
         self.streamed_points: List[Arm.TrajectoryPoint] = []
+        self.models_3d = MODELS_3D
         super().__init__(name)
 
     async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:
@@ -105,11 +113,18 @@ class MockArm(Arm):
         self.timeout = timeout
 
     async def move_through_joint_positions(
-        self, positions: List[JointPositions], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ):
-        self.move_through_positions = positions
-        if positions:
-            self.joint_positions = positions[-1]
+        self.waypoints = list(positions)
+        self.move_options = options
+        if self.waypoints:
+            self.joint_positions = self.waypoints[-1]
         self.is_stopped = False
         self.extra = extra
         self.timeout = timeout
@@ -133,6 +148,13 @@ class MockArm(Arm):
             # Acknowledge each batch with one update, as a real driver would.
             yield Arm.TrajectoryUpdate()
         self.is_stopped = True
+
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.models_3d
 
     async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
@@ -222,6 +244,7 @@ class MockAudioOut(AudioOut):
         self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
+        self.last_streamed_info: Optional[AudioInfo] = None
 
     async def play(
         self,
@@ -238,17 +261,15 @@ class MockAudioOut(AudioOut):
 
     async def play_stream(
         self,
-        chunks: AsyncIterator[bytes],
-        info: Optional[AudioInfo] = None,
+        info: AudioInfo,
+        chunks,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> None:
         self.play_stream_called = True
-        self.last_audio_info = info
-        self.extra = extra
-        self.timeout = timeout
+        self.last_streamed_info = info
         self.streamed_chunks = []
         async for chunk in chunks:
             self.streamed_chunks.append(chunk)

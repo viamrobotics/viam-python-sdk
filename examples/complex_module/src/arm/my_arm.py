@@ -8,7 +8,8 @@ from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.logging import getLogger
 from viam.operations import run_with_operation
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import Capsule, Geometry, ResourceName, Sphere
+from viam.proto.common import Capsule, Geometry, Mesh, ResourceName, Sphere
+from viam.proto.component.arm import MoveOptions
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
@@ -93,13 +94,32 @@ class MyArm(Arm):
         self.joint_positions = positions
         self.is_stopped = True
 
+    @run_with_operation
     async def move_through_joint_positions(
-        self, positions: List[JointPositions], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        positions: List[JointPositions],
+        options: Optional[MoveOptions] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ):
-        # Move through the waypoints in order. A real arm would plan a smooth path across them.
+        operation = self.get_operation(kwargs)
+
         self.is_stopped = False
-        for jp in positions:
-            self.joint_positions = jp
+
+        # Move through each waypoint in order, honoring cancellation between them.
+        # A real driver is expected to honor the velocity/acceleration ceilings in
+        # `options`, checking e.g. options.HasField("max_vel_degs_per_sec") before
+        # applying it (an unset field reads as 0.0); this example ignores them and
+        # just sleeps for a fixed interval between waypoints.
+        for position in positions:
+            await asyncio.sleep(1)
+
+            if await operation.is_cancelled():
+                await self.stop()
+                break
+
+            self.joint_positions = position
+
         self.is_stopped = True
 
     async def move_through_joint_positions_streamed(  # type: ignore
@@ -119,6 +139,10 @@ class MyArm(Arm):
                 self.joint_positions = JointPositions(values=point.positions)
             yield Arm.TrajectoryUpdate()
         self.is_stopped = True
+
+    async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
+        # This arm has no meshes to report.
+        return {}
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True

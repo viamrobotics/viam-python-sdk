@@ -32,6 +32,7 @@ from ...gen.app.v1.robot_pb2 import (
     NetworkConfig,
     Orientation,
     PackageConfig,
+    Permission,
     ProcessConfig,
     RemoteAuth,
     RemoteConfig,
@@ -42,6 +43,8 @@ from ...gen.app.v1.robot_pb2 import (
     TracingConfig,
     TrafficTunnelEndpoint,
     Translation,
+    User,
+    UserPermission,
 )
 
 __all__ = [
@@ -75,6 +78,7 @@ __all__ = [
     "NetworkConfig",
     "Orientation",
     "PackageConfig",
+    "Permission",
     "ProcessConfig",
     "RemoteAuth",
     "RemoteConfig",
@@ -85,4 +89,6 @@ __all__ = [
     "TracingConfig",
     "TrafficTunnelEndpoint",
     "Translation",
+    "User",
+    "UserPermission",
 ]

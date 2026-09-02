@@ -128,6 +128,7 @@ from viam.proto.app import (
     LocationAuth,
     LocationAuthRequest,
     LocationAuthResponse,
+    LogOrder,
     MarkPartAsMainRequest,
     MarkPartForRestartRequest,
     Model,
@@ -1416,6 +1417,8 @@ class AppClient:
         num_log_entries: int = 100,
         start: datetime | None = None,
         end: datetime | None = None,
+        order: LogOrder.ValueType | None = None,
+        range: str | None = None,
     ) -> list[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -1436,6 +1439,9 @@ class AppClient:
                 `num_log_entries` logs will be returned, whichever comes first.
             start (datetime | None): Optional start time for log retrieval. Only logs created after this time will be returned.
             end (datetime | None): Optional end time for log retrieval. Only logs created before this time will be returned.
+            order (LogOrder.ValueType | None): The order in which logs are returned by time. Defaults to descending (newest first).
+            range (str | None): A duration string (e.g., "10m", "10h", "10d") that is resolved against whichever of start and end is
+                present. Cannot be used with both start and end.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
@@ -1459,6 +1465,8 @@ class AppClient:
                 log_levels=log_levels,
                 start=start,
                 end=end,
+                order=order,
+                range=range,
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -1493,6 +1501,8 @@ class AppClient:
         log_levels: list[str],
         start: datetime | None = None,
         end: datetime | None = None,
+        order: LogOrder.ValueType | None = None,
+        range: str | None = None,
     ) -> tuple[list[LogEntry], str]:
         request = GetRobotPartLogsRequest(
             id=robot_part_id,
@@ -1502,6 +1512,10 @@ class AppClient:
             start=datetime_to_timestamp(start),
             end=datetime_to_timestamp(end),
         )
+        if order is not None:
+            request.order = order
+        if range is not None:
+            request.range = range
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 

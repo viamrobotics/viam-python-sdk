@@ -620,6 +620,7 @@ class AuthConfig(_message.Message):
     HANDLERS_FIELD_NUMBER: _builtins.int
     TLS_AUTH_ENTITIES_FIELD_NUMBER: _builtins.int
     EXTERNAL_AUTH_CONFIG_FIELD_NUMBER: _builtins.int
+    USER_PERMISSIONS_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
     def handlers(self) -> _containers.RepeatedCompositeFieldContainer[Global___AuthHandlerConfig]:
@@ -633,13 +634,19 @@ class AuthConfig(_message.Message):
     def external_auth_config(self) -> Global___ExternalAuthConfig:
         ...
 
-    def __init__(self, *, handlers: _abc.Iterable[Global___AuthHandlerConfig] | None=..., tls_auth_entities: _abc.Iterable[_builtins.str] | None=..., external_auth_config: Global___ExternalAuthConfig | None=...) -> None:
+    @_builtins.property
+    def user_permissions(self) -> _containers.RepeatedCompositeFieldContainer[Global___UserPermission]:
+        """user_permissions represents the map of Users to Permissions for
+        this machine.
+        """
+
+    def __init__(self, *, handlers: _abc.Iterable[Global___AuthHandlerConfig] | None=..., tls_auth_entities: _abc.Iterable[_builtins.str] | None=..., external_auth_config: Global___ExternalAuthConfig | None=..., user_permissions: _abc.Iterable[Global___UserPermission] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config', 'handlers', b'handlers', 'tls_auth_entities', b'tls_auth_entities']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config', 'handlers', b'handlers', 'tls_auth_entities', b'tls_auth_entities', 'user_permissions', b'user_permissions']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -649,6 +656,85 @@ class AuthConfig(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType__external_auth_config) -> _WhichOneofReturnType__external_auth_config | None:
         ...
 Global___AuthConfig: _TypeAlias = AuthConfig
+
+@_typing.final
+class UserPermission(_message.Message):
+    """A UserPermission describes a User and the permissions granted to
+    that user.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    USER_FIELD_NUMBER: _builtins.int
+    PERMISSIONS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def user(self) -> Global___User:
+        """user is the User this UserPermission applies to. A User can only be
+        listed in a single UserPermission for a set of UserPermissions.
+        """
+
+    @_builtins.property
+    def permissions(self) -> _containers.RepeatedCompositeFieldContainer[Global___Permission]:
+        ...
+
+    def __init__(self, *, user: Global___User | None=..., permissions: _abc.Iterable[Global___Permission] | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['user', b'user']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['permissions', b'permissions', 'user', b'user']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UserPermission: _TypeAlias = UserPermission
+
+@_typing.final
+class User(_message.Message):
+    """A User describes a single user that a set of Permissions applies to."""
+    DESCRIPTOR: _descriptor.Descriptor
+    TYPE_FIELD_NUMBER: _builtins.int
+    ID_FIELD_NUMBER: _builtins.int
+    type: _builtins.str
+    'type is the type of user. Can be "api-key-id", "app-user-id", or "default".'
+    id: _builtins.str
+    'id is the API Key ID if type is "api-key-id", the Viam app user ID if\n    type is "app-user-id", and empty if type is "default".\n    '
+
+    def __init__(self, *, type: _builtins.str=..., id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id', 'type', b'type']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___User: _TypeAlias = User
+
+@_typing.final
+class Permission(_message.Message):
+    """A Permission describes a User's ability to invoke methods on resources."""
+    DESCRIPTOR: _descriptor.Descriptor
+    RESOURCES_FIELD_NUMBER: _builtins.int
+    ALLOWED_METHODS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def resources(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """resources are the names of the resources this permission applies to,
+        e.g. ["cam1", "cam2", "cam3"].
+        """
+
+    @_builtins.property
+    def allowed_methods(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """allowed_methods is a list of fully qualified gRPC methods the user
+        may invoke on the listed resources, e.g.
+        ["/viam.component.camera.v1.CameraService/GetImages",
+        "/viam.component.camera.v1.CameraService/GetProperties"].
+        """
+
+    def __init__(self, *, resources: _abc.Iterable[_builtins.str] | None=..., allowed_methods: _abc.Iterable[_builtins.str] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['allowed_methods', b'allowed_methods', 'resources', b'resources']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Permission: _TypeAlias = Permission
 
 @_typing.final
 class JWKSFile(_message.Message):

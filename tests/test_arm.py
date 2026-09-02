@@ -10,6 +10,8 @@ from viam.components.arm.service import ArmRPCService
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetGeometriesRequest,
     GetGeometriesResponse,
     GetKinematicsRequest,
@@ -27,6 +29,8 @@ from viam.proto.component.arm import (
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
+    MoveOptions,
+    MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
@@ -35,7 +39,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import expected_grpc_timeout
-from .mocks.components import GEOMETRIES, MockArm
+from .mocks.components import GEOMETRIES, MODELS_3D, MockArm
 
 
 class TestArm:
@@ -60,6 +64,14 @@ class TestArm:
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
 
+    async def test_move_through_joint_positions(self):
+        waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+        options = MoveOptions(max_vel_degs_per_sec=15.0, max_acc_degs_per_sec2=30.0)
+        await self.arm.move_through_joint_positions(waypoints, options)
+        assert self.arm.waypoints == waypoints
+        assert self.arm.move_options == options
+        assert self.arm.joint_positions == waypoints[-1]
+
     async def test_stop(self):
         assert self.arm.is_stopped is False
         await self.arm.stop()
@@ -79,6 +91,11 @@ class TestArm:
     async def test_get_geometries(self):
         geometries = await self.arm.get_geometries()
         assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        models = await self.arm.get_3d_models(extra={"1": "2"})
+        assert models == MODELS_3D
+        assert self.arm.extra == {"1": "2"}
 
     async def test_do(self):
         command = {"command": "args"}
@@ -133,6 +150,40 @@ class TestService:
             response: GetJointPositionsResponse = await client.GetJointPositions(request)
             assert response.positions == self.joint_pos
 
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+            options = MoveOptions(
+                max_vel_degs_per_sec=15.0,
+                max_acc_degs_per_sec2=30.0,
+                max_vel_degs_per_sec_joints=[1.0, 2.0, 3.0],
+                max_acc_degs_per_sec2_joints=[4.0, 5.0, 6.0],
+                max_tcp_speed=0.25,
+            )
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=waypoints, options=options)
+            await client.MoveThroughJointPositions(request)
+            assert self.arm.waypoints == waypoints
+            assert self.arm.move_options == options
+
+    async def test_move_through_joint_positions_without_options(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            waypoints = [JointPositions(values=[7, 8, 9])]
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=waypoints)
+            await client.MoveThroughJointPositions(request)
+            assert self.arm.waypoints == waypoints
+            # Must be None, NOT a zeroed MoveOptions: a driver reading
+            # max_vel_degs_per_sec == 0.0 could interpret that as "do not move".
+            assert self.arm.move_options is None
+
+    async def test_move_through_joint_positions_empty(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = MoveThroughJointPositionsRequest(name=self.name, positions=[])
+            await client.MoveThroughJointPositions(request)
+            assert self.arm.waypoints == []
+
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
@@ -182,6 +233,26 @@ class TestService:
             response: GetGeometriesResponse = await client.GetGeometries(request)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
 
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = Get3DModelsRequest(name=self.name)
+            response: Get3DModelsResponse = await client.Get3DModels(request)
+            assert dict(response.models) == MODELS_3D
+            assert response.models["base_link"].content_type == "ply"
+            assert response.models["base_link"].mesh == b"\x00\x01"
+
+    async def test_get_3d_models_empty(self):
+        async with ChannelFor([self.service]) as channel:
+            self.arm.models_3d = {}
+            try:
+                client = ArmServiceStub(channel)
+                request = Get3DModelsRequest(name=self.name)
+                response: Get3DModelsResponse = await client.Get3DModels(request)
+                assert dict(response.models) == {}
+            finally:
+                self.arm.models_3d = MODELS_3D
+
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -226,6 +297,25 @@ class TestClient:
             jp = await client.get_joint_positions()
             assert jp == self.joint_pos
 
+    async def test_move_through_joint_positions(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            waypoints = [JointPositions(values=[1, 2, 3]), JointPositions(values=[4, 5, 6])]
+            options = MoveOptions(max_vel_degs_per_sec=15.0, max_tcp_speed=0.25)
+            await client.move_through_joint_positions(waypoints, options=options, extra={"foo": "bar"}, timeout=1.23)
+            assert self.arm.waypoints == waypoints
+            assert self.arm.move_options == options
+            assert self.arm.extra == {"foo": "bar"}
+            assert self.arm.timeout == expected_grpc_timeout(1.23)
+
+    async def test_move_through_joint_positions_without_options(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            waypoints = [JointPositions(values=[7, 8, 9])]
+            await client.move_through_joint_positions(waypoints)
+            assert self.arm.waypoints == waypoints
+            assert self.arm.move_options is None
+
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
@@ -254,6 +344,16 @@ class TestClient:
             client = ArmClient(self.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            models = await client.get_3d_models(extra={"1": "2"}, timeout=1.23)
+            assert models == MODELS_3D
+            with pytest.raises(KeyError):
+                models["does_not_exist"]
+            assert self.arm.extra == {"1": "2"}
+            assert self.arm.timeout == expected_grpc_timeout(1.23)
 
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:

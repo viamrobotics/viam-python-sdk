@@ -14,6 +14,7 @@ from viam.proto.app import (
     FragmentHistoryEntry,
     Location,
     LocationAuth,
+    LogOrder,
     Model,
     Module,
     ModuleFileInfo,
@@ -496,6 +497,24 @@ class TestClient:
             assert service.levels == LOG_LEVELS
             assert service.start == datetime_to_timestamp(start_time)
             assert service.end == datetime_to_timestamp(end_time)
+            assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
+
+    async def test_get_robot_part_logs_with_order_and_range(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            log_entries = await client.get_robot_part_logs(
+                robot_part_id=ID,
+                filter=FILTER,
+                log_levels=LOG_LEVELS,
+                num_log_entries=NUM,
+                order=LogOrder.LOG_ORDER_ASCENDING,
+                range="10h",
+            )
+            assert service.robot_part_id == ID
+            assert service.filter == FILTER
+            assert service.levels == LOG_LEVELS
+            assert service.order == LogOrder.LOG_ORDER_ASCENDING
+            assert service.range == "10h"
             assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
 
     async def test_tail_robot_part_logs(self, service: MockApp):

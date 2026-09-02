@@ -2497,13 +2497,15 @@ class SequencesByDatasetIDRequest(_message.Message):
     DATASET_ID_FIELD_NUMBER: _builtins.int
     PAGE_TOKEN_FIELD_NUMBER: _builtins.int
     PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    COUNT_ONLY_FIELD_NUMBER: _builtins.int
     dataset_id: _builtins.str
     page_token: _builtins.str
     page_size: _builtins.int
+    count_only: _builtins.bool
 
-    def __init__(self, *, dataset_id: _builtins.str=..., page_token: _builtins.str=..., page_size: _builtins.int=...) -> None:
+    def __init__(self, *, dataset_id: _builtins.str=..., page_token: _builtins.str=..., page_size: _builtins.int=..., count_only: _builtins.bool=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['dataset_id', b'dataset_id', 'page_size', b'page_size', 'page_token', b'page_token']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['count_only', b'count_only', 'dataset_id', b'dataset_id', 'page_size', b'page_size', 'page_token', b'page_token']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -2514,15 +2516,17 @@ class SequencesByDatasetIDResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     SEQUENCES_FIELD_NUMBER: _builtins.int
     NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    COUNT_FIELD_NUMBER: _builtins.int
     next_page_token: _builtins.str
+    count: _builtins.int
 
     @_builtins.property
     def sequences(self) -> _containers.RepeatedCompositeFieldContainer[Global___Sequence]:
         ...
 
-    def __init__(self, *, sequences: _abc.Iterable[Global___Sequence] | None=..., next_page_token: _builtins.str=...) -> None:
+    def __init__(self, *, sequences: _abc.Iterable[Global___Sequence] | None=..., next_page_token: _builtins.str=..., count: _builtins.int=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['next_page_token', b'next_page_token', 'sequences', b'sequences']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['count', b'count', 'next_page_token', b'next_page_token', 'sequences', b'sequences']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
