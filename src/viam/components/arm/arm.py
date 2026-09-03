@@ -315,3 +315,89 @@ class Arm(ComponentBase):
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
         """
         ...
+
+    @abc.abstractmethod
+    async def set_manual_mode(
+        self,
+        manual_mode: bool,
+        enabled_for: int = 0,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Enable or disable manual mode on the arm.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Enable manual mode for 60 seconds.
+            await my_arm.set_manual_mode(manual_mode=True, enabled_for=60)
+
+            # Disable manual mode.
+            await my_arm.set_manual_mode(manual_mode=False)
+
+        Args:
+            manual_mode (bool): True to enter manual mode, false to exit it.
+            enabled_for (int): How long to stay in manual mode, in seconds. 0 means no time limit. Defaults to 0.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_manual_mode(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> bool:
+        """
+        Get whether the arm is currently in manual mode.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Check if the arm is in manual mode.
+            is_manual = await my_arm.get_manual_mode()
+            print(f"Manual mode: {is_manual}")
+
+        Returns:
+            bool: True if the arm is in manual mode, False otherwise.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Dict[str, bool]:
+        """
+        Get the properties of the arm, indicating which features are supported.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the arm's properties.
+            properties = await my_arm.get_properties()
+            print(f"Supports manual mode: {properties['support_manual_mode']}")
+            print(f"Supports cartesian commands: {properties['support_cartesian_commands']}")
+
+        Returns:
+            Dict[str, bool]: A dictionary containing the arm's properties:
+                - support_manual_mode: True if the arm supports software-enabled manual mode.
+                - support_cartesian_commands: True if the arm supports direct cartesian commands (MoveToPosition is implemented).
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getproperties>`_.
+        """
+        ...

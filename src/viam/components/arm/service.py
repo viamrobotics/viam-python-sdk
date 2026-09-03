@@ -17,6 +17,10 @@ from viam.proto.component.arm import (
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    GetManualModeRequest,
+    GetManualModeResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveThroughJointPositionsRequest,
@@ -25,6 +29,8 @@ from viam.proto.component.arm import (
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
+    SetManualModeRequest,
+    SetManualModeResponse,
     StopRequest,
     StopResponse,
     UnimplementedArmServiceBase,
@@ -168,4 +174,35 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
+        await stream.send_message(response)
+
+    async def SetManualMode(self, stream: Stream[SetManualModeRequest, SetManualModeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await arm.set_manual_mode(
+            request.manual_mode, request.enabled_for, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+        )
+        response = SetManualModeResponse()
+        await stream.send_message(response)
+
+    async def GetManualMode(self, stream: Stream[GetManualModeRequest, GetManualModeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        manual_mode = await arm.get_manual_mode(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetManualModeResponse(manual_mode=manual_mode)
+        await stream.send_message(response)
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await arm.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetPropertiesResponse(
+            support_manual_mode=properties["support_manual_mode"], support_cartesian_commands=properties["support_cartesian_commands"]
+        )
         await stream.send_message(response)
