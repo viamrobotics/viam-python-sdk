@@ -33,7 +33,6 @@ from viam.proto.component.arm import (
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     SetManualModeRequest,
-    SetManualModeResponse,
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase

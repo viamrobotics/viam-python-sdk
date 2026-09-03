@@ -34,7 +34,6 @@ from viam.proto.component.arm import (
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     SetManualModeRequest,
-    SetManualModeResponse,
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
