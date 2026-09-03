@@ -345,10 +345,29 @@ class AnswerRequestInitStage(_message.Message):
     callers initial SDP request to the controlled (answerer) side.
     """
     DESCRIPTOR: _descriptor.Descriptor
+
+    @_typing.final
+    class CallerAuthMetadataEntry(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
+        KEY_FIELD_NUMBER: _builtins.int
+        VALUE_FIELD_NUMBER: _builtins.int
+        key: _builtins.str
+        value: _builtins.str
+
+        def __init__(self, *, key: _builtins.str=..., value: _builtins.str=...) -> None:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['key', b'key', 'value', b'value']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
     SDP_FIELD_NUMBER: _builtins.int
     OPTIONAL_CONFIG_FIELD_NUMBER: _builtins.int
     DEADLINE_FIELD_NUMBER: _builtins.int
+    CALLER_AUTH_ENTITY_FIELD_NUMBER: _builtins.int
+    CALLER_AUTH_METADATA_FIELD_NUMBER: _builtins.int
     sdp: _builtins.str
+    caller_auth_entity: _builtins.str
+    "caller_auth_entity is the caller's authenticated entity (its JWT subject), extracted\n    from the caller's auth token by the signaling server. Only the caller's identity is\n    forwarded to the answerer, not its bearer token. Empty when the caller was\n    unauthenticated.\n    "
 
     @_builtins.property
     def optional_config(self) -> Global___WebRTCConfig:
@@ -358,13 +377,19 @@ class AnswerRequestInitStage(_message.Message):
     def deadline(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, sdp: _builtins.str=..., optional_config: Global___WebRTCConfig | None=..., deadline: _timestamp_pb2.Timestamp | None=...) -> None:
+    @_builtins.property
+    def caller_auth_metadata(self) -> _containers.ScalarMap[_builtins.str, _builtins.str]:
+        """caller_auth_metadata is the caller's auth metadata (its rpc_auth_md claim), extracted
+        from the caller's auth token by the signaling server.
+        """
+
+    def __init__(self, *, sdp: _builtins.str=..., optional_config: Global___WebRTCConfig | None=..., deadline: _timestamp_pb2.Timestamp | None=..., caller_auth_entity: _builtins.str=..., caller_auth_metadata: _abc.Mapping[_builtins.str, _builtins.str] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config', 'sdp', b'sdp']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deadline', b'_deadline', 'caller_auth_entity', b'caller_auth_entity', 'caller_auth_metadata', b'caller_auth_metadata', 'deadline', b'deadline', 'optional_config', b'optional_config', 'sdp', b'sdp']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
