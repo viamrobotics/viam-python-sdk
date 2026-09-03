@@ -190,9 +190,7 @@ class MockArm(Arm):
         self.timeout = timeout
         return self.manual_mode
 
-    async def get_properties(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Dict[str, bool]:
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Dict[str, bool]:
         self.extra = extra
         self.timeout = timeout
         return self.properties
