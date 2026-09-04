@@ -1,4 +1,5 @@
 import abc
+from dataclasses import dataclass
 from typing import Any, Dict, Final, List, Mapping, Optional
 
 from viam.components import KinematicsReturn
@@ -30,6 +31,11 @@ class Arm(ComponentBase):
 
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
+
+    @dataclass
+    class Properties:
+        support_manual_mode: bool = False
+        support_cartesian_commands: bool = False
 
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
 
@@ -313,5 +319,87 @@ class Arm(ComponentBase):
             Implementations with no models must return an empty mapping, not ``None``.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def set_manual_mode(
+        self,
+        manual_mode: bool,
+        enabled_for: int = 0,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Enter or exit manual mode for an arm that supports it.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Enter manual mode for at most 30 seconds.
+            await my_arm.set_manual_mode(manual_mode=True, enabled_for=30)
+
+            # Exit manual mode.
+            await my_arm.set_manual_mode(manual_mode=False)
+
+        Args:
+            manual_mode (bool): Whether to enter (``True``) or exit (``False``) manual mode.
+            enabled_for (int): How long to stay in manual mode, in seconds. ``0`` means no time limit.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_manual_mode(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> bool:
+        """
+        Get whether the arm is currently in manual mode.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Print whether the arm is currently in manual mode.
+            print(await my_arm.get_manual_mode())
+
+        Returns:
+            bool: Whether the arm is in manual mode.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Properties:
+        """
+        Get a mapping of each optional feature to whether it is supported by this arm.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the properties of the arm.
+            properties = await my_arm.get_properties()
+
+        Returns:
+            Properties: The arm's properties; whether it supports software-enabled manual mode
+            and whether it supports direct cartesian commands (``move_to_position``).
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getproperties>`_.
         """
         ...
