@@ -50,7 +50,7 @@ def _validate_name(value: str, param_name: str) -> str:
     if isinstance(value, str):
         return value
     resource = param_name.removesuffix("_name").replace("_", " ")
-    raise TypeError(f"{param_name} must be the {resource}'s name as a string, e.g. 'pick-grip' (got {type(value).__name__})")
+    raise TypeError(f"{param_name} must be the {resource}'s name as a string, e.g. 'pick-grip'")
 
 
 class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
