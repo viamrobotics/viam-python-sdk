@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
@@ -12,7 +12,6 @@ from viam.proto.common import (
     GetStatusResponse,
     Pose,
     PoseInFrame,
-    ResourceName,
     Transform,
     WorldState,
 )
@@ -42,14 +41,16 @@ from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 from .motion import Motion
 
 
-def _resource_name_to_str(value: Union[str, ResourceName], param_name: str) -> str:
-    """Coerce a ``ResourceName``, which older SDK releases accepted, into the name string this API expects."""
+def _validate_name(value: str, param_name: str) -> str:
+    """Reject non-string names here, where the field and the expected type can be named.
+
+    Passing a ``ResourceName``, as older SDK releases required, otherwise fails inside the protobuf extension with
+    "TypeError: bad argument type for built-in operation".
+    """
     if isinstance(value, str):
         return value
-    name = getattr(value, "name", None)
-    if isinstance(name, str):
-        return name
-    raise TypeError(f"{param_name} must be the resource's name as a string, e.g. 'pick-grip' (got {type(value).__name__})")
+    resource = param_name.removesuffix("_name").replace("_", " ")
+    raise TypeError(f"{param_name} must be the {resource}'s name as a string, e.g. 'pick-grip' (got {type(value).__name__})")
 
 
 class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
@@ -66,7 +67,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def move(
         self,
-        component_name: Union[str, ResourceName],
+        component_name: str,
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
         constraints: Optional[Constraints] = None,
@@ -79,7 +80,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         request = MoveRequest(
             name=self.name,
             destination=destination,
-            component_name=_resource_name_to_str(component_name, "component_name"),
+            component_name=_validate_name(component_name, "component_name"),
             world_state=world_state,
             constraints=constraints,
             extra=dict_to_struct(extra),
@@ -89,9 +90,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def move_on_globe(
         self,
-        component_name: Union[str, ResourceName],
+        component_name: str,
         destination: GeoPoint,
-        movement_sensor_name: Union[str, ResourceName],
+        movement_sensor_name: str,
         obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
@@ -104,9 +105,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveOnGlobeRequest(
             name=self.name,
-            component_name=_resource_name_to_str(component_name, "component_name"),
+            component_name=_validate_name(component_name, "component_name"),
             destination=destination,
-            movement_sensor_name=_resource_name_to_str(movement_sensor_name, "movement_sensor_name"),
+            movement_sensor_name=_validate_name(movement_sensor_name, "movement_sensor_name"),
             obstacles=obstacles,
             heading=heading,
             motion_configuration=configuration,
@@ -118,9 +119,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def move_on_map(
         self,
-        component_name: Union[str, ResourceName],
+        component_name: str,
         destination: Pose,
-        slam_service_name: Union[str, ResourceName],
+        slam_service_name: str,
         configuration: Optional[MotionConfiguration] = None,
         obstacles: Optional[Sequence[Geometry]] = None,
         *,
@@ -132,8 +133,8 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         request = MoveOnMapRequest(
             name=self.name,
             destination=destination,
-            component_name=_resource_name_to_str(component_name, "component_name"),
-            slam_service_name=_resource_name_to_str(slam_service_name, "slam_service_name"),
+            component_name=_validate_name(component_name, "component_name"),
+            slam_service_name=_validate_name(slam_service_name, "slam_service_name"),
             motion_configuration=configuration,
             obstacles=obstacles,
             extra=dict_to_struct(extra),
@@ -143,7 +144,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def stop_plan(
         self,
-        component_name: Union[str, ResourceName],
+        component_name: str,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -153,7 +154,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
         request = StopPlanRequest(
             name=self.name,
-            component_name=_resource_name_to_str(component_name, "component_name"),
+            component_name=_validate_name(component_name, "component_name"),
             extra=dict_to_struct(extra),
         )
         _: StopPlanResponse = await self.client.StopPlan(request, timeout=timeout, metadata=md)
@@ -161,7 +162,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def get_plan(
         self,
-        component_name: Union[str, ResourceName],
+        component_name: str,
         last_plan_only: bool = False,
         execution_id: Optional[str] = None,
         *,
@@ -173,7 +174,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
         request = GetPlanRequest(
             name=self.name,
-            component_name=_resource_name_to_str(component_name, "component_name"),
+            component_name=_validate_name(component_name, "component_name"),
             last_plan_only=last_plan_only,
             execution_id=execution_id,
             extra=dict_to_struct(extra),
@@ -201,7 +202,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def get_pose(
         self,
-        component_name: Union[str, ResourceName],
+        component_name: str,
         destination_frame: str,
         supplemental_transforms: Optional[Sequence[Transform]] = None,
         *,
@@ -212,7 +213,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPoseRequest(
             name=self.name,
-            component_name=_resource_name_to_str(component_name, "component_name"),
+            component_name=_validate_name(component_name, "component_name"),
             destination_frame=destination_frame,
             supplemental_transforms=supplemental_transforms,
             extra=dict_to_struct(extra),
