@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, Final, List, Mapping, Optional
+from typing import Any, Dict, Final, List, Mapping, Optional, TypeAlias
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
@@ -32,7 +32,7 @@ class Arm(ComponentBase):
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
 
-    Properties = GetPropertiesResponse
+    Properties: "TypeAlias" = GetPropertiesResponse
 
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
 
