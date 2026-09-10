@@ -27,6 +27,7 @@ from ....gen.app.mltraining.v1.ml_training_pb2 import (
     TrainingJobLogEntry,
     TrainingJobMetadata,
     TrainingStatus,
+    Visibility,
 )
 
 __all__ = [
@@ -55,4 +56,5 @@ __all__ = [
     "TrainingJobLogEntry",
     "TrainingJobMetadata",
     "TrainingStatus",
+    "Visibility",
 ]
