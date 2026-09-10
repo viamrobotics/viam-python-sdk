@@ -62,7 +62,9 @@ jobs:
           echo "Updated API version to ${{ env.API_VERSION }} in src/viam/version_metadata.py"
 
       - name: Generate buf
-        run: uv run make buf
+        run: |
+            uv run make buf
+            uv run make format
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
