@@ -544,6 +544,32 @@ class TestRobotClient:
                 ) -> List[Geometry]:
                     return await self.actual_client.get_geometries(timeout=timeout)
 
+                async def set_manual_mode(
+                    self,
+                    manual_mode: bool,
+                    enabled_for: int = 0,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ):
+                    return await self.actual_client.set_manual_mode(manual_mode, enabled_for, extra=extra, timeout=timeout)
+
+                async def get_manual_mode(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> bool:
+                    return await self.actual_client.get_manual_mode(extra=extra, timeout=timeout)
+
+                async def get_properties(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> Arm.Properties:
+                    return await self.actual_client.get_properties(extra=extra, timeout=timeout)
+
             old_create_client = Registry._APIS[Arm.API].create_rpc_client
             Registry._APIS[Arm.API].create_rpc_client = lambda name, channel: FakeArmClient(name, channel)
 
