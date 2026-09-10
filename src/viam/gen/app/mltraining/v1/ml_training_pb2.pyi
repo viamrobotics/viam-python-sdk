@@ -83,6 +83,23 @@ TRAINING_STATUS_CANCELED: TrainingStatus.ValueType
 TRAINING_STATUS_CANCELING: TrainingStatus.ValueType
 Global___TrainingStatus: _TypeAlias = TrainingStatus
 
+class _Visibility:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _VisibilityEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_Visibility.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    VISIBILITY_UNSPECIFIED: _Visibility.ValueType
+    VISIBILITY_PRIVATE: _Visibility.ValueType
+    VISIBILITY_PUBLIC: _Visibility.ValueType
+
+class Visibility(_Visibility, metaclass=_VisibilityEnumTypeWrapper):
+    ...
+VISIBILITY_UNSPECIFIED: Visibility.ValueType
+VISIBILITY_PRIVATE: Visibility.ValueType
+VISIBILITY_PUBLIC: Visibility.ValueType
+Global___Visibility: _TypeAlias = Visibility
+
 @_typing.final
 class SubmitTrainingJobRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
@@ -462,8 +479,15 @@ Global___GetTrainingJobLogsResponse: _TypeAlias = GetTrainingJobLogsResponse
 @_typing.final
 class ListSupportedContainersRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    organization_id: _builtins.str
+    "Optional. Scopes the response to the containers available to this\n    organization: the Viam-managed catalog plus the org's registered\n    custom training containers. If unset, only the Viam-managed catalog\n    is returned.\n    "
 
-    def __init__(self) -> None:
+    def __init__(self, *, organization_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['organization_id', b'organization_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___ListSupportedContainersRequest: _TypeAlias = ListSupportedContainersRequest
 
@@ -501,8 +525,12 @@ class ListSupportedContainersResponse(_message.Message):
           "tf:2.15": Container {
             key: "tf:2.15"
             uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
+            framework: Tensorflow
             description: "Tensorflow 2.15"
             eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
+            created_on: 2026-01-15T01:30:15.01Z
+            organization_id: "xyz"
+            visibility: VISIBILITY_PUBLIC
           }
         }
         """
@@ -523,22 +551,38 @@ class Container(_message.Message):
     FRAMEWORK_FIELD_NUMBER: _builtins.int
     DESCRIPTION_FIELD_NUMBER: _builtins.int
     EOL_FIELD_NUMBER: _builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    CREATED_ON_FIELD_NUMBER: _builtins.int
+    ID_FIELD_NUMBER: _builtins.int
+    VISIBILITY_FIELD_NUMBER: _builtins.int
     key: _builtins.str
+    'custom container keys are derived from the Docker URI (image:tag)'
     uri: _builtins.str
     framework: _builtins.str
+    'unset for custom containers'
     description: _builtins.str
+    'will serve as display name'
+    organization_id: _builtins.str
+    id: _builtins.str
+    'unique id of the container'
+    visibility: Global___Visibility.ValueType
+    'public or private'
 
     @_builtins.property
     def eol(self) -> _timestamp_pb2.Timestamp:
+        """unset for custom containers"""
+
+    @_builtins.property
+    def created_on(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, key: _builtins.str=..., uri: _builtins.str=..., framework: _builtins.str=..., description: _builtins.str=..., eol: _timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, key: _builtins.str=..., uri: _builtins.str=..., framework: _builtins.str=..., description: _builtins.str=..., eol: _timestamp_pb2.Timestamp | None=..., organization_id: _builtins.str=..., created_on: _timestamp_pb2.Timestamp | None=..., id: _builtins.str=..., visibility: Global___Visibility.ValueType=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['eol', b'eol']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'eol', b'eol']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['description', b'description', 'eol', b'eol', 'framework', b'framework', 'key', b'key', 'uri', b'uri']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'description', b'description', 'eol', b'eol', 'framework', b'framework', 'id', b'id', 'key', b'key', 'organization_id', b'organization_id', 'uri', b'uri', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
