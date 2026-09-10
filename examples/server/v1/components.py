@@ -106,6 +106,21 @@ class ExampleArm(Arm):
         for position in positions:
             self.joint_positions = position
 
+    async def move_through_joint_positions_streamed(  # type: ignore
+        self,
+        batches: AsyncIterator[List[Arm.TrajectoryPoint]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[Arm.TrajectoryUpdate]:
+        self.is_stopped = False
+        async for batch in batches:
+            for point in batch:
+                self.joint_positions = JointPositions(values=point.positions)
+            yield Arm.TrajectoryUpdate()
+        self.is_stopped = True
+
     async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
         return {}
 
