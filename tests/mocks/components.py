@@ -46,7 +46,7 @@ from viam.proto.common import (
     Sphere,
     Vector3,
 )
-from viam.proto.component.arm import MoveOptions
+from viam.proto.component.arm import GetPropertiesResponse, MoveOptions
 from viam.proto.component.audioin import AudioChunk, GetAudioResponse
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
@@ -78,7 +78,7 @@ class MockArm(Arm):
         self.models_3d = MODELS_3D
         self.manual_mode = False
         self.enabled_for = 0
-        self.properties = Arm.Properties(support_manual_mode=True, support_cartesian_commands=True)
+        self.properties = GetPropertiesResponse(support_manual_mode=True, support_cartesian_commands=True)
         super().__init__(name)
 
     async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:

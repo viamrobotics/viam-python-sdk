@@ -49,7 +49,7 @@ from viam.proto.common import (
     Vector3,
     Mesh,
 )
-from viam.proto.component.arm import JointPositions, MoveOptions
+from viam.proto.component.arm import GetPropertiesResponse, JointPositions, MoveOptions
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
@@ -134,7 +134,7 @@ class ExampleArm(Arm):
         return self.manual_mode
 
     async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Arm.Properties:
-        return Arm.Properties(support_manual_mode=True, support_cartesian_commands=True)
+        return GetPropertiesResponse(support_manual_mode=True, support_cartesian_commands=True)
 
 
 class ExampleAudioOut(AudioOut):

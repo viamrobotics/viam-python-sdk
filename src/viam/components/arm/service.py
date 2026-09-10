@@ -205,6 +205,5 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         assert request is not None
         arm = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        properties = await arm.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetPropertiesResponse(**properties.__dict__)
+        response = await arm.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(response)
