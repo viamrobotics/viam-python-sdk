@@ -11,6 +11,10 @@ on:
     types:
       - protos-updated
 
+env:
+  PROTO_BRANCH: workflow/update-proto
+  WRAPPER_BRANCH: workflow/update-proto-ai
+
 jobs:
   update-protos:
     if: github.repository_owner == 'viamrobotics'
@@ -41,11 +45,13 @@ jobs:
       - name: prune origin
         run: git remote prune origin
 
-      - name: Create branch
+      # --- Bottom of the stack: generated protos ---
+
+      - name: Create proto branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b workflow/update-proto
+          git checkout -b ${{ env.PROTO_BRANCH }}
 
       - name: Setup Python
         run: uv python install
@@ -65,21 +71,45 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "[WORKFLOW] Generate buf for version ${{ env.API_VERSION }}"
 
-      - name: Install OpenCode CLI
-        run: |
-          curl -fsSL https://opencode.ai/install | bash
-          echo "$HOME/.opencode/bin" >> $GITHUB_PATH
-
-      - name: Update Python Wrappers with OpenCode CLI
+      - name: Push proto branch and open PR
+        id: proto_pr
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
         run: |
-          cat > /tmp/opencode_prompt.txt << 'PROMPT_EOF'
+          git push --force origin ${{ env.PROTO_BRANCH }}
+          BODY="This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes.
+
+          This is the **bottom** of a stack: the generated wrapper updates are in a follow-up PR based on this branch."
+          gh pr create \
+            --base main \
+            --head ${{ env.PROTO_BRANCH }} \
+            --title "Automated Protos Update" \
+            --body "$BODY" \
+            --reviewer viamrobotics/sdk \
+            || gh pr edit ${{ env.PROTO_BRANCH }} \
+              --title "Automated Protos Update" \
+              --body "$BODY"
+          echo "url=$(gh pr view ${{ env.PROTO_BRANCH }} --json url -q .url)" >> "$GITHUB_OUTPUT"
+
+      # --- Top of the stack: AI-generated wrapper updates ---
+
+      - name: Create wrapper branch
+        run: git checkout -b ${{ env.WRAPPER_BRANCH }}
+
+      - name: Update Python wrappers with Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          settings: .claude/settings.ci.json
+          claude_args: |
+            --model claude-sonnet-5
+            --allowed-tools "Edit,Read,Write,Glob,Grep,Bash(git diff*),Bash(git status*),Bash(git log*),Bash(git show*),Bash(make lint*),Bash(make typecheck*),Bash(make test*),Bash(uv run *)"
+          prompt: |
             The protobuf definitions have been updated and compiled into Python files in `src/viam/gen/`.
 
             ## IMPORTANT: Use git diff to identify changes
 
-            Run `git diff src/viam/gen/` to see what changed in the generated protobuf files.
+            Run `git diff ${{ github.sha }} -- src/viam/gen/` to see what changed in the generated protobuf files.
             DO NOT read through every proto file. ONLY look at the diff to understand what needs to be updated.
 
             Based on the diff, update the corresponding Python wrapper functions to reflect ONLY the changes shown.
@@ -116,7 +146,7 @@ jobs:
 
             ## Your Task
 
-            1. **First, check the diff**: Run `git diff src/viam/gen/` to see what changed
+            1. **First, check the diff**: Run `git diff ${{ github.sha }} -- src/viam/gen/` to see what changed
             2. **Identify affected wrappers**: Based on the diff, determine which wrapper files need updates
             3. **Apply changes**: For ONLY the files shown in the diff:
 
@@ -331,15 +361,12 @@ jobs:
             - Follow the established patterns in the repository.
 
             ## Verification
-            After making changes, verify that:
+            Run `make lint` and `make typecheck` and fix any errors you introduced. Then verify that:
             - All new RPC methods from the diff have corresponding Python wrappers
             - All updated RPC methods from the diff reflect the new message structure
             - All removed RPC methods from the diff are deleted from wrappers
             - Tests are added/updated/removed for all wrapper changes
             - Both component/service wrappers AND app API client wrappers are updated
-          PROMPT_EOF
-
-          opencode run --model anthropic/claude-sonnet-4-5-20250929 --agent build "$(cat /tmp/opencode_prompt.txt)"
 
       - name: Commit Python wrapper updates
         run: |
@@ -354,21 +381,29 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "[WORKFLOW] Apply formatting"
 
-      - name: Push branch and open PR
+      - name: Push wrapper branch and open stacked PR
         env:
           GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+          PROTO_PR_URL: ${{ steps.proto_pr.outputs.url }}
         run: |
-          git push --force origin workflow/update-proto
+          if git diff --quiet ${{ env.PROTO_BRANCH }}..${{ env.WRAPPER_BRANCH }}; then
+            echo "Claude made no wrapper changes; skipping the stacked PR."
+            exit 0
+          fi
+          git push --force origin ${{ env.WRAPPER_BRANCH }}
+          BODY="This is an auto-generated PR updating the Python wrappers for the proto changes in $PROTO_PR_URL.
+
+          This PR is **stacked on top of** \`${{ env.PROTO_BRANCH }}\`. Review and merge $PROTO_PR_URL first; this PR will retarget to \`main\` automatically."
           gh pr create \
-            --base main \
-            --head workflow/update-proto \
-            --title "Automated Protos Update" \
-            --body "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes" \
-            --assignee njooma \
-            --reviewer njooma \
-            || gh pr edit workflow/update-proto \
-              --title "Automated Protos Update" \
-              --body "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes"
+            --base ${{ env.PROTO_BRANCH }} \
+            --head ${{ env.WRAPPER_BRANCH }} \
+            --title "Automated Protos Update: Python wrappers" \
+            --body "$BODY" \
+            --reviewer viamrobotics/sdk \
+            || gh pr edit ${{ env.WRAPPER_BRANCH }} \
+              --base ${{ env.PROTO_BRANCH }} \
+              --title "Automated Protos Update: Python wrappers" \
+              --body "$BODY"
 
       - name: Notify slack of failure
         uses: slackapi/slack-github-action@v3
