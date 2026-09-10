@@ -46,7 +46,7 @@ from viam.proto.common import (
     Sphere,
     Vector3,
 )
-from viam.proto.component.arm import MoveOptions
+from viam.proto.component.arm import GetPropertiesResponse, MoveOptions
 from viam.proto.component.audioin import AudioChunk, GetAudioResponse
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
@@ -76,6 +76,9 @@ class MockArm(Arm):
         self.waypoints: List[JointPositions] = []
         self.move_options: Optional[MoveOptions] = None
         self.models_3d = MODELS_3D
+        self.manual_mode = False
+        self.enabled_for = 0
+        self.properties = GetPropertiesResponse(support_manual_mode=True, support_cartesian_commands=True)
         super().__init__(name)
 
     async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:
@@ -160,6 +163,24 @@ class MockArm(Arm):
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {}
+
+    async def set_manual_mode(
+        self, manual_mode: bool, enabled_for: int = 0, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        self.manual_mode = manual_mode
+        self.enabled_for = enabled_for
+        self.extra = extra
+        self.timeout = timeout
+
+    async def get_manual_mode(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
+        self.extra = extra
+        self.timeout = timeout
+        return self.manual_mode
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Arm.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return self.properties
 
 
 class MockAudioIn(AudioIn):

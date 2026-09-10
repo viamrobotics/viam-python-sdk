@@ -136,6 +136,15 @@ class MyCoolArm(Arm):
     ) -> Union[Tuple[KinematicsFileFormat.ValueType, bytes], Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]]:
         return KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, self.kinematics
 
+    async def set_manual_mode(self, manual_mode: bool, enabled_for: int = 0, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        pass
+
+    async def get_manual_mode(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
+        return False
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Arm.Properties:
+        return Arm.Properties()
+
     async def close(self):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.

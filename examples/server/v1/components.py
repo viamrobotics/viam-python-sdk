@@ -49,7 +49,7 @@ from viam.proto.common import (
     Vector3,
     Mesh,
 )
-from viam.proto.component.arm import JointPositions, MoveOptions
+from viam.proto.component.arm import GetPropertiesResponse, JointPositions, MoveOptions
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
@@ -74,6 +74,7 @@ class ExampleArm(Arm):
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
+        self.manual_mode = False
         super().__init__(name)
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
@@ -125,6 +126,15 @@ class ExampleArm(Arm):
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {}
+
+    async def set_manual_mode(self, manual_mode: bool, enabled_for: int = 0, extra: Optional[Dict[str, Any]] = None, **kwargs):
+        self.manual_mode = manual_mode
+
+    async def get_manual_mode(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+        return self.manual_mode
+
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Arm.Properties:
+        return GetPropertiesResponse(support_manual_mode=True, support_cartesian_commands=True)
 
 
 class ExampleAudioOut(AudioOut):
