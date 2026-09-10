@@ -22,6 +22,10 @@ from viam.proto.component.arm import (
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    GetManualModeRequest,
+    GetManualModeResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
@@ -29,6 +33,7 @@ from viam.proto.component.arm import (
     MoveThroughJointPositionsRequest,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
+    SetManualModeRequest,
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
@@ -105,6 +110,26 @@ class TestArm:
     async def test_extra(self):
         await self.arm.get_end_position(extra={"foo": "bar"})
         assert self.arm.extra == {"foo": "bar"}
+
+    async def test_set_manual_mode(self):
+        await self.arm.set_manual_mode(True, enabled_for=60)
+        assert self.arm.manual_mode is True
+        assert self.arm.manual_mode_enabled_for == 60
+        await self.arm.set_manual_mode(False)
+        assert self.arm.manual_mode is False
+
+    async def test_get_manual_mode(self):
+        self.arm.manual_mode = True
+        result = await self.arm.get_manual_mode()
+        assert result is True
+        self.arm.manual_mode = False
+        result = await self.arm.get_manual_mode()
+        assert result is False
+
+    async def test_get_properties(self):
+        properties = await self.arm.get_properties()
+        assert properties.support_manual_mode is True
+        assert properties.support_cartesian_commands is True
 
 
 class TestService:
@@ -257,6 +282,30 @@ class TestService:
             await client.GetEndPosition(request)
             assert self.arm.extra == extra
 
+    async def test_set_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = SetManualModeRequest(name=self.name, manual_mode=True, enabled_for=60)
+            await client.SetManualMode(request)
+            assert self.arm.manual_mode is True
+            assert self.arm.manual_mode_enabled_for == 60
+
+    async def test_get_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            self.arm.manual_mode = True
+            client = ArmServiceStub(channel)
+            request = GetManualModeRequest(name=self.name)
+            response: GetManualModeResponse = await client.GetManualMode(request)
+            assert response.manual_mode is True
+
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = GetPropertiesRequest(name=self.name)
+            response: GetPropertiesResponse = await client.GetProperties(request)
+            assert response.support_manual_mode is True
+            assert response.support_cartesian_commands is True
+
 
 class TestClient:
     @classmethod
@@ -369,3 +418,30 @@ class TestClient:
             client = ArmClient(self.name, channel)
             await client.get_end_position(extra={"foo": "bar"})
             assert self.arm.extra == {"foo": "bar"}
+
+    async def test_set_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            await client.set_manual_mode(True, enabled_for=60, extra={"foo": "bar"}, timeout=1.23)
+            assert self.arm.manual_mode is True
+            assert self.arm.manual_mode_enabled_for == 60
+            assert self.arm.extra == {"foo": "bar"}
+            assert self.arm.timeout == expected_grpc_timeout(1.23)
+
+    async def test_get_manual_mode(self):
+        async with ChannelFor([self.service]) as channel:
+            self.arm.manual_mode = True
+            client = ArmClient(self.name, channel)
+            result = await client.get_manual_mode(extra={"a": "b"}, timeout=2.34)
+            assert result is True
+            assert self.arm.extra == {"a": "b"}
+            assert self.arm.timeout == expected_grpc_timeout(2.34)
+
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            properties = await client.get_properties(extra={"x": "y"}, timeout=3.45)
+            assert properties.support_manual_mode is True
+            assert properties.support_cartesian_commands is True
+            assert self.arm.extra == {"x": "y"}
+            assert self.arm.timeout == expected_grpc_timeout(3.45)

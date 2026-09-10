@@ -3,12 +3,13 @@ from viam.proto.common import KinematicsFileFormat, Mesh, Pose
 from viam.proto.component.arm import JointPositions, MoveOptions
 from viam.resource.registry import Registry, ResourceRegistration
 
-from .arm import Arm
+from .arm import Arm, ArmProperties
 from .client import ArmClient
 from .service import ArmRPCService
 
 __all__ = [
     "Arm",
+    "ArmProperties",
     "JointPositions",
     "KinematicsFileFormat",
     "KinematicsReturn",
