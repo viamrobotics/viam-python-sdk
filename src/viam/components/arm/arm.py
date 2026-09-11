@@ -1,9 +1,9 @@
 import abc
-from dataclasses import dataclass
-from typing import Any, Dict, Final, List, Mapping, Optional
+from typing import Any, Dict, Final, List, Mapping, Optional, TypeAlias
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
+from viam.proto.component.arm import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from . import JointPositions, Mesh, MoveOptions, Pose
@@ -32,10 +32,7 @@ class Arm(ComponentBase):
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
 
-    @dataclass
-    class Properties:
-        support_manual_mode: bool = False
-        support_cartesian_commands: bool = False
+    Properties: "TypeAlias" = GetPropertiesResponse
 
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
 

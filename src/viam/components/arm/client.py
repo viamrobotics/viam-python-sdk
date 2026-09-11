@@ -24,7 +24,6 @@ from viam.proto.component.arm import (
     GetManualModeRequest,
     GetManualModeResponse,
     GetPropertiesRequest,
-    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
@@ -213,8 +212,4 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     ) -> Arm.Properties:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
-        return Arm.Properties(
-            support_manual_mode=response.support_manual_mode,
-            support_cartesian_commands=response.support_cartesian_commands,
-        )
+        return await self.client.GetProperties(request, timeout=timeout, metadata=md)
