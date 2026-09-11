@@ -109,6 +109,15 @@ class ExampleArm(Arm):
     async def get_3d_models(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Mesh]:
         return {}
 
+    async def set_manual_mode(self, manual_mode: bool, enabled_for: int = 0, extra: Optional[Dict[str, Any]] = None, **kwargs):
+        raise NotImplementedError()
+
+    async def get_manual_mode(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+        raise NotImplementedError()
+
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Arm.Properties:
+        return Arm.Properties(support_manual_mode=False, support_cartesian_commands=True)
+
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
 
