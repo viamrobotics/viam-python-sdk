@@ -208,9 +208,11 @@ def _getDimensionsFromPNG(image: bytes) -> Tuple[int, int]:
         raise ValueError("Invalid PNG: Invalid signature")
 
     header = image[12:24]
+    if len(header) < 12:
+        raise ValueError("Invalid PNG: Truncated header")
     chunk_type = header[:4].decode()
     if chunk_type != "IHDR":
-        raise ValueError("Invalid PNG: Invalid headers")
+        raise ValueError("Invalid PNG: Invalid header")
 
     width = int.from_bytes(header[4:8], byteorder="big")
     height = int.from_bytes(header[8:], byteorder="big")
@@ -224,7 +226,7 @@ def _getDimensionsFromRGBA(image: bytes) -> Tuple[int, int]:
     # * Height
     header = image[:RGBA_HEADER_LENGTH]
     if header[:4] != RGBA_MAGIC_NUMBER:
-        raise ValueError("Invalid Viam RGBA: Invalid headers")
+        raise ValueError("Invalid Viam RGBA: Invalid header")
 
     width = int.from_bytes(header[4:8], byteorder="big")
     height = int.from_bytes(header[8:], byteorder="big")
