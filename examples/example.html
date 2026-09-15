@@ -163,7 +163,7 @@
 <p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7fda978e2e80&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fda8ce21fd0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fda8ce21f30&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fda8ce22020&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fda8ce22070&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fda8ce220c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fda8ce22110&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fda8ce22160&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fda8ce221b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fda8ce22200&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fda8ce22250&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fda8ce222a0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fda8ce222f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fda8ce22340&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fda8ce22390&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fc1042ddee0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fc1042ddf80&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fc1042dddf0&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fc1042ddfd0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fc1042de020&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fc1042de070&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fc1042de0c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fc1042de110&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fc1042de160&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7fc1042de1b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fc1042de200&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fc1042de250&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fc1042de2a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fc1042de2f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fc1042de340&gt;]
 </pre></div>
 </div>
 </div>
@@ -699,7 +699,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components.arm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">KinematicsFileFormat</span><span class="p">,</span> <span class="n">Pose</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_with_operation</span>
@@ -813,6 +813,24 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">position</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">move_through_joint_positions_streamed</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">batches</span><span class="p">:</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryPoint</span><span class="p">]],</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryUpdate</span><span class="p">]:</span>
+        <span class="c1"># Each list the framework hands us is one wire batch. Walk it point by point to drive the</span>
+        <span class="c1"># arm, then send one update back per batch so the caller can watch progress and so a fault</span>
+        <span class="c1"># reaches it while the trajectory is still running.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batches</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">point</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryUpdate</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_3d_models</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">]:</span>
@@ -1187,10 +1205,10 @@ robot-3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defined: True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File: /__w/rdk/rdk/robot/impl/resource_manager.go
 Line: 922.0
 Function: go.viam.com/rdk/robot/impl.(*resourceManager).updateResources
-File: /__w/rdk/rdk/robot/impl/resource_manager.go
+Defined: True
 
 *****PROTO*****
 

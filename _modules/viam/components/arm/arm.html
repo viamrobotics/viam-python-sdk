@@ -87,11 +87,24 @@
              
   <h1>Source code for viam.components.arm.arm</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeAlias</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">Mapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">TypeAlias</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.protobuf.duration_pb2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Duration</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components</span><span class="w"> </span><span class="kn">import</span> <span class="n">KinematicsReturn</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components.component_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.arm</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetPropertiesResponse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.arm</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetPropertiesResponse</span><span class="p">,</span>
+    <span class="n">JointAccelerations</span><span class="p">,</span>
+    <span class="n">JointVelocities</span><span class="p">,</span>
+    <span class="n">MoveThroughJointPositionsStreamedResponse</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.component.arm</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TrajectoryPoint</span> <span class="k">as</span> <span class="n">TrajectoryPointPb</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">MoveOptions</span><span class="p">,</span> <span class="n">Pose</span>
@@ -126,14 +139,128 @@
 
     <span class="n">API</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;arm&quot;</span><span class="p">)</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
 
+<div class="viewcode-block" id="Arm.KinematicConstraints">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.KinematicConstraints">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">KinematicConstraints</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optional per-waypoint kinematic constraints attached to a ``TrajectoryPoint``.</span>
+
+<span class="sd">        Velocities are required whenever constraints are present; accelerations are optional and</span>
+<span class="sd">        may only be given alongside velocities. Each list runs from the base joint out to the end</span>
+<span class="sd">        effector and must match the arm&#39;s degrees of freedom.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">velocities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Target joint velocities at this waypoint. Rotational values in degrees per second,</span>
+<span class="sd">        translational values in mm per second.&quot;&quot;&quot;</span>
+
+        <span class="n">accelerations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Optional target joint accelerations at this waypoint. Rotational values in</span>
+<span class="sd">        degrees per second squared, translational values in mm per second squared.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Arm.TrajectoryPoint">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.TrajectoryPoint">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">TrajectoryPoint</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A single waypoint of a kinematized trajectory, as consumed by</span>
+<span class="sd">        ``move_through_joint_positions_streamed``.</span>
+
+<span class="sd">        Point times must strictly increase across a stream, and the first point must have a</span>
+<span class="sd">        ``time`` of zero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">time</span><span class="p">:</span> <span class="n">timedelta</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Time at which this waypoint should be reached, measured from the start of the motion.&quot;&quot;&quot;</span>
+
+        <span class="n">positions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Joint positions at this waypoint. Rotational values in degrees, translational values in mm.&quot;&quot;&quot;</span>
+
+        <span class="n">constraints</span><span class="p">:</span> <span class="s2">&quot;Arm.KinematicConstraints | None&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Optional kinematic constraints at this waypoint.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Arm.TrajectoryPoint.to_proto">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.TrajectoryPoint.to_proto">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrajectoryPointPb</span><span class="p">:</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">Duration</span><span class="p">()</span>
+            <span class="n">duration</span><span class="o">.</span><span class="n">FromTimedelta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">constraints_pb</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">accelerations_pb</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">accelerations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">accelerations_pb</span> <span class="o">=</span> <span class="n">JointAccelerations</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">accelerations</span><span class="p">)</span>
+                <span class="n">constraints_pb</span> <span class="o">=</span> <span class="n">TrajectoryPointPb</span><span class="o">.</span><span class="n">KinematicConstraints</span><span class="p">(</span>
+                    <span class="n">velocities</span><span class="o">=</span><span class="n">JointVelocities</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">velocities</span><span class="p">),</span>
+                    <span class="n">accelerations</span><span class="o">=</span><span class="n">accelerations_pb</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">TrajectoryPointPb</span><span class="p">(</span>
+                <span class="n">time</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span>
+                <span class="n">positions</span><span class="o">=</span><span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">),</span>
+                <span class="n">constraints</span><span class="o">=</span><span class="n">constraints_pb</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Arm.TrajectoryPoint.from_proto">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.TrajectoryPoint.from_proto">[docs]</a>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">proto</span><span class="p">:</span> <span class="n">TrajectoryPointPb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Arm.TrajectoryPoint&quot;</span><span class="p">:</span>
+            <span class="n">constraints</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">proto</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;constraints&quot;</span><span class="p">):</span>
+                <span class="n">accelerations</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="n">proto</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;accelerations&quot;</span><span class="p">):</span>
+                    <span class="n">accelerations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">proto</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">accelerations</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+                <span class="n">constraints</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">KinematicConstraints</span><span class="p">(</span>
+                    <span class="n">velocities</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">proto</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">velocities</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                    <span class="n">accelerations</span><span class="o">=</span><span class="n">accelerations</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+                <span class="n">time</span><span class="o">=</span><span class="n">proto</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">ToTimedelta</span><span class="p">(),</span>
+                <span class="n">positions</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">proto</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+            <span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="Arm.TrajectoryUpdate">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.TrajectoryUpdate">[docs]</a>
+    <span class="nd">@dataclass</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">TrajectoryUpdate</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An update reported by the arm as it executes a ``move_through_joint_positions_streamed`` trajectory.</span>
+
+<span class="sd">        The type is intentionally empty. The response is a ``oneof`` whose only branch today is an empty</span>
+<span class="sd">        ``BatchAck``, so receiving a response is itself the acknowledgment. The ``oneof`` exists so the arm&#39;s</span>
+<span class="sd">        replies can grow new branches without breaking existing clients on the wire; when a branch carries</span>
+<span class="sd">        data worth surfacing (``BatchAck``&#39;s ``extra``, or a new branch entirely), this type grows to match.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Arm.TrajectoryUpdate.to_proto">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.TrajectoryUpdate.to_proto">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MoveThroughJointPositionsStreamedResponse</span><span class="p">:</span>
+            <span class="c1"># A received response is itself the acknowledgment, so send the default message and leave the</span>
+            <span class="c1"># oneof unset: the only branch is empty, nothing reads it today, and RDK and the C++ SDK send</span>
+            <span class="c1"># it unset as well. If a future branch carries data, set it here.</span>
+            <span class="k">return</span> <span class="n">MoveThroughJointPositionsStreamedResponse</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Arm.TrajectoryUpdate.from_proto">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.TrajectoryUpdate.from_proto">[docs]</a>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">proto</span><span class="p">:</span> <span class="n">MoveThroughJointPositionsStreamedResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Arm.TrajectoryUpdate&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">()</span></div>
+</div>
+
+
 <div class="viewcode-block" id="Arm.get_end_position">
 <a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.get_end_position">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_end_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -164,8 +291,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -199,8 +326,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">positions</span><span class="p">:</span> <span class="n">JointPositions</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -233,11 +360,11 @@
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">move_through_joint_positions</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">positions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">JointPositions</span><span class="p">],</span>
-        <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MoveOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">positions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">JointPositions</span><span class="p">],</span>
+        <span class="n">options</span><span class="p">:</span> <span class="n">MoveOptions</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -288,14 +415,71 @@
         <span class="o">...</span></div>
 
 
+<div class="viewcode-block" id="Arm.move_through_joint_positions_streamed">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.move_through_joint_positions_streamed">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">move_through_joint_positions_streamed</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">batches</span><span class="p">:</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s2">&quot;Arm.TrajectoryPoint&quot;</span><span class="p">]],</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="s2">&quot;Arm.TrajectoryUpdate&quot;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move the arm through a time-parameterized stream of joint waypoints.</span>
+
+<span class="sd">        The caller supplies an asynchronous iterator of batches, each batch a ``list`` of</span>
+<span class="sd">        ``TrajectoryPoint``. Each list the caller yields is sent as one wire ``TrajectoryBatch``,</span>
+<span class="sd">        so the caller sets the wire cadence by choosing how many points go in each list; a caller</span>
+<span class="sd">        that wants to send one point at a time yields a single-element list. The arm&#39;s updates are</span>
+<span class="sd">        yielded back as they arrive, so iterating the return value observes execution in real time.</span>
+<span class="sd">        If the arm faults mid-trajectory, that fault arrives as a gRPC error on the iteration, so the</span>
+<span class="sd">        ``async for`` raises instead of ending normally. Delivering faults mid-execution, not only at</span>
+<span class="sd">        the end, is the point of streaming this call.</span>
+
+<span class="sd">        The first point of the stream must have time zero, and if it carries velocity constraints</span>
+<span class="sd">        those velocities must all be zero, since the trajectory starts from rest. Point times must</span>
+<span class="sd">        strictly increase across the whole stream, not merely within a batch. A ``timeout``, if</span>
+<span class="sd">        given, bounds the entire stream, not a single message, so an open-ended trajectory should</span>
+<span class="sd">        normally leave it unset.</span>
+
+<span class="sd">        An implementation must yield at least one ``TrajectoryUpdate`` before returning. Besides</span>
+<span class="sd">        reporting progress, this is what makes the implementation an asynchronous generator; a</span>
+<span class="sd">        coroutine that never yields cannot be iterated as a stream and fails at runtime.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
+
+<span class="sd">            async def batches():</span>
+<span class="sd">                yield [</span>
+<span class="sd">                    Arm.TrajectoryPoint(time=timedelta(seconds=0.0), positions=[0.0, 0.0, 0.0, 0.0, 0.0]),</span>
+<span class="sd">                    Arm.TrajectoryPoint(time=timedelta(seconds=1.0), positions=[10.0, 0.0, 0.0, 0.0, 0.0]),</span>
+<span class="sd">                ]</span>
+
+<span class="sd">            async for update in my_arm.move_through_joint_positions_streamed(batches()):</span>
+<span class="sd">                # Observe the arm&#39;s updates; a fault raises out of this iteration.</span>
+<span class="sd">                pass</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            batches: an asynchronous iterator of lists of ``TrajectoryPoint``. Each list becomes</span>
+<span class="sd">                one wire ``TrajectoryBatch``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            AsyncIterator[Arm.TrajectoryUpdate]: the arm&#39;s updates, yielded as they arrive.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
 <div class="viewcode-block" id="Arm.get_joint_positions">
 <a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.get_joint_positions">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_joint_positions</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JointPositions</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -324,8 +508,8 @@
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -372,7 +556,7 @@
 <a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.get_kinematics">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_kinematics</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">KinematicsReturn</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the kinematics information associated with the arm.</span>
@@ -407,7 +591,7 @@
 <a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.get_3d_models">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_3d_models</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the 3D models associated with the arm, keyed by name.</span>
@@ -444,8 +628,8 @@
         <span class="n">manual_mode</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
         <span class="n">enabled_for</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -476,8 +660,8 @@
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_manual_mode</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -504,8 +688,8 @@
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_properties</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

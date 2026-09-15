@@ -86,7 +86,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.components.arm.service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stream</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">grpclib</span><span class="w"> </span><span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.common</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DoCommandRequest</span><span class="p">,</span>
@@ -113,6 +117,8 @@
     <span class="n">IsMovingResponse</span><span class="p">,</span>
     <span class="n">MoveThroughJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveThroughJointPositionsResponse</span><span class="p">,</span>
+    <span class="n">MoveThroughJointPositionsStreamedRequest</span><span class="p">,</span>
+    <span class="n">MoveThroughJointPositionsStreamedResponse</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsResponse</span><span class="p">,</span>
     <span class="n">MoveToPositionRequest</span><span class="p">,</span>
@@ -127,6 +133,51 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.arm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arm</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_TrajectoryStreamValidator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enforces the trajectory contract across a single streamed request, one point at a time.</span>
+
+<span class="sd">    The checks match what the other SDKs apply on the server side (see the C++ SDK&#39;s</span>
+<span class="sd">    TrajectoryStreamValidator): the trajectory begins at time zero and from rest, point times</span>
+<span class="sd">    strictly increase, and any constraints are dimensionally consistent with the positions.</span>
+<span class="sd">    State carries across batches, so a single validator must see every point of the stream in</span>
+<span class="sd">    order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seen_first</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_time</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seen_first</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">time</span> <span class="o">!=</span> <span class="n">timedelta</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;first trajectory point must have time zero&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">point</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_time</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;trajectory point times must strictly increase&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">point</span><span class="o">.</span><span class="n">positions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;trajectory point must carry at least one position&quot;</span><span class="p">)</span>
+
+        <span class="n">constraints</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">constraints</span>
+        <span class="k">if</span> <span class="n">constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">constraints</span><span class="o">.</span><span class="n">velocities</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">positions</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+                    <span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span>
+                    <span class="s2">&quot;trajectory point must carry one velocity per position when constraints are present&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="c1"># The arm has to start from a standstill, so the first point may not ask for motion.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seen_first</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">velocity</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">velocity</span> <span class="ow">in</span> <span class="n">constraints</span><span class="o">.</span><span class="n">velocities</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;first trajectory point must start from rest (all velocities zero)&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">constraints</span><span class="o">.</span><span class="n">accelerations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">constraints</span><span class="o">.</span><span class="n">accelerations</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">constraints</span><span class="o">.</span><span class="n">velocities</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+                    <span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span>
+                    <span class="s2">&quot;trajectory point must carry one acceleration per velocity when accelerations are present&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seen_first</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_time</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">time</span>
 
 
 <div class="viewcode-block" id="ArmRPCService">
@@ -210,6 +261,58 @@
         <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">MoveThroughJointPositionsResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArmRPCService.MoveThroughJointPositionsStreamed">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService.MoveThroughJointPositionsStreamed">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">MoveThroughJointPositionsStreamed</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveThroughJointPositionsStreamedRequest</span><span class="p">,</span> <span class="n">MoveThroughJointPositionsStreamedResponse</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># The stream opens with exactly one Init, which names the arm and carries the sticky extra</span>
+        <span class="c1"># arguments. The name sits at the top level of the request rather than inside Init because</span>
+        <span class="c1"># that is where the RDK server reads it.</span>
+        <span class="n">first_request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">first_request</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;stream closed before init message&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">first_request</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;first message must be init&quot;</span><span class="p">)</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="n">first_request</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">first_request</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="c1"># Turn the rest of the request stream into the async iterator of point-lists the driver</span>
+        <span class="c1"># consumes, validating each point as it arrives. Validation lives here on the server so</span>
+        <span class="c1"># that every arm implementation gets the same contract enforcement without having to</span>
+        <span class="c1"># repeat it. An empty batch is a wire no-op and is skipped; a second Init, or any message</span>
+        <span class="c1"># that is not a batch, is a protocol violation that ends the stream with an error.</span>
+        <span class="n">validator</span> <span class="o">=</span> <span class="n">_TrajectoryStreamValidator</span><span class="p">()</span>
+
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">batches</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryPoint</span><span class="p">]]:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">request</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">WhichOneof</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">message</span> <span class="o">==</span> <span class="s2">&quot;init&quot;</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;init may only appear as the first message&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">message</span> <span class="o">!=</span> <span class="s2">&quot;batch&quot;</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;expected a trajectory batch&quot;</span><span class="p">)</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryPoint</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">point_proto</span><span class="p">)</span> <span class="k">for</span> <span class="n">point_proto</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">points</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+                    <span class="n">validator</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">points</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">points</span>
+
+        <span class="k">async</span> <span class="k">for</span> <span class="n">update</span> <span class="ow">in</span> <span class="n">arm</span><span class="o">.</span><span class="n">move_through_joint_positions_streamed</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportGeneralTypeIssues]</span>
+            <span class="n">batches</span><span class="p">(),</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">update</span><span class="o">.</span><span class="n">to_proto</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="ArmRPCService.Stop">

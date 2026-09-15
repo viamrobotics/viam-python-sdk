@@ -68,6 +68,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_joint_positions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_to_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_to_joint_positions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_through_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_through_joint_positions()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_through_joint_positions_streamed"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_through_joint_positions_streamed()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.stop"><code class="docutils literal notranslate"><span class="pre">ArmClient.stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.is_moving"><code class="docutils literal notranslate"><span class="pre">ArmClient.is_moving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.do_command"><code class="docutils literal notranslate"><span class="pre">ArmClient.do_command()</span></code></a></li>
@@ -331,6 +332,53 @@ not both.</p>
 unchanged; implementations must handle it, typically as a no-op.</p>
 </div>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions">Arm component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.ArmClient.move_through_joint_positions_streamed">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">move_through_joint_positions_streamed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.arm.Arm.TrajectoryPoint" title="viam.components.arm.Arm.TrajectoryPoint"><span class="pre">viam.components.arm.Arm.TrajectoryPoint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.arm.Arm.TrajectoryUpdate" title="viam.components.arm.Arm.TrajectoryUpdate"><span class="pre">viam.components.arm.Arm.TrajectoryUpdate</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/arm/client.html#ArmClient.move_through_joint_positions_streamed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.ArmClient.move_through_joint_positions_streamed" title="Link to this definition"></a></dt>
+<dd><p>Move the arm through a time-parameterized stream of joint waypoints.</p>
+<p>The caller supplies an asynchronous iterator of batches, each batch a <code class="docutils literal notranslate"><span class="pre">list</span></code> of
+<code class="docutils literal notranslate"><span class="pre">TrajectoryPoint</span></code>. Each list the caller yields is sent as one wire <code class="docutils literal notranslate"><span class="pre">TrajectoryBatch</span></code>,
+so the caller sets the wire cadence by choosing how many points go in each list; a caller
+that wants to send one point at a time yields a single-element list. The arm’s updates are
+yielded back as they arrive, so iterating the return value observes execution in real time.
+If the arm faults mid-trajectory, that fault arrives as a gRPC error on the iteration, so the
+<code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">for</span></code> raises instead of ending normally. Delivering faults mid-execution, not only at
+the end, is the point of streaming this call.</p>
+<p>The first point of the stream must have time zero, and if it carries velocity constraints
+those velocities must all be zero, since the trajectory starts from rest. Point times must
+strictly increase across the whole stream, not merely within a batch. A <code class="docutils literal notranslate"><span class="pre">timeout</span></code>, if
+given, bounds the entire stream, not a single message, so an open-ended trajectory should
+normally leave it unset.</p>
+<p>An implementation must yield at least one <code class="docutils literal notranslate"><span class="pre">TrajectoryUpdate</span></code> before returning. Besides
+reporting progress, this is what makes the implementation an asynchronous generator; a
+coroutine that never yields cannot be iterated as a stream and fails at runtime.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">batches</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="p">[</span>
+        <span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryPoint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>
+        <span class="n">Arm</span><span class="o">.</span><span class="n">TrajectoryPoint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>
+    <span class="p">]</span>
+
+<span class="k">async</span> <span class="k">for</span> <span class="n">update</span> <span class="ow">in</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">move_through_joint_positions_streamed</span><span class="p">(</span><span class="n">batches</span><span class="p">()):</span>
+    <span class="c1"># Observe the arm&#39;s updates; a fault raises out of this iteration.</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batches</strong> – an asynchronous iterator of lists of <code class="docutils literal notranslate"><span class="pre">TrajectoryPoint</span></code>. Each list becomes
+one wire <code class="docutils literal notranslate"><span class="pre">TrajectoryBatch</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the arm’s updates, yielded as they arrive.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AsyncIterator[<a class="reference internal" href="../arm/index.html#viam.components.arm.arm.Arm.TrajectoryUpdate" title="viam.components.arm.arm.Arm.TrajectoryUpdate">Arm.TrajectoryUpdate</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
