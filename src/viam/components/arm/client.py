@@ -22,6 +22,9 @@ from viam.proto.component.arm import (
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    GetManualModeRequest,
+    GetManualModeResponse,
+    GetPropertiesRequest,
     IsMovingRequest,
     IsMovingResponse,
     JointPositions,
@@ -30,6 +33,7 @@ from viam.proto.component.arm import (
     MoveToJointPositionsRequest,
     MoveThroughJointPositionsStreamedRequest,
     MoveToPositionRequest,
+    SetManualModeRequest,
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
@@ -287,3 +291,39 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)
+
+    async def set_manual_mode(
+        self,
+        manual_mode: bool,
+        enabled_for: int = 0,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = SetManualModeRequest(name=self.name, manual_mode=manual_mode, enabled_for=enabled_for, extra=dict_to_struct(extra))
+        await self.client.SetManualMode(request, timeout=timeout, metadata=md)
+
+    async def get_manual_mode(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> bool:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetManualModeRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetManualModeResponse = await self.client.GetManualMode(request, timeout=timeout, metadata=md)
+        return response.manual_mode
+
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Arm.Properties:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
+        return await self.client.GetProperties(request, timeout=timeout, metadata=md)

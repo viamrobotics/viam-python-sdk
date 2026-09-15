@@ -645,3 +645,122 @@ class MoveOptions(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType__max_vel_degs_per_sec) -> _WhichOneofReturnType__max_vel_degs_per_sec | None:
         ...
 Global___MoveOptions: _TypeAlias = MoveOptions
+
+@_typing.final
+class SetManualModeRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    MANUAL_MODE_FIELD_NUMBER: _builtins.int
+    ENABLED_FOR_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of an arm'
+    manual_mode: _builtins.bool
+    'True to enter manual mode, false to exit it'
+    enabled_for: _builtins.int
+    'How long to stay in manual mode, in seconds; 0 means no time limit'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., manual_mode: _builtins.bool=..., enabled_for: _builtins.int=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['enabled_for', b'enabled_for', 'extra', b'extra', 'manual_mode', b'manual_mode', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SetManualModeRequest: _TypeAlias = SetManualModeRequest
+
+@_typing.final
+class SetManualModeResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___SetManualModeResponse: _TypeAlias = SetManualModeResponse
+
+@_typing.final
+class GetManualModeRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of an arm'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetManualModeRequest: _TypeAlias = GetManualModeRequest
+
+@_typing.final
+class GetManualModeResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    MANUAL_MODE_FIELD_NUMBER: _builtins.int
+    manual_mode: _builtins.bool
+    'True if the arm is in manual mode'
+
+    def __init__(self, *, manual_mode: _builtins.bool=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['manual_mode', b'manual_mode']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetManualModeResponse: _TypeAlias = GetManualModeResponse
+
+@_typing.final
+class GetPropertiesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of an arm'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPropertiesRequest: _TypeAlias = GetPropertiesRequest
+
+@_typing.final
+class GetPropertiesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    SUPPORT_MANUAL_MODE_FIELD_NUMBER: _builtins.int
+    SUPPORT_CARTESIAN_COMMANDS_FIELD_NUMBER: _builtins.int
+    support_manual_mode: _builtins.bool
+    'True if the arm supports software-enabled manual mode'
+    support_cartesian_commands: _builtins.bool
+    'True if the arm supports direct cartesian commands (MoveToPosition is implemented)'
+
+    def __init__(self, *, support_manual_mode: _builtins.bool=..., support_cartesian_commands: _builtins.bool=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['support_cartesian_commands', b'support_cartesian_commands', 'support_manual_mode', b'support_manual_mode']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPropertiesResponse: _TypeAlias = GetPropertiesResponse

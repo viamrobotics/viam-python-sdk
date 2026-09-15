@@ -1,16 +1,20 @@
 import abc
+from collections.abc import AsyncIterator, Mapping
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Any, AsyncIterator, Dict, Final, List, Mapping, Optional
+from typing import Any, Final, TypeAlias
 
 from google.protobuf.duration_pb2 import Duration
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
 from viam.proto.component.arm import (
+    GetPropertiesResponse,
     JointAccelerations,
     JointVelocities,
     MoveThroughJointPositionsStreamedResponse,
+)
+from viam.proto.component.arm import (
     TrajectoryPoint as TrajectoryPointPb,
 )
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
@@ -41,6 +45,8 @@ class Arm(ComponentBase):
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
 
+    Properties: "TypeAlias" = GetPropertiesResponse
+
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
 
     @dataclass
@@ -53,11 +59,11 @@ class Arm(ComponentBase):
         effector and must match the arm's degrees of freedom.
         """
 
-        velocities: List[float]
+        velocities: list[float]
         """Target joint velocities at this waypoint. Rotational values in degrees per second,
         translational values in mm per second."""
 
-        accelerations: Optional[List[float]] = None
+        accelerations: list[float] | None = None
         """Optional target joint accelerations at this waypoint. Rotational values in
         degrees per second squared, translational values in mm per second squared."""
 
@@ -74,10 +80,10 @@ class Arm(ComponentBase):
         time: timedelta
         """Time at which this waypoint should be reached, measured from the start of the motion."""
 
-        positions: List[float]
+        positions: list[float]
         """Joint positions at this waypoint. Rotational values in degrees, translational values in mm."""
 
-        constraints: Optional["Arm.KinematicConstraints"] = None
+        constraints: "Arm.KinematicConstraints | None" = None
         """Optional kinematic constraints at this waypoint."""
 
         def to_proto(self) -> TrajectoryPointPb:
@@ -140,8 +146,8 @@ class Arm(ComponentBase):
     async def get_end_position(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> Pose:
         """
@@ -169,8 +175,8 @@ class Arm(ComponentBase):
         self,
         pose: Pose,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -201,8 +207,8 @@ class Arm(ComponentBase):
         self,
         positions: JointPositions,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -232,11 +238,11 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def move_through_joint_positions(
         self,
-        positions: List[JointPositions],
-        options: Optional[MoveOptions] = None,
+        positions: list[JointPositions],
+        options: MoveOptions | None = None,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -289,10 +295,10 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def move_through_joint_positions_streamed(
         self,
-        batches: AsyncIterator[List["Arm.TrajectoryPoint"]],
+        batches: AsyncIterator[list["Arm.TrajectoryPoint"]],
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> AsyncIterator["Arm.TrajectoryUpdate"]:
         """
@@ -344,8 +350,8 @@ class Arm(ComponentBase):
     async def get_joint_positions(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> JointPositions:
         """
@@ -371,8 +377,8 @@ class Arm(ComponentBase):
     async def stop(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -413,7 +419,7 @@ class Arm(ComponentBase):
 
     @abc.abstractmethod
     async def get_kinematics(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs
     ) -> KinematicsReturn:
         """
         Get the kinematics information associated with the arm.
@@ -445,7 +451,7 @@ class Arm(ComponentBase):
 
     @abc.abstractmethod
     async def get_3d_models(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs
     ) -> Mapping[str, Mesh]:
         """
         Get the 3D models associated with the arm, keyed by name.
@@ -470,5 +476,87 @@ class Arm(ComponentBase):
             Implementations with no models must return an empty mapping, not ``None``.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def set_manual_mode(
+        self,
+        manual_mode: bool,
+        enabled_for: int = 0,
+        *,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
+        **kwargs,
+    ):
+        """
+        Enter or exit manual mode for an arm that supports it.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Enter manual mode for at most 30 seconds.
+            await my_arm.set_manual_mode(manual_mode=True, enabled_for=30)
+
+            # Exit manual mode.
+            await my_arm.set_manual_mode(manual_mode=False)
+
+        Args:
+            manual_mode (bool): Whether to enter (``True``) or exit (``False``) manual mode.
+            enabled_for (int): How long to stay in manual mode, in seconds. ``0`` means no time limit.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_manual_mode(
+        self,
+        *,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
+        **kwargs,
+    ) -> bool:
+        """
+        Get whether the arm is currently in manual mode.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Print whether the arm is currently in manual mode.
+            print(await my_arm.get_manual_mode())
+
+        Returns:
+            bool: Whether the arm is in manual mode.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(
+        self,
+        *,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
+        **kwargs,
+    ) -> Properties:
+        """
+        Get a mapping of each optional feature to whether it is supported by this arm.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the properties of the arm.
+            properties = await my_arm.get_properties()
+
+        Returns:
+            Properties: The arm's properties; whether it supports software-enabled manual mode
+            and whether it supports direct cartesian commands (``move_to_position``).
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getproperties>`_.
         """
         ...
