@@ -225,6 +225,8 @@ def _getDimensionsFromRGBA(image: bytes) -> Tuple[int, int]:
     # * Width
     # * Height
     header = image[:RGBA_HEADER_LENGTH]
+    if len(header) < RGBA_HEADER_LENGTH:
+        raise ValueError("Invalid Viam RGBA: Truncated header")
     if header[:4] != RGBA_MAGIC_NUMBER:
         raise ValueError("Invalid Viam RGBA: Invalid header")
 
