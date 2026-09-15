@@ -1,9 +1,22 @@
 import abc
-from typing import Any, Dict, Final, List, Mapping, Optional, TypeAlias
+from collections.abc import AsyncIterator, Mapping
+from dataclasses import dataclass
+from datetime import timedelta
+from typing import Any, Final, TypeAlias
+
+from google.protobuf.duration_pb2 import Duration
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
-from viam.proto.component.arm import GetPropertiesResponse
+from viam.proto.component.arm import (
+    GetPropertiesResponse,
+    JointAccelerations,
+    JointVelocities,
+    MoveThroughJointPositionsStreamedResponse,
+)
+from viam.proto.component.arm import (
+    TrajectoryPoint as TrajectoryPointPb,
+)
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from . import JointPositions, Mesh, MoveOptions, Pose
@@ -36,12 +49,105 @@ class Arm(ComponentBase):
 
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
 
+    @dataclass
+    class KinematicConstraints:
+        """
+        Optional per-waypoint kinematic constraints attached to a ``TrajectoryPoint``.
+
+        Velocities are required whenever constraints are present; accelerations are optional and
+        may only be given alongside velocities. Each list runs from the base joint out to the end
+        effector and must match the arm's degrees of freedom.
+        """
+
+        velocities: list[float]
+        """Target joint velocities at this waypoint. Rotational values in degrees per second,
+        translational values in mm per second."""
+
+        accelerations: list[float] | None = None
+        """Optional target joint accelerations at this waypoint. Rotational values in
+        degrees per second squared, translational values in mm per second squared."""
+
+    @dataclass
+    class TrajectoryPoint:
+        """
+        A single waypoint of a kinematized trajectory, as consumed by
+        ``move_through_joint_positions_streamed``.
+
+        Point times must strictly increase across a stream, and the first point must have a
+        ``time`` of zero.
+        """
+
+        time: timedelta
+        """Time at which this waypoint should be reached, measured from the start of the motion."""
+
+        positions: list[float]
+        """Joint positions at this waypoint. Rotational values in degrees, translational values in mm."""
+
+        constraints: "Arm.KinematicConstraints | None" = None
+        """Optional kinematic constraints at this waypoint."""
+
+        def to_proto(self) -> TrajectoryPointPb:
+            duration = Duration()
+            duration.FromTimedelta(self.time)
+            constraints_pb = None
+            if self.constraints is not None:
+                accelerations_pb = None
+                if self.constraints.accelerations is not None:
+                    accelerations_pb = JointAccelerations(values=self.constraints.accelerations)
+                constraints_pb = TrajectoryPointPb.KinematicConstraints(
+                    velocities=JointVelocities(values=self.constraints.velocities),
+                    accelerations=accelerations_pb,
+                )
+            return TrajectoryPointPb(
+                time=duration,
+                positions=JointPositions(values=self.positions),
+                constraints=constraints_pb,
+            )
+
+        @classmethod
+        def from_proto(cls, proto: TrajectoryPointPb) -> "Arm.TrajectoryPoint":
+            constraints = None
+            if proto.HasField("constraints"):
+                accelerations = None
+                if proto.constraints.HasField("accelerations"):
+                    accelerations = list(proto.constraints.accelerations.values)
+                constraints = Arm.KinematicConstraints(
+                    velocities=list(proto.constraints.velocities.values),
+                    accelerations=accelerations,
+                )
+            return cls(
+                time=proto.time.ToTimedelta(),
+                positions=list(proto.positions.values),
+                constraints=constraints,
+            )
+
+    @dataclass
+    class TrajectoryUpdate:
+        """
+        An update reported by the arm as it executes a ``move_through_joint_positions_streamed`` trajectory.
+
+        The type is intentionally empty. The response is a ``oneof`` whose only branch today is an empty
+        ``BatchAck``, so receiving a response is itself the acknowledgment. The ``oneof`` exists so the arm's
+        replies can grow new branches without breaking existing clients on the wire; when a branch carries
+        data worth surfacing (``BatchAck``'s ``extra``, or a new branch entirely), this type grows to match.
+        """
+
+        def to_proto(self) -> MoveThroughJointPositionsStreamedResponse:
+            # A received response is itself the acknowledgment, so send the default message and leave the
+            # oneof unset: the only branch is empty, nothing reads it today, and RDK and the C++ SDK send
+            # it unset as well. If a future branch carries data, set it here.
+            return MoveThroughJointPositionsStreamedResponse()
+
+        @classmethod
+        def from_proto(cls, proto: MoveThroughJointPositionsStreamedResponse) -> "Arm.TrajectoryUpdate":
+            return cls()
+
     @abc.abstractmethod
     async def get_end_position(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> Pose:
         """
@@ -69,8 +175,8 @@ class Arm(ComponentBase):
         self,
         pose: Pose,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -101,8 +207,8 @@ class Arm(ComponentBase):
         self,
         positions: JointPositions,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -132,11 +238,11 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def move_through_joint_positions(
         self,
-        positions: List[JointPositions],
-        options: Optional[MoveOptions] = None,
+        positions: list[JointPositions],
+        options: MoveOptions | None = None,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -187,11 +293,65 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
+    async def move_through_joint_positions_streamed(
+        self,
+        batches: AsyncIterator[list["Arm.TrajectoryPoint"]],
+        *,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
+        **kwargs,
+    ) -> AsyncIterator["Arm.TrajectoryUpdate"]:
+        """
+        Move the arm through a time-parameterized stream of joint waypoints.
+
+        The caller supplies an asynchronous iterator of batches, each batch a ``list`` of
+        ``TrajectoryPoint``. Each list the caller yields is sent as one wire ``TrajectoryBatch``,
+        so the caller sets the wire cadence by choosing how many points go in each list; a caller
+        that wants to send one point at a time yields a single-element list. The arm's updates are
+        yielded back as they arrive, so iterating the return value observes execution in real time.
+        If the arm faults mid-trajectory, that fault arrives as a gRPC error on the iteration, so the
+        ``async for`` raises instead of ending normally. Delivering faults mid-execution, not only at
+        the end, is the point of streaming this call.
+
+        The first point of the stream must have time zero, and if it carries velocity constraints
+        those velocities must all be zero, since the trajectory starts from rest. Point times must
+        strictly increase across the whole stream, not merely within a batch. A ``timeout``, if
+        given, bounds the entire stream, not a single message, so an open-ended trajectory should
+        normally leave it unset.
+
+        An implementation must yield at least one ``TrajectoryUpdate`` before returning. Besides
+        reporting progress, this is what makes the implementation an asynchronous generator; a
+        coroutine that never yields cannot be iterated as a stream and fails at runtime.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            async def batches():
+                yield [
+                    Arm.TrajectoryPoint(time=timedelta(seconds=0.0), positions=[0.0, 0.0, 0.0, 0.0, 0.0]),
+                    Arm.TrajectoryPoint(time=timedelta(seconds=1.0), positions=[10.0, 0.0, 0.0, 0.0, 0.0]),
+                ]
+
+            async for update in my_arm.move_through_joint_positions_streamed(batches()):
+                # Observe the arm's updates; a fault raises out of this iteration.
+                pass
+
+        Args:
+            batches: an asynchronous iterator of lists of ``TrajectoryPoint``. Each list becomes
+                one wire ``TrajectoryBatch``.
+
+        Returns:
+            AsyncIterator[Arm.TrajectoryUpdate]: the arm's updates, yielded as they arrive.
+        """
+        ...
+
+    @abc.abstractmethod
     async def get_joint_positions(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> JointPositions:
         """
@@ -217,8 +377,8 @@ class Arm(ComponentBase):
     async def stop(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -259,7 +419,7 @@ class Arm(ComponentBase):
 
     @abc.abstractmethod
     async def get_kinematics(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs
     ) -> KinematicsReturn:
         """
         Get the kinematics information associated with the arm.
@@ -291,7 +451,7 @@ class Arm(ComponentBase):
 
     @abc.abstractmethod
     async def get_3d_models(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs
     ) -> Mapping[str, Mesh]:
         """
         Get the 3D models associated with the arm, keyed by name.
@@ -325,8 +485,8 @@ class Arm(ComponentBase):
         manual_mode: bool,
         enabled_for: int = 0,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ):
         """
@@ -354,8 +514,8 @@ class Arm(ComponentBase):
     async def get_manual_mode(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> bool:
         """
@@ -379,8 +539,8 @@ class Arm(ComponentBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
         **kwargs,
     ) -> Properties:
         """
