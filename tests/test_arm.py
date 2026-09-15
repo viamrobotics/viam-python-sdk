@@ -2,11 +2,7 @@ from datetime import timedelta
 from typing import AsyncIterator, List
 
 import pytest
-<<<<<<< HEAD
 from grpclib import GRPCError, Status
-=======
-from grpclib import GRPCError
->>>>>>> 82b5bcd9a9dce368e46056ee8b9eca335266091f
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm, ArmClient, KinematicsFileFormat
