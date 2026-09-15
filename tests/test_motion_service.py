@@ -17,9 +17,10 @@ from viam.gen.service.motion.v1.motion_pb2 import (
     PlanStep,
     PlanWithStatus,
 )
-from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, Transform, WorldState
+from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
 from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration
 from viam.resource.manager import ResourceManager
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.services.motion import MotionClient
 from viam.services.motion.motion import Motion
 from viam.services.motion.service import MotionRPCService
@@ -161,6 +162,33 @@ class TestMotionService:
                 assert patched_method.call_args.args[2] == transforms
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
+
+    async def test_move_rejects_resource_name(self, motion: Motion, service: MotionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
+            gripper = ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="gripper", name="pick-grip")
+            with pytest.raises(TypeError, match="component_name must be the component's name as a string, e.g. 'pick-grip'"):
+                await client.move(gripper, PoseInFrame(reference_frame="refframe"))  # pyright: ignore [reportArgumentType]
+
+    async def test_get_pose_rejects_resource_name(self, motion: Motion, service: MotionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
+            gripper = ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="gripper", name="pick-grip")
+            with pytest.raises(TypeError, match="component_name must be the component's name as a string, e.g. 'pick-grip'"):
+                await client.get_pose(gripper, "world")  # pyright: ignore [reportArgumentType]
+
+    async def test_move_on_globe_names_the_rejected_param(self, motion: Motion, service: MotionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
+            sensor = ResourceName(
+                namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="movement_sensor", name="my-sensor"
+            )
+            with pytest.raises(TypeError, match="movement_sensor_name must be the movement sensor's name as a string"):
+                await client.move_on_globe(
+                    "my-base",
+                    GeoPoint(latitude=1, longitude=2),
+                    sensor,  # pyright: ignore [reportArgumentType]
+                )
 
     async def test_move_on_map(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "move_on_map") as patched_method:
