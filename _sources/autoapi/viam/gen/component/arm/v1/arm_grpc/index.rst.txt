@@ -117,6 +117,27 @@ Module Contents
 
 
 
+   .. py:method:: SetManualMode(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.SetManualModeRequest, component.arm.v1.arm_pb2.SetManualModeResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetManualMode(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetManualModeRequest, component.arm.v1.arm_pb2.GetManualModeResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetPropertiesRequest, component.arm.v1.arm_pb2.GetPropertiesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -194,6 +215,21 @@ Module Contents
 
 
 
+   .. py:method:: SetManualMode(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.SetManualModeRequest, component.arm.v1.arm_pb2.SetManualModeResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetManualMode(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetManualModeRequest, component.arm.v1.arm_pb2.GetManualModeResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetPropertiesRequest, component.arm.v1.arm_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+
 .. py:class:: ArmServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetEndPosition
@@ -233,5 +269,14 @@ Module Contents
 
 
    .. py:attribute:: Get3DModels
+
+
+   .. py:attribute:: SetManualMode
+
+
+   .. py:attribute:: GetManualMode
+
+
+   .. py:attribute:: GetProperties
 
 

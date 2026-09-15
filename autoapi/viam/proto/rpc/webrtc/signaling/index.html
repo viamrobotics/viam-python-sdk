@@ -124,9 +124,16 @@
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestHeartbeatStage"><code class="docutils literal notranslate"><span class="pre">AnswerRequestHeartbeatStage</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.CallerAuthMetadataEntry</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry.key"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.CallerAuthMetadataEntry.key</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry.value"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.CallerAuthMetadataEntry.value</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.sdp</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.caller_auth_entity"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.caller_auth_entity</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.optional_config()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.deadline()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.caller_auth_metadata"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.caller_auth_metadata()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.HasField()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.WhichOneof"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.WhichOneof()</span></code></a></li>
 </ul>
@@ -649,14 +656,43 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___WebRTCConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deadline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Global___WebRTCConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deadline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caller_auth_entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caller_auth_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>AnswerRequestInitStage is the first and a one time stage that represents the
 callers initial SDP request to the controlled (answerer) side.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CallerAuthMetadataEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry.key">
+<span class="sig-name descname"><span class="pre">key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry.key" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry.value">
+<span class="sig-name descname"><span class="pre">value</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.CallerAuthMetadataEntry.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp">
 <span class="sig-name descname"><span class="pre">sdp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.caller_auth_entity">
+<span class="sig-name descname"><span class="pre">caller_auth_entity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.caller_auth_entity" title="Link to this definition"></a></dt>
+<dd><p>caller_auth_entity is the caller’s authenticated entity (its JWT subject), extracted
+from the caller’s auth token by the signaling server. Only the caller’s identity is
+forwarded to the answerer, not its bearer token. Empty when the caller was
+unauthenticated.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config">
@@ -667,6 +703,13 @@ callers initial SDP request to the controlled (answerer) side.</p>
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline">
 <span class="sig-name descname"><span class="pre">deadline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.caller_auth_metadata">
+<span class="sig-name descname"><span class="pre">caller_auth_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.ScalarMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.caller_auth_metadata" title="Link to this definition"></a></dt>
+<dd><p>caller_auth_metadata is the caller’s auth metadata (its rpc_auth_md claim), extracted
+from the caller’s auth token by the signaling server.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField">

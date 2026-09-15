@@ -336,6 +336,72 @@ Module Contents
 
 
 
+   .. py:method:: set_manual_mode(manual_mode: bool, enabled_for: int = 0, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :async:
+
+
+      Enter or exit manual mode for an arm that supports it.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Enter manual mode for at most 30 seconds.
+          await my_arm.set_manual_mode(manual_mode=True, enabled_for=30)
+
+          # Exit manual mode.
+          await my_arm.set_manual_mode(manual_mode=False)
+
+      :param manual_mode: Whether to enter (``True``) or exit (``False``) manual mode.
+      :type manual_mode: bool
+      :param enabled_for: How long to stay in manual mode, in seconds. ``0`` means no time limit.
+      :type enabled_for: int
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode>`_.
+
+
+
+   .. py:method:: get_manual_mode(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
+      :async:
+
+
+      Get whether the arm is currently in manual mode.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Print whether the arm is currently in manual mode.
+          print(await my_arm.get_manual_mode())
+
+      :returns: Whether the arm is in manual mode.
+      :rtype: bool
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode>`_.
+
+
+
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.Arm.Properties
+      :async:
+
+
+      Get a mapping of each optional feature to whether it is supported by this arm.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+          # Get the properties of the arm.
+          properties = await my_arm.get_properties()
+
+      :returns: The arm's properties; whether it supports software-enabled manual mode
+                and whether it supports direct cartesian commands (``move_to_position``).
+      :rtype: Properties
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getproperties>`_.
+
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> Self
       :classmethod:
 

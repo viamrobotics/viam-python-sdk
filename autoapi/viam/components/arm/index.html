@@ -96,6 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.components.arm.Arm"><code class="docutils literal notranslate"><span class="pre">Arm</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.Properties"><code class="docutils literal notranslate"><span class="pre">Arm.Properties</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.API"><code class="docutils literal notranslate"><span class="pre">Arm.API</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.get_end_position"><code class="docutils literal notranslate"><span class="pre">Arm.get_end_position()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.move_to_position"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_position()</span></code></a></li>
@@ -106,6 +107,9 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.is_moving"><code class="docutils literal notranslate"><span class="pre">Arm.is_moving()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.get_kinematics"><code class="docutils literal notranslate"><span class="pre">Arm.get_kinematics()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.get_3d_models"><code class="docutils literal notranslate"><span class="pre">Arm.get_3d_models()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.set_manual_mode"><code class="docutils literal notranslate"><span class="pre">Arm.set_manual_mode()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.get_manual_mode"><code class="docutils literal notranslate"><span class="pre">Arm.get_manual_mode()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.get_properties"><code class="docutils literal notranslate"><span class="pre">Arm.get_properties()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.from_robot"><code class="docutils literal notranslate"><span class="pre">Arm.from_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.do_command"><code class="docutils literal notranslate"><span class="pre">Arm.do_command()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm.get_geometries"><code class="docutils literal notranslate"><span class="pre">Arm.get_geometries()</span></code></a></li>
@@ -449,6 +453,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </pre></div>
 </div>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/">Arm component</a>.</p>
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.components.arm.Arm.Properties">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Properties</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetPropertiesResponse" title="viam.gen.common.v1.common_pb2.GetPropertiesResponse"><span class="pre">GetPropertiesResponse</span></a></span><a class="headerlink" href="#viam.components.arm.Arm.Properties" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.arm.Arm.API">
 <span class="sig-name descname"><span class="pre">API</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></span><a class="headerlink" href="#viam.components.arm.Arm.API" title="Link to this definition"></a></dt>
@@ -734,6 +743,85 @@ by URDF filepath rather than by model name.</p>
 <p>Implementations with no models must return an empty mapping, not <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </div>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels">Arm component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.Arm.set_manual_mode">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">set_manual_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manual_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled_for</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/arm/arm.html#Arm.set_manual_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.Arm.set_manual_mode" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Enter or exit manual mode for an arm that supports it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+
+<span class="c1"># Enter manual mode for at most 30 seconds.</span>
+<span class="k">await</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">set_manual_mode</span><span class="p">(</span><span class="n">manual_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">enabled_for</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Exit manual mode.</span>
+<span class="k">await</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">set_manual_mode</span><span class="p">(</span><span class="n">manual_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manual_mode</strong> (<em>bool</em>) – Whether to enter (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or exit (<code class="docutils literal notranslate"><span class="pre">False</span></code>) manual mode.</p></li>
+<li><p><strong>enabled_for</strong> (<em>int</em>) – How long to stay in manual mode, in seconds. <code class="docutils literal notranslate"><span class="pre">0</span></code> means no time limit.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode">Arm component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.Arm.get_manual_mode">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_manual_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/arm.html#Arm.get_manual_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.Arm.get_manual_mode" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get whether the arm is currently in manual mode.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print whether the arm is currently in manual mode.</span>
+<span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_manual_mode</span><span class="p">())</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the arm is in manual mode.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode">Arm component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.Arm.get_properties">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.arm.Arm.Properties" title="viam.components.arm.Arm.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/arm.html#Arm.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.Arm.get_properties" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get a mapping of each optional feature to whether it is supported by this arm.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the properties of the arm.</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The arm’s properties; whether it supports software-enabled manual mode
+and whether it supports direct cartesian commands (<code class="docutils literal notranslate"><span class="pre">move_to_position</span></code>).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.Arm.Properties" title="viam.components.arm.Arm.Properties">Properties</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getproperties">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">

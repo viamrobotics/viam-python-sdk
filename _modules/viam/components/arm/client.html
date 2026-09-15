@@ -109,6 +109,9 @@
     <span class="n">GetEndPositionResponse</span><span class="p">,</span>
     <span class="n">GetJointPositionsRequest</span><span class="p">,</span>
     <span class="n">GetJointPositionsResponse</span><span class="p">,</span>
+    <span class="n">GetManualModeRequest</span><span class="p">,</span>
+    <span class="n">GetManualModeResponse</span><span class="p">,</span>
+    <span class="n">GetPropertiesRequest</span><span class="p">,</span>
     <span class="n">IsMovingRequest</span><span class="p">,</span>
     <span class="n">IsMovingResponse</span><span class="p">,</span>
     <span class="n">JointPositions</span><span class="p">,</span>
@@ -116,6 +119,7 @@
     <span class="n">MoveThroughJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToPositionRequest</span><span class="p">,</span>
+    <span class="n">SetManualModeRequest</span><span class="p">,</span>
     <span class="n">StopRequest</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.rpc_client_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
@@ -298,6 +302,51 @@
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
         <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span>
         <span class="k">return</span> <span class="k">await</span> <span class="n">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">md</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArmClient.set_manual_mode">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.set_manual_mode">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_manual_mode</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">manual_mode</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">enabled_for</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetManualModeRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">manual_mode</span><span class="o">=</span><span class="n">manual_mode</span><span class="p">,</span> <span class="n">enabled_for</span><span class="o">=</span><span class="n">enabled_for</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SetManualMode</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArmClient.get_manual_mode">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_manual_mode">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_manual_mode</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetManualModeRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetManualModeResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetManualMode</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">manual_mode</span></div>
+
+
+<div class="viewcode-block" id="ArmClient.get_properties">
+<a class="viewcode-back" href="../../../../autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_properties">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_properties</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Arm</span><span class="o">.</span><span class="n">Properties</span><span class="p">:</span>
+        <span class="n">md</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Metadata</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPropertiesRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetProperties</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">md</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
