@@ -418,9 +418,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_kinematics(
-        self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs
-    ) -> KinematicsReturn:
+    async def get_kinematics(self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs) -> KinematicsReturn:
         """
         Get the kinematics information associated with the arm.
 
@@ -450,9 +448,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_3d_models(
-        self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs
-    ) -> Mapping[str, Mesh]:
+    async def get_3d_models(self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs) -> Mapping[str, Mesh]:
         """
         Get the 3D models associated with the arm, keyed by name.
 

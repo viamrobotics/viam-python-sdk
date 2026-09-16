@@ -544,6 +544,62 @@ class ListSupportedContainersResponse(_message.Message):
 Global___ListSupportedContainersResponse: _TypeAlias = ListSupportedContainersResponse
 
 @_typing.final
+class RegisterCustomTrainingContainerRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    IMAGE_URI_FIELD_NUMBER: _builtins.int
+    DESCRIPTION_FIELD_NUMBER: _builtins.int
+    organization_id: _builtins.str
+    image_uri: _builtins.str
+    'Docker Hub reference, official images normalize to docker.io/library/<image>:<tag>.'
+    description: _builtins.str
+    'will serve as display name'
+
+    def __init__(self, *, organization_id: _builtins.str=..., image_uri: _builtins.str=..., description: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['description', b'description', 'image_uri', b'image_uri', 'organization_id', b'organization_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RegisterCustomTrainingContainerRequest: _TypeAlias = RegisterCustomTrainingContainerRequest
+
+@_typing.final
+class RegisterCustomTrainingContainerResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RegisterCustomTrainingContainerResponse: _TypeAlias = RegisterCustomTrainingContainerResponse
+
+@_typing.final
+class DeleteCustomTrainingContainerRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteCustomTrainingContainerRequest: _TypeAlias = DeleteCustomTrainingContainerRequest
+
+@_typing.final
+class DeleteCustomTrainingContainerResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteCustomTrainingContainerResponse: _TypeAlias = DeleteCustomTrainingContainerResponse
+
+@_typing.final
 class Container(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     KEY_FIELD_NUMBER: _builtins.int
