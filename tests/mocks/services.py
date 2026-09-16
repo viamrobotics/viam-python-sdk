@@ -339,10 +339,14 @@ from viam.proto.app.mltraining import (
     CancelTrainingJobResponse,
     DeleteCompletedTrainingJobRequest,
     DeleteCompletedTrainingJobResponse,
+    DeleteCustomTrainingContainerRequest,
+    DeleteCustomTrainingContainerResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
+    RegisterCustomTrainingContainerRequest,
+    RegisterCustomTrainingContainerResponse,
     SubmitCustomTrainingJobRequest,
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
@@ -1381,9 +1385,10 @@ class MockDataPipelines(UnimplementedDataPipelinesServiceBase):
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
-    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata):
+    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata, container_id: str = "container-id"):
         self.job_id = job_id
         self.training_metadata = training_metadata
+        self.registered_container_id = container_id
 
     async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
         request = await stream.recv_message()
@@ -1432,6 +1437,24 @@ class MockMLTraining(UnimplementedMLTrainingServiceBase):
         assert request is not None
         self.delete_id = request.id
         await stream.send_message(DeleteCompletedTrainingJobResponse())
+
+    async def RegisterCustomTrainingContainer(
+        self, stream: Stream[RegisterCustomTrainingContainerRequest, RegisterCustomTrainingContainerResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        self.image_uri = request.image_uri
+        self.description = request.description
+        await stream.send_message(RegisterCustomTrainingContainerResponse(id=self.registered_container_id))
+
+    async def DeleteCustomTrainingContainer(
+        self, stream: Stream[DeleteCustomTrainingContainerRequest, DeleteCustomTrainingContainerResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_container_id = request.id
+        await stream.send_message(DeleteCustomTrainingContainerResponse())
 
 
 class MockBilling(UnimplementedBillingServiceBase):

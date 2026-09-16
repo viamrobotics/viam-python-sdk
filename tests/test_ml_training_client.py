@@ -15,6 +15,10 @@ TRAINING_JOB_ID = "training-job-id"
 CANCEL_ID = "cancel-id"
 DELETE_ID = "delete-id"
 JOB_ID = "job-id"
+CONTAINER_ID = "container-id"
+DELETE_CONTAINER_ID = "delete-container-id"
+IMAGE_URI = "docker.io/library/image:tag"
+DESCRIPTION = "description"
 ORG_ID = "org-id"
 DATASET_ID = "dataset-id"
 REGISTRY_ITEM_ID = "registry-item-id"
@@ -56,7 +60,7 @@ TRAINING_METADATA = TrainingJobMetadata(
 
 @pytest.fixture(scope="function")
 def service() -> MockMLTraining:
-    return MockMLTraining(job_id=JOB_ID, training_metadata=TRAINING_METADATA)
+    return MockMLTraining(job_id=JOB_ID, training_metadata=TRAINING_METADATA, container_id=CONTAINER_ID)
 
 
 class TestClient:
@@ -108,3 +112,18 @@ class TestClient:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
             await client.delete_completed_training_job(DELETE_ID)
             assert service.delete_id == DELETE_ID
+
+    async def test_register_custom_training_container(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            id = await client.register_custom_training_container(org_id=ORG_ID, image_uri=IMAGE_URI, description=DESCRIPTION)
+            assert id == CONTAINER_ID
+            assert service.org_id == ORG_ID
+            assert service.image_uri == IMAGE_URI
+            assert service.description == DESCRIPTION
+
+    async def test_delete_custom_training_container(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            await client.delete_custom_training_container(DELETE_CONTAINER_ID)
+            assert service.delete_container_id == DELETE_CONTAINER_ID
