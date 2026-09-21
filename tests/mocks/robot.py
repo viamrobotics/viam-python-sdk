@@ -15,6 +15,8 @@ from viam.proto.robot import (
     GetCloudMetadataResponse,
     GetOperationsRequest,
     GetOperationsResponse,
+    GetPoseRequest,
+    GetPoseResponse,
     GetSessionsRequest,
     GetSessionsResponse,
     GetStatusRequest,
@@ -94,6 +96,9 @@ class MockRobot(UnimplementedRobotServiceBase):
 
     async def FrameSystemConfig(self, stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
         raise MethodNotImplementedError("FrameSystemConfig").grpc_error
+
+    async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
+        raise MethodNotImplementedError("GetPose").grpc_error
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
         raise MethodNotImplementedError("TransformPose").grpc_error
