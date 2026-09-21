@@ -131,6 +131,8 @@ from viam.proto.app import (
     ListOrganizationsResponse,
     ListRegistryItemsRequest,
     ListRegistryItemsResponse,
+    ListRobotsForLocationsRequest,
+    ListRobotsForLocationsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
@@ -1817,6 +1819,12 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.location_id = request.location_id
         await stream.send_message(ListRobotsResponse(robots=[self.robot]))
+
+    async def ListRobotsForLocations(self, stream: Stream[ListRobotsForLocationsRequest, ListRobotsForLocationsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_ids = list(request.location_ids)
+        await stream.send_message(ListRobotsForLocationsResponse(robots=[self.robot]))
 
     async def NewRobot(self, stream: Stream[NewRobotRequest, NewRobotResponse]) -> None:
         request = await stream.recv_message()
