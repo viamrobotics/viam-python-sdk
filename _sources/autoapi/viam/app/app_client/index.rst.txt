@@ -1507,6 +1507,27 @@ Module Contents
 
 
 
+   .. py:method:: list_robots_for_locations(location_ids: list[str]) -> list[viam.proto.app.Robot]
+      :async:
+
+
+      Get a list of all machines under the specified locations in a single request.
+
+      ::
+
+          list_of_machines = await cloud.list_robots_for_locations(
+              location_ids=["123ab12345", "456cd67890"])
+
+      :param location_ids: IDs of the locations to retrieve the machines from.
+      :type location_ids: list[str]
+
+      :raises GRPCError: If an invalid location ID is passed.
+
+      :returns: The machines across all the given locations.
+      :rtype: list[viam.proto.app.Robot]
+
+
+
    .. py:method:: new_robot(name: str, location_id: str | None = None) -> str
       :async:
 

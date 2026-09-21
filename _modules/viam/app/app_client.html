@@ -210,6 +210,8 @@
     <span class="n">ListOrganizationsResponse</span><span class="p">,</span>
     <span class="n">ListRegistryItemsRequest</span><span class="p">,</span>
     <span class="n">ListRegistryItemsResponse</span><span class="p">,</span>
+    <span class="n">ListRobotsForLocationsRequest</span><span class="p">,</span>
+    <span class="n">ListRobotsForLocationsResponse</span><span class="p">,</span>
     <span class="n">ListRobotsRequest</span><span class="p">,</span>
     <span class="n">ListRobotsResponse</span><span class="p">,</span>
     <span class="n">Location</span><span class="p">,</span>
@@ -2048,6 +2050,30 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListRobotsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListRobots</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AppClient.list_robots_for_locations">
+<a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_robots_for_locations">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_robots_for_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Robot</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all machines under the specified locations in a single request.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            list_of_machines = await cloud.list_robots_for_locations(</span>
+<span class="sd">                location_ids=[&quot;123ab12345&quot;, &quot;456cd67890&quot;])</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_ids (list[str]): IDs of the locations to retrieve the machines from.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid location ID is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[viam.proto.app.Robot]: The machines across all the given locations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsForLocationsRequest</span><span class="p">(</span><span class="n">location_ids</span><span class="o">=</span><span class="n">location_ids</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListRobotsForLocationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListRobotsForLocations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
 
 

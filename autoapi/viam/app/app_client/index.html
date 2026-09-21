@@ -189,6 +189,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_robot_part_secret"><code class="docutils literal notranslate"><span class="pre">AppClient.create_robot_part_secret()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_robot_part_secret"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_robot_part_secret()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.list_robots"><code class="docutils literal notranslate"><span class="pre">AppClient.list_robots()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.list_robots_for_locations"><code class="docutils literal notranslate"><span class="pre">AppClient.list_robots_for_locations()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.new_robot"><code class="docutils literal notranslate"><span class="pre">AppClient.new_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_robot"><code class="docutils literal notranslate"><span class="pre">AppClient.update_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_robot"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_robot()</span></code></a></li>
@@ -1885,6 +1886,30 @@ instantiation.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#listrobots">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_robots_for_locations">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_robots_for_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Robot" title="viam.proto.app.Robot"><span class="pre">viam.proto.app.Robot</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_robots_for_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_robots_for_locations" title="Link to this definition"></a></dt>
+<dd><p>Get a list of all machines under the specified locations in a single request.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_machines</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_robots_for_locations</span><span class="p">(</span>
+    <span class="n">location_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;123ab12345&quot;</span><span class="p">,</span> <span class="s2">&quot;456cd67890&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>location_ids</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – IDs of the locations to retrieve the machines from.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GRPCError</strong> – If an invalid location ID is passed.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The machines across all the given locations.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Robot" title="viam.proto.app.Robot">viam.proto.app.Robot</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
