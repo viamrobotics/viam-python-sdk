@@ -53,7 +53,10 @@ class FrameSystem(ServiceBase):
 
     @classmethod
     def from_dependencies(cls, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
-        """Get the frame system from a mapping of dependencies, such as the one handed to a modular resource constructor.
+        """Get the frame system from the dependencies handed to a modular resource.
+
+        Every modular resource receives the machine's frame system in its dependencies, so nothing has to be declared in
+        ``validate_config`` for this to work.
 
         ::
 

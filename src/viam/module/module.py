@@ -6,7 +6,7 @@ import sys
 from collections.abc import Iterable
 from inspect import iscoroutinefunction
 from threading import Lock
-from typing import List, Mapping, Optional, Sequence, Tuple
+from typing import Dict, List, Mapping, Optional, Sequence, Tuple
 
 from grpclib.metadata import Deadline
 from grpclib.utils import _service_name
@@ -55,6 +55,7 @@ from ..components.sensor import Sensor  # noqa: F401
 from ..components.servo import Servo  # noqa: F401
 from ..components.switch import Switch  # noqa: F401
 from ..services.discovery import Discovery  # noqa: F401
+from ..services.framesystem import FrameSystem
 from ..services.generic import Generic as GenericService  # noqa: F401
 from ..services.motion import Motion  # noqa: F401
 from ..services.navigation import Navigation  # noqa: F401
@@ -185,7 +186,13 @@ class Module:
         raise ValueError("Dependency does not describe a component nor a service")
 
     async def _get_dependencies(self, dependencies: Sequence[str]) -> Mapping[ResourceName, ResourceBase]:
-        deps: Mapping[ResourceName, ResourceBase] = {}
+        deps: Dict[ResourceName, ResourceBase] = {}
+        # viam-server strips the frame system out of the dependency lists it sends us, so we hand it to every resource
+        # ourselves the way the Go module SDK does. Without a parent there is nothing to hand out, so we skip it.
+        await self._connect_to_parent()
+        if self.parent is not None:
+            frame_system_name = FrameSystem.get_resource_name(FrameSystem.PUBLIC_NAME)
+            deps[frame_system_name] = self.parent.get_service(frame_system_name)
         for dep in dependencies:
             rn = resource_name_from_string(dep)
             deps[rn] = await self._get_resource(rn)
