@@ -484,11 +484,7 @@ class TestArmStreamed:
     async def test_streamed_rejects_first_point_in_motion(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            bad = [
-                Arm.TrajectoryPoint(
-                    time=timedelta(0), positions=[0.0], constraints=Arm.KinematicConstraints(velocities=[1.0])
-                )
-            ]
+            bad = [Arm.TrajectoryPoint(time=timedelta(0), positions=[0.0], constraints=Arm.KinematicConstraints(velocities=[1.0]))]
             with pytest.raises(GRPCError) as excinfo:
                 async for _ in client.move_through_joint_positions_streamed(_batches([bad])):
                     pass
