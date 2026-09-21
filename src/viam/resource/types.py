@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .base import ResourceBase
 
 RESOURCE_NAMESPACE_RDK = "rdk"
+RESOURCE_NAMESPACE_RDK_INTERNAL = "rdk-internal"
 RESOURCE_TYPE_COMPONENT = "component"
 RESOURCE_TYPE_SERVICE = "service"
 
