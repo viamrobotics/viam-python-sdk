@@ -612,6 +612,13 @@ class TestClient:
             assert service.location_id == ID
             assert robots == [ROBOT]
 
+    async def test_list_robots_for_locations(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            robots = await client.list_robots_for_locations(location_ids=IDS)
+            assert service.location_ids == IDS
+            assert robots == [ROBOT]
+
     async def test_new_robot(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)

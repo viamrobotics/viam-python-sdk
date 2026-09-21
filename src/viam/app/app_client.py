@@ -122,6 +122,8 @@ from viam.proto.app import (
     ListOrganizationsResponse,
     ListRegistryItemsRequest,
     ListRegistryItemsResponse,
+    ListRobotsForLocationsRequest,
+    ListRobotsForLocationsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
@@ -1791,6 +1793,27 @@ class AppClient:
         """
         request = ListRobotsRequest(location_id=location_id if location_id else "")
         response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
+        return list(response.robots)
+
+    async def list_robots_for_locations(self, location_ids: list[str]) -> list[Robot]:
+        """Get a list of all machines under the specified locations in a single request.
+
+        ::
+
+            list_of_machines = await cloud.list_robots_for_locations(
+                location_ids=["123ab12345", "456cd67890"])
+
+        Args:
+            location_ids (list[str]): IDs of the locations to retrieve the machines from.
+
+        Raises:
+            GRPCError: If an invalid location ID is passed.
+
+        Returns:
+            list[viam.proto.app.Robot]: The machines across all the given locations.
+        """
+        request = ListRobotsForLocationsRequest(location_ids=location_ids)
+        response: ListRobotsForLocationsResponse = await self._app_client.ListRobotsForLocations(request, metadata=self._metadata)
         return list(response.robots)
 
     async def new_robot(self, name: str, location_id: str | None = None) -> str:
