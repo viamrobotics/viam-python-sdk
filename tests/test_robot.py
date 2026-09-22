@@ -45,6 +45,8 @@ from viam.proto.robot import (
     ShutdownResponse,
     StopAllRequest,
     StopExtraParameters,
+    TransformPCDRequest,
+    TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
     UploadDataFromPathRequest,
@@ -88,6 +90,8 @@ CONFIG_RESPONSE = [
 TRANSFORM_RESPONSE = PoseInFrame(reference_frame="arm", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
 
 GET_POSE_RESPONSE = PoseInFrame(reference_frame="world", pose=Pose(x=4, y=5, z=6, o_x=0, o_y=0, o_z=1, theta=90))
+
+TRANSFORM_PCD_RESPONSE = b"transformed point cloud"
 
 OPERATION_ID = "abc"
 
@@ -173,6 +177,11 @@ def service() -> RobotService:
         assert request is not None
         await stream.send_message(GetPoseResponse(pose=GET_POSE_RESPONSE))
 
+    async def TransformPCD(stream: Stream[TransformPCDRequest, TransformPCDResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(TransformPCDResponse(point_cloud_pcd=TRANSFORM_PCD_RESPONSE))
+
     async def GetOperations(stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -217,6 +226,7 @@ def service() -> RobotService:
     service.FrameSystemConfig = Config
     service.TransformPose = TransformPose
     service.GetPose = GetPose
+    service.TransformPCD = TransformPCD
     service.GetOperations = GetOperations
     service.GetCloudMetadata = GetCloudMetadata
     service.Shutdown = Shutdown

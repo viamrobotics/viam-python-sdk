@@ -59,6 +59,7 @@ from viam.resource.rpc_client_base import (
 )
 from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
 from viam.rpc.dial import DialOptions, ViamChannel, _dial_inner, dial
+from viam.services.framesystem import FrameSystem, FrameSystemClient
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
 from viam.utils import datetime_to_timestamp, dict_to_struct
@@ -268,6 +269,7 @@ class RobotClient:
 
         self._connected = True
         self._client = RobotServiceStub(self._channel)
+        self._frame_system = FrameSystemClient(FrameSystem.PUBLIC_NAME, self._channel)
         self._manager = ResourceManager()
         self._lock = RLock()
         self._resource_names = []
@@ -311,6 +313,7 @@ class RobotClient:
     _lock: RLock
     _manager: ResourceManager
     _client: RobotServiceStub
+    _frame_system: FrameSystemClient
     _connected: bool
     _address: str
     _options: Options
@@ -439,6 +442,7 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
+                    self._frame_system.reset_channel(self._channel)
                     direct_dial_address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
                     self._sessions_client = SessionsClient(
                         channel=self._channel,
@@ -545,6 +549,12 @@ class RobotClient:
 
                 service: MyService = machine.get_service(MyService.get_resource_name("my_service"))  # type: ignore
 
+        The machine's frame system is always available as ``FrameSystem.get_resource_name(FrameSystem.PUBLIC_NAME)`` even though it is
+        not listed in ``resource_names``, since viam-server serves it on the robot service itself.
+        ::
+
+            frame_system = FrameSystem.from_robot(robot=machine)
+
         Args:
             name (viam.proto.common.ResourceName): The service's ResourceName
 
@@ -559,6 +569,10 @@ class RobotClient:
         """
         if name.type != RESOURCE_TYPE_SERVICE:
             raise ValueError(f"ResourceName does not describe a service: {name}")
+        # viam-server never lists the frame system in ResourceNames, so we hand out a client over our own channel the same
+        # way the Go RobotClient returns itself for this name
+        if name == FrameSystem.get_resource_name(FrameSystem.PUBLIC_NAME):
+            return self._frame_system
         with self._lock:
             return self._manager.get_resource(ServiceBase, name)
 
