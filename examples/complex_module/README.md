@@ -30,6 +30,32 @@ There is also a `main.py` file, which creates a module, adds the desired resourc
 
 Outside the `src` directory, there is a `client.py` file. You can use this file to test the module once you have connected to your robot and configured the module. You will have to update the credentials and robot address in that file.
 
+## Using the machine's frame system from a module
+
+Every modular resource is handed the machine's frame system as a dependency. viam-server does not list it among the resource's
+configured dependencies and `validate_config` does not need to return it. The SDK adds it on its own. Fetch it in the constructor
+with `FrameSystem.from_dependencies` and keep it on the resource:
+
+```python
+from viam.services.framesystem import FrameSystem
+
+
+class MyGizmo(Gizmo):
+    @classmethod
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
+        gizmo = cls(config.name)
+        gizmo.frame_system = FrameSystem.from_dependencies(dependencies)
+        return gizmo
+
+    async def do_one(self, arg1: str, **kwargs) -> bool:
+        # Ask viam-server where the arm is right now, expressed in the world frame.
+        arm_pose = await self.frame_system.get_pose("my_arm")
+        return arm_pose.pose.z > 100
+```
+
+The same object also offers `get_frame_system_config`, `transform_pose` and `transform_pcd`, mirroring the frame system methods
+on `RobotClient`.
+
 ## Configuring and using the module
 
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).

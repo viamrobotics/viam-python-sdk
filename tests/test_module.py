@@ -6,6 +6,7 @@ from unittest import mock
 import pytest
 from grpclib.testing import ChannelFor
 
+from viam.components.arm import Arm
 from viam.errors import GRPCError
 from viam.module import Module
 from viam.module.resource_data_consumer import ResourceDataConsumer
@@ -25,11 +26,13 @@ from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.types import API, Model
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
+from viam.services.framesystem import FrameSystem, FrameSystemClient
 from viam.utils import dict_to_struct
 
 from .mocks.module.gizmo.api import Gizmo
 from .mocks.module.gizmo.my_gizmo import MyGizmo
 from .mocks.module.summation.api import SummationService
+from .test_robot import CONFIG_RESPONSE
 from .test_robot import service as robot_service  # noqa: F401
 
 
@@ -38,7 +41,10 @@ async def module(request):
     module = Module("some_fake_address")
     module.add_model_from_registry(Gizmo.API, MyGizmo.MODEL)
     request.cls.module = module
-    yield module
+    # adding a resource now reaches for the parent to seed the frame system, and tests that want one set module.parent
+    # themselves, so we keep the module from dialing the fake address
+    with mock.patch.object(module, "_connect_to_parent", new=mock.AsyncMock()):
+        yield module
     await module.stop()
 
 
@@ -128,6 +134,41 @@ class TestModule:
             req = RemoveResourceRequest(name="acme:component:gizmo/gizmo2")
             await module.remove_resource(req)
             assert Gizmo.get_resource_name("gizmo2") not in module.server.resources
+
+    async def test_add_resource_seeds_frame_system(self, robot_service: RobotService, module: Module):  # noqa: F811
+        frame_system_name = FrameSystem.get_resource_name(FrameSystem.PUBLIC_NAME)
+        async with ChannelFor([robot_service]) as channel:
+            module.parent = await RobotClient.with_channel(channel, RobotClient.Options())
+            req = AddResourceRequest(
+                config=ComponentConfig(
+                    name="gizmo3",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
+                    api="acme:component:gizmo",
+                ),
+                dependencies=["rdk:component:arm/arm1"],
+            )
+            await module.add_resource(req)
+            gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo3"))
+
+            # viam-server only sent the arm, but the constructor still received the frame system next to it
+            assert set(gizmo.dependencies.keys()) == {frame_system_name, Arm.get_resource_name("arm1")}
+            frame_system = FrameSystem.from_dependencies(gizmo.dependencies)
+            assert isinstance(frame_system, FrameSystemClient)
+            assert await frame_system.get_frame_system_config() == CONFIG_RESPONSE
+
+            # reconfigure rebuilds the resource through add_resource, so the seed has to survive it
+            await module.reconfigure_resource(ReconfigureResourceRequest(config=req.config, dependencies=req.dependencies))
+            gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo3"))
+            assert set(gizmo.dependencies.keys()) == {frame_system_name, Arm.get_resource_name("arm1")}
+            assert FrameSystem.from_dependencies(gizmo.dependencies) is frame_system
+
+    async def test_no_frame_system_without_parent(self, module: Module):
+        with mock.patch("viam.module.module.NO_MODULE_PARENT", True):
+            assert module.parent is None
+            assert await module._get_dependencies([]) == {}
 
     async def test_remove_resource(self, module: Module):
         await self.test_add_resource(module)

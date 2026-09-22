@@ -15,11 +15,13 @@ class MyGizmo(Gizmo):
     MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mygizmo")
     my_arg: str
     closed: bool = False
+    dependencies: Mapping[ResourceName, ResourceBase] = {}
 
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
         gizmo = cls(config.name)
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
+        gizmo.dependencies = dependencies
         return gizmo
 
     @classmethod
@@ -59,6 +61,7 @@ class MyGizmo(Gizmo):
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value
+        self.dependencies = dependencies
 
     async def close(self):
         self.closed = True
