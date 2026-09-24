@@ -2,12 +2,8 @@ name: Generate docs
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "src/viam/**"
-      - "docs/**"
-      - "README.md"
-    branches: [main]
+  release:
+    types: [published]
 
 jobs:
   generate-docs:
