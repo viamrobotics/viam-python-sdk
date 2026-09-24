@@ -174,10 +174,13 @@ class GetPropertiesResponse(_message.Message):
     MIME_TYPES_FIELD_NUMBER: _builtins.int
     FRAME_RATE_FIELD_NUMBER: _builtins.int
     EXTRINSIC_PARAMETERS_FIELD_NUMBER: _builtins.int
+    DEFAULT_REFERENCE_FRAME_FIELD_NUMBER: _builtins.int
     supports_pcd: _builtins.bool
     'A boolean property determining whether the camera supports the return of pointcloud data'
     frame_rate: _builtins.float
     'Optional camera frame rate for image capture timing'
+    default_reference_frame: _builtins.str
+    'Name of the reference frame that points returned by GetPointCloud are expressed in\n    An empty string means the frame is unknown; the frame is not guaranteed to exist in the frame system\n    '
 
     @_builtins.property
     def intrinsic_parameters(self) -> Global___IntrinsicParameters:
@@ -203,13 +206,13 @@ class GetPropertiesResponse(_message.Message):
         If camera does not provide extrinsic parameters, leave the field empty
         """
 
-    def __init__(self, *, supports_pcd: _builtins.bool=..., intrinsic_parameters: Global___IntrinsicParameters | None=..., distortion_parameters: Global___DistortionParameters | None=..., mime_types: _abc.Iterable[_builtins.str] | None=..., frame_rate: _builtins.float | None=..., extrinsic_parameters: Global___ExtrinsicParameters | None=...) -> None:
+    def __init__(self, *, supports_pcd: _builtins.bool=..., intrinsic_parameters: Global___IntrinsicParameters | None=..., distortion_parameters: Global___DistortionParameters | None=..., mime_types: _abc.Iterable[_builtins.str] | None=..., frame_rate: _builtins.float | None=..., extrinsic_parameters: Global___ExtrinsicParameters | None=..., default_reference_frame: _builtins.str=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_frame_rate', b'_frame_rate', 'default_reference_frame', b'default_reference_frame', 'distortion_parameters', b'distortion_parameters', 'extrinsic_parameters', b'extrinsic_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
