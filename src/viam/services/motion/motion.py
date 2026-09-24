@@ -1,8 +1,10 @@
 import abc
-from typing import Any, Final, Mapping, Optional, Sequence, TypeAlias
+from dataclasses import dataclass
+from typing import Any, AsyncIterator, Final, Mapping, Optional, Sequence, TypeAlias
 
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, Transform, WorldState
-from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID
+from viam.proto.component.arm import JointPositions, MoveOptions
+from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID, TempStreamOptions
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 from viam.utils import ValueTypes
 
@@ -23,6 +25,41 @@ class Motion(ServiceBase):
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion"
     )
+
+    @dataclass
+    class StreamOptions:
+        """
+        Optional configuration for a ``temp_stream_arm_joint_positions`` streaming session.
+        """
+
+        arm_side_target_runway_ms: Optional[int] = None
+        """How much trajectory the motion service tries to keep buffered on the arm's side."""
+
+        send_to_arm_interval_ms: Optional[int] = None
+        """How often the motion service aims to top up the arm's buffered runway."""
+
+        diagnostics_window_secs: Optional[int] = None
+        """Size of the detailed diagnostics window."""
+
+        move_options: Optional[MoveOptions] = None
+        """Kinematic limits obeyed for the duration of the streaming session."""
+
+        def to_proto(self) -> TempStreamOptions:
+            return TempStreamOptions(
+                arm_side_target_runway_ms=self.arm_side_target_runway_ms,
+                send_to_arm_interval_ms=self.send_to_arm_interval_ms,
+                diagnostics_window_secs=self.diagnostics_window_secs,
+                move_options=self.move_options,
+            )
+
+        @classmethod
+        def from_proto(cls, proto: TempStreamOptions) -> "Motion.StreamOptions":
+            return cls(
+                arm_side_target_runway_ms=proto.arm_side_target_runway_ms if proto.HasField("arm_side_target_runway_ms") else None,
+                send_to_arm_interval_ms=proto.send_to_arm_interval_ms if proto.HasField("send_to_arm_interval_ms") else None,
+                diagnostics_window_secs=proto.diagnostics_window_secs if proto.HasField("diagnostics_window_secs") else None,
+                move_options=proto.move_options if proto.HasField("move_options") else None,
+            )
 
     @abc.abstractmethod
     async def move(
@@ -370,5 +407,54 @@ class Motion(ServiceBase):
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.
 
         For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#getpose>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def temp_stream_arm_joint_positions(
+        self,
+        component_name: str,
+        target_batches: AsyncIterator[Sequence[JointPositions]],
+        options: Optional["Motion.StreamOptions"] = None,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[None]:
+        """
+        Stream target joint positions to an arm through the motion service, for low-latency closed-loop trajectory following.
+
+        The caller supplies an asynchronous iterator of batches, each batch a ``Sequence`` of ``JointPositions``. Each list the
+        caller yields is sent as one wire ``Targets`` message, so the caller sets the wire cadence by choosing how many targets go
+        in each batch. Acknowledgements from the motion service are yielded back as they arrive, so iterating the return value
+        observes stream health in real time. If the session faults, that fault arrives as a gRPC error on the iteration, so the
+        ``async for`` raises instead of ending normally.
+
+        A ``timeout``, if given, bounds the entire stream, not a single message, so an open-ended session should normally leave
+        it unset.
+
+        ::
+
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
+
+            async def target_batches():
+                yield [JointPositions(values=[0, 45, 0, 0, 0, 0])]
+                yield [JointPositions(values=[0, 0, 0, 0, 0, 0])]
+
+            async for _ in motion.temp_stream_arm_joint_positions("my_arm", target_batches()):
+                # Observe the session's acknowledgements; a fault raises out of this iteration.
+                pass
+
+        Args:
+            component_name (str): Name of the arm to stream joint positions to.
+            target_batches (AsyncIterator[Sequence[JointPositions]]): An asynchronous iterator of batches of target joint
+                positions. Each batch becomes one wire ``Targets`` message.
+            options (Optional[Motion.StreamOptions]): Optional configuration for the streaming session.
+
+        Returns:
+            AsyncIterator[None]: Acknowledgements from the motion service, yielded as they arrive.
+
+        For more information, see `Motion service
+        <https://docs.viam.com/dev/reference/apis/services/motion/#tempstreamarmjointpositions>`_.
         """
         ...

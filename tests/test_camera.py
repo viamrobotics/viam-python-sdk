@@ -115,6 +115,7 @@ class TestService:
             extrinsic_parameters=ExtrinsicParameters(
                 translation=Vector3(x=1.0, y=2.0, z=3.0), orientation=Orientation(o_x=0.0, o_y=0.0, o_z=0.0, theta=0.0)
             ),
+            default_reference_frame="world",
         )
         cast(AsyncMock, camera.get_properties).return_value = properties
 
@@ -127,6 +128,7 @@ class TestService:
             assert response.mime_types == properties.mime_types
             assert response.frame_rate == properties.frame_rate
             assert response.extrinsic_parameters == properties.extrinsic_parameters
+            assert response.default_reference_frame == properties.default_reference_frame
             cast(AsyncMock, camera.get_properties).assert_called_once_with(
                 timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
             )
@@ -211,6 +213,7 @@ class TestClient:
             extrinsic_parameters=ExtrinsicParameters(
                 translation=Vector3(x=1.0, y=2.0, z=3.0), orientation=Orientation(o_x=0.0, o_y=0.0, o_z=0.0, theta=0.0)
             ),
+            default_reference_frame="world",
         )
         cast(AsyncMock, camera.get_properties).return_value = properties
 

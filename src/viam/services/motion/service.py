@@ -1,6 +1,10 @@
+from typing import AsyncIterator, List
+
+from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetStatusRequest, GetStatusResponse
+from viam.proto.component.arm import JointPositions
 from viam.proto.service.motion import (
     GetPlanRequest,
     GetPlanResponse,
@@ -16,6 +20,8 @@ from viam.proto.service.motion import (
     MoveResponse,
     StopPlanRequest,
     StopPlanResponse,
+    TempStreamArmJointPositionsRequest,
+    TempStreamArmJointPositionsResponse,
     UnimplementedMotionServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -93,6 +99,51 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         )
         response = GetPoseResponse(pose=result)
         await stream.send_message(response)
+
+    async def TempStreamArmJointPositions(
+        self,
+        stream: Stream[TempStreamArmJointPositionsRequest, TempStreamArmJointPositionsResponse],
+    ) -> None:
+        # The stream opens with exactly one Init, which names the motion service and the arm to
+        # stream to, and carries the sticky extra arguments and session options.
+        first_request = await stream.recv_message()
+        if first_request is None:
+            raise GRPCError(Status.INVALID_ARGUMENT, "stream closed before init message")
+        if not first_request.HasField("init"):
+            raise GRPCError(Status.INVALID_ARGUMENT, "first message must be init")
+
+        service = self.get_resource(first_request.name)
+        component_name = first_request.init.component_name
+        options = Motion.StreamOptions.from_proto(first_request.init.options) if first_request.init.HasField("options") else None
+        extra = struct_to_dict(first_request.init.extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+
+        # Turn the rest of the request stream into the async iterator of target batches the
+        # implementation consumes. A second Init, or any message that is not a batch of targets, is
+        # a protocol violation that ends the stream with an error.
+        async def target_batches() -> AsyncIterator[List[JointPositions]]:
+            while True:
+                request = await stream.recv_message()
+                if request is None:
+                    return
+                message = request.WhichOneof("message")
+                if message == "init":
+                    raise GRPCError(Status.INVALID_ARGUMENT, "init may only appear as the first message")
+                if message != "targets":
+                    raise GRPCError(Status.INVALID_ARGUMENT, "expected a batch of targets")
+                positions = list(request.targets.positions)
+                if positions:
+                    yield positions
+
+        async for _ in service.temp_stream_arm_joint_positions(  # pyright: ignore [reportGeneralTypeIssues]
+            component_name,
+            target_batches(),
+            options,
+            extra=extra,
+            timeout=timeout,
+            metadata=stream.metadata,
+        ):
+            await stream.send_message(TempStreamArmJointPositionsResponse())
 
     async def StopPlan(self, stream: Stream[StopPlanRequest, StopPlanResponse]) -> None:
         request = await stream.recv_message()

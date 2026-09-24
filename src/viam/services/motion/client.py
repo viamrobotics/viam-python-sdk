@@ -1,4 +1,5 @@
-from typing import Any, Mapping, Optional, Sequence
+import asyncio
+from typing import Any, AsyncIterator, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
@@ -15,6 +16,7 @@ from viam.proto.common import (
     Transform,
     WorldState,
 )
+from viam.proto.component.arm import JointPositions
 from viam.proto.service.motion import (
     Constraints,
     GetPlanRequest,
@@ -34,6 +36,7 @@ from viam.proto.service.motion import (
     PlanStatusWithID,
     StopPlanRequest,
     StopPlanResponse,
+    TempStreamArmJointPositionsRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
@@ -220,6 +223,119 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         )
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout, metadata=md)
         return response.pose
+
+    async def temp_stream_arm_joint_positions(  # type: ignore
+        self,
+        component_name: str,
+        target_batches: AsyncIterator[Sequence[JointPositions]],
+        options: Optional[Motion.StreamOptions] = None,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[None]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        # A timeout, if the caller supplies one, bounds the whole stream rather than a single
+        # message, so it defaults to none; binding a deadline here would cancel a long but
+        # healthy session partway through.
+        async with self.client.TempStreamArmJointPositions.open(timeout=timeout, metadata=md) as stream:
+            await stream.send_message(
+                TempStreamArmJointPositionsRequest(
+                    name=self.name,
+                    init=TempStreamArmJointPositionsRequest.Init(
+                        component_name=_validate_name(component_name, "component_name"),
+                        options=options.to_proto() if options is not None else None,
+                        extra=dict_to_struct(extra),
+                    ),
+                )
+            )
+
+            # Sending and receiving run concurrently as tasks: the motion service can report an
+            # acknowledgement or a fault at any point, including while the caller is still
+            # producing target batches. An async generator cannot yield a value produced inside a
+            # task, so the receive task feeds a queue that this generator drains and yields from;
+            # a sentinel marks the point past which no more acknowledgements will arrive.
+            #
+            # A failure of the caller's own target iterator is recorded separately. It is the
+            # caller's bug and the fault they need to see, so it wins over whatever the receive
+            # side reports while the stream is torn down.
+            producer_exception: Optional[BaseException] = None
+            acks: asyncio.Queue = asyncio.Queue()
+            end_of_acks = object()
+
+            async def send_targets() -> None:
+                nonlocal producer_exception
+                try:
+                    async for batch in target_batches:
+                        await stream.send_message(
+                            TempStreamArmJointPositionsRequest(
+                                targets=TempStreamArmJointPositionsRequest.Targets(positions=list(batch)),
+                            )
+                        )
+                    # Targets exhausted cleanly; half-close so the motion service knows the session completed.
+                    await stream.end()
+                except asyncio.CancelledError:
+                    # Our own teardown cancelling this task, not the caller's failure.
+                    raise
+                except BaseException as exc:
+                    producer_exception = exc
+                    raise
+
+            async def receive_acks() -> None:
+                try:
+                    while True:
+                        ack = await stream.recv_message()
+                        if ack is None:
+                            break
+                        acks.put_nowait(ack)
+                finally:
+                    acks.put_nowait(end_of_acks)
+
+            send_task = asyncio.create_task(send_targets())
+            receive_task = asyncio.create_task(receive_acks())
+
+            # If the producer fails, stop receiving so the queue terminates and the fault can be
+            # surfaced. A clean producer finish leaves the receive alone: the motion service still
+            # has acknowledgements to send until it closes the response stream itself.
+            def stop_receiving_if_producer_failed(task: asyncio.Task) -> None:
+                if not task.cancelled() and task.exception() is not None:
+                    receive_task.cancel()
+
+            send_task.add_done_callback(stop_receiving_if_producer_failed)
+
+            try:
+                while True:
+                    ack = await acks.get()
+                    if ack is end_of_acks:
+                        break
+                    yield None
+            finally:
+                # Before the `async with` resets the stream, make sure both tasks have finished and
+                # their outcomes have been retrieved, so neither is parked in a read or write during
+                # the reset. A parked read is exactly what deadlocks a direct stream.cancel(); the
+                # reset that aborts the session comes from leaving the `async with` instead. A
+                # finished task's result is retrieved with `.exception()` rather than by awaiting it,
+                # which keeps a recorded producer failure's traceback pointed at the caller's code.
+                for task in (send_task, receive_task):
+                    if task.done():
+                        if not task.cancelled():
+                            task.exception()
+                    else:
+                        task.cancel()
+                        try:
+                            await task
+                        except BaseException:
+                            pass
+
+            # Surface the terminal cause: the caller's producer failure first, then a fault from the
+            # receive side, otherwise the stream completed cleanly. Raising leaves the `async with`,
+            # which resets the stream so the motion service sees an abort rather than a clean end.
+            if producer_exception is not None:
+                raise producer_exception
+            if not receive_task.cancelled():
+                receive_error = receive_task.exception()
+                if receive_error is not None:
+                    raise receive_error
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         md = kwargs.get("metadata", self.Metadata()).proto
