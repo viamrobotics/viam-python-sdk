@@ -30,6 +30,8 @@ from viam.proto.robot import (
     GetMachineStatusResponse,
     GetOperationsRequest,
     GetOperationsResponse,
+    GetPoseRequest,
+    GetPoseResponse,
     GetVersionRequest,
     GetVersionResponse,
     Operation,
@@ -55,7 +57,7 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT,
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services.mlmodel.client import MLModelClient
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
 from .mocks.services import MockMLModel
@@ -84,6 +86,8 @@ CONFIG_RESPONSE = [
 ]
 
 TRANSFORM_RESPONSE = PoseInFrame(reference_frame="arm", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
+
+GET_POSE_RESPONSE = PoseInFrame(reference_frame="world", pose=Pose(x=4, y=5, z=6, o_x=0, o_y=0, o_z=1, theta=90))
 
 OPERATION_ID = "abc"
 
@@ -164,6 +168,11 @@ def service() -> RobotService:
         response = TransformPoseResponse(pose=TRANSFORM_RESPONSE)
         await stream.send_message(response)
 
+    async def GetPose(stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetPoseResponse(pose=GET_POSE_RESPONSE))
+
     async def GetOperations(stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -207,6 +216,7 @@ def service() -> RobotService:
     service = RobotService(manager)
     service.FrameSystemConfig = Config
     service.TransformPose = TransformPose
+    service.GetPose = GetPose
     service.GetOperations = GetOperations
     service.GetCloudMetadata = GetCloudMetadata
     service.Shutdown = Shutdown
@@ -365,6 +375,35 @@ class TestRobotClient:
             async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
                 pose = await client.transform_pose(PoseInFrame(), "some dest")
                 assert pose == TRANSFORM_RESPONSE
+
+    async def test_get_pose(self, service: RobotService):
+        received: List[GetPoseRequest] = []
+
+        async def GetPose(stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
+            request = await stream.recv_message()
+            assert request is not None
+            received.append(request)
+            await stream.send_message(GetPoseResponse(pose=GET_POSE_RESPONSE))
+
+        service.GetPose = GetPose
+        transforms = [Transform(reference_frame="extra_frame", pose_in_observer_frame=PoseInFrame(reference_frame="world"))]
+        async with ChannelFor([service]) as channel:
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                pose = await client.get_pose("my_gripper", "my_arm", transforms, extra={"foo": "bar"})
+                assert pose == GET_POSE_RESPONSE
+
+                # an empty destination frame goes over the wire as is, since the server defaults it to world
+                pose = await client.get_pose("my_gripper")
+                assert pose == GET_POSE_RESPONSE
+
+        assert len(received) == 2
+        assert received[0].component_name == "my_gripper"
+        assert received[0].destination_frame == "my_arm"
+        assert list(received[0].supplemental_transforms) == transforms
+        assert struct_to_dict(received[0].extra) == {"foo": "bar"}
+        assert received[1].component_name == "my_gripper"
+        assert received[1].destination_frame == ""
+        assert len(received[1].supplemental_transforms) == 0
 
     async def test_get_cloud_metadata(self, service: RobotService):
         async with ChannelFor([service]) as channel:

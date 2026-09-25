@@ -29,6 +29,8 @@ from viam.proto.robot import (
     GetModelsFromModulesResponse,
     GetOperationsRequest,
     GetOperationsResponse,
+    GetPoseRequest,
+    GetPoseResponse,
     GetVersionRequest,
     GetVersionResponse,
     LogRequest,
@@ -704,6 +706,50 @@ class RobotClient:
         request = FrameSystemConfigRequest(supplemental_transforms=additional_transforms)
         response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(request)
         return list(response.frame_system_configs)
+
+    async def get_pose(
+        self,
+        component_name: str,
+        destination_frame: str = "",
+        supplemental_transforms: Optional[List[Transform]] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> PoseInFrame:
+        """
+        Get the pose of a component in the machine's frame system, expressed in a destination reference frame.
+
+        ::
+
+            # Get the pose of "my_gripper" relative to the "world" reference frame.
+            gripper_pose = await machine.get_pose("my_gripper")
+            print(f"gripper pose in world: {gripper_pose}")
+
+            # Get the same pose relative to the origin frame of "my_arm".
+            gripper_pose_in_arm = await machine.get_pose("my_gripper", destination_frame="my_arm")
+
+        Args:
+            component_name (str): The name of the component whose pose should be returned.
+            destination_frame (str): The name of the reference frame to express the pose in. An empty string defaults to ``world``.
+            supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the machine's frame system
+                while computing the pose.
+            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the
+                underlying RPC call.
+
+        Returns:
+            PoseInFrame: The pose of the component and the reference frame it is expressed in.
+
+        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        """
+        request = GetPoseRequest(
+            component_name=component_name,
+            destination_frame=destination_frame,
+            supplemental_transforms=supplemental_transforms,
+            extra=dict_to_struct(extra),
+        )
+        response: GetPoseResponse = await self._client.GetPose(request, timeout=timeout)
+        return response.pose
 
     async def transform_pose(
         self,
