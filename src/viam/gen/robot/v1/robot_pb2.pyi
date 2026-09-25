@@ -1273,7 +1273,7 @@ class PackageStatus(_message.Message):
     BYTES_DOWNLOADED_FIELD_NUMBER: _builtins.int
     TOTAL_BYTES_FIELD_NUMBER: _builtins.int
     name: _builtins.str
-    'the package name as declared in the robot config (PackageConfig.Name)'
+    'the package name as declared in the robot config (`PackageConfig.Name`)'
     type: _packages_pb2.PackageType.ValueType
     'the package type (module, ml_model, slam_map, etc.)'
     state: Global___PackageStatus.State.ValueType
