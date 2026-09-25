@@ -339,12 +339,19 @@ from viam.proto.app.datasync import (
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
     CancelTrainingJobResponse,
+    Container,
     DeleteCompletedTrainingJobRequest,
     DeleteCompletedTrainingJobResponse,
+    DeleteCustomTrainingContainerRequest,
+    DeleteCustomTrainingContainerResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
+    ListContainersRequest,
+    ListContainersResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
+    RegisterCustomTrainingContainerRequest,
+    RegisterCustomTrainingContainerResponse,
     SubmitCustomTrainingJobRequest,
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
@@ -408,6 +415,8 @@ from viam.proto.service.motion import (
     MoveResponse,
     StopPlanRequest,
     StopPlanResponse,
+    TempStreamArmJointPositionsRequest,
+    TempStreamArmJointPositionsResponse,
 )
 from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
 from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
@@ -746,6 +755,23 @@ class MockMotion(MotionServiceBase):
         assert request is not None
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         await stream.send_message(DoCommandResponse(result=request.command))
+
+    async def TempStreamArmJointPositions(
+        self, stream: Stream[TempStreamArmJointPositionsRequest, TempStreamArmJointPositionsResponse]
+    ) -> None:
+        first_request = await stream.recv_message()
+        assert first_request is not None
+        assert first_request.HasField("init")
+        self.component_name = first_request.init.component_name
+        self.extra = struct_to_dict(first_request.init.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        self.streamed_positions = []
+        while True:
+            request = await stream.recv_message()
+            if request is None:
+                break
+            self.streamed_positions.extend(request.targets.positions)
+            await stream.send_message(TempStreamArmJointPositionsResponse())
 
 
 class MockSLAM(SLAM):
@@ -1383,9 +1409,11 @@ class MockDataPipelines(UnimplementedDataPipelinesServiceBase):
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
-    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata):
+    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata, containers: Optional[List[Container]] = None):
         self.job_id = job_id
         self.training_metadata = training_metadata
+        self.containers = containers if containers is not None else []
+        self.container_id = "container-id"
 
     async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
         request = await stream.recv_message()
@@ -1434,6 +1462,30 @@ class MockMLTraining(UnimplementedMLTrainingServiceBase):
         assert request is not None
         self.delete_id = request.id
         await stream.send_message(DeleteCompletedTrainingJobResponse())
+
+    async def ListContainers(self, stream: Stream[ListContainersRequest, ListContainersResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(ListContainersResponse(containers=self.containers))
+
+    async def RegisterCustomTrainingContainer(
+        self, stream: Stream[RegisterCustomTrainingContainerRequest, RegisterCustomTrainingContainerResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        self.image_uri = request.image_uri
+        self.description = request.description
+        await stream.send_message(RegisterCustomTrainingContainerResponse(id=self.container_id))
+
+    async def DeleteCustomTrainingContainer(
+        self, stream: Stream[DeleteCustomTrainingContainerRequest, DeleteCustomTrainingContainerResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_container_id = request.id
+        await stream.send_message(DeleteCustomTrainingContainerResponse())
 
 
 class MockBilling(UnimplementedBillingServiceBase):

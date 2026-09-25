@@ -111,7 +111,9 @@ class Camera(ComponentBase):
 
         Returns:
             Properties: The properties of the camera, including intrinsic parameters, distortion parameters,
-            supported mime types, and optionally extrinsic parameters (position relative to a reference frame).
+            supported mime types, optionally extrinsic parameters (position relative to a reference frame), and
+            the name of the reference frame that points returned by ``get_point_cloud`` are expressed in (an
+            empty string if unknown).
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getproperties>`_.
         """

@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional, Sequence
+from typing import Any, AsyncIterator, List, Mapping, Optional, Sequence
 from unittest.mock import patch
 
 import pytest
@@ -18,6 +18,7 @@ from viam.gen.service.motion.v1.motion_pb2 import (
     PlanWithStatus,
 )
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
+from viam.proto.component.arm import JointPositions
 from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration
 from viam.resource.manager import ResourceManager
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
@@ -105,6 +106,18 @@ def motion():
             timeout: Optional[float] = None,
         ) -> PoseInFrame:
             raise NotImplementedError
+
+        async def temp_stream_arm_joint_positions(
+            self,
+            component_name: str,
+            target_batches: AsyncIterator[Sequence[JointPositions]],
+            options: Optional[Motion.StreamOptions] = None,
+            *,
+            extra: Optional[Mapping[str, Any]] = None,
+            timeout: Optional[float] = None,
+        ) -> AsyncIterator[None]:
+            raise NotImplementedError
+            yield  # pragma: no cover - makes this an async generator to satisfy the return type
 
     return MockMotion(MOTION_SERVICE_NAME)
 
@@ -356,3 +369,106 @@ class TestMotionService:
                 patched_method.assert_called_once()
                 assert patched_method.call_args.args[0] == command
                 assert patched_method.call_args.kwargs["timeout"] == expected_grpc_timeout(timeout)
+
+    async def test_temp_stream_arm_joint_positions_rejects_resource_name(self, motion: Motion, service: MotionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
+            arm = ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="arm", name="my-arm")
+            with pytest.raises(TypeError, match="component_name must be the component's name as a string, e.g. 'pick-grip'"):
+                async for _ in client.temp_stream_arm_joint_positions(arm, _target_batches([])):  # pyright: ignore [reportArgumentType]
+                    pass
+
+
+async def _target_batches(batch_lists: List[List[JointPositions]]) -> AsyncIterator[List[JointPositions]]:
+    for batch in batch_lists:
+        yield batch
+
+
+class StreamingMockMotion(Motion):
+    def __init__(self, name: str):
+        self.streamed_positions: List[JointPositions] = []
+        self.component_name: Optional[str] = None
+        self.options: Optional[Motion.StreamOptions] = None
+        self.extra: Optional[Mapping[str, Any]] = None
+        super().__init__(name)
+
+    async def move(self, *args, **kwargs) -> bool:
+        raise NotImplementedError
+
+    async def move_on_globe(self, *args, **kwargs) -> str:
+        raise NotImplementedError
+
+    async def move_on_map(self, *args, **kwargs) -> str:
+        raise NotImplementedError
+
+    async def stop_plan(self, *args, **kwargs):
+        raise NotImplementedError
+
+    async def get_plan(self, *args, **kwargs) -> GetPlanResponse:
+        raise NotImplementedError
+
+    async def list_plan_statuses(self, *args, **kwargs) -> Sequence[PlanStatusWithID]:
+        raise NotImplementedError
+
+    async def get_pose(self, *args, **kwargs) -> PoseInFrame:
+        raise NotImplementedError
+
+    async def temp_stream_arm_joint_positions(
+        self,
+        component_name: str,
+        target_batches: AsyncIterator[Sequence[JointPositions]],
+        options: Optional[Motion.StreamOptions] = None,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> AsyncIterator[None]:
+        self.component_name = component_name
+        self.options = options
+        self.extra = extra
+        self.streamed_positions = []
+        async for batch in target_batches:
+            self.streamed_positions.extend(batch)
+            yield None
+
+
+class TestMotionServiceStreamed:
+    @classmethod
+    def setup_class(cls):
+        cls.name = MOTION_SERVICE_NAME
+        cls.motion = StreamingMockMotion(cls.name)
+        cls.service = MotionRPCService(ResourceManager([cls.motion]))
+
+    async def test_streamed_round_trip(self):
+        async with ChannelFor([self.service]) as channel:
+            client = MotionClient(self.name, channel)
+            first = [JointPositions(values=[0.0, 0.0, 0.0])]
+            second = [JointPositions(values=[1.0, 2.0, 3.0])]
+            options = Motion.StreamOptions(arm_side_target_runway_ms=100)
+            acks = [
+                ack
+                async for ack in client.temp_stream_arm_joint_positions(
+                    "my_arm", _target_batches([first, second]), options, extra={"foo": "bar"}
+                )
+            ]
+            assert len(acks) == 2
+            assert self.motion.component_name == "my_arm"
+            assert self.motion.options == options
+            assert self.motion.extra == {"foo": "bar"}
+            assert len(self.motion.streamed_positions) == 2
+            assert self.motion.streamed_positions[-1].values == [1.0, 2.0, 3.0]
+
+    async def test_streamed_producer_error_surfaces(self):
+        async with ChannelFor([self.service]) as channel:
+            client = MotionClient(self.name, channel)
+
+            class ProducerError(Exception):
+                pass
+
+            async def failing_batches() -> AsyncIterator[List[JointPositions]]:
+                yield [JointPositions(values=[0.0])]
+                raise ProducerError()
+
+            with pytest.raises(ProducerError):
+                async for _ in client.temp_stream_arm_joint_positions("my_arm", failing_batches()):
+                    pass

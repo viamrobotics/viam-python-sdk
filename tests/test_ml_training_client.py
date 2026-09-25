@@ -3,7 +3,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.ml_training_client import MLTrainingClient
-from viam.proto.app.mltraining import ModelType, SubmitTrainingJobRequest, TrainingJobMetadata, TrainingStatus
+from viam.proto.app.mltraining import Container, ModelType, SubmitTrainingJobRequest, TrainingJobMetadata, TrainingStatus
 from viam.utils import create_filter
 
 from .mocks.services import MockMLTraining
@@ -52,11 +52,15 @@ TRAINING_METADATA = TrainingJobMetadata(
     id=ID,
     error_status=None,
 )
+CONTAINER_ID = "container-id"
+IMAGE_URI = "docker.io/library/my-training-image:latest"
+DESCRIPTION = "my custom training container"
+CONTAINERS = [Container(key="key", uri=IMAGE_URI, framework="tflite")]
 
 
 @pytest.fixture(scope="function")
 def service() -> MockMLTraining:
-    return MockMLTraining(job_id=JOB_ID, training_metadata=TRAINING_METADATA)
+    return MockMLTraining(job_id=JOB_ID, training_metadata=TRAINING_METADATA, containers=CONTAINERS)
 
 
 class TestClient:
@@ -108,3 +112,25 @@ class TestClient:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
             await client.delete_completed_training_job(DELETE_ID)
             assert service.delete_id == DELETE_ID
+
+    async def test_list_containers(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            containers = await client.list_containers(ORG_ID)
+            assert containers == CONTAINERS
+            assert service.org_id == ORG_ID
+
+    async def test_register_custom_training_container(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            id = await client.register_custom_training_container(org_id=ORG_ID, image_uri=IMAGE_URI, description=DESCRIPTION)
+            assert id == CONTAINER_ID
+            assert service.org_id == ORG_ID
+            assert service.image_uri == IMAGE_URI
+            assert service.description == DESCRIPTION
+
+    async def test_delete_custom_training_container(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            await client.delete_custom_training_container(CONTAINER_ID)
+            assert service.delete_container_id == CONTAINER_ID
