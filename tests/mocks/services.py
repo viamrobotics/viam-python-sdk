@@ -10,6 +10,8 @@ from viam.app.data_client import DataClient
 from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
 from viam.media.video import ViamImage
 from viam.proto.app import (
+    AddFavoriteMachineRequest,
+    AddFavoriteMachineResponse,
     AddRoleRequest,
     AddRoleResponse,
     APIKeyWithAuthorizations,
@@ -70,6 +72,7 @@ from viam.proto.app import (
     DeprecateRegistryItemResponse,
     DeprecateRegistryItemVersionRequest,
     DeprecateRegistryItemVersionResponse,
+    FavoriteMachine,
     Fragment,
     GetDevicePushTokensRequest,
     GetDevicePushTokensResponse,
@@ -115,6 +118,8 @@ from viam.proto.app import (
     GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
+    ListFavoriteMachinesRequest,
+    ListFavoriteMachinesResponse,
     ListFragmentsRequest,
     ListFragmentsResponse,
     ListKeysRequest,
@@ -154,6 +159,8 @@ from viam.proto.app import (
     OrganizationMember,
     OrgDetails,
     RegistryItem,
+    RemoveFavoriteMachineRequest,
+    RemoveFavoriteMachineResponse,
     RemoveRoleRequest,
     RemoveRoleResponse,
     ResendOrganizationInviteRequest,
@@ -1544,6 +1551,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.robot_metadata = {}
         self.robot_part_metadata = {}
         self.device_push_tokens = {}
+        self.favorite_machines = {}
         self.firebase_configs = {}
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
@@ -1846,6 +1854,28 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.robot_id = request.id
         await stream.send_message(DeleteRobotResponse())
+
+    async def AddFavoriteMachine(self, stream: Stream[AddFavoriteMachineRequest, AddFavoriteMachineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        favorite = FavoriteMachine(
+            machine_id=request.machine_id,
+            organization_id=self.organizations[0].id,
+            created_on=datetime_to_timestamp(datetime(2024, 12, 25)),
+        )
+        self.favorite_machines[request.machine_id] = favorite
+        await stream.send_message(AddFavoriteMachineResponse(favorite=favorite))
+
+    async def RemoveFavoriteMachine(self, stream: Stream[RemoveFavoriteMachineRequest, RemoveFavoriteMachineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.favorite_machines.pop(request.machine_id, None)
+        await stream.send_message(RemoveFavoriteMachineResponse())
+
+    async def ListFavoriteMachines(self, stream: Stream[ListFavoriteMachinesRequest, ListFavoriteMachinesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListFavoriteMachinesResponse(favorites=list(self.favorite_machines.values())))
 
     async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
         request = await stream.recv_message()

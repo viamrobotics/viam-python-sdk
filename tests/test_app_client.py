@@ -642,6 +642,24 @@ class TestClient:
             await client.delete_robot(robot_id=ID)
             assert service.robot_id == ID
 
+    async def test_favorite_machines(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            favorites = await client.list_favorite_machines()
+            assert len(favorites) == 0
+
+            favorite = await client.add_favorite_machine(machine_id=ID)
+            assert favorite.machine_id == ID
+            assert favorite.organization_id == ORGANIZATION.id
+
+            favorites = await client.list_favorite_machines()
+            assert len(favorites) == 1
+            assert favorites[0].machine_id == ID
+
+            await client.remove_favorite_machine(machine_id=ID)
+            favorites = await client.list_favorite_machines()
+            assert len(favorites) == 0
+
     async def test_list_fragments(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)
