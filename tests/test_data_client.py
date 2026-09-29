@@ -22,6 +22,7 @@ from viam.proto.app.data import (
     IndexableCollection,
     IndexCreator,
     Order,
+    SequenceResourceFilter,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
 
@@ -611,6 +612,59 @@ class TestClient:
             assert service.page_token == "page1"
             assert service.page_size == 10
             assert binary_data == []
+            assert next_page_token == ""
+
+    async def test_create_sequence(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            resources = [SequenceResourceFilter(resource_name="arm-0", method_name="EndPosition")]
+            new_id = await client.create_sequence(
+                part_id=PART_ID,
+                resources=resources,
+                sequence_tags=TAGS,
+                start_time=START_DATETIME,
+                end_time=END_DATETIME,
+            )
+            assert new_id == "new-sequence-id"
+            assert service.part_id == PART_ID
+            assert service.resources == resources
+            assert service.sequence_tags == TAGS
+            assert service.start_time == START_DATETIME
+            assert service.end_time == END_DATETIME
+
+    async def test_get_sequence(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            sequence = await client.get_sequence(id=SEQUENCE_ID)
+            assert service.sequence_id == SEQUENCE_ID
+            assert sequence.id == SEQUENCE_ID
+
+    async def test_update_sequence(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            resources = [SequenceResourceFilter(resource_name="arm-0", method_name="EndPosition")]
+            await client.update_sequence(id=SEQUENCE_ID, resources=resources, sequence_tags=TAGS)
+            assert service.sequence_id == SEQUENCE_ID
+            assert service.resources == resources
+            assert service.sequence_tags == TAGS
+            assert service.start_time is None
+            assert service.end_time is None
+            assert service.field_mask_paths == ["resources", "sequence_tags"]
+
+    async def test_delete_sequence(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.delete_sequence(id=SEQUENCE_ID)
+            assert service.sequence_id == SEQUENCE_ID
+
+    async def test_list_sequences(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            sequences, next_page_token = await client.list_sequences(organization_id=ORG_ID, page_token="page1", page_size=10)
+            assert service.organization_id == ORG_ID
+            assert service.page_token == "page1"
+            assert service.page_size == 10
+            assert sequences == []
             assert next_page_token == ""
 
     def assert_filter(self, filter: Filter) -> None:
