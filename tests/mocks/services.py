@@ -339,12 +339,21 @@ from viam.proto.app.datasync import (
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
     CancelTrainingJobResponse,
+    Container,
     DeleteCompletedTrainingJobRequest,
     DeleteCompletedTrainingJobResponse,
+    DeleteCustomTrainingContainerRequest,
+    DeleteCustomTrainingContainerResponse,
+    GetContainerRequest,
+    GetContainerResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
+    ListContainersRequest,
+    ListContainersResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
+    RegisterCustomTrainingContainerRequest,
+    RegisterCustomTrainingContainerResponse,
     SubmitCustomTrainingJobRequest,
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
@@ -1383,9 +1392,10 @@ class MockDataPipelines(UnimplementedDataPipelinesServiceBase):
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
-    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata):
+    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata, container: Container = Container()):
         self.job_id = job_id
         self.training_metadata = training_metadata
+        self.container = container
 
     async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
         request = await stream.recv_message()
@@ -1406,6 +1416,7 @@ class MockMLTraining(UnimplementedMLTrainingServiceBase):
         self.org_id = request.organization_id
         self.model_name = request.model_name
         self.model_version = request.model_version
+        self.container_id = request.container_id
         await stream.send_message(SubmitCustomTrainingJobResponse(id=self.job_id))
 
     async def GetTrainingJob(self, stream: Stream[GetTrainingJobRequest, GetTrainingJobResponse]) -> None:
@@ -1434,6 +1445,36 @@ class MockMLTraining(UnimplementedMLTrainingServiceBase):
         assert request is not None
         self.delete_id = request.id
         await stream.send_message(DeleteCompletedTrainingJobResponse())
+
+    async def ListContainers(self, stream: Stream[ListContainersRequest, ListContainersResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(ListContainersResponse(containers=[self.container]))
+
+    async def GetContainer(self, stream: Stream[GetContainerRequest, GetContainerResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.container_id = request.id
+        await stream.send_message(GetContainerResponse(container=self.container))
+
+    async def RegisterCustomTrainingContainer(
+        self, stream: Stream[RegisterCustomTrainingContainerRequest, RegisterCustomTrainingContainerResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        self.image_uri = request.image_uri
+        self.description = request.description
+        await stream.send_message(RegisterCustomTrainingContainerResponse(id=self.container.id))
+
+    async def DeleteCustomTrainingContainer(
+        self, stream: Stream[DeleteCustomTrainingContainerRequest, DeleteCustomTrainingContainerResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.container_id = request.id
+        await stream.send_message(DeleteCustomTrainingContainerResponse())
 
 
 class MockBilling(UnimplementedBillingServiceBase):

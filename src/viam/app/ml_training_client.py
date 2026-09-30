@@ -5,13 +5,21 @@ from grpclib.client import Channel
 from viam import logging
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
+    Container,
     DeleteCompletedTrainingJobRequest,
+    DeleteCustomTrainingContainerRequest,
+    GetContainerRequest,
+    GetContainerResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
+    ListContainersRequest,
+    ListContainersResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
     MLTrainingServiceStub,
     ModelType,
+    RegisterCustomTrainingContainerRequest,
+    RegisterCustomTrainingContainerResponse,
     SubmitCustomTrainingJobRequest,
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
@@ -119,7 +127,14 @@ class MLTrainingClient:
         return response.id
 
     async def submit_custom_training_job(
-        self, org_id: str, dataset_id: str, registry_item_id: str, registry_item_version: str, model_name: str, model_version: str
+        self,
+        org_id: str,
+        dataset_id: str,
+        registry_item_id: str,
+        registry_item_version: str,
+        model_name: str,
+        model_version: str,
+        container_id: str = "",
     ) -> str:
         """Submit a custom training job.
 
@@ -141,6 +156,8 @@ class MLTrainingClient:
             registry_item_version (str): the version of the training script from the registry.
             model_name (str): the model name.
             model_version (str): the model version.
+            container_id (str): the ID of the custom training container to run the job in. If unspecified, the training script's
+                default container is used.
 
         Returns:
             str: the ID of the training job.
@@ -155,6 +172,7 @@ class MLTrainingClient:
             organization_id=org_id,
             model_name=model_name,
             model_version=model_version,
+            container_id=container_id,
         )
         response: SubmitCustomTrainingJobResponse = await self._ml_training_client.SubmitCustomTrainingJob(request, metadata=self._metadata)
         return response.id
@@ -247,3 +265,92 @@ class MLTrainingClient:
         """
         request = DeleteCompletedTrainingJobRequest(id=id)
         await self._ml_training_client.DeleteCompletedTrainingJob(request, metadata=self._metadata)
+
+    async def list_containers(self, org_id: str) -> List[Container]:
+        """List the training containers available to an organization.
+
+        ::
+
+            containers = await ml_training_client.list_containers(
+                org_id="<organization-id>")
+
+        Args:
+            org_id (str): the ID of the org to list available training containers for.
+
+        Returns:
+            List[viam.proto.app.mltraining.Container]: the list of available training containers.
+
+        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#listcontainers>`_.
+        """
+
+        request = ListContainersRequest(organization_id=org_id)
+        response: ListContainersResponse = await self._ml_training_client.ListContainers(request, metadata=self._metadata)
+        return list(response.containers)
+
+    async def get_container(self, id: str) -> Container:
+        """Get a training container by ID.
+
+        ::
+
+            container = await ml_training_client.get_container(
+                id="<container-id>")
+
+        Args:
+            id (str): the ID of the requested training container.
+
+        Returns:
+            viam.proto.app.mltraining.Container: the training container.
+
+        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#getcontainer>`_.
+        """
+
+        request = GetContainerRequest(id=id)
+        response: GetContainerResponse = await self._ml_training_client.GetContainer(request, metadata=self._metadata)
+        return response.container
+
+    async def register_custom_training_container(self, org_id: str, image_uri: str, description: str = "") -> str:
+        """Register a custom training container for an organization.
+
+        ::
+
+            container_id = await ml_training_client.register_custom_training_container(
+                org_id="<organization-id>",
+                image_uri="docker.io/library/my-training-image:latest",
+                description="<my-training-container>"
+            )
+
+        Args:
+            org_id (str): the ID of the org to register the custom training container to.
+            image_uri (str): the Docker Hub reference of the training container image.
+            description (str): a description of the training container, used as its display name.
+
+        Returns:
+            str: the ID of the registered training container.
+
+        For more information, see
+        `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#registercustomtrainingcontainer>`_.
+        """
+
+        request = RegisterCustomTrainingContainerRequest(organization_id=org_id, image_uri=image_uri, description=description)
+        response: RegisterCustomTrainingContainerResponse = await self._ml_training_client.RegisterCustomTrainingContainer(
+            request, metadata=self._metadata
+        )
+        return response.id
+
+    async def delete_custom_training_container(self, id: str) -> None:
+        """Delete a custom training container.
+
+        ::
+
+            await ml_training_client.delete_custom_training_container(
+                id="<container-id>")
+
+        Args:
+            id (str): the ID of the custom training container to delete.
+
+        For more information, see
+        `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecustomtrainingcontainer>`_.
+        """
+
+        request = DeleteCustomTrainingContainerRequest(id=id)
+        await self._ml_training_client.DeleteCustomTrainingContainer(request, metadata=self._metadata)
