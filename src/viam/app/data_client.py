@@ -2482,9 +2482,9 @@ class DataClient:
         self,
         part_id: str,
         resources: List[SequenceResourceFilter],
+        start_time: datetime,
+        end_time: datetime,
         sequence_tags: Optional[List[str]] = None,
-        start_time: Optional[datetime] = None,
-        end_time: Optional[datetime] = None,
         timeout: Optional[float] = None,
     ) -> str:
         """Create a sequence.
@@ -2492,9 +2492,9 @@ class DataClient:
         Args:
             part_id (str): The ID of the part that the sequence belongs to.
             resources (List[SequenceResourceFilter]): The resources (source identifiers) that the sequence includes.
+            start_time (datetime): The start of the time range the sequence applies to.
+            end_time (datetime): The end of the time range the sequence applies to.
             sequence_tags (Optional[List[str]]): Optional tags to attach to the sequence.
-            start_time (Optional[datetime]): Optional start of the time range the sequence applies to.
-            end_time (Optional[datetime]): Optional end of the time range the sequence applies to.
             timeout (Optional[float]): An optional deadline for the call to complete in seconds.
 
         Returns:
@@ -2503,12 +2503,10 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createsequence>`_.
         """
         request = CreateSequenceRequest(part_id=part_id, resources=resources)
+        request.start_time.FromDatetime(start_time)
+        request.end_time.FromDatetime(end_time)
         if sequence_tags is not None:
             request.sequence_tags.extend(sequence_tags)
-        if start_time is not None:
-            request.start_time.FromDatetime(start_time)
-        if end_time is not None:
-            request.end_time.FromDatetime(end_time)
         response: CreateSequenceResponse = await self._data_client.CreateSequence(request, metadata=self._metadata, timeout=timeout)
         return response.id
 
@@ -2539,7 +2537,8 @@ class DataClient:
     ) -> None:
         """Update a sequence's mutable fields. Only non-None fields are updated. Pass an empty list to clear ``sequence_tags``.
 
-        The ``field_mask`` is derived automatically from which arguments are non-None.
+        The ``field_mask`` is derived automatically from which arguments are non-None. At least one updatable field
+        (``resources``, ``sequence_tags``, ``start_time``, or ``end_time``) must be provided.
 
         Args:
             id (str): The ID of the sequence to update.
@@ -2548,6 +2547,9 @@ class DataClient:
             start_time (Optional[datetime]): New start of the time range.
             end_time (Optional[datetime]): New end of the time range.
             timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Raises:
+            ValueError: If no updatable field is provided.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updatesequence>`_.
         """
@@ -2565,6 +2567,8 @@ class DataClient:
         if end_time is not None:
             request.end_time.FromDatetime(end_time)
             paths.append("end_time")
+        if not paths:
+            raise ValueError("update_sequence requires at least one of: resources, sequence_tags, start_time, end_time")
         request.field_mask.CopyFrom(FieldMask(paths=paths))
         await self._data_client.UpdateSequence(request, metadata=self._metadata, timeout=timeout)
 

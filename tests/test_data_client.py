@@ -651,6 +651,12 @@ class TestClient:
             assert service.end_time is None
             assert service.field_mask_paths == ["resources", "sequence_tags"]
 
+    async def test_update_sequence_rejects_empty_update(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            with pytest.raises(ValueError):
+                await client.update_sequence(id=SEQUENCE_ID)
+
     async def test_delete_sequence(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
