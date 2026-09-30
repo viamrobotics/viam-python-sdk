@@ -169,6 +169,7 @@ class SubmitCustomTrainingJobRequest(_message.Message):
     MODEL_VERSION_FIELD_NUMBER: _builtins.int
     ARGUMENTS_FIELD_NUMBER: _builtins.int
     CONTAINER_VERSION_FIELD_NUMBER: _builtins.int
+    CONTAINER_ID_FIELD_NUMBER: _builtins.int
     dataset_id: _builtins.str
     registry_item_id: _builtins.str
     registry_item_version: _builtins.str
@@ -176,14 +177,15 @@ class SubmitCustomTrainingJobRequest(_message.Message):
     model_name: _builtins.str
     model_version: _builtins.str
     container_version: _builtins.str
+    container_id: _builtins.str
 
     @_builtins.property
     def arguments(self) -> _containers.ScalarMap[_builtins.str, _builtins.str]:
         ...
 
-    def __init__(self, *, dataset_id: _builtins.str=..., registry_item_id: _builtins.str=..., registry_item_version: _builtins.str=..., organization_id: _builtins.str=..., model_name: _builtins.str=..., model_version: _builtins.str=..., arguments: _abc.Mapping[_builtins.str, _builtins.str] | None=..., container_version: _builtins.str=...) -> None:
+    def __init__(self, *, dataset_id: _builtins.str=..., registry_item_id: _builtins.str=..., registry_item_version: _builtins.str=..., organization_id: _builtins.str=..., model_name: _builtins.str=..., model_version: _builtins.str=..., arguments: _abc.Mapping[_builtins.str, _builtins.str] | None=..., container_version: _builtins.str=..., container_id: _builtins.str=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['arguments', b'arguments', 'container_version', b'container_version', 'dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['arguments', b'arguments', 'container_id', b'container_id', 'container_version', b'container_version', 'dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -309,6 +311,7 @@ class TrainingJobMetadata(_message.Message):
     TAGS_FIELD_NUMBER: _builtins.int
     ARGUMENTS_FIELD_NUMBER: _builtins.int
     CONTAINER_VERSION_FIELD_NUMBER: _builtins.int
+    CONTAINER_ID_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     dataset_id: _builtins.str
     organization_id: _builtins.str
@@ -322,6 +325,7 @@ class TrainingJobMetadata(_message.Message):
     status: Global___TrainingStatus.ValueType
     synced_model_id: _builtins.str
     container_version: _builtins.str
+    container_id: _builtins.str
 
     @_builtins.property
     def error_status(self) -> _status_pb2.Status:
@@ -351,13 +355,13 @@ class TrainingJobMetadata(_message.Message):
     def arguments(self) -> _containers.ScalarMap[_builtins.str, _builtins.str]:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., dataset_id: _builtins.str=..., organization_id: _builtins.str=..., model_name: _builtins.str=..., model_version: _builtins.str=..., model_type: Global___ModelType.ValueType=..., model_framework: Global___ModelFramework.ValueType=..., is_custom_job: _builtins.bool=..., registry_item_id: _builtins.str=..., registry_item_version: _builtins.str=..., status: Global___TrainingStatus.ValueType=..., error_status: _status_pb2.Status | None=..., created_on: _timestamp_pb2.Timestamp | None=..., last_modified: _timestamp_pb2.Timestamp | None=..., training_started: _timestamp_pb2.Timestamp | None=..., training_ended: _timestamp_pb2.Timestamp | None=..., synced_model_id: _builtins.str=..., tags: _abc.Iterable[_builtins.str] | None=..., arguments: _abc.Mapping[_builtins.str, _builtins.str] | None=..., container_version: _builtins.str=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., dataset_id: _builtins.str=..., organization_id: _builtins.str=..., model_name: _builtins.str=..., model_version: _builtins.str=..., model_type: Global___ModelType.ValueType=..., model_framework: Global___ModelFramework.ValueType=..., is_custom_job: _builtins.bool=..., registry_item_id: _builtins.str=..., registry_item_version: _builtins.str=..., status: Global___TrainingStatus.ValueType=..., error_status: _status_pb2.Status | None=..., created_on: _timestamp_pb2.Timestamp | None=..., last_modified: _timestamp_pb2.Timestamp | None=..., training_started: _timestamp_pb2.Timestamp | None=..., training_ended: _timestamp_pb2.Timestamp | None=..., synced_model_id: _builtins.str=..., tags: _abc.Iterable[_builtins.str] | None=..., arguments: _abc.Mapping[_builtins.str, _builtins.str] | None=..., container_version: _builtins.str=..., container_id: _builtins.str=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'training_ended', b'training_ended', 'training_started', b'training_started']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['arguments', b'arguments', 'container_version', b'container_version', 'created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['arguments', b'arguments', 'container_id', b'container_id', 'container_version', b'container_version', 'created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -479,15 +483,8 @@ Global___GetTrainingJobLogsResponse: _TypeAlias = GetTrainingJobLogsResponse
 @_typing.final
 class ListSupportedContainersRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
-    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
-    organization_id: _builtins.str
-    "Optional. Scopes the response to the containers available to this\n    organization: the Viam-managed catalog plus the org's registered\n    custom training containers. If unset, only the Viam-managed catalog\n    is returned.\n    "
 
-    def __init__(self, *, organization_id: _builtins.str=...) -> None:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['organization_id', b'organization_id']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+    def __init__(self) -> None:
         ...
 Global___ListSupportedContainersRequest: _TypeAlias = ListSupportedContainersRequest
 
@@ -542,6 +539,130 @@ class ListSupportedContainersResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___ListSupportedContainersResponse: _TypeAlias = ListSupportedContainersResponse
+
+@_typing.final
+class ListContainersRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    organization_id: _builtins.str
+    'The associated Viam organization ID.'
+
+    def __init__(self, *, organization_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['organization_id', b'organization_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListContainersRequest: _TypeAlias = ListContainersRequest
+
+@_typing.final
+class ListContainersResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    CONTAINERS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def containers(self) -> _containers.RepeatedCompositeFieldContainer[Global___Container]:
+        ...
+
+    def __init__(self, *, containers: _abc.Iterable[Global___Container] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['containers', b'containers']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListContainersResponse: _TypeAlias = ListContainersResponse
+
+@_typing.final
+class GetContainerRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+    'The ID of the container to retrieve.'
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetContainerRequest: _TypeAlias = GetContainerRequest
+
+@_typing.final
+class GetContainerResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    CONTAINER_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def container(self) -> Global___Container:
+        ...
+
+    def __init__(self, *, container: Global___Container | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['container', b'container']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['container', b'container']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetContainerResponse: _TypeAlias = GetContainerResponse
+
+@_typing.final
+class RegisterCustomTrainingContainerRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    IMAGE_URI_FIELD_NUMBER: _builtins.int
+    DESCRIPTION_FIELD_NUMBER: _builtins.int
+    organization_id: _builtins.str
+    image_uri: _builtins.str
+    'Docker Hub reference, official images normalize to docker.io/library/<image>:<tag>.'
+    description: _builtins.str
+    'will serve as display name'
+
+    def __init__(self, *, organization_id: _builtins.str=..., image_uri: _builtins.str=..., description: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['description', b'description', 'image_uri', b'image_uri', 'organization_id', b'organization_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RegisterCustomTrainingContainerRequest: _TypeAlias = RegisterCustomTrainingContainerRequest
+
+@_typing.final
+class RegisterCustomTrainingContainerResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RegisterCustomTrainingContainerResponse: _TypeAlias = RegisterCustomTrainingContainerResponse
+
+@_typing.final
+class DeleteCustomTrainingContainerRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+
+    def __init__(self, *, id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteCustomTrainingContainerRequest: _TypeAlias = DeleteCustomTrainingContainerRequest
+
+@_typing.final
+class DeleteCustomTrainingContainerResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteCustomTrainingContainerResponse: _TypeAlias = DeleteCustomTrainingContainerResponse
 
 @_typing.final
 class Container(_message.Message):

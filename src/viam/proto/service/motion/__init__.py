@@ -33,6 +33,9 @@ from ....gen.service.motion.v1.motion_pb2 import (
     PseudolinearConstraint,
     StopPlanRequest,
     StopPlanResponse,
+    TempStreamArmJointPositionsRequest,
+    TempStreamArmJointPositionsResponse,
+    TempStreamOptions,
 )
 
 __all__ = [
@@ -67,4 +70,7 @@ __all__ = [
     "PseudolinearConstraint",
     "StopPlanRequest",
     "StopPlanResponse",
+    "TempStreamArmJointPositionsRequest",
+    "TempStreamArmJointPositionsResponse",
+    "TempStreamOptions",
 ]

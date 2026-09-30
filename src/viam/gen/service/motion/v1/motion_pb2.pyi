@@ -4,6 +4,7 @@ isort:skip_file
 """
 from collections import abc as _abc
 from common.v1 import common_pb2 as _common_pb2
+from component.arm.v1 import arm_pb2 as _arm_pb2
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import struct_pb2 as _struct_pb2
@@ -735,22 +736,32 @@ class OrientationConstraint(_message.Message):
     """
     DESCRIPTOR: _descriptor.Descriptor
     ORIENTATION_TOLERANCE_DEGS_FIELD_NUMBER: _builtins.int
+    IGNORE_THETA_FIELD_NUMBER: _builtins.int
     orientation_tolerance_degs: _builtins.float
     'Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states'
+    ignore_theta: _builtins.bool
+    "When true, deviation is measured between orientation vectors alone, disregarding rotation about the\n    component's own pointing axis. Set this for payloads that are symmetric about that axis - an open\n    container spills when tipped, not when spun - so the tolerance does not pin a rotation that cannot\n    matter. Defaults to false, measuring the full orientation.\n    "
 
-    def __init__(self, *, orientation_tolerance_degs: _builtins.float | None=...) -> None:
+    def __init__(self, *, orientation_tolerance_degs: _builtins.float | None=..., ignore_theta: _builtins.bool | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_ignore_theta', b'_ignore_theta', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'ignore_theta', b'ignore_theta', 'orientation_tolerance_degs', b'orientation_tolerance_degs']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_ignore_theta', b'_ignore_theta', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'ignore_theta', b'ignore_theta', 'orientation_tolerance_degs', b'orientation_tolerance_degs']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__ignore_theta: _TypeAlias = _typing.Literal['ignore_theta']
+    _WhichOneofArgType__ignore_theta: _TypeAlias = _typing.Literal['_ignore_theta', b'_ignore_theta']
     _WhichOneofReturnType__orientation_tolerance_degs: _TypeAlias = _typing.Literal['orientation_tolerance_degs']
     _WhichOneofArgType__orientation_tolerance_degs: _TypeAlias = _typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']
 
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__ignore_theta) -> _WhichOneofReturnType__ignore_theta | None:
+        ...
+
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__orientation_tolerance_degs) -> _WhichOneofReturnType__orientation_tolerance_degs | None:
         ...
 Global___OrientationConstraint: _TypeAlias = OrientationConstraint
@@ -998,3 +1009,148 @@ class ComponentState(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___ComponentState: _TypeAlias = ComponentState
+
+@_typing.final
+class TempStreamOptions(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ARM_SIDE_TARGET_RUNWAY_MS_FIELD_NUMBER: _builtins.int
+    SEND_TO_ARM_INTERVAL_MS_FIELD_NUMBER: _builtins.int
+    DIAGNOSTICS_WINDOW_SECS_FIELD_NUMBER: _builtins.int
+    MOVE_OPTIONS_FIELD_NUMBER: _builtins.int
+    arm_side_target_runway_ms: _builtins.int
+    "How much trajectory the motion service tries to keep buffered on the arm's side."
+    send_to_arm_interval_ms: _builtins.int
+    "How often the motion service aims to top up the arm's buffered runway."
+    diagnostics_window_secs: _builtins.int
+    'Size of the detailed diagnostics window.'
+
+    @_builtins.property
+    def move_options(self) -> _arm_pb2.MoveOptions:
+        """Kinematic limits for the session's trajectory."""
+
+    def __init__(self, *, arm_side_target_runway_ms: _builtins.int | None=..., send_to_arm_interval_ms: _builtins.int | None=..., diagnostics_window_secs: _builtins.int | None=..., move_options: _arm_pb2.MoveOptions | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_arm_side_target_runway_ms', b'_arm_side_target_runway_ms', '_diagnostics_window_secs', b'_diagnostics_window_secs', '_move_options', b'_move_options', '_send_to_arm_interval_ms', b'_send_to_arm_interval_ms', 'arm_side_target_runway_ms', b'arm_side_target_runway_ms', 'diagnostics_window_secs', b'diagnostics_window_secs', 'move_options', b'move_options', 'send_to_arm_interval_ms', b'send_to_arm_interval_ms']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_arm_side_target_runway_ms', b'_arm_side_target_runway_ms', '_diagnostics_window_secs', b'_diagnostics_window_secs', '_move_options', b'_move_options', '_send_to_arm_interval_ms', b'_send_to_arm_interval_ms', 'arm_side_target_runway_ms', b'arm_side_target_runway_ms', 'diagnostics_window_secs', b'diagnostics_window_secs', 'move_options', b'move_options', 'send_to_arm_interval_ms', b'send_to_arm_interval_ms']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__arm_side_target_runway_ms: _TypeAlias = _typing.Literal['arm_side_target_runway_ms']
+    _WhichOneofArgType__arm_side_target_runway_ms: _TypeAlias = _typing.Literal['_arm_side_target_runway_ms', b'_arm_side_target_runway_ms']
+    _WhichOneofReturnType__diagnostics_window_secs: _TypeAlias = _typing.Literal['diagnostics_window_secs']
+    _WhichOneofArgType__diagnostics_window_secs: _TypeAlias = _typing.Literal['_diagnostics_window_secs', b'_diagnostics_window_secs']
+    _WhichOneofReturnType__move_options: _TypeAlias = _typing.Literal['move_options']
+    _WhichOneofArgType__move_options: _TypeAlias = _typing.Literal['_move_options', b'_move_options']
+    _WhichOneofReturnType__send_to_arm_interval_ms: _TypeAlias = _typing.Literal['send_to_arm_interval_ms']
+    _WhichOneofArgType__send_to_arm_interval_ms: _TypeAlias = _typing.Literal['_send_to_arm_interval_ms', b'_send_to_arm_interval_ms']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__arm_side_target_runway_ms) -> _WhichOneofReturnType__arm_side_target_runway_ms | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__diagnostics_window_secs) -> _WhichOneofReturnType__diagnostics_window_secs | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__move_options) -> _WhichOneofReturnType__move_options | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__send_to_arm_interval_ms) -> _WhichOneofReturnType__send_to_arm_interval_ms | None:
+        ...
+Global___TempStreamOptions: _TypeAlias = TempStreamOptions
+
+@_typing.final
+class TempStreamArmJointPositionsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    @_typing.final
+    class Init(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
+        COMPONENT_NAME_FIELD_NUMBER: _builtins.int
+        OPTIONS_FIELD_NUMBER: _builtins.int
+        EXTRA_FIELD_NUMBER: _builtins.int
+        component_name: _builtins.str
+        'Name of the arm to stream joint positions to.'
+
+        @_builtins.property
+        def options(self) -> Global___TempStreamOptions:
+            """Configuration for this streaming session."""
+
+        @_builtins.property
+        def extra(self) -> _struct_pb2.Struct:
+            """Additional arguments."""
+
+        def __init__(self, *, component_name: _builtins.str=..., options: Global___TempStreamOptions | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+            ...
+        _HasFieldArgType: _TypeAlias = _typing.Literal['_options', b'_options', 'extra', b'extra', 'options', b'options']
+
+        def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['_options', b'_options', 'component_name', b'component_name', 'extra', b'extra', 'options', b'options']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
+        _WhichOneofReturnType__options: _TypeAlias = _typing.Literal['options']
+        _WhichOneofArgType__options: _TypeAlias = _typing.Literal['_options', b'_options']
+
+        def WhichOneof(self, oneof_group: _WhichOneofArgType__options) -> _WhichOneofReturnType__options | None:
+            ...
+
+    @_typing.final
+    class Targets(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
+        POSITIONS_FIELD_NUMBER: _builtins.int
+
+        @_builtins.property
+        def positions(self) -> _containers.RepeatedCompositeFieldContainer[_arm_pb2.JointPositions]:
+            """Target joint positions to append to the session, in order."""
+
+        def __init__(self, *, positions: _abc.Iterable[_arm_pb2.JointPositions] | None=...) -> None:
+            ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal['positions', b'positions']
+
+        def ClearField(self, field_name: _ClearFieldArgType) -> None:
+            ...
+    NAME_FIELD_NUMBER: _builtins.int
+    INIT_FIELD_NUMBER: _builtins.int
+    TARGETS_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the motion service.'
+
+    @_builtins.property
+    def init(self) -> Global___TempStreamArmJointPositionsRequest.Init:
+        """Session initiation. Sent exactly once and must be the first message on the stream."""
+
+    @_builtins.property
+    def targets(self) -> Global___TempStreamArmJointPositionsRequest.Targets:
+        """A batch of targets to append to the running session. Sent N times after init."""
+
+    def __init__(self, *, name: _builtins.str=..., init: Global___TempStreamArmJointPositionsRequest.Init | None=..., targets: Global___TempStreamArmJointPositionsRequest.Targets | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['init', b'init', 'message', b'message', 'targets', b'targets']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['init', b'init', 'message', b'message', 'name', b'name', 'targets', b'targets']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_message: _TypeAlias = _typing.Literal['init', 'targets']
+    _WhichOneofArgType_message: _TypeAlias = _typing.Literal['message', b'message']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_message) -> _WhichOneofReturnType_message | None:
+        ...
+Global___TempStreamArmJointPositionsRequest: _TypeAlias = TempStreamArmJointPositionsRequest
+
+@_typing.final
+class TempStreamArmJointPositionsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___TempStreamArmJointPositionsResponse: _TypeAlias = TempStreamArmJointPositionsResponse
