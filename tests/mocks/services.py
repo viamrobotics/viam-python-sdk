@@ -280,7 +280,6 @@ from viam.proto.app.data import (
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
-    Sequence as ProtoSequence,
     SequencesByDatasetIDRequest,
     SequencesByDatasetIDResponse,
     TabularData,
@@ -297,6 +296,9 @@ from viam.proto.app.data import (
     UpdateBoundingBoxResponse,
     UpdateSequenceRequest,
     UpdateSequenceResponse,
+)
+from viam.proto.app.data import (
+    Sequence as ProtoSequence,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
