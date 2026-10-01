@@ -326,6 +326,86 @@ class Classification(_message.Message):
 Global___Classification: _TypeAlias = Classification
 
 @_typing.final
+class GetDetections3DRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    CAMERA_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'name of the vision service'
+    camera_name: _builtins.str
+    'name of the camera to observe'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., camera_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetDetections3DRequest: _TypeAlias = GetDetections3DRequest
+
+@_typing.final
+class GetDetections3DResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    DETECTIONS_3D_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def detections_3d(self) -> _containers.RepeatedCompositeFieldContainer[Global___Detection3D]:
+        """one entry per perceived object"""
+
+    def __init__(self, *, detections_3d: _abc.Iterable[Global___Detection3D] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['detections_3d', b'detections_3d']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetDetections3DResponse: _TypeAlias = GetDetections3DResponse
+
+@_typing.final
+class Detection3D(_message.Message):
+    """Detection3D is one perceived object, described as a tree of transforms.
+    transforms[0] is the root, parented to a frame the robot already knows (e.g.
+    the camera). Each later transform's parent is the root or an earlier entry.
+    Each physical_object is expressed relative to its own transform's origin.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    TRANSFORMS_FIELD_NUMBER: _builtins.int
+    CLASSIFICATIONS_FIELD_NUMBER: _builtins.int
+    METADATA_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def transforms(self) -> _containers.RepeatedCompositeFieldContainer[_common_pb2.Transform]:
+        """frame tree of this object, root first"""
+
+    @_builtins.property
+    def classifications(self) -> _containers.RepeatedCompositeFieldContainer[Global___Classification]:
+        """class hypotheses for the object"""
+
+    @_builtins.property
+    def metadata(self) -> _struct_pb2.Struct:
+        """implementation-specific data, e.g. source camera or model name"""
+
+    def __init__(self, *, transforms: _abc.Iterable[_common_pb2.Transform] | None=..., classifications: _abc.Iterable[Global___Classification] | None=..., metadata: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['metadata', b'metadata']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['classifications', b'classifications', 'metadata', b'metadata', 'transforms', b'transforms']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Detection3D: _TypeAlias = Detection3D
+
+@_typing.final
 class GetObjectPointCloudsRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
@@ -407,6 +487,7 @@ class CaptureAllFromCameraRequest(_message.Message):
     RETURN_CLASSIFICATIONS_FIELD_NUMBER: _builtins.int
     RETURN_DETECTIONS_FIELD_NUMBER: _builtins.int
     RETURN_OBJECT_POINT_CLOUDS_FIELD_NUMBER: _builtins.int
+    RETURN_DETECTIONS_3D_FIELD_NUMBER: _builtins.int
     EXTRA_FIELD_NUMBER: _builtins.int
     name: _builtins.str
     'name of the vision service'
@@ -420,18 +501,20 @@ class CaptureAllFromCameraRequest(_message.Message):
     'whether or not including detections in the response'
     return_object_point_clouds: _builtins.bool
     'whether or not including pcd in the response'
+    return_detections_3d: _builtins.bool
+    'whether or not including 3D detections in the response'
 
     @_builtins.property
     def extra(self) -> _struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: _builtins.str=..., camera_name: _builtins.str=..., return_image: _builtins.bool=..., return_classifications: _builtins.bool=..., return_detections: _builtins.bool=..., return_object_point_clouds: _builtins.bool=..., extra: _struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: _builtins.str=..., camera_name: _builtins.str=..., return_image: _builtins.bool=..., return_classifications: _builtins.bool=..., return_detections: _builtins.bool=..., return_object_point_clouds: _builtins.bool=..., return_detections_3d: _builtins.bool=..., extra: _struct_pb2.Struct | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'name', b'name', 'return_classifications', b'return_classifications', 'return_detections', b'return_detections', 'return_image', b'return_image', 'return_object_point_clouds', b'return_object_point_clouds']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'name', b'name', 'return_classifications', b'return_classifications', 'return_detections', b'return_detections', 'return_detections_3d', b'return_detections_3d', 'return_image', b'return_image', 'return_object_point_clouds', b'return_object_point_clouds']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -444,6 +527,7 @@ class CaptureAllFromCameraResponse(_message.Message):
     DETECTIONS_FIELD_NUMBER: _builtins.int
     CLASSIFICATIONS_FIELD_NUMBER: _builtins.int
     OBJECTS_FIELD_NUMBER: _builtins.int
+    DETECTIONS_3D_FIELD_NUMBER: _builtins.int
     EXTRA_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
@@ -463,16 +547,20 @@ class CaptureAllFromCameraResponse(_message.Message):
         ...
 
     @_builtins.property
+    def detections_3d(self) -> _containers.RepeatedCompositeFieldContainer[Global___Detection3D]:
+        ...
+
+    @_builtins.property
     def extra(self) -> _struct_pb2.Struct:
         ...
 
-    def __init__(self, *, image: _camera_pb2.Image | None=..., detections: _abc.Iterable[Global___Detection] | None=..., classifications: _abc.Iterable[Global___Classification] | None=..., objects: _abc.Iterable[_common_pb2.PointCloudObject] | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, image: _camera_pb2.Image | None=..., detections: _abc.Iterable[Global___Detection] | None=..., classifications: _abc.Iterable[Global___Classification] | None=..., objects: _abc.Iterable[_common_pb2.PointCloudObject] | None=..., detections_3d: _abc.Iterable[Global___Detection3D] | None=..., extra: _struct_pb2.Struct | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'image', b'image']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['classifications', b'classifications', 'detections', b'detections', 'extra', b'extra', 'image', b'image', 'objects', b'objects']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['classifications', b'classifications', 'detections', b'detections', 'detections_3d', b'detections_3d', 'extra', b'extra', 'image', b'image', 'objects', b'objects']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -485,6 +573,7 @@ class GetPropertiesResponse(_message.Message):
     DETECTIONS_SUPPORTED_FIELD_NUMBER: _builtins.int
     OBJECT_POINT_CLOUDS_SUPPORTED_FIELD_NUMBER: _builtins.int
     DEFAULT_CAMERA_FIELD_NUMBER: _builtins.int
+    DETECTIONS_3D_SUPPORTED_FIELD_NUMBER: _builtins.int
     classifications_supported: _builtins.bool
     'whether or not classifactions are supported by the vision service'
     detections_supported: _builtins.bool
@@ -493,14 +582,16 @@ class GetPropertiesResponse(_message.Message):
     'whether or not 3d segmentation is supported by the vision service'
     default_camera: _builtins.str
     'the default camera used for *FromCamera and GetObjectPointClouds calls'
+    detections_3d_supported: _builtins.bool
+    'whether or not GetDetections3D is supported by the vision service'
 
-    def __init__(self, *, classifications_supported: _builtins.bool=..., detections_supported: _builtins.bool=..., object_point_clouds_supported: _builtins.bool=..., default_camera: _builtins.str | None=...) -> None:
+    def __init__(self, *, classifications_supported: _builtins.bool=..., detections_supported: _builtins.bool=..., object_point_clouds_supported: _builtins.bool=..., default_camera: _builtins.str | None=..., detections_3d_supported: _builtins.bool=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_default_camera', b'_default_camera', 'default_camera', b'default_camera']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_default_camera', b'_default_camera', 'classifications_supported', b'classifications_supported', 'default_camera', b'default_camera', 'detections_supported', b'detections_supported', 'object_point_clouds_supported', b'object_point_clouds_supported']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_default_camera', b'_default_camera', 'classifications_supported', b'classifications_supported', 'default_camera', b'default_camera', 'detections_3d_supported', b'detections_3d_supported', 'detections_supported', b'detections_supported', 'object_point_clouds_supported', b'object_point_clouds_supported']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
