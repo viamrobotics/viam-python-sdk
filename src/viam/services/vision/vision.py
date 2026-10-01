@@ -3,7 +3,7 @@ from typing import Final, List, Mapping, Optional, TypeAlias
 
 from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
-from viam.proto.service.vision import Classification, Detection, GetPropertiesResponse
+from viam.proto.service.vision import Classification, Detection, Detection3D, GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 from viam.utils import ValueTypes
 
@@ -26,6 +26,7 @@ class CaptureAllResult:
         classifications: Optional[List[Classification]] = None,
         detections: Optional[List[Detection]] = None,
         objects: Optional[List[PointCloudObject]] = None,
+        detections_3d: Optional[List[Detection3D]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
     ):
         """
@@ -34,6 +35,7 @@ class CaptureAllResult:
             classifications (List[Classification]|None): The classifications from GetClassifications, if it was requested.
             detections (List[Detection]|None): The detections from GetDetections, if it was requested.
             objects (List[PointCloudObject]|None): the object point clouds from GetObjectPointClouds, if it was requested.
+            detections_3d (List[Detection3D]|None): The 3D detections from GetDetections3D, if it was requested.
             extra (dict): A catch all structure, usually for metadata, that a module writer might want to return. Default empty.
 
         Returns:
@@ -43,6 +45,7 @@ class CaptureAllResult:
         self.classifications = classifications
         self.detections = detections
         self.objects = objects
+        self.detections_3d = detections_3d
         self.extra = extra
 
 
@@ -69,6 +72,7 @@ class Vision(ServiceBase):
     - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
     - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
     - default_camera (str | None): The default camera used for *FromCamera and GetObjectPointClouds calls.
+    - detections_3d_supported (bool): GetDetections3D is implemented.
     """
 
     @abc.abstractmethod
@@ -79,6 +83,7 @@ class Vision(ServiceBase):
         return_classifications: bool = False,
         return_detections: bool = False,
         return_object_point_clouds: bool = False,
+        return_detections_3d: bool = False,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -105,6 +110,7 @@ class Vision(ServiceBase):
             return_classifications (bool): Ask the vision service to return its latest classifications
             return_detections (bool): Ask the vision service to return its latest detections
             return_object_point_clouds (bool): Ask the vision service to return its latest 3D segmentations
+            return_detections_3d (bool): Ask the vision service to return its latest 3D detections
 
         Returns:
             vision.CaptureAllResult: A class that stores all potential returns from the vision service.
@@ -245,6 +251,34 @@ class Vision(ServiceBase):
             List[viam.proto.service.vision.Classification]: The list of Classifications
 
         For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getclassifications>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_detections_3d(
+        self,
+        camera_name: str,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> List[Detection3D]:
+        """Get a list of 3D detections in the next image given a camera and a 3D object detector
+
+        ::
+
+            my_detector = VisionClient.from_robot(robot=machine, "my_detector")
+
+            # Get 3D detections for the next image from the specified camera
+            detections_3d = await my_detector.get_detections_3d("my_camera")
+
+        Args:
+            camera_name (str): The name of the camera to use for detection
+
+        Returns:
+            List[viam.proto.service.vision.Detection3D]: A list of 3D detections, each described as a tree of
+            transforms along with the class hypotheses for the detected object.
+
+        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getdetections3d>`_.
         """
         ...
 
