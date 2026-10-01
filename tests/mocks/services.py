@@ -433,7 +433,7 @@ from viam.proto.service.motion import (
 )
 from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
 from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
-from viam.proto.service.vision import Classification, Detection
+from viam.proto.service.vision import Classification, Detection, Detection3D
 from viam.services.discovery import Discovery
 from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
@@ -457,6 +457,7 @@ class MockVision(Vision):
         point_clouds: List[PointCloudObject],
         image: ViamImage,
         properties: Vision.Properties,
+        detections_3d: Optional[List[Detection3D]] = None,
     ):
         self.detectors = detectors
         self.detections = detections
@@ -466,6 +467,7 @@ class MockVision(Vision):
         self.point_clouds = point_clouds
         self.image = image
         self.properties = properties
+        self.detections_3d = detections_3d or []
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -487,6 +489,7 @@ class MockVision(Vision):
         return_classifications: bool = False,
         return_detections: bool = False,
         return_object_point_clouds: bool = False,
+        return_detections_3d: bool = False,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -502,6 +505,8 @@ class MockVision(Vision):
             result.detections = self.detections
         if return_object_point_clouds:
             result.objects = self.point_clouds
+        if return_detections_3d:
+            result.detections_3d = self.detections_3d
         return result
 
     async def get_detections_from_camera(
@@ -531,6 +536,13 @@ class MockVision(Vision):
         self.extra = extra
         self.timeout = timeout
         return self.classifications
+
+    async def get_detections_3d(
+        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Detection3D]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.detections_3d
 
     async def get_object_point_clouds(
         self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
