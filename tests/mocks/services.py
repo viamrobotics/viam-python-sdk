@@ -243,12 +243,16 @@ from viam.proto.app.data import (
     CreateBinaryDataSignedURLResponse,
     CreateIndexRequest,
     CreateIndexResponse,
+    CreateSequenceRequest,
+    CreateSequenceResponse,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
     DeleteIndexRequest,
     DeleteIndexResponse,
+    DeleteSequenceRequest,
+    DeleteSequenceResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     ExportTabularDataRequest,
@@ -259,9 +263,13 @@ from viam.proto.app.data import (
     GetLatestTabularDataResponse,
     GetSequenceBinaryDataRequest,
     GetSequenceBinaryDataResponse,
+    GetSequenceRequest,
+    GetSequenceResponse,
     Index,
     ListIndexesRequest,
     ListIndexesResponse,
+    ListSequencesRequest,
+    ListSequencesResponse,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -272,6 +280,7 @@ from viam.proto.app.data import (
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
+    Sequence as ProtoSequence,
     SequencesByDatasetIDRequest,
     SequencesByDatasetIDResponse,
     TabularData,
@@ -286,6 +295,8 @@ from viam.proto.app.data import (
     UnimplementedDataServiceBase,
     UpdateBoundingBoxRequest,
     UpdateBoundingBoxResponse,
+    UpdateSequenceRequest,
+    UpdateSequenceResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -1210,6 +1221,47 @@ class MockData(UnimplementedDataServiceBase):
         self.page_size = request.page_size
         # Return empty list for testing - tests can override this behavior
         await stream.send_message(GetSequenceBinaryDataResponse(data=[], next_page_token=""))
+
+    async def CreateSequence(self, stream: Stream[CreateSequenceRequest, CreateSequenceResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.part_id = request.part_id
+        self.resources = list(request.resources)
+        self.sequence_tags = list(request.sequence_tags)
+        self.start_time = request.start_time.ToDatetime() if request.HasField("start_time") else None
+        self.end_time = request.end_time.ToDatetime() if request.HasField("end_time") else None
+        await stream.send_message(CreateSequenceResponse(id="new-sequence-id"))
+
+    async def GetSequence(self, stream: Stream[GetSequenceRequest, GetSequenceResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sequence_id = request.id
+        await stream.send_message(GetSequenceResponse(sequence=ProtoSequence(id=request.id)))
+
+    async def UpdateSequence(self, stream: Stream[UpdateSequenceRequest, UpdateSequenceResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sequence_id = request.id
+        self.resources = list(request.resources)
+        self.sequence_tags = list(request.sequence_tags)
+        self.start_time = request.start_time.ToDatetime() if request.HasField("start_time") else None
+        self.end_time = request.end_time.ToDatetime() if request.HasField("end_time") else None
+        self.field_mask_paths = list(request.field_mask.paths)
+        await stream.send_message(UpdateSequenceResponse())
+
+    async def DeleteSequence(self, stream: Stream[DeleteSequenceRequest, DeleteSequenceResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sequence_id = request.id
+        await stream.send_message(DeleteSequenceResponse())
+
+    async def ListSequences(self, stream: Stream[ListSequencesRequest, ListSequencesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.page_token = request.page_token
+        self.page_size = request.page_size
+        await stream.send_message(ListSequencesResponse(sequences=[], next_page_token=""))
 
 
 class MockDataset(DatasetServiceBase):

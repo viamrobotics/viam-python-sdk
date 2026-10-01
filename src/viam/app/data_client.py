@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union, cast
 from typing import Sequence as TSequence
 
 import bson
+from google.protobuf.field_mask_pb2 import FieldMask
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
 from typing_extensions import Self
@@ -32,6 +33,8 @@ from viam.proto.app.data import (
     CreateBinaryDataSignedURLRequest,
     CreateBinaryDataSignedURLResponse,
     CreateIndexRequest,
+    CreateSequenceRequest,
+    CreateSequenceResponse,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
@@ -39,6 +42,7 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
     DeleteIndexRequest,
+    DeleteSequenceRequest,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     DeleteTabularFilter,
@@ -51,10 +55,14 @@ from viam.proto.app.data import (
     GetLatestTabularDataResponse,
     GetSequenceBinaryDataRequest,
     GetSequenceBinaryDataResponse,
+    GetSequenceRequest,
+    GetSequenceResponse,
     Index,
     IndexableCollection,
     ListIndexesRequest,
     ListIndexesResponse,
+    ListSequencesRequest,
+    ListSequencesResponse,
     Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -64,6 +72,7 @@ from viam.proto.app.data import (
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
     Sequence,
+    SequenceResourceFilter,
     SequencesByDatasetIDRequest,
     SequencesByDatasetIDResponse,
     TabularDataByFilterRequest,
@@ -77,6 +86,7 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
     UpdateBoundingBoxRequest,
+    UpdateSequenceRequest,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -2467,6 +2477,142 @@ class DataClient:
             request, metadata=self._metadata, timeout=timeout
         )
         return list(response.data), response.next_page_token
+
+    async def create_sequence(
+        self,
+        part_id: str,
+        resources: List[SequenceResourceFilter],
+        start_time: datetime,
+        end_time: datetime,
+        sequence_tags: Optional[List[str]] = None,
+        timeout: Optional[float] = None,
+    ) -> str:
+        """Create a sequence.
+
+        Args:
+            part_id (str): The ID of the part that the sequence belongs to.
+            resources (List[SequenceResourceFilter]): The resources (source identifiers) that the sequence includes.
+            start_time (datetime): The start of the time range the sequence applies to.
+            end_time (datetime): The end of the time range the sequence applies to.
+            sequence_tags (Optional[List[str]]): Optional tags to attach to the sequence.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            str: The ID of the newly created sequence.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createsequence>`_.
+        """
+        request = CreateSequenceRequest(part_id=part_id, resources=resources)
+        request.start_time.FromDatetime(start_time)
+        request.end_time.FromDatetime(end_time)
+        if sequence_tags is not None:
+            request.sequence_tags.extend(sequence_tags)
+        response: CreateSequenceResponse = await self._data_client.CreateSequence(request, metadata=self._metadata, timeout=timeout)
+        return response.id
+
+    async def get_sequence(self, id: str, timeout: Optional[float] = None) -> Sequence:
+        """Get a sequence by ID.
+
+        Args:
+            id (str): The ID of the sequence.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            Sequence: The requested sequence.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequence>`_.
+        """
+        request = GetSequenceRequest(id=id)
+        response: GetSequenceResponse = await self._data_client.GetSequence(request, metadata=self._metadata, timeout=timeout)
+        return response.sequence
+
+    async def update_sequence(
+        self,
+        id: str,
+        resources: Optional[List[SequenceResourceFilter]] = None,
+        sequence_tags: Optional[List[str]] = None,
+        start_time: Optional[datetime] = None,
+        end_time: Optional[datetime] = None,
+        timeout: Optional[float] = None,
+    ) -> None:
+        """Update a sequence's mutable fields. Only non-None fields are updated. Pass an empty list to clear ``sequence_tags``.
+
+        The ``field_mask`` is derived automatically from which arguments are non-None. At least one updatable field
+        (``resources``, ``sequence_tags``, ``start_time``, or ``end_time``) must be provided.
+
+        Args:
+            id (str): The ID of the sequence to update.
+            resources (Optional[List[SequenceResourceFilter]]): New resources for the sequence.
+            sequence_tags (Optional[List[str]]): New tags for the sequence.
+            start_time (Optional[datetime]): New start of the time range.
+            end_time (Optional[datetime]): New end of the time range.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Raises:
+            ValueError: If no updatable field is provided.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updatesequence>`_.
+        """
+        paths: List[str] = []
+        request = UpdateSequenceRequest(id=id)
+        if resources is not None:
+            request.resources.extend(resources)
+            paths.append("resources")
+        if sequence_tags is not None:
+            request.sequence_tags.extend(sequence_tags)
+            paths.append("sequence_tags")
+        if start_time is not None:
+            request.start_time.FromDatetime(start_time)
+            paths.append("start_time")
+        if end_time is not None:
+            request.end_time.FromDatetime(end_time)
+            paths.append("end_time")
+        if not paths:
+            raise ValueError("update_sequence requires at least one of: resources, sequence_tags, start_time, end_time")
+        request.field_mask.CopyFrom(FieldMask(paths=paths))
+        await self._data_client.UpdateSequence(request, metadata=self._metadata, timeout=timeout)
+
+    async def delete_sequence(self, id: str, timeout: Optional[float] = None) -> None:
+        """Delete a sequence by ID.
+
+        Args:
+            id (str): The ID of the sequence to delete.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletesequence>`_.
+        """
+        request = DeleteSequenceRequest(id=id)
+        await self._data_client.DeleteSequence(request, metadata=self._metadata, timeout=timeout)
+
+    async def list_sequences(
+        self,
+        organization_id: str,
+        page_token: Optional[str] = None,
+        page_size: Optional[int] = None,
+        timeout: Optional[float] = None,
+    ) -> Tuple[List[Sequence], str]:
+        """List sequences in an organization.
+
+        Args:
+            organization_id (str): The ID of the organization.
+            page_token (Optional[str]): Optional page token for pagination.
+            page_size (Optional[int]): Optional page size for pagination.
+            timeout (Optional[float]): An optional deadline for the call to complete in seconds.
+
+        Returns:
+            Tuple[List[Sequence], str]: A tuple containing:
+                - A list of sequences in the organization.
+                - The next page token (empty string if no more pages).
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listsequences>`_.
+        """
+        request = ListSequencesRequest(organization_id=organization_id)
+        if page_token is not None:
+            request.page_token = page_token
+        if page_size is not None:
+            request.page_size = page_size
+        response: ListSequencesResponse = await self._data_client.ListSequences(request, metadata=self._metadata, timeout=timeout)
+        return list(response.sequences), response.next_page_token
 
     @staticmethod
     def create_filter(
