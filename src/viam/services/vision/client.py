@@ -10,10 +10,13 @@ from viam.proto.service.vision import (
     CaptureAllFromCameraResponse,
     Classification,
     Detection,
+    Detection3D,
     GetClassificationsFromCameraRequest,
     GetClassificationsFromCameraResponse,
     GetClassificationsRequest,
     GetClassificationsResponse,
+    GetDetections3DRequest,
+    GetDetections3DResponse,
     GetDetectionsFromCameraRequest,
     GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
@@ -50,6 +53,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         return_classifications: bool = False,
         return_detections: bool = False,
         return_object_point_clouds: bool = False,
+        return_detections_3d: bool = False,
         *,
         extra: Mapping[str, ValueTypes] | None = None,
         timeout: float | None = None,
@@ -63,6 +67,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             return_classifications=return_classifications,
             return_detections=return_detections,
             return_object_point_clouds=return_object_point_clouds,
+            return_detections_3d=return_detections_3d,
             extra=dict_to_struct(extra),
         )
         response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout, metadata=md)
@@ -78,6 +83,8 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             result.detections = list(response.detections)
         if return_object_point_clouds:
             result.objects = list(response.objects)
+        if return_detections_3d:
+            result.detections_3d = list(response.detections_3d)
         return result
 
     async def get_detections_from_camera(
@@ -159,6 +166,19 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         )
         response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout, metadata=md)
         return list(response.classifications)
+
+    async def get_detections_3d(
+        self,
+        camera_name: str,
+        *,
+        extra: Mapping[str, ValueTypes] | None = None,
+        timeout: float | None = None,
+        **kwargs,
+    ) -> list[Detection3D]:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetDetections3DRequest(name=self.name, camera_name=camera_name, extra=dict_to_struct(extra))
+        response: GetDetections3DResponse = await self.client.GetDetections3D(request, timeout=timeout, metadata=md)
+        return list(response.detections_3d)
 
     async def get_object_point_clouds(
         self,
