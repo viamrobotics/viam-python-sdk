@@ -11,6 +11,8 @@ from typing_extensions import Self
 from viam import logging
 from viam.app._logs import _LogsStream, _LogsStreamWithIterator
 from viam.proto.app import (
+    AddFavoriteMachineRequest,
+    AddFavoriteMachineResponse,
     AddRoleRequest,
     APIKeyWithAuthorizations,
     AppServiceStub,
@@ -58,6 +60,7 @@ from viam.proto.app import (
     DeleteRobotRequest,
     DeprecateRegistryItemRequest,
     DeprecateRegistryItemVersionRequest,
+    FavoriteMachine,
     FragmentImport,
     FragmentImportList,
     GetDevicePushTokensRequest,
@@ -106,6 +109,8 @@ from viam.proto.app import (
     GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
+    ListFavoriteMachinesRequest,
+    ListFavoriteMachinesResponse,
     ListFragmentsRequest,
     ListFragmentsResponse,
     ListKeysRequest,
@@ -147,6 +152,8 @@ from viam.proto.app import (
     OrgDetails,
     RegistryItem,
     RegistryItemStatus,
+    RemoveFavoriteMachineRequest,
+    RemoveFavoriteMachineResponse,
     RemoveRoleRequest,
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
@@ -1887,6 +1894,66 @@ class AppClient:
         """
         request = DeleteRobotRequest(id=robot_id)
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
+
+    async def add_favorite_machine(self, machine_id: str, timeout: float | None = None) -> FavoriteMachine:
+        """Add a machine to the current user's favorites.
+
+        ::
+
+            favorite = await cloud.add_favorite_machine(machine_id="1a123456-x1yz-0ab0-a12xyzabc")
+
+        Args:
+            machine_id (str): ID of the machine to favorite.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
+                RPC call.
+
+        Raises:
+            GRPCError: If an invalid machine ID is passed.
+
+        Returns:
+            viam.proto.app.FavoriteMachine: The newly created favorite.
+        """
+        request = AddFavoriteMachineRequest(machine_id=machine_id)
+        response: AddFavoriteMachineResponse = await self._app_client.AddFavoriteMachine(request, metadata=self._metadata, timeout=timeout)
+        return response.favorite
+
+    async def remove_favorite_machine(self, machine_id: str, timeout: float | None = None) -> None:
+        """Remove a machine from the current user's favorites.
+
+        ::
+
+            await cloud.remove_favorite_machine(machine_id="1a123456-x1yz-0ab0-a12xyzabc")
+
+        Args:
+            machine_id (str): ID of the machine to remove from favorites.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
+                RPC call.
+
+        Raises:
+            GRPCError: If an invalid machine ID is passed.
+        """
+        request = RemoveFavoriteMachineRequest(machine_id=machine_id)
+        _: RemoveFavoriteMachineResponse = await self._app_client.RemoveFavoriteMachine(request, metadata=self._metadata, timeout=timeout)
+
+    async def list_favorite_machines(self, timeout: float | None = None) -> list[FavoriteMachine]:
+        """Get a list of the current user's favorite machines.
+
+        ::
+
+            favorites = await cloud.list_favorite_machines()
+
+        Args:
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
+                RPC call.
+
+        Returns:
+            list[viam.proto.app.FavoriteMachine]: The list of favorite machines.
+        """
+        request = ListFavoriteMachinesRequest()
+        response: ListFavoriteMachinesResponse = await self._app_client.ListFavoriteMachines(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return list(response.favorites)
 
     async def list_fragments(
         self, org_id: str, show_public: bool = True, visibilities: list[Fragment.Visibility] | None = None
