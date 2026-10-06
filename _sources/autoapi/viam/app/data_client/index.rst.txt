@@ -2056,6 +2056,119 @@ Module Contents
 
 
 
+   .. py:method:: create_sequence(part_id: str, resources: List[viam.proto.app.data.SequenceResourceFilter], start_time: datetime.datetime, end_time: datetime.datetime, sequence_tags: Optional[List[str]] = None, timeout: Optional[float] = None) -> str
+      :async:
+
+
+      Create a sequence.
+
+      :param part_id: The ID of the part that the sequence belongs to.
+      :type part_id: str
+      :param resources: The resources (source identifiers) that the sequence includes.
+      :type resources: List[SequenceResourceFilter]
+      :param start_time: The start of the time range the sequence applies to.
+      :type start_time: datetime
+      :param end_time: The end of the time range the sequence applies to.
+      :type end_time: datetime
+      :param sequence_tags: Optional tags to attach to the sequence.
+      :type sequence_tags: Optional[List[str]]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns: The ID of the newly created sequence.
+      :rtype: str
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createsequence>`_.
+
+
+
+   .. py:method:: get_sequence(id: str, timeout: Optional[float] = None) -> viam.proto.app.data.Sequence
+      :async:
+
+
+      Get a sequence by ID.
+
+      :param id: The ID of the sequence.
+      :type id: str
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns: The requested sequence.
+      :rtype: Sequence
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequence>`_.
+
+
+
+   .. py:method:: update_sequence(id: str, resources: Optional[List[viam.proto.app.data.SequenceResourceFilter]] = None, sequence_tags: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, timeout: Optional[float] = None) -> None
+      :async:
+
+
+      Update a sequence's mutable fields. Only non-None fields are updated. Pass an empty list to clear ``sequence_tags``.
+
+      The ``field_mask`` is derived automatically from which arguments are non-None. At least one updatable field
+      (``resources``, ``sequence_tags``, ``start_time``, or ``end_time``) must be provided.
+
+      :param id: The ID of the sequence to update.
+      :type id: str
+      :param resources: New resources for the sequence.
+      :type resources: Optional[List[SequenceResourceFilter]]
+      :param sequence_tags: New tags for the sequence.
+      :type sequence_tags: Optional[List[str]]
+      :param start_time: New start of the time range.
+      :type start_time: Optional[datetime]
+      :param end_time: New end of the time range.
+      :type end_time: Optional[datetime]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :raises ValueError: If no updatable field is provided.
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updatesequence>`_.
+
+
+
+   .. py:method:: delete_sequence(id: str, timeout: Optional[float] = None) -> None
+      :async:
+
+
+      Delete a sequence by ID.
+
+      :param id: The ID of the sequence to delete.
+      :type id: str
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletesequence>`_.
+
+
+
+   .. py:method:: list_sequences(organization_id: str, page_token: Optional[str] = None, page_size: Optional[int] = None, timeout: Optional[float] = None) -> Tuple[List[viam.proto.app.data.Sequence], str]
+      :async:
+
+
+      List sequences in an organization.
+
+      :param organization_id: The ID of the organization.
+      :type organization_id: str
+      :param page_token: Optional page token for pagination.
+      :type page_token: Optional[str]
+      :param page_size: Optional page size for pagination.
+      :type page_size: Optional[int]
+      :param timeout: An optional deadline for the call to complete in seconds.
+      :type timeout: Optional[float]
+
+      :returns:
+
+                A tuple containing:
+                    - A list of sequences in the organization.
+                    - The next page token (empty string if no more pages).
+      :rtype: Tuple[List[Sequence], str]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listsequences>`_.
+
+
+
    .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None, dataset_id: Optional[str] = None) -> viam.proto.app.data.Filter
       :staticmethod:
 

@@ -388,7 +388,7 @@ Package Contents
       Name of a camera
 
 
-.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: Global___IntrinsicParameters | None = ..., distortion_parameters: Global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ..., extrinsic_parameters: Global___ExtrinsicParameters | None = ...)
+.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: Global___IntrinsicParameters | None = ..., distortion_parameters: Global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ..., extrinsic_parameters: Global___ExtrinsicParameters | None = ..., default_reference_frame: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -410,6 +410,13 @@ Package Contents
       :type:  float
 
       Optional camera frame rate for image capture timing
+
+
+   .. py:attribute:: default_reference_frame
+      :type:  str
+
+      Name of the reference frame that points returned by GetPointCloud are expressed in
+      An empty string means the frame is unknown; the frame is not guaranteed to exist in the frame system
 
 
    .. py:method:: intrinsic_parameters() -> Global___IntrinsicParameters

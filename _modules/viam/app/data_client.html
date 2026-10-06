@@ -94,6 +94,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span> <span class="k">as</span> <span class="n">TSequence</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">bson</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.protobuf.field_mask_pb2</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldMask</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">google.protobuf.struct_pb2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">grpclib.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
@@ -120,6 +121,8 @@
     <span class="n">CreateBinaryDataSignedURLRequest</span><span class="p">,</span>
     <span class="n">CreateBinaryDataSignedURLResponse</span><span class="p">,</span>
     <span class="n">CreateIndexRequest</span><span class="p">,</span>
+    <span class="n">CreateSequenceRequest</span><span class="p">,</span>
+    <span class="n">CreateSequenceResponse</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
     <span class="n">DataServiceStub</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">,</span>
@@ -127,6 +130,7 @@
     <span class="n">DeleteBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByIDsResponse</span><span class="p">,</span>
     <span class="n">DeleteIndexRequest</span><span class="p">,</span>
+    <span class="n">DeleteSequenceRequest</span><span class="p">,</span>
     <span class="n">DeleteTabularDataRequest</span><span class="p">,</span>
     <span class="n">DeleteTabularDataResponse</span><span class="p">,</span>
     <span class="n">DeleteTabularFilter</span><span class="p">,</span>
@@ -139,10 +143,14 @@
     <span class="n">GetLatestTabularDataResponse</span><span class="p">,</span>
     <span class="n">GetSequenceBinaryDataRequest</span><span class="p">,</span>
     <span class="n">GetSequenceBinaryDataResponse</span><span class="p">,</span>
+    <span class="n">GetSequenceRequest</span><span class="p">,</span>
+    <span class="n">GetSequenceResponse</span><span class="p">,</span>
     <span class="n">Index</span><span class="p">,</span>
     <span class="n">IndexableCollection</span><span class="p">,</span>
     <span class="n">ListIndexesRequest</span><span class="p">,</span>
     <span class="n">ListIndexesResponse</span><span class="p">,</span>
+    <span class="n">ListSequencesRequest</span><span class="p">,</span>
+    <span class="n">ListSequencesResponse</span><span class="p">,</span>
     <span class="n">Order</span><span class="p">,</span>
     <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">,</span>
@@ -152,6 +160,7 @@
     <span class="n">RemoveTagsFromBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByIDsResponse</span><span class="p">,</span>
     <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">SequenceResourceFilter</span><span class="p">,</span>
     <span class="n">SequencesByDatasetIDRequest</span><span class="p">,</span>
     <span class="n">SequencesByDatasetIDResponse</span><span class="p">,</span>
     <span class="n">TabularDataByFilterRequest</span><span class="p">,</span>
@@ -165,6 +174,7 @@
     <span class="n">TagsByFilterRequest</span><span class="p">,</span>
     <span class="n">TagsByFilterResponse</span><span class="p">,</span>
     <span class="n">UpdateBoundingBoxRequest</span><span class="p">,</span>
+    <span class="n">UpdateSequenceRequest</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.datapipelines</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CreateDataPipelineRequest</span><span class="p">,</span>
@@ -2748,6 +2758,157 @@
             <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span></div>
+
+
+<div class="viewcode-block" id="DataClient.create_sequence">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_sequence">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_sequence</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">resources</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SequenceResourceFilter</span><span class="p">],</span>
+        <span class="n">start_time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+        <span class="n">end_time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+        <span class="n">sequence_tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a sequence.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): The ID of the part that the sequence belongs to.</span>
+<span class="sd">            resources (List[SequenceResourceFilter]): The resources (source identifiers) that the sequence includes.</span>
+<span class="sd">            start_time (datetime): The start of the time range the sequence applies to.</span>
+<span class="sd">            end_time (datetime): The end of the time range the sequence applies to.</span>
+<span class="sd">            sequence_tags (Optional[List[str]]): Optional tags to attach to the sequence.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The ID of the newly created sequence.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createsequence&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateSequenceRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="n">resources</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sequence_tags</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">sequence_tags</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sequence_tags</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateSequenceResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">CreateSequence</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
+
+
+<div class="viewcode-block" id="DataClient.get_sequence">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_sequence">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a sequence by ID.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the sequence.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Sequence: The requested sequence.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getsequence&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetSequenceRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetSequenceResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetSequence</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">sequence</span></div>
+
+
+<div class="viewcode-block" id="DataClient.update_sequence">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.update_sequence">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_sequence</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">resources</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SequenceResourceFilter</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sequence_tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a sequence&#39;s mutable fields. Only non-None fields are updated. Pass an empty list to clear ``sequence_tags``.</span>
+
+<span class="sd">        The ``field_mask`` is derived automatically from which arguments are non-None. At least one updatable field</span>
+<span class="sd">        (``resources``, ``sequence_tags``, ``start_time``, or ``end_time``) must be provided.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the sequence to update.</span>
+<span class="sd">            resources (Optional[List[SequenceResourceFilter]]): New resources for the sequence.</span>
+<span class="sd">            sequence_tags (Optional[List[str]]): New tags for the sequence.</span>
+<span class="sd">            start_time (Optional[datetime]): New start of the time range.</span>
+<span class="sd">            end_time (Optional[datetime]): New end of the time range.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If no updatable field is provided.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#updatesequence&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">paths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateSequenceRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resources</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">resources</span><span class="p">)</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;resources&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sequence_tags</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">sequence_tags</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sequence_tags</span><span class="p">)</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;sequence_tags&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">start_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;start_time&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">end_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;update_sequence requires at least one of: resources, sequence_tags, start_time, end_time&quot;</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">field_mask</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span><span class="n">FieldMask</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">paths</span><span class="p">))</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">UpdateSequence</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataClient.delete_sequence">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_sequence">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a sequence by ID.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the sequence to delete.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletesequence&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteSequenceRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteSequence</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataClient.list_sequences">
+<a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_sequences">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_sequences</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">page_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">page_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Sequence</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List sequences in an organization.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization.</span>
+<span class="sd">            page_token (Optional[str]): Optional page token for pagination.</span>
+<span class="sd">            page_size (Optional[int]): Optional page size for pagination.</span>
+<span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[List[Sequence], str]: A tuple containing:</span>
+<span class="sd">                - A list of sequences in the organization.</span>
+<span class="sd">                - The next page token (empty string if no more pages).</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listsequences&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListSequencesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">page_token</span> <span class="o">=</span> <span class="n">page_token</span>
+        <span class="k">if</span> <span class="n">page_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">page_size</span> <span class="o">=</span> <span class="n">page_size</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListSequencesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ListSequences</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">sequences</span><span class="p">),</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span></div>
 
 
 <div class="viewcode-block" id="DataClient.create_filter">

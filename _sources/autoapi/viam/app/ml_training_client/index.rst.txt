@@ -98,7 +98,7 @@ Module Contents
 
 
 
-   .. py:method:: submit_custom_training_job(org_id: str, dataset_id: str, registry_item_id: str, registry_item_version: str, model_name: str, model_version: str) -> str
+   .. py:method:: submit_custom_training_job(org_id: str, dataset_id: str, registry_item_id: str, registry_item_version: str, model_name: str, model_version: str, container_id: str = '') -> str
       :async:
 
 
@@ -127,6 +127,9 @@ Module Contents
       :type model_name: str
       :param model_version: the model version.
       :type model_version: str
+      :param container_id: the ID of the custom training container to run the job in. If unspecified, the training script's
+                           default container is used.
+      :type container_id: str
 
       :returns: the ID of the training job.
       :rtype: str
@@ -217,6 +220,96 @@ Module Contents
       :type id: str
 
       For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecompletedtrainingjob>`_.
+
+
+
+   .. py:method:: list_containers(org_id: str) -> List[viam.proto.app.mltraining.Container]
+      :async:
+
+
+      List the training containers available to an organization.
+
+      ::
+
+          containers = await ml_training_client.list_containers(
+              org_id="<organization-id>")
+
+      :param org_id: the ID of the org to list available training containers for.
+      :type org_id: str
+
+      :returns: the list of available training containers.
+      :rtype: List[viam.proto.app.mltraining.Container]
+
+      For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#listcontainers>`_.
+
+
+
+   .. py:method:: get_container(id: str) -> viam.proto.app.mltraining.Container
+      :async:
+
+
+      Get a training container by ID.
+
+      ::
+
+          container = await ml_training_client.get_container(
+              id="<container-id>")
+
+      :param id: the ID of the requested training container.
+      :type id: str
+
+      :returns: the training container.
+      :rtype: viam.proto.app.mltraining.Container
+
+      For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#getcontainer>`_.
+
+
+
+   .. py:method:: register_custom_training_container(org_id: str, image_uri: str, description: str = '') -> str
+      :async:
+
+
+      Register a custom training container for an organization.
+
+      ::
+
+          container_id = await ml_training_client.register_custom_training_container(
+              org_id="<organization-id>",
+              image_uri="docker.io/library/my-training-image:latest",
+              description="<my-training-container>"
+          )
+
+      :param org_id: the ID of the org to register the custom training container to.
+      :type org_id: str
+      :param image_uri: the Docker Hub reference of the training container image.
+      :type image_uri: str
+      :param description: a description of the training container, used as its display name.
+      :type description: str
+
+      :returns: the ID of the registered training container.
+      :rtype: str
+
+      For more information, see
+      `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#registercustomtrainingcontainer>`_.
+
+
+
+   .. py:method:: delete_custom_training_container(id: str) -> None
+      :async:
+
+
+      Delete a custom training container.
+
+      ::
+
+          await ml_training_client.delete_custom_training_container(
+              id="<container-id>")
+
+      :param id: the ID of the custom training container to delete.
+      :type id: str
+
+      For more information, see
+      `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecustomtrainingcontainer>`_.
 
 
 

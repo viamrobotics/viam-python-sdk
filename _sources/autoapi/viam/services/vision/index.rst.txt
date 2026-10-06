@@ -168,7 +168,7 @@ Package Contents
    .. py:attribute:: channel
 
 
-   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> viam.services.vision.vision.CaptureAllResult
+   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, return_detections_3d: bool = False, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> viam.services.vision.vision.CaptureAllResult
       :async:
 
 
@@ -198,6 +198,8 @@ Package Contents
       :type return_detections: bool
       :param return_object_point_clouds: Ask the vision service to return its latest 3D segmentations
       :type return_object_point_clouds: bool
+      :param return_detections_3d: Ask the vision service to return its latest 3D detections
+      :type return_detections_3d: bool
 
       :returns: A class that stores all potential returns from the vision service.
                 It can  return the image from the camera along with its associated detections, classifications,
@@ -320,6 +322,30 @@ Package Contents
       :rtype: List[viam.proto.service.vision.Classification]
 
       For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getclassifications>`_.
+
+
+
+   .. py:method:: get_detections_3d(camera_name: str, *, extra: collections.abc.Mapping[str, viam.utils.ValueTypes] | None = None, timeout: float | None = None, **kwargs) -> list[viam.proto.service.vision.Detection3D]
+      :async:
+
+
+      Get a list of 3D detections in the next image given a camera and a 3D object detector
+
+      ::
+
+          my_detector = VisionClient.from_robot(robot=machine, "my_detector")
+
+          # Get 3D detections for the next image from the specified camera
+          detections_3d = await my_detector.get_detections_3d("my_camera")
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+
+      :returns: A list of 3D detections, each described as a tree of
+                transforms along with the class hypotheses for the detected object.
+      :rtype: List[viam.proto.service.vision.Detection3D]
+
+      For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getdetections3d>`_.
 
 
 
@@ -502,7 +528,7 @@ Package Contents
 
 
 
-.. py:class:: CaptureAllResult(image: Optional[viam.media.video.ViamImage] = None, classifications: Optional[List[viam.proto.service.vision.Classification]] = None, detections: Optional[List[viam.proto.service.vision.Detection]] = None, objects: Optional[List[viam.proto.common.PointCloudObject]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None)
+.. py:class:: CaptureAllResult(image: Optional[viam.media.video.ViamImage] = None, classifications: Optional[List[viam.proto.service.vision.Classification]] = None, detections: Optional[List[viam.proto.service.vision.Detection]] = None, objects: Optional[List[viam.proto.common.PointCloudObject]] = None, detections_3d: Optional[List[viam.proto.service.vision.Detection3D]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None)
 
    CaptureAllResult represents the collection of things that you have requested from the
    CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
@@ -528,6 +554,11 @@ Package Contents
 
 
    .. py:attribute:: objects
+      :value: None
+
+
+
+   .. py:attribute:: detections_3d
       :value: None
 
 
@@ -567,9 +598,10 @@ Package Contents
       - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
       - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
       - default_camera (str | None): The default camera used for *FromCamera and GetObjectPointClouds calls.
+      - detections_3d_supported (bool): GetDetections3D is implemented.
 
 
-   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> CaptureAllResult
+   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, return_detections_3d: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> CaptureAllResult
       :abstractmethod:
 
       :async:
@@ -601,6 +633,8 @@ Package Contents
       :type return_detections: bool
       :param return_object_point_clouds: Ask the vision service to return its latest 3D segmentations
       :type return_object_point_clouds: bool
+      :param return_detections_3d: Ask the vision service to return its latest 3D detections
+      :type return_detections_3d: bool
 
       :returns: A class that stores all potential returns from the vision service.
                 It can  return the image from the camera along with its associated detections, classifications,
@@ -731,6 +765,32 @@ Package Contents
       :rtype: List[viam.proto.service.vision.Classification]
 
       For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getclassifications>`_.
+
+
+
+   .. py:method:: get_detections_3d(camera_name: str, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection3D]
+      :abstractmethod:
+
+      :async:
+
+
+      Get a list of 3D detections in the next image given a camera and a 3D object detector
+
+      ::
+
+          my_detector = VisionClient.from_robot(robot=machine, "my_detector")
+
+          # Get 3D detections for the next image from the specified camera
+          detections_3d = await my_detector.get_detections_3d("my_camera")
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+
+      :returns: A list of 3D detections, each described as a tree of
+                transforms along with the class hypotheses for the detected object.
+      :rtype: List[viam.proto.service.vision.Detection3D]
+
+      For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getdetections3d>`_.
 
 
 

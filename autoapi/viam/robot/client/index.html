@@ -85,6 +85,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.cancel_operation"><code class="docutils literal notranslate"><span class="pre">RobotClient.cancel_operation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.block_for_operation"><code class="docutils literal notranslate"><span class="pre">RobotClient.block_for_operation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_frame_system_config()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_pose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pcd"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pcd()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_models_from_modules"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_models_from_modules()</span></code></a></li>
@@ -598,6 +599,40 @@ has finished or has been cancelled.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.FrameSystemConfig" title="viam.proto.robot.FrameSystemConfig">viam.proto.robot.FrameSystemConfig</a>]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_pose">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supplemental_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_pose" title="Link to this definition"></a></dt>
+<dd><p>Get the pose of a component in the machine’s frame system, expressed in a destination reference frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the pose of &quot;my_gripper&quot; relative to the &quot;world&quot; reference frame.</span>
+<span class="n">gripper_pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gripper pose in world: </span><span class="si">{</span><span class="n">gripper_pose</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the same pose relative to the origin frame of &quot;my_arm&quot;.</span>
+<span class="n">gripper_pose_in_arm</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">,</span> <span class="n">destination_frame</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<em>str</em>) – The name of the component whose pose should be returned.</p></li>
+<li><p><strong>destination_frame</strong> (<em>str</em>) – The name of the reference frame to express the pose in. An empty string defaults to <code class="docutils literal notranslate"><span class="pre">world</span></code>.</p></li>
+<li><p><strong>supplemental_transforms</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><em>viam.proto.common.Transform</em></a><em>]</em><em>]</em>) – Transforms used to augment the machine’s frame system
+while computing the pose.</p></li>
+<li><p><strong>extra</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Extra options to pass to the underlying RPC call.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the
+underlying RPC call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The pose of the component and the reference frame it is expressed in.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame">PoseInFrame</a></p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>

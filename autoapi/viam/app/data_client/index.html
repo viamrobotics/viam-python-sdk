@@ -178,6 +178,11 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.remove_sequences_from_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.remove_sequences_from_dataset()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.sequences_by_dataset_id"><code class="docutils literal notranslate"><span class="pre">DataClient.sequences_by_dataset_id()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_sequence_binary_data"><code class="docutils literal notranslate"><span class="pre">DataClient.get_sequence_binary_data()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_sequence"><code class="docutils literal notranslate"><span class="pre">DataClient.create_sequence()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_sequence"><code class="docutils literal notranslate"><span class="pre">DataClient.get_sequence()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.update_sequence"><code class="docutils literal notranslate"><span class="pre">DataClient.update_sequence()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_sequence"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_sequence()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_sequences"><code class="docutils literal notranslate"><span class="pre">DataClient.list_sequences()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.create_filter()</span></code></a></li>
 </ul>
 </li>
@@ -2304,6 +2309,121 @@ Maximum allowed is 10080 minutes (7 days).</p></li>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.create_sequence">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">create_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.SequenceResourceFilter" title="viam.proto.app.data.SequenceResourceFilter"><span class="pre">viam.proto.app.data.SequenceResourceFilter</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.create_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.create_sequence" title="Link to this definition"></a></dt>
+<dd><p>Create a sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part_id</strong> (<em>str</em>) – The ID of the part that the sequence belongs to.</p></li>
+<li><p><strong>resources</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.SequenceResourceFilter" title="viam.gen.app.data.v1.data_pb2.SequenceResourceFilter"><em>SequenceResourceFilter</em></a><em>]</em>) – The resources (source identifiers) that the sequence includes.</p></li>
+<li><p><strong>start_time</strong> (<em>datetime</em>) – The start of the time range the sequence applies to.</p></li>
+<li><p><strong>end_time</strong> (<em>datetime</em>) – The end of the time range the sequence applies to.</p></li>
+<li><p><strong>sequence_tags</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional tags to attach to the sequence.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ID of the newly created sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#createsequence">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.get_sequence">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Sequence" title="viam.proto.app.data.Sequence"><span class="pre">viam.proto.app.data.Sequence</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.get_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.get_sequence" title="Link to this definition"></a></dt>
+<dd><p>Get a sequence by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The ID of the sequence.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The requested sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence">Sequence</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#getsequence">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.update_sequence">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">update_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.SequenceResourceFilter" title="viam.proto.app.data.SequenceResourceFilter"><span class="pre">viam.proto.app.data.SequenceResourceFilter</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.update_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.update_sequence" title="Link to this definition"></a></dt>
+<dd><p>Update a sequence’s mutable fields. Only non-None fields are updated. Pass an empty list to clear <code class="docutils literal notranslate"><span class="pre">sequence_tags</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">field_mask</span></code> is derived automatically from which arguments are non-None. At least one updatable field
+(<code class="docutils literal notranslate"><span class="pre">resources</span></code>, <code class="docutils literal notranslate"><span class="pre">sequence_tags</span></code>, <code class="docutils literal notranslate"><span class="pre">start_time</span></code>, or <code class="docutils literal notranslate"><span class="pre">end_time</span></code>) must be provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The ID of the sequence to update.</p></li>
+<li><p><strong>resources</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.SequenceResourceFilter" title="viam.gen.app.data.v1.data_pb2.SequenceResourceFilter"><em>SequenceResourceFilter</em></a><em>]</em><em>]</em>) – New resources for the sequence.</p></li>
+<li><p><strong>sequence_tags</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – New tags for the sequence.</p></li>
+<li><p><strong>start_time</strong> (<em>Optional</em><em>[</em><em>datetime</em><em>]</em>) – New start of the time range.</p></li>
+<li><p><strong>end_time</strong> (<em>Optional</em><em>[</em><em>datetime</em><em>]</em>) – New end of the time range.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If no updatable field is provided.</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#updatesequence">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.delete_sequence">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">delete_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_sequence" title="Link to this definition"></a></dt>
+<dd><p>Delete a sequence by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The ID of the sequence to delete.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#deletesequence">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.list_sequences">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Sequence" title="viam.proto.app.data.Sequence"><span class="pre">viam.proto.app.data.Sequence</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.list_sequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.list_sequences" title="Link to this definition"></a></dt>
+<dd><p>List sequences in an organization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization.</p></li>
+<li><p><strong>page_token</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional page token for pagination.</p></li>
+<li><p><strong>page_size</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Optional page size for pagination.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An optional deadline for the call to complete in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>A list of sequences in the organization.</p></li>
+<li><p>The next page token (empty string if no more pages).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[List[<a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence">Sequence</a>], str]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#listsequences">Data Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">

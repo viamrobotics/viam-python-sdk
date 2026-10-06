@@ -98,6 +98,8 @@
     <span class="n">GetClassificationsFromCameraResponse</span><span class="p">,</span>
     <span class="n">GetClassificationsRequest</span><span class="p">,</span>
     <span class="n">GetClassificationsResponse</span><span class="p">,</span>
+    <span class="n">GetDetections3DRequest</span><span class="p">,</span>
+    <span class="n">GetDetections3DResponse</span><span class="p">,</span>
     <span class="n">GetDetectionsFromCameraRequest</span><span class="p">,</span>
     <span class="n">GetDetectionsFromCameraResponse</span><span class="p">,</span>
     <span class="n">GetDetectionsRequest</span><span class="p">,</span>
@@ -137,6 +139,7 @@
             <span class="n">return_classifications</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_classifications</span><span class="p">,</span>
             <span class="n">return_detections</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_detections</span><span class="p">,</span>
             <span class="n">return_object_point_clouds</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_object_point_clouds</span><span class="p">,</span>
+            <span class="n">return_detections_3d</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_detections_3d</span><span class="p">,</span>
             <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span>
             <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
         <span class="p">)</span>
@@ -149,6 +152,7 @@
             <span class="n">detections</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">detections</span><span class="p">,</span>
             <span class="n">classifications</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">classifications</span><span class="p">,</span>
             <span class="n">objects</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span>
+            <span class="n">detections_3d</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">detections_3d</span><span class="p">,</span>
             <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">extra</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">extra</span> <span class="k">else</span> <span class="p">{}),</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
@@ -214,6 +218,19 @@
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="VisionRPCService.GetDetections3D">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/vision/service/index.html#viam.services.vision.service.VisionRPCService.GetDetections3D">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">GetDetections3D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetDetections3DRequest</span><span class="p">,</span> <span class="n">GetDetections3DResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">vision</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections_3d</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetDetections3DResponse</span><span class="p">(</span><span class="n">detections_3d</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="VisionRPCService.GetObjectPointClouds">
 <a class="viewcode-back" href="../../../../autoapi/viam/services/vision/service/index.html#viam.services.vision.service.VisionRPCService.GetObjectPointClouds">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">GetObjectPointClouds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetObjectPointCloudsRequest</span><span class="p">,</span> <span class="n">GetObjectPointCloudsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -242,6 +259,7 @@
             <span class="n">detections_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span><span class="p">,</span>
             <span class="n">object_point_clouds_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">object_point_clouds_supported</span><span class="p">,</span>
             <span class="n">default_camera</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">default_camera</span> <span class="k">if</span> <span class="n">properties</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;default_camera&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">detections_3d_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">detections_3d_supported</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 

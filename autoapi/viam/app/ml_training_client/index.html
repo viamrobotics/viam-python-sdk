@@ -72,6 +72,10 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.list_training_jobs"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.list_training_jobs()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.cancel_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.cancel_training_job()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.delete_completed_training_job()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.list_containers"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.list_containers()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.get_container"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.get_container()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.register_custom_training_container"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.register_custom_training_container()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.delete_custom_training_container"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.delete_custom_training_container()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +220,7 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">submit_custom_training_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.submit_custom_training_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">submit_custom_training_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.submit_custom_training_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job" title="Link to this definition"></a></dt>
 <dd><p>Submit a custom training job.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">job_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">submit_custom_training_job</span><span class="p">(</span>
     <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;organization-id&gt;&quot;</span><span class="p">,</span>
@@ -237,6 +241,8 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 <li><p><strong>registry_item_version</strong> (<em>str</em>) – the version of the training script from the registry.</p></li>
 <li><p><strong>model_name</strong> (<em>str</em>) – the model name.</p></li>
 <li><p><strong>model_version</strong> (<em>str</em>) – the model version.</p></li>
+<li><p><strong>container_id</strong> (<em>str</em>) – the ID of the custom training container to run the job in. If unspecified, the training script’s
+default container is used.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -332,6 +338,97 @@ If unspecified, all training jobs will be returned.</p></li>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecompletedtrainingjob">ML Training Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.list_containers">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_containers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/mltraining/index.html#viam.proto.app.mltraining.Container" title="viam.proto.app.mltraining.Container"><span class="pre">viam.proto.app.mltraining.Container</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.list_containers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.list_containers" title="Link to this definition"></a></dt>
+<dd><p>List the training containers available to an organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">containers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">list_containers</span><span class="p">(</span>
+    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;organization-id&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – the ID of the org to list available training containers for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of available training containers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/app/mltraining/index.html#viam.proto.app.mltraining.Container" title="viam.proto.app.mltraining.Container">viam.proto.app.mltraining.Container</a>]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/ml-training-client/#listcontainers">ML Training Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.get_container">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/mltraining/index.html#viam.proto.app.mltraining.Container" title="viam.proto.app.mltraining.Container"><span class="pre">viam.proto.app.mltraining.Container</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.get_container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.get_container" title="Link to this definition"></a></dt>
+<dd><p>Get a training container by ID.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;&lt;container-id&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – the ID of the requested training container.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the training container.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../proto/app/mltraining/index.html#viam.proto.app.mltraining.Container" title="viam.proto.app.mltraining.Container">viam.proto.app.mltraining.Container</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/ml-training-client/#getcontainer">ML Training Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.register_custom_training_container">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">register_custom_training_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.register_custom_training_container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.register_custom_training_container" title="Link to this definition"></a></dt>
+<dd><p>Register a custom training container for an organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">register_custom_training_container</span><span class="p">(</span>
+    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;organization-id&gt;&quot;</span><span class="p">,</span>
+    <span class="n">image_uri</span><span class="o">=</span><span class="s2">&quot;docker.io/library/my-training-image:latest&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&lt;my-training-container&gt;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>org_id</strong> (<em>str</em>) – the ID of the org to register the custom training container to.</p></li>
+<li><p><strong>image_uri</strong> (<em>str</em>) – the Docker Hub reference of the training container image.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – a description of the training container, used as its display name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the ID of the registered training container.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>For more information, see
+<a class="reference external" href="https://docs.viam.com/dev/reference/apis/ml-training-client/#registercustomtrainingcontainer">ML Training Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.delete_custom_training_container">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">delete_custom_training_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.delete_custom_training_container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.delete_custom_training_container" title="Link to this definition"></a></dt>
+<dd><p>Delete a custom training container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">delete_custom_training_container</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;&lt;container-id&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – the ID of the custom training container to delete.</p>
+</dd>
+</dl>
+<p>For more information, see
+<a class="reference external" href="https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecustomtrainingcontainer">ML Training Client API</a>.</p>
 </dd></dl>
 
 </dd></dl>

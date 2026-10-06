@@ -93,13 +93,21 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app.mltraining</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CancelTrainingJobRequest</span><span class="p">,</span>
+    <span class="n">Container</span><span class="p">,</span>
     <span class="n">DeleteCompletedTrainingJobRequest</span><span class="p">,</span>
+    <span class="n">DeleteCustomTrainingContainerRequest</span><span class="p">,</span>
+    <span class="n">GetContainerRequest</span><span class="p">,</span>
+    <span class="n">GetContainerResponse</span><span class="p">,</span>
     <span class="n">GetTrainingJobRequest</span><span class="p">,</span>
     <span class="n">GetTrainingJobResponse</span><span class="p">,</span>
+    <span class="n">ListContainersRequest</span><span class="p">,</span>
+    <span class="n">ListContainersResponse</span><span class="p">,</span>
     <span class="n">ListTrainingJobsRequest</span><span class="p">,</span>
     <span class="n">ListTrainingJobsResponse</span><span class="p">,</span>
     <span class="n">MLTrainingServiceStub</span><span class="p">,</span>
     <span class="n">ModelType</span><span class="p">,</span>
+    <span class="n">RegisterCustomTrainingContainerRequest</span><span class="p">,</span>
+    <span class="n">RegisterCustomTrainingContainerResponse</span><span class="p">,</span>
     <span class="n">SubmitCustomTrainingJobRequest</span><span class="p">,</span>
     <span class="n">SubmitCustomTrainingJobResponse</span><span class="p">,</span>
     <span class="n">SubmitTrainingJobRequest</span><span class="p">,</span>
@@ -214,7 +222,14 @@
 <div class="viewcode-block" id="MLTrainingClient.submit_custom_training_job">
 <a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">[docs]</a>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">submit_custom_training_job</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">registry_item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">registry_item_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">container_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a custom training job.</span>
 
@@ -236,6 +251,8 @@
 <span class="sd">            registry_item_version (str): the version of the training script from the registry.</span>
 <span class="sd">            model_name (str): the model name.</span>
 <span class="sd">            model_version (str): the model version.</span>
+<span class="sd">            container_id (str): the ID of the custom training container to run the job in. If unspecified, the training script&#39;s</span>
+<span class="sd">                default container is used.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: the ID of the training job.</span>
@@ -250,6 +267,7 @@
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
             <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
             <span class="n">model_version</span><span class="o">=</span><span class="n">model_version</span><span class="p">,</span>
+            <span class="n">container_id</span><span class="o">=</span><span class="n">container_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">SubmitCustomTrainingJobResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">SubmitCustomTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
@@ -354,6 +372,107 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteCompletedTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">DeleteCompletedTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MLTrainingClient.list_containers">
+<a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.list_containers">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_containers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Container</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List the training containers available to an organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            containers = await ml_training_client.list_containers(</span>
+<span class="sd">                org_id=&quot;&lt;organization-id&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): the ID of the org to list available training containers for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.proto.app.mltraining.Container]: the list of available training containers.</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#listcontainers&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListContainersRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListContainersResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">ListContainers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">containers</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MLTrainingClient.get_container">
+<a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.get_container">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a training container by ID.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            container = await ml_training_client.get_container(</span>
+<span class="sd">                id=&quot;&lt;container-id&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): the ID of the requested training container.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.app.mltraining.Container: the training container.</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#getcontainer&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetContainerRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetContainerResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">GetContainer</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">container</span></div>
+
+
+<div class="viewcode-block" id="MLTrainingClient.register_custom_training_container">
+<a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.register_custom_training_container">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_custom_training_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a custom training container for an organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            container_id = await ml_training_client.register_custom_training_container(</span>
+<span class="sd">                org_id=&quot;&lt;organization-id&gt;&quot;,</span>
+<span class="sd">                image_uri=&quot;docker.io/library/my-training-image:latest&quot;,</span>
+<span class="sd">                description=&quot;&lt;my-training-container&gt;&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): the ID of the org to register the custom training container to.</span>
+<span class="sd">            image_uri (str): the Docker Hub reference of the training container image.</span>
+<span class="sd">            description (str): a description of the training container, used as its display name.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: the ID of the registered training container.</span>
+
+<span class="sd">        For more information, see</span>
+<span class="sd">        `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#registercustomtrainingcontainer&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RegisterCustomTrainingContainerRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">image_uri</span><span class="o">=</span><span class="n">image_uri</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">RegisterCustomTrainingContainerResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">RegisterCustomTrainingContainer</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
+
+
+<div class="viewcode-block" id="MLTrainingClient.delete_custom_training_container">
+<a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.delete_custom_training_container">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_custom_training_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a custom training container.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await ml_training_client.delete_custom_training_container(</span>
+<span class="sd">                id=&quot;&lt;container-id&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): the ID of the custom training container to delete.</span>
+
+<span class="sd">        For more information, see</span>
+<span class="sd">        `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecustomtrainingcontainer&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteCustomTrainingContainerRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">DeleteCustomTrainingContainer</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

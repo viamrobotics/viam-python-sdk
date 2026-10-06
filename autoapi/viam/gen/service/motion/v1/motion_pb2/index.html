@@ -196,6 +196,15 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___ComponentState" title="viam.gen.service.motion.v1.motion_pb2.Global___ComponentState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___ComponentState</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___TempStreamOptions</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___TempStreamArmJointPositionsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsResponse" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Global___TempStreamArmJointPositionsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -286,6 +295,15 @@ isort:skip_file</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.ComponentState" title="viam.gen.service.motion.v1.motion_pb2.ComponentState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentState</span></code></a></p></td>
 <td><p>A pose</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions" title="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TempStreamOptions</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TempStreamArmJointPositionsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsResponse" title="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TempStreamArmJointPositionsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1502,7 +1520,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.OrientationConstraint">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">OrientationConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_tolerance_degs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.OrientationConstraint" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">OrientationConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_tolerance_degs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.OrientationConstraint" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
 to the goal. It does not constrain the motion of components other than the <cite>component_name</cite> specified in motion.Move</p>
@@ -1510,6 +1528,15 @@ to the goal. It does not constrain the motion of components other than the <cite
 <dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.orientation_tolerance_degs">
 <span class="sig-name descname"><span class="pre">orientation_tolerance_degs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.orientation_tolerance_degs" title="Link to this definition"></a></dt>
 <dd><p>Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.ignore_theta">
+<span class="sig-name descname"><span class="pre">ignore_theta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.ignore_theta" title="Link to this definition"></a></dt>
+<dd><p>When true, deviation is measured between orientation vectors alone, disregarding rotation about the
+component’s own pointing axis. Set this for payloads that are symmetric about that axis - an open
+container spills when tipped, not when spun - so the tolerance does not pin a rotation that cannot
+matter. Defaults to false, measuring the full orientation.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1537,7 +1564,9 @@ be raised.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__orientation_tolerance_degs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__orientation_tolerance_degs</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.WhichOneof" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__ignore_theta</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__ignore_theta</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.OrientationConstraint.WhichOneof" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__orientation_tolerance_degs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__orientation_tolerance_degs</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">
@@ -1979,6 +2008,275 @@ be raised.</p>
 <dl class="py type">
 <dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.Global___ComponentState">
 <span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___ComponentState</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.ComponentState" title="viam.gen.service.motion.v1.motion_pb2.ComponentState"><span class="pre">ComponentState</span></a></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.Global___ComponentState" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">TempStreamOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">arm_side_target_runway_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_to_arm_interval_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagnostics_window_secs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">move_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveOptions" title="viam.gen.component.arm.v1.arm_pb2.MoveOptions"><span class="pre">component.arm.v1.arm_pb2.MoveOptions</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.arm_side_target_runway_ms">
+<span class="sig-name descname"><span class="pre">arm_side_target_runway_ms</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.arm_side_target_runway_ms" title="Link to this definition"></a></dt>
+<dd><p>How much trajectory the motion service tries to keep buffered on the arm’s side.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.send_to_arm_interval_ms">
+<span class="sig-name descname"><span class="pre">send_to_arm_interval_ms</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.send_to_arm_interval_ms" title="Link to this definition"></a></dt>
+<dd><p>How often the motion service aims to top up the arm’s buffered runway.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.diagnostics_window_secs">
+<span class="sig-name descname"><span class="pre">diagnostics_window_secs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.diagnostics_window_secs" title="Link to this definition"></a></dt>
+<dd><p>Size of the detailed diagnostics window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.move_options">
+<span class="sig-name descname"><span class="pre">move_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../../component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveOptions" title="viam.gen.component.arm.v1.arm_pb2.MoveOptions"><span class="pre">component.arm.v1.arm_pb2.MoveOptions</span></a></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.move_options" title="Link to this definition"></a></dt>
+<dd><p>Kinematic limits for the session’s trajectory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__arm_side_target_runway_ms</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__arm_side_target_runway_ms</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions.WhichOneof" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__diagnostics_window_secs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__diagnostics_window_secs</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__move_options</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__move_options</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__send_to_arm_interval_ms</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__send_to_arm_interval_ms</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___TempStreamOptions</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamOptions" title="viam.gen.service.motion.v1.motion_pb2.TempStreamOptions"><span class="pre">TempStreamOptions</span></a></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">TempStreamArmJointPositionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest"><span class="pre">Global___TempStreamArmJointPositionsRequest</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest"><span class="pre">Global___TempStreamArmJointPositionsRequest</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions"><span class="pre">Global___TempStreamOptions</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.component_name">
+<span class="sig-name descname"><span class="pre">component_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.component_name" title="Link to this definition"></a></dt>
+<dd><p>Name of the arm to stream joint positions to.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.options">
+<span class="sig-name descname"><span class="pre">options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamOptions"><span class="pre">Global___TempStreamOptions</span></a></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.options" title="Link to this definition"></a></dt>
+<dd><p>Configuration for this streaming session.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.extra">
+<span class="sig-name descname"><span class="pre">extra</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.extra" title="Link to this definition"></a></dt>
+<dd><p>Additional arguments.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__options</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__options</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Init.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Targets">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.JointPositions" title="viam.gen.component.arm.v1.arm_pb2.JointPositions"><span class="pre">component.arm.v1.arm_pb2.JointPositions</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Targets" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Targets.positions">
+<span class="sig-name descname"><span class="pre">positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.JointPositions" title="viam.gen.component.arm.v1.arm_pb2.JointPositions"><span class="pre">component.arm.v1.arm_pb2.JointPositions</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.Targets.positions" title="Link to this definition"></a></dt>
+<dd><p>Target joint positions to append to the session, in order.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.name" title="Link to this definition"></a></dt>
+<dd><p>Name of the motion service.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest"><span class="pre">Global___TempStreamArmJointPositionsRequest</span></a></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.init" title="Link to this definition"></a></dt>
+<dd><p>Session initiation. Sent exactly once and must be the first message on the stream.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.targets">
+<span class="sig-name descname"><span class="pre">targets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest"><span class="pre">Global___TempStreamArmJointPositionsRequest</span></a></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.targets" title="Link to this definition"></a></dt>
+<dd><p>A batch of targets to append to the running session. Sent N times after init.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType_message</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType_message</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___TempStreamArmJointPositionsRequest</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest" title="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsRequest"><span class="pre">TempStreamArmJointPositionsRequest</span></a></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsRequest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">TempStreamArmJointPositionsResponse</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsResponse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsResponse">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">Global___TempStreamArmJointPositionsResponse</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsResponse" title="viam.gen.service.motion.v1.motion_pb2.TempStreamArmJointPositionsResponse"><span class="pre">TempStreamArmJointPositionsResponse</span></a></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.Global___TempStreamArmJointPositionsResponse" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

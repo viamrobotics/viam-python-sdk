@@ -22,10 +22,13 @@ Classes
    viam.proto.service.vision.CaptureAllFromCameraResponse
    viam.proto.service.vision.Classification
    viam.proto.service.vision.Detection
+   viam.proto.service.vision.Detection3D
    viam.proto.service.vision.GetClassificationsFromCameraRequest
    viam.proto.service.vision.GetClassificationsFromCameraResponse
    viam.proto.service.vision.GetClassificationsRequest
    viam.proto.service.vision.GetClassificationsResponse
+   viam.proto.service.vision.GetDetections3DRequest
+   viam.proto.service.vision.GetDetections3DResponse
    viam.proto.service.vision.GetDetectionsFromCameraRequest
    viam.proto.service.vision.GetDetectionsFromCameraResponse
    viam.proto.service.vision.GetDetectionsRequest
@@ -64,6 +67,11 @@ Package Contents
 
 
    .. py:method:: GetClassifications(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsRequest, service.vision.v1.vision_pb2.GetClassificationsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetDetections3D(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetections3DRequest, service.vision.v1.vision_pb2.GetDetections3DResponse]) -> None
       :async:
 
 
@@ -130,6 +138,13 @@ Package Contents
 
 
 
+   .. py:method:: GetDetections3D(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetections3DRequest, service.vision.v1.vision_pb2.GetDetections3DResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: GetObjectPointClouds(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetObjectPointCloudsRequest, service.vision.v1.vision_pb2.GetObjectPointCloudsResponse]) -> None
       :abstractmethod:
 
@@ -182,6 +197,9 @@ Package Contents
    .. py:attribute:: GetClassifications
 
 
+   .. py:attribute:: GetDetections3D
+
+
    .. py:attribute:: GetObjectPointClouds
 
 
@@ -197,7 +215,7 @@ Package Contents
    .. py:attribute:: GetStatus
 
 
-.. py:class:: CaptureAllFromCameraRequest(*, name: str = ..., camera_name: str = ..., return_image: bool = ..., return_classifications: bool = ..., return_detections: bool = ..., return_object_point_clouds: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: CaptureAllFromCameraRequest(*, name: str = ..., camera_name: str = ..., return_image: bool = ..., return_classifications: bool = ..., return_detections: bool = ..., return_object_point_clouds: bool = ..., return_detections_3d: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -245,6 +263,12 @@ Package Contents
       whether or not including pcd in the response
 
 
+   .. py:attribute:: return_detections_3d
+      :type:  bool
+
+      whether or not including 3D detections in the response
+
+
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
@@ -266,7 +290,7 @@ Package Contents
 
 
 
-.. py:class:: CaptureAllFromCameraResponse(*, image: component.camera.v1.camera_pb2.Image | None = ..., detections: collections.abc.Iterable[Global___Detection] | None = ..., classifications: collections.abc.Iterable[Global___Classification] | None = ..., objects: collections.abc.Iterable[common.v1.common_pb2.PointCloudObject] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: CaptureAllFromCameraResponse(*, image: component.camera.v1.camera_pb2.Image | None = ..., detections: collections.abc.Iterable[Global___Detection] | None = ..., classifications: collections.abc.Iterable[Global___Classification] | None = ..., objects: collections.abc.Iterable[common.v1.common_pb2.PointCloudObject] | None = ..., detections_3d: collections.abc.Iterable[Global___Detection3D] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -288,6 +312,9 @@ Package Contents
 
 
    .. py:method:: objects() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.PointCloudObject]
+
+
+   .. py:method:: detections_3d() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Detection3D]
 
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
@@ -430,6 +457,53 @@ Package Contents
       :rtype: str or None
 
       :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: Detection3D(*, transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None = ..., classifications: collections.abc.Iterable[Global___Classification] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Detection3D is one perceived object, described as a tree of transforms.
+   transforms[0] is the root, parented to a frame the robot already knows (e.g.
+   the camera). Each later transform's parent is the root or an earlier entry.
+   Each physical_object is expressed relative to its own transform's origin.
+
+
+   .. py:method:: transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.Transform]
+
+      frame tree of this object, root first
+
+
+
+   .. py:method:: classifications() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Classification]
+
+      class hypotheses for the object
+
+
+
+   .. py:method:: metadata() -> google.protobuf.struct_pb2.Struct
+
+      implementation-specific data, e.g. source camera or model name
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
 
 
 
@@ -587,6 +661,72 @@ Package Contents
 
 
    .. py:method:: classifications() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Classification]
+
+
+.. py:class:: GetDetections3DRequest(*, name: str = ..., camera_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:attribute:: camera_name
+      :type:  str
+
+      name of the camera to observe
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetDetections3DResponse(*, detections_3d: collections.abc.Iterable[Global___Detection3D] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: detections_3d() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Detection3D]
+
+      one entry per perceived object
+
 
 
 .. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -854,7 +994,7 @@ Package Contents
 
 
 
-.. py:class:: GetPropertiesResponse(*, classifications_supported: bool = ..., detections_supported: bool = ..., object_point_clouds_supported: bool = ..., default_camera: str | None = ...)
+.. py:class:: GetPropertiesResponse(*, classifications_supported: bool = ..., detections_supported: bool = ..., object_point_clouds_supported: bool = ..., default_camera: str | None = ..., detections_3d_supported: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -888,6 +1028,12 @@ Package Contents
       :type:  str
 
       the default camera used for *FromCamera and GetObjectPointClouds calls
+
+
+   .. py:attribute:: detections_3d_supported
+      :type:  bool
+
+      whether or not GetDetections3D is supported by the vision service
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool

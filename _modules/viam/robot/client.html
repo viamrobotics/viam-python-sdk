@@ -117,6 +117,8 @@
     <span class="n">GetModelsFromModulesResponse</span><span class="p">,</span>
     <span class="n">GetOperationsRequest</span><span class="p">,</span>
     <span class="n">GetOperationsResponse</span><span class="p">,</span>
+    <span class="n">GetPoseRequest</span><span class="p">,</span>
+    <span class="n">GetPoseResponse</span><span class="p">,</span>
     <span class="n">GetVersionRequest</span><span class="p">,</span>
     <span class="n">GetVersionResponse</span><span class="p">,</span>
     <span class="n">LogRequest</span><span class="p">,</span>
@@ -835,6 +837,53 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">FrameSystemConfigRequest</span><span class="p">(</span><span class="n">supplemental_transforms</span><span class="o">=</span><span class="n">additional_transforms</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">FrameSystemConfigResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">FrameSystemConfig</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">frame_system_configs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RobotClient.get_pose">
+<a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_pose">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_pose</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">destination_frame</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">supplemental_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the pose of a component in the machine&#39;s frame system, expressed in a destination reference frame.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # Get the pose of &quot;my_gripper&quot; relative to the &quot;world&quot; reference frame.</span>
+<span class="sd">            gripper_pose = await machine.get_pose(&quot;my_gripper&quot;)</span>
+<span class="sd">            print(f&quot;gripper pose in world: {gripper_pose}&quot;)</span>
+
+<span class="sd">            # Get the same pose relative to the origin frame of &quot;my_arm&quot;.</span>
+<span class="sd">            gripper_pose_in_arm = await machine.get_pose(&quot;my_gripper&quot;, destination_frame=&quot;my_arm&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (str): The name of the component whose pose should be returned.</span>
+<span class="sd">            destination_frame (str): The name of the reference frame to express the pose in. An empty string defaults to ``world``.</span>
+<span class="sd">            supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the machine&#39;s frame system</span>
+<span class="sd">                while computing the pose.</span>
+<span class="sd">            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the</span>
+<span class="sd">                underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PoseInFrame: The pose of the component and the reference frame it is expressed in.</span>
+
+<span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPoseRequest</span><span class="p">(</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">destination_frame</span><span class="o">=</span><span class="n">destination_frame</span><span class="p">,</span>
+            <span class="n">supplemental_transforms</span><span class="o">=</span><span class="n">supplemental_transforms</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetPoseResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetPose</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">pose</span></div>
 
 
 <div class="viewcode-block" id="RobotClient.transform_pose">

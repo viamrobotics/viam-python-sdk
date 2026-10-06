@@ -57,6 +57,14 @@ Attributes
    viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetTrainingJobLogsResponse
    viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListSupportedContainersRequest
    viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListSupportedContainersResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListContainersRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___ListContainersResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetContainerRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___GetContainerResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___RegisterCustomTrainingContainerRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___RegisterCustomTrainingContainerResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___DeleteCustomTrainingContainerRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.Global___DeleteCustomTrainingContainerResponse
    viam.gen.app.mltraining.v1.ml_training_pb2.Global___Container
 
 
@@ -87,6 +95,14 @@ Classes
    viam.gen.app.mltraining.v1.ml_training_pb2.GetTrainingJobLogsResponse
    viam.gen.app.mltraining.v1.ml_training_pb2.ListSupportedContainersRequest
    viam.gen.app.mltraining.v1.ml_training_pb2.ListSupportedContainersResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.ListContainersRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.ListContainersResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.GetContainerRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.GetContainerResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.RegisterCustomTrainingContainerRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.RegisterCustomTrainingContainerResponse
+   viam.gen.app.mltraining.v1.ml_training_pb2.DeleteCustomTrainingContainerRequest
+   viam.gen.app.mltraining.v1.ml_training_pb2.DeleteCustomTrainingContainerResponse
    viam.gen.app.mltraining.v1.ml_training_pb2.Container
 
 
@@ -252,7 +268,7 @@ Module Contents
    :canonical: SubmitTrainingJobResponse
 
 
-.. py:class:: SubmitCustomTrainingJobRequest(*, dataset_id: str = ..., registry_item_id: str = ..., registry_item_version: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
+.. py:class:: SubmitCustomTrainingJobRequest(*, dataset_id: str = ..., registry_item_id: str = ..., registry_item_version: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ..., container_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -310,6 +326,10 @@ Module Contents
 
 
    .. py:attribute:: container_version
+      :type:  str
+
+
+   .. py:attribute:: container_id
       :type:  str
 
 
@@ -440,7 +460,7 @@ Module Contents
    :canonical: ListTrainingJobsResponse
 
 
-.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: Global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ...)
+.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: Global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ..., container_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -522,6 +542,10 @@ Module Contents
 
 
    .. py:attribute:: container_version
+      :type:  str
+
+
+   .. py:attribute:: container_id
       :type:  str
 
 
@@ -766,7 +790,7 @@ Module Contents
    :canonical: GetTrainingJobLogsResponse
 
 
-.. py:class:: ListSupportedContainersRequest(*, organization_id: str = ...)
+.. py:class:: ListSupportedContainersRequest
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -776,15 +800,6 @@ Module Contents
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
-
-
-   .. py:attribute:: organization_id
-      :type:  str
-
-      Optional. Scopes the response to the containers available to this
-      organization: the Viam-managed catalog plus the org's registered
-      custom training containers. If unset, only the Viam-managed catalog
-      is returned.
 
 
 .. py:type:: Global___ListSupportedContainersRequest
@@ -861,6 +876,196 @@ Module Contents
 
 .. py:type:: Global___ListSupportedContainersResponse
    :canonical: ListSupportedContainersResponse
+
+
+.. py:class:: ListContainersRequest(*, organization_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+      The associated Viam organization ID.
+
+
+.. py:type:: Global___ListContainersRequest
+   :canonical: ListContainersRequest
+
+
+.. py:class:: ListContainersResponse(*, containers: collections.abc.Iterable[Global___Container] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: containers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Container]
+
+
+.. py:type:: Global___ListContainersResponse
+   :canonical: ListContainersResponse
+
+
+.. py:class:: GetContainerRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      The ID of the container to retrieve.
+
+
+.. py:type:: Global___GetContainerRequest
+   :canonical: GetContainerRequest
+
+
+.. py:class:: GetContainerResponse(*, container: Global___Container | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: container() -> Global___Container
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:type:: Global___GetContainerResponse
+   :canonical: GetContainerResponse
+
+
+.. py:class:: RegisterCustomTrainingContainerRequest(*, organization_id: str = ..., image_uri: str = ..., description: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: image_uri
+      :type:  str
+
+      <tag>.
+
+      :type: Docker Hub reference, official images normalize to docker.io/library/<image>
+
+
+   .. py:attribute:: description
+      :type:  str
+
+      will serve as display name
+
+
+.. py:type:: Global___RegisterCustomTrainingContainerRequest
+   :canonical: RegisterCustomTrainingContainerRequest
+
+
+.. py:class:: RegisterCustomTrainingContainerResponse(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:type:: Global___RegisterCustomTrainingContainerResponse
+   :canonical: RegisterCustomTrainingContainerResponse
+
+
+.. py:class:: DeleteCustomTrainingContainerRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:type:: Global___DeleteCustomTrainingContainerRequest
+   :canonical: DeleteCustomTrainingContainerRequest
+
+
+.. py:class:: DeleteCustomTrainingContainerResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:type:: Global___DeleteCustomTrainingContainerResponse
+   :canonical: DeleteCustomTrainingContainerResponse
 
 
 .. py:class:: Container(*, key: str = ..., uri: str = ..., framework: str = ..., description: str = ..., eol: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_id: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., id: str = ..., visibility: Global___Visibility = ...)
