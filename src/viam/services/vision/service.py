@@ -10,6 +10,8 @@ from viam.proto.service.vision import (
     GetClassificationsFromCameraResponse,
     GetClassificationsRequest,
     GetClassificationsResponse,
+    GetDetections3DRequest,
+    GetDetections3DResponse,
     GetDetectionsFromCameraRequest,
     GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
@@ -45,6 +47,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
             return_classifications=request.return_classifications,
             return_detections=request.return_detections,
             return_object_point_clouds=request.return_object_point_clouds,
+            return_detections_3d=request.return_detections_3d,
             extra=extra,
             timeout=timeout,
         )
@@ -57,6 +60,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
             detections=result.detections,
             classifications=result.classifications,
             objects=result.objects,
+            detections_3d=result.detections_3d,
             extra=dict_to_struct(result.extra if result.extra else {}),
         )
         await stream.send_message(response)
@@ -109,6 +113,16 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
         response = GetClassificationsResponse(classifications=result)
         await stream.send_message(response)
 
+    async def GetDetections3D(self, stream: Stream[GetDetections3DRequest, GetDetections3DResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        vision = self.get_resource(request.name)
+        extra = struct_to_dict(request.extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await vision.get_detections_3d(request.camera_name, extra=extra, timeout=timeout)
+        response = GetDetections3DResponse(detections_3d=result)
+        await stream.send_message(response)
+
     async def GetObjectPointClouds(self, stream: Stream[GetObjectPointCloudsRequest, GetObjectPointCloudsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -132,6 +146,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
             detections_supported=properties.detections_supported,
             object_point_clouds_supported=properties.object_point_clouds_supported,
             default_camera=properties.default_camera if properties.HasField("default_camera") else None,
+            detections_3d_supported=properties.detections_3d_supported,
         )
         await stream.send_message(response)
 

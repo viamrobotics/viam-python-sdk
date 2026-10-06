@@ -16,15 +16,19 @@ from viam.proto.common import (
     PointCloudObject,
     Pose,
     RectangularPrism,
+    Transform,
     Vector3,
 )
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
     CaptureAllFromCameraResponse,
+    Detection3D,
     GetClassificationsFromCameraRequest,
     GetClassificationsFromCameraResponse,
     GetClassificationsRequest,
     GetClassificationsResponse,
+    GetDetections3DRequest,
+    GetDetections3DResponse,
     GetDetectionsFromCameraRequest,
     GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
@@ -74,6 +78,12 @@ CLASSIFICATIONS = [
     Classification(class_name="test-detection-class", confidence=0.1),
     Classification(class_name="test-detection-class", confidence=0.82),
 ]
+DETECTIONS_3D = [
+    Detection3D(
+        transforms=[Transform(reference_frame="depth1")],
+        classifications=[Classification(class_name="test-detection-class", confidence=0.75)],
+    ),
+]
 SEGMENTERS = [
     "segmenter-0",
     "segmenter-1",
@@ -113,6 +123,7 @@ PROPERTIES = Vision.Properties(
     detections_supported=True,
     object_point_clouds_supported=True,
     default_camera="my_camera",
+    detections_3d_supported=True,
 )
 
 
@@ -131,6 +142,7 @@ def vision() -> MockVision:
         point_clouds=POINT_CLOUDS,
         image=VISION_IMAGE,
         properties=PROPERTIES,
+        detections_3d=DETECTIONS_3D,
     )
 
 
@@ -161,6 +173,17 @@ class TestVision:
         assert response.detections == DETECTIONS
         assert response.classifications is None
         assert response.objects is None
+        assert response.detections_3d is None
+        assert vision.extra == extra
+
+    async def test_capture_all_from_camera_detections_3d(self, vision: MockVision):
+        extra = {"foo": "capture_all_from_camera"}
+        response = await vision.capture_all_from_camera(
+            "fake-camera",
+            return_detections_3d=True,
+            extra=extra,
+        )
+        assert response.detections_3d == DETECTIONS_3D
         assert vision.extra == extra
 
     async def test_get_detections_from_camera(self, vision: MockVision):
@@ -191,6 +214,12 @@ class TestVision:
         extra = {"foo": "get_object_point_clouds"}
         response = await vision.get_object_point_clouds("camera", extra=extra)
         assert response == POINT_CLOUDS
+        assert vision.extra == extra
+
+    async def test_get_detections_3d(self, vision: MockVision):
+        extra = {"foo": "get_detections_3d"}
+        response = await vision.get_detections_3d("fake-camera", extra=extra)
+        assert response == DETECTIONS_3D
         assert vision.extra == extra
 
     async def test_do(self, vision: MockVision):
@@ -229,6 +258,7 @@ class TestService:
             assert response.detections_supported == PROPERTIES.detections_supported
             assert response.object_point_clouds_supported == PROPERTIES.object_point_clouds_supported
             assert response.default_camera == PROPERTIES.default_camera
+            assert response.detections_3d_supported == PROPERTIES.detections_3d_supported
             assert vision.extra == extra
 
     async def test_get_detections_from_camera(self, vision: MockVision, service: VisionRPCService):
@@ -294,6 +324,15 @@ class TestService:
             )
             response: GetObjectPointCloudsResponse = await client.GetObjectPointClouds(request)
             assert response.objects == POINT_CLOUDS
+            assert vision.extra == extra
+
+    async def test_get_detections_3d(self, vision: MockVision, service: VisionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceStub(channel)
+            extra = {"foo": "get_detections_3d"}
+            request = GetDetections3DRequest(name=vision.name, camera_name="fake-camera", extra=dict_to_struct(extra))
+            response: GetDetections3DResponse = await client.GetDetections3D(request)
+            assert response.detections_3d == DETECTIONS_3D
             assert vision.extra == extra
 
     async def test_do(self, vision: MockVision, service: VisionRPCService):
@@ -377,6 +416,14 @@ class TestClient:
             extra = {"foo": "get_object_point_clouds"}
             response = await client.get_object_point_clouds("camera", extra=extra)
             assert response == POINT_CLOUDS
+            assert vision.extra == extra
+
+    async def test_get_detections_3d(self, vision: MockVision, service: VisionRPCService):
+        async with ChannelFor([service]) as channel:
+            client = VisionClient(VISION_SERVICE_NAME, channel)
+            extra = {"foo": "get_detections_3d"}
+            response = await client.get_detections_3d("fake-camera", extra=extra)
+            assert response == DETECTIONS_3D
             assert vision.extra == extra
 
     async def test_do(self, service: VisionRPCService):
