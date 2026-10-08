@@ -89,9 +89,11 @@ class TestClient:
                 model_name=MODEL_NAME,
                 model_version=MODEL_VERSION,
                 container_id=CONTAINER_ID,
+                refresh_dataset_cache=True,
             )
             assert id == JOB_ID
             assert service.container_id == CONTAINER_ID
+            assert service.refresh_dataset_cache is True
 
     async def test_get_training_job(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:

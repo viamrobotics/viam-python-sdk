@@ -135,6 +135,7 @@ class MLTrainingClient:
         model_name: str,
         model_version: str,
         container_id: str = "",
+        refresh_dataset_cache: bool = False,
     ) -> str:
         """Submit a custom training job.
 
@@ -158,6 +159,8 @@ class MLTrainingClient:
             model_version (str): the model version.
             container_id (str): the ID of the custom training container to run the job in. If unspecified, the training script's
                 default container is used.
+            refresh_dataset_cache (bool): whether to export the dataset fresh instead of reusing a cached export, and replace the cached
+                export with it. Defaults to False.
 
         Returns:
             str: the ID of the training job.
@@ -173,6 +176,7 @@ class MLTrainingClient:
             model_name=model_name,
             model_version=model_version,
             container_id=container_id,
+            refresh_dataset_cache=refresh_dataset_cache,
         )
         response: SubmitCustomTrainingJobResponse = await self._ml_training_client.SubmitCustomTrainingJob(request, metadata=self._metadata)
         return response.id

@@ -1483,6 +1483,7 @@ class MockMLTraining(UnimplementedMLTrainingServiceBase):
         self.model_name = request.model_name
         self.model_version = request.model_version
         self.container_id = request.container_id
+        self.refresh_dataset_cache = request.refresh_dataset_cache
         await stream.send_message(SubmitCustomTrainingJobResponse(id=self.job_id))
 
     async def GetTrainingJob(self, stream: Stream[GetTrainingJobRequest, GetTrainingJobResponse]) -> None:
