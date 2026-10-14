@@ -120,7 +120,12 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         assert request is not None
         gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        kinematics = await gripper.get_kinematics(extra=struct_to_dict(request.extra), timeout=timeout)
+        kinematics = await gripper.get_kinematics(
+            include_collision_meshes=request.include_collision_meshes,
+            include_visual_meshes=request.include_visual_meshes,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+        )
         if len(kinematics) == 2:
             format, kinematics_data = kinematics
             meshes = {}

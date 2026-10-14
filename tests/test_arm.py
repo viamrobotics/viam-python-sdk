@@ -88,8 +88,10 @@ class TestArm:
         assert not await self.arm.is_moving()
 
     async def test_get_kinematics(self):
-        kd = await self.arm.get_kinematics(extra={"1": "2"})
+        kd = await self.arm.get_kinematics(include_collision_meshes=True, include_visual_meshes=True, extra={"1": "2"})
         assert kd == self.kinematics
+        assert self.arm.include_collision_meshes is True
+        assert self.arm.include_visual_meshes is True
         assert self.arm.extra == {"1": "2"}
 
     async def test_get_geometries(self):
@@ -239,9 +241,11 @@ class TestService:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
-            request = GetKinematicsRequest(name=self.name)
+            request = GetKinematicsRequest(name=self.name, include_collision_meshes=True, include_visual_meshes=True)
             response: GetKinematicsResponse = await client.GetKinematics(request)
             assert (response.format, response.kinematics_data, response.meshes_by_urdf_filepath) == self.kinematics
+            assert self.arm.include_collision_meshes is True
+            assert self.arm.include_visual_meshes is True
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
@@ -374,8 +378,10 @@ class TestClient:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            kd = await client.get_kinematics(extra={"1": "2"})
+            kd = await client.get_kinematics(include_collision_meshes=True, include_visual_meshes=True, extra={"1": "2"})
             assert kd == self.kinematics
+            assert self.arm.include_collision_meshes is True
+            assert self.arm.include_visual_meshes is True
             assert self.arm.extra == {"1": "2"}
 
     async def test_get_geometries(self):

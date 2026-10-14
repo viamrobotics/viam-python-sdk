@@ -126,7 +126,13 @@ class GantryRPCService(UnimplementedGantryServiceBase, ResourceRPCServiceBase[Ga
         assert request is not None
         gantry = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        kinematics = await gantry.get_kinematics(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        kinematics = await gantry.get_kinematics(
+            include_collision_meshes=request.include_collision_meshes,
+            include_visual_meshes=request.include_visual_meshes,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         if len(kinematics) == 2:
             format, data = kinematics
             meshes = {}
