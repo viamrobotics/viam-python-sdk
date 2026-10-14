@@ -406,9 +406,7 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return response.position
 
-    async def get_navigation_status(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Status:
+    async def get_navigation_status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Status:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetNavigationStatusRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetNavigationStatusResponse = await self.client.GetNavigationStatus(request, timeout=timeout, metadata=md)

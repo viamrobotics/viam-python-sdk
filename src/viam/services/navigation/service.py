@@ -315,9 +315,7 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         assert request is not None
         navigation = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        status = await navigation.execute_plan(
-            request.plan, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
-        )
+        status = await navigation.execute_plan(request.plan, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(ExecutePlanResponse(status=status))
 
     async def GoToLocation(self, stream: Stream[GoToLocationRequest, GoToLocationResponse]) -> None:

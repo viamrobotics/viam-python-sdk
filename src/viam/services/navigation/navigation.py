@@ -74,9 +74,7 @@ class Navigation(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def list_locations(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> List[Location]:
+    async def list_locations(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Location]:
         """
         List all previously saved Locations.
 
@@ -254,9 +252,7 @@ class Navigation(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_zone(
-        self, zone_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Zone:
+    async def get_zone(self, zone_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Zone:
         """
         Get a previously saved Zone by name.
 
@@ -574,9 +570,7 @@ class Navigation(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_navigation_status(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Status:
+    async def get_navigation_status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Status:
         """
         Get the current navigation state of the robot.
 
