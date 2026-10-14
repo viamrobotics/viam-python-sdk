@@ -304,6 +304,33 @@ class TestRobotClient:
                 await client.refresh()
                 assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
 
+    async def test_refresh_removes_resource_without_client(self, service: RobotService):
+        # The SDK has no client for this API, so refresh tracks the name without registering a client for it.
+        unknown = ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_SERVICE, subtype="unknown_api", name="unknown1")
+        async with ChannelFor([service]) as channel:
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                with mock.patch.object(client._client, "ResourceNames", new_callable=mock.AsyncMock) as resource_names:
+                    resource_names.return_value = ResourceNamesResponse(resources=RESOURCE_NAMES + [unknown])
+                    await client.refresh()
+                    assert unknown in client._resource_names
+                    assert unknown not in client._manager.resources
+
+                    resource_names.return_value = ResourceNamesResponse(resources=RESOURCE_NAMES)
+                    await client.refresh()
+                    assert set(client._resource_names) == set(RESOURCE_NAMES)
+
+    async def test_refresh_recovers_from_missing_client(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                arm = MockArm.get_resource_name("arm1")
+                await client._manager.remove_resource(arm)
+
+                remaining = [rn for rn in RESOURCE_NAMES if rn != arm]
+                with mock.patch.object(client._client, "ResourceNames", new_callable=mock.AsyncMock) as resource_names:
+                    resource_names.return_value = ResourceNamesResponse(resources=remaining)
+                    await client.refresh()
+                assert set(client._resource_names) == set(remaining)
+
     async def test_refresh_task(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
