@@ -1557,7 +1557,13 @@ class AppClient:
 
         return _LogsStreamWithIterator(read())
 
-    async def get_robot_part_history(self, robot_part_id: str) -> list[RobotPartHistoryEntry]:
+    async def get_robot_part_history(
+        self,
+        robot_part_id: str,
+        start: datetime | None = None,
+        end: datetime | None = None,
+        page_limit: int | None = None,
+    ) -> list[RobotPartHistoryEntry]:
         """Get a list containing the history of a machine part.
 
         ::
@@ -1568,6 +1574,9 @@ class AppClient:
 
         Args:
             robot_part_id (str): ID of the machine part to retrieve history from.
+            start (datetime | None): Optional start time. Only history entries created after this time will be returned.
+            end (datetime | None): Optional end time. Only history entries created before this time will be returned.
+            page_limit (int | None): Optional maximum number of history entries to return, newest first.
 
         Raises:
             GRPCError: If an invalid machine part ID is provided.
@@ -1577,7 +1586,12 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
         """
-        request = GetRobotPartHistoryRequest(id=robot_part_id)
+        request = GetRobotPartHistoryRequest(
+            id=robot_part_id,
+            start=datetime_to_timestamp(start),
+            end=datetime_to_timestamp(end),
+            page_limit=page_limit,
+        )
         response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
