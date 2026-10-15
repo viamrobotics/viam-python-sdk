@@ -1871,6 +1871,7 @@ class MockApp(UnimplementedAppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.robot_part_id = request.id
+        self.robot_part_history_request = request
         await stream.send_message(GetRobotPartHistoryResponse(history=self.robot_part_history))
 
     async def UpdateRobotPart(self, stream: Stream[UpdateRobotPartRequest, UpdateRobotPartResponse]) -> None:

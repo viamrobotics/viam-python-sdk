@@ -534,6 +534,18 @@ class TestClient:
             assert len(robot_part_history) == len(ROBOT_PART_HISTORY)
             for i in range(len(ROBOT_PART_HISTORY)):
                 assert robot_part_history[i].proto == ROBOT_PART_HISTORY[i]
+            assert not service.robot_part_history_request.HasField("page_limit")
+
+    async def test_get_robot_part_history_with_start_end_and_page_limit(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            start_time = datetime(2024, 1, 1, 0, 0, 0)
+            end_time = datetime(2024, 1, 2, 0, 0, 0)
+            await client.get_robot_part_history(robot_part_id=ID, start=start_time, end=end_time, page_limit=50)
+            request = service.robot_part_history_request
+            assert request.start == datetime_to_timestamp(start_time)
+            assert request.end == datetime_to_timestamp(end_time)
+            assert request.page_limit == 50
 
     async def test_update_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
