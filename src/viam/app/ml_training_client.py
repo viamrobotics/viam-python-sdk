@@ -308,7 +308,7 @@ class MLTrainingClient:
         response: GetContainerResponse = await self._ml_training_client.GetContainer(request, metadata=self._metadata)
         return response.container
 
-    async def register_custom_training_container(self, org_id: str, image_uri: str, description: str = "") -> str:
+    async def register_custom_training_container(self, org_id: str, image_uri: str, description: str) -> str:
         """Register a custom training container for an organization.
 
         ::
@@ -322,7 +322,7 @@ class MLTrainingClient:
         Args:
             org_id (str): the ID of the org to register the custom training container to.
             image_uri (str): the Docker Hub reference of the training container image.
-            description (str): a description of the training container, used as its display name.
+            description (str): a description of the training container, used as its display name. Must not be empty.
 
         Returns:
             str: the ID of the registered training container.
