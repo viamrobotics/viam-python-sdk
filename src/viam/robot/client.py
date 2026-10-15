@@ -345,7 +345,9 @@ class RobotClient:
                 await self._create_or_reset_client(rname)
 
             for rname in self.resource_names:
-                if rname not in resource_names:
+                # A tracked name may have no client: _create_or_reset_client skips APIs the SDK doesn't know.
+                # Removing it anyway would raise KeyError before _resource_names is updated, failing every later refresh.
+                if rname not in resource_names and rname in self._manager.resources:
                     await self._manager.remove_resource(rname)
 
             self._resource_names = resource_names
