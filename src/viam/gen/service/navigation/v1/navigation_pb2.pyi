@@ -7,6 +7,7 @@ from common.v1 import common_pb2 as _common_pb2
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import struct_pb2 as _struct_pb2
+from google.protobuf import timestamp_pb2 as _timestamp_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 import builtins as _builtins
@@ -25,146 +26,630 @@ class _MapType:
 class _MapTypeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_MapType.ValueType], _builtins.type):
     DESCRIPTOR: _descriptor.EnumDescriptor
     MAP_TYPE_UNSPECIFIED: _MapType.ValueType
-    MAP_TYPE_NONE: _MapType.ValueType
+    MAP_TYPE_LOCAL: _MapType.ValueType
+    "Positions are Poses in the active SLAM map's frame"
     MAP_TYPE_GPS: _MapType.ValueType
+    'Positions are GeoPoses'
 
 class MapType(_MapType, metaclass=_MapTypeEnumTypeWrapper):
-    """MapType represents the various types of maps the navigation service can ingest."""
+    """MapType represents the type of map the navigation service operates on.
+    Each service instance uses exactly one map type.
+    """
 MAP_TYPE_UNSPECIFIED: MapType.ValueType
-MAP_TYPE_NONE: MapType.ValueType
+MAP_TYPE_LOCAL: MapType.ValueType
+"Positions are Poses in the active SLAM map's frame"
 MAP_TYPE_GPS: MapType.ValueType
+'Positions are GeoPoses'
 Global___MapType: _TypeAlias = MapType
 
-class _Mode:
+class _GoalState:
     ValueType = _typing.NewType('ValueType', _builtins.int)
     V: _TypeAlias = ValueType
 
-class _ModeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_Mode.ValueType], _builtins.type):
+class _GoalStateEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_GoalState.ValueType], _builtins.type):
     DESCRIPTOR: _descriptor.EnumDescriptor
-    MODE_UNSPECIFIED: _Mode.ValueType
-    MODE_MANUAL: _Mode.ValueType
-    MODE_WAYPOINT: _Mode.ValueType
-    MODE_EXPLORE: _Mode.ValueType
+    GOAL_STATE_UNSPECIFIED: _GoalState.ValueType
+    GOAL_STATE_ACTIVE: _GoalState.ValueType
+    GOAL_STATE_SUSPENDED: _GoalState.ValueType
+    'Held; see Resume'
+    GOAL_STATE_SUCCEEDED: _GoalState.ValueType
+    GOAL_STATE_FAILED: _GoalState.ValueType
+    'See error'
+    GOAL_STATE_CANCELED: _GoalState.ValueType
 
-class Mode(_Mode, metaclass=_ModeEnumTypeWrapper):
+class GoalState(_GoalState, metaclass=_GoalStateEnumTypeWrapper):
     ...
-MODE_UNSPECIFIED: Mode.ValueType
-MODE_MANUAL: Mode.ValueType
-MODE_WAYPOINT: Mode.ValueType
-MODE_EXPLORE: Mode.ValueType
-Global___Mode: _TypeAlias = Mode
+GOAL_STATE_UNSPECIFIED: GoalState.ValueType
+GOAL_STATE_ACTIVE: GoalState.ValueType
+GOAL_STATE_SUSPENDED: GoalState.ValueType
+'Held; see Resume'
+GOAL_STATE_SUCCEEDED: GoalState.ValueType
+GOAL_STATE_FAILED: GoalState.ValueType
+'See error'
+GOAL_STATE_CANCELED: GoalState.ValueType
+Global___GoalState: _TypeAlias = GoalState
+
+class _NavMode:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _NavModeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_NavMode.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    NAV_MODE_UNSPECIFIED: _NavMode.ValueType
+    NAV_MODE_PLANNED: _NavMode.ValueType
+    'NavigateTo*, ExecutePlan'
+    NAV_MODE_DIRECT: _NavMode.ValueType
+    'GoTo*'
+    NAV_MODE_ROUTE: _NavMode.ValueType
+    'NavigateRoute'
+
+class NavMode(_NavMode, metaclass=_NavModeEnumTypeWrapper):
+    ...
+NAV_MODE_UNSPECIFIED: NavMode.ValueType
+NAV_MODE_PLANNED: NavMode.ValueType
+'NavigateTo*, ExecutePlan'
+NAV_MODE_DIRECT: NavMode.ValueType
+'GoTo*'
+NAV_MODE_ROUTE: NavMode.ValueType
+'NavigateRoute'
+Global___NavMode: _TypeAlias = NavMode
+
+class _NavErrorCode:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _NavErrorCodeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_NavErrorCode.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    NAV_ERROR_CODE_UNSPECIFIED: _NavErrorCode.ValueType
+    NAV_ERROR_CODE_NO_PATH: _NavErrorCode.ValueType
+    NAV_ERROR_CODE_BLOCKED: _NavErrorCode.ValueType
+    NAV_ERROR_CODE_LOCALIZATION_LOST: _NavErrorCode.ValueType
+    NAV_ERROR_CODE_BASE_ERROR: _NavErrorCode.ValueType
+    NAV_ERROR_CODE_TIMEOUT: _NavErrorCode.ValueType
+    NAV_ERROR_CODE_OTHER: _NavErrorCode.ValueType
+
+class NavErrorCode(_NavErrorCode, metaclass=_NavErrorCodeEnumTypeWrapper):
+    ...
+NAV_ERROR_CODE_UNSPECIFIED: NavErrorCode.ValueType
+NAV_ERROR_CODE_NO_PATH: NavErrorCode.ValueType
+NAV_ERROR_CODE_BLOCKED: NavErrorCode.ValueType
+NAV_ERROR_CODE_LOCALIZATION_LOST: NavErrorCode.ValueType
+NAV_ERROR_CODE_BASE_ERROR: NavErrorCode.ValueType
+NAV_ERROR_CODE_TIMEOUT: NavErrorCode.ValueType
+NAV_ERROR_CODE_OTHER: NavErrorCode.ValueType
+Global___NavErrorCode: _TypeAlias = NavErrorCode
 
 @_typing.final
-class GetModeRequest(_message.Message):
+class Position(_message.Message):
+    """Position is a shared oneof for any map-typed position. Exactly one of pose or
+    geo_pose is set; the service rejects a value that does not match GetProperties
+    map type.
+    """
     DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
+    POSE_FIELD_NUMBER: _builtins.int
+    GEO_POSE_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
+    def pose(self) -> _common_pb2.Pose:
+        """MAP_TYPE_LOCAL — common.Pose in the map frame"""
 
-    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+    @_builtins.property
+    def geo_pose(self) -> _common_pb2.GeoPose:
+        """MAP_TYPE_GPS — common.GeoPose"""
+
+    def __init__(self, *, pose: _common_pb2.Pose | None=..., geo_pose: _common_pb2.GeoPose | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['geo_pose', b'geo_pose', 'pose', b'pose', 'value', b'value']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['geo_pose', b'geo_pose', 'pose', b'pose', 'value', b'value']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-Global___GetModeRequest: _TypeAlias = GetModeRequest
+    _WhichOneofReturnType_value: _TypeAlias = _typing.Literal['pose', 'geo_pose']
+    _WhichOneofArgType_value: _TypeAlias = _typing.Literal['value', b'value']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None:
+        ...
+Global___Position: _TypeAlias = Position
 
 @_typing.final
-class GetModeResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    MODE_FIELD_NUMBER: _builtins.int
-    mode: Global___Mode.ValueType
-
-    def __init__(self, *, mode: Global___Mode.ValueType=...) -> None:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['mode', b'mode']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetModeResponse: _TypeAlias = GetModeResponse
-
-@_typing.final
-class SetModeRequest(_message.Message):
+class Location(_message.Message):
+    """Location is a named Position on the active map."""
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
-    MODE_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
+    POSITION_FIELD_NUMBER: _builtins.int
     name: _builtins.str
-    mode: Global___Mode.ValueType
 
     @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., mode: Global___Mode.ValueType=..., extra: _struct_pb2.Struct | None=...) -> None:
+    def position(self) -> Global___Position:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def __init__(self, *, name: _builtins.str=..., position: Global___Position | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['position', b'position']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'mode', b'mode', 'name', b'name']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['name', b'name', 'position', b'position']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-Global___SetModeRequest: _TypeAlias = SetModeRequest
-
-@_typing.final
-class SetModeResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-
-    def __init__(self) -> None:
-        ...
-Global___SetModeResponse: _TypeAlias = SetModeResponse
+Global___Location: _TypeAlias = Location
 
 @_typing.final
 class Waypoint(_message.Message):
+    """Waypoint is a route stop: either the name of a saved Location or an inline
+    Position.
+    """
     DESCRIPTOR: _descriptor.Descriptor
-    ID_FIELD_NUMBER: _builtins.int
     LOCATION_FIELD_NUMBER: _builtins.int
-    id: _builtins.str
+    POSITION_FIELD_NUMBER: _builtins.int
+    location: _builtins.str
 
     @_builtins.property
-    def location(self) -> _common_pb2.GeoPoint:
+    def position(self) -> Global___Position:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., location: _common_pb2.GeoPoint | None=...) -> None:
+    def __init__(self, *, location: _builtins.str=..., position: Global___Position | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['location', b'location', 'position', b'position', 'value', b'value']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['location', b'location', 'position', b'position', 'value', b'value']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_value: _TypeAlias = _typing.Literal['location', 'position']
+    _WhichOneofArgType_value: _TypeAlias = _typing.Literal['value', b'value']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None:
+        ...
+Global___Waypoint: _TypeAlias = Waypoint
+
+@_typing.final
+class Route(_message.Message):
+    """Route is an ordered list of waypoints. A location can appear in more than one
+    route, and more than once in the same route.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    WAYPOINTS_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+
+    @_builtins.property
+    def waypoints(self) -> _containers.RepeatedCompositeFieldContainer[Global___Waypoint]:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., waypoints: _abc.Iterable[Global___Waypoint] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['name', b'name', 'waypoints', b'waypoints']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Route: _TypeAlias = Route
+
+@_typing.final
+class Zone(_message.Message):
+    """Zone is a named region on the active map. Geometry is a Struct following the
+    Geometry shapes described in the Navigation API (circle, box, or polygon).
+    Units follow the map type: millimeters on local maps, meters for GPS radii
+    and sizes.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    GEOMETRY_FIELD_NUMBER: _builtins.int
+    MAX_SPEED_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    type: _builtins.str
+    '"keepout" or "speed_limit" '
+    max_speed: _builtins.float
+    'Max speed in meters/sec; required when type is "speed_limit" '
+
+    @_builtins.property
+    def geometry(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., type: _builtins.str=..., geometry: _struct_pb2.Struct | None=..., max_speed: _builtins.float | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed', 'geometry', b'geometry', 'max_speed', b'max_speed']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed', 'geometry', b'geometry', 'max_speed', b'max_speed', 'name', b'name', 'type', b'type']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__max_speed: _TypeAlias = _typing.Literal['max_speed']
+    _WhichOneofArgType__max_speed: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_speed) -> _WhichOneofReturnType__max_speed | None:
+        ...
+Global___Zone: _TypeAlias = Zone
+
+@_typing.final
+class Plan(_message.Message):
+    """Plan is a path preview returned by PlanToPoint and PlanToLocation."""
+    DESCRIPTOR: _descriptor.Descriptor
+    PATH_FIELD_NUMBER: _builtins.int
+    LOCATION_FIELD_NUMBER: _builtins.int
+    LENGTH_M_FIELD_NUMBER: _builtins.int
+    location: _builtins.str
+    'Set by PlanToLocation'
+    length_m: _builtins.float
+
+    @_builtins.property
+    def path(self) -> _containers.RepeatedCompositeFieldContainer[Global___Position]:
+        ...
+
+    def __init__(self, *, path: _abc.Iterable[Global___Position] | None=..., location: _builtins.str | None=..., length_m: _builtins.float=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_location', b'_location', 'location', b'location']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_location', b'_location', 'length_m', b'length_m', 'location', b'location', 'path', b'path']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__location: _TypeAlias = _typing.Literal['location']
+    _WhichOneofArgType__location: _TypeAlias = _typing.Literal['_location', b'_location']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__location) -> _WhichOneofReturnType__location | None:
+        ...
+Global___Plan: _TypeAlias = Plan
+
+@_typing.final
+class Velocity(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    LINEAR_M_PER_SEC_FIELD_NUMBER: _builtins.int
+    ANGULAR_DEG_PER_SEC_FIELD_NUMBER: _builtins.int
+    linear_m_per_sec: _builtins.float
+    'Forward linear velocity'
+    angular_deg_per_sec: _builtins.float
+    'Yaw rate, counterclockwise positive'
+
+    def __init__(self, *, linear_m_per_sec: _builtins.float=..., angular_deg_per_sec: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['angular_deg_per_sec', b'angular_deg_per_sec', 'linear_m_per_sec', b'linear_m_per_sec']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Velocity: _TypeAlias = Velocity
+
+@_typing.final
+class NavError(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    CODE_FIELD_NUMBER: _builtins.int
+    MESSAGE_FIELD_NUMBER: _builtins.int
+    code: Global___NavErrorCode.ValueType
+    message: _builtins.str
+
+    def __init__(self, *, code: Global___NavErrorCode.ValueType=..., message: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['code', b'code', 'message', b'message']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavError: _TypeAlias = NavError
+
+@_typing.final
+class Progress(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    DISTANCE_REMAINING_M_FIELD_NUMBER: _builtins.int
+    PATH_FIELD_NUMBER: _builtins.int
+    LENGTH_M_FIELD_NUMBER: _builtins.int
+    distance_remaining_m: _builtins.float
+    length_m: _builtins.float
+    'Same meaning as Plan.length_m'
+
+    @_builtins.property
+    def path(self) -> _containers.RepeatedCompositeFieldContainer[Global___Position]:
+        """PLANNED and ROUTE only; updates on replan"""
+
+    def __init__(self, *, distance_remaining_m: _builtins.float=..., path: _abc.Iterable[Global___Position] | None=..., length_m: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['distance_remaining_m', b'distance_remaining_m', 'length_m', b'length_m', 'path', b'path']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Progress: _TypeAlias = Progress
+
+@_typing.final
+class RouteProgress(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    WAYPOINTS_FIELD_NUMBER: _builtins.int
+    INDEX_FIELD_NUMBER: _builtins.int
+    LOOP_FIELD_NUMBER: _builtins.int
+    LAP_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Empty for inline routes'
+    index: _builtins.int
+    'Current waypoint; waypoints[index] is the target'
+    loop: _builtins.bool
+    lap: _builtins.int
+
+    @_builtins.property
+    def waypoints(self) -> _containers.RepeatedCompositeFieldContainer[Global___Waypoint]:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., waypoints: _abc.Iterable[Global___Waypoint] | None=..., index: _builtins.int=..., loop: _builtins.bool=..., lap: _builtins.int=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['index', b'index', 'lap', b'lap', 'loop', b'loop', 'name', b'name', 'waypoints', b'waypoints']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RouteProgress: _TypeAlias = RouteProgress
+
+@_typing.final
+class GoalStatus(_message.Message):
+    """GoalStatus is one goal and its lifecycle. Returned (embedded in Status) by
+    every method that starts, suspends, resumes, or cancels motion, and embedded
+    in Status from GetNavigationStatus. Only the latest goal is kept. SUCCEEDED, FAILED,
+    and CANCELED are terminal.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    STATE_FIELD_NUMBER: _builtins.int
+    MODE_FIELD_NUMBER: _builtins.int
+    TARGET_FIELD_NUMBER: _builtins.int
+    LOCATION_FIELD_NUMBER: _builtins.int
+    PROGRESS_FIELD_NUMBER: _builtins.int
+    ROUTE_FIELD_NUMBER: _builtins.int
+    SUSPEND_REASON_FIELD_NUMBER: _builtins.int
+    ERROR_FIELD_NUMBER: _builtins.int
+    STARTED_AT_FIELD_NUMBER: _builtins.int
+    FINISHED_AT_FIELD_NUMBER: _builtins.int
+    state: Global___GoalState.ValueType
+    mode: Global___NavMode.ValueType
+    location: _builtins.str
+    'Set when the target is a saved location'
+    suspend_reason: _builtins.str
+    'When SUSPENDED'
+
+    @_builtins.property
+    def target(self) -> Global___Position:
+        """For a route, the current waypoint"""
+
+    @_builtins.property
+    def progress(self) -> Global___Progress:
+        """While ACTIVE"""
+
+    @_builtins.property
+    def route(self) -> Global___RouteProgress:
+        """When mode == NAV_MODE_ROUTE"""
+
+    @_builtins.property
+    def error(self) -> Global___NavError:
+        """When FAILED"""
+
+    @_builtins.property
+    def started_at(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def finished_at(self) -> _timestamp_pb2.Timestamp:
+        """Set once terminal"""
+
+    def __init__(self, *, state: Global___GoalState.ValueType=..., mode: Global___NavMode.ValueType=..., target: Global___Position | None=..., location: _builtins.str | None=..., progress: Global___Progress | None=..., route: Global___RouteProgress | None=..., suspend_reason: _builtins.str | None=..., error: Global___NavError | None=..., started_at: _timestamp_pb2.Timestamp | None=..., finished_at: _timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_error', b'_error', '_finished_at', b'_finished_at', '_location', b'_location', '_progress', b'_progress', '_route', b'_route', '_suspend_reason', b'_suspend_reason', 'error', b'error', 'finished_at', b'finished_at', 'location', b'location', 'progress', b'progress', 'route', b'route', 'started_at', b'started_at', 'suspend_reason', b'suspend_reason', 'target', b'target']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_error', b'_error', '_finished_at', b'_finished_at', '_location', b'_location', '_progress', b'_progress', '_route', b'_route', '_suspend_reason', b'_suspend_reason', 'error', b'error', 'finished_at', b'finished_at', 'location', b'location', 'mode', b'mode', 'progress', b'progress', 'route', b'route', 'started_at', b'started_at', 'state', b'state', 'suspend_reason', b'suspend_reason', 'target', b'target']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__error: _TypeAlias = _typing.Literal['error']
+    _WhichOneofArgType__error: _TypeAlias = _typing.Literal['_error', b'_error']
+    _WhichOneofReturnType__finished_at: _TypeAlias = _typing.Literal['finished_at']
+    _WhichOneofArgType__finished_at: _TypeAlias = _typing.Literal['_finished_at', b'_finished_at']
+    _WhichOneofReturnType__location: _TypeAlias = _typing.Literal['location']
+    _WhichOneofArgType__location: _TypeAlias = _typing.Literal['_location', b'_location']
+    _WhichOneofReturnType__progress: _TypeAlias = _typing.Literal['progress']
+    _WhichOneofArgType__progress: _TypeAlias = _typing.Literal['_progress', b'_progress']
+    _WhichOneofReturnType__route: _TypeAlias = _typing.Literal['route']
+    _WhichOneofArgType__route: _TypeAlias = _typing.Literal['_route', b'_route']
+    _WhichOneofReturnType__suspend_reason: _TypeAlias = _typing.Literal['suspend_reason']
+    _WhichOneofArgType__suspend_reason: _TypeAlias = _typing.Literal['_suspend_reason', b'_suspend_reason']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__error) -> _WhichOneofReturnType__error | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__finished_at) -> _WhichOneofReturnType__finished_at | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__location) -> _WhichOneofReturnType__location | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__progress) -> _WhichOneofReturnType__progress | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__route) -> _WhichOneofReturnType__route | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__suspend_reason) -> _WhichOneofReturnType__suspend_reason | None:
+        ...
+Global___GoalStatus: _TypeAlias = GoalStatus
+
+@_typing.final
+class Status(_message.Message):
+    """Status is the robot navigation state returned by GetNavigationStatus and by methods that
+    start, suspend, or resume motion. The robot is idle when goal is unset or
+    goal.state is terminal. It is moving when goal.state == GOAL_STATE_ACTIVE.
+    Methods that start motion fail while localized is false.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    POSITION_FIELD_NUMBER: _builtins.int
+    LOCALIZED_FIELD_NUMBER: _builtins.int
+    VELOCITY_FIELD_NUMBER: _builtins.int
+    GOAL_FIELD_NUMBER: _builtins.int
+    UPDATED_AT_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    localized: _builtins.bool
+    'Pose is trusted; false blocks new goals'
+
+    @_builtins.property
+    def position(self) -> Global___Position:
+        """Same as GetPosition"""
+
+    @_builtins.property
+    def velocity(self) -> Global___Velocity:
+        """Current body-frame velocity; zero when stopped"""
+
+    @_builtins.property
+    def goal(self) -> Global___GoalStatus:
+        """Latest goal; unset until the first one"""
+
+    @_builtins.property
+    def updated_at(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Backend-specific diagnostics"""
+
+    def __init__(self, *, position: Global___Position | None=..., localized: _builtins.bool=..., velocity: Global___Velocity | None=..., goal: Global___GoalStatus | None=..., updated_at: _timestamp_pb2.Timestamp | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_goal', b'_goal', 'extra', b'extra', 'goal', b'goal', 'position', b'position', 'updated_at', b'updated_at', 'velocity', b'velocity']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_goal', b'_goal', 'extra', b'extra', 'goal', b'goal', 'localized', b'localized', 'position', b'position', 'updated_at', b'updated_at', 'velocity', b'velocity']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__goal: _TypeAlias = _typing.Literal['goal']
+    _WhichOneofArgType__goal: _TypeAlias = _typing.Literal['_goal', b'_goal']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__goal) -> _WhichOneofReturnType__goal | None:
+        ...
+Global___Status: _TypeAlias = Status
+
+@_typing.final
+class Properties(_message.Message):
+    """Properties are returned by GetProperties and do not change while the service
+    is running.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    MAP_TYPE_FIELD_NUMBER: _builtins.int
+    FOOTPRINT_LENGTH_M_FIELD_NUMBER: _builtins.int
+    FOOTPRINT_WIDTH_M_FIELD_NUMBER: _builtins.int
+    ROBOT_RADIUS_M_FIELD_NUMBER: _builtins.int
+    PLANNING_SUPPORTED_FIELD_NUMBER: _builtins.int
+    COSTMAP_SUPPORTED_FIELD_NUMBER: _builtins.int
+    ZONES_SUPPORTED_FIELD_NUMBER: _builtins.int
+    ROUTES_SUPPORTED_FIELD_NUMBER: _builtins.int
+    map_type: Global___MapType.ValueType
+    footprint_length_m: _builtins.float
+    footprint_width_m: _builtins.float
+    robot_radius_m: _builtins.float
+    planning_supported: _builtins.bool
+    'PlanTo*, ExecutePlan, NavigateTo*'
+    costmap_supported: _builtins.bool
+    'GetCostmap'
+    zones_supported: _builtins.bool
+    'Keep-out / speed-limit zones'
+    routes_supported: _builtins.bool
+    'Route store + NavigateRoute'
+
+    def __init__(self, *, map_type: Global___MapType.ValueType=..., footprint_length_m: _builtins.float=..., footprint_width_m: _builtins.float=..., robot_radius_m: _builtins.float=..., planning_supported: _builtins.bool=..., costmap_supported: _builtins.bool=..., zones_supported: _builtins.bool=..., routes_supported: _builtins.bool=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['costmap_supported', b'costmap_supported', 'footprint_length_m', b'footprint_length_m', 'footprint_width_m', b'footprint_width_m', 'map_type', b'map_type', 'planning_supported', b'planning_supported', 'robot_radius_m', b'robot_radius_m', 'routes_supported', b'routes_supported', 'zones_supported', b'zones_supported']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Properties: _TypeAlias = Properties
+
+@_typing.final
+class AddLocationRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
+    POSITION_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
+    'Name of the location to save'
+
+    @_builtins.property
+    def position(self) -> Global___Position:
+        """Omit to use the robot's current Position"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., position: Global___Position | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_position', b'_position', 'extra', b'extra', 'position', b'position']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_position', b'_position', 'extra', b'extra', 'location_name', b'location_name', 'name', b'name', 'position', b'position']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__position: _TypeAlias = _typing.Literal['position']
+    _WhichOneofArgType__position: _TypeAlias = _typing.Literal['_position', b'_position']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__position) -> _WhichOneofReturnType__position | None:
+        ...
+Global___AddLocationRequest: _TypeAlias = AddLocationRequest
+
+@_typing.final
+class AddLocationResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    LOCATION_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def location(self) -> Global___Location:
+        ...
+
+    def __init__(self, *, location: Global___Location | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['location', b'location']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['id', b'id', 'location', b'location']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['location', b'location']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-Global___Waypoint: _TypeAlias = Waypoint
+Global___AddLocationResponse: _TypeAlias = AddLocationResponse
 
 @_typing.final
 class GetLocationRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
     EXTRA_FIELD_NUMBER: _builtins.int
     name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
 
     @_builtins.property
     def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
+        ...
 
-    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'location_name', b'location_name', 'name', b'name']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -174,208 +659,25 @@ Global___GetLocationRequest: _TypeAlias = GetLocationRequest
 class GetLocationResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     LOCATION_FIELD_NUMBER: _builtins.int
-    COMPASS_HEADING_FIELD_NUMBER: _builtins.int
-    compass_heading: _builtins.float
-    'A number from [0-360) where 0 is north\n    90 is east, 180 is south, 270 is west\n    '
 
     @_builtins.property
-    def location(self) -> _common_pb2.GeoPoint:
+    def location(self) -> Global___Location:
         ...
 
-    def __init__(self, *, location: _common_pb2.GeoPoint | None=..., compass_heading: _builtins.float=...) -> None:
+    def __init__(self, *, location: Global___Location | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['location', b'location']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['compass_heading', b'compass_heading', 'location', b'location']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['location', b'location']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___GetLocationResponse: _TypeAlias = GetLocationResponse
 
 @_typing.final
-class GetWaypointsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
-
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
-        ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
-
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetWaypointsRequest: _TypeAlias = GetWaypointsRequest
-
-@_typing.final
-class GetWaypointsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    WAYPOINTS_FIELD_NUMBER: _builtins.int
-
-    @_builtins.property
-    def waypoints(self) -> _containers.RepeatedCompositeFieldContainer[Global___Waypoint]:
-        ...
-
-    def __init__(self, *, waypoints: _abc.Iterable[Global___Waypoint] | None=...) -> None:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['waypoints', b'waypoints']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetWaypointsResponse: _TypeAlias = GetWaypointsResponse
-
-@_typing.final
-class AddWaypointRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    LOCATION_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
-
-    @_builtins.property
-    def location(self) -> _common_pb2.GeoPoint:
-        ...
-
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., location: _common_pb2.GeoPoint | None=..., extra: _struct_pb2.Struct | None=...) -> None:
-        ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'location', b'location']
-
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'location', b'location', 'name', b'name']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___AddWaypointRequest: _TypeAlias = AddWaypointRequest
-
-@_typing.final
-class AddWaypointResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-
-    def __init__(self) -> None:
-        ...
-Global___AddWaypointResponse: _TypeAlias = AddWaypointResponse
-
-@_typing.final
-class RemoveWaypointRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    ID_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
-    id: _builtins.str
-
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., id: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
-        ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
-
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'id', b'id', 'name', b'name']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___RemoveWaypointRequest: _TypeAlias = RemoveWaypointRequest
-
-@_typing.final
-class RemoveWaypointResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-
-    def __init__(self) -> None:
-        ...
-Global___RemoveWaypointResponse: _TypeAlias = RemoveWaypointResponse
-
-@_typing.final
-class GetObstaclesRequest(_message.Message):
-    """GetObstacles will return the geopoint location and geometry of all
-    known obstacles on the navigation map. Obstacles that are detected
-    through the vision service will only be returned if this endpoint is called
-    when the robot is sensing the obstacle
-    """
-    DESCRIPTOR: _descriptor.Descriptor
-    NAME_FIELD_NUMBER: _builtins.int
-    EXTRA_FIELD_NUMBER: _builtins.int
-    name: _builtins.str
-
-    @_builtins.property
-    def extra(self) -> _struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
-        ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
-
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetObstaclesRequest: _TypeAlias = GetObstaclesRequest
-
-@_typing.final
-class GetObstaclesResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
-    OBSTACLES_FIELD_NUMBER: _builtins.int
-
-    @_builtins.property
-    def obstacles(self) -> _containers.RepeatedCompositeFieldContainer[_common_pb2.GeoGeometry]:
-        """List of all known geometries"""
-
-    def __init__(self, *, obstacles: _abc.Iterable[_common_pb2.GeoGeometry] | None=...) -> None:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['obstacles', b'obstacles']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___GetObstaclesResponse: _TypeAlias = GetObstaclesResponse
-
-@_typing.final
-class Path(_message.Message):
-    """A user provided destination and the set of geopoints that
-    the robot is expected to take to get there
-    """
-    DESCRIPTOR: _descriptor.Descriptor
-    DESTINATION_WAYPOINT_ID_FIELD_NUMBER: _builtins.int
-    GEOPOINTS_FIELD_NUMBER: _builtins.int
-    destination_waypoint_id: _builtins.str
-    'The id of the user specified waypoint'
-
-    @_builtins.property
-    def geopoints(self) -> _containers.RepeatedCompositeFieldContainer[_common_pb2.GeoPoint]:
-        """List of geopoints that the motion planner output to reach the destination
-        The first geopoint is the starting position of the robot for that path
-        """
-
-    def __init__(self, *, destination_waypoint_id: _builtins.str=..., geopoints: _abc.Iterable[_common_pb2.GeoPoint] | None=...) -> None:
-        ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['destination_waypoint_id', b'destination_waypoint_id', 'geopoints', b'geopoints']
-
-    def ClearField(self, field_name: _ClearFieldArgType) -> None:
-        ...
-Global___Path: _TypeAlias = Path
-
-@_typing.final
-class GetPathsRequest(_message.Message):
-    """Returns all the paths known to the navigation service"""
+class ListLocationsRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
     EXTRA_FIELD_NUMBER: _builtins.int
@@ -396,24 +698,1346 @@ class GetPathsRequest(_message.Message):
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-Global___GetPathsRequest: _TypeAlias = GetPathsRequest
+Global___ListLocationsRequest: _TypeAlias = ListLocationsRequest
 
 @_typing.final
-class GetPathsResponse(_message.Message):
+class ListLocationsResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
-    PATHS_FIELD_NUMBER: _builtins.int
+    LOCATIONS_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
-    def paths(self) -> _containers.RepeatedCompositeFieldContainer[Global___Path]:
+    def locations(self) -> _containers.RepeatedCompositeFieldContainer[Global___Location]:
         ...
 
-    def __init__(self, *, paths: _abc.Iterable[Global___Path] | None=...) -> None:
+    def __init__(self, *, locations: _abc.Iterable[Global___Location] | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['paths', b'paths']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['locations', b'locations']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-Global___GetPathsResponse: _TypeAlias = GetPathsResponse
+Global___ListLocationsResponse: _TypeAlias = ListLocationsResponse
+
+@_typing.final
+class UpdateLocationRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
+    POSITION_FIELD_NUMBER: _builtins.int
+    NEW_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
+    new_name: _builtins.str
+    'Omit to leave name unchanged'
+
+    @_builtins.property
+    def position(self) -> Global___Position:
+        """Omit to leave position unchanged"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., position: Global___Position | None=..., new_name: _builtins.str | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_new_name', b'_new_name', '_position', b'_position', 'extra', b'extra', 'new_name', b'new_name', 'position', b'position']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_new_name', b'_new_name', '_position', b'_position', 'extra', b'extra', 'location_name', b'location_name', 'name', b'name', 'new_name', b'new_name', 'position', b'position']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__new_name: _TypeAlias = _typing.Literal['new_name']
+    _WhichOneofArgType__new_name: _TypeAlias = _typing.Literal['_new_name', b'_new_name']
+    _WhichOneofReturnType__position: _TypeAlias = _typing.Literal['position']
+    _WhichOneofArgType__position: _TypeAlias = _typing.Literal['_position', b'_position']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__new_name) -> _WhichOneofReturnType__new_name | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__position) -> _WhichOneofReturnType__position | None:
+        ...
+Global___UpdateLocationRequest: _TypeAlias = UpdateLocationRequest
+
+@_typing.final
+class UpdateLocationResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    LOCATION_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def location(self) -> Global___Location:
+        ...
+
+    def __init__(self, *, location: Global___Location | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['location', b'location']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['location', b'location']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UpdateLocationResponse: _TypeAlias = UpdateLocationResponse
+
+@_typing.final
+class DeleteLocationRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'location_name', b'location_name', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteLocationRequest: _TypeAlias = DeleteLocationRequest
+
+@_typing.final
+class DeleteLocationResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteLocationResponse: _TypeAlias = DeleteLocationResponse
+
+@_typing.final
+class AddRouteRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ROUTE_NAME_FIELD_NUMBER: _builtins.int
+    WAYPOINTS_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    route_name: _builtins.str
+
+    @_builtins.property
+    def waypoints(self) -> _containers.RepeatedCompositeFieldContainer[Global___Waypoint]:
+        ...
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., route_name: _builtins.str=..., waypoints: _abc.Iterable[Global___Waypoint] | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'route_name', b'route_name', 'waypoints', b'waypoints']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AddRouteRequest: _TypeAlias = AddRouteRequest
+
+@_typing.final
+class AddRouteResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ROUTE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def route(self) -> Global___Route:
+        ...
+
+    def __init__(self, *, route: Global___Route | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['route', b'route']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['route', b'route']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AddRouteResponse: _TypeAlias = AddRouteResponse
+
+@_typing.final
+class GetRouteRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ROUTE_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    route_name: _builtins.str
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., route_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'route_name', b'route_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetRouteRequest: _TypeAlias = GetRouteRequest
+
+@_typing.final
+class GetRouteResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ROUTE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def route(self) -> Global___Route:
+        ...
+
+    def __init__(self, *, route: Global___Route | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['route', b'route']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['route', b'route']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetRouteResponse: _TypeAlias = GetRouteResponse
+
+@_typing.final
+class ListRoutesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListRoutesRequest: _TypeAlias = ListRoutesRequest
+
+@_typing.final
+class ListRoutesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ROUTES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def routes(self) -> _containers.RepeatedCompositeFieldContainer[Global___Route]:
+        ...
+
+    def __init__(self, *, routes: _abc.Iterable[Global___Route] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['routes', b'routes']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListRoutesResponse: _TypeAlias = ListRoutesResponse
+
+@_typing.final
+class WaypointList(_message.Message):
+    """WaypointList is a wrapper so callers can distinguish an unset list from an
+    empty one. Proto3 repeated fields have no presence.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    WAYPOINTS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def waypoints(self) -> _containers.RepeatedCompositeFieldContainer[Global___Waypoint]:
+        ...
+
+    def __init__(self, *, waypoints: _abc.Iterable[Global___Waypoint] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['waypoints', b'waypoints']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___WaypointList: _TypeAlias = WaypointList
+
+@_typing.final
+class UpdateRouteRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ROUTE_NAME_FIELD_NUMBER: _builtins.int
+    NEW_NAME_FIELD_NUMBER: _builtins.int
+    WAYPOINTS_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    route_name: _builtins.str
+    new_name: _builtins.str
+    'Omit to leave name unchanged'
+
+    @_builtins.property
+    def waypoints(self) -> Global___WaypointList:
+        """Unset: leave waypoints unchanged. Set, including empty: replace them."""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., route_name: _builtins.str=..., new_name: _builtins.str | None=..., waypoints: Global___WaypointList | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_new_name', b'_new_name', '_waypoints', b'_waypoints', 'extra', b'extra', 'new_name', b'new_name', 'waypoints', b'waypoints']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_new_name', b'_new_name', '_waypoints', b'_waypoints', 'extra', b'extra', 'name', b'name', 'new_name', b'new_name', 'route_name', b'route_name', 'waypoints', b'waypoints']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__new_name: _TypeAlias = _typing.Literal['new_name']
+    _WhichOneofArgType__new_name: _TypeAlias = _typing.Literal['_new_name', b'_new_name']
+    _WhichOneofReturnType__waypoints: _TypeAlias = _typing.Literal['waypoints']
+    _WhichOneofArgType__waypoints: _TypeAlias = _typing.Literal['_waypoints', b'_waypoints']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__new_name) -> _WhichOneofReturnType__new_name | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__waypoints) -> _WhichOneofReturnType__waypoints | None:
+        ...
+Global___UpdateRouteRequest: _TypeAlias = UpdateRouteRequest
+
+@_typing.final
+class UpdateRouteResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ROUTE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def route(self) -> Global___Route:
+        ...
+
+    def __init__(self, *, route: Global___Route | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['route', b'route']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['route', b'route']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UpdateRouteResponse: _TypeAlias = UpdateRouteResponse
+
+@_typing.final
+class DeleteRouteRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ROUTE_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    route_name: _builtins.str
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., route_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'route_name', b'route_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteRouteRequest: _TypeAlias = DeleteRouteRequest
+
+@_typing.final
+class DeleteRouteResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteRouteResponse: _TypeAlias = DeleteRouteResponse
+
+@_typing.final
+class AddZoneRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ZONE_NAME_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    GEOMETRY_FIELD_NUMBER: _builtins.int
+    MAX_SPEED_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    zone_name: _builtins.str
+    type: _builtins.str
+    '"keepout" or "speed_limit" '
+    max_speed: _builtins.float
+    'Max speed in meters/sec; required when type is "speed_limit" '
+
+    @_builtins.property
+    def geometry(self) -> _struct_pb2.Struct:
+        """See Zone geometry shapes"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., zone_name: _builtins.str=..., type: _builtins.str=..., geometry: _struct_pb2.Struct | None=..., max_speed: _builtins.float | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed', 'extra', b'extra', 'geometry', b'geometry', 'max_speed', b'max_speed']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed', 'extra', b'extra', 'geometry', b'geometry', 'max_speed', b'max_speed', 'name', b'name', 'type', b'type', 'zone_name', b'zone_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__max_speed: _TypeAlias = _typing.Literal['max_speed']
+    _WhichOneofArgType__max_speed: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_speed) -> _WhichOneofReturnType__max_speed | None:
+        ...
+Global___AddZoneRequest: _TypeAlias = AddZoneRequest
+
+@_typing.final
+class AddZoneResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ZONE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def zone(self) -> Global___Zone:
+        ...
+
+    def __init__(self, *, zone: Global___Zone | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['zone', b'zone']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['zone', b'zone']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AddZoneResponse: _TypeAlias = AddZoneResponse
+
+@_typing.final
+class GetZoneRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ZONE_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    zone_name: _builtins.str
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., zone_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'zone_name', b'zone_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetZoneRequest: _TypeAlias = GetZoneRequest
+
+@_typing.final
+class GetZoneResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ZONE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def zone(self) -> Global___Zone:
+        ...
+
+    def __init__(self, *, zone: Global___Zone | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['zone', b'zone']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['zone', b'zone']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetZoneResponse: _TypeAlias = GetZoneResponse
+
+@_typing.final
+class ListZonesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    type: _builtins.str
+    'Optional; "keepout" or "speed_limit" '
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., type: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'type', b'type']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListZonesRequest: _TypeAlias = ListZonesRequest
+
+@_typing.final
+class ListZonesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ZONES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def zones(self) -> _containers.RepeatedCompositeFieldContainer[Global___Zone]:
+        ...
+
+    def __init__(self, *, zones: _abc.Iterable[Global___Zone] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['zones', b'zones']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListZonesResponse: _TypeAlias = ListZonesResponse
+
+@_typing.final
+class UpdateZoneRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ZONE_NAME_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    GEOMETRY_FIELD_NUMBER: _builtins.int
+    MAX_SPEED_FIELD_NUMBER: _builtins.int
+    NEW_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    zone_name: _builtins.str
+    type: _builtins.str
+    'Optional; "keepout" or "speed_limit" '
+    max_speed: _builtins.float
+    'Max speed in meters/sec'
+    new_name: _builtins.str
+
+    @_builtins.property
+    def geometry(self) -> _struct_pb2.Struct:
+        """Optional; see Zone geometry shapes"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., zone_name: _builtins.str=..., type: _builtins.str | None=..., geometry: _struct_pb2.Struct | None=..., max_speed: _builtins.float | None=..., new_name: _builtins.str | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_geometry', b'_geometry', '_max_speed', b'_max_speed', '_new_name', b'_new_name', '_type', b'_type', 'extra', b'extra', 'geometry', b'geometry', 'max_speed', b'max_speed', 'new_name', b'new_name', 'type', b'type']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_geometry', b'_geometry', '_max_speed', b'_max_speed', '_new_name', b'_new_name', '_type', b'_type', 'extra', b'extra', 'geometry', b'geometry', 'max_speed', b'max_speed', 'name', b'name', 'new_name', b'new_name', 'type', b'type', 'zone_name', b'zone_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__geometry: _TypeAlias = _typing.Literal['geometry']
+    _WhichOneofArgType__geometry: _TypeAlias = _typing.Literal['_geometry', b'_geometry']
+    _WhichOneofReturnType__max_speed: _TypeAlias = _typing.Literal['max_speed']
+    _WhichOneofArgType__max_speed: _TypeAlias = _typing.Literal['_max_speed', b'_max_speed']
+    _WhichOneofReturnType__new_name: _TypeAlias = _typing.Literal['new_name']
+    _WhichOneofArgType__new_name: _TypeAlias = _typing.Literal['_new_name', b'_new_name']
+    _WhichOneofReturnType__type: _TypeAlias = _typing.Literal['type']
+    _WhichOneofArgType__type: _TypeAlias = _typing.Literal['_type', b'_type']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__geometry) -> _WhichOneofReturnType__geometry | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_speed) -> _WhichOneofReturnType__max_speed | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__new_name) -> _WhichOneofReturnType__new_name | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None:
+        ...
+Global___UpdateZoneRequest: _TypeAlias = UpdateZoneRequest
+
+@_typing.final
+class UpdateZoneResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ZONE_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def zone(self) -> Global___Zone:
+        ...
+
+    def __init__(self, *, zone: Global___Zone | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['zone', b'zone']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['zone', b'zone']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___UpdateZoneResponse: _TypeAlias = UpdateZoneResponse
+
+@_typing.final
+class DeleteZoneRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ZONE_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    zone_name: _builtins.str
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., zone_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'zone_name', b'zone_name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___DeleteZoneRequest: _TypeAlias = DeleteZoneRequest
+
+@_typing.final
+class DeleteZoneResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___DeleteZoneResponse: _TypeAlias = DeleteZoneResponse
+
+@_typing.final
+class NavigateToLocationRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'location_name', b'location_name', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavigateToLocationRequest: _TypeAlias = NavigateToLocationRequest
+
+@_typing.final
+class NavigateToLocationResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavigateToLocationResponse: _TypeAlias = NavigateToLocationResponse
+
+@_typing.final
+class NavigateToPointRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    DESTINATION_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def destination(self) -> Global___Position:
+        ...
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., destination: Global___Position | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['destination', b'destination', 'extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['destination', b'destination', 'extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavigateToPointRequest: _TypeAlias = NavigateToPointRequest
+
+@_typing.final
+class NavigateToPointResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavigateToPointResponse: _TypeAlias = NavigateToPointResponse
+
+@_typing.final
+class NavigateRouteRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    ROUTE_NAME_FIELD_NUMBER: _builtins.int
+    WAYPOINTS_FIELD_NUMBER: _builtins.int
+    START_INDEX_FIELD_NUMBER: _builtins.int
+    START_NEAREST_FIELD_NUMBER: _builtins.int
+    LOOP_FIELD_NUMBER: _builtins.int
+    WAIT_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    route_name: _builtins.str
+    'Optional; a saved route'
+    start_index: _builtins.int
+    'Optional; default 0'
+    start_nearest: _builtins.bool
+    'Optional; overrides start_index'
+    loop: _builtins.bool
+    'Optional; default false'
+    wait: _builtins.bool
+    'Optional; default false. With loop, only returns when stopped'
+
+    @_builtins.property
+    def waypoints(self) -> _containers.RepeatedCompositeFieldContainer[Global___Waypoint]:
+        """Optional; inline waypoints"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., route_name: _builtins.str=..., waypoints: _abc.Iterable[Global___Waypoint] | None=..., start_index: _builtins.int=..., start_nearest: _builtins.bool=..., loop: _builtins.bool=..., wait: _builtins.bool=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'loop', b'loop', 'name', b'name', 'route_name', b'route_name', 'start_index', b'start_index', 'start_nearest', b'start_nearest', 'wait', b'wait', 'waypoints', b'waypoints']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavigateRouteRequest: _TypeAlias = NavigateRouteRequest
+
+@_typing.final
+class NavigateRouteResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___NavigateRouteResponse: _TypeAlias = NavigateRouteResponse
+
+@_typing.final
+class PlanToPointRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    DESTINATION_FIELD_NUMBER: _builtins.int
+    START_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def destination(self) -> Global___Position:
+        ...
+
+    @_builtins.property
+    def start(self) -> Global___Position:
+        """Optional; defaults to GetPosition"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., destination: Global___Position | None=..., start: Global___Position | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_start', b'_start', 'destination', b'destination', 'extra', b'extra', 'start', b'start']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_start', b'_start', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'start', b'start']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__start: _TypeAlias = _typing.Literal['start']
+    _WhichOneofArgType__start: _TypeAlias = _typing.Literal['_start', b'_start']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None:
+        ...
+Global___PlanToPointRequest: _TypeAlias = PlanToPointRequest
+
+@_typing.final
+class PlanToPointResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PLAN_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def plan(self) -> Global___Plan:
+        ...
+
+    def __init__(self, *, plan: Global___Plan | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['plan', b'plan']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['plan', b'plan']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PlanToPointResponse: _TypeAlias = PlanToPointResponse
+
+@_typing.final
+class PlanToLocationRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
+    START_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
+
+    @_builtins.property
+    def start(self) -> Global___Position:
+        """Optional; defaults to GetPosition"""
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., start: Global___Position | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_start', b'_start', 'extra', b'extra', 'start', b'start']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_start', b'_start', 'extra', b'extra', 'location_name', b'location_name', 'name', b'name', 'start', b'start']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__start: _TypeAlias = _typing.Literal['start']
+    _WhichOneofArgType__start: _TypeAlias = _typing.Literal['_start', b'_start']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None:
+        ...
+Global___PlanToLocationRequest: _TypeAlias = PlanToLocationRequest
+
+@_typing.final
+class PlanToLocationResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PLAN_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def plan(self) -> Global___Plan:
+        ...
+
+    def __init__(self, *, plan: Global___Plan | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['plan', b'plan']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['plan', b'plan']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___PlanToLocationResponse: _TypeAlias = PlanToLocationResponse
+
+@_typing.final
+class ExecutePlanRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    PLAN_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def plan(self) -> Global___Plan:
+        ...
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., plan: Global___Plan | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'plan', b'plan']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'plan', b'plan']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ExecutePlanRequest: _TypeAlias = ExecutePlanRequest
+
+@_typing.final
+class ExecutePlanResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ExecutePlanResponse: _TypeAlias = ExecutePlanResponse
+
+@_typing.final
+class GoToLocationRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LOCATION_NAME_FIELD_NUMBER: _builtins.int
+    WAIT_FIELD_NUMBER: _builtins.int
+    LINEAR_M_PER_SEC_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    location_name: _builtins.str
+    wait: _builtins.bool
+    'Optional; default true'
+    linear_m_per_sec: _builtins.float
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., location_name: _builtins.str=..., wait: _builtins.bool | None=..., linear_m_per_sec: _builtins.float | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec', '_wait', b'_wait', 'extra', b'extra', 'linear_m_per_sec', b'linear_m_per_sec', 'wait', b'wait']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec', '_wait', b'_wait', 'extra', b'extra', 'linear_m_per_sec', b'linear_m_per_sec', 'location_name', b'location_name', 'name', b'name', 'wait', b'wait']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__linear_m_per_sec: _TypeAlias = _typing.Literal['linear_m_per_sec']
+    _WhichOneofArgType__linear_m_per_sec: _TypeAlias = _typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec']
+    _WhichOneofReturnType__wait: _TypeAlias = _typing.Literal['wait']
+    _WhichOneofArgType__wait: _TypeAlias = _typing.Literal['_wait', b'_wait']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__linear_m_per_sec) -> _WhichOneofReturnType__linear_m_per_sec | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__wait) -> _WhichOneofReturnType__wait | None:
+        ...
+Global___GoToLocationRequest: _TypeAlias = GoToLocationRequest
+
+@_typing.final
+class GoToLocationResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GoToLocationResponse: _TypeAlias = GoToLocationResponse
+
+@_typing.final
+class GoToPointRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    DESTINATION_FIELD_NUMBER: _builtins.int
+    WAIT_FIELD_NUMBER: _builtins.int
+    LINEAR_M_PER_SEC_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    wait: _builtins.bool
+    'Optional; default true'
+    linear_m_per_sec: _builtins.float
+
+    @_builtins.property
+    def destination(self) -> Global___Position:
+        ...
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., destination: Global___Position | None=..., wait: _builtins.bool | None=..., linear_m_per_sec: _builtins.float | None=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec', '_wait', b'_wait', 'destination', b'destination', 'extra', b'extra', 'linear_m_per_sec', b'linear_m_per_sec', 'wait', b'wait']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec', '_wait', b'_wait', 'destination', b'destination', 'extra', b'extra', 'linear_m_per_sec', b'linear_m_per_sec', 'name', b'name', 'wait', b'wait']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__linear_m_per_sec: _TypeAlias = _typing.Literal['linear_m_per_sec']
+    _WhichOneofArgType__linear_m_per_sec: _TypeAlias = _typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec']
+    _WhichOneofReturnType__wait: _TypeAlias = _typing.Literal['wait']
+    _WhichOneofArgType__wait: _TypeAlias = _typing.Literal['_wait', b'_wait']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__linear_m_per_sec) -> _WhichOneofReturnType__linear_m_per_sec | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__wait) -> _WhichOneofReturnType__wait | None:
+        ...
+Global___GoToPointRequest: _TypeAlias = GoToPointRequest
+
+@_typing.final
+class GoToPointResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GoToPointResponse: _TypeAlias = GoToPointResponse
+
+@_typing.final
+class SuspendRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    REASON_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    reason: _builtins.str
+    'Optional; reported on the suspended goal'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., reason: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'reason', b'reason']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SuspendRequest: _TypeAlias = SuspendRequest
+
+@_typing.final
+class SuspendResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SuspendResponse: _TypeAlias = SuspendResponse
+
+@_typing.final
+class ResumeRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ResumeRequest: _TypeAlias = ResumeRequest
+
+@_typing.final
+class ResumeResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ResumeResponse: _TypeAlias = ResumeResponse
+
+@_typing.final
+class CancelRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___CancelRequest: _TypeAlias = CancelRequest
+
+@_typing.final
+class CancelResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___CancelResponse: _TypeAlias = CancelResponse
+
+@_typing.final
+class GetPositionRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPositionRequest: _TypeAlias = GetPositionRequest
+
+@_typing.final
+class GetPositionResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    POSITION_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def position(self) -> Global___Position:
+        ...
+
+    def __init__(self, *, position: Global___Position | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['position', b'position']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['position', b'position']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPositionResponse: _TypeAlias = GetPositionResponse
+
+@_typing.final
+class GetNavigationStatusRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetNavigationStatusRequest: _TypeAlias = GetNavigationStatusRequest
+
+@_typing.final
+class GetNavigationStatusResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    STATUS_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def status(self) -> Global___Status:
+        ...
+
+    def __init__(self, *, status: Global___Status | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['status', b'status']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetNavigationStatusResponse: _TypeAlias = GetNavigationStatusResponse
 
 @_typing.final
 class GetPropertiesRequest(_message.Message):
@@ -432,15 +2056,88 @@ Global___GetPropertiesRequest: _TypeAlias = GetPropertiesRequest
 
 @_typing.final
 class GetPropertiesResponse(_message.Message):
-    """Returns properties information for the named navigation service"""
     DESCRIPTOR: _descriptor.Descriptor
-    MAP_TYPE_FIELD_NUMBER: _builtins.int
-    map_type: Global___MapType.ValueType
+    PROPERTIES_FIELD_NUMBER: _builtins.int
 
-    def __init__(self, *, map_type: Global___MapType.ValueType=...) -> None:
+    @_builtins.property
+    def properties(self) -> Global___Properties:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['map_type', b'map_type']
+
+    def __init__(self, *, properties: Global___Properties | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['properties', b'properties']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['properties', b'properties']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___GetPropertiesResponse: _TypeAlias = GetPropertiesResponse
+
+@_typing.final
+class GetCostmapRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LAYER_FIELD_NUMBER: _builtins.int
+    STRIDE_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of the navigation service'
+    layer: _builtins.str
+    'Optional; "auto", "local", or "global". Default "auto" '
+    stride: _builtins.int
+    'Optional; downsample factor. Default 2'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., layer: _builtins.str=..., stride: _builtins.int=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'layer', b'layer', 'name', b'name', 'stride', b'stride']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetCostmapRequest: _TypeAlias = GetCostmapRequest
+
+@_typing.final
+class GetCostmapResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    AVAILABLE_FIELD_NUMBER: _builtins.int
+    LAYER_FIELD_NUMBER: _builtins.int
+    NAV_BACKEND_FIELD_NUMBER: _builtins.int
+    ORIGIN_X_FIELD_NUMBER: _builtins.int
+    ORIGIN_Y_FIELD_NUMBER: _builtins.int
+    RESOLUTION_FIELD_NUMBER: _builtins.int
+    WIDTH_FIELD_NUMBER: _builtins.int
+    HEIGHT_FIELD_NUMBER: _builtins.int
+    ENCODING_FIELD_NUMBER: _builtins.int
+    DATA_FIELD_NUMBER: _builtins.int
+    available: _builtins.bool
+    layer: _builtins.str
+    nav_backend: _builtins.str
+    origin_x: _builtins.float
+    'Map-frame origin, meters'
+    origin_y: _builtins.float
+    resolution: _builtins.float
+    'Meters per cell'
+    width: _builtins.int
+    'Cells'
+    height: _builtins.int
+    encoding: _builtins.str
+    '"uint8_row_major" '
+    data: _builtins.bytes
+    'Costs 0–100; unknown cells are 255'
+
+    def __init__(self, *, available: _builtins.bool=..., layer: _builtins.str=..., nav_backend: _builtins.str=..., origin_x: _builtins.float=..., origin_y: _builtins.float=..., resolution: _builtins.float=..., width: _builtins.int=..., height: _builtins.int=..., encoding: _builtins.str=..., data: _builtins.bytes=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['available', b'available', 'data', b'data', 'encoding', b'encoding', 'height', b'height', 'layer', b'layer', 'nav_backend', b'nav_backend', 'origin_x', b'origin_x', 'origin_y', b'origin_y', 'resolution', b'resolution', 'width', b'width']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetCostmapResponse: _TypeAlias = GetCostmapResponse

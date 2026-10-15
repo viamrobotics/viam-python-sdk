@@ -2617,6 +2617,92 @@ class UpdateRobotPartResponse(_message.Message):
 Global___UpdateRobotPartResponse: _TypeAlias = UpdateRobotPartResponse
 
 @_typing.final
+class ConfigPropertyChange(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PATH_FIELD_NUMBER: _builtins.int
+    VALUE_FIELD_NUMBER: _builtins.int
+    path: _builtins.str
+
+    @_builtins.property
+    def value(self) -> _struct_pb2.Value:
+        ...
+
+    def __init__(self, *, path: _builtins.str=..., value: _struct_pb2.Value | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['value', b'value']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['path', b'path', 'value', b'value']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ConfigPropertyChange: _TypeAlias = ConfigPropertyChange
+
+@_typing.final
+class SetConfigPropertyRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ROBOT_PART_ID_FIELD_NUMBER: _builtins.int
+    PROPERTY_CHANGES_FIELD_NUMBER: _builtins.int
+    robot_part_id: _builtins.str
+
+    @_builtins.property
+    def property_changes(self) -> _containers.RepeatedCompositeFieldContainer[Global___ConfigPropertyChange]:
+        ...
+
+    def __init__(self, *, robot_part_id: _builtins.str=..., property_changes: _abc.Iterable[Global___ConfigPropertyChange] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['property_changes', b'property_changes', 'robot_part_id', b'robot_part_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SetConfigPropertyRequest: _TypeAlias = SetConfigPropertyRequest
+
+@_typing.final
+class ConfigPropertyChangeResult(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PATH_FIELD_NUMBER: _builtins.int
+    VALUE_FIELD_NUMBER: _builtins.int
+    SUCCESS_FIELD_NUMBER: _builtins.int
+    ERROR_FIELD_NUMBER: _builtins.int
+    path: _builtins.str
+    success: _builtins.bool
+    error: _builtins.str
+
+    @_builtins.property
+    def value(self) -> _struct_pb2.Value:
+        ...
+
+    def __init__(self, *, path: _builtins.str=..., value: _struct_pb2.Value | None=..., success: _builtins.bool=..., error: _builtins.str=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['value', b'value']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['error', b'error', 'path', b'path', 'success', b'success', 'value', b'value']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ConfigPropertyChangeResult: _TypeAlias = ConfigPropertyChangeResult
+
+@_typing.final
+class SetConfigPropertyResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PROPERTY_CHANGES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def property_changes(self) -> _containers.RepeatedCompositeFieldContainer[Global___ConfigPropertyChangeResult]:
+        ...
+
+    def __init__(self, *, property_changes: _abc.Iterable[Global___ConfigPropertyChangeResult] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['property_changes', b'property_changes']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SetConfigPropertyResponse: _TypeAlias = SetConfigPropertyResponse
+
+@_typing.final
 class NewRobotPartRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ROBOT_ID_FIELD_NUMBER: _builtins.int
@@ -2809,6 +2895,7 @@ class Fragment(_message.Message):
     LAST_UPDATED_FIELD_NUMBER: _builtins.int
     REVISION_FIELD_NUMBER: _builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: _builtins.int
+    FRAGMENT_CONFIG_JSON_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
     organization_owner: _builtins.str
@@ -2824,6 +2911,8 @@ class Fragment(_message.Message):
     'the visibility of a fragment; public, private or unlisted'
     revision: _builtins.str
     public_namespace: _builtins.str
+    fragment_config_json: _builtins.str
+    'Fragment config JSON, preserving key order.'
 
     @_builtins.property
     def fragment(self) -> _struct_pb2.Struct:
@@ -2837,19 +2926,26 @@ class Fragment(_message.Message):
     def last_updated(self) -> _timestamp_pb2.Timestamp:
         """latest timestamp when fragment was updated"""
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., fragment: _struct_pb2.Struct | None=..., organization_owner: _builtins.str=..., public: _builtins.bool=..., created_on: _timestamp_pb2.Timestamp | None=..., organization_name: _builtins.str=..., robot_part_count: _builtins.int=..., organization_count: _builtins.int=..., only_used_by_owner: _builtins.bool=..., visibility: Global___FragmentVisibility.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., revision: _builtins.str=..., public_namespace: _builtins.str | None=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., fragment: _struct_pb2.Struct | None=..., organization_owner: _builtins.str=..., public: _builtins.bool=..., created_on: _timestamp_pb2.Timestamp | None=..., organization_name: _builtins.str=..., robot_part_count: _builtins.int=..., organization_count: _builtins.int=..., only_used_by_owner: _builtins.bool=..., visibility: Global___FragmentVisibility.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., revision: _builtins.str=..., public_namespace: _builtins.str | None=..., fragment_config_json: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace', 'created_on', b'created_on', 'fragment', b'fragment', 'last_updated', b'last_updated', 'public_namespace', b'public_namespace']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_fragment_config_json', b'_fragment_config_json', '_public_namespace', b'_public_namespace', 'created_on', b'created_on', 'fragment', b'fragment', 'fragment_config_json', b'fragment_config_json', 'last_updated', b'last_updated', 'public_namespace', b'public_namespace']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace', 'created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'public_namespace', b'public_namespace', 'revision', b'revision', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_fragment_config_json', b'_fragment_config_json', '_public_namespace', b'_public_namespace', 'created_on', b'created_on', 'fragment', b'fragment', 'fragment_config_json', b'fragment_config_json', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'public_namespace', b'public_namespace', 'revision', b'revision', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__fragment_config_json: _TypeAlias = _typing.Literal['fragment_config_json']
+    _WhichOneofArgType__fragment_config_json: _TypeAlias = _typing.Literal['_fragment_config_json', b'_fragment_config_json']
     _WhichOneofReturnType__public_namespace: _TypeAlias = _typing.Literal['public_namespace']
     _WhichOneofArgType__public_namespace: _TypeAlias = _typing.Literal['_public_namespace', b'_public_namespace']
 
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__fragment_config_json) -> _WhichOneofReturnType__fragment_config_json | None:
+        ...
+
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None:
         ...
 Global___Fragment: _TypeAlias = Fragment
@@ -3247,10 +3343,13 @@ class UpdateFragmentRequest(_message.Message):
     PUBLIC_FIELD_NUMBER: _builtins.int
     VISIBILITY_FIELD_NUMBER: _builtins.int
     LAST_KNOWN_UPDATE_FIELD_NUMBER: _builtins.int
+    FRAGMENT_CONFIG_JSON_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     name: _builtins.str
     public: _builtins.bool
     visibility: Global___FragmentVisibility.ValueType
+    fragment_config_json: _builtins.str
+    'Fragment config JSON, preserving key order. Takes precedence over config.'
 
     @_builtins.property
     def config(self) -> _struct_pb2.Struct:
@@ -3260,22 +3359,28 @@ class UpdateFragmentRequest(_message.Message):
     def last_known_update(self) -> _timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., config: _struct_pb2.Struct | None=..., public: _builtins.bool | None=..., visibility: Global___FragmentVisibility.ValueType | None=..., last_known_update: _timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: _builtins.str=..., name: _builtins.str=..., config: _struct_pb2.Struct | None=..., public: _builtins.bool | None=..., visibility: Global___FragmentVisibility.ValueType | None=..., last_known_update: _timestamp_pb2.Timestamp | None=..., fragment_config_json: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'last_known_update', b'last_known_update', 'public', b'public', 'visibility', b'visibility']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_fragment_config_json', b'_fragment_config_json', '_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'fragment_config_json', b'fragment_config_json', 'last_known_update', b'last_known_update', 'public', b'public', 'visibility', b'visibility']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'id', b'id', 'last_known_update', b'last_known_update', 'name', b'name', 'public', b'public', 'visibility', b'visibility']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_fragment_config_json', b'_fragment_config_json', '_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'fragment_config_json', b'fragment_config_json', 'id', b'id', 'last_known_update', b'last_known_update', 'name', b'name', 'public', b'public', 'visibility', b'visibility']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
+    _WhichOneofReturnType__fragment_config_json: _TypeAlias = _typing.Literal['fragment_config_json']
+    _WhichOneofArgType__fragment_config_json: _TypeAlias = _typing.Literal['_fragment_config_json', b'_fragment_config_json']
     _WhichOneofReturnType__last_known_update: _TypeAlias = _typing.Literal['last_known_update']
     _WhichOneofArgType__last_known_update: _TypeAlias = _typing.Literal['_last_known_update', b'_last_known_update']
     _WhichOneofReturnType__public: _TypeAlias = _typing.Literal['public']
     _WhichOneofArgType__public: _TypeAlias = _typing.Literal['_public', b'_public']
     _WhichOneofReturnType__visibility: _TypeAlias = _typing.Literal['visibility']
     _WhichOneofArgType__visibility: _TypeAlias = _typing.Literal['_visibility', b'_visibility']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__fragment_config_json) -> _WhichOneofReturnType__fragment_config_json | None:
+        ...
 
     @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__last_known_update) -> _WhichOneofReturnType__last_known_update | None:
@@ -4066,6 +4171,103 @@ class DeleteRobotResponse(_message.Message):
 Global___DeleteRobotResponse: _TypeAlias = DeleteRobotResponse
 
 @_typing.final
+class FavoriteMachine(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    MACHINE_FIELD_NUMBER: _builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: _builtins.int
+    CREATED_ON_FIELD_NUMBER: _builtins.int
+    organization_id: _builtins.str
+
+    @_builtins.property
+    def machine(self) -> Global___Robot:
+        ...
+
+    @_builtins.property
+    def created_on(self) -> _timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, machine: Global___Robot | None=..., organization_id: _builtins.str=..., created_on: _timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'machine', b'machine']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'machine', b'machine', 'organization_id', b'organization_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___FavoriteMachine: _TypeAlias = FavoriteMachine
+
+@_typing.final
+class AddFavoriteMachineRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    MACHINE_ID_FIELD_NUMBER: _builtins.int
+    machine_id: _builtins.str
+
+    def __init__(self, *, machine_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['machine_id', b'machine_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AddFavoriteMachineRequest: _TypeAlias = AddFavoriteMachineRequest
+
+@_typing.final
+class AddFavoriteMachineResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___AddFavoriteMachineResponse: _TypeAlias = AddFavoriteMachineResponse
+
+@_typing.final
+class RemoveFavoriteMachineRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    MACHINE_ID_FIELD_NUMBER: _builtins.int
+    machine_id: _builtins.str
+
+    def __init__(self, *, machine_id: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['machine_id', b'machine_id']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___RemoveFavoriteMachineRequest: _TypeAlias = RemoveFavoriteMachineRequest
+
+@_typing.final
+class RemoveFavoriteMachineResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___RemoveFavoriteMachineResponse: _TypeAlias = RemoveFavoriteMachineResponse
+
+@_typing.final
+class ListFavoriteMachinesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___ListFavoriteMachinesRequest: _TypeAlias = ListFavoriteMachinesRequest
+
+@_typing.final
+class ListFavoriteMachinesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    FAVORITES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def favorites(self) -> _containers.RepeatedCompositeFieldContainer[Global___FavoriteMachine]:
+        ...
+
+    def __init__(self, *, favorites: _abc.Iterable[Global___FavoriteMachine] | None=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['favorites', b'favorites']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ListFavoriteMachinesResponse: _TypeAlias = ListFavoriteMachinesResponse
+
+@_typing.final
 class GetRobotMetadataRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     ID_FIELD_NUMBER: _builtins.int
@@ -4630,6 +4832,7 @@ class MLModelMetadata(_message.Message):
     MODEL_TYPE_FIELD_NUMBER: _builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: _builtins.int
     DETAILED_VERSIONS_FIELD_NUMBER: _builtins.int
+    DEPLOYMENT_MODULAR_RESOURCES_FIELD_NUMBER: _builtins.int
     model_type: _ml_training_pb2.ModelType.ValueType
     model_framework: _ml_training_pb2.ModelFramework.ValueType
 
@@ -4642,9 +4845,17 @@ class MLModelMetadata(_message.Message):
     def detailed_versions(self) -> _containers.RepeatedCompositeFieldContainer[Global___MLModelVersion]:
         ...
 
-    def __init__(self, *, versions: _abc.Iterable[_builtins.str] | None=..., model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., detailed_versions: _abc.Iterable[Global___MLModelVersion] | None=...) -> None:
+    @_builtins.property
+    def deployment_modular_resources(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Colon-delimited triplets of components or services from the registry used when
+        model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+        associated component or service that consumes the files and should be deployed
+        along with the model.
+        """
+
+    def __init__(self, *, versions: _abc.Iterable[_builtins.str] | None=..., model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., detailed_versions: _abc.Iterable[Global___MLModelVersion] | None=..., deployment_modular_resources: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['detailed_versions', b'detailed_versions', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['deployment_modular_resources', b'deployment_modular_resources', 'detailed_versions', b'detailed_versions', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -4680,6 +4891,7 @@ class MLTrainingMetadata(_message.Message):
     MODEL_TYPE_FIELD_NUMBER: _builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: _builtins.int
     DRAFT_FIELD_NUMBER: _builtins.int
+    DEPLOYMENT_MODULAR_RESOURCES_FIELD_NUMBER: _builtins.int
     model_type: _ml_training_pb2.ModelType.ValueType
     model_framework: _ml_training_pb2.ModelFramework.ValueType
     draft: _builtins.bool
@@ -4688,9 +4900,18 @@ class MLTrainingMetadata(_message.Message):
     def versions(self) -> _containers.RepeatedCompositeFieldContainer[Global___MLTrainingVersion]:
         """A list of package versions for ML training source distribution"""
 
-    def __init__(self, *, versions: _abc.Iterable[Global___MLTrainingVersion] | None=..., model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., draft: _builtins.bool=...) -> None:
+    @_builtins.property
+    def deployment_modular_resources(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Colon-delimited triplets of components or services from the registry used when
+        model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+        associated component or service that consumes the files and should be deployed
+        along with the model.
+        Copied onto packages published by this training script.
+        """
+
+    def __init__(self, *, versions: _abc.Iterable[Global___MLTrainingVersion] | None=..., model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., draft: _builtins.bool=..., deployment_modular_resources: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['deployment_modular_resources', b'deployment_modular_resources', 'draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -5524,12 +5745,21 @@ class UpdateMLModelMetadata(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     MODEL_TYPE_FIELD_NUMBER: _builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: _builtins.int
+    DEPLOYMENT_MODULAR_RESOURCES_FIELD_NUMBER: _builtins.int
     model_type: _ml_training_pb2.ModelType.ValueType
     model_framework: _ml_training_pb2.ModelFramework.ValueType
 
-    def __init__(self, *, model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=...) -> None:
+    @_builtins.property
+    def deployment_modular_resources(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Colon-delimited triplets of components or services from the registry used when
+        model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+        associated component or service that consumes the files and should be deployed
+        along with the model.
+        """
+
+    def __init__(self, *, model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., deployment_modular_resources: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['model_framework', b'model_framework', 'model_type', b'model_type']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['deployment_modular_resources', b'deployment_modular_resources', 'model_framework', b'model_framework', 'model_type', b'model_type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -5541,13 +5771,22 @@ class UpdateMLTrainingMetadata(_message.Message):
     MODEL_TYPE_FIELD_NUMBER: _builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: _builtins.int
     DRAFT_FIELD_NUMBER: _builtins.int
+    DEPLOYMENT_MODULAR_RESOURCES_FIELD_NUMBER: _builtins.int
     model_type: _ml_training_pb2.ModelType.ValueType
     model_framework: _ml_training_pb2.ModelFramework.ValueType
     draft: _builtins.bool
 
-    def __init__(self, *, model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., draft: _builtins.bool=...) -> None:
+    @_builtins.property
+    def deployment_modular_resources(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Colon-delimited triplets of components or services from the registry used when
+        model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+        associated component or service that consumes the files and should be deployed
+        along with the model.
+        """
+
+    def __init__(self, *, model_type: _ml_training_pb2.ModelType.ValueType=..., model_framework: _ml_training_pb2.ModelFramework.ValueType=..., draft: _builtins.bool=..., deployment_modular_resources: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['deployment_modular_resources', b'deployment_modular_resources', 'draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...

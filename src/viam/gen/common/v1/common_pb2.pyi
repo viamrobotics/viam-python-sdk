@@ -18,6 +18,10 @@ if sys.version_info >= (3, 10):
     from typing import TypeAlias as _TypeAlias
 else:
     from typing_extensions import TypeAlias as _TypeAlias
+if sys.version_info >= (3, 13):
+    from warnings import deprecated as _deprecated
+else:
+    from typing_extensions import deprecated as _deprecated
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class _KinematicsFileFormat:
@@ -36,6 +40,27 @@ KINEMATICS_FILE_FORMAT_UNSPECIFIED: KinematicsFileFormat.ValueType
 KINEMATICS_FILE_FORMAT_SVA: KinematicsFileFormat.ValueType
 KINEMATICS_FILE_FORMAT_URDF: KinematicsFileFormat.ValueType
 Global___KinematicsFileFormat: _TypeAlias = KinematicsFileFormat
+
+class _JointType:
+    ValueType = _typing.NewType('ValueType', _builtins.int)
+    V: _TypeAlias = ValueType
+
+class _JointTypeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_JointType.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
+    JOINT_TYPE_UNSPECIFIED: _JointType.ValueType
+    JOINT_TYPE_REVOLUTE: _JointType.ValueType
+    JOINT_TYPE_PRISMATIC: _JointType.ValueType
+    JOINT_TYPE_CONTINUOUS: _JointType.ValueType
+    'Revolute joint with no position bound'
+
+class JointType(_JointType, metaclass=_JointTypeEnumTypeWrapper):
+    ...
+JOINT_TYPE_UNSPECIFIED: JointType.ValueType
+JOINT_TYPE_REVOLUTE: JointType.ValueType
+JOINT_TYPE_PRISMATIC: JointType.ValueType
+JOINT_TYPE_CONTINUOUS: JointType.ValueType
+'Revolute joint with no position bound'
+Global___JointType: _TypeAlias = JointType
 
 @_typing.final
 class ResourceName(_message.Message):
@@ -260,16 +285,28 @@ class Mesh(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     CONTENT_TYPE_FIELD_NUMBER: _builtins.int
     MESH_FIELD_NUMBER: _builtins.int
+    ORIGINAL_FILE_SOURCE_PATH_DIAGNOSTIC_FIELD_NUMBER: _builtins.int
     content_type: _builtins.str
     'Content type of mesh (e.g. ply)'
     mesh: _builtins.bytes
     'Contents of mesh data in binary form defined by content_type'
+    original_file_source_path_diagnostic: _builtins.str
+    'Path the mesh was loaded from, relative to the kinematics file. Informational on the wire.'
 
-    def __init__(self, *, content_type: _builtins.str=..., mesh: _builtins.bytes=...) -> None:
+    def __init__(self, *, content_type: _builtins.str=..., mesh: _builtins.bytes=..., original_file_source_path_diagnostic: _builtins.str | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['content_type', b'content_type', 'mesh', b'mesh']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_original_file_source_path_diagnostic', b'_original_file_source_path_diagnostic', 'original_file_source_path_diagnostic', b'original_file_source_path_diagnostic']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_original_file_source_path_diagnostic', b'_original_file_source_path_diagnostic', 'content_type', b'content_type', 'mesh', b'mesh', 'original_file_source_path_diagnostic', b'original_file_source_path_diagnostic']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__original_file_source_path_diagnostic: _TypeAlias = _typing.Literal['original_file_source_path_diagnostic']
+    _WhichOneofArgType__original_file_source_path_diagnostic: _TypeAlias = _typing.Literal['_original_file_source_path_diagnostic', b'_original_file_source_path_diagnostic']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__original_file_source_path_diagnostic) -> _WhichOneofReturnType__original_file_source_path_diagnostic | None:
         ...
 Global___Mesh: _TypeAlias = Mesh
 
@@ -407,6 +444,73 @@ class GeoPoint(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___GeoPoint: _TypeAlias = GeoPoint
+
+@_typing.final
+class GeoPose(_message.Message):
+    """GeoPose is a GPS position and orientation, optionally with altitude.
+
+    Orientation is expressed in the east-north-up tangent frame at location:
+    +X east, +Y north, +Z up. Viam base axes are +X right, +Y forward, and +Z up,
+    so the identity orientation (o_x, o_y, o_z, theta) = (0, 0, 1, 0) is level and
+    faces north: forward is north and right is east.
+
+    The same rotation as an orientation vector is Viam's Tait-Bryan Euler sequence,
+    intrinsic z-y'-x'' (yaw, then pitch, then roll), in degrees:
+      - yaw: right-handed rotation about local up (+Z). Zero faces north. Positive
+        yaw is counterclockwise viewed from above, so a compass heading in degrees
+        clockwise from north is the negation of yaw.
+      - pitch: right-handed rotation about the base's forward axis (+Y).
+      - roll: right-handed rotation about the base's right axis (+X). With pitch 0,
+        positive roll raises the forward axis; that angle is the elevation of
+        forward above the local horizon.
+
+    Exactly one of heading or orientation_vector is set. heading is only the
+    compass yaw of a level pose (pitch 0, roll 0). It is not added to
+    orientation_vector.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    LOCATION_FIELD_NUMBER: _builtins.int
+    ALTITUDE_FIELD_NUMBER: _builtins.int
+    HEADING_FIELD_NUMBER: _builtins.int
+    ORIENTATION_VECTOR_FIELD_NUMBER: _builtins.int
+    altitude: _builtins.float
+    'Optional altitude in meters'
+    heading: _builtins.float
+    'Compass heading in degrees, clockwise from north. Level pose: pitch 0, roll 0.'
+
+    @_builtins.property
+    def location(self) -> Global___GeoPoint:
+        """Latitude and longitude in degrees"""
+
+    @_builtins.property
+    def orientation_vector(self) -> Global___Orientation:
+        """Full orientation in the east-north-up tangent frame at location.
+        o_x, o_y, o_z, theta in degrees, same orientation vector as Pose.
+        """
+
+    def __init__(self, *, location: Global___GeoPoint | None=..., altitude: _builtins.float | None=..., heading: _builtins.float=..., orientation_vector: Global___Orientation | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_altitude', b'_altitude', 'altitude', b'altitude', 'heading', b'heading', 'location', b'location', 'orientation', b'orientation', 'orientation_vector', b'orientation_vector']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_altitude', b'_altitude', 'altitude', b'altitude', 'heading', b'heading', 'location', b'location', 'orientation', b'orientation', 'orientation_vector', b'orientation_vector']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__altitude: _TypeAlias = _typing.Literal['altitude']
+    _WhichOneofArgType__altitude: _TypeAlias = _typing.Literal['_altitude', b'_altitude']
+    _WhichOneofReturnType_orientation: _TypeAlias = _typing.Literal['heading', 'orientation_vector']
+    _WhichOneofArgType_orientation: _TypeAlias = _typing.Literal['orientation', b'orientation']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__altitude) -> _WhichOneofReturnType__altitude | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_orientation) -> _WhichOneofReturnType_orientation | None:
+        ...
+Global___GeoPose: _TypeAlias = GeoPose
 
 @_typing.final
 class GeoGeometry(_message.Message):
@@ -648,21 +752,27 @@ Global___GetStatusResponse: _TypeAlias = GetStatusResponse
 class GetKinematicsRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     NAME_FIELD_NUMBER: _builtins.int
+    INCLUDE_COLLISION_MESHES_FIELD_NUMBER: _builtins.int
+    INCLUDE_VISUAL_MESHES_FIELD_NUMBER: _builtins.int
     EXTRA_FIELD_NUMBER: _builtins.int
     name: _builtins.str
     'The component name'
+    include_collision_meshes: _builtins.bool
+    'Include collision mesh bytes in the response. Otherwise meshes carry only their path.'
+    include_visual_meshes: _builtins.bool
+    'Include visual mesh bytes in the response'
 
     @_builtins.property
     def extra(self) -> _struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: _builtins.str=..., include_collision_meshes: _builtins.bool=..., include_visual_meshes: _builtins.bool=..., extra: _struct_pb2.Struct | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'include_collision_meshes', b'include_collision_meshes', 'include_visual_meshes', b'include_visual_meshes', 'name', b'name']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -696,22 +806,383 @@ class GetKinematicsResponse(_message.Message):
     FORMAT_FIELD_NUMBER: _builtins.int
     KINEMATICS_DATA_FIELD_NUMBER: _builtins.int
     MESHES_BY_URDF_FILEPATH_FIELD_NUMBER: _builtins.int
-    format: Global___KinematicsFileFormat.ValueType
-    'The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)\n    https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters\n    '
-    kinematics_data: _builtins.bytes
-    'The byte contents of the file'
+    MODEL_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
-    def meshes_by_urdf_filepath(self) -> _containers.MessageMap[_builtins.str, Global___Mesh]:
-        """Map of URDF mesh file paths to mesh data"""
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def format(self) -> Global___KinematicsFileFormat.ValueType:
+        """Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+        https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+        """
 
-    def __init__(self, *, format: Global___KinematicsFileFormat.ValueType=..., kinematics_data: _builtins.bytes=..., meshes_by_urdf_filepath: _abc.Mapping[_builtins.str, Global___Mesh] | None=...) -> None:
+    @format.setter
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def format(self, value: Global___KinematicsFileFormat.ValueType) -> None:
+        """Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+        https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
+        """
+
+    @_builtins.property
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def kinematics_data(self) -> _builtins.bytes:
+        """Deprecated: use model. The byte contents of the file"""
+
+    @kinematics_data.setter
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def kinematics_data(self, value: _builtins.bytes) -> None:
+        """Deprecated: use model. The byte contents of the file"""
+
+    @_builtins.property
+    @_deprecated('This field has been marked as deprecated using proto field options.')
+    def meshes_by_urdf_filepath(self) -> _containers.MessageMap[_builtins.str, Global___Mesh]:
+        """Deprecated: use model. Map of URDF mesh file paths to mesh data"""
+
+    @_builtins.property
+    def model(self) -> Global___KinematicModel:
+        """The kinematic model of the component"""
+
+    def __init__(self, *, format: Global___KinematicsFileFormat.ValueType=..., kinematics_data: _builtins.bytes=..., meshes_by_urdf_filepath: _abc.Mapping[_builtins.str, Global___Mesh] | None=..., model: Global___KinematicModel | None=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['format', b'format', 'kinematics_data', b'kinematics_data', 'meshes_by_urdf_filepath', b'meshes_by_urdf_filepath']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['model', b'model']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['format', b'format', 'kinematics_data', b'kinematics_data', 'meshes_by_urdf_filepath', b'meshes_by_urdf_filepath', 'model', b'model']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___GetKinematicsResponse: _TypeAlias = GetKinematicsResponse
+
+@_typing.final
+class KinematicModel(_message.Message):
+    """KinematicModel describes a component's kinematics as a tree of links and joints.
+    Its proto JSON encoding is also the on-disk kinematics file format.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    LINKS_FIELD_NUMBER: _builtins.int
+    JOINTS_FIELD_NUMBER: _builtins.int
+    OUTPUT_FRAMES_FIELD_NUMBER: _builtins.int
+    PROPERTIES_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Set to the resource name by the SDK when served'
+
+    @_builtins.property
+    def links(self) -> _containers.RepeatedCompositeFieldContainer[Global___KinematicLink]:
+        ...
+
+    @_builtins.property
+    def joints(self) -> _containers.RepeatedCompositeFieldContainer[Global___KinematicJoint]:
+        ...
+
+    @_builtins.property
+    def output_frames(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Frames whose poses the model reports"""
+
+    @_builtins.property
+    def properties(self) -> Global___KinematicProperties:
+        ...
+
+    def __init__(self, *, name: _builtins.str=..., links: _abc.Iterable[Global___KinematicLink] | None=..., joints: _abc.Iterable[Global___KinematicJoint] | None=..., output_frames: _abc.Iterable[_builtins.str] | None=..., properties: Global___KinematicProperties | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['properties', b'properties']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['joints', b'joints', 'links', b'links', 'name', b'name', 'output_frames', b'output_frames', 'properties', b'properties']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___KinematicModel: _TypeAlias = KinematicModel
+
+@_typing.final
+class KinematicLink(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    PARENT_FIELD_NUMBER: _builtins.int
+    POSE_FIELD_NUMBER: _builtins.int
+    COLLISION_FIELD_NUMBER: _builtins.int
+    VISUAL_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+    parent: _builtins.str
+    'Parent link or joint id, empty for the root'
+
+    @_builtins.property
+    def pose(self) -> Global___LinkPose:
+        """Pose relative to the parent"""
+
+    @_builtins.property
+    def collision(self) -> _containers.RepeatedCompositeFieldContainer[Global___Geometry]:
+        """Collision geometries, meshes must be stl or ply"""
+
+    @_builtins.property
+    def visual(self) -> _containers.RepeatedCompositeFieldContainer[Global___Geometry]:
+        """Display geometries, not used for collision checking"""
+
+    def __init__(self, *, id: _builtins.str=..., parent: _builtins.str=..., pose: Global___LinkPose | None=..., collision: _abc.Iterable[Global___Geometry] | None=..., visual: _abc.Iterable[Global___Geometry] | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['pose', b'pose']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['collision', b'collision', 'id', b'id', 'parent', b'parent', 'pose', b'pose', 'visual', b'visual']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___KinematicLink: _TypeAlias = KinematicLink
+
+@_typing.final
+class LinkPose(_message.Message):
+    """LinkPose is a translation in mm and an orientation in degrees, identity when absent"""
+    DESCRIPTOR: _descriptor.Descriptor
+    TRANSLATION_FIELD_NUMBER: _builtins.int
+    QUATERNION_FIELD_NUMBER: _builtins.int
+    ORIENTATION_VECTOR_FIELD_NUMBER: _builtins.int
+    EULER_ANGLES_FIELD_NUMBER: _builtins.int
+    AXIS_ANGLES_FIELD_NUMBER: _builtins.int
+
+    @_builtins.property
+    def translation(self) -> Global___Vector3:
+        ...
+
+    @_builtins.property
+    def quaternion(self) -> Global___Quaternion:
+        ...
+
+    @_builtins.property
+    def orientation_vector(self) -> Global___Orientation:
+        """theta in degrees"""
+
+    @_builtins.property
+    def euler_angles(self) -> Global___EulerAngles:
+        ...
+
+    @_builtins.property
+    def axis_angles(self) -> Global___AxisAngles:
+        ...
+
+    def __init__(self, *, translation: Global___Vector3 | None=..., quaternion: Global___Quaternion | None=..., orientation_vector: Global___Orientation | None=..., euler_angles: Global___EulerAngles | None=..., axis_angles: Global___AxisAngles | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['axis_angles', b'axis_angles', 'euler_angles', b'euler_angles', 'orientation', b'orientation', 'orientation_vector', b'orientation_vector', 'quaternion', b'quaternion', 'translation', b'translation']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['axis_angles', b'axis_angles', 'euler_angles', b'euler_angles', 'orientation', b'orientation', 'orientation_vector', b'orientation_vector', 'quaternion', b'quaternion', 'translation', b'translation']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType_orientation: _TypeAlias = _typing.Literal['quaternion', 'orientation_vector', 'euler_angles', 'axis_angles']
+    _WhichOneofArgType_orientation: _TypeAlias = _typing.Literal['orientation', b'orientation']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_orientation) -> _WhichOneofReturnType_orientation | None:
+        ...
+Global___LinkPose: _TypeAlias = LinkPose
+
+@_typing.final
+class Quaternion(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    W_FIELD_NUMBER: _builtins.int
+    X_FIELD_NUMBER: _builtins.int
+    Y_FIELD_NUMBER: _builtins.int
+    Z_FIELD_NUMBER: _builtins.int
+    w: _builtins.float
+    x: _builtins.float
+    y: _builtins.float
+    z: _builtins.float
+
+    def __init__(self, *, w: _builtins.float=..., x: _builtins.float=..., y: _builtins.float=..., z: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['w', b'w', 'x', b'x', 'y', b'y', 'z', b'z']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Quaternion: _TypeAlias = Quaternion
+
+@_typing.final
+class EulerAngles(_message.Message):
+    """Euler angles in degrees"""
+    DESCRIPTOR: _descriptor.Descriptor
+    ROLL_FIELD_NUMBER: _builtins.int
+    PITCH_FIELD_NUMBER: _builtins.int
+    YAW_FIELD_NUMBER: _builtins.int
+    roll: _builtins.float
+    pitch: _builtins.float
+    yaw: _builtins.float
+
+    def __init__(self, *, roll: _builtins.float=..., pitch: _builtins.float=..., yaw: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['pitch', b'pitch', 'roll', b'roll', 'yaw', b'yaw']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___EulerAngles: _TypeAlias = EulerAngles
+
+@_typing.final
+class AxisAngles(_message.Message):
+    """Rotation axis and an angle theta in degrees"""
+    DESCRIPTOR: _descriptor.Descriptor
+    RX_FIELD_NUMBER: _builtins.int
+    RY_FIELD_NUMBER: _builtins.int
+    RZ_FIELD_NUMBER: _builtins.int
+    THETA_FIELD_NUMBER: _builtins.int
+    rx: _builtins.float
+    ry: _builtins.float
+    rz: _builtins.float
+    theta: _builtins.float
+
+    def __init__(self, *, rx: _builtins.float=..., ry: _builtins.float=..., rz: _builtins.float=..., theta: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['rx', b'rx', 'ry', b'ry', 'rz', b'rz', 'theta', b'theta']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___AxisAngles: _TypeAlias = AxisAngles
+
+@_typing.final
+class KinematicJoint(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ID_FIELD_NUMBER: _builtins.int
+    PARENT_FIELD_NUMBER: _builtins.int
+    TYPE_FIELD_NUMBER: _builtins.int
+    AXIS_FIELD_NUMBER: _builtins.int
+    LIMITS_FIELD_NUMBER: _builtins.int
+    MIMIC_FIELD_NUMBER: _builtins.int
+    GEOMETRY_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
+    parent: _builtins.str
+    'Parent link id'
+    type: Global___JointType.ValueType
+
+    @_builtins.property
+    def axis(self) -> Global___Vector3:
+        ...
+
+    @_builtins.property
+    def limits(self) -> Global___JointLimits:
+        """Effective limits the component serves"""
+
+    @_builtins.property
+    def mimic(self) -> Global___MimicJoint:
+        ...
+
+    @_builtins.property
+    def geometry(self) -> Global___Geometry:
+        """Only meaningful for prismatic joints"""
+
+    def __init__(self, *, id: _builtins.str=..., parent: _builtins.str=..., type: Global___JointType.ValueType=..., axis: Global___Vector3 | None=..., limits: Global___JointLimits | None=..., mimic: Global___MimicJoint | None=..., geometry: Global___Geometry | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['axis', b'axis', 'geometry', b'geometry', 'limits', b'limits', 'mimic', b'mimic']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['axis', b'axis', 'geometry', b'geometry', 'id', b'id', 'limits', b'limits', 'mimic', b'mimic', 'parent', b'parent', 'type', b'type']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___KinematicJoint: _TypeAlias = KinematicJoint
+
+@_typing.final
+class JointLimits(_message.Message):
+    """Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded."""
+    DESCRIPTOR: _descriptor.Descriptor
+    MIN_FIELD_NUMBER: _builtins.int
+    MAX_FIELD_NUMBER: _builtins.int
+    MAX_VELOCITY_FIELD_NUMBER: _builtins.int
+    MAX_ACCELERATION_FIELD_NUMBER: _builtins.int
+    min: _builtins.float
+    max: _builtins.float
+    max_velocity: _builtins.float
+    max_acceleration: _builtins.float
+
+    def __init__(self, *, min: _builtins.float | None=..., max: _builtins.float | None=..., max_velocity: _builtins.float | None=..., max_acceleration: _builtins.float | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_max', b'_max', '_max_acceleration', b'_max_acceleration', '_max_velocity', b'_max_velocity', '_min', b'_min', 'max', b'max', 'max_acceleration', b'max_acceleration', 'max_velocity', b'max_velocity', 'min', b'min']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_max', b'_max', '_max_acceleration', b'_max_acceleration', '_max_velocity', b'_max_velocity', '_min', b'_min', 'max', b'max', 'max_acceleration', b'max_acceleration', 'max_velocity', b'max_velocity', 'min', b'min']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__max: _TypeAlias = _typing.Literal['max']
+    _WhichOneofArgType__max: _TypeAlias = _typing.Literal['_max', b'_max']
+    _WhichOneofReturnType__max_acceleration: _TypeAlias = _typing.Literal['max_acceleration']
+    _WhichOneofArgType__max_acceleration: _TypeAlias = _typing.Literal['_max_acceleration', b'_max_acceleration']
+    _WhichOneofReturnType__max_velocity: _TypeAlias = _typing.Literal['max_velocity']
+    _WhichOneofArgType__max_velocity: _TypeAlias = _typing.Literal['_max_velocity', b'_max_velocity']
+    _WhichOneofReturnType__min: _TypeAlias = _typing.Literal['min']
+    _WhichOneofArgType__min: _TypeAlias = _typing.Literal['_min', b'_min']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max) -> _WhichOneofReturnType__max | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_acceleration) -> _WhichOneofReturnType__max_acceleration | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_velocity) -> _WhichOneofReturnType__max_velocity | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__min) -> _WhichOneofReturnType__min | None:
+        ...
+Global___JointLimits: _TypeAlias = JointLimits
+
+@_typing.final
+class MimicJoint(_message.Message):
+    """Position is multiplier * position of joint + offset"""
+    DESCRIPTOR: _descriptor.Descriptor
+    JOINT_FIELD_NUMBER: _builtins.int
+    MULTIPLIER_FIELD_NUMBER: _builtins.int
+    OFFSET_FIELD_NUMBER: _builtins.int
+    joint: _builtins.str
+    multiplier: _builtins.float
+    offset: _builtins.float
+
+    def __init__(self, *, joint: _builtins.str=..., multiplier: _builtins.float=..., offset: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['joint', b'joint', 'multiplier', b'multiplier', 'offset', b'offset']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___MimicJoint: _TypeAlias = MimicJoint
+
+@_typing.final
+class KinematicProperties(_message.Message):
+    """Properties of the component as a whole"""
+    DESCRIPTOR: _descriptor.Descriptor
+    OPERATING_FREQ_HZ_FIELD_NUMBER: _builtins.int
+    MAX_LINEAR_TCP_SPEED_MM_PER_SEC_FIELD_NUMBER: _builtins.int
+    operating_freq_hz: _builtins.float
+    'Rate the component expects to be driven at'
+    max_linear_tcp_speed_mm_per_sec: _builtins.float
+    'Maximum linear speed of the tool center point'
+
+    def __init__(self, *, operating_freq_hz: _builtins.float | None=..., max_linear_tcp_speed_mm_per_sec: _builtins.float | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_max_linear_tcp_speed_mm_per_sec', b'_max_linear_tcp_speed_mm_per_sec', '_operating_freq_hz', b'_operating_freq_hz', 'max_linear_tcp_speed_mm_per_sec', b'max_linear_tcp_speed_mm_per_sec', 'operating_freq_hz', b'operating_freq_hz']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_max_linear_tcp_speed_mm_per_sec', b'_max_linear_tcp_speed_mm_per_sec', '_operating_freq_hz', b'_operating_freq_hz', 'max_linear_tcp_speed_mm_per_sec', b'max_linear_tcp_speed_mm_per_sec', 'operating_freq_hz', b'operating_freq_hz']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__max_linear_tcp_speed_mm_per_sec: _TypeAlias = _typing.Literal['max_linear_tcp_speed_mm_per_sec']
+    _WhichOneofArgType__max_linear_tcp_speed_mm_per_sec: _TypeAlias = _typing.Literal['_max_linear_tcp_speed_mm_per_sec', b'_max_linear_tcp_speed_mm_per_sec']
+    _WhichOneofReturnType__operating_freq_hz: _TypeAlias = _typing.Literal['operating_freq_hz']
+    _WhichOneofArgType__operating_freq_hz: _TypeAlias = _typing.Literal['_operating_freq_hz', b'_operating_freq_hz']
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__max_linear_tcp_speed_mm_per_sec) -> _WhichOneofReturnType__max_linear_tcp_speed_mm_per_sec | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__operating_freq_hz) -> _WhichOneofReturnType__operating_freq_hz | None:
+        ...
+Global___KinematicProperties: _TypeAlias = KinematicProperties
 
 @_typing.final
 class GetGeometriesRequest(_message.Message):

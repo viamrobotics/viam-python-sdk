@@ -48,6 +48,8 @@ class _ModelFrameworkEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_ModelF
     MODEL_FRAMEWORK_TENSORFLOW: _ModelFramework.ValueType
     MODEL_FRAMEWORK_PYTORCH: _ModelFramework.ValueType
     MODEL_FRAMEWORK_ONNX: _ModelFramework.ValueType
+    MODEL_FRAMEWORK_REGISTRY: _ModelFramework.ValueType
+    'Modular components or services in the registry, identified by\n    deployment_modular_resources.\n    This is a deploy target, not a managed-training backend.\n    '
 
 class ModelFramework(_ModelFramework, metaclass=_ModelFrameworkEnumTypeWrapper):
     ...
@@ -56,6 +58,8 @@ MODEL_FRAMEWORK_TFLITE: ModelFramework.ValueType
 MODEL_FRAMEWORK_TENSORFLOW: ModelFramework.ValueType
 MODEL_FRAMEWORK_PYTORCH: ModelFramework.ValueType
 MODEL_FRAMEWORK_ONNX: ModelFramework.ValueType
+MODEL_FRAMEWORK_REGISTRY: ModelFramework.ValueType
+'Modular components or services in the registry, identified by\ndeployment_modular_resources.\nThis is a deploy target, not a managed-training backend.\n'
 Global___ModelFramework: _TypeAlias = ModelFramework
 
 class _TrainingStatus:
@@ -312,6 +316,7 @@ class TrainingJobMetadata(_message.Message):
     ARGUMENTS_FIELD_NUMBER: _builtins.int
     CONTAINER_VERSION_FIELD_NUMBER: _builtins.int
     CONTAINER_ID_FIELD_NUMBER: _builtins.int
+    DEPLOYMENT_MODULAR_RESOURCES_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     dataset_id: _builtins.str
     organization_id: _builtins.str
@@ -355,13 +360,21 @@ class TrainingJobMetadata(_message.Message):
     def arguments(self) -> _containers.ScalarMap[_builtins.str, _builtins.str]:
         ...
 
-    def __init__(self, *, id: _builtins.str=..., dataset_id: _builtins.str=..., organization_id: _builtins.str=..., model_name: _builtins.str=..., model_version: _builtins.str=..., model_type: Global___ModelType.ValueType=..., model_framework: Global___ModelFramework.ValueType=..., is_custom_job: _builtins.bool=..., registry_item_id: _builtins.str=..., registry_item_version: _builtins.str=..., status: Global___TrainingStatus.ValueType=..., error_status: _status_pb2.Status | None=..., created_on: _timestamp_pb2.Timestamp | None=..., last_modified: _timestamp_pb2.Timestamp | None=..., training_started: _timestamp_pb2.Timestamp | None=..., training_ended: _timestamp_pb2.Timestamp | None=..., synced_model_id: _builtins.str=..., tags: _abc.Iterable[_builtins.str] | None=..., arguments: _abc.Mapping[_builtins.str, _builtins.str] | None=..., container_version: _builtins.str=..., container_id: _builtins.str=...) -> None:
+    @_builtins.property
+    def deployment_modular_resources(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Colon-delimited triplets of components or services from the registry used when
+        model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+        associated component or service that consumes the files and should be deployed
+        along with the model.
+        """
+
+    def __init__(self, *, id: _builtins.str=..., dataset_id: _builtins.str=..., organization_id: _builtins.str=..., model_name: _builtins.str=..., model_version: _builtins.str=..., model_type: Global___ModelType.ValueType=..., model_framework: Global___ModelFramework.ValueType=..., is_custom_job: _builtins.bool=..., registry_item_id: _builtins.str=..., registry_item_version: _builtins.str=..., status: Global___TrainingStatus.ValueType=..., error_status: _status_pb2.Status | None=..., created_on: _timestamp_pb2.Timestamp | None=..., last_modified: _timestamp_pb2.Timestamp | None=..., training_started: _timestamp_pb2.Timestamp | None=..., training_ended: _timestamp_pb2.Timestamp | None=..., synced_model_id: _builtins.str=..., tags: _abc.Iterable[_builtins.str] | None=..., arguments: _abc.Mapping[_builtins.str, _builtins.str] | None=..., container_version: _builtins.str=..., container_id: _builtins.str=..., deployment_modular_resources: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'training_ended', b'training_ended', 'training_started', b'training_started']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['arguments', b'arguments', 'container_id', b'container_id', 'container_version', b'container_version', 'created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['arguments', b'arguments', 'container_id', b'container_id', 'container_version', b'container_version', 'created_on', b'created_on', 'dataset_id', b'dataset_id', 'deployment_modular_resources', b'deployment_modular_resources', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
