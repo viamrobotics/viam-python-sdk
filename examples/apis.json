@@ -68,12 +68,9 @@
     "packageName": "input",
     "importName": "Controller"
   },
-  "audio": {
-    "func": "get_properties",
-    "packagePath": "viam.components"
-  },
   "pose_tracker": {
     "func": "get_poses",
+    "args": ["body_names=[]"],
     "packagePath": "viam.components"
   },
   "power_sensor": {
@@ -82,6 +79,8 @@
   },
   "motion": {
     "func": "get_pose",
+    "comment": "Note that this gets the pose of the world frame itself, which is always zero. Change the component name from \"world\" to one of your components to get its pose.",
+    "args": ["component_name=\"world\"", "destination_frame=\"world\""],
     "packagePath": "viam.services",
     "importName": "MotionClient"
   },
@@ -108,11 +107,11 @@
     "importName": "SLAMClient"
   },
   "audio_in": {
-  "func": "get_properties",
-  "packagePath": "viam.components"
+    "func": "get_properties",
+    "packagePath": "viam.components"
   },
   "audio_out": {
-  "func": "get_properties",
-  "packagePath": "viam.components"
+    "func": "get_properties",
+    "packagePath": "viam.components"
   }
 }
