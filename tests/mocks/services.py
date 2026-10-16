@@ -10,6 +10,8 @@ from viam.app.data_client import DataClient
 from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
 from viam.media.video import ViamImage
 from viam.proto.app import (
+    AddFavoriteMachineRequest,
+    AddFavoriteMachineResponse,
     AddRoleRequest,
     AddRoleResponse,
     APIKeyWithAuthorizations,
@@ -18,6 +20,7 @@ from viam.proto.app import (
     ChangeRoleResponse,
     CheckPermissionsRequest,
     CheckPermissionsResponse,
+    ConfigPropertyChangeResult,
     CreateFragmentRequest,
     CreateFragmentResponse,
     CreateKeyFromExistingKeyAuthorizationsRequest,
@@ -70,6 +73,7 @@ from viam.proto.app import (
     DeprecateRegistryItemResponse,
     DeprecateRegistryItemVersionRequest,
     DeprecateRegistryItemVersionResponse,
+    FavoriteMachine,
     Fragment,
     GetDevicePushTokensRequest,
     GetDevicePushTokensResponse,
@@ -115,6 +119,8 @@ from viam.proto.app import (
     GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
+    ListFavoriteMachinesRequest,
+    ListFavoriteMachinesResponse,
     ListFragmentsRequest,
     ListFragmentsResponse,
     ListKeysRequest,
@@ -154,6 +160,8 @@ from viam.proto.app import (
     OrganizationMember,
     OrgDetails,
     RegistryItem,
+    RemoveFavoriteMachineRequest,
+    RemoveFavoriteMachineResponse,
     RemoveRoleRequest,
     RemoveRoleResponse,
     ResendOrganizationInviteRequest,
@@ -164,6 +172,8 @@ from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
+    SetConfigPropertyRequest,
+    SetConfigPropertyResponse,
     SetFirebaseConfigRequest,
     SetFirebaseConfigResponse,
     ShareLocationRequest,
@@ -379,8 +389,6 @@ from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
-    GeoGeometry,
-    GeoPoint,
     LogEntry,
     PointCloudObject,
     Pose,
@@ -431,7 +439,18 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
+from viam.proto.service.navigation import (
+    GetCostmapResponse,
+    MapType,
+    Plan,
+    Position,
+    Properties,
+    Route,
+    Status,
+    Waypoint,
+    Zone,
+)
+from viam.proto.service.navigation import Location as NavLocation
 from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
 from viam.proto.service.vision import Classification, Detection, Detection3D
 from viam.services.discovery import Discovery
@@ -832,55 +851,317 @@ class MockSLAM(SLAM):
 
 
 class MockNavigation(Navigation):
-    LOCATION = GeoPoint(latitude=100.0, longitude=150.0)
-    OBSTACLES = [GeoGeometry(location=GeoPoint(latitude=200.0, longitude=250.0))]
-    WAYPOINTS = [Waypoint(location=GeoPoint(latitude=300.0, longitude=350.0))]
-    PATHS = [Path(destination_waypoint_id="foo", geopoints=[LOCATION])]
+    LOCATION = NavLocation(name="home", position=Position(pose=Pose(x=1.0, y=2.0, z=3.0)))
+    ROUTE = Route(name="route1", waypoints=[Waypoint(location="home")])
+    ZONE = Zone(name="zone1", type="keepout", geometry=dict_to_struct({"type": "circle", "radius_m": 1.0}))
+    POSITION = Position(pose=Pose(x=1.0, y=2.0, z=3.0))
+    STATUS = Status(position=POSITION, localized=True)
+    PROPERTIES = Properties(map_type=MapType.MAP_TYPE_LOCAL, footprint_length_m=1.0, footprint_width_m=1.0)
+    PLAN = Plan(path=[POSITION], length_m=5.0)
+    COSTMAP = GetCostmapResponse(
+        available=True, layer="local", width=2, height=2, resolution=0.1, encoding="uint8_row_major", data=b"\x00\x00\x00\x00"
+    )
 
     def __init__(self, name: str):
         self.name = name
-        self.add_waypoints: list[GeoPoint] = []
-        self.remove_waypoints: list[str] = []
-        self.mode = Mode.MODE_UNSPECIFIED
-        self.map_type = MapType.MAP_TYPE_UNSPECIFIED
         self.timeout: Optional[float] = None
+        self.extra: Optional[Dict[str, Any]] = None
+        self.calls: Dict[str, Any] = {}
         super().__init__(name)
 
-    async def get_paths(self, *, timeout: Optional[float] = None) -> List[Path]:
+    async def add_location(
+        self,
+        location_name: str,
+        position: Optional[Position] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> NavLocation:
         self.timeout = timeout
-        return self.PATHS
-
-    async def get_location(self, *, timeout: Optional[float] = None) -> GeoPoint:
-        self.timeout = timeout
+        self.extra = extra
+        self.calls["add_location"] = (location_name, position)
         return self.LOCATION
 
-    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoGeometry]:
+    async def get_location(
+        self, location_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> NavLocation:
         self.timeout = timeout
-        return self.OBSTACLES
+        self.extra = extra
+        self.calls["get_location"] = (location_name,)
+        return self.LOCATION
 
-    async def get_waypoints(self, *, timeout: Optional[float] = None) -> List[Waypoint]:
+    async def list_locations(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> List[NavLocation]:
         self.timeout = timeout
-        return self.WAYPOINTS
+        self.extra = extra
+        return [self.LOCATION]
 
-    async def add_waypoint(self, point: GeoPoint, *, timeout: Optional[float] = None):
+    async def update_location(
+        self,
+        location_name: str,
+        position: Optional[Position] = None,
+        new_name: Optional[str] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> NavLocation:
         self.timeout = timeout
-        self.add_waypoints.append(point)
+        self.extra = extra
+        self.calls["update_location"] = (location_name, position, new_name)
+        return self.LOCATION
 
-    async def remove_waypoint(self, id: str, *, timeout: Optional[float] = None):
+    async def delete_location(
+        self, location_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> None:
         self.timeout = timeout
-        self.remove_waypoints.append(id)
+        self.extra = extra
+        self.calls["delete_location"] = (location_name,)
 
-    async def get_mode(self, *, timeout: Optional[float] = None) -> Mode.ValueType:
+    async def add_route(
+        self,
+        route_name: str,
+        waypoints: Optional[List[Waypoint]] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Route:
         self.timeout = timeout
-        return self.mode
+        self.extra = extra
+        self.calls["add_route"] = (route_name, waypoints)
+        return self.ROUTE
 
-    async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float] = None):
+    async def get_route(
+        self, route_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Route:
         self.timeout = timeout
-        self.mode = mode
+        self.extra = extra
+        self.calls["get_route"] = (route_name,)
+        return self.ROUTE
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> MapType.ValueType:
+    async def list_routes(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Route]:
         self.timeout = timeout
-        return self.map_type
+        self.extra = extra
+        return [self.ROUTE]
+
+    async def update_route(
+        self,
+        route_name: str,
+        new_name: Optional[str] = None,
+        waypoints: Optional[List[Waypoint]] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Route:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["update_route"] = (route_name, new_name, waypoints)
+        return self.ROUTE
+
+    async def delete_route(
+        self, route_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> None:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["delete_route"] = (route_name,)
+
+    async def add_zone(
+        self,
+        zone_name: str,
+        type: str,
+        geometry: Dict[str, Any],
+        max_speed: Optional[float] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Zone:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["add_zone"] = (zone_name, type, geometry, max_speed)
+        return self.ZONE
+
+    async def get_zone(self, zone_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Zone:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["get_zone"] = (zone_name,)
+        return self.ZONE
+
+    async def list_zones(
+        self, type: Optional[str] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> List[Zone]:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["list_zones"] = (type,)
+        return [self.ZONE]
+
+    async def update_zone(
+        self,
+        zone_name: str,
+        type: Optional[str] = None,
+        geometry: Optional[Dict[str, Any]] = None,
+        max_speed: Optional[float] = None,
+        new_name: Optional[str] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Zone:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["update_zone"] = (zone_name, type, geometry, max_speed, new_name)
+        return self.ZONE
+
+    async def delete_zone(
+        self, zone_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> None:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["delete_zone"] = (zone_name,)
+
+    async def navigate_to_location(
+        self, location_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["navigate_to_location"] = (location_name,)
+        return self.STATUS
+
+    async def navigate_to_point(
+        self, destination: Position, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["navigate_to_point"] = (destination,)
+        return self.STATUS
+
+    async def navigate_route(
+        self,
+        route_name: Optional[str] = None,
+        waypoints: Optional[List[Waypoint]] = None,
+        start_index: int = 0,
+        start_nearest: bool = False,
+        loop: bool = False,
+        wait: bool = False,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["navigate_route"] = (route_name, waypoints, start_index, start_nearest, loop, wait)
+        return self.STATUS
+
+    async def plan_to_point(
+        self,
+        destination: Position,
+        start: Optional[Position] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Plan:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["plan_to_point"] = (destination, start)
+        return self.PLAN
+
+    async def plan_to_location(
+        self,
+        location_name: str,
+        start: Optional[Position] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Plan:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["plan_to_location"] = (location_name, start)
+        return self.PLAN
+
+    async def execute_plan(
+        self, plan: Plan, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["execute_plan"] = (plan,)
+        return self.STATUS
+
+    async def go_to_location(
+        self,
+        location_name: str,
+        wait: Optional[bool] = None,
+        linear_m_per_sec: Optional[float] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["go_to_location"] = (location_name, wait, linear_m_per_sec)
+        return self.STATUS
+
+    async def go_to_point(
+        self,
+        destination: Position,
+        wait: Optional[bool] = None,
+        linear_m_per_sec: Optional[float] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["go_to_point"] = (destination, wait, linear_m_per_sec)
+        return self.STATUS
+
+    async def suspend(
+        self, reason: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["suspend"] = (reason,)
+        return self.STATUS
+
+    async def resume(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        return self.STATUS
+
+    async def cancel(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        return self.STATUS
+
+    async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Position:
+        self.timeout = timeout
+        self.extra = extra
+        return self.POSITION
+
+    async def get_navigation_status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Status:
+        self.timeout = timeout
+        self.extra = extra
+        return self.STATUS
+
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
+        self.timeout = timeout
+        return self.PROPERTIES
+
+    async def get_costmap(
+        self, layer: str = "", stride: int = 0, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> GetCostmapResponse:
+        self.timeout = timeout
+        self.extra = extra
+        self.calls["get_costmap"] = (layer, stride)
+        return self.COSTMAP
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -1922,6 +2203,14 @@ class MockApp(UnimplementedAppServiceBase):
         self.secret_id = request.secret_id
         await stream.send_message(DeleteRobotPartSecretResponse())
 
+    async def SetConfigProperty(self, stream: Stream[SetConfigPropertyRequest, SetConfigPropertyResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.robot_part_id
+        self.property_changes = list(request.property_changes)
+        results = [ConfigPropertyChangeResult(path=change.path, value=change.value, success=True) for change in self.property_changes]
+        await stream.send_message(SetConfigPropertyResponse(property_changes=results))
+
     async def ListRobots(self, stream: Stream[ListRobotsRequest, ListRobotsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -1954,6 +2243,23 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.robot_id = request.id
         await stream.send_message(DeleteRobotResponse())
+
+    async def AddFavoriteMachine(self, stream: Stream[AddFavoriteMachineRequest, AddFavoriteMachineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.machine_id = request.machine_id
+        await stream.send_message(AddFavoriteMachineResponse())
+
+    async def RemoveFavoriteMachine(self, stream: Stream[RemoveFavoriteMachineRequest, RemoveFavoriteMachineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.machine_id = request.machine_id
+        await stream.send_message(RemoveFavoriteMachineResponse())
+
+    async def ListFavoriteMachines(self, stream: Stream[ListFavoriteMachinesRequest, ListFavoriteMachinesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListFavoriteMachinesResponse(favorites=[FavoriteMachine(machine=self.robot)]))
 
     async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
         request = await stream.recv_message()

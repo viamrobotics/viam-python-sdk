@@ -21,6 +21,10 @@ if sys.version_info >= (3, 10):
     from typing import TypeAlias as _TypeAlias
 else:
     from typing_extensions import TypeAlias as _TypeAlias
+if sys.version_info >= (3, 13):
+    from warnings import deprecated as _deprecated
+else:
+    from typing_extensions import deprecated as _deprecated
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class _PeerConnectionType:
@@ -211,22 +215,28 @@ class FrameSystemConfig(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     FRAME_FIELD_NUMBER: _builtins.int
     KINEMATICS_FIELD_NUMBER: _builtins.int
+    MODEL_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
     def frame(self) -> _common_pb2.Transform:
         """this is an experimental API message"""
 
     @_builtins.property
+    @_deprecated('This field has been marked as deprecated using proto field options.')
     def kinematics(self) -> _struct_pb2.Struct:
+        """Deprecated: use model"""
+
+    @_builtins.property
+    def model(self) -> _common_pb2.KinematicModel:
         ...
 
-    def __init__(self, *, frame: _common_pb2.Transform | None=..., kinematics: _struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, frame: _common_pb2.Transform | None=..., kinematics: _struct_pb2.Struct | None=..., model: _common_pb2.KinematicModel | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['frame', b'frame', 'kinematics', b'kinematics']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['frame', b'frame', 'kinematics', b'kinematics', 'model', b'model']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['frame', b'frame', 'kinematics', b'kinematics']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['frame', b'frame', 'kinematics', b'kinematics', 'model', b'model']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...

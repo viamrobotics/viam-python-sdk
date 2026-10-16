@@ -11,6 +11,7 @@ from viam.proto.app import (
     Authorization,
     AuthorizationDetails,
     AuthorizedPermissions,
+    FavoriteMachine,
     FragmentHistoryEntry,
     Location,
     LocationAuth,
@@ -570,6 +571,16 @@ class TestClient:
             assert service.robot_config_json == robot_config_json
             assert updated_robot_part.proto == ROBOT_PART
 
+    async def test_set_config_property(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            results = await client.set_config_property(robot_part_id=ID, property_changes={"components.0.name": "renamed"})
+            assert service.robot_part_id == ID
+            assert len(service.property_changes) == 1
+            assert service.property_changes[0].path == "components.0.name"
+            assert results[0].path == "components.0.name"
+            assert results[0].success is True
+
     async def test_new_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)
@@ -653,6 +664,24 @@ class TestClient:
             client = AppClient(channel, METADATA)
             await client.delete_robot(robot_id=ID)
             assert service.robot_id == ID
+
+    async def test_add_favorite_machine(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.add_favorite_machine(machine_id=ID)
+            assert service.machine_id == ID
+
+    async def test_remove_favorite_machine(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.remove_favorite_machine(machine_id=ID)
+            assert service.machine_id == ID
+
+    async def test_list_favorite_machines(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            favorites = await client.list_favorite_machines()
+            assert favorites == [FavoriteMachine(machine=ROBOT)]
 
     async def test_list_fragments(self, service: MockApp):
         async with ChannelFor([service]) as channel:

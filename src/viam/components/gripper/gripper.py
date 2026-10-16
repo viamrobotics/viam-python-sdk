@@ -157,6 +157,8 @@ class Gripper(ComponentBase):
     async def get_kinematics(
         self,
         *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
@@ -177,12 +179,17 @@ class Gripper(ComponentBase):
             # Get the byte contents of the file.
             k_bytes = kinematics[1]
 
+        Args:
+            include_collision_meshes (bool): Include collision mesh bytes in the response. Otherwise meshes carry only their path.
+            include_visual_meshes (bool): Include visual mesh bytes in the response.
+
         Returns:
             Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
             file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
             and the second [1] value represents the byte contents of the file.
             If available, a third [2] value provides meshes keyed by URDF filepath.
+            If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
         For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
         """

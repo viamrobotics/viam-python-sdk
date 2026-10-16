@@ -120,13 +120,22 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
     async def get_kinematics(
         self,
         *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> KinematicsReturn:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
+        request = GetKinematicsRequest(
+            name=self.name,
+            include_collision_meshes=include_collision_meshes,
+            include_visual_meshes=include_visual_meshes,
+            extra=dict_to_struct(extra),
+        )
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
+        if response.HasField("model"):
+            return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath, response.model)
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
 
     async def get_current_inputs(

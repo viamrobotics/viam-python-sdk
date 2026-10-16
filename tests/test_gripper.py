@@ -13,6 +13,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    KinematicModel,
 )
 from viam.proto.component.gripper import (
     GetCurrentInputsRequest,
@@ -97,8 +98,10 @@ class TestGripper:
 
     async def test_get_kinematics(self, gripper: MockGripper):
         kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
-        kd = await gripper.get_kinematics(extra={"1": "2"})
+        kd = await gripper.get_kinematics(include_collision_meshes=True, include_visual_meshes=True, extra={"1": "2"})
         assert kd == kinematics
+        assert gripper.include_collision_meshes is True
+        assert gripper.include_visual_meshes is True
         assert gripper.extra == {"1": "2"}
 
     async def test_get_current_inputs(self, gripper: MockGripper):
@@ -190,9 +193,11 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
             kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
-            request = GetKinematicsRequest(name=gripper.name)
+            request = GetKinematicsRequest(name=gripper.name, include_collision_meshes=True, include_visual_meshes=True)
             response: GetKinematicsResponse = await client.GetKinematics(request)
             assert (response.format, response.kinematics_data, response.meshes_by_urdf_filepath) == kinematics
+            assert gripper.include_collision_meshes is True
+            assert gripper.include_visual_meshes is True
 
     async def test_get_current_inputs(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -277,9 +282,20 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
             kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
-            kd = await client.get_kinematics(extra={"1": "2"})
+            kd = await client.get_kinematics(include_collision_meshes=True, include_visual_meshes=True, extra={"1": "2"})
             assert kd == kinematics
+            assert gripper.include_collision_meshes is True
+            assert gripper.include_visual_meshes is True
             assert gripper.extra == {"1": "2"}
+
+    async def test_get_kinematics_with_model(self, gripper: MockGripper, service: GripperRPCService):
+        model = KinematicModel(name="gripper", output_frames=["fingers"])
+        gripper.kinematics = (*gripper.kinematics, model)
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            kd = await client.get_kinematics()
+            assert len(kd) == 4
+            assert kd[3] == model
 
     async def test_get_current_inputs(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
