@@ -147,6 +147,8 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
             extra=dict_to_struct(extra),
         )
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
+        if response.HasField("model"):
+            return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath, response.model)
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:

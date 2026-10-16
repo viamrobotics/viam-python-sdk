@@ -286,6 +286,8 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         )
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
         # TODO: handle empty meshes in the response to prevent silent mapping
+        if response.HasField("model"):
+            return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath, response.model)
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
 
     async def get_3d_models(

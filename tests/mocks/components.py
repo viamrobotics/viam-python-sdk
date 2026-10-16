@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
+from viam.components import KinematicsReturn
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_in import AudioIn
 from viam.components.audio_out import AudioOut
@@ -172,7 +173,7 @@ class MockArm(Arm):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    ) -> KinematicsReturn:
         self.include_collision_meshes = include_collision_meshes
         self.include_visual_meshes = include_visual_meshes
         self.extra = extra
@@ -687,7 +688,7 @@ class MockGantry(Gantry):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    ) -> KinematicsReturn:
         self.include_collision_meshes = include_collision_meshes
         self.include_visual_meshes = include_visual_meshes
         self.extra = extra
@@ -777,7 +778,7 @@ class MockGripper(Gripper):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    ) -> KinematicsReturn:
         self.include_collision_meshes = include_collision_meshes
         self.include_visual_meshes = include_visual_meshes
         self.extra = extra

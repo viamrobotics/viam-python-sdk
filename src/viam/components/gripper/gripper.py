@@ -189,6 +189,7 @@ class Gripper(ComponentBase):
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
             and the second [1] value represents the byte contents of the file.
             If available, a third [2] value provides meshes keyed by URDF filepath.
+            If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
         For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
         """

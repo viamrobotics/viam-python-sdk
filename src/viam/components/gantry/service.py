@@ -133,12 +133,15 @@ class GantryRPCService(UnimplementedGantryServiceBase, ResourceRPCServiceBase[Ga
             timeout=timeout,
             metadata=stream.metadata,
         )
+        model = None
         if len(kinematics) == 2:
             format, data = kinematics
             meshes = {}
-        else:
+        elif len(kinematics) == 3:
             format, data, meshes = kinematics
-        response = GetKinematicsResponse(format=format, kinematics_data=data, meshes_by_urdf_filepath=meshes)
+        else:
+            format, data, meshes, model = kinematics
+        response = GetKinematicsResponse(format=format, kinematics_data=data, meshes_by_urdf_filepath=meshes, model=model)
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:

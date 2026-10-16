@@ -454,6 +454,7 @@ class Arm(ComponentBase):
             and the second [1] value represents the byte contents of the file.
             If available, a third [2] value provides meshes keyed by URDF filepath.
             See ``get_3d_models`` for meshes keyed by model name instead.
+            If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
         """

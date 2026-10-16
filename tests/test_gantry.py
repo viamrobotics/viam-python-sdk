@@ -11,6 +11,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    KinematicModel,
 )
 from viam.proto.component.gantry import (
     GantryServiceStub,
@@ -289,6 +290,20 @@ class TestClient:
             assert self.gantry.include_collision_meshes is True
             assert self.gantry.include_visual_meshes is True
             assert self.gantry.timeout == expected_grpc_timeout(1.1)
+
+    async def test_get_kinematics_with_model(self):
+        model = KinematicModel(name="gantry", output_frames=["carriage"])
+        original = self.gantry.kinematics
+        self.gantry.kinematics = (*original, model)
+        try:
+            async with ChannelFor([self.service]) as channel:
+                client = GantryClient(self.gantry.name, channel)
+                kd = await client.get_kinematics()
+                assert len(kd) == 4
+                assert kd[:3] == original
+                assert kd[3] == model
+        finally:
+            self.gantry.kinematics = original
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

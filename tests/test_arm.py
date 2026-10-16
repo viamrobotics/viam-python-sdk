@@ -18,6 +18,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    KinematicModel,
     Pose,
 )
 from viam.proto.component.arm import (
@@ -383,6 +384,20 @@ class TestClient:
             assert self.arm.include_collision_meshes is True
             assert self.arm.include_visual_meshes is True
             assert self.arm.extra == {"1": "2"}
+
+    async def test_get_kinematics_with_model(self):
+        model = KinematicModel(name="arm", output_frames=["tool"])
+        original = self.arm.kinematics
+        self.arm.kinematics = (*original, model)
+        try:
+            async with ChannelFor([self.service]) as channel:
+                client = ArmClient(self.name, channel)
+                kd = await client.get_kinematics()
+                assert len(kd) == 4
+                assert kd[:3] == original
+                assert kd[3] == model
+        finally:
+            self.arm.kinematics = original
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

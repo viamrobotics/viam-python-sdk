@@ -13,6 +13,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    KinematicModel,
 )
 from viam.proto.component.gripper import (
     GetCurrentInputsRequest,
@@ -286,6 +287,15 @@ class TestClient:
             assert gripper.include_collision_meshes is True
             assert gripper.include_visual_meshes is True
             assert gripper.extra == {"1": "2"}
+
+    async def test_get_kinematics_with_model(self, gripper: MockGripper, service: GripperRPCService):
+        model = KinematicModel(name="gripper", output_frames=["fingers"])
+        gripper.kinematics = (*gripper.kinematics, model)
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            kd = await client.get_kinematics()
+            assert len(kd) == 4
+            assert kd[3] == model
 
     async def test_get_current_inputs(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:

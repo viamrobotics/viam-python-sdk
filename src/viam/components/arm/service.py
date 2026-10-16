@@ -256,12 +256,15 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
             timeout=timeout,
             metadata=stream.metadata,
         )
+        model = None
         if len(kinematics) == 2:
             format, kinematics_data = kinematics
             meshes = {}
-        else:
+        elif len(kinematics) == 3:
             format, kinematics_data, meshes = kinematics
-        response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data, meshes_by_urdf_filepath=meshes)
+        else:
+            format, kinematics_data, meshes, model = kinematics
+        response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data, meshes_by_urdf_filepath=meshes, model=model)
         await stream.send_message(response)
 
     async def Get3DModels(self, stream: Stream[Get3DModelsRequest, Get3DModelsResponse]) -> None:
