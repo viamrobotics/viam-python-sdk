@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
+from viam.components import KinematicsReturn
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_in import AudioIn
 from viam.components.audio_out import AudioOut
@@ -165,8 +166,16 @@ class MockArm(Arm):
         return not self.is_stopped
 
     async def get_kinematics(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicsReturn:
+        self.include_collision_meshes = include_collision_meshes
+        self.include_visual_meshes = include_visual_meshes
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
@@ -672,8 +681,16 @@ class MockGantry(Gantry):
         return not self.is_stopped
 
     async def get_kinematics(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicsReturn:
+        self.include_collision_meshes = include_collision_meshes
+        self.include_visual_meshes = include_visual_meshes
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
@@ -754,8 +771,16 @@ class MockGripper(Gripper):
         return self.geometries
 
     async def get_kinematics(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicsReturn:
+        self.include_collision_meshes = include_collision_meshes
+        self.include_visual_meshes = include_visual_meshes
         self.extra = extra
         self.timeout = timeout
         return self.kinematics

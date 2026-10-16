@@ -11,6 +11,8 @@ from typing_extensions import Self
 from viam import logging
 from viam.app._logs import _LogsStream, _LogsStreamWithIterator
 from viam.proto.app import (
+    AddFavoriteMachineRequest,
+    AddFavoriteMachineResponse,
     AddRoleRequest,
     APIKeyWithAuthorizations,
     AppServiceStub,
@@ -20,6 +22,8 @@ from viam.proto.app import (
     ChangeRoleRequest,
     CheckPermissionsRequest,
     CheckPermissionsResponse,
+    ConfigPropertyChange,
+    ConfigPropertyChangeResult,
     CreateFragmentRequest,
     CreateFragmentResponse,
     CreateKeyFromExistingKeyAuthorizationsRequest,
@@ -58,6 +62,7 @@ from viam.proto.app import (
     DeleteRobotRequest,
     DeprecateRegistryItemRequest,
     DeprecateRegistryItemVersionRequest,
+    FavoriteMachine,
     FragmentImport,
     FragmentImportList,
     GetDevicePushTokensRequest,
@@ -106,6 +111,8 @@ from viam.proto.app import (
     GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
+    ListFavoriteMachinesRequest,
+    ListFavoriteMachinesResponse,
     ListFragmentsRequest,
     ListFragmentsResponse,
     ListKeysRequest,
@@ -147,6 +154,8 @@ from viam.proto.app import (
     OrgDetails,
     RegistryItem,
     RegistryItemStatus,
+    RemoveFavoriteMachineRequest,
+    RemoveFavoriteMachineResponse,
     RemoveRoleRequest,
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
@@ -154,6 +163,8 @@ from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
+    SetConfigPropertyRequest,
+    SetConfigPropertyResponse,
     SetFirebaseConfigRequest,
     SetFirebaseConfigResponse,
     SharedSecret,
@@ -1664,6 +1675,27 @@ class AppClient:
         response: NewRobotPartResponse = await self._app_client.NewRobotPart(request, metadata=self._metadata)
         return response.part_id
 
+    async def set_config_property(
+        self, robot_part_id: str, property_changes: Mapping[str, ValueTypes], timeout: float | None = None
+    ) -> list[ConfigPropertyChangeResult]:
+        """Set individual values within a machine part's config by JSON path, without replacing the whole config.
+
+        Args:
+            robot_part_id (str): ID of the robot part to update.
+            property_changes (Mapping[str, ValueTypes]): A mapping of JSON paths within the config to the new value at that path.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+
+        Returns:
+            list[viam.proto.app.ConfigPropertyChangeResult]: The result of each requested property change.
+        """
+        changes = [
+            ConfigPropertyChange(path=path, value=dict_to_struct({"value": value}).fields["value"])
+            for path, value in property_changes.items()
+        ]
+        request = SetConfigPropertyRequest(robot_part_id=robot_part_id, property_changes=changes)
+        response: SetConfigPropertyResponse = await self._app_client.SetConfigProperty(request, metadata=self._metadata, timeout=timeout)
+        return list(response.property_changes)
+
     async def delete_robot_part(self, robot_part_id: str) -> None:
         """Delete the specified machine part.
 
@@ -1901,6 +1933,41 @@ class AppClient:
         """
         request = DeleteRobotRequest(id=robot_id)
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
+
+    async def add_favorite_machine(self, machine_id: str, timeout: float | None = None) -> None:
+        """Add a machine to the current user's favorites.
+
+        Args:
+            machine_id (str): ID of the machine to favorite.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+        """
+        request = AddFavoriteMachineRequest(machine_id=machine_id)
+        _: AddFavoriteMachineResponse = await self._app_client.AddFavoriteMachine(request, metadata=self._metadata, timeout=timeout)
+
+    async def remove_favorite_machine(self, machine_id: str, timeout: float | None = None) -> None:
+        """Remove a machine from the current user's favorites.
+
+        Args:
+            machine_id (str): ID of the machine to unfavorite.
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+        """
+        request = RemoveFavoriteMachineRequest(machine_id=machine_id)
+        _: RemoveFavoriteMachineResponse = await self._app_client.RemoveFavoriteMachine(request, metadata=self._metadata, timeout=timeout)
+
+    async def list_favorite_machines(self, timeout: float | None = None) -> list[FavoriteMachine]:
+        """List the current user's favorited machines.
+
+        Args:
+            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+
+        Returns:
+            list[viam.proto.app.FavoriteMachine]: The list of favorited machines.
+        """
+        request = ListFavoriteMachinesRequest()
+        response: ListFavoriteMachinesResponse = await self._app_client.ListFavoriteMachines(
+            request, metadata=self._metadata, timeout=timeout
+        )
+        return list(response.favorites)
 
     async def list_fragments(
         self, org_id: str, show_public: bool = True, visibilities: list[Fragment.Visibility] | None = None

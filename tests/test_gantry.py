@@ -11,6 +11,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    KinematicModel,
 )
 from viam.proto.component.gantry import (
     GantryServiceStub,
@@ -78,10 +79,12 @@ class TestGantry:
         assert self.gantry.extra == extra
 
     async def test_get_kinematics(self):
-        format, data, meshes = await self.gantry.get_kinematics()
+        format, data, meshes = await self.gantry.get_kinematics(include_collision_meshes=True, include_visual_meshes=True)
         assert format == self.gantry.kinematics[0]
         assert data == self.gantry.kinematics[1]
         assert meshes == self.gantry.kinematics[2]
+        assert self.gantry.include_collision_meshes is True
+        assert self.gantry.include_visual_meshes is True
 
     async def test_timeout(self):
         assert self.gantry.timeout is None
@@ -189,10 +192,12 @@ class TestService:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
-            request = GetKinematicsRequest(name=self.gantry.name)
+            request = GetKinematicsRequest(name=self.gantry.name, include_collision_meshes=True, include_visual_meshes=True)
             response: GetKinematicsResponse = await client.GetKinematics(request, timeout=1.1)
             assert response.format == self.gantry.kinematics[0]
             assert response.kinematics_data == self.gantry.kinematics[1]
+            assert self.gantry.include_collision_meshes is True
+            assert self.gantry.include_visual_meshes is True
             assert self.gantry.timeout == expected_grpc_timeout(1.1)
 
     async def test_get_geometries(self):
@@ -278,11 +283,27 @@ class TestClient:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
-            format, data, meshes = await client.get_kinematics(timeout=1.1)
+            format, data, meshes = await client.get_kinematics(include_collision_meshes=True, include_visual_meshes=True, timeout=1.1)
             assert format == self.gantry.kinematics[0]
             assert data == self.gantry.kinematics[1]
             assert meshes == self.gantry.kinematics[2]
+            assert self.gantry.include_collision_meshes is True
+            assert self.gantry.include_visual_meshes is True
             assert self.gantry.timeout == expected_grpc_timeout(1.1)
+
+    async def test_get_kinematics_with_model(self):
+        model = KinematicModel(name="gantry", output_frames=["carriage"])
+        original = self.gantry.kinematics
+        self.gantry.kinematics = (*original, model)
+        try:
+            async with ChannelFor([self.service]) as channel:
+                client = GantryClient(self.gantry.name, channel)
+                kd = await client.get_kinematics()
+                assert len(kd) == 4
+                assert kd[:3] == original
+                assert kd[3] == model
+        finally:
+            self.gantry.kinematics = original
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

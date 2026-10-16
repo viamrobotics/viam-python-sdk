@@ -418,7 +418,15 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_kinematics(self, *, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs) -> KinematicsReturn:
+    async def get_kinematics(
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: dict[str, Any] | None = None,
+        timeout: float | None = None,
+        **kwargs,
+    ) -> KinematicsReturn:
         """
         Get the kinematics information associated with the arm.
 
@@ -435,6 +443,10 @@ class Arm(ComponentBase):
             # Get the byte contents of the file.
             k_bytes = kinematics[1]
 
+        Args:
+            include_collision_meshes (bool): Include collision mesh bytes in the response. Otherwise meshes carry only their path.
+            include_visual_meshes (bool): Include visual mesh bytes in the response.
+
         Returns:
             Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
             file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
@@ -442,6 +454,7 @@ class Arm(ComponentBase):
             and the second [1] value represents the byte contents of the file.
             If available, a third [2] value provides meshes keyed by URDF filepath.
             See ``get_3d_models`` for meshes keyed by model name instead.
+            If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
         """
