@@ -455,7 +455,7 @@ Module Contents
    :canonical: Tunnel
 
 
-.. py:class:: FrameSystemConfig(*, frame: common.v1.common_pb2.Transform | None = ..., kinematics: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: FrameSystemConfig(*, frame: common.v1.common_pb2.Transform | None = ..., kinematics: google.protobuf.struct_pb2.Struct | None = ..., model: common.v1.common_pb2.KinematicModel | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -474,6 +474,12 @@ Module Contents
 
 
    .. py:method:: kinematics() -> google.protobuf.struct_pb2.Struct
+
+      Deprecated: use model
+
+
+
+   .. py:method:: model() -> common.v1.common_pb2.KinematicModel
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool

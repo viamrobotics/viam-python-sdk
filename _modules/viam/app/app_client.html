@@ -99,6 +99,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.app._logs</span><span class="w"> </span><span class="kn">import</span> <span class="n">_LogsStream</span><span class="p">,</span> <span class="n">_LogsStreamWithIterator</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.proto.app</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddFavoriteMachineRequest</span><span class="p">,</span>
+    <span class="n">AddFavoriteMachineResponse</span><span class="p">,</span>
     <span class="n">AddRoleRequest</span><span class="p">,</span>
     <span class="n">APIKeyWithAuthorizations</span><span class="p">,</span>
     <span class="n">AppServiceStub</span><span class="p">,</span>
@@ -108,6 +110,8 @@
     <span class="n">ChangeRoleRequest</span><span class="p">,</span>
     <span class="n">CheckPermissionsRequest</span><span class="p">,</span>
     <span class="n">CheckPermissionsResponse</span><span class="p">,</span>
+    <span class="n">ConfigPropertyChange</span><span class="p">,</span>
+    <span class="n">ConfigPropertyChangeResult</span><span class="p">,</span>
     <span class="n">CreateFragmentRequest</span><span class="p">,</span>
     <span class="n">CreateFragmentResponse</span><span class="p">,</span>
     <span class="n">CreateKeyFromExistingKeyAuthorizationsRequest</span><span class="p">,</span>
@@ -146,6 +150,7 @@
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
     <span class="n">DeprecateRegistryItemRequest</span><span class="p">,</span>
     <span class="n">DeprecateRegistryItemVersionRequest</span><span class="p">,</span>
+    <span class="n">FavoriteMachine</span><span class="p">,</span>
     <span class="n">FragmentImport</span><span class="p">,</span>
     <span class="n">FragmentImportList</span><span class="p">,</span>
     <span class="n">GetDevicePushTokensRequest</span><span class="p">,</span>
@@ -194,6 +199,8 @@
     <span class="n">GetUserIDByEmailResponse</span><span class="p">,</span>
     <span class="n">ListAuthorizationsRequest</span><span class="p">,</span>
     <span class="n">ListAuthorizationsResponse</span><span class="p">,</span>
+    <span class="n">ListFavoriteMachinesRequest</span><span class="p">,</span>
+    <span class="n">ListFavoriteMachinesResponse</span><span class="p">,</span>
     <span class="n">ListFragmentsRequest</span><span class="p">,</span>
     <span class="n">ListFragmentsResponse</span><span class="p">,</span>
     <span class="n">ListKeysRequest</span><span class="p">,</span>
@@ -235,6 +242,8 @@
     <span class="n">OrgDetails</span><span class="p">,</span>
     <span class="n">RegistryItem</span><span class="p">,</span>
     <span class="n">RegistryItemStatus</span><span class="p">,</span>
+    <span class="n">RemoveFavoriteMachineRequest</span><span class="p">,</span>
+    <span class="n">RemoveFavoriteMachineResponse</span><span class="p">,</span>
     <span class="n">RemoveRoleRequest</span><span class="p">,</span>
     <span class="n">ResendOrganizationInviteRequest</span><span class="p">,</span>
     <span class="n">ResendOrganizationInviteResponse</span><span class="p">,</span>
@@ -242,6 +251,8 @@
     <span class="n">RotateKeyRequest</span><span class="p">,</span>
     <span class="n">RotateKeyResponse</span><span class="p">,</span>
     <span class="n">RoverRentalRobot</span><span class="p">,</span>
+    <span class="n">SetConfigPropertyRequest</span><span class="p">,</span>
+    <span class="n">SetConfigPropertyResponse</span><span class="p">,</span>
     <span class="n">SetFirebaseConfigRequest</span><span class="p">,</span>
     <span class="n">SetFirebaseConfigResponse</span><span class="p">,</span>
     <span class="n">SharedSecret</span><span class="p">,</span>
@@ -1787,7 +1798,13 @@
 
 <div class="viewcode-block" id="AppClient.get_robot_part_history">
 <a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part_history">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_robot_part_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_robot_part_history</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">page_limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list containing the history of a machine part.</span>
 
 <span class="sd">        ::</span>
@@ -1798,6 +1815,9 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the machine part to retrieve history from.</span>
+<span class="sd">            start (datetime | None): Optional start time. Only history entries created after this time will be returned.</span>
+<span class="sd">            end (datetime | None): Optional end time. Only history entries created before this time will be returned.</span>
+<span class="sd">            page_limit (int | None): Optional maximum number of history entries to return, newest first.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid machine part ID is provided.</span>
@@ -1807,7 +1827,12 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartHistoryRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartHistoryRequest</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span>
+            <span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+            <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
+            <span class="n">page_limit</span><span class="o">=</span><span class="n">page_limit</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartHistoryResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartHistory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">part_history</span><span class="p">)</span> <span class="k">for</span> <span class="n">part_history</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">]</span></div>
 
@@ -1885,6 +1910,30 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotPartRequest</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">part_name</span><span class="o">=</span><span class="n">part_name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">NewRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">NewRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">part_id</span></div>
+
+
+<div class="viewcode-block" id="AppClient.set_config_property">
+<a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.set_config_property">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_config_property</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">property_changes</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ConfigPropertyChangeResult</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set individual values within a machine part&#39;s config by JSON path, without replacing the whole config.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to update.</span>
+<span class="sd">            property_changes (Mapping[str, ValueTypes]): A mapping of JSON paths within the config to the new value at that path.</span>
+<span class="sd">            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[viam.proto.app.ConfigPropertyChangeResult]: The result of each requested property change.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">changes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ConfigPropertyChange</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">({</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">property_changes</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetConfigPropertyRequest</span><span class="p">(</span><span class="n">robot_part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">property_changes</span><span class="o">=</span><span class="n">changes</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">SetConfigPropertyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">SetConfigProperty</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">property_changes</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AppClient.delete_robot_part">
@@ -2156,6 +2205,50 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AppClient.add_favorite_machine">
+<a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.add_favorite_machine">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_favorite_machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machine_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a machine to the current user&#39;s favorites.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            machine_id (str): ID of the machine to favorite.</span>
+<span class="sd">            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddFavoriteMachineRequest</span><span class="p">(</span><span class="n">machine_id</span><span class="o">=</span><span class="n">machine_id</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">AddFavoriteMachineResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">AddFavoriteMachine</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AppClient.remove_favorite_machine">
+<a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.remove_favorite_machine">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_favorite_machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">machine_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a machine from the current user&#39;s favorites.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            machine_id (str): ID of the machine to unfavorite.</span>
+<span class="sd">            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveFavoriteMachineRequest</span><span class="p">(</span><span class="n">machine_id</span><span class="o">=</span><span class="n">machine_id</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">RemoveFavoriteMachineResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">RemoveFavoriteMachine</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AppClient.list_favorite_machines">
+<a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_favorite_machines">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_favorite_machines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">FavoriteMachine</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List the current user&#39;s favorited machines.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            timeout (float | None): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[viam.proto.app.FavoriteMachine]: The list of favorited machines.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListFavoriteMachinesRequest</span><span class="p">()</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListFavoriteMachinesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListFavoriteMachines</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">favorites</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AppClient.list_fragments">

@@ -267,6 +267,8 @@
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_kinematics</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
+        <span class="n">include_collision_meshes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">include_visual_meshes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -287,12 +289,17 @@
 <span class="sd">            # Get the byte contents of the file.</span>
 <span class="sd">            k_bytes = kinematics[1]</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            include_collision_meshes (bool): Include collision mesh bytes in the response. Otherwise meshes carry only their path.</span>
+<span class="sd">            include_visual_meshes (bool): Include visual mesh bytes in the response.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the</span>
 <span class="sd">            file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or</span>
 <span class="sd">            Viam&#39;s kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),</span>
 <span class="sd">            and the second [1] value represents the byte contents of the file.</span>
 <span class="sd">            If available, a third [2] value provides meshes keyed by URDF filepath.</span>
+<span class="sd">            If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).</span>
 
 <span class="sd">        For more information, see `Gripper component &lt;https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

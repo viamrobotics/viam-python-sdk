@@ -26,14 +26,7 @@ Module Contents
    inheritance.
 
 
-   .. py:method:: GetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetModeRequest, service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
-   .. py:method:: SetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SetModeRequest, service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+   .. py:method:: AddLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddLocationRequest, service.navigation.v1.navigation_pb2.AddLocationResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -47,35 +40,182 @@ Module Contents
 
 
 
-   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetWaypointsRequest, service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+   .. py:method:: ListLocations(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListLocationsRequest, service.navigation.v1.navigation_pb2.ListLocationsResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddWaypointRequest, service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+   .. py:method:: UpdateLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateLocationRequest, service.navigation.v1.navigation_pb2.UpdateLocationResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.RemoveWaypointRequest, service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+   .. py:method:: DeleteLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteLocationRequest, service.navigation.v1.navigation_pb2.DeleteLocationResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: GetObstacles(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetObstaclesRequest, service.navigation.v1.navigation_pb2.GetObstaclesResponse]) -> None
+   .. py:method:: AddRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddRouteRequest, service.navigation.v1.navigation_pb2.AddRouteResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: GetPaths(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPathsRequest, service.navigation.v1.navigation_pb2.GetPathsResponse]) -> None
+   .. py:method:: GetRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetRouteRequest, service.navigation.v1.navigation_pb2.GetRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListRoutes(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListRoutesRequest, service.navigation.v1.navigation_pb2.ListRoutesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateRouteRequest, service.navigation.v1.navigation_pb2.UpdateRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteRouteRequest, service.navigation.v1.navigation_pb2.DeleteRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: AddZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddZoneRequest, service.navigation.v1.navigation_pb2.AddZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetZoneRequest, service.navigation.v1.navigation_pb2.GetZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListZones(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListZonesRequest, service.navigation.v1.navigation_pb2.ListZonesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateZoneRequest, service.navigation.v1.navigation_pb2.UpdateZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteZoneRequest, service.navigation.v1.navigation_pb2.DeleteZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: NavigateToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToLocationRequest, service.navigation.v1.navigation_pb2.NavigateToLocationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: NavigateToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToPointRequest, service.navigation.v1.navigation_pb2.NavigateToPointResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: NavigateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateRouteRequest, service.navigation.v1.navigation_pb2.NavigateRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: PlanToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToPointRequest, service.navigation.v1.navigation_pb2.PlanToPointResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: PlanToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToLocationRequest, service.navigation.v1.navigation_pb2.PlanToLocationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ExecutePlan(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ExecutePlanRequest, service.navigation.v1.navigation_pb2.ExecutePlanResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GoToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToLocationRequest, service.navigation.v1.navigation_pb2.GoToLocationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GoToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToPointRequest, service.navigation.v1.navigation_pb2.GoToPointResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Suspend(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SuspendRequest, service.navigation.v1.navigation_pb2.SuspendResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Resume(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ResumeRequest, service.navigation.v1.navigation_pb2.ResumeResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Cancel(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.CancelRequest, service.navigation.v1.navigation_pb2.CancelResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPositionRequest, service.navigation.v1.navigation_pb2.GetPositionResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetNavigationStatus(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetNavigationStatusRequest, service.navigation.v1.navigation_pb2.GetNavigationStatusResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -83,6 +223,13 @@ Module Contents
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPropertiesRequest, service.navigation.v1.navigation_pb2.GetPropertiesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetCostmap(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetCostmapRequest, service.navigation.v1.navigation_pb2.GetCostmapResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -115,12 +262,7 @@ Module Contents
    inheritance.
 
 
-   .. py:method:: GetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetModeRequest, service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
-      :async:
-
-
-
-   .. py:method:: SetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SetModeRequest, service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+   .. py:method:: AddLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddLocationRequest, service.navigation.v1.navigation_pb2.AddLocationResponse]) -> None
       :async:
 
 
@@ -130,32 +272,142 @@ Module Contents
 
 
 
-   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetWaypointsRequest, service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+   .. py:method:: ListLocations(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListLocationsRequest, service.navigation.v1.navigation_pb2.ListLocationsResponse]) -> None
       :async:
 
 
 
-   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddWaypointRequest, service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+   .. py:method:: UpdateLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateLocationRequest, service.navigation.v1.navigation_pb2.UpdateLocationResponse]) -> None
       :async:
 
 
 
-   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.RemoveWaypointRequest, service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+   .. py:method:: DeleteLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteLocationRequest, service.navigation.v1.navigation_pb2.DeleteLocationResponse]) -> None
       :async:
 
 
 
-   .. py:method:: GetObstacles(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetObstaclesRequest, service.navigation.v1.navigation_pb2.GetObstaclesResponse]) -> None
+   .. py:method:: AddRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddRouteRequest, service.navigation.v1.navigation_pb2.AddRouteResponse]) -> None
       :async:
 
 
 
-   .. py:method:: GetPaths(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPathsRequest, service.navigation.v1.navigation_pb2.GetPathsResponse]) -> None
+   .. py:method:: GetRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetRouteRequest, service.navigation.v1.navigation_pb2.GetRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListRoutes(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListRoutesRequest, service.navigation.v1.navigation_pb2.ListRoutesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateRouteRequest, service.navigation.v1.navigation_pb2.UpdateRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteRouteRequest, service.navigation.v1.navigation_pb2.DeleteRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: AddZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddZoneRequest, service.navigation.v1.navigation_pb2.AddZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetZoneRequest, service.navigation.v1.navigation_pb2.GetZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListZones(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListZonesRequest, service.navigation.v1.navigation_pb2.ListZonesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateZoneRequest, service.navigation.v1.navigation_pb2.UpdateZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteZoneRequest, service.navigation.v1.navigation_pb2.DeleteZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToLocationRequest, service.navigation.v1.navigation_pb2.NavigateToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToPointRequest, service.navigation.v1.navigation_pb2.NavigateToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateRouteRequest, service.navigation.v1.navigation_pb2.NavigateRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: PlanToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToPointRequest, service.navigation.v1.navigation_pb2.PlanToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: PlanToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToLocationRequest, service.navigation.v1.navigation_pb2.PlanToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ExecutePlan(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ExecutePlanRequest, service.navigation.v1.navigation_pb2.ExecutePlanResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToLocationRequest, service.navigation.v1.navigation_pb2.GoToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToPointRequest, service.navigation.v1.navigation_pb2.GoToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Suspend(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SuspendRequest, service.navigation.v1.navigation_pb2.SuspendResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Resume(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ResumeRequest, service.navigation.v1.navigation_pb2.ResumeResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Cancel(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.CancelRequest, service.navigation.v1.navigation_pb2.CancelResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPositionRequest, service.navigation.v1.navigation_pb2.GetPositionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetNavigationStatus(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetNavigationStatusRequest, service.navigation.v1.navigation_pb2.GetNavigationStatusResponse]) -> None
       :async:
 
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPropertiesRequest, service.navigation.v1.navigation_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetCostmap(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetCostmapRequest, service.navigation.v1.navigation_pb2.GetCostmapResponse]) -> None
       :async:
 
 
@@ -172,31 +424,94 @@ Module Contents
 
 .. py:class:: NavigationServiceStub(channel: grpclib.client.Channel)
 
-   .. py:attribute:: GetMode
-
-
-   .. py:attribute:: SetMode
+   .. py:attribute:: AddLocation
 
 
    .. py:attribute:: GetLocation
 
 
-   .. py:attribute:: GetWaypoints
+   .. py:attribute:: ListLocations
 
 
-   .. py:attribute:: AddWaypoint
+   .. py:attribute:: UpdateLocation
 
 
-   .. py:attribute:: RemoveWaypoint
+   .. py:attribute:: DeleteLocation
 
 
-   .. py:attribute:: GetObstacles
+   .. py:attribute:: AddRoute
 
 
-   .. py:attribute:: GetPaths
+   .. py:attribute:: GetRoute
+
+
+   .. py:attribute:: ListRoutes
+
+
+   .. py:attribute:: UpdateRoute
+
+
+   .. py:attribute:: DeleteRoute
+
+
+   .. py:attribute:: AddZone
+
+
+   .. py:attribute:: GetZone
+
+
+   .. py:attribute:: ListZones
+
+
+   .. py:attribute:: UpdateZone
+
+
+   .. py:attribute:: DeleteZone
+
+
+   .. py:attribute:: NavigateToLocation
+
+
+   .. py:attribute:: NavigateToPoint
+
+
+   .. py:attribute:: NavigateRoute
+
+
+   .. py:attribute:: PlanToPoint
+
+
+   .. py:attribute:: PlanToLocation
+
+
+   .. py:attribute:: ExecutePlan
+
+
+   .. py:attribute:: GoToLocation
+
+
+   .. py:attribute:: GoToPoint
+
+
+   .. py:attribute:: Suspend
+
+
+   .. py:attribute:: Resume
+
+
+   .. py:attribute:: Cancel
+
+
+   .. py:attribute:: GetPosition
+
+
+   .. py:attribute:: GetNavigationStatus
 
 
    .. py:attribute:: GetProperties
+
+
+   .. py:attribute:: GetCostmap
 
 
    .. py:attribute:: DoCommand

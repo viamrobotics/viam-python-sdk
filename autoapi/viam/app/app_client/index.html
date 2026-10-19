@@ -182,6 +182,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_robot_part_history"><code class="docutils literal notranslate"><span class="pre">AppClient.get_robot_part_history()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_robot_part"><code class="docutils literal notranslate"><span class="pre">AppClient.update_robot_part()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.new_robot_part"><code class="docutils literal notranslate"><span class="pre">AppClient.new_robot_part()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.set_config_property"><code class="docutils literal notranslate"><span class="pre">AppClient.set_config_property()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_robot_part"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_robot_part()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_robot_api_keys"><code class="docutils literal notranslate"><span class="pre">AppClient.get_robot_api_keys()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.mark_part_as_main"><code class="docutils literal notranslate"><span class="pre">AppClient.mark_part_as_main()</span></code></a></li>
@@ -193,6 +194,9 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.new_robot"><code class="docutils literal notranslate"><span class="pre">AppClient.new_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_robot"><code class="docutils literal notranslate"><span class="pre">AppClient.update_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_robot"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_robot()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.add_favorite_machine"><code class="docutils literal notranslate"><span class="pre">AppClient.add_favorite_machine()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.remove_favorite_machine"><code class="docutils literal notranslate"><span class="pre">AppClient.remove_favorite_machine()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.list_favorite_machines"><code class="docutils literal notranslate"><span class="pre">AppClient.list_favorite_machines()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.list_fragments"><code class="docutils literal notranslate"><span class="pre">AppClient.list_fragments()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_fragment"><code class="docutils literal notranslate"><span class="pre">AppClient.get_fragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_fragment"><code class="docutils literal notranslate"><span class="pre">AppClient.create_fragment()</span></code></a></li>
@@ -1645,7 +1649,7 @@ no filter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_part_history">
-<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_robot_part_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><span class="pre">RobotPartHistoryEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_part_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_part_history" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_robot_part_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><span class="pre">RobotPartHistoryEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_part_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_part_history" title="Link to this definition"></a></dt>
 <dd><p>Get a list containing the history of a machine part.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">part_history</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_part_history</span><span class="p">(</span>
     <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
@@ -1654,7 +1658,12 @@ no filter).</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the machine part to retrieve history from.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the machine part to retrieve history from.</p></li>
+<li><p><strong>start</strong> (<em>datetime</em><em> | </em><em>None</em>) – Optional start time. Only history entries created after this time will be returned.</p></li>
+<li><p><strong>end</strong> (<em>datetime</em><em> | </em><em>None</em>) – Optional end time. Only history entries created before this time will be returned.</p></li>
+<li><p><strong>page_limit</strong> (<em>int</em><em> | </em><em>None</em>) – Optional maximum number of history entries to return, newest first.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid machine part ID is provided.</p>
@@ -1733,6 +1742,27 @@ last_known_update.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#newrobotpart">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.set_config_property">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">set_config_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_changes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../utils/index.html#viam.utils.ValueTypes" title="viam.utils.ValueTypes"><span class="pre">viam.utils.ValueTypes</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.ConfigPropertyChangeResult" title="viam.proto.app.ConfigPropertyChangeResult"><span class="pre">viam.proto.app.ConfigPropertyChangeResult</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.set_config_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.set_config_property" title="Link to this definition"></a></dt>
+<dd><p>Set individual values within a machine part’s config by JSON path, without replacing the whole config.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to update.</p></li>
+<li><p><strong>property_changes</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ValueTypes" title="viam.components.component_base.ValueTypes"><em>ValueTypes</em></a><em>]</em>) – A mapping of JSON paths within the config to the new value at that path.</p></li>
+<li><p><strong>timeout</strong> (<em>float</em><em> | </em><em>None</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of each requested property change.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.ConfigPropertyChangeResult" title="viam.proto.app.ConfigPropertyChangeResult">viam.proto.app.ConfigPropertyChangeResult</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1990,6 +2020,51 @@ location ID provided at <cite>AppClient</cite> instantiation.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#deleterobot">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.add_favorite_machine">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">add_favorite_machine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">machine_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.add_favorite_machine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.add_favorite_machine" title="Link to this definition"></a></dt>
+<dd><p>Add a machine to the current user’s favorites.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>machine_id</strong> (<em>str</em>) – ID of the machine to favorite.</p></li>
+<li><p><strong>timeout</strong> (<em>float</em><em> | </em><em>None</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.remove_favorite_machine">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">remove_favorite_machine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">machine_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.remove_favorite_machine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.remove_favorite_machine" title="Link to this definition"></a></dt>
+<dd><p>Remove a machine from the current user’s favorites.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>machine_id</strong> (<em>str</em>) – ID of the machine to unfavorite.</p></li>
+<li><p><strong>timeout</strong> (<em>float</em><em> | </em><em>None</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_favorite_machines">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_favorite_machines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.FavoriteMachine" title="viam.proto.app.FavoriteMachine"><span class="pre">viam.proto.app.FavoriteMachine</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_favorite_machines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_favorite_machines" title="Link to this definition"></a></dt>
+<dd><p>List the current user’s favorited machines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>float</em><em> | </em><em>None</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of favorited machines.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.FavoriteMachine" title="viam.proto.app.FavoriteMachine">viam.proto.app.FavoriteMachine</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

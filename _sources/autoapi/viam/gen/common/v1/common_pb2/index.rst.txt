@@ -21,6 +21,11 @@ Attributes
    viam.gen.common.v1.common_pb2.KINEMATICS_FILE_FORMAT_SVA
    viam.gen.common.v1.common_pb2.KINEMATICS_FILE_FORMAT_URDF
    viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat
+   viam.gen.common.v1.common_pb2.JOINT_TYPE_UNSPECIFIED
+   viam.gen.common.v1.common_pb2.JOINT_TYPE_REVOLUTE
+   viam.gen.common.v1.common_pb2.JOINT_TYPE_PRISMATIC
+   viam.gen.common.v1.common_pb2.JOINT_TYPE_CONTINUOUS
+   viam.gen.common.v1.common_pb2.Global___JointType
    viam.gen.common.v1.common_pb2.Global___ResourceName
    viam.gen.common.v1.common_pb2.Global___Pose
    viam.gen.common.v1.common_pb2.Global___Orientation
@@ -36,6 +41,7 @@ Attributes
    viam.gen.common.v1.common_pb2.Global___GeometriesInFrame
    viam.gen.common.v1.common_pb2.Global___PointCloudObject
    viam.gen.common.v1.common_pb2.Global___GeoPoint
+   viam.gen.common.v1.common_pb2.Global___GeoPose
    viam.gen.common.v1.common_pb2.Global___GeoGeometry
    viam.gen.common.v1.common_pb2.Global___Transform
    viam.gen.common.v1.common_pb2.Global___WorldState
@@ -47,6 +53,16 @@ Attributes
    viam.gen.common.v1.common_pb2.Global___GetStatusResponse
    viam.gen.common.v1.common_pb2.Global___GetKinematicsRequest
    viam.gen.common.v1.common_pb2.Global___GetKinematicsResponse
+   viam.gen.common.v1.common_pb2.Global___KinematicModel
+   viam.gen.common.v1.common_pb2.Global___KinematicLink
+   viam.gen.common.v1.common_pb2.Global___LinkPose
+   viam.gen.common.v1.common_pb2.Global___Quaternion
+   viam.gen.common.v1.common_pb2.Global___EulerAngles
+   viam.gen.common.v1.common_pb2.Global___AxisAngles
+   viam.gen.common.v1.common_pb2.Global___KinematicJoint
+   viam.gen.common.v1.common_pb2.Global___JointLimits
+   viam.gen.common.v1.common_pb2.Global___MimicJoint
+   viam.gen.common.v1.common_pb2.Global___KinematicProperties
    viam.gen.common.v1.common_pb2.Global___GetGeometriesRequest
    viam.gen.common.v1.common_pb2.Global___GetGeometriesResponse
    viam.gen.common.v1.common_pb2.Global___Get3DModelsRequest
@@ -68,6 +84,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.common.v1.common_pb2.KinematicsFileFormat
+   viam.gen.common.v1.common_pb2.JointType
    viam.gen.common.v1.common_pb2.ResourceName
    viam.gen.common.v1.common_pb2.Pose
    viam.gen.common.v1.common_pb2.Orientation
@@ -83,6 +100,7 @@ Classes
    viam.gen.common.v1.common_pb2.GeometriesInFrame
    viam.gen.common.v1.common_pb2.PointCloudObject
    viam.gen.common.v1.common_pb2.GeoPoint
+   viam.gen.common.v1.common_pb2.GeoPose
    viam.gen.common.v1.common_pb2.GeoGeometry
    viam.gen.common.v1.common_pb2.Transform
    viam.gen.common.v1.common_pb2.WorldState
@@ -94,6 +112,16 @@ Classes
    viam.gen.common.v1.common_pb2.GetStatusResponse
    viam.gen.common.v1.common_pb2.GetKinematicsRequest
    viam.gen.common.v1.common_pb2.GetKinematicsResponse
+   viam.gen.common.v1.common_pb2.KinematicModel
+   viam.gen.common.v1.common_pb2.KinematicLink
+   viam.gen.common.v1.common_pb2.LinkPose
+   viam.gen.common.v1.common_pb2.Quaternion
+   viam.gen.common.v1.common_pb2.EulerAngles
+   viam.gen.common.v1.common_pb2.AxisAngles
+   viam.gen.common.v1.common_pb2.KinematicJoint
+   viam.gen.common.v1.common_pb2.JointLimits
+   viam.gen.common.v1.common_pb2.MimicJoint
+   viam.gen.common.v1.common_pb2.KinematicProperties
    viam.gen.common.v1.common_pb2.GetGeometriesRequest
    viam.gen.common.v1.common_pb2.GetGeometriesResponse
    viam.gen.common.v1.common_pb2.Get3DModelsRequest
@@ -129,6 +157,29 @@ Module Contents
 
 .. py:type:: Global___KinematicsFileFormat
    :canonical: KinematicsFileFormat
+
+
+.. py:class:: JointType
+
+   Bases: :py:obj:`_JointType`
+
+
+.. py:data:: JOINT_TYPE_UNSPECIFIED
+   :type:  JointType
+
+.. py:data:: JOINT_TYPE_REVOLUTE
+   :type:  JointType
+
+.. py:data:: JOINT_TYPE_PRISMATIC
+   :type:  JointType
+
+.. py:data:: JOINT_TYPE_CONTINUOUS
+   :type:  JointType
+
+   Revolute joint with no position bound
+
+.. py:type:: Global___JointType
+   :canonical: JointType
 
 
 .. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
@@ -470,7 +521,7 @@ Module Contents
    :canonical: RectangularPrism
 
 
-.. py:class:: Mesh(*, content_type: str = ..., mesh: bytes = ...)
+.. py:class:: Mesh(*, content_type: str = ..., mesh: bytes = ..., original_file_source_path_diagnostic: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -492,6 +543,46 @@ Module Contents
       :type:  bytes
 
       Contents of mesh data in binary form defined by content_type
+
+
+   .. py:attribute:: original_file_source_path_diagnostic
+      :type:  str
+
+      Path the mesh was loaded from, relative to the kinematics file. Informational on the wire.
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__original_file_source_path_diagnostic) -> _WhichOneofReturnType__original_file_source_path_diagnostic | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:type:: Global___Mesh
@@ -681,6 +772,99 @@ Module Contents
 
 .. py:type:: Global___GeoPoint
    :canonical: GeoPoint
+
+
+.. py:class:: GeoPose(*, location: Global___GeoPoint | None = ..., altitude: float | None = ..., heading: float = ..., orientation_vector: Global___Orientation | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GeoPose is a GPS position and orientation, optionally with altitude.
+
+   Orientation is expressed in the east-north-up tangent frame at location:
+   +X east, +Y north, +Z up. Viam base axes are +X right, +Y forward, and +Z up,
+   so the identity orientation (o_x, o_y, o_z, theta) = (0, 0, 1, 0) is level and
+   faces north: forward is north and right is east.
+
+   The same rotation as an orientation vector is Viam's Tait-Bryan Euler sequence,
+   intrinsic z-y'-x'' (yaw, then pitch, then roll), in degrees:
+     - yaw: right-handed rotation about local up (+Z). Zero faces north. Positive
+       yaw is counterclockwise viewed from above, so a compass heading in degrees
+       clockwise from north is the negation of yaw.
+     - pitch: right-handed rotation about the base's forward axis (+Y).
+     - roll: right-handed rotation about the base's right axis (+X). With pitch 0,
+       positive roll raises the forward axis; that angle is the elevation of
+       forward above the local horizon.
+
+   Exactly one of heading or orientation_vector is set. heading is only the
+   compass yaw of a level pose (pitch 0, roll 0). It is not added to
+   orientation_vector.
+
+
+   .. py:attribute:: altitude
+      :type:  float
+
+      Optional altitude in meters
+
+
+   .. py:attribute:: heading
+      :type:  float
+
+      pitch 0, roll 0.
+
+      :type: Compass heading in degrees, clockwise from north. Level pose
+
+
+   .. py:method:: location() -> Global___GeoPoint
+
+      Latitude and longitude in degrees
+
+
+
+   .. py:method:: orientation_vector() -> Global___Orientation
+
+      Full orientation in the east-north-up tangent frame at location.
+      o_x, o_y, o_z, theta in degrees, same orientation vector as Pose.
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__altitude) -> _WhichOneofReturnType__altitude | None
+                  WhichOneof(oneof_group: _WhichOneofArgType_orientation) -> _WhichOneofReturnType_orientation | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:type:: Global___GeoPose
+   :canonical: GeoPose
 
 
 .. py:class:: GeoGeometry(*, location: Global___GeoPoint | None = ..., geometries: collections.abc.Iterable[Global___Geometry] | None = ...)
@@ -1022,7 +1206,7 @@ Module Contents
    :canonical: GetStatusResponse
 
 
-.. py:class:: GetKinematicsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetKinematicsRequest(*, name: str = ..., include_collision_meshes: bool = ..., include_visual_meshes: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1038,6 +1222,18 @@ Module Contents
       :type:  str
 
       The component name
+
+
+   .. py:attribute:: include_collision_meshes
+      :type:  bool
+
+      Include collision mesh bytes in the response. Otherwise meshes carry only their path.
+
+
+   .. py:attribute:: include_visual_meshes
+      :type:  bool
+
+      Include visual mesh bytes in the response
 
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
@@ -1068,7 +1264,7 @@ Module Contents
    :canonical: GetKinematicsRequest
 
 
-.. py:class:: GetKinematicsResponse(*, format: Global___KinematicsFileFormat = ..., kinematics_data: bytes = ..., meshes_by_urdf_filepath: collections.abc.Mapping[str, Global___Mesh] | None = ...)
+.. py:class:: GetKinematicsResponse(*, format: Global___KinematicsFileFormat = ..., kinematics_data: bytes = ..., meshes_by_urdf_filepath: collections.abc.Mapping[str, Global___Mesh] | None = ..., model: Global___KinematicModel | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1118,27 +1314,527 @@ Module Contents
 
 
 
-   .. py:attribute:: format
-      :type:  Global___KinematicsFileFormat
+   .. py:method:: format() -> Global___KinematicsFileFormat
 
-      The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+      Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
       https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
 
 
-   .. py:attribute:: kinematics_data
-      :type:  bytes
 
-      The byte contents of the file
+   .. py:method:: kinematics_data() -> bytes
+
+      Deprecated: use model. The byte contents of the file
+
 
 
    .. py:method:: meshes_by_urdf_filepath() -> google.protobuf.internal.containers.MessageMap[str, Global___Mesh]
 
-      Map of URDF mesh file paths to mesh data
+      Deprecated: use model. Map of URDF mesh file paths to mesh data
+
+
+
+   .. py:method:: model() -> Global___KinematicModel
+
+      The kinematic model of the component
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
 
 
 
 .. py:type:: Global___GetKinematicsResponse
    :canonical: GetKinematicsResponse
+
+
+.. py:class:: KinematicModel(*, name: str = ..., links: collections.abc.Iterable[Global___KinematicLink] | None = ..., joints: collections.abc.Iterable[Global___KinematicJoint] | None = ..., output_frames: collections.abc.Iterable[str] | None = ..., properties: Global___KinematicProperties | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   KinematicModel describes a component's kinematics as a tree of links and joints.
+   Its proto JSON encoding is also the on-disk kinematics file format.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Set to the resource name by the SDK when served
+
+
+   .. py:method:: links() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___KinematicLink]
+
+
+   .. py:method:: joints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___KinematicJoint]
+
+
+   .. py:method:: output_frames() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Frames whose poses the model reports
+
+
+
+   .. py:method:: properties() -> Global___KinematicProperties
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:type:: Global___KinematicModel
+   :canonical: KinematicModel
+
+
+.. py:class:: KinematicLink(*, id: str = ..., parent: str = ..., pose: Global___LinkPose | None = ..., collision: collections.abc.Iterable[Global___Geometry] | None = ..., visual: collections.abc.Iterable[Global___Geometry] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: parent
+      :type:  str
+
+      Parent link or joint id, empty for the root
+
+
+   .. py:method:: pose() -> Global___LinkPose
+
+      Pose relative to the parent
+
+
+
+   .. py:method:: collision() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Geometry]
+
+      Collision geometries, meshes must be stl or ply
+
+
+
+   .. py:method:: visual() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Geometry]
+
+      Display geometries, not used for collision checking
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:type:: Global___KinematicLink
+   :canonical: KinematicLink
+
+
+.. py:class:: LinkPose(*, translation: Global___Vector3 | None = ..., quaternion: Global___Quaternion | None = ..., orientation_vector: Global___Orientation | None = ..., euler_angles: Global___EulerAngles | None = ..., axis_angles: Global___AxisAngles | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   LinkPose is a translation in mm and an orientation in degrees, identity when absent
+
+
+   .. py:method:: translation() -> Global___Vector3
+
+
+   .. py:method:: quaternion() -> Global___Quaternion
+
+
+   .. py:method:: orientation_vector() -> Global___Orientation
+
+      theta in degrees
+
+
+
+   .. py:method:: euler_angles() -> Global___EulerAngles
+
+
+   .. py:method:: axis_angles() -> Global___AxisAngles
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_orientation) -> _WhichOneofReturnType_orientation | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:type:: Global___LinkPose
+   :canonical: LinkPose
+
+
+.. py:class:: Quaternion(*, w: float = ..., x: float = ..., y: float = ..., z: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: w
+      :type:  float
+
+
+   .. py:attribute:: x
+      :type:  float
+
+
+   .. py:attribute:: y
+      :type:  float
+
+
+   .. py:attribute:: z
+      :type:  float
+
+
+.. py:type:: Global___Quaternion
+   :canonical: Quaternion
+
+
+.. py:class:: EulerAngles(*, roll: float = ..., pitch: float = ..., yaw: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Euler angles in degrees
+
+
+   .. py:attribute:: roll
+      :type:  float
+
+
+   .. py:attribute:: pitch
+      :type:  float
+
+
+   .. py:attribute:: yaw
+      :type:  float
+
+
+.. py:type:: Global___EulerAngles
+   :canonical: EulerAngles
+
+
+.. py:class:: AxisAngles(*, rx: float = ..., ry: float = ..., rz: float = ..., theta: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Rotation axis and an angle theta in degrees
+
+
+   .. py:attribute:: rx
+      :type:  float
+
+
+   .. py:attribute:: ry
+      :type:  float
+
+
+   .. py:attribute:: rz
+      :type:  float
+
+
+   .. py:attribute:: theta
+      :type:  float
+
+
+.. py:type:: Global___AxisAngles
+   :canonical: AxisAngles
+
+
+.. py:class:: KinematicJoint(*, id: str = ..., parent: str = ..., type: Global___JointType = ..., axis: Global___Vector3 | None = ..., limits: Global___JointLimits | None = ..., mimic: Global___MimicJoint | None = ..., geometry: Global___Geometry | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: parent
+      :type:  str
+
+      Parent link id
+
+
+   .. py:attribute:: type
+      :type:  Global___JointType
+
+
+   .. py:method:: axis() -> Global___Vector3
+
+
+   .. py:method:: limits() -> Global___JointLimits
+
+      Effective limits the component serves
+
+
+
+   .. py:method:: mimic() -> Global___MimicJoint
+
+
+   .. py:method:: geometry() -> Global___Geometry
+
+      Only meaningful for prismatic joints
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:type:: Global___KinematicJoint
+   :canonical: KinematicJoint
+
+
+.. py:class:: JointLimits(*, min: float | None = ..., max: float | None = ..., max_velocity: float | None = ..., max_acceleration: float | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded.
+
+
+   .. py:attribute:: min
+      :type:  float
+
+
+   .. py:attribute:: max
+      :type:  float
+
+
+   .. py:attribute:: max_velocity
+      :type:  float
+
+
+   .. py:attribute:: max_acceleration
+      :type:  float
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__max) -> _WhichOneofReturnType__max | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__max_acceleration) -> _WhichOneofReturnType__max_acceleration | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__max_velocity) -> _WhichOneofReturnType__max_velocity | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__min) -> _WhichOneofReturnType__min | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:type:: Global___JointLimits
+   :canonical: JointLimits
+
+
+.. py:class:: MimicJoint(*, joint: str = ..., multiplier: float = ..., offset: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Position is multiplier * position of joint + offset
+
+
+   .. py:attribute:: joint
+      :type:  str
+
+
+   .. py:attribute:: multiplier
+      :type:  float
+
+
+   .. py:attribute:: offset
+      :type:  float
+
+
+.. py:type:: Global___MimicJoint
+   :canonical: MimicJoint
+
+
+.. py:class:: KinematicProperties(*, operating_freq_hz: float | None = ..., max_linear_tcp_speed_mm_per_sec: float | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Properties of the component as a whole
+
+
+   .. py:attribute:: operating_freq_hz
+      :type:  float
+
+      Rate the component expects to be driven at
+
+
+   .. py:attribute:: max_linear_tcp_speed_mm_per_sec
+      :type:  float
+
+      Maximum linear speed of the tool center point
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__max_linear_tcp_speed_mm_per_sec) -> _WhichOneofReturnType__max_linear_tcp_speed_mm_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__operating_freq_hz) -> _WhichOneofReturnType__operating_freq_hz | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:type:: Global___KinematicProperties
+   :canonical: KinematicProperties
 
 
 .. py:class:: GetGeometriesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)

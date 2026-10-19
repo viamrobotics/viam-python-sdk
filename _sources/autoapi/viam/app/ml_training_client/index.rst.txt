@@ -265,7 +265,7 @@ Module Contents
 
 
 
-   .. py:method:: register_custom_training_container(org_id: str, image_uri: str, description: str = '') -> str
+   .. py:method:: register_custom_training_container(org_id: str, image_uri: str, description: str) -> str
       :async:
 
 
@@ -283,7 +283,7 @@ Module Contents
       :type org_id: str
       :param image_uri: the Docker Hub reference of the training container image.
       :type image_uri: str
-      :param description: a description of the training container, used as its display name.
+      :param description: a description of the training container, used as its display name. Must not be empty.
       :type description: str
 
       :returns: the ID of the registered training container.

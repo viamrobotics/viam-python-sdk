@@ -18,28 +18,84 @@ Classes
    viam.proto.service.navigation.NavigationServiceBase
    viam.proto.service.navigation.NavigationServiceStub
    viam.proto.service.navigation.UnimplementedNavigationServiceBase
-   viam.proto.service.navigation.AddWaypointRequest
-   viam.proto.service.navigation.AddWaypointResponse
+   viam.proto.service.navigation.AddLocationRequest
+   viam.proto.service.navigation.AddLocationResponse
+   viam.proto.service.navigation.AddRouteRequest
+   viam.proto.service.navigation.AddRouteResponse
+   viam.proto.service.navigation.AddZoneRequest
+   viam.proto.service.navigation.AddZoneResponse
+   viam.proto.service.navigation.CancelRequest
+   viam.proto.service.navigation.CancelResponse
+   viam.proto.service.navigation.DeleteLocationRequest
+   viam.proto.service.navigation.DeleteLocationResponse
+   viam.proto.service.navigation.DeleteRouteRequest
+   viam.proto.service.navigation.DeleteRouteResponse
+   viam.proto.service.navigation.DeleteZoneRequest
+   viam.proto.service.navigation.DeleteZoneResponse
+   viam.proto.service.navigation.ExecutePlanRequest
+   viam.proto.service.navigation.ExecutePlanResponse
+   viam.proto.service.navigation.GetCostmapRequest
+   viam.proto.service.navigation.GetCostmapResponse
    viam.proto.service.navigation.GetLocationRequest
    viam.proto.service.navigation.GetLocationResponse
-   viam.proto.service.navigation.GetModeRequest
-   viam.proto.service.navigation.GetModeResponse
-   viam.proto.service.navigation.GetObstaclesRequest
-   viam.proto.service.navigation.GetObstaclesResponse
-   viam.proto.service.navigation.GetPathsRequest
-   viam.proto.service.navigation.GetPathsResponse
+   viam.proto.service.navigation.GetNavigationStatusRequest
+   viam.proto.service.navigation.GetNavigationStatusResponse
+   viam.proto.service.navigation.GetPositionRequest
+   viam.proto.service.navigation.GetPositionResponse
    viam.proto.service.navigation.GetPropertiesRequest
    viam.proto.service.navigation.GetPropertiesResponse
-   viam.proto.service.navigation.GetWaypointsRequest
-   viam.proto.service.navigation.GetWaypointsResponse
+   viam.proto.service.navigation.GetRouteRequest
+   viam.proto.service.navigation.GetRouteResponse
+   viam.proto.service.navigation.GetZoneRequest
+   viam.proto.service.navigation.GetZoneResponse
+   viam.proto.service.navigation.GoalState
+   viam.proto.service.navigation.GoalStatus
+   viam.proto.service.navigation.GoToLocationRequest
+   viam.proto.service.navigation.GoToLocationResponse
+   viam.proto.service.navigation.GoToPointRequest
+   viam.proto.service.navigation.GoToPointResponse
+   viam.proto.service.navigation.ListLocationsRequest
+   viam.proto.service.navigation.ListLocationsResponse
+   viam.proto.service.navigation.ListRoutesRequest
+   viam.proto.service.navigation.ListRoutesResponse
+   viam.proto.service.navigation.ListZonesRequest
+   viam.proto.service.navigation.ListZonesResponse
+   viam.proto.service.navigation.Location
    viam.proto.service.navigation.MapType
-   viam.proto.service.navigation.Mode
-   viam.proto.service.navigation.Path
-   viam.proto.service.navigation.RemoveWaypointRequest
-   viam.proto.service.navigation.RemoveWaypointResponse
-   viam.proto.service.navigation.SetModeRequest
-   viam.proto.service.navigation.SetModeResponse
+   viam.proto.service.navigation.NavError
+   viam.proto.service.navigation.NavErrorCode
+   viam.proto.service.navigation.NavigateRouteRequest
+   viam.proto.service.navigation.NavigateRouteResponse
+   viam.proto.service.navigation.NavigateToLocationRequest
+   viam.proto.service.navigation.NavigateToLocationResponse
+   viam.proto.service.navigation.NavigateToPointRequest
+   viam.proto.service.navigation.NavigateToPointResponse
+   viam.proto.service.navigation.NavMode
+   viam.proto.service.navigation.Plan
+   viam.proto.service.navigation.PlanToLocationRequest
+   viam.proto.service.navigation.PlanToLocationResponse
+   viam.proto.service.navigation.PlanToPointRequest
+   viam.proto.service.navigation.PlanToPointResponse
+   viam.proto.service.navigation.Position
+   viam.proto.service.navigation.Progress
+   viam.proto.service.navigation.Properties
+   viam.proto.service.navigation.ResumeRequest
+   viam.proto.service.navigation.ResumeResponse
+   viam.proto.service.navigation.Route
+   viam.proto.service.navigation.RouteProgress
+   viam.proto.service.navigation.Status
+   viam.proto.service.navigation.SuspendRequest
+   viam.proto.service.navigation.SuspendResponse
+   viam.proto.service.navigation.UpdateLocationRequest
+   viam.proto.service.navigation.UpdateLocationResponse
+   viam.proto.service.navigation.UpdateRouteRequest
+   viam.proto.service.navigation.UpdateRouteResponse
+   viam.proto.service.navigation.UpdateZoneRequest
+   viam.proto.service.navigation.UpdateZoneResponse
+   viam.proto.service.navigation.Velocity
    viam.proto.service.navigation.Waypoint
+   viam.proto.service.navigation.WaypointList
+   viam.proto.service.navigation.Zone
 
 
 Package Contents
@@ -54,14 +110,7 @@ Package Contents
    inheritance.
 
 
-   .. py:method:: GetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetModeRequest, service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
-   .. py:method:: SetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SetModeRequest, service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+   .. py:method:: AddLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddLocationRequest, service.navigation.v1.navigation_pb2.AddLocationResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -75,35 +124,182 @@ Package Contents
 
 
 
-   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetWaypointsRequest, service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+   .. py:method:: ListLocations(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListLocationsRequest, service.navigation.v1.navigation_pb2.ListLocationsResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddWaypointRequest, service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+   .. py:method:: UpdateLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateLocationRequest, service.navigation.v1.navigation_pb2.UpdateLocationResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.RemoveWaypointRequest, service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+   .. py:method:: DeleteLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteLocationRequest, service.navigation.v1.navigation_pb2.DeleteLocationResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: GetObstacles(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetObstaclesRequest, service.navigation.v1.navigation_pb2.GetObstaclesResponse]) -> None
+   .. py:method:: AddRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddRouteRequest, service.navigation.v1.navigation_pb2.AddRouteResponse]) -> None
       :abstractmethod:
 
       :async:
 
 
 
-   .. py:method:: GetPaths(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPathsRequest, service.navigation.v1.navigation_pb2.GetPathsResponse]) -> None
+   .. py:method:: GetRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetRouteRequest, service.navigation.v1.navigation_pb2.GetRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListRoutes(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListRoutesRequest, service.navigation.v1.navigation_pb2.ListRoutesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateRouteRequest, service.navigation.v1.navigation_pb2.UpdateRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteRouteRequest, service.navigation.v1.navigation_pb2.DeleteRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: AddZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddZoneRequest, service.navigation.v1.navigation_pb2.AddZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetZoneRequest, service.navigation.v1.navigation_pb2.GetZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListZones(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListZonesRequest, service.navigation.v1.navigation_pb2.ListZonesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateZoneRequest, service.navigation.v1.navigation_pb2.UpdateZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteZoneRequest, service.navigation.v1.navigation_pb2.DeleteZoneResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: NavigateToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToLocationRequest, service.navigation.v1.navigation_pb2.NavigateToLocationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: NavigateToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToPointRequest, service.navigation.v1.navigation_pb2.NavigateToPointResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: NavigateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateRouteRequest, service.navigation.v1.navigation_pb2.NavigateRouteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: PlanToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToPointRequest, service.navigation.v1.navigation_pb2.PlanToPointResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: PlanToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToLocationRequest, service.navigation.v1.navigation_pb2.PlanToLocationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ExecutePlan(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ExecutePlanRequest, service.navigation.v1.navigation_pb2.ExecutePlanResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GoToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToLocationRequest, service.navigation.v1.navigation_pb2.GoToLocationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GoToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToPointRequest, service.navigation.v1.navigation_pb2.GoToPointResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Suspend(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SuspendRequest, service.navigation.v1.navigation_pb2.SuspendResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Resume(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ResumeRequest, service.navigation.v1.navigation_pb2.ResumeResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Cancel(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.CancelRequest, service.navigation.v1.navigation_pb2.CancelResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPositionRequest, service.navigation.v1.navigation_pb2.GetPositionResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetNavigationStatus(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetNavigationStatusRequest, service.navigation.v1.navigation_pb2.GetNavigationStatusResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -111,6 +307,13 @@ Package Contents
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPropertiesRequest, service.navigation.v1.navigation_pb2.GetPropertiesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetCostmap(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetCostmapRequest, service.navigation.v1.navigation_pb2.GetCostmapResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -136,31 +339,94 @@ Package Contents
 
 .. py:class:: NavigationServiceStub(channel: grpclib.client.Channel)
 
-   .. py:attribute:: GetMode
-
-
-   .. py:attribute:: SetMode
+   .. py:attribute:: AddLocation
 
 
    .. py:attribute:: GetLocation
 
 
-   .. py:attribute:: GetWaypoints
+   .. py:attribute:: ListLocations
 
 
-   .. py:attribute:: AddWaypoint
+   .. py:attribute:: UpdateLocation
 
 
-   .. py:attribute:: RemoveWaypoint
+   .. py:attribute:: DeleteLocation
 
 
-   .. py:attribute:: GetObstacles
+   .. py:attribute:: AddRoute
 
 
-   .. py:attribute:: GetPaths
+   .. py:attribute:: GetRoute
+
+
+   .. py:attribute:: ListRoutes
+
+
+   .. py:attribute:: UpdateRoute
+
+
+   .. py:attribute:: DeleteRoute
+
+
+   .. py:attribute:: AddZone
+
+
+   .. py:attribute:: GetZone
+
+
+   .. py:attribute:: ListZones
+
+
+   .. py:attribute:: UpdateZone
+
+
+   .. py:attribute:: DeleteZone
+
+
+   .. py:attribute:: NavigateToLocation
+
+
+   .. py:attribute:: NavigateToPoint
+
+
+   .. py:attribute:: NavigateRoute
+
+
+   .. py:attribute:: PlanToPoint
+
+
+   .. py:attribute:: PlanToLocation
+
+
+   .. py:attribute:: ExecutePlan
+
+
+   .. py:attribute:: GoToLocation
+
+
+   .. py:attribute:: GoToPoint
+
+
+   .. py:attribute:: Suspend
+
+
+   .. py:attribute:: Resume
+
+
+   .. py:attribute:: Cancel
+
+
+   .. py:attribute:: GetPosition
+
+
+   .. py:attribute:: GetNavigationStatus
 
 
    .. py:attribute:: GetProperties
+
+
+   .. py:attribute:: GetCostmap
 
 
    .. py:attribute:: DoCommand
@@ -178,12 +444,7 @@ Package Contents
    inheritance.
 
 
-   .. py:method:: GetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetModeRequest, service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
-      :async:
-
-
-
-   .. py:method:: SetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SetModeRequest, service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+   .. py:method:: AddLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddLocationRequest, service.navigation.v1.navigation_pb2.AddLocationResponse]) -> None
       :async:
 
 
@@ -193,32 +454,142 @@ Package Contents
 
 
 
-   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetWaypointsRequest, service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+   .. py:method:: ListLocations(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListLocationsRequest, service.navigation.v1.navigation_pb2.ListLocationsResponse]) -> None
       :async:
 
 
 
-   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddWaypointRequest, service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+   .. py:method:: UpdateLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateLocationRequest, service.navigation.v1.navigation_pb2.UpdateLocationResponse]) -> None
       :async:
 
 
 
-   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.RemoveWaypointRequest, service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+   .. py:method:: DeleteLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteLocationRequest, service.navigation.v1.navigation_pb2.DeleteLocationResponse]) -> None
       :async:
 
 
 
-   .. py:method:: GetObstacles(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetObstaclesRequest, service.navigation.v1.navigation_pb2.GetObstaclesResponse]) -> None
+   .. py:method:: AddRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddRouteRequest, service.navigation.v1.navigation_pb2.AddRouteResponse]) -> None
       :async:
 
 
 
-   .. py:method:: GetPaths(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPathsRequest, service.navigation.v1.navigation_pb2.GetPathsResponse]) -> None
+   .. py:method:: GetRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetRouteRequest, service.navigation.v1.navigation_pb2.GetRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListRoutes(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListRoutesRequest, service.navigation.v1.navigation_pb2.ListRoutesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateRouteRequest, service.navigation.v1.navigation_pb2.UpdateRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteRouteRequest, service.navigation.v1.navigation_pb2.DeleteRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: AddZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddZoneRequest, service.navigation.v1.navigation_pb2.AddZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetZoneRequest, service.navigation.v1.navigation_pb2.GetZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListZones(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ListZonesRequest, service.navigation.v1.navigation_pb2.ListZonesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.UpdateZoneRequest, service.navigation.v1.navigation_pb2.UpdateZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteZone(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.DeleteZoneRequest, service.navigation.v1.navigation_pb2.DeleteZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToLocationRequest, service.navigation.v1.navigation_pb2.NavigateToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateToPointRequest, service.navigation.v1.navigation_pb2.NavigateToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateRoute(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.NavigateRouteRequest, service.navigation.v1.navigation_pb2.NavigateRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: PlanToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToPointRequest, service.navigation.v1.navigation_pb2.PlanToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: PlanToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.PlanToLocationRequest, service.navigation.v1.navigation_pb2.PlanToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ExecutePlan(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ExecutePlanRequest, service.navigation.v1.navigation_pb2.ExecutePlanResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToLocationRequest, service.navigation.v1.navigation_pb2.GoToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToPoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GoToPointRequest, service.navigation.v1.navigation_pb2.GoToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Suspend(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SuspendRequest, service.navigation.v1.navigation_pb2.SuspendResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Resume(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.ResumeRequest, service.navigation.v1.navigation_pb2.ResumeResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Cancel(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.CancelRequest, service.navigation.v1.navigation_pb2.CancelResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPositionRequest, service.navigation.v1.navigation_pb2.GetPositionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetNavigationStatus(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetNavigationStatusRequest, service.navigation.v1.navigation_pb2.GetNavigationStatusResponse]) -> None
       :async:
 
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPropertiesRequest, service.navigation.v1.navigation_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetCostmap(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetCostmapRequest, service.navigation.v1.navigation_pb2.GetCostmapResponse]) -> None
       :async:
 
 
@@ -233,7 +604,7 @@ Package Contents
 
 
 
-.. py:class:: AddWaypointRequest(*, name: str = ..., location: common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddLocationRequest(*, name: str = ..., location_name: str = ..., position: Global___Position | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -248,14 +619,22 @@ Package Contents
    .. py:attribute:: name
       :type:  str
 
+      Name of the navigation service
 
-   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
+
+   .. py:attribute:: location_name
+      :type:  str
+
+      Name of the location to save
+
+
+   .. py:method:: position() -> Global___Position
+
+      Omit to use the robot's current Position
+
 
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -276,7 +655,23 @@ Package Contents
 
 
 
-.. py:class:: AddWaypointResponse
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__position) -> _WhichOneofReturnType__position | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: AddLocationResponse(*, location: Global___Location | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -288,26 +683,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: GetLocationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-   .. py:attribute:: name
-      :type:  str
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
+   .. py:method:: location() -> Global___Location
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -328,7 +704,7 @@ Package Contents
 
 
 
-.. py:class:: GetLocationResponse(*, location: common.v1.common_pb2.GeoPoint | None = ..., compass_heading: float = ...)
+.. py:class:: AddRouteRequest(*, name: str = ..., route_name: str = ..., waypoints: collections.abc.Iterable[Global___Waypoint] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -340,54 +716,163 @@ Package Contents
    shown below.
 
 
-   .. py:attribute:: compass_heading
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: route_name
+      :type:  str
+
+
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: AddRouteResponse(*, route: Global___Route | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: route() -> Global___Route
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: AddZoneRequest(*, name: str = ..., zone_name: str = ..., type: str = ..., geometry: google.protobuf.struct_pb2.Struct | None = ..., max_speed: float | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: zone_name
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      "keepout" or "speed_limit"
+
+
+   .. py:attribute:: max_speed
       :type:  float
 
-      A number from [0-360) where 0 is north
-      90 is east, 180 is south, 270 is west
+      Max speed in meters/sec; required when type is "speed_limit"
 
 
-   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
+   .. py:method:: geometry() -> google.protobuf.struct_pb2.Struct
 
+      See Zone geometry shapes
 
-   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GetModeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-   .. py:attribute:: name
-      :type:  str
 
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
-      Additional arguments to the method
 
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__max_speed) -> _WhichOneofReturnType__max_speed | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: AddZoneResponse(*, zone: Global___Zone | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: zone() -> Global___Zone
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -408,7 +893,7 @@ Package Contents
 
 
 
-.. py:class:: GetModeResponse(*, mode: Global___Mode = ...)
+.. py:class:: CancelRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -418,75 +903,6 @@ Package Contents
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
-
-
-   .. py:attribute:: mode
-      :type:  Global___Mode
-
-
-.. py:class:: GetObstaclesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   GetObstacles will return the geopoint location and geometry of all
-   known obstacles on the navigation map. Obstacles that are detected
-   through the vision service will only be returned if this endpoint is called
-   when the robot is sensing the obstacle
-
-
-   .. py:attribute:: name
-      :type:  str
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-
-
-   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GetObstaclesResponse(*, obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]
-
-      List of all known geometries
-
-
-
-.. py:class:: GetPathsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   Returns all the paths known to the navigation service
 
 
    .. py:attribute:: name
@@ -516,7 +932,7 @@ Package Contents
 
 
 
-.. py:class:: GetPathsResponse(*, paths: collections.abc.Iterable[Global___Path] | None = ...)
+.. py:class:: CancelResponse(*, status: Global___Status | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -528,7 +944,598 @@ Package Contents
    shown below.
 
 
-   .. py:method:: paths() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Path]
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DeleteLocationRequest(*, name: str = ..., location_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: location_name
+      :type:  str
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DeleteLocationResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: DeleteRouteRequest(*, name: str = ..., route_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: route_name
+      :type:  str
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DeleteRouteResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: DeleteZoneRequest(*, name: str = ..., zone_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: zone_name
+      :type:  str
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DeleteZoneResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: ExecutePlanRequest(*, name: str = ..., plan: Global___Plan | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: plan() -> Global___Plan
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ExecutePlanResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetCostmapRequest(*, name: str = ..., layer: str = ..., stride: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: layer
+      :type:  str
+
+      Optional; "auto", "local", or "global". Default "auto"
+
+
+   .. py:attribute:: stride
+      :type:  int
+
+      Optional; downsample factor. Default 2
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetCostmapResponse(*, available: bool = ..., layer: str = ..., nav_backend: str = ..., origin_x: float = ..., origin_y: float = ..., resolution: float = ..., width: int = ..., height: int = ..., encoding: str = ..., data: bytes = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: available
+      :type:  bool
+
+
+   .. py:attribute:: layer
+      :type:  str
+
+
+   .. py:attribute:: nav_backend
+      :type:  str
+
+
+   .. py:attribute:: origin_x
+      :type:  float
+
+      Map-frame origin, meters
+
+
+   .. py:attribute:: origin_y
+      :type:  float
+
+
+   .. py:attribute:: resolution
+      :type:  float
+
+      Meters per cell
+
+
+   .. py:attribute:: width
+      :type:  int
+
+      Cells
+
+
+   .. py:attribute:: height
+      :type:  int
+
+
+   .. py:attribute:: encoding
+      :type:  str
+
+      "uint8_row_major"
+
+
+   .. py:attribute:: data
+      :type:  bytes
+
+      Costs 0–100; unknown cells are 255
+
+
+.. py:class:: GetLocationRequest(*, name: str = ..., location_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: location_name
+      :type:  str
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetLocationResponse(*, location: Global___Location | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: location() -> Global___Location
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetNavigationStatusRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetNavigationStatusResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPositionResponse(*, position: Global___Position | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: position() -> Global___Position
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
@@ -549,19 +1556,40 @@ Package Contents
       Name of the navigation service
 
 
-.. py:class:: GetPropertiesResponse(*, map_type: Global___MapType = ...)
+.. py:class:: GetPropertiesResponse(*, properties: Global___Properties | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   Returns properties information for the named navigation service
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
 
 
-   .. py:attribute:: map_type
-      :type:  Global___MapType
+   .. py:method:: properties() -> Global___Properties
 
 
-.. py:class:: GetWaypointsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetRouteRequest(*, name: str = ..., route_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -576,10 +1604,209 @@ Package Contents
    .. py:attribute:: name
       :type:  str
 
+      Name of the navigation service
+
+
+   .. py:attribute:: route_name
+      :type:  str
+
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
-      Additional arguments to the method
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetRouteResponse(*, route: Global___Route | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: route() -> Global___Route
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetZoneRequest(*, name: str = ..., zone_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: zone_name
+      :type:  str
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetZoneResponse(*, zone: Global___Zone | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: zone() -> Global___Zone
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GoalState
+
+   Bases: :py:obj:`_GoalState`
+
+
+.. py:class:: GoalStatus(*, state: Global___GoalState = ..., mode: Global___NavMode = ..., target: Global___Position | None = ..., location: str | None = ..., progress: Global___Progress | None = ..., route: Global___RouteProgress | None = ..., suspend_reason: str | None = ..., error: Global___NavError | None = ..., started_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., finished_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GoalStatus is one goal and its lifecycle. Returned (embedded in Status) by
+   every method that starts, suspends, resumes, or cancels motion, and embedded
+   in Status from GetNavigationStatus. Only the latest goal is kept. SUCCEEDED, FAILED,
+   and CANCELED are terminal.
+
+
+   .. py:attribute:: state
+      :type:  Global___GoalState
+
+
+   .. py:attribute:: mode
+      :type:  Global___NavMode
+
+
+   .. py:attribute:: location
+      :type:  str
+
+      Set when the target is a saved location
+
+
+   .. py:attribute:: suspend_reason
+      :type:  str
+
+      When SUSPENDED
+
+
+   .. py:method:: target() -> Global___Position
+
+      For a route, the current waypoint
+
+
+
+   .. py:method:: progress() -> Global___Progress
+
+      While ACTIVE
+
+
+
+   .. py:method:: route() -> Global___RouteProgress
+
+      When mode == NAV_MODE_ROUTE
+
+
+
+   .. py:method:: error() -> Global___NavError
+
+      When FAILED
+
+
+
+   .. py:method:: started_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: finished_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+      Set once terminal
 
 
 
@@ -601,7 +1828,28 @@ Package Contents
 
 
 
-.. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[Global___Waypoint] | None = ...)
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__error) -> _WhichOneofReturnType__error | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__finished_at) -> _WhichOneofReturnType__finished_at | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__location) -> _WhichOneofReturnType__location | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__progress) -> _WhichOneofReturnType__progress | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__route) -> _WhichOneofReturnType__route | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__suspend_reason) -> _WhichOneofReturnType__suspend_reason | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GoToLocationRequest(*, name: str = ..., location_name: str = ..., wait: bool | None = ..., linear_m_per_sec: float | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -613,7 +1861,398 @@ Package Contents
    shown below.
 
 
-   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: location_name
+      :type:  str
+
+
+   .. py:attribute:: wait
+      :type:  bool
+
+      Optional; default true
+
+
+   .. py:attribute:: linear_m_per_sec
+      :type:  float
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__linear_m_per_sec) -> _WhichOneofReturnType__linear_m_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__wait) -> _WhichOneofReturnType__wait | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GoToLocationResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GoToPointRequest(*, name: str = ..., destination: Global___Position | None = ..., wait: bool | None = ..., linear_m_per_sec: float | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: wait
+      :type:  bool
+
+      Optional; default true
+
+
+   .. py:attribute:: linear_m_per_sec
+      :type:  float
+
+
+   .. py:method:: destination() -> Global___Position
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__linear_m_per_sec) -> _WhichOneofReturnType__linear_m_per_sec | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__wait) -> _WhichOneofReturnType__wait | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GoToPointResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ListLocationsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ListLocationsResponse(*, locations: collections.abc.Iterable[Global___Location] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: locations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Location]
+
+
+.. py:class:: ListRoutesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ListRoutesResponse(*, routes: collections.abc.Iterable[Global___Route] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: routes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Route]
+
+
+.. py:class:: ListZonesRequest(*, name: str = ..., type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      Optional; "keepout" or "speed_limit"
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ListZonesResponse(*, zones: collections.abc.Iterable[Global___Zone] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: zones() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Zone]
+
+
+.. py:class:: Location(*, name: str = ..., position: Global___Position | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Location is a named Position on the active map.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:method:: position() -> Global___Position
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: MapType
@@ -621,37 +2260,36 @@ Package Contents
    Bases: :py:obj:`_MapType`
 
 
-   MapType represents the various types of maps the navigation service can ingest.
+   MapType represents the type of map the navigation service operates on.
+   Each service instance uses exactly one map type.
 
 
-.. py:class:: Mode
-
-   Bases: :py:obj:`_Mode`
-
-
-.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[common.v1.common_pb2.GeoPoint] | None = ...)
+.. py:class:: NavError(*, code: Global___NavErrorCode = ..., message: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   A user provided destination and the set of geopoints that
-   the robot is expected to take to get there
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
 
 
-   .. py:attribute:: destination_waypoint_id
+   .. py:attribute:: code
+      :type:  Global___NavErrorCode
+
+
+   .. py:attribute:: message
       :type:  str
 
-      The id of the user specified waypoint
+
+.. py:class:: NavErrorCode
+
+   Bases: :py:obj:`_NavErrorCode`
 
 
-   .. py:method:: geopoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoPoint]
-
-      List of geopoints that the motion planner output to reach the destination
-      The first geopoint is the starting position of the robot for that path
-
-
-
-.. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: NavigateRouteRequest(*, name: str = ..., route_name: str = ..., waypoints: collections.abc.Iterable[Global___Waypoint] | None = ..., start_index: int = ..., start_nearest: bool = ..., loop: bool = ..., wait: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -666,15 +2304,46 @@ Package Contents
    .. py:attribute:: name
       :type:  str
 
+      Name of the navigation service
 
-   .. py:attribute:: id
+
+   .. py:attribute:: route_name
       :type:  str
+
+      Optional; a saved route
+
+
+   .. py:attribute:: start_index
+      :type:  int
+
+      Optional; default 0
+
+
+   .. py:attribute:: start_nearest
+      :type:  bool
+
+      Optional; overrides start_index
+
+
+   .. py:attribute:: loop
+      :type:  bool
+
+      Optional; default false
+
+
+   .. py:attribute:: wait
+      :type:  bool
+
+      Optional; default false. With loop, only returns when stopped
+
+
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
+
+      Optional; inline waypoints
+
 
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -695,7 +2364,7 @@ Package Contents
 
 
 
-.. py:class:: RemoveWaypointResponse
+.. py:class:: NavigateRouteResponse(*, status: Global___Status | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -707,7 +2376,28 @@ Package Contents
    shown below.
 
 
-.. py:class:: SetModeRequest(*, name: str = ..., mode: Global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: NavigateToLocationRequest(*, name: str = ..., location_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -722,15 +2412,47 @@ Package Contents
    .. py:attribute:: name
       :type:  str
 
+      Name of the navigation service
 
-   .. py:attribute:: mode
-      :type:  Global___Mode
+
+   .. py:attribute:: location_name
+      :type:  str
 
 
    .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
-      Additional arguments to the method
 
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: NavigateToLocationResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -751,7 +2473,7 @@ Package Contents
 
 
 
-.. py:class:: SetModeResponse
+.. py:class:: NavigateToPointRequest(*, name: str = ..., destination: Global___Position | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -763,7 +2485,37 @@ Package Contents
    shown below.
 
 
-.. py:class:: Waypoint(*, id: str = ..., location: common.v1.common_pb2.GeoPoint | None = ...)
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: destination() -> Global___Position
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: NavigateToPointResponse(*, status: Global___Status | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -775,11 +2527,116 @@ Package Contents
    shown below.
 
 
-   .. py:attribute:: id
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: NavMode
+
+   Bases: :py:obj:`_NavMode`
+
+
+.. py:class:: Plan(*, path: collections.abc.Iterable[Global___Position] | None = ..., location: str | None = ..., length_m: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Plan is a path preview returned by PlanToPoint and PlanToLocation.
+
+
+   .. py:attribute:: location
+      :type:  str
+
+      Set by PlanToLocation
+
+
+   .. py:attribute:: length_m
+      :type:  float
+
+
+   .. py:method:: path() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Position]
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__location) -> _WhichOneofReturnType__location | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: PlanToLocationRequest(*, name: str = ..., location_name: str = ..., start: Global___Position | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: location_name
       :type:  str
 
 
-   .. py:method:: location() -> common.v1.common_pb2.GeoPoint
+   .. py:method:: start() -> Global___Position
+
+      Optional; defaults to GetPosition
+
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
@@ -797,6 +2654,1041 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: PlanToLocationResponse(*, plan: Global___Plan | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: plan() -> Global___Plan
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: PlanToPointRequest(*, name: str = ..., destination: Global___Position | None = ..., start: Global___Position | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: destination() -> Global___Position
+
+
+   .. py:method:: start() -> Global___Position
+
+      Optional; defaults to GetPosition
+
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__start) -> _WhichOneofReturnType__start | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: PlanToPointResponse(*, plan: Global___Plan | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: plan() -> Global___Plan
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Position(*, pose: common.v1.common_pb2.Pose | None = ..., geo_pose: common.v1.common_pb2.GeoPose | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Position is a shared oneof for any map-typed position. Exactly one of pose or
+   geo_pose is set; the service rejects a value that does not match GetProperties
+   map type.
+
+
+   .. py:method:: pose() -> common.v1.common_pb2.Pose
+
+      MAP_TYPE_LOCAL — common.Pose in the map frame
+
+
+
+   .. py:method:: geo_pose() -> common.v1.common_pb2.GeoPose
+
+      MAP_TYPE_GPS — common.GeoPose
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: Progress(*, distance_remaining_m: float = ..., path: collections.abc.Iterable[Global___Position] | None = ..., length_m: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: distance_remaining_m
+      :type:  float
+
+
+   .. py:attribute:: length_m
+      :type:  float
+
+      Same meaning as Plan.length_m
+
+
+   .. py:method:: path() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Position]
+
+      PLANNED and ROUTE only; updates on replan
+
+
+
+.. py:class:: Properties(*, map_type: Global___MapType = ..., footprint_length_m: float = ..., footprint_width_m: float = ..., robot_radius_m: float = ..., planning_supported: bool = ..., costmap_supported: bool = ..., zones_supported: bool = ..., routes_supported: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Properties are returned by GetProperties and do not change while the service
+   is running.
+
+
+   .. py:attribute:: map_type
+      :type:  Global___MapType
+
+
+   .. py:attribute:: footprint_length_m
+      :type:  float
+
+
+   .. py:attribute:: footprint_width_m
+      :type:  float
+
+
+   .. py:attribute:: robot_radius_m
+      :type:  float
+
+
+   .. py:attribute:: planning_supported
+      :type:  bool
+
+      PlanTo*, ExecutePlan, NavigateTo*
+
+
+   .. py:attribute:: costmap_supported
+      :type:  bool
+
+      GetCostmap
+
+
+   .. py:attribute:: zones_supported
+      :type:  bool
+
+      Keep-out / speed-limit zones
+
+
+   .. py:attribute:: routes_supported
+      :type:  bool
+
+      Route store + NavigateRoute
+
+
+.. py:class:: ResumeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ResumeResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Route(*, name: str = ..., waypoints: collections.abc.Iterable[Global___Waypoint] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Route is an ordered list of waypoints. A location can appear in more than one
+   route, and more than once in the same route.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
+
+
+.. py:class:: RouteProgress(*, name: str = ..., waypoints: collections.abc.Iterable[Global___Waypoint] | None = ..., index: int = ..., loop: bool = ..., lap: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Empty for inline routes
+
+
+   .. py:attribute:: index
+      :type:  int
+
+      Current waypoint; waypoints[index] is the target
+
+
+   .. py:attribute:: loop
+      :type:  bool
+
+
+   .. py:attribute:: lap
+      :type:  int
+
+
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
+
+
+.. py:class:: Status(*, position: Global___Position | None = ..., localized: bool = ..., velocity: Global___Velocity | None = ..., goal: Global___GoalStatus | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Status is the robot navigation state returned by GetNavigationStatus and by methods that
+   start, suspend, or resume motion. The robot is idle when goal is unset or
+   goal.state is terminal. It is moving when goal.state == GOAL_STATE_ACTIVE.
+   Methods that start motion fail while localized is false.
+
+
+   .. py:attribute:: localized
+      :type:  bool
+
+      Pose is trusted; false blocks new goals
+
+
+   .. py:method:: position() -> Global___Position
+
+      Same as GetPosition
+
+
+
+   .. py:method:: velocity() -> Global___Velocity
+
+      Current body-frame velocity; zero when stopped
+
+
+
+   .. py:method:: goal() -> Global___GoalStatus
+
+      Latest goal; unset until the first one
+
+
+
+   .. py:method:: updated_at() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+      Backend-specific diagnostics
+
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__goal) -> _WhichOneofReturnType__goal | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: SuspendRequest(*, name: str = ..., reason: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: reason
+      :type:  str
+
+      Optional; reported on the suspended goal
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SuspendResponse(*, status: Global___Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: status() -> Global___Status
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateLocationRequest(*, name: str = ..., location_name: str = ..., position: Global___Position | None = ..., new_name: str | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: location_name
+      :type:  str
+
+
+   .. py:attribute:: new_name
+      :type:  str
+
+      Omit to leave name unchanged
+
+
+   .. py:method:: position() -> Global___Position
+
+      Omit to leave position unchanged
+
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__new_name) -> _WhichOneofReturnType__new_name | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__position) -> _WhichOneofReturnType__position | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: UpdateLocationResponse(*, location: Global___Location | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: location() -> Global___Location
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateRouteRequest(*, name: str = ..., route_name: str = ..., new_name: str | None = ..., waypoints: Global___WaypointList | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: route_name
+      :type:  str
+
+
+   .. py:attribute:: new_name
+      :type:  str
+
+      Omit to leave name unchanged
+
+
+   .. py:method:: waypoints() -> Global___WaypointList
+
+      Unset: leave waypoints unchanged. Set, including empty: replace them.
+
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__new_name) -> _WhichOneofReturnType__new_name | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__waypoints) -> _WhichOneofReturnType__waypoints | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: UpdateRouteResponse(*, route: Global___Route | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: route() -> Global___Route
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateZoneRequest(*, name: str = ..., zone_name: str = ..., type: str | None = ..., geometry: google.protobuf.struct_pb2.Struct | None = ..., max_speed: float | None = ..., new_name: str | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the navigation service
+
+
+   .. py:attribute:: zone_name
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      Optional; "keepout" or "speed_limit"
+
+
+   .. py:attribute:: max_speed
+      :type:  float
+
+      Max speed in meters/sec
+
+
+   .. py:attribute:: new_name
+      :type:  str
+
+
+   .. py:method:: geometry() -> google.protobuf.struct_pb2.Struct
+
+      Optional; see Zone geometry shapes
+
+
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__geometry) -> _WhichOneofReturnType__geometry | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__max_speed) -> _WhichOneofReturnType__max_speed | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__new_name) -> _WhichOneofReturnType__new_name | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__type) -> _WhichOneofReturnType__type | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: UpdateZoneResponse(*, zone: Global___Zone | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: zone() -> Global___Zone
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Velocity(*, linear_m_per_sec: float = ..., angular_deg_per_sec: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: linear_m_per_sec
+      :type:  float
+
+      Forward linear velocity
+
+
+   .. py:attribute:: angular_deg_per_sec
+      :type:  float
+
+      Yaw rate, counterclockwise positive
+
+
+.. py:class:: Waypoint(*, location: str = ..., position: Global___Position | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Waypoint is a route stop: either the name of a saved Location or an inline
+   Position.
+
+
+   .. py:attribute:: location
+      :type:  str
+
+
+   .. py:method:: position() -> Global___Position
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: WaypointList(*, waypoints: collections.abc.Iterable[Global___Waypoint] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   WaypointList is a wrapper so callers can distinguish an unset list from an
+   empty one. Proto3 repeated fields have no presence.
+
+
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Waypoint]
+
+
+.. py:class:: Zone(*, name: str = ..., type: str = ..., geometry: google.protobuf.struct_pb2.Struct | None = ..., max_speed: float | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Zone is a named region on the active map. Geometry is a Struct following the
+   Geometry shapes described in the Navigation API (circle, box, or polygon).
+   Units follow the map type: millimeters on local maps, meters for GPS radii
+   and sizes.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      "keepout" or "speed_limit"
+
+
+   .. py:attribute:: max_speed
+      :type:  float
+
+      Max speed in meters/sec; required when type is "speed_limit"
+
+
+   .. py:method:: geometry() -> google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__max_speed) -> _WhichOneofReturnType__max_speed | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

@@ -26,7 +26,7 @@ Module Contents
    .. py:attribute:: RESOURCE_TYPE
 
 
-   .. py:method:: GetPaths(stream: grpclib.server.Stream[viam.proto.service.navigation.GetPathsRequest, viam.proto.service.navigation.GetPathsResponse]) -> None
+   .. py:method:: AddLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.AddLocationRequest, viam.proto.service.navigation.AddLocationResponse]) -> None
       :async:
 
 
@@ -36,37 +36,142 @@ Module Contents
 
 
 
-   .. py:method:: GetObstacles(stream: grpclib.server.Stream[viam.proto.service.navigation.GetObstaclesRequest, viam.proto.service.navigation.GetObstaclesResponse]) -> None
+   .. py:method:: ListLocations(stream: grpclib.server.Stream[viam.proto.service.navigation.ListLocationsRequest, viam.proto.service.navigation.ListLocationsResponse]) -> None
       :async:
 
 
 
-   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[viam.proto.service.navigation.GetWaypointsRequest, viam.proto.service.navigation.GetWaypointsResponse]) -> None
+   .. py:method:: UpdateLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.UpdateLocationRequest, viam.proto.service.navigation.UpdateLocationResponse]) -> None
       :async:
 
 
 
-   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[viam.proto.service.navigation.AddWaypointRequest, viam.proto.service.navigation.AddWaypointResponse]) -> None
+   .. py:method:: DeleteLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.DeleteLocationRequest, viam.proto.service.navigation.DeleteLocationResponse]) -> None
       :async:
 
 
 
-   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[viam.proto.service.navigation.RemoveWaypointRequest, viam.proto.service.navigation.RemoveWaypointResponse]) -> None
+   .. py:method:: AddRoute(stream: grpclib.server.Stream[viam.proto.service.navigation.AddRouteRequest, viam.proto.service.navigation.AddRouteResponse]) -> None
       :async:
 
 
 
-   .. py:method:: GetMode(stream: grpclib.server.Stream[viam.proto.service.navigation.GetModeRequest, viam.proto.service.navigation.GetModeResponse]) -> None
+   .. py:method:: GetRoute(stream: grpclib.server.Stream[viam.proto.service.navigation.GetRouteRequest, viam.proto.service.navigation.GetRouteResponse]) -> None
       :async:
 
 
 
-   .. py:method:: SetMode(stream: grpclib.server.Stream[viam.proto.service.navigation.SetModeRequest, viam.proto.service.navigation.SetModeResponse]) -> None
+   .. py:method:: ListRoutes(stream: grpclib.server.Stream[viam.proto.service.navigation.ListRoutesRequest, viam.proto.service.navigation.ListRoutesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateRoute(stream: grpclib.server.Stream[viam.proto.service.navigation.UpdateRouteRequest, viam.proto.service.navigation.UpdateRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteRoute(stream: grpclib.server.Stream[viam.proto.service.navigation.DeleteRouteRequest, viam.proto.service.navigation.DeleteRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: AddZone(stream: grpclib.server.Stream[viam.proto.service.navigation.AddZoneRequest, viam.proto.service.navigation.AddZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetZone(stream: grpclib.server.Stream[viam.proto.service.navigation.GetZoneRequest, viam.proto.service.navigation.GetZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListZones(stream: grpclib.server.Stream[viam.proto.service.navigation.ListZonesRequest, viam.proto.service.navigation.ListZonesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateZone(stream: grpclib.server.Stream[viam.proto.service.navigation.UpdateZoneRequest, viam.proto.service.navigation.UpdateZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteZone(stream: grpclib.server.Stream[viam.proto.service.navigation.DeleteZoneRequest, viam.proto.service.navigation.DeleteZoneResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateToLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.NavigateToLocationRequest, viam.proto.service.navigation.NavigateToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateToPoint(stream: grpclib.server.Stream[viam.proto.service.navigation.NavigateToPointRequest, viam.proto.service.navigation.NavigateToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: NavigateRoute(stream: grpclib.server.Stream[viam.proto.service.navigation.NavigateRouteRequest, viam.proto.service.navigation.NavigateRouteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: PlanToPoint(stream: grpclib.server.Stream[viam.proto.service.navigation.PlanToPointRequest, viam.proto.service.navigation.PlanToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: PlanToLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.PlanToLocationRequest, viam.proto.service.navigation.PlanToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ExecutePlan(stream: grpclib.server.Stream[viam.proto.service.navigation.ExecutePlanRequest, viam.proto.service.navigation.ExecutePlanResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.GoToLocationRequest, viam.proto.service.navigation.GoToLocationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GoToPoint(stream: grpclib.server.Stream[viam.proto.service.navigation.GoToPointRequest, viam.proto.service.navigation.GoToPointResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Suspend(stream: grpclib.server.Stream[viam.proto.service.navigation.SuspendRequest, viam.proto.service.navigation.SuspendResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Resume(stream: grpclib.server.Stream[viam.proto.service.navigation.ResumeRequest, viam.proto.service.navigation.ResumeResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Cancel(stream: grpclib.server.Stream[viam.proto.service.navigation.CancelRequest, viam.proto.service.navigation.CancelResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[viam.proto.service.navigation.GetPositionRequest, viam.proto.service.navigation.GetPositionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetNavigationStatus(stream: grpclib.server.Stream[viam.proto.service.navigation.GetNavigationStatusRequest, viam.proto.service.navigation.GetNavigationStatusResponse]) -> None
       :async:
 
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[viam.proto.service.navigation.GetPropertiesRequest, viam.proto.service.navigation.GetPropertiesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetCostmap(stream: grpclib.server.Stream[viam.proto.service.navigation.GetCostmapRequest, viam.proto.service.navigation.GetCostmapResponse]) -> None
       :async:
 
 

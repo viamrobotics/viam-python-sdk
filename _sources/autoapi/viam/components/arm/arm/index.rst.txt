@@ -388,7 +388,7 @@ Module Contents
 
 
 
-   .. py:method:: get_kinematics(*, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs) -> viam.components.KinematicsReturn
+   .. py:method:: get_kinematics(*, include_collision_meshes: bool = False, include_visual_meshes: bool = False, extra: dict[str, Any] | None = None, timeout: float | None = None, **kwargs) -> viam.components.KinematicsReturn
       :abstractmethod:
 
       :async:
@@ -409,12 +409,18 @@ Module Contents
           # Get the byte contents of the file.
           k_bytes = kinematics[1]
 
+      :param include_collision_meshes: Include collision mesh bytes in the response. Otherwise meshes carry only their path.
+      :type include_collision_meshes: bool
+      :param include_visual_meshes: Include visual mesh bytes in the response.
+      :type include_visual_meshes: bool
+
       :returns: A tuple containing two values; the first [0] value represents the format of the
                 file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
                 Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
                 and the second [1] value represents the byte contents of the file.
                 If available, a third [2] value provides meshes keyed by URDF filepath.
                 See ``get_3d_models`` for meshes keyed by model name instead.
+                If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
 
       For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.

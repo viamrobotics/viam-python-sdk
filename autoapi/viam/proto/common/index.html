@@ -77,6 +77,13 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AudioInfo.num_channels"><code class="docutils literal notranslate"><span class="pre">AudioInfo.num_channels</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.AxisAngles"><code class="docutils literal notranslate"><span class="pre">AxisAngles</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AxisAngles.rx"><code class="docutils literal notranslate"><span class="pre">AxisAngles.rx</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AxisAngles.ry"><code class="docutils literal notranslate"><span class="pre">AxisAngles.ry</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AxisAngles.rz"><code class="docutils literal notranslate"><span class="pre">AxisAngles.rz</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AxisAngles.theta"><code class="docutils literal notranslate"><span class="pre">AxisAngles.theta</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Capsule"><code class="docutils literal notranslate"><span class="pre">Capsule</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Capsule.radius_mm"><code class="docutils literal notranslate"><span class="pre">Capsule.radius_mm</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Capsule.length_mm"><code class="docutils literal notranslate"><span class="pre">Capsule.length_mm</span></code></a></li>
@@ -91,6 +98,12 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.DoCommandResponse"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.result"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.result()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.EulerAngles"><code class="docutils literal notranslate"><span class="pre">EulerAngles</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.EulerAngles.roll"><code class="docutils literal notranslate"><span class="pre">EulerAngles.roll</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.EulerAngles.pitch"><code class="docutils literal notranslate"><span class="pre">EulerAngles.pitch</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.EulerAngles.yaw"><code class="docutils literal notranslate"><span class="pre">EulerAngles.yaw</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GeoGeometry"><code class="docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a><ul>
@@ -121,6 +134,15 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GeoPose"><code class="docutils literal notranslate"><span class="pre">GeoPose</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPose.altitude"><code class="docutils literal notranslate"><span class="pre">GeoPose.altitude</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPose.heading"><code class="docutils literal notranslate"><span class="pre">GeoPose.heading</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPose.location"><code class="docutils literal notranslate"><span class="pre">GeoPose.location()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPose.orientation_vector"><code class="docutils literal notranslate"><span class="pre">GeoPose.orientation_vector()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPose.HasField"><code class="docutils literal notranslate"><span class="pre">GeoPose.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPose.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GeoPose.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest.name"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest.name</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest.extra"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest.extra()</span></code></a></li>
@@ -149,6 +171,8 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest.include_collision_meshes"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.include_collision_meshes</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest.include_visual_meshes"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.include_visual_meshes</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.extra()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.HasField()</span></code></a></li>
 </ul>
@@ -160,9 +184,11 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.MeshesByUrdfFilepathEntry.HasField"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.MeshesByUrdfFilepathEntry.HasField()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.format"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.format</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.kinematics_data"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.kinematics_data</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.format"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.format()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.kinematics_data"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.kinematics_data()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.meshes_by_urdf_filepath"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.meshes_by_urdf_filepath()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.model"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.model()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
@@ -207,7 +233,63 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetWorldPoseResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetWorldPoseResponse.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.JointLimits"><code class="docutils literal notranslate"><span class="pre">JointLimits</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.JointLimits.min"><code class="docutils literal notranslate"><span class="pre">JointLimits.min</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.JointLimits.max"><code class="docutils literal notranslate"><span class="pre">JointLimits.max</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.JointLimits.max_velocity"><code class="docutils literal notranslate"><span class="pre">JointLimits.max_velocity</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.JointLimits.max_acceleration"><code class="docutils literal notranslate"><span class="pre">JointLimits.max_acceleration</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.JointLimits.HasField"><code class="docutils literal notranslate"><span class="pre">JointLimits.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.JointLimits.WhichOneof"><code class="docutils literal notranslate"><span class="pre">JointLimits.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.JointType"><code class="docutils literal notranslate"><span class="pre">JointType</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.KinematicJoint"><code class="docutils literal notranslate"><span class="pre">KinematicJoint</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.id"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.parent"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.parent</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.type"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.axis"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.axis()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.limits"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.limits()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.mimic"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.mimic()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.geometry"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.geometry()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicJoint.HasField"><code class="docutils literal notranslate"><span class="pre">KinematicJoint.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.KinematicLink"><code class="docutils literal notranslate"><span class="pre">KinematicLink</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicLink.id"><code class="docutils literal notranslate"><span class="pre">KinematicLink.id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicLink.parent"><code class="docutils literal notranslate"><span class="pre">KinematicLink.parent</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicLink.pose"><code class="docutils literal notranslate"><span class="pre">KinematicLink.pose()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicLink.collision"><code class="docutils literal notranslate"><span class="pre">KinematicLink.collision()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicLink.visual"><code class="docutils literal notranslate"><span class="pre">KinematicLink.visual()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicLink.HasField"><code class="docutils literal notranslate"><span class="pre">KinematicLink.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.KinematicModel"><code class="docutils literal notranslate"><span class="pre">KinematicModel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicModel.name"><code class="docutils literal notranslate"><span class="pre">KinematicModel.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicModel.links"><code class="docutils literal notranslate"><span class="pre">KinematicModel.links()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicModel.joints"><code class="docutils literal notranslate"><span class="pre">KinematicModel.joints()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicModel.output_frames"><code class="docutils literal notranslate"><span class="pre">KinematicModel.output_frames()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicModel.properties"><code class="docutils literal notranslate"><span class="pre">KinematicModel.properties()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicModel.HasField"><code class="docutils literal notranslate"><span class="pre">KinematicModel.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.KinematicProperties"><code class="docutils literal notranslate"><span class="pre">KinematicProperties</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicProperties.operating_freq_hz"><code class="docutils literal notranslate"><span class="pre">KinematicProperties.operating_freq_hz</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicProperties.max_linear_tcp_speed_mm_per_sec"><code class="docutils literal notranslate"><span class="pre">KinematicProperties.max_linear_tcp_speed_mm_per_sec</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicProperties.HasField"><code class="docutils literal notranslate"><span class="pre">KinematicProperties.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.KinematicProperties.WhichOneof"><code class="docutils literal notranslate"><span class="pre">KinematicProperties.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat"><code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.LinkPose"><code class="docutils literal notranslate"><span class="pre">LinkPose</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.translation"><code class="docutils literal notranslate"><span class="pre">LinkPose.translation()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.quaternion"><code class="docutils literal notranslate"><span class="pre">LinkPose.quaternion()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.orientation_vector"><code class="docutils literal notranslate"><span class="pre">LinkPose.orientation_vector()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.euler_angles"><code class="docutils literal notranslate"><span class="pre">LinkPose.euler_angles()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.axis_angles"><code class="docutils literal notranslate"><span class="pre">LinkPose.axis_angles()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.HasField"><code class="docutils literal notranslate"><span class="pre">LinkPose.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LinkPose.WhichOneof"><code class="docutils literal notranslate"><span class="pre">LinkPose.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.LogEntry"><code class="docutils literal notranslate"><span class="pre">LogEntry</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LogEntry.host"><code class="docutils literal notranslate"><span class="pre">LogEntry.host</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.LogEntry.level"><code class="docutils literal notranslate"><span class="pre">LogEntry.level</span></code></a></li>
@@ -223,6 +305,15 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Mesh.content_type"><code class="docutils literal notranslate"><span class="pre">Mesh.content_type</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Mesh.mesh"><code class="docutils literal notranslate"><span class="pre">Mesh.mesh</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Mesh.original_file_source_path_diagnostic"><code class="docutils literal notranslate"><span class="pre">Mesh.original_file_source_path_diagnostic</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Mesh.HasField"><code class="docutils literal notranslate"><span class="pre">Mesh.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Mesh.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Mesh.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.MimicJoint"><code class="docutils literal notranslate"><span class="pre">MimicJoint</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.MimicJoint.joint"><code class="docutils literal notranslate"><span class="pre">MimicJoint.joint</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.MimicJoint.multiplier"><code class="docutils literal notranslate"><span class="pre">MimicJoint.multiplier</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.MimicJoint.offset"><code class="docutils literal notranslate"><span class="pre">MimicJoint.offset</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Orientation"><code class="docutils literal notranslate"><span class="pre">Orientation</span></code></a><ul>
@@ -268,6 +359,13 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.goal_cloud"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.goal_cloud()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.HasField"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.HasField()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame.WhichOneof"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Quaternion"><code class="docutils literal notranslate"><span class="pre">Quaternion</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Quaternion.w"><code class="docutils literal notranslate"><span class="pre">Quaternion.w</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Quaternion.x"><code class="docutils literal notranslate"><span class="pre">Quaternion.x</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Quaternion.y"><code class="docutils literal notranslate"><span class="pre">Quaternion.y</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Quaternion.z"><code class="docutils literal notranslate"><span class="pre">Quaternion.z</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.RectangularPrism"><code class="docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a><ul>
@@ -371,14 +469,20 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.AudioInfo" title="viam.proto.common.AudioInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInfo</span></code></a></p></td>
 <td><p>Information about an audio stream or device.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Capsule" title="viam.proto.common.Capsule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capsule</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.AxisAngles" title="viam.proto.common.AxisAngles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AxisAngles</span></code></a></p></td>
+<td><p>Rotation axis and an angle theta in degrees</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Capsule" title="viam.proto.common.Capsule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capsule</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
 <td><p>DoCommandRequest represents a generic DoCommand input</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
 <td><p>DoCommandResponse represents a generic DoCommand output</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.EulerAngles" title="viam.proto.common.EulerAngles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EulerAngles</span></code></a></p></td>
+<td><p>Euler angles in degrees</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a></p></td>
 <td><p>GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint</p></td>
@@ -392,47 +496,71 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest" title="viam.proto.common.Get3DModelsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Get3DModelsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoPose" title="viam.proto.common.GeoPose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPose</span></code></a></p></td>
+<td><p>GeoPose is a GPS position and orientation, optionally with altitude.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest" title="viam.proto.common.Get3DModelsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Get3DModelsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse" title="viam.proto.common.Get3DModelsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Get3DModelsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse" title="viam.proto.common.Get3DModelsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Get3DModelsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest" title="viam.proto.common.GetGeometriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest" title="viam.proto.common.GetGeometriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesResponse" title="viam.proto.common.GetGeometriesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesResponse" title="viam.proto.common.GetGeometriesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest" title="viam.proto.common.GetKinematicsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest" title="viam.proto.common.GetKinematicsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse" title="viam.proto.common.GetKinematicsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse" title="viam.proto.common.GetKinematicsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest" title="viam.proto.common.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest" title="viam.proto.common.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
 <td><p>Shared properties for AudioIn and AudioOut components.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse" title="viam.proto.common.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse" title="viam.proto.common.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsRequest" title="viam.proto.common.GetReadingsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsRequest" title="viam.proto.common.GetReadingsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsResponse" title="viam.proto.common.GetReadingsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsResponse" title="viam.proto.common.GetReadingsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetStatusRequest" title="viam.proto.common.GetStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetStatusRequest" title="viam.proto.common.GetStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a></p></td>
 <td><p>GetStatusRequest represents a generic GetStatus input</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetStatusResponse" title="viam.proto.common.GetStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetStatusResponse" title="viam.proto.common.GetStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a></p></td>
 <td><p>GetStatusResponse represents a generic GetStatus output</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetWorldPoseResponse" title="viam.proto.common.GetWorldPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWorldPoseResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetWorldPoseResponse" title="viam.proto.common.GetWorldPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWorldPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat" title="viam.proto.common.KinematicsFileFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.JointLimits" title="viam.proto.common.JointLimits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointLimits</span></code></a></p></td>
+<td><p>Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.JointType" title="viam.proto.common.JointType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointType</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.KinematicJoint" title="viam.proto.common.KinematicJoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicJoint</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.KinematicLink" title="viam.proto.common.KinematicLink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicLink</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.KinematicModel" title="viam.proto.common.KinematicModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicModel</span></code></a></p></td>
+<td><p>KinematicModel describes a component's kinematics as a tree of links and joints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.KinematicProperties" title="viam.proto.common.KinematicProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicProperties</span></code></a></p></td>
+<td><p>Properties of the component as a whole</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat" title="viam.proto.common.KinematicsFileFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.LinkPose" title="viam.proto.common.LinkPose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinkPose</span></code></a></p></td>
+<td><p>LinkPose is a translation in mm and an orientation in degrees, identity when absent</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.LogEntry" title="viam.proto.common.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -440,23 +568,29 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Mesh" title="viam.proto.common.Mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mesh</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Orientation" title="viam.proto.common.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.MimicJoint" title="viam.proto.common.MimicJoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MimicJoint</span></code></a></p></td>
+<td><p>Position is multiplier * position of joint + offset</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Orientation" title="viam.proto.common.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PointCloud" title="viam.proto.common.PointCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloud</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PointCloud" title="viam.proto.common.PointCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloud</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
 <td><p>PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Pose" title="viam.proto.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Pose" title="viam.proto.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
 <td><p>Pose is a combination of location and orientation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PoseCloud" title="viam.proto.common.PoseCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseCloud</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PoseCloud" title="viam.proto.common.PoseCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseCloud</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
 <td><p>PoseInFrame contains a pose and the reference frame in which it was observed</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Quaternion" title="viam.proto.common.Quaternion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quaternion</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.RectangularPrism" title="viam.proto.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
 <td><p>RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms</p></td>
@@ -518,6 +652,33 @@ Do not edit manually!</p>
 <span class="sig-name descname"><span class="pre">num_channels</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#viam.proto.common.AudioInfo.num_channels" title="Link to this definition"></a></dt>
 <dd><p>Number of audio channels in the recording or playback</p>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.AxisAngles">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">AxisAngles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.AxisAngles" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Rotation axis and an angle theta in degrees</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AxisAngles.rx">
+<span class="sig-name descname"><span class="pre">rx</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.AxisAngles.rx" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AxisAngles.ry">
+<span class="sig-name descname"><span class="pre">ry</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.AxisAngles.ry" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AxisAngles.rz">
+<span class="sig-name descname"><span class="pre">rz</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.AxisAngles.rz" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AxisAngles.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.AxisAngles.theta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -613,6 +774,28 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.EulerAngles">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">EulerAngles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.EulerAngles" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Euler angles in degrees</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.EulerAngles.roll">
+<span class="sig-name descname"><span class="pre">roll</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.EulerAngles.roll" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.EulerAngles.pitch">
+<span class="sig-name descname"><span class="pre">pitch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.EulerAngles.pitch" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.EulerAngles.yaw">
+<span class="sig-name descname"><span class="pre">yaw</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.EulerAngles.yaw" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -787,6 +970,109 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeoPose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___GeoPoint" title="viam.gen.common.v1.common_pb2.Global___GeoPoint"><span class="pre">Global___GeoPoint</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___Orientation" title="viam.gen.app.v1.robot_pb2.Global___Orientation"><span class="pre">Global___Orientation</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeoPose" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GeoPose is a GPS position and orientation, optionally with altitude.</p>
+<p>Orientation is expressed in the east-north-up tangent frame at location:
++X east, +Y north, +Z up. Viam base axes are +X right, +Y forward, and +Z up,
+so the identity orientation (o_x, o_y, o_z, theta) = (0, 0, 1, 0) is level and
+faces north: forward is north and right is east.</p>
+<p>The same rotation as an orientation vector is Viam’s Tait-Bryan Euler sequence,
+intrinsic z-y’-x’’ (yaw, then pitch, then roll), in degrees:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>yaw: right-handed rotation about local up (+Z). Zero faces north. Positive
+yaw is counterclockwise viewed from above, so a compass heading in degrees
+clockwise from north is the negation of yaw.</p></li>
+<li><p>pitch: right-handed rotation about the base’s forward axis (+Y).</p></li>
+<li><p>roll: right-handed rotation about the base’s right axis (+X). With pitch 0,
+positive roll raises the forward axis; that angle is the elevation of
+forward above the local horizon.</p></li>
+</ul>
+</div></blockquote>
+<p>Exactly one of heading or orientation_vector is set. heading is only the
+compass yaw of a level pose (pitch 0, roll 0). It is not added to
+orientation_vector.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose.altitude">
+<span class="sig-name descname"><span class="pre">altitude</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.GeoPose.altitude" title="Link to this definition"></a></dt>
+<dd><p>Optional altitude in meters</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose.heading">
+<span class="sig-name descname"><span class="pre">heading</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.GeoPose.heading" title="Link to this definition"></a></dt>
+<dd><p>pitch 0, roll 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Compass heading in degrees, clockwise from north. Level pose</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose.location">
+<span class="sig-name descname"><span class="pre">location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___GeoPoint" title="viam.gen.common.v1.common_pb2.Global___GeoPoint"><span class="pre">Global___GeoPoint</span></a></span></span><a class="headerlink" href="#viam.proto.common.GeoPose.location" title="Link to this definition"></a></dt>
+<dd><p>Latitude and longitude in degrees</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose.orientation_vector">
+<span class="sig-name descname"><span class="pre">orientation_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___Orientation" title="viam.gen.app.v1.robot_pb2.Global___Orientation"><span class="pre">Global___Orientation</span></a></span></span><a class="headerlink" href="#viam.proto.common.GeoPose.orientation_vector" title="Link to this definition"></a></dt>
+<dd><p>Full orientation in the east-north-up tangent frame at location.
+o_x, o_y, o_z, theta in degrees, same orientation vector as Pose.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.GeoPose.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPose.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__altitude</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__altitude</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.common.GeoPose.WhichOneof" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType_orientation</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType_orientation</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.Get3DModelsRequest">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Get3DModelsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Get3DModelsRequest" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -953,7 +1239,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsRequest">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetKinematicsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetKinematicsRequest" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetKinematicsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_collision_meshes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_visual_meshes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetKinematicsRequest" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -963,6 +1249,18 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsRequest.name" title="Link to this definition"></a></dt>
 <dd><p>The component name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GetKinematicsRequest.include_collision_meshes">
+<span class="sig-name descname"><span class="pre">include_collision_meshes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsRequest.include_collision_meshes" title="Link to this definition"></a></dt>
+<dd><p>Include collision mesh bytes in the response. Otherwise meshes carry only their path.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GetKinematicsRequest.include_visual_meshes">
+<span class="sig-name descname"><span class="pre">include_visual_meshes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsRequest.include_visual_meshes" title="Link to this definition"></a></dt>
+<dd><p>Include visual mesh bytes in the response</p>
 </dd></dl>
 
 <dl class="py method">
@@ -998,7 +1296,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetKinematicsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat" title="viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat"><span class="pre">Global___KinematicsFileFormat</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinematics_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meshes_by_urdf_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Mesh" title="viam.gen.common.v1.common_pb2.Global___Mesh"><span class="pre">Global___Mesh</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetKinematicsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat" title="viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat"><span class="pre">Global___KinematicsFileFormat</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinematics_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meshes_by_urdf_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Mesh" title="viam.gen.common.v1.common_pb2.Global___Mesh"><span class="pre">Global___Mesh</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicModel" title="viam.gen.common.v1.common_pb2.Global___KinematicModel"><span class="pre">Global___KinematicModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -1047,23 +1345,52 @@ be raised.</p>
 
 </dd></dl>
 
-<dl class="py attribute">
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse.format">
-<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat" title="viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat"><span class="pre">Global___KinematicsFileFormat</span></a></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.format" title="Link to this definition"></a></dt>
-<dd><p>The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat" title="viam.gen.common.v1.common_pb2.Global___KinematicsFileFormat"><span class="pre">Global___KinematicsFileFormat</span></a></span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.format" title="Link to this definition"></a></dt>
+<dd><p>Deprecated: use model. The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
 <a class="reference external" href="https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters">https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters</a></p>
 </dd></dl>
 
-<dl class="py attribute">
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse.kinematics_data">
-<span class="sig-name descname"><span class="pre">kinematics_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.kinematics_data" title="Link to this definition"></a></dt>
-<dd><p>The byte contents of the file</p>
+<span class="sig-name descname"><span class="pre">kinematics_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.kinematics_data" title="Link to this definition"></a></dt>
+<dd><p>Deprecated: use model. The byte contents of the file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse.meshes_by_urdf_filepath">
 <span class="sig-name descname"><span class="pre">meshes_by_urdf_filepath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Mesh" title="viam.gen.common.v1.common_pb2.Global___Mesh"><span class="pre">Global___Mesh</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.meshes_by_urdf_filepath" title="Link to this definition"></a></dt>
-<dd><p>Map of URDF mesh file paths to mesh data</p>
+<dd><p>Deprecated: use model. Map of URDF mesh file paths to mesh data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse.model">
+<span class="sig-name descname"><span class="pre">model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicModel" title="viam.gen.common.v1.common_pb2.Global___KinematicModel"><span class="pre">Global___KinematicModel</span></a></span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.model" title="Link to this definition"></a></dt>
+<dd><p>The kinematic model of the component</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1326,9 +1653,425 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">JointLimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.JointLimits" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Degrees, deg/s and deg/s^2 for revolute joints, mm, mm/s and mm/s^2 for prismatic. Absent means unbounded.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits.min">
+<span class="sig-name descname"><span class="pre">min</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.JointLimits.min" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits.max">
+<span class="sig-name descname"><span class="pre">max</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.JointLimits.max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits.max_velocity">
+<span class="sig-name descname"><span class="pre">max_velocity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.JointLimits.max_velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits.max_acceleration">
+<span class="sig-name descname"><span class="pre">max_acceleration</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.JointLimits.max_acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.JointLimits.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.JointLimits.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__max</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__max</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.common.JointLimits.WhichOneof" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__max_acceleration</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__max_acceleration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__max_velocity</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__max_velocity</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__min</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__min</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.JointType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">JointType</span></span><a class="headerlink" href="#viam.proto.common.JointType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_JointType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">KinematicJoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___JointType" title="viam.gen.common.v1.common_pb2.Global___JointType"><span class="pre">Global___JointType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Vector3" title="viam.gen.common.v1.common_pb2.Global___Vector3"><span class="pre">Global___Vector3</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___JointLimits" title="viam.gen.common.v1.common_pb2.Global___JointLimits"><span class="pre">Global___JointLimits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mimic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___MimicJoint" title="viam.gen.common.v1.common_pb2.Global___MimicJoint"><span class="pre">Global___MimicJoint</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Geometry" title="viam.gen.common.v1.common_pb2.Global___Geometry"><span class="pre">Global___Geometry</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.KinematicJoint" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.parent" title="Link to this definition"></a></dt>
+<dd><p>Parent link id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___JointType" title="viam.gen.common.v1.common_pb2.Global___JointType"><span class="pre">Global___JointType</span></a></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.axis">
+<span class="sig-name descname"><span class="pre">axis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Vector3" title="viam.gen.common.v1.common_pb2.Global___Vector3"><span class="pre">Global___Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.axis" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.limits">
+<span class="sig-name descname"><span class="pre">limits</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___JointLimits" title="viam.gen.common.v1.common_pb2.Global___JointLimits"><span class="pre">Global___JointLimits</span></a></span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.limits" title="Link to this definition"></a></dt>
+<dd><p>Effective limits the component serves</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.mimic">
+<span class="sig-name descname"><span class="pre">mimic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___MimicJoint" title="viam.gen.common.v1.common_pb2.Global___MimicJoint"><span class="pre">Global___MimicJoint</span></a></span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.mimic" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.geometry">
+<span class="sig-name descname"><span class="pre">geometry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Geometry" title="viam.gen.common.v1.common_pb2.Global___Geometry"><span class="pre">Global___Geometry</span></a></span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.geometry" title="Link to this definition"></a></dt>
+<dd><p>Only meaningful for prismatic joints</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicJoint.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.KinematicJoint.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">KinematicLink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___LinkPose" title="viam.gen.common.v1.common_pb2.Global___LinkPose"><span class="pre">Global___LinkPose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Geometry" title="viam.gen.common.v1.common_pb2.Global___Geometry"><span class="pre">Global___Geometry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Geometry" title="viam.gen.common.v1.common_pb2.Global___Geometry"><span class="pre">Global___Geometry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.KinematicLink" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.KinematicLink.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.KinematicLink.parent" title="Link to this definition"></a></dt>
+<dd><p>Parent link or joint id, empty for the root</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink.pose">
+<span class="sig-name descname"><span class="pre">pose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___LinkPose" title="viam.gen.common.v1.common_pb2.Global___LinkPose"><span class="pre">Global___LinkPose</span></a></span></span><a class="headerlink" href="#viam.proto.common.KinematicLink.pose" title="Link to this definition"></a></dt>
+<dd><p>Pose relative to the parent</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink.collision">
+<span class="sig-name descname"><span class="pre">collision</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Geometry" title="viam.gen.common.v1.common_pb2.Global___Geometry"><span class="pre">Global___Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.KinematicLink.collision" title="Link to this definition"></a></dt>
+<dd><p>Collision geometries, meshes must be stl or ply</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink.visual">
+<span class="sig-name descname"><span class="pre">visual</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Geometry" title="viam.gen.common.v1.common_pb2.Global___Geometry"><span class="pre">Global___Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.KinematicLink.visual" title="Link to this definition"></a></dt>
+<dd><p>Display geometries, not used for collision checking</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicLink.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.KinematicLink.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">KinematicModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicLink" title="viam.gen.common.v1.common_pb2.Global___KinematicLink"><span class="pre">Global___KinematicLink</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicJoint" title="viam.gen.common.v1.common_pb2.Global___KinematicJoint"><span class="pre">Global___KinematicJoint</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicProperties" title="viam.gen.common.v1.common_pb2.Global___KinematicProperties"><span class="pre">Global___KinematicProperties</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.KinematicModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>KinematicModel describes a component’s kinematics as a tree of links and joints.
+Its proto JSON encoding is also the on-disk kinematics file format.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.KinematicModel.name" title="Link to this definition"></a></dt>
+<dd><p>Set to the resource name by the SDK when served</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel.links">
+<span class="sig-name descname"><span class="pre">links</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicLink" title="viam.gen.common.v1.common_pb2.Global___KinematicLink"><span class="pre">Global___KinematicLink</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.KinematicModel.links" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel.joints">
+<span class="sig-name descname"><span class="pre">joints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicJoint" title="viam.gen.common.v1.common_pb2.Global___KinematicJoint"><span class="pre">Global___KinematicJoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.KinematicModel.joints" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel.output_frames">
+<span class="sig-name descname"><span class="pre">output_frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.KinematicModel.output_frames" title="Link to this definition"></a></dt>
+<dd><p>Frames whose poses the model reports</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___KinematicProperties" title="viam.gen.common.v1.common_pb2.Global___KinematicProperties"><span class="pre">Global___KinematicProperties</span></a></span></span><a class="headerlink" href="#viam.proto.common.KinematicModel.properties" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicModel.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.KinematicModel.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicProperties">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">KinematicProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">operating_freq_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_linear_tcp_speed_mm_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.KinematicProperties" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Properties of the component as a whole</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicProperties.operating_freq_hz">
+<span class="sig-name descname"><span class="pre">operating_freq_hz</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.KinematicProperties.operating_freq_hz" title="Link to this definition"></a></dt>
+<dd><p>Rate the component expects to be driven at</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicProperties.max_linear_tcp_speed_mm_per_sec">
+<span class="sig-name descname"><span class="pre">max_linear_tcp_speed_mm_per_sec</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.KinematicProperties.max_linear_tcp_speed_mm_per_sec" title="Link to this definition"></a></dt>
+<dd><p>Maximum linear speed of the tool center point</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicProperties.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.KinematicProperties.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.KinematicProperties.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__max_linear_tcp_speed_mm_per_sec</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__max_linear_tcp_speed_mm_per_sec</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.common.KinematicProperties.WhichOneof" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__operating_freq_hz</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__operating_freq_hz</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.KinematicsFileFormat">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">KinematicsFileFormat</span></span><a class="headerlink" href="#viam.proto.common.KinematicsFileFormat" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_KinematicsFileFormat</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">LinkPose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Vector3" title="viam.gen.common.v1.common_pb2.Global___Vector3"><span class="pre">Global___Vector3</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quaternion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Quaternion" title="viam.gen.common.v1.common_pb2.Global___Quaternion"><span class="pre">Global___Quaternion</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___Orientation" title="viam.gen.app.v1.robot_pb2.Global___Orientation"><span class="pre">Global___Orientation</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">euler_angles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___EulerAngles" title="viam.gen.common.v1.common_pb2.Global___EulerAngles"><span class="pre">Global___EulerAngles</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_angles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___AxisAngles" title="viam.gen.common.v1.common_pb2.Global___AxisAngles"><span class="pre">Global___AxisAngles</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.LinkPose" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>LinkPose is a translation in mm and an orientation in degrees, identity when absent</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.translation">
+<span class="sig-name descname"><span class="pre">translation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Vector3" title="viam.gen.common.v1.common_pb2.Global___Vector3"><span class="pre">Global___Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.translation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.quaternion">
+<span class="sig-name descname"><span class="pre">quaternion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___Quaternion" title="viam.gen.common.v1.common_pb2.Global___Quaternion"><span class="pre">Global___Quaternion</span></a></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.quaternion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.orientation_vector">
+<span class="sig-name descname"><span class="pre">orientation_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.Global___Orientation" title="viam.gen.app.v1.robot_pb2.Global___Orientation"><span class="pre">Global___Orientation</span></a></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.orientation_vector" title="Link to this definition"></a></dt>
+<dd><p>theta in degrees</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.euler_angles">
+<span class="sig-name descname"><span class="pre">euler_angles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___EulerAngles" title="viam.gen.common.v1.common_pb2.Global___EulerAngles"><span class="pre">Global___EulerAngles</span></a></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.euler_angles" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.axis_angles">
+<span class="sig-name descname"><span class="pre">axis_angles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Global___AxisAngles" title="viam.gen.common.v1.common_pb2.Global___AxisAngles"><span class="pre">Global___AxisAngles</span></a></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.axis_angles" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.LinkPose.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType_orientation</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType_orientation</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.common.LinkPose.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1406,7 +2149,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.Mesh">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Mesh" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_file_source_path_diagnostic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Mesh" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -1423,6 +2166,78 @@ shown below.</p>
 <span class="sig-name descname"><span class="pre">mesh</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></span><a class="headerlink" href="#viam.proto.common.Mesh.mesh" title="Link to this definition"></a></dt>
 <dd><p>Contents of mesh data in binary form defined by content_type</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Mesh.original_file_source_path_diagnostic">
+<span class="sig-name descname"><span class="pre">original_file_source_path_diagnostic</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.Mesh.original_file_source_path_diagnostic" title="Link to this definition"></a></dt>
+<dd><p>Path the mesh was loaded from, relative to the kinematics file. Informational on the wire.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.Mesh.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_HasFieldArgType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.Mesh.HasField" title="Link to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.Mesh.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_WhichOneofArgType__original_file_source_path_diagnostic</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_WhichOneofReturnType__original_file_source_path_diagnostic</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.common.Mesh.WhichOneof" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.MimicJoint">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">MimicJoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiplier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.MimicJoint" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Position is multiplier * position of joint + offset</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.MimicJoint.joint">
+<span class="sig-name descname"><span class="pre">joint</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#viam.proto.common.MimicJoint.joint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.MimicJoint.multiplier">
+<span class="sig-name descname"><span class="pre">multiplier</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.MimicJoint.multiplier" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.MimicJoint.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.MimicJoint.offset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1682,6 +2497,36 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.Quaternion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Quaternion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Quaternion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Quaternion.w">
+<span class="sig-name descname"><span class="pre">w</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.Quaternion.w" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Quaternion.x">
+<span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.Quaternion.x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Quaternion.y">
+<span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.Quaternion.y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Quaternion.z">
+<span class="sig-name descname"><span class="pre">z</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#viam.proto.common.Quaternion.z" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

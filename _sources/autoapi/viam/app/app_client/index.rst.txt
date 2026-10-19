@@ -1269,7 +1269,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_part_history(robot_part_id: str) -> list[RobotPartHistoryEntry]
+   .. py:method:: get_robot_part_history(robot_part_id: str, start: datetime.datetime | None = None, end: datetime.datetime | None = None, page_limit: int | None = None) -> list[RobotPartHistoryEntry]
       :async:
 
 
@@ -1283,6 +1283,12 @@ Module Contents
 
       :param robot_part_id: ID of the machine part to retrieve history from.
       :type robot_part_id: str
+      :param start: Optional start time. Only history entries created after this time will be returned.
+      :type start: datetime | None
+      :param end: Optional end time. Only history entries created before this time will be returned.
+      :type end: datetime | None
+      :param page_limit: Optional maximum number of history entries to return, newest first.
+      :type page_limit: int | None
 
       :raises GRPCError: If an invalid machine part ID is provided.
 
@@ -1353,6 +1359,24 @@ Module Contents
       :rtype: str
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#newrobotpart>`_.
+
+
+
+   .. py:method:: set_config_property(robot_part_id: str, property_changes: collections.abc.Mapping[str, viam.utils.ValueTypes], timeout: float | None = None) -> list[viam.proto.app.ConfigPropertyChangeResult]
+      :async:
+
+
+      Set individual values within a machine part's config by JSON path, without replacing the whole config.
+
+      :param robot_part_id: ID of the robot part to update.
+      :type robot_part_id: str
+      :param property_changes: A mapping of JSON paths within the config to the new value at that path.
+      :type property_changes: Mapping[str, ValueTypes]
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+      :returns: The result of each requested property change.
+      :rtype: list[viam.proto.app.ConfigPropertyChangeResult]
 
 
 
@@ -1601,6 +1625,46 @@ Module Contents
       :raises GRPCError: If an invalid machine ID is passed.
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleterobot>`_.
+
+
+
+   .. py:method:: add_favorite_machine(machine_id: str, timeout: float | None = None) -> None
+      :async:
+
+
+      Add a machine to the current user's favorites.
+
+      :param machine_id: ID of the machine to favorite.
+      :type machine_id: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+
+
+   .. py:method:: remove_favorite_machine(machine_id: str, timeout: float | None = None) -> None
+      :async:
+
+
+      Remove a machine from the current user's favorites.
+
+      :param machine_id: ID of the machine to unfavorite.
+      :type machine_id: str
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+
+
+   .. py:method:: list_favorite_machines(timeout: float | None = None) -> list[viam.proto.app.FavoriteMachine]
+      :async:
+
+
+      List the current user's favorited machines.
+
+      :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
+      :type timeout: float | None
+
+      :returns: The list of favorited machines.
+      :rtype: list[viam.proto.app.FavoriteMachine]
 
 
 

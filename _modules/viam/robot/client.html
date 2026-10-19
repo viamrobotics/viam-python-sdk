@@ -449,7 +449,9 @@
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_or_reset_client</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_names</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">rname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
+                <span class="c1"># A tracked name may have no client: _create_or_reset_client skips APIs the SDK doesn&#39;t know.</span>
+                <span class="c1"># Removing it anyway would raise KeyError before _resource_names is updated, failing every later refresh.</span>
+                <span class="k">if</span> <span class="n">rname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resource_names</span> <span class="ow">and</span> <span class="n">rname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
                     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="n">resource_names</span></div>

@@ -35,260 +35,601 @@ Module Contents
       The API of the Resource
 
 
-   .. py:method:: get_paths(*, timeout: Optional[float]) -> List[viam.services.navigation.Path]
+   .. py:method:: add_location(location_name: str, position: Optional[viam.services.navigation.Position] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Location
       :abstractmethod:
 
       :async:
 
 
-      Get each path, the series of geo points the robot plans to travel through
-      to get to a destination waypoint, in the machine's motion planning.
+      Save a named Location on the active map.
 
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Get a list containing each path stored by the navigation service
-          paths = await my_nav.get_paths()
-
+      :param location_name: The name of the location to save.
+      :type location_name: str
+      :param position: The position to save. Omit to use the robot's current position.
+      :type position: Optional[navigation.Position]
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: An array comprised of Paths, where each path is either a user-provided destination or
-                a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
-                reach the specified destination or Waypoint.
-      :rtype: List[navigation.Path]
-
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getpaths>`_.
+      :returns: The saved location.
+      :rtype: navigation.Location
 
 
 
-   .. py:method:: get_location(*, timeout: Optional[float]) -> viam.services.navigation.GeoPoint
+   .. py:method:: get_location(location_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Location
       :abstractmethod:
 
       :async:
 
 
-      Get the current location of the robot in the navigation service.
+      Get a previously saved Location by name.
 
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Get the current location of the robot in the navigation service
-          location = await my_nav.get_location()
-
+      :param location_name: The name of the location to retrieve.
+      :type location_name: str
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: The current location of the robot in the navigation service,
-                represented in a GeoPoint with latitude and longitude values.
-      :rtype: navigation.GeoPoint
-
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getlocation>`_.
+      :returns: The requested location.
+      :rtype: navigation.Location
 
 
 
-   .. py:method:: get_obstacles(*, timeout: Optional[float]) -> List[viam.services.navigation.GeoGeometry]
+   .. py:method:: list_locations(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.Location]
       :abstractmethod:
 
       :async:
 
 
-      Get an array or list of the obstacles currently in the service's data storage.
-      These are objects designated for the robot to avoid when navigating.
-      These include all transient obstacles which are discovered by the vision services configured for the navigation service,
-      in addition to the obstacles that are configured as a part of the service.
-
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Get a list containing each obstacle stored by the navigation service
-          obstacles = await my_nav.get_obstacles()
+      List all previously saved Locations.
 
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: A list comprised of each GeoGeometry in the service's data storage.
-                These are objects designated for the robot to avoid when navigating.
-      :rtype: List[navigation.GeoGeometry]
-
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getobstacles>`_.
+      :returns: All saved locations.
+      :rtype: List[navigation.Location]
 
 
 
-   .. py:method:: get_waypoints(*, timeout: Optional[float]) -> List[viam.services.navigation.Waypoint]
+   .. py:method:: update_location(location_name: str, position: Optional[viam.services.navigation.Position] = None, new_name: Optional[str] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Location
       :abstractmethod:
 
       :async:
 
 
-      Get an array of waypoints currently in the service's data storage.
-      These are locations designated within a path for the robot to navigate to.
+      Update a previously saved Location.
 
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Get a list containing each waypoint stored by the navigation service
-          waypoints = await my_nav.get_waypoints()
-
+      :param location_name: The name of the location to update.
+      :type location_name: str
+      :param position: The new position. Omit to leave the position unchanged.
+      :type position: Optional[navigation.Position]
+      :param new_name: The new name for the location. Omit to leave the name unchanged.
+      :type new_name: Optional[str]
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: An array comprised of each Waypoint in the service's data storage.
-                These are locations designated within a path for the robot to navigate to.
-      :rtype: List[navigation.Waypoint]
-
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getwaypoints>`_.
+      :returns: The updated location.
+      :rtype: navigation.Location
 
 
 
-   .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float])
+   .. py:method:: delete_location(location_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None
       :abstractmethod:
 
       :async:
 
 
-      Add a waypoint to the service's data storage.
+      Delete a previously saved Location.
 
-      ::
-
-         my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Create a new waypoint with latitude and longitude values of 0 degrees
-          location = GeoPoint(latitude=0, longitude=0)
-
-
-          # Add your waypoint to the service's data storage
-          await my_nav.add_waypoint(point=location)
-
-      :param point: A waypoint represented in a GeoPoint with
-                    latitude and longitude values.
-      :type point: navigation.GeoPoint
+      :param location_name: The name of the location to delete.
+      :type location_name: str
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#addwaypoint>`_.
 
 
-
-   .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float])
+   .. py:method:: add_route(route_name: str, waypoints: Optional[List[viam.services.navigation.Waypoint]] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Route
       :abstractmethod:
 
       :async:
 
 
-      Remove a waypoint from the service's data storage. If the robot is currently navigating to this waypoint,
-      the motion will be canceled, and the robot will proceed to the next waypoint.
+      Save a named Route, an ordered list of waypoints.
 
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Remove the waypoint matching that ObjectID from the service's data storage
-          await my_nav.remove_waypoint(waypoint_id)
-
-      :param id: The MongoDB ObjectID of the Waypoint to remove from the service's data storage.
-      :type id: str
+      :param route_name: The name of the route to save.
+      :type route_name: str
+      :param waypoints: The ordered waypoints that make up the route.
+      :type waypoints: Optional[List[navigation.Waypoint]]
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#removewaypoint>`_.
+      :returns: The saved route.
+      :rtype: navigation.Route
 
 
 
-   .. py:method:: get_mode(*, timeout: Optional[float]) -> viam.services.navigation.Mode.ValueType
+   .. py:method:: get_route(route_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Route
       :abstractmethod:
 
       :async:
 
 
-      Get the Mode the service is operating in.
+      Get a previously saved Route by name.
 
-      There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.
-
-          MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
-          MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.
-
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Get the Mode the service is operating in
-          await my_nav.get_mode()
-
+      :param route_name: The name of the route to retrieve.
+      :type route_name: str
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: The Mode the service is operating in.
-      :rtype: navigation.Mode.ValueType
-
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getmode>`_.
+      :returns: The requested route.
+      :rtype: navigation.Route
 
 
 
-   .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float])
+   .. py:method:: list_routes(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.Route]
       :abstractmethod:
 
       :async:
 
 
-      Set the Mode the service is operating in.
-
-      There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.
-
-          MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
-          MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.
-
-      ::
-
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
-
-          # Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation
-          await my_nav.set_mode(Mode.ValueType.MODE_WAYPOINT)
+      List all previously saved Routes.
 
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
-      :param mode: The Mode for the service to operate in.
-      :type mode: navigation.Mode.ValueType
 
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#setmode>`_.
-
+      :returns: All saved routes.
+      :rtype: List[navigation.Route]
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float]) -> viam.services.navigation.MapType.ValueType
+
+   .. py:method:: update_route(route_name: str, new_name: Optional[str] = None, waypoints: Optional[List[viam.services.navigation.Waypoint]] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Route
       :abstractmethod:
 
       :async:
 
 
-      Get information about the navigation service.
+      Update a previously saved Route.
 
-      ::
+      :param route_name: The name of the route to update.
+      :type route_name: str
+      :param new_name: The new name for the route. Omit to leave the name unchanged.
+      :type new_name: Optional[str]
+      :param waypoints: The new ordered waypoints. Omit to leave the waypoints unchanged;
+                        pass an empty list to clear them.
+      :type waypoints: Optional[List[navigation.Waypoint]]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
 
-          my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
+      :returns: The updated route.
+      :rtype: navigation.Route
 
-          # Get the properties of the current navigation service.
-          nav_properties = await my_nav.get_properties()
+
+
+   .. py:method:: delete_route(route_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None
+      :abstractmethod:
+
+      :async:
+
+
+      Delete a previously saved Route.
+
+      :param route_name: The name of the route to delete.
+      :type route_name: str
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+
+
+   .. py:method:: add_zone(zone_name: str, type: str, geometry: Dict[str, Any], max_speed: Optional[float] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Zone
+      :abstractmethod:
+
+      :async:
+
+
+      Save a named Zone, a region on the active map.
+
+      :param zone_name: The name of the zone to save.
+      :type zone_name: str
+      :param type: The type of zone, either "keepout" or "speed_limit".
+      :type type: str
+      :param geometry: The shape of the zone (circle, box, or polygon).
+      :type geometry: Dict[str, Any]
+      :param max_speed: Max speed in meters/sec; required when type is "speed_limit".
+      :type max_speed: Optional[float]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The saved zone.
+      :rtype: navigation.Zone
+
+
+
+   .. py:method:: get_zone(zone_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Zone
+      :abstractmethod:
+
+      :async:
+
+
+      Get a previously saved Zone by name.
+
+      :param zone_name: The name of the zone to retrieve.
+      :type zone_name: str
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The requested zone.
+      :rtype: navigation.Zone
+
+
+
+   .. py:method:: list_zones(type: Optional[str] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.Zone]
+      :abstractmethod:
+
+      :async:
+
+
+      List all previously saved Zones.
+
+      :param type: Filter by zone type, either "keepout" or "speed_limit".
+      :type type: Optional[str]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: All saved zones matching the filter, if provided.
+      :rtype: List[navigation.Zone]
+
+
+
+   .. py:method:: update_zone(zone_name: str, type: Optional[str] = None, geometry: Optional[Dict[str, Any]] = None, max_speed: Optional[float] = None, new_name: Optional[str] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Zone
+      :abstractmethod:
+
+      :async:
+
+
+      Update a previously saved Zone.
+
+      :param zone_name: The name of the zone to update.
+      :type zone_name: str
+      :param type: The new zone type. Omit to leave unchanged.
+      :type type: Optional[str]
+      :param geometry: The new shape of the zone. Omit to leave unchanged.
+      :type geometry: Optional[Dict[str, Any]]
+      :param max_speed: The new max speed in meters/sec. Omit to leave unchanged.
+      :type max_speed: Optional[float]
+      :param new_name: The new name for the zone. Omit to leave the name unchanged.
+      :type new_name: Optional[str]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The updated zone.
+      :rtype: navigation.Zone
+
+
+
+   .. py:method:: delete_zone(zone_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None
+      :abstractmethod:
+
+      :async:
+
+
+      Delete a previously saved Zone.
+
+      :param zone_name: The name of the zone to delete.
+      :type zone_name: str
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+
+
+   .. py:method:: navigate_to_location(location_name: str, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Start navigating to a previously saved Location.
+
+      :param location_name: The name of the location to navigate to.
+      :type location_name: str
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: navigate_to_point(destination: viam.services.navigation.Position, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Start navigating to a destination Position.
+
+      :param destination: The destination to navigate to.
+      :type destination: navigation.Position
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: navigate_route(route_name: Optional[str] = None, waypoints: Optional[List[viam.services.navigation.Waypoint]] = None, start_index: int = 0, start_nearest: bool = False, loop: bool = False, wait: bool = False, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Start navigating a Route, either a previously saved one or an inline list of waypoints.
+
+      :param route_name: The name of a previously saved route.
+      :type route_name: Optional[str]
+      :param waypoints: An inline list of waypoints.
+      :type waypoints: Optional[List[navigation.Waypoint]]
+      :param start_index: The index of the waypoint to start at.
+      :type start_index: int
+      :param start_nearest: Start at the waypoint nearest to the robot's current position, overriding start_index.
+      :type start_nearest: bool
+      :param loop: Loop the route indefinitely.
+      :type loop: bool
+      :param wait: With loop, only return once the robot has stopped.
+      :type wait: bool
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: plan_to_point(destination: viam.services.navigation.Position, start: Optional[viam.services.navigation.Position] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Plan
+      :abstractmethod:
+
+      :async:
+
+
+      Preview a path to a destination Position without moving the robot.
+
+      :param destination: The destination to plan to.
+      :type destination: navigation.Position
+      :param start: The position to plan from. Defaults to the robot's current position.
+      :type start: Optional[navigation.Position]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The planned path.
+      :rtype: navigation.Plan
+
+
+
+   .. py:method:: plan_to_location(location_name: str, start: Optional[viam.services.navigation.Position] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Plan
+      :abstractmethod:
+
+      :async:
+
+
+      Preview a path to a previously saved Location without moving the robot.
+
+      :param location_name: The name of the location to plan to.
+      :type location_name: str
+      :param start: The position to plan from. Defaults to the robot's current position.
+      :type start: Optional[navigation.Position]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The planned path.
+      :rtype: navigation.Plan
+
+
+
+   .. py:method:: execute_plan(plan: viam.services.navigation.Plan, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Start navigating a previously previewed Plan.
+
+      :param plan: The plan to execute, as returned by ``plan_to_point`` or ``plan_to_location``.
+      :type plan: navigation.Plan
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: go_to_location(location_name: str, wait: Optional[bool] = None, linear_m_per_sec: Optional[float] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Drive directly to a previously saved Location, without planning around zones or obstacles.
+
+      :param location_name: The name of the location to drive to.
+      :type location_name: str
+      :param wait: Whether to wait until the robot has arrived. Defaults to true.
+      :type wait: Optional[bool]
+      :param linear_m_per_sec: The linear speed to drive at.
+      :type linear_m_per_sec: Optional[float]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: go_to_point(destination: viam.services.navigation.Position, wait: Optional[bool] = None, linear_m_per_sec: Optional[float] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Drive directly to a destination Position, without planning around zones or obstacles.
+
+      :param destination: The destination to drive to.
+      :type destination: navigation.Position
+      :param wait: Whether to wait until the robot has arrived. Defaults to true.
+      :type wait: Optional[bool]
+      :param linear_m_per_sec: The linear speed to drive at.
+      :type linear_m_per_sec: Optional[float]
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: suspend(reason: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Suspend the current goal, holding position until ``resume`` is called.
+
+      :param reason: The reason for suspending, reported on the suspended goal.
+      :type reason: str
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: resume(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Resume a previously suspended goal.
 
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: Information about the type of map the service is using.
-      :rtype: MapType.ValueType
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
 
-      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getproperties>`_.
+
+
+   .. py:method:: cancel(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Cancel the current goal.
+
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The resulting navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Position
+      :abstractmethod:
+
+      :async:
+
+
+      Get the current position of the robot in the navigation service.
+
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The current position of the robot.
+      :rtype: navigation.Position
+
+
+
+   .. py:method:: get_navigation_status(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Status
+      :abstractmethod:
+
+      :async:
+
+
+      Get the current navigation state of the robot.
+
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The current navigation status.
+      :rtype: navigation.Status
+
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Properties
+      :abstractmethod:
+
+      :async:
+
+
+      Get information about the navigation service that does not change while the service is running.
+
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: Information about the navigation service.
+      :rtype: navigation.Properties
+
+
+
+   .. py:method:: get_costmap(layer: str = '', stride: int = 0, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.GetCostmapResponse
+      :abstractmethod:
+
+      :async:
+
+
+      Get a costmap describing the obstacles known to the navigation service.
+
+      :param layer: Which costmap layer to retrieve, one of "auto", "local", or "global". Defaults to "auto".
+      :type layer: str
+      :param stride: Downsample factor. Defaults to 2.
+      :type stride: int
+      :param timeout: An option to set how long to wait (in seconds)
+                      before calling a time-out and closing the underlying RPC call.
+      :type timeout: Optional[float]
+
+      :returns: The requested costmap.
+      :rtype: navigation.GetCostmapResponse
 
 
 

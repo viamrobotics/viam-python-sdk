@@ -977,7 +977,7 @@ Package Contents
 
 
 
-.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: Global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ..., container_id: str = ...)
+.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: Global___ModelType = ..., model_framework: Global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: Global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ..., arguments: collections.abc.Mapping[str, str] | None = ..., container_version: str = ..., container_id: str = ..., deployment_modular_resources: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1085,6 +1085,15 @@ Package Contents
 
 
    .. py:method:: arguments() -> google.protobuf.internal.containers.ScalarMap[str, str]
+
+
+   .. py:method:: deployment_modular_resources() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Colon-delimited triplets of components or services from the registry used when
+      model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+      associated component or service that consumes the files and should be deployed
+      along with the model.
+
 
 
    .. py:method:: HasField(field_name: _HasFieldArgType) -> bool

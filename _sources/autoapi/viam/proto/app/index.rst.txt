@@ -39,6 +39,8 @@ Classes
    viam.proto.app.AppServiceStub
    viam.proto.app.UnimplementedAppServiceBase
    viam.proto.app.PKCE
+   viam.proto.app.AddFavoriteMachineRequest
+   viam.proto.app.AddFavoriteMachineResponse
    viam.proto.app.AdditionalFragment
    viam.proto.app.AddRoleRequest
    viam.proto.app.AddRoleResponse
@@ -60,6 +62,8 @@ Classes
    viam.proto.app.CheckPermissionsRequest
    viam.proto.app.CheckPermissionsResponse
    viam.proto.app.ClientAuthentication
+   viam.proto.app.ConfigPropertyChange
+   viam.proto.app.ConfigPropertyChangeResult
    viam.proto.app.CreateFragmentRequest
    viam.proto.app.CreateFragmentResponse
    viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest
@@ -128,6 +132,7 @@ Classes
    viam.proto.app.EnableBillingServiceRequest
    viam.proto.app.EnableBillingServiceResponse
    viam.proto.app.EnabledGrant
+   viam.proto.app.FavoriteMachine
    viam.proto.app.Fragment
    viam.proto.app.FragmentError
    viam.proto.app.FragmentErrorType
@@ -195,6 +200,8 @@ Classes
    viam.proto.app.GetUserIDByEmailResponse
    viam.proto.app.ListAuthorizationsRequest
    viam.proto.app.ListAuthorizationsResponse
+   viam.proto.app.ListFavoriteMachinesRequest
+   viam.proto.app.ListFavoriteMachinesResponse
    viam.proto.app.ListFragmentsRequest
    viam.proto.app.ListFragmentsResponse
    viam.proto.app.ListKeysRequest
@@ -276,6 +283,8 @@ Classes
    viam.proto.app.RegistryItemBilling
    viam.proto.app.RegistryItemCostByResource
    viam.proto.app.RegistryItemStatus
+   viam.proto.app.RemoveFavoriteMachineRequest
+   viam.proto.app.RemoveFavoriteMachineResponse
    viam.proto.app.RemoveRoleRequest
    viam.proto.app.RemoveRoleResponse
    viam.proto.app.RenameKeyRequest
@@ -293,6 +302,8 @@ Classes
    viam.proto.app.RoverRentalRobot
    viam.proto.app.SearchOrganizationsRequest
    viam.proto.app.SearchOrganizationsResponse
+   viam.proto.app.SetConfigPropertyRequest
+   viam.proto.app.SetConfigPropertyResponse
    viam.proto.app.SetFirebaseConfigRequest
    viam.proto.app.SetFirebaseConfigResponse
    viam.proto.app.SetFragmentTagRequest
@@ -775,6 +786,13 @@ Package Contents
 
 
 
+   .. py:method:: SetConfigProperty(stream: grpclib.server.Stream[app.v1.app_pb2.SetConfigPropertyRequest, app.v1.app_pb2.SetConfigPropertyResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: NewRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotPartRequest, app.v1.app_pb2.NewRobotPartResponse]) -> None
       :abstractmethod:
 
@@ -874,6 +892,27 @@ Package Contents
 
 
    .. py:method:: DeleteRobot(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotRequest, app.v1.app_pb2.DeleteRobotResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: AddFavoriteMachine(stream: grpclib.server.Stream[app.v1.app_pb2.AddFavoriteMachineRequest, app.v1.app_pb2.AddFavoriteMachineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: RemoveFavoriteMachine(stream: grpclib.server.Stream[app.v1.app_pb2.RemoveFavoriteMachineRequest, app.v1.app_pb2.RemoveFavoriteMachineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListFavoriteMachines(stream: grpclib.server.Stream[app.v1.app_pb2.ListFavoriteMachinesRequest, app.v1.app_pb2.ListFavoriteMachinesResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -1388,6 +1427,9 @@ Package Contents
    .. py:attribute:: UpdateRobotPart
 
 
+   .. py:attribute:: SetConfigProperty
+
+
    .. py:attribute:: NewRobotPart
 
 
@@ -1431,6 +1473,15 @@ Package Contents
 
 
    .. py:attribute:: DeleteRobot
+
+
+   .. py:attribute:: AddFavoriteMachine
+
+
+   .. py:attribute:: RemoveFavoriteMachine
+
+
+   .. py:attribute:: ListFavoriteMachines
 
 
    .. py:attribute:: ListFragments
@@ -1873,6 +1924,11 @@ Package Contents
 
 
 
+   .. py:method:: SetConfigProperty(stream: grpclib.server.Stream[app.v1.app_pb2.SetConfigPropertyRequest, app.v1.app_pb2.SetConfigPropertyResponse]) -> None
+      :async:
+
+
+
    .. py:method:: NewRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotPartRequest, app.v1.app_pb2.NewRobotPartResponse]) -> None
       :async:
 
@@ -1944,6 +2000,21 @@ Package Contents
 
 
    .. py:method:: DeleteRobot(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotRequest, app.v1.app_pb2.DeleteRobotResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: AddFavoriteMachine(stream: grpclib.server.Stream[app.v1.app_pb2.AddFavoriteMachineRequest, app.v1.app_pb2.AddFavoriteMachineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: RemoveFavoriteMachine(stream: grpclib.server.Stream[app.v1.app_pb2.RemoveFavoriteMachineRequest, app.v1.app_pb2.RemoveFavoriteMachineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListFavoriteMachines(stream: grpclib.server.Stream[app.v1.app_pb2.ListFavoriteMachinesRequest, app.v1.app_pb2.ListFavoriteMachinesResponse]) -> None
       :async:
 
 
@@ -2186,6 +2257,34 @@ Package Contents
 .. py:class:: PKCE
 
    Bases: :py:obj:`_PKCE`
+
+
+.. py:class:: AddFavoriteMachineRequest(*, machine_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: machine_id
+      :type:  str
+
+
+.. py:class:: AddFavoriteMachineResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
 
 
 .. py:class:: AdditionalFragment(*, fragment_id: str = ..., version: str | None = ...)
@@ -2794,6 +2893,88 @@ Package Contents
 .. py:class:: ClientAuthentication
 
    Bases: :py:obj:`_ClientAuthentication`
+
+
+.. py:class:: ConfigPropertyChange(*, path: str = ..., value: google.protobuf.struct_pb2.Value | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: path
+      :type:  str
+
+
+   .. py:method:: value() -> google.protobuf.struct_pb2.Value
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ConfigPropertyChangeResult(*, path: str = ..., value: google.protobuf.struct_pb2.Value | None = ..., success: bool = ..., error: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: path
+      :type:  str
+
+
+   .. py:attribute:: success
+      :type:  bool
+
+
+   .. py:attribute:: error
+      :type:  str
+
+
+   .. py:method:: value() -> google.protobuf.struct_pb2.Value
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ..., visibility: Global___FragmentVisibility | None = ...)
@@ -4240,7 +4421,47 @@ Package Contents
    Bases: :py:obj:`_EnabledGrant`
 
 
-.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: Global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., public_namespace: str | None = ...)
+.. py:class:: FavoriteMachine(*, machine: Global___Robot | None = ..., organization_id: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:method:: machine() -> Global___Robot
+
+
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: HasField(field_name: _HasFieldArgType) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: Global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., public_namespace: str | None = ..., fragment_config_json: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4304,6 +4525,12 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: fragment_config_json
+      :type:  str
+
+      Fragment config JSON, preserving key order.
+
+
    .. py:method:: fragment() -> google.protobuf.struct_pb2.Struct
 
 
@@ -4334,7 +4561,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__fragment_config_json) -> _WhichOneofReturnType__fragment_config_json | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__public_namespace) -> _WhichOneofReturnType__public_namespace | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -6262,6 +6490,33 @@ Package Contents
    .. py:method:: authorizations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Authorization]
 
 
+.. py:class:: ListFavoriteMachinesRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: ListFavoriteMachinesResponse(*, favorites: collections.abc.Iterable[Global___FavoriteMachine] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: favorites() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___FavoriteMachine]
+
+
 .. py:class:: ListFragmentsRequest(*, organization_id: str = ..., show_public: bool = ..., fragment_visibility: collections.abc.Iterable[Global___FragmentVisibility] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -7352,7 +7607,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: MLModelMetadata(*, versions: collections.abc.Iterable[str] | None = ..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., detailed_versions: collections.abc.Iterable[Global___MLModelVersion] | None = ...)
+.. py:class:: MLModelMetadata(*, versions: collections.abc.Iterable[str] | None = ..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., detailed_versions: collections.abc.Iterable[Global___MLModelVersion] | None = ..., deployment_modular_resources: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7379,6 +7634,15 @@ Package Contents
 
 
    .. py:method:: detailed_versions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MLModelVersion]
+
+
+   .. py:method:: deployment_modular_resources() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Colon-delimited triplets of components or services from the registry used when
+      model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+      associated component or service that consumes the files and should be deployed
+      along with the model.
+
 
 
 .. py:class:: MLModelVersion(*, version: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
@@ -7418,7 +7682,7 @@ Package Contents
 
 
 
-.. py:class:: MLTrainingMetadata(*, versions: collections.abc.Iterable[Global___MLTrainingVersion] | None = ..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ...)
+.. py:class:: MLTrainingMetadata(*, versions: collections.abc.Iterable[Global___MLTrainingVersion] | None = ..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ..., deployment_modular_resources: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7445,6 +7709,16 @@ Package Contents
    .. py:method:: versions() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MLTrainingVersion]
 
       A list of package versions for ML training source distribution
+
+
+
+   .. py:method:: deployment_modular_resources() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Colon-delimited triplets of components or services from the registry used when
+      model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+      associated component or service that consumes the files and should be deployed
+      along with the model.
+      Copied onto packages published by this training script.
 
 
 
@@ -8891,6 +9165,34 @@ Package Contents
    Bases: :py:obj:`_RegistryItemStatus`
 
 
+.. py:class:: RemoveFavoriteMachineRequest(*, machine_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: machine_id
+      :type:  str
+
+
+.. py:class:: RemoveFavoriteMachineResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: RemoveRoleRequest(*, authorization: Global___Authorization | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -9539,6 +9841,40 @@ Package Contents
    .. py:method:: organizations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___OrgDetails]
 
 
+.. py:class:: SetConfigPropertyRequest(*, robot_part_id: str = ..., property_changes: collections.abc.Iterable[Global___ConfigPropertyChange] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: robot_part_id
+      :type:  str
+
+
+   .. py:method:: property_changes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ConfigPropertyChange]
+
+
+.. py:class:: SetConfigPropertyResponse(*, property_changes: collections.abc.Iterable[Global___ConfigPropertyChangeResult] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:method:: property_changes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ConfigPropertyChangeResult]
+
+
 .. py:class:: SetFirebaseConfigRequest(*, org_id: str = ..., app_id: str = ..., config_json: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -10025,7 +10361,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: bool | None = ..., visibility: Global___FragmentVisibility | None = ..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: bool | None = ..., visibility: Global___FragmentVisibility | None = ..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None = ..., fragment_config_json: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10053,6 +10389,12 @@ Package Contents
       :type:  Global___FragmentVisibility
 
 
+   .. py:attribute:: fragment_config_json
+      :type:  str
+
+      Fragment config JSON, preserving key order. Takes precedence over config.
+
+
    .. py:method:: config() -> google.protobuf.struct_pb2.Struct
 
 
@@ -10077,7 +10419,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__last_known_update) -> _WhichOneofReturnType__last_known_update | None
+   .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__fragment_config_json) -> _WhichOneofReturnType__fragment_config_json | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__last_known_update) -> _WhichOneofReturnType__last_known_update | None
                   WhichOneof(oneof_group: _WhichOneofArgType__public) -> _WhichOneofReturnType__public | None
                   WhichOneof(oneof_group: _WhichOneofArgType__visibility) -> _WhichOneofReturnType__visibility | None
 
@@ -10285,7 +10628,7 @@ Package Contents
 
 
 
-.. py:class:: UpdateMLModelMetadata(*, model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ...)
+.. py:class:: UpdateMLModelMetadata(*, model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., deployment_modular_resources: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10305,7 +10648,16 @@ Package Contents
       :type:  app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
 
 
-.. py:class:: UpdateMLTrainingMetadata(*, model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ...)
+   .. py:method:: deployment_modular_resources() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Colon-delimited triplets of components or services from the registry used when
+      model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+      associated component or service that consumes the files and should be deployed
+      along with the model.
+
+
+
+.. py:class:: UpdateMLTrainingMetadata(*, model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ..., deployment_modular_resources: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -10327,6 +10679,15 @@ Package Contents
 
    .. py:attribute:: draft
       :type:  bool
+
+
+   .. py:method:: deployment_modular_resources() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Colon-delimited triplets of components or services from the registry used when
+      model_framework is MODEL_FRAMEWORK_REGISTRY. This ties the ML model file to the
+      associated component or service that consumes the files and should be deployed
+      along with the model.
+
 
 
 .. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[Global___Model] | None = ..., entrypoint: str = ..., apps: collections.abc.Iterable[Global___App] | None = ..., source_type: Global___ModuleSourceType | None = ..., language: Global___ModuleLanguage | None = ..., min_viam_server_version: str | None = ...)

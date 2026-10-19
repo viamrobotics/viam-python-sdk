@@ -87,16 +87,26 @@
              
   <h1>Source code for viam.services.navigation.navigation</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.resource.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..service_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ServiceBase</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeoGeometry</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">MapType</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">Waypoint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetCostmapResponse</span><span class="p">,</span>
+    <span class="n">Location</span><span class="p">,</span>
+    <span class="n">Plan</span><span class="p">,</span>
+    <span class="n">Position</span><span class="p">,</span>
+    <span class="n">Properties</span><span class="p">,</span>
+    <span class="n">Route</span><span class="p">,</span>
+    <span class="n">Status</span><span class="p">,</span>
+    <span class="n">Waypoint</span><span class="p">,</span>
+    <span class="n">Zone</span><span class="p">,</span>
+<span class="p">)</span>
 
 
 <div class="viewcode-block" id="Navigation">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Navigation</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Navigation represents a Navigation service.</span>
@@ -112,256 +122,681 @@
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;navigation&quot;</span>
     <span class="p">)</span>
 
-<div class="viewcode-block" id="Navigation.get_paths">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_paths">[docs]</a>
+<div class="viewcode-block" id="Navigation.add_location">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.add_location">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">position</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Position</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get each path, the series of geo points the robot plans to travel through</span>
-<span class="sd">        to get to a destination waypoint, in the machine&#39;s motion planning.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
-
-<span class="sd">            # Get a list containing each path stored by the navigation service</span>
-<span class="sd">            paths = await my_nav.get_paths()</span>
+<span class="sd">        Save a named Location on the active map.</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to save.</span>
+<span class="sd">            position (Optional[navigation.Position]): The position to save. Omit to use the robot&#39;s current position.</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[navigation.Path]: An array comprised of Paths, where each path is either a user-provided destination or</span>
-<span class="sd">            a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to</span>
-<span class="sd">            reach the specified destination or Waypoint.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#getpaths&gt;`_.</span>
+<span class="sd">            navigation.Location: The saved location.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 
 <div class="viewcode-block" id="Navigation.get_location">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_location">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_location">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">GeoPoint</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current location of the robot in the navigation service.</span>
+<span class="sd">        Get a previously saved Location by name.</span>
 
-<span class="sd">        ::</span>
+<span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to retrieve.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Location: The requested location.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
 
-<span class="sd">            # Get the current location of the robot in the navigation service</span>
-<span class="sd">            location = await my_nav.get_location()</span>
+
+<div class="viewcode-block" id="Navigation.list_locations">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.list_locations">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all previously saved Locations.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            navigation.GeoPoint: The current location of the robot in the navigation service,</span>
-<span class="sd">            represented in a GeoPoint with latitude and longitude values.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#getlocation&gt;`_.</span>
+<span class="sd">            List[navigation.Location]: All saved locations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 
-<div class="viewcode-block" id="Navigation.get_obstacles">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_obstacles">[docs]</a>
+<div class="viewcode-block" id="Navigation.update_location">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.update_location">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_obstacles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">GeoGeometry</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">position</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Position</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">new_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get an array or list of the obstacles currently in the service&#39;s data storage.</span>
-<span class="sd">        These are objects designated for the robot to avoid when navigating.</span>
-<span class="sd">        These include all transient obstacles which are discovered by the vision services configured for the navigation service,</span>
-<span class="sd">        in addition to the obstacles that are configured as a part of the service.</span>
+<span class="sd">        Update a previously saved Location.</span>
 
-<span class="sd">        ::</span>
+<span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to update.</span>
+<span class="sd">            position (Optional[navigation.Position]): The new position. Omit to leave the position unchanged.</span>
+<span class="sd">            new_name (Optional[str]): The new name for the location. Omit to leave the name unchanged.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Location: The updated location.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
 
-<span class="sd">            # Get a list containing each obstacle stored by the navigation service</span>
-<span class="sd">            obstacles = await my_nav.get_obstacles()</span>
+
+<div class="viewcode-block" id="Navigation.delete_location">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.delete_location">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a previously saved Location.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to delete.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.add_route">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.add_route">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_route</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">route_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">waypoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Waypoint</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Route</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save a named Route, an ordered list of waypoints.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            route_name (str): The name of the route to save.</span>
+<span class="sd">            waypoints (Optional[List[navigation.Waypoint]]): The ordered waypoints that make up the route.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Route: The saved route.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.get_route">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_route">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_route</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">route_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Route</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a previously saved Route by name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            route_name (str): The name of the route to retrieve.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Route: The requested route.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.list_routes">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.list_routes">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Route</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all previously saved Routes.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[navigation.GeoGeometry]: A list comprised of each GeoGeometry in the service&#39;s data storage.</span>
-<span class="sd">            These are objects designated for the robot to avoid when navigating.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#getobstacles&gt;`_.</span>
+<span class="sd">            List[navigation.Route]: All saved routes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 
-<div class="viewcode-block" id="Navigation.get_waypoints">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_waypoints">[docs]</a>
+<div class="viewcode-block" id="Navigation.update_route">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.update_route">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_waypoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Waypoint</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_route</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">route_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">new_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">waypoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Waypoint</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Route</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get an array of waypoints currently in the service&#39;s data storage.</span>
-<span class="sd">        These are locations designated within a path for the robot to navigate to.</span>
+<span class="sd">        Update a previously saved Route.</span>
 
-<span class="sd">        ::</span>
+<span class="sd">        Args:</span>
+<span class="sd">            route_name (str): The name of the route to update.</span>
+<span class="sd">            new_name (Optional[str]): The new name for the route. Omit to leave the name unchanged.</span>
+<span class="sd">            waypoints (Optional[List[navigation.Waypoint]]): The new ordered waypoints. Omit to leave the waypoints unchanged;</span>
+<span class="sd">                pass an empty list to clear them.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Route: The updated route.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
 
-<span class="sd">            # Get a list containing each waypoint stored by the navigation service</span>
-<span class="sd">            waypoints = await my_nav.get_waypoints()</span>
+
+<div class="viewcode-block" id="Navigation.delete_route">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.delete_route">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_route</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">route_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a previously saved Route.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            route_name (str): The name of the route to delete.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.add_zone">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.add_zone">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_zone</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">zone_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">max_speed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Zone</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save a named Zone, a region on the active map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            zone_name (str): The name of the zone to save.</span>
+<span class="sd">            type (str): The type of zone, either &quot;keepout&quot; or &quot;speed_limit&quot;.</span>
+<span class="sd">            geometry (Dict[str, Any]): The shape of the zone (circle, box, or polygon).</span>
+<span class="sd">            max_speed (Optional[float]): Max speed in meters/sec; required when type is &quot;speed_limit&quot;.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Zone: The saved zone.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.get_zone">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_zone">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zone_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Zone</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a previously saved Zone by name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            zone_name (str): The name of the zone to retrieve.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Zone: The requested zone.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.list_zones">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.list_zones">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_zones</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Zone</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all previously saved Zones.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            type (Optional[str]): Filter by zone type, either &quot;keepout&quot; or &quot;speed_limit&quot;.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[navigation.Zone]: All saved zones matching the filter, if provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.update_zone">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.update_zone">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_zone</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">zone_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">geometry</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_speed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">new_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Zone</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update a previously saved Zone.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            zone_name (str): The name of the zone to update.</span>
+<span class="sd">            type (Optional[str]): The new zone type. Omit to leave unchanged.</span>
+<span class="sd">            geometry (Optional[Dict[str, Any]]): The new shape of the zone. Omit to leave unchanged.</span>
+<span class="sd">            max_speed (Optional[float]): The new max speed in meters/sec. Omit to leave unchanged.</span>
+<span class="sd">            new_name (Optional[str]): The new name for the zone. Omit to leave the name unchanged.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Zone: The updated zone.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.delete_zone">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.delete_zone">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_zone</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">zone_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a previously saved Zone.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            zone_name (str): The name of the zone to delete.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.navigate_to_location">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.navigate_to_location">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">navigate_to_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start navigating to a previously saved Location.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to navigate to.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.navigate_to_point">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.navigate_to_point">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">navigate_to_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="n">Position</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start navigating to a destination Position.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            destination (navigation.Position): The destination to navigate to.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.navigate_route">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.navigate_route">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">navigate_route</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">route_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">waypoints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Waypoint</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">start_nearest</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">loop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start navigating a Route, either a previously saved one or an inline list of waypoints.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            route_name (Optional[str]): The name of a previously saved route.</span>
+<span class="sd">            waypoints (Optional[List[navigation.Waypoint]]): An inline list of waypoints.</span>
+<span class="sd">            start_index (int): The index of the waypoint to start at.</span>
+<span class="sd">            start_nearest (bool): Start at the waypoint nearest to the robot&#39;s current position, overriding start_index.</span>
+<span class="sd">            loop (bool): Loop the route indefinitely.</span>
+<span class="sd">            wait (bool): With loop, only return once the robot has stopped.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.plan_to_point">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.plan_to_point">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">plan_to_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">destination</span><span class="p">:</span> <span class="n">Position</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Position</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preview a path to a destination Position without moving the robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            destination (navigation.Position): The destination to plan to.</span>
+<span class="sd">            start (Optional[navigation.Position]): The position to plan from. Defaults to the robot&#39;s current position.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Plan: The planned path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.plan_to_location">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.plan_to_location">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">plan_to_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Position</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preview a path to a previously saved Location without moving the robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to plan to.</span>
+<span class="sd">            start (Optional[navigation.Position]): The position to plan from. Defaults to the robot&#39;s current position.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Plan: The planned path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.execute_plan">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.execute_plan">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute_plan</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">plan</span><span class="p">:</span> <span class="n">Plan</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start navigating a previously previewed Plan.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            plan (navigation.Plan): The plan to execute, as returned by ``plan_to_point`` or ``plan_to_location``.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.go_to_location">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.go_to_location">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">go_to_location</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">location_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">wait</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">linear_m_per_sec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Drive directly to a previously saved Location, without planning around zones or obstacles.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_name (str): The name of the location to drive to.</span>
+<span class="sd">            wait (Optional[bool]): Whether to wait until the robot has arrived. Defaults to true.</span>
+<span class="sd">            linear_m_per_sec (Optional[float]): The linear speed to drive at.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.go_to_point">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.go_to_point">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">go_to_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">destination</span><span class="p">:</span> <span class="n">Position</span><span class="p">,</span>
+        <span class="n">wait</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">linear_m_per_sec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Drive directly to a destination Position, without planning around zones or obstacles.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            destination (navigation.Position): The destination to drive to.</span>
+<span class="sd">            wait (Optional[bool]): Whether to wait until the robot has arrived. Defaults to true.</span>
+<span class="sd">            linear_m_per_sec (Optional[float]): The linear speed to drive at.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.suspend">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.suspend">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">suspend</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Suspend the current goal, holding position until ``resume`` is called.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reason (str): The reason for suspending, reported on the suspended goal.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.resume">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.resume">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resume a previously suspended goal.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[navigation.Waypoint]: An array comprised of each Waypoint in the service&#39;s data storage.</span>
-<span class="sd">            These are locations designated within a path for the robot to navigate to.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#getwaypoints&gt;`_.</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 
-<div class="viewcode-block" id="Navigation.add_waypoint">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.add_waypoint">[docs]</a>
+<div class="viewcode-block" id="Navigation.cancel">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.cancel">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_waypoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a waypoint to the service&#39;s data storage.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">           my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
-
-<span class="sd">            # Create a new waypoint with latitude and longitude values of 0 degrees</span>
-<span class="sd">            location = GeoPoint(latitude=0, longitude=0)</span>
-
-
-<span class="sd">            # Add your waypoint to the service&#39;s data storage</span>
-<span class="sd">            await my_nav.add_waypoint(point=location)</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            point (navigation.GeoPoint): A waypoint represented in a GeoPoint with</span>
-<span class="sd">                latitude and longitude values.</span>
-<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
-<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#addwaypoint&gt;`_.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span></div>
-
-
-<div class="viewcode-block" id="Navigation.remove_waypoint">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.remove_waypoint">[docs]</a>
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_waypoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Remove a waypoint from the service&#39;s data storage. If the robot is currently navigating to this waypoint,</span>
-<span class="sd">        the motion will be canceled, and the robot will proceed to the next waypoint.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
-
-<span class="sd">            # Remove the waypoint matching that ObjectID from the service&#39;s data storage</span>
-<span class="sd">            await my_nav.remove_waypoint(waypoint_id)</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            id (str): The MongoDB ObjectID of the Waypoint to remove from the service&#39;s data storage.</span>
-<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
-<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#removewaypoint&gt;`_.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span></div>
-
-
-<div class="viewcode-block" id="Navigation.get_mode">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_mode">[docs]</a>
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the Mode the service is operating in.</span>
-
-<span class="sd">        There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.</span>
-
-<span class="sd">            MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.</span>
-<span class="sd">            MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
-
-<span class="sd">            # Get the Mode the service is operating in</span>
-<span class="sd">            await my_nav.get_mode()</span>
+<span class="sd">        Cancel the current goal.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            navigation.Mode.ValueType: The Mode the service is operating in.</span>
-
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#getmode&gt;`_.</span>
+<span class="sd">            navigation.Status: The resulting navigation status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 
-<div class="viewcode-block" id="Navigation.set_mode">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.set_mode">[docs]</a>
+<div class="viewcode-block" id="Navigation.get_position">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_position">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Position</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set the Mode the service is operating in.</span>
-
-<span class="sd">        There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.</span>
-
-<span class="sd">            MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.</span>
-<span class="sd">            MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
-
-<span class="sd">            # Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation</span>
-<span class="sd">            await my_nav.set_mode(Mode.ValueType.MODE_WAYPOINT)</span>
+<span class="sd">        Get the current position of the robot in the navigation service.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
-<span class="sd">            mode (navigation.Mode.ValueType): The Mode for the service to operate in.</span>
 
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#setmode&gt;`_.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Position: The current position of the robot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="Navigation.get_navigation_status">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_navigation_status">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_navigation_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the current navigation state of the robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.Status: The current navigation status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 
 <div class="viewcode-block" id="Navigation.get_properties">
-<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_properties">[docs]</a>
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_properties">[docs]</a>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MapType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get information about the navigation service.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
-
-<span class="sd">            # Get the properties of the current navigation service.</span>
-<span class="sd">            nav_properties = await my_nav.get_properties()</span>
+<span class="sd">        Get information about the navigation service that does not change while the service is running.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            MapType.ValueType: Information about the type of map the service is using.</span>
+<span class="sd">            navigation.Properties: Information about the navigation service.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
 
-<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/dev/reference/apis/services/navigation/#getproperties&gt;`_.</span>
+
+<div class="viewcode-block" id="Navigation.get_costmap">
+<a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.navigation.Navigation.get_costmap">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_costmap</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">layer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">stride</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetCostmapResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a costmap describing the obstacles known to the navigation service.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            layer (str): Which costmap layer to retrieve, one of &quot;auto&quot;, &quot;local&quot;, or &quot;global&quot;. Defaults to &quot;auto&quot;.</span>
+<span class="sd">            stride (int): Downsample factor. Defaults to 2.</span>
+<span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
+<span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            navigation.GetCostmapResponse: The requested costmap.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 </div>
