@@ -7,10 +7,12 @@ from .client import AudioInClient
 from .service import AudioInRPCService
 
 AudioResponse = AudioIn.AudioResponse
+AudioStream = AudioIn.AudioStream
 
 __all__ = [
     "AudioIn",
     "AudioResponse",
+    "AudioStream",
     "AudioInfo",
     "AudioCodec",
 ]
