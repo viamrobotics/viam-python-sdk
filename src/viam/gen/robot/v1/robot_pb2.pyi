@@ -1130,18 +1130,54 @@ class ResourceStatus(_message.Message):
     'a resource that is being removed from the robot.'
     STATE_UNHEALTHY: ResourceStatus.State.ValueType
     'a resource that is in an unhealthy state.'
+
+    class _Reachability:
+        ValueType = _typing.NewType('ValueType', _builtins.int)
+        V: _TypeAlias = ValueType
+
+    class _ReachabilityEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[ResourceStatus._Reachability.ValueType], _builtins.type):
+        DESCRIPTOR: _descriptor.EnumDescriptor
+        REACHABILITY_UNSPECIFIED: ResourceStatus._Reachability.ValueType
+        'set by machines that predate this field; treat as reachable.'
+        REACHABILITY_REACHABLE: ResourceStatus._Reachability.ValueType
+        REACHABILITY_REMOTE_DISCONNECTED: ResourceStatus._Reachability.ValueType
+        'the remote machine this resource is on is disconnected.'
+        REACHABILITY_SHADOWED_BY_LOCAL: ResourceStatus._Reachability.ValueType
+        'a local resource has the same name, so calls by name go to the local resource.'
+        REACHABILITY_AMBIGUOUS_REMOTE: ResourceStatus._Reachability.ValueType
+        'multiple remote resources have the same name and no local resource claims it.'
+
+    class Reachability(_Reachability, metaclass=_ReachabilityEnumTypeWrapper):
+        """whether calls to the resource by name can be routed through this machine.
+        Independent of state, which for an unreachable resource is its last known state.
+        """
+    REACHABILITY_UNSPECIFIED: ResourceStatus.Reachability.ValueType
+    'set by machines that predate this field; treat as reachable.'
+    REACHABILITY_REACHABLE: ResourceStatus.Reachability.ValueType
+    REACHABILITY_REMOTE_DISCONNECTED: ResourceStatus.Reachability.ValueType
+    'the remote machine this resource is on is disconnected.'
+    REACHABILITY_SHADOWED_BY_LOCAL: ResourceStatus.Reachability.ValueType
+    'a local resource has the same name, so calls by name go to the local resource.'
+    REACHABILITY_AMBIGUOUS_REMOTE: ResourceStatus.Reachability.ValueType
+    'multiple remote resources have the same name and no local resource claims it.'
     NAME_FIELD_NUMBER: _builtins.int
     STATE_FIELD_NUMBER: _builtins.int
     LAST_UPDATED_FIELD_NUMBER: _builtins.int
     REVISION_FIELD_NUMBER: _builtins.int
     ERROR_FIELD_NUMBER: _builtins.int
     CLOUD_METADATA_FIELD_NUMBER: _builtins.int
+    REACHABILITY_FIELD_NUMBER: _builtins.int
+    REMOTE_FIELD_NUMBER: _builtins.int
     state: Global___ResourceStatus.State.ValueType
     'current state.'
     revision: _builtins.str
     'revision of the last config that successfully updated this resource.'
     error: _builtins.str
     'error details for a resource. This is guaranteed to be null if the\n    resource is ready and non-null if the resource unhealthy.\n    '
+    reachability: Global___ResourceStatus.Reachability.ValueType
+    'whether calls to this resource by name can be routed through this machine.'
+    remote: _builtins.str
+    "name of the remote, as configured on this machine, that this resource is reached through;\n    for a resource on a remote's remote, this is the first hop. Unset for local resources.\n    "
 
     @_builtins.property
     def name(self) -> _common_pb2.ResourceName:
@@ -1155,20 +1191,27 @@ class ResourceStatus(_message.Message):
     def cloud_metadata(self) -> Global___GetCloudMetadataResponse:
         """infomation about resource orgID, locationID and partID"""
 
-    def __init__(self, *, name: _common_pb2.ResourceName | None=..., state: Global___ResourceStatus.State.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., revision: _builtins.str=..., error: _builtins.str=..., cloud_metadata: Global___GetCloudMetadataResponse | None=...) -> None:
+    def __init__(self, *, name: _common_pb2.ResourceName | None=..., state: Global___ResourceStatus.State.ValueType=..., last_updated: _timestamp_pb2.Timestamp | None=..., revision: _builtins.str=..., error: _builtins.str=..., cloud_metadata: Global___GetCloudMetadataResponse | None=..., reachability: Global___ResourceStatus.Reachability.ValueType=..., remote: _builtins.str | None=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_cloud_metadata', b'_cloud_metadata', 'cloud_metadata', b'cloud_metadata', 'last_updated', b'last_updated', 'name', b'name']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_cloud_metadata', b'_cloud_metadata', '_remote', b'_remote', 'cloud_metadata', b'cloud_metadata', 'last_updated', b'last_updated', 'name', b'name', 'remote', b'remote']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_cloud_metadata', b'_cloud_metadata', 'cloud_metadata', b'cloud_metadata', 'error', b'error', 'last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_cloud_metadata', b'_cloud_metadata', '_remote', b'_remote', 'cloud_metadata', b'cloud_metadata', 'error', b'error', 'last_updated', b'last_updated', 'name', b'name', 'reachability', b'reachability', 'remote', b'remote', 'revision', b'revision', 'state', b'state']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
     _WhichOneofReturnType__cloud_metadata: _TypeAlias = _typing.Literal['cloud_metadata']
     _WhichOneofArgType__cloud_metadata: _TypeAlias = _typing.Literal['_cloud_metadata', b'_cloud_metadata']
+    _WhichOneofReturnType__remote: _TypeAlias = _typing.Literal['remote']
+    _WhichOneofArgType__remote: _TypeAlias = _typing.Literal['_remote', b'_remote']
 
+    @_typing.overload
     def WhichOneof(self, oneof_group: _WhichOneofArgType__cloud_metadata) -> _WhichOneofReturnType__cloud_metadata | None:
+        ...
+
+    @_typing.overload
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__remote) -> _WhichOneofReturnType__remote | None:
         ...
 Global___ResourceStatus: _TypeAlias = ResourceStatus
 
