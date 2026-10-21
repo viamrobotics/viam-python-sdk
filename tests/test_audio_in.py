@@ -1,7 +1,8 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.audio_in import AudioIn, AudioInClient, AudioInRPCService, AudioResponse
+from viam.components import audio_in as audio_in_module
+from viam.components.audio_in import AudioIn, AudioInClient, AudioInRPCService, AudioResponse, AudioStream
 from viam.components.generic.service import GenericRPCService
 from viam.proto.common import (
     DoCommandRequest,
@@ -199,3 +200,9 @@ class TestClient:
             client = AudioInClient(audio_in.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
+
+
+class TestExports:
+    def test_audio_stream_is_exported(self):
+        assert "AudioStream" in audio_in_module.__all__
+        assert AudioStream is AudioIn.AudioStream
