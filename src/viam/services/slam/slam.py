@@ -16,7 +16,7 @@ class SLAM(ServiceBase):
     arm implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
 
-    For more information, see `SLAM service <https://docs.viam.com/dev/reference/apis/services/slam/>`_.
+    For more information, see `SLAM service <https://docs.viam.com/reference/apis/services/slam/>`_.
     """
 
     API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -38,7 +38,7 @@ class SLAM(ServiceBase):
         Returns:
             List[GetInternalStateResponse]: Chunks of the internal state of the SLAM algorithm
 
-        For more information, see `SLAM service <https://docs.viam.com/dev/reference/apis/services/slam/#getinternalstate>`_.
+        For more information, see `SLAM service <https://docs.viam.com/reference/apis/services/slam/#getinternalstate>`_.
         """
         ...
 
@@ -62,7 +62,7 @@ class SLAM(ServiceBase):
             List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
             GetPointCloudMapResponse.point_cloud_pcd_chunk values.
 
-        For more information, see `SLAM service <https://docs.viam.com/dev/reference/apis/services/slam/#getpointcloudmap>`_.
+        For more information, see `SLAM service <https://docs.viam.com/reference/apis/services/slam/#getpointcloudmap>`_.
         """
         ...
 
@@ -81,7 +81,7 @@ class SLAM(ServiceBase):
         Returns:
             Pose: The current position of the specified component
 
-        For more information, see `SLAM service <https://docs.viam.com/dev/reference/apis/services/slam/#getposition>`_.
+        For more information, see `SLAM service <https://docs.viam.com/reference/apis/services/slam/#getposition>`_.
         """
         ...
 
@@ -100,6 +100,6 @@ class SLAM(ServiceBase):
         Returns:
             Properties: The properties of SLAM
 
-        For more information, see `SLAM service <https://docs.viam.com/dev/reference/apis/services/slam/#getproperties>`_.
+        For more information, see `SLAM service <https://docs.viam.com/reference/apis/services/slam/#getproperties>`_.
         """
         ...

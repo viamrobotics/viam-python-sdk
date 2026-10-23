@@ -57,7 +57,7 @@ class Vision(ServiceBase):
     vision implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
 
-    For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/>`_.
+    For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -117,7 +117,7 @@ class Vision(ServiceBase):
             It can  return the image from the camera along with its associated detections, classifications,
             and objects, as well as any extra info the model may provide.
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#captureallfromcamera>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#captureallfromcamera>`_.
         """
         ...
 
@@ -149,7 +149,7 @@ class Vision(ServiceBase):
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getdetectionsfromcamera>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getdetectionsfromcamera>`_.
         """
         ...
 
@@ -186,7 +186,7 @@ class Vision(ServiceBase):
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getdetections>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getdetections>`_.
         """
         ...
 
@@ -216,7 +216,7 @@ class Vision(ServiceBase):
         returns:
             List[viam.proto.service.vision.Classification]: The list of Classifications
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getclassificationsfromcamera>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getclassificationsfromcamera>`_.
         """
         ...
 
@@ -250,7 +250,7 @@ class Vision(ServiceBase):
         Returns:
             List[viam.proto.service.vision.Classification]: The list of Classifications
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getclassifications>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getclassifications>`_.
         """
         ...
 
@@ -278,7 +278,7 @@ class Vision(ServiceBase):
             List[viam.proto.service.vision.Detection3D]: A list of 3D detections, each described as a tree of
             transforms along with the class hypotheses for the detected object.
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getdetections3d>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getdetections3d>`_.
         """
         ...
 
@@ -316,7 +316,7 @@ class Vision(ServiceBase):
         Returns:
             List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getobjectpointclouds>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getobjectpointclouds>`_.
         """
         ...
 
@@ -341,6 +341,6 @@ class Vision(ServiceBase):
         Returns:
             Properties: The properties of the vision service
 
-        For more information, see `Computer Vision service <https://docs.viam.com/dev/reference/apis/services/vision/#getproperties>`_.
+        For more information, see `Computer Vision service <https://docs.viam.com/reference/apis/services/vision/#getproperties>`_.
         """
         ...
