@@ -25,7 +25,7 @@ class Navigation(ServiceBase):
     navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
 
-    For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/>`_.
+    For more information, see `Navigation service <https://docs.viam.com/reference/apis/services/navigation/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]

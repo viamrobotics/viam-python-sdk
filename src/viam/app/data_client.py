@@ -177,7 +177,7 @@ class DataClient:
             asyncio.run(main())
 
 
-    For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/>`_.
+    For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/>`_.
     """
 
     @dataclass
@@ -471,7 +471,7 @@ class DataClient:
                 - ``count`` (*int*): The count (number of entries).
                 - ``last`` (*str*): The last-returned page ID.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatabyfilter>`_.
         """
         filter = filter if filter else Filter()
 
@@ -522,7 +522,7 @@ class DataClient:
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabysql>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatabysql>`_.
         """
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
@@ -568,7 +568,7 @@ class DataClient:
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatabymql>`_.
         """
         binary: List[bytes] = [bson.encode(query) for query in query] if isinstance(query[0], dict) else query  # type: ignore
         data_source = TabularDataSource(type=tabular_data_source_type, pipeline_id=pipeline_id)
@@ -629,7 +629,7 @@ class DataClient:
                 - ``time_synced`` (*datetime*): The time synced.
                 - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getlatesttabulardata>`_.
         """
 
         request = GetLatestTabularDataRequest(
@@ -683,7 +683,7 @@ class DataClient:
         Returns:
             List[TabularDataPoint]: The unified tabular data and metadata.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#exporttabulardata>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#exporttabulardata>`_.
         """
 
         interval = CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
@@ -788,7 +788,7 @@ class DataClient:
                 - ``count`` (*int*): The count (number of entries).
                 - ``last`` (*str*): The last-returned page ID.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#binarydatabyfilter>`_.
         """
 
         data_request = DataRequest(filter=filter)
@@ -852,7 +852,7 @@ class DataClient:
         Returns:
             List[~viam.proto.app.data.BinaryData]: The binary data.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#binarydatabyids>`_.
         """
         request = BinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
@@ -906,7 +906,7 @@ class DataClient:
         Returns:
             int: The number of items deleted.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletetabulardata>`_.
         """
         request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days, filter=filter)
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
@@ -936,7 +936,7 @@ class DataClient:
         Returns:
             int: The number of items deleted.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletebinarydatabyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletebinarydatabyfilter>`_.
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
@@ -979,7 +979,7 @@ class DataClient:
         Returns:
             int: The number of items deleted.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletebinarydatabyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletebinarydatabyids>`_.
         """
         request = DeleteBinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
@@ -1026,7 +1026,7 @@ class DataClient:
         Raises:
             GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addtagstobinarydatabyids>`_.
         """
         request = AddTagsToBinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
@@ -1055,7 +1055,7 @@ class DataClient:
         Raises:
             GRPCError: If no tags are provided.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addtagstobinarydatabyfilter>`_.
         """
         filter = filter if filter else Filter()
         request = AddTagsToBinaryDataByFilterRequest(filter=filter, tags=tags)
@@ -1101,7 +1101,7 @@ class DataClient:
         Returns:
             int: The number of tags removed.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removetagsfrombinarydatabyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removetagsfrombinarydatabyids>`_.
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(tags=tags)
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
@@ -1136,7 +1136,7 @@ class DataClient:
         Returns:
             int: The number of tags removed.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removetagsfrombinarydatabyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removetagsfrombinarydatabyfilter>`_.
         """
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
@@ -1161,7 +1161,7 @@ class DataClient:
         Returns:
             List[str]: The list of tags.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tagsbyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tagsbyfilter>`_.
         """
         filter = filter if filter else Filter()
         request = TagsByFilterRequest(filter=filter)
@@ -1211,7 +1211,7 @@ class DataClient:
         Returns:
             str: The bounding box ID.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addboundingboxtoimagebyid>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addboundingboxtoimagebyid>`_.
         """
         request = AddBoundingBoxToImageByIDRequest()
         if isinstance(binary_id, str):
@@ -1280,7 +1280,7 @@ class DataClient:
         Returns:
             N/A
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/>`_.
         """
         request = UpdateBoundingBoxRequest(
             binary_data_id=binary_id,
@@ -1311,7 +1311,7 @@ class DataClient:
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
         """
         request = RemoveBoundingBoxFromImageByIDRequest()
         if isinstance(binary_id, str):
@@ -1341,7 +1341,7 @@ class DataClient:
         Returns:
             List[str]: The list of bounding box labels.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#boundingboxlabelsbyfilter>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#boundingboxlabelsbyfilter>`_.
         """
         filter = filter if filter else Filter()
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
@@ -1362,7 +1362,7 @@ class DataClient:
         Returns:
             str: The hostname of the federated database.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getdatabaseconnection>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getdatabaseconnection>`_.
         """
         request = GetDatabaseConnectionRequest(organization_id=organization_id)
         response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
@@ -1384,7 +1384,7 @@ class DataClient:
                 To find your organization ID, visit the organization settings page.
             password (str): The password of the user.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#configuredatabaseuser>`_.
         """
         request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
         await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
@@ -1410,7 +1410,7 @@ class DataClient:
         Returns:
             str: The dataset ID of the created dataset.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createdataset>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createdataset>`_.
         """
         request = CreateDatasetRequest(name=name, organization_id=organization_id, type=type)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
@@ -1436,7 +1436,7 @@ class DataClient:
         Returns:
             str: The dataset ID of the created dataset.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/>`_.
         """
         request = MergeDatasetsRequest(name=name, organization_id=organization_id, dataset_ids=dataset_ids)
         response: MergeDatasetsResponse = await self._dataset_client.MergeDatasets(request, metadata=self._metadata)
@@ -1463,7 +1463,7 @@ class DataClient:
         Returns:
             TSequence[Dataset]: The list of datasets.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listdatasetsbyids>`_.
         """
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
@@ -1491,7 +1491,7 @@ class DataClient:
         Returns:
             TSequence[Dataset]: The list of datasets in the organization.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id, type=dataset_type)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
@@ -1519,7 +1519,7 @@ class DataClient:
                 - Select **Copy dataset ID**.
             name (str): The new name of the dataset.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#renamedataset>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#renamedataset>`_.
         """
         request = RenameDatasetRequest(id=id, name=name)
         await self._dataset_client.RenameDataset(request, metadata=self._metadata)
@@ -1541,7 +1541,7 @@ class DataClient:
                     - Click the **...** menu.
                     - Select **Copy dataset ID**.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletedataset>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletedataset>`_.
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
@@ -1560,7 +1560,7 @@ class DataClient:
         Returns:
             str: The job ID of the export job.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#startsequencedatasetexport>`_.
         """
         request = StartSequenceDatasetExportRequest(dataset_id=dataset_id)
         response: StartSequenceDatasetExportResponse = await self._dataset_client.StartSequenceDatasetExport(
@@ -1589,7 +1589,7 @@ class DataClient:
                 - created_at: When the job was created.
                 - completed_at: When the job completed (if applicable).
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getsequencedatasetexport>`_.
         """
         request = GetSequenceDatasetExportRequest(job_id=job_id)
         return await self._dataset_client.GetSequenceDatasetExport(request, metadata=self._metadata, timeout=timeout)
@@ -1627,7 +1627,7 @@ class DataClient:
                 - Click the **...** menu.
                 - Select **Copy dataset ID**.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
         """
         request = AddBinaryDataToDatasetByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
@@ -1673,7 +1673,7 @@ class DataClient:
                 - Click the **...** menu.
                 - Select **Copy dataset ID**.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
@@ -1743,7 +1743,7 @@ class DataClient:
         Returns:
             str: The binary data ID of the uploaded data.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#binarydatacaptureupload>`_.
         """
         sensor_contents = SensorData(
             metadata=(
@@ -1831,7 +1831,7 @@ class DataClient:
         Returns:
             str: The file ID of the uploaded data.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatacaptureupload>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatacaptureupload>`_.
         """
         sensor_contents = []
         if len(data_request_times) != len(tabular_data):
@@ -1926,7 +1926,7 @@ class DataClient:
         Returns:
             str: The binary data ID of the uploaded data.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#streamingdatacaptureupload>`_.
         """
 
         upload_metadata = UploadMetadata(
@@ -2008,7 +2008,7 @@ class DataClient:
         Returns:
             str: Binary data ID of the new file.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileupload>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#fileupload>`_.
         """
         metadata = UploadMetadata(
             part_id=part_id,
@@ -2071,7 +2071,7 @@ class DataClient:
         Returns:
             str: Binary data ID of the new file.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#fileuploadfrompath>`_.
         """
         path = Path(filepath)
         file_name = file_name if file_name is not None else path.stem
@@ -2268,7 +2268,7 @@ class DataClient:
             index_spec (List[Dict[str, Any]]): The MongoDB index specification defined in JSON format.
             pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createindex>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createindex>`_.
         """
         index_spec_bytes = [bson.encode(index_spec)]
         request = CreateIndexRequest(
@@ -2296,7 +2296,7 @@ class DataClient:
         Returns:
             List[Index]: A list of indexes.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listindexes>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listindexes>`_.
         """
         request = ListIndexesRequest(
             organization_id=organization_id,
@@ -2322,7 +2322,7 @@ class DataClient:
             index_name (str): The name of the index to delete.
             pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deleteindex>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deleteindex>`_.
         """
         request = DeleteIndexRequest(
             organization_id=organization_id,
@@ -2359,7 +2359,7 @@ class DataClient:
                 - ``signed_url`` (*str*): The signed URL for the binary data file.
                 - ``expires_at`` (*datetime*): The expiration time of the signed URL token.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createbinarydatasignedurl>`_.
         """
         request = CreateBinaryDataSignedURLRequest(binary_data_id=binary_data_id)
         if expiration_minutes is not None:
@@ -2380,7 +2380,7 @@ class DataClient:
             sequence_ids (List[str]): The IDs of the sequences to add to the dataset.
             timeout (Optional[float]): An optional deadline for the call to complete in seconds.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addsequencestodataset>`_.
         """
         request = AddSequencesToDatasetRequest(
             dataset_id=dataset_id,
@@ -2401,7 +2401,7 @@ class DataClient:
             sequence_ids (List[str]): The IDs of the sequences to remove from the dataset.
             timeout (Optional[float]): An optional deadline for the call to complete in seconds.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removesequencesfromdataset>`_.
         """
         request = RemoveSequencesFromDatasetRequest(
             dataset_id=dataset_id,
@@ -2432,7 +2432,7 @@ class DataClient:
                 - The next page token (empty string if no more pages).
                 - The total count of sequences.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#sequencesbydatasetid>`_.
         """
         request = SequencesByDatasetIDRequest(dataset_id=dataset_id)
         if page_token is not None:
@@ -2466,7 +2466,7 @@ class DataClient:
                 - A list of binary data in the sequence.
                 - The next page token (empty string if no more pages).
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getsequencebinarydata>`_.
         """
         request = GetSequenceBinaryDataRequest(sequence_id=sequence_id)
         if page_token is not None:
@@ -2500,7 +2500,7 @@ class DataClient:
         Returns:
             str: The ID of the newly created sequence.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createsequence>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createsequence>`_.
         """
         request = CreateSequenceRequest(part_id=part_id, resources=resources)
         request.start_time.FromDatetime(start_time)
@@ -2520,7 +2520,7 @@ class DataClient:
         Returns:
             Sequence: The requested sequence.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequence>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getsequence>`_.
         """
         request = GetSequenceRequest(id=id)
         response: GetSequenceResponse = await self._data_client.GetSequence(request, metadata=self._metadata, timeout=timeout)
@@ -2551,7 +2551,7 @@ class DataClient:
         Raises:
             ValueError: If no updatable field is provided.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updatesequence>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#updatesequence>`_.
         """
         paths: List[str] = []
         request = UpdateSequenceRequest(id=id)
@@ -2579,7 +2579,7 @@ class DataClient:
             id (str): The ID of the sequence to delete.
             timeout (Optional[float]): An optional deadline for the call to complete in seconds.
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletesequence>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletesequence>`_.
         """
         request = DeleteSequenceRequest(id=id)
         await self._data_client.DeleteSequence(request, metadata=self._metadata, timeout=timeout)
@@ -2604,7 +2604,7 @@ class DataClient:
                 - A list of sequences in the organization.
                 - The next page token (empty string if no more pages).
 
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listsequences>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listsequences>`_.
         """
         request = ListSequencesRequest(organization_id=organization_id)
         if page_token is not None:

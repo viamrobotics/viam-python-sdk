@@ -61,7 +61,7 @@ class MLTrainingClient:
         if __name__ == '__main__':
             asyncio.run(main())
 
-    For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/>`_.
+    For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/>`_.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -71,7 +71,7 @@ class MLTrainingClient:
             channel (grpclib.client.Channel): Connection to app.
             metadata (Mapping[str, str]): Required authorization token to send requests to app.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/>`_.
         """
         self._metadata = metadata
         self._ml_training_client = MLTrainingServiceStub(channel)
@@ -112,7 +112,7 @@ class MLTrainingClient:
         Returns:
             str: the ID of the training job.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#submittrainingjob>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#submittrainingjob>`_.
         """
 
         request = SubmitTrainingJobRequest(
@@ -162,7 +162,7 @@ class MLTrainingClient:
         Returns:
             str: the ID of the training job.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#submitcustomtrainingjob>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#submitcustomtrainingjob>`_.
         """
 
         request = SubmitCustomTrainingJobRequest(
@@ -191,7 +191,7 @@ class MLTrainingClient:
         Returns:
             viam.proto.app.mltraining.TrainingJobMetadata: the training job data.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#gettrainingjob>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#gettrainingjob>`_.
         """
 
         request = GetTrainingJobRequest(id=id)
@@ -221,7 +221,7 @@ class MLTrainingClient:
         Returns:
             List[viam.proto.app.mltraining.TrainingJobMetadata]: the list of training job data.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#listtrainingjobs>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#listtrainingjobs>`_.
         """
 
         training_status = training_status if training_status else TrainingStatus.TRAINING_STATUS_UNSPECIFIED
@@ -244,7 +244,7 @@ class MLTrainingClient:
         Raises:
             GRPCError: if no training job exists with the given ID.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#canceltrainingjob>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#canceltrainingjob>`_.
         """
 
         request = CancelTrainingJobRequest(id=id)
@@ -261,7 +261,7 @@ class MLTrainingClient:
         Args:
             id (str): the ID of the training job to delete.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecompletedtrainingjob>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#deletecompletedtrainingjob>`_.
         """
         request = DeleteCompletedTrainingJobRequest(id=id)
         await self._ml_training_client.DeleteCompletedTrainingJob(request, metadata=self._metadata)
@@ -280,7 +280,7 @@ class MLTrainingClient:
         Returns:
             List[viam.proto.app.mltraining.Container]: the list of available training containers.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#listcontainers>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#listcontainers>`_.
         """
 
         request = ListContainersRequest(organization_id=org_id)
@@ -301,7 +301,7 @@ class MLTrainingClient:
         Returns:
             viam.proto.app.mltraining.Container: the training container.
 
-        For more information, see `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#getcontainer>`_.
+        For more information, see `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#getcontainer>`_.
         """
 
         request = GetContainerRequest(id=id)
@@ -328,7 +328,7 @@ class MLTrainingClient:
             str: the ID of the registered training container.
 
         For more information, see
-        `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#registercustomtrainingcontainer>`_.
+        `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#registercustomtrainingcontainer>`_.
         """
 
         request = RegisterCustomTrainingContainerRequest(organization_id=org_id, image_uri=image_uri, description=description)
@@ -349,7 +349,7 @@ class MLTrainingClient:
             id (str): the ID of the custom training container to delete.
 
         For more information, see
-        `ML Training Client API <https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecustomtrainingcontainer>`_.
+        `ML Training Client API <https://docs.viam.com/reference/apis/ml-training-client/#deletecustomtrainingcontainer>`_.
         """
 
         request = DeleteCustomTrainingContainerRequest(id=id)

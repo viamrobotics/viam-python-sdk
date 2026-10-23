@@ -19,7 +19,7 @@ class Gripper(ComponentBase):
 
         from viam.components.gripper import Gripper
 
-    For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+    For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -55,7 +55,7 @@ class Gripper(ComponentBase):
             # Open the gripper.
             await my_gripper.open()
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#open>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#open>`_.
         """
         ...
 
@@ -80,7 +80,7 @@ class Gripper(ComponentBase):
         Returns:
             bool: Indicates if the gripper grabbed something.
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#grab>`_.
         """
         ...
 
@@ -107,7 +107,7 @@ class Gripper(ComponentBase):
         Returns:
             HoldingStatus: see documentation on `HoldingStatus` for more information
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#grab>`_.
 
         """
 
@@ -129,7 +129,7 @@ class Gripper(ComponentBase):
             # Stop the gripper.
             await my_gripper.stop()
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#stop>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#stop>`_.
         """
         ...
 
@@ -149,7 +149,7 @@ class Gripper(ComponentBase):
         Returns:
             bool: Whether the gripper is moving.
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#is_moving>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
         """
         ...
 
@@ -191,7 +191,7 @@ class Gripper(ComponentBase):
             If available, a third [2] value provides meshes keyed by URDF filepath.
             If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#getkinematics>`_.
         """
         ...
 
@@ -216,7 +216,7 @@ class Gripper(ComponentBase):
         Returns:
             List[float]: The current input values of the gripper.
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
         """
         ...
 
@@ -242,6 +242,6 @@ class Gripper(ComponentBase):
         Args:
             values (List[float]): The input values to move the gripper to.
 
-        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
         """
         ...
