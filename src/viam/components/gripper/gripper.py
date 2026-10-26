@@ -149,7 +149,7 @@ class Gripper(ComponentBase):
         Returns:
             bool: Whether the gripper is moving.
 
-        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#ismoving>`_.
         """
         ...
 

@@ -1280,7 +1280,7 @@ class DataClient:
         Returns:
             N/A
 
-        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/>`_.
+        For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#updateboundingbox>`_.
         """
         request = UpdateBoundingBoxRequest(
             binary_data_id=binary_id,

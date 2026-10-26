@@ -34,11 +34,11 @@ Outside the `src` directory, there is a `client.py` file. You can use this file 
 
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).
 
-The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/complex_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/build-modules/write-a-driver-module/) for more details.
+The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/complex_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/build-modules/deploy-a-module/) for more details.
 
-Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/build-modules/write-a-driver-module/) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
+Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/build-modules/deploy-a-module/) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
 
-Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/build-modules/module-reference/).
+Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/build-modules/module-reference/#organization-namespace).
 
 An example configuration for an Arm component, a Gizmo component, and a Summation service could look like this:
 
