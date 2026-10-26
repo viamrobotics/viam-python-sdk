@@ -1830,7 +1830,7 @@ Module Contents
    :canonical: JobStatus
 
 
-.. py:class:: ResourceStatus(*, name: common.v1.common_pb2.ResourceName | None = ..., state: Global___ResourceStatus = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., error: str = ..., cloud_metadata: Global___GetCloudMetadataResponse | None = ...)
+.. py:class:: ResourceStatus(*, name: common.v1.common_pb2.ResourceName | None = ..., state: Global___ResourceStatus = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., error: str = ..., cloud_metadata: Global___GetCloudMetadataResponse | None = ..., reachability: Global___ResourceStatus = ..., remote: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1883,6 +1883,44 @@ Module Contents
       a resource that is in an unhealthy state.
 
 
+   .. py:class:: Reachability
+
+      Bases: :py:obj:`_Reachability`
+
+
+      whether calls to the resource by name can be routed through this machine.
+      Independent of state, which for an unreachable resource is its last known state.
+
+
+
+   .. py:attribute:: REACHABILITY_UNSPECIFIED
+      :type:  ResourceStatus
+
+      set by machines that predate this field; treat as reachable.
+
+
+   .. py:attribute:: REACHABILITY_REACHABLE
+      :type:  ResourceStatus
+
+
+   .. py:attribute:: REACHABILITY_REMOTE_DISCONNECTED
+      :type:  ResourceStatus
+
+      the remote machine this resource is on is disconnected.
+
+
+   .. py:attribute:: REACHABILITY_SHADOWED_BY_LOCAL
+      :type:  ResourceStatus
+
+      a local resource has the same name, so calls by name go to the local resource.
+
+
+   .. py:attribute:: REACHABILITY_AMBIGUOUS_REMOTE
+      :type:  ResourceStatus
+
+      multiple remote resources have the same name and no local resource claims it.
+
+
    .. py:attribute:: state
       :type:  Global___ResourceStatus.State.ValueType
 
@@ -1900,6 +1938,19 @@ Module Contents
 
       error details for a resource. This is guaranteed to be null if the
       resource is ready and non-null if the resource unhealthy.
+
+
+   .. py:attribute:: reachability
+      :type:  Global___ResourceStatus.Reachability.ValueType
+
+      whether calls to this resource by name can be routed through this machine.
+
+
+   .. py:attribute:: remote
+      :type:  str
+
+      name of the remote, as configured on this machine, that this resource is reached through;
+      for a resource on a remote's remote, this is the first hop. Unset for local resources.
 
 
    .. py:method:: name() -> common.v1.common_pb2.ResourceName
@@ -1939,6 +1990,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: _WhichOneofArgType__cloud_metadata) -> _WhichOneofReturnType__cloud_metadata | None
+                  WhichOneof(oneof_group: _WhichOneofArgType__remote) -> _WhichOneofReturnType__remote | None
 
       Returns the name of the field that is set inside a oneof group.
 
