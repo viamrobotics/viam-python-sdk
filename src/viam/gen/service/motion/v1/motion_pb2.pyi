@@ -1150,7 +1150,23 @@ Global___TempStreamArmJointPositionsRequest: _TypeAlias = TempStreamArmJointPosi
 @_typing.final
 class TempStreamArmJointPositionsResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
+    MOTION_SIDE_CURRENT_RUNWAY_MS_FIELD_NUMBER: _builtins.int
+    motion_side_current_runway_ms: _builtins.int
+    'motion_side_current_runway_ms is sent once per target, right after the service adds it. It is how much\n    motion, in milliseconds, the service has accepted but not yet handed to the arm at that moment.\n    '
 
-    def __init__(self) -> None:
+    def __init__(self, *, motion_side_current_runway_ms: _builtins.int | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_motion_side_current_runway_ms', b'_motion_side_current_runway_ms', 'motion_side_current_runway_ms', b'motion_side_current_runway_ms']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_motion_side_current_runway_ms', b'_motion_side_current_runway_ms', 'motion_side_current_runway_ms', b'motion_side_current_runway_ms']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+    _WhichOneofReturnType__motion_side_current_runway_ms: _TypeAlias = _typing.Literal['motion_side_current_runway_ms']
+    _WhichOneofArgType__motion_side_current_runway_ms: _TypeAlias = _typing.Literal['_motion_side_current_runway_ms', b'_motion_side_current_runway_ms']
+
+    def WhichOneof(self, oneof_group: _WhichOneofArgType__motion_side_current_runway_ms) -> _WhichOneofReturnType__motion_side_current_runway_ms | None:
         ...
 Global___TempStreamArmJointPositionsResponse: _TypeAlias = TempStreamArmJointPositionsResponse
