@@ -42,7 +42,7 @@ class Arm(ComponentBase):
         # To use get_3d_models:
         from viam.components.arm import Mesh
 
-    For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
+    For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/>`_.
     """
 
     Properties: "TypeAlias" = GetPropertiesResponse
@@ -166,7 +166,7 @@ class Arm(ComponentBase):
             Location is expressed as distance, which is represented by x, y, and z coordinate values.
             Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getendposition>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getendposition>`_.
         """
         ...
 
@@ -198,7 +198,7 @@ class Arm(ComponentBase):
                 Location is expressed as distance, which is represented by x, y, and z coordinate values.
                 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetoposition>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#movetoposition>`_.
         """
         ...
 
@@ -231,7 +231,7 @@ class Arm(ComponentBase):
         Args:
             positions (JointPositions): The destination ``JointPositions`` for the arm.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#movetojointpositions>`_.
         """
         ...
 
@@ -288,7 +288,7 @@ class Arm(ComponentBase):
             An empty ``positions`` list is passed through to the implementation
             unchanged; implementations must handle it, typically as a no-op.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#movethroughjointpositions>`_.
         """
         ...
 
@@ -369,7 +369,7 @@ class Arm(ComponentBase):
             ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
             and translational values (mm).
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getjointpositions>`_.
         """
         ...
 
@@ -391,7 +391,7 @@ class Arm(ComponentBase):
             # Stop all motion of the arm. It is assumed that the arm stops immediately.
             await my_arm.stop()
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#stop>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#stop>`_.
         """
         ...
 
@@ -413,7 +413,7 @@ class Arm(ComponentBase):
         Returns:
             bool: Whether the arm is moving.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#ismoving>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#ismoving>`_.
         """
         ...
 
@@ -456,7 +456,7 @@ class Arm(ComponentBase):
             See ``get_3d_models`` for meshes keyed by model name instead.
             If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getkinematics>`_.
         """
         ...
 
@@ -484,7 +484,7 @@ class Arm(ComponentBase):
         Note:
             Implementations with no models must return an empty mapping, not ``None``.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#get3dmodels>`_.
         """
         ...
 
@@ -515,7 +515,7 @@ class Arm(ComponentBase):
             manual_mode (bool): Whether to enter (``True``) or exit (``False``) manual mode.
             enabled_for (int): How long to stay in manual mode, in seconds. ``0`` means no time limit.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#setmanualmode>`_.
         """
         ...
 
@@ -540,7 +540,7 @@ class Arm(ComponentBase):
         Returns:
             bool: Whether the arm is in manual mode.
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getmanualmode>`_.
         """
         ...
 
@@ -566,6 +566,6 @@ class Arm(ComponentBase):
             Properties: The arm's properties; whether it supports software-enabled manual mode
             and whether it supports direct cartesian commands (``move_to_position``).
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getproperties>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getproperties>`_.
         """
         ...
