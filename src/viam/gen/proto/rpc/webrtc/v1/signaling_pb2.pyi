@@ -183,11 +183,14 @@ class CallResponseInitStage(_message.Message):
     """
     DESCRIPTOR: _descriptor.Descriptor
     SDP_FIELD_NUMBER: _builtins.int
+    MUST_AUTH_AGAINST_ANSWERER_FIELD_NUMBER: _builtins.int
     sdp: _builtins.str
+    must_auth_against_answerer: _builtins.bool
+    'must_auth_against_answerer tells the caller that the signaling server could not\n    authenticate it, so it must authenticate with the answerer over the PeerConnection.\n    '
 
-    def __init__(self, *, sdp: _builtins.str=...) -> None:
+    def __init__(self, *, sdp: _builtins.str=..., must_auth_against_answerer: _builtins.bool=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['sdp', b'sdp']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['must_auth_against_answerer', b'must_auth_against_answerer', 'sdp', b'sdp']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -365,9 +368,12 @@ class AnswerRequestInitStage(_message.Message):
     DEADLINE_FIELD_NUMBER: _builtins.int
     CALLER_AUTH_ENTITY_FIELD_NUMBER: _builtins.int
     CALLER_AUTH_METADATA_FIELD_NUMBER: _builtins.int
+    MUST_AUTH_CALLER_FIELD_NUMBER: _builtins.int
     sdp: _builtins.str
     caller_auth_entity: _builtins.str
     "caller_auth_entity is the caller's authenticated entity (its JWT subject), extracted\n    from the caller's auth token by the signaling server. Only the caller's identity is\n    forwarded to the answerer, not its bearer token. Empty when the caller was\n    unauthenticated.\n    "
+    must_auth_caller: _builtins.bool
+    'a warning from the signaling server that the signaling server\n    could not auth the caller. if this flag is true, the answerer\n    must auth the caller itself\n    '
 
     @_builtins.property
     def optional_config(self) -> Global___WebRTCConfig:
@@ -383,13 +389,13 @@ class AnswerRequestInitStage(_message.Message):
         from the caller's auth token by the signaling server.
         """
 
-    def __init__(self, *, sdp: _builtins.str=..., optional_config: Global___WebRTCConfig | None=..., deadline: _timestamp_pb2.Timestamp | None=..., caller_auth_entity: _builtins.str=..., caller_auth_metadata: _abc.Mapping[_builtins.str, _builtins.str] | None=...) -> None:
+    def __init__(self, *, sdp: _builtins.str=..., optional_config: Global___WebRTCConfig | None=..., deadline: _timestamp_pb2.Timestamp | None=..., caller_auth_entity: _builtins.str=..., caller_auth_metadata: _abc.Mapping[_builtins.str, _builtins.str] | None=..., must_auth_caller: _builtins.bool=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deadline', b'_deadline', 'caller_auth_entity', b'caller_auth_entity', 'caller_auth_metadata', b'caller_auth_metadata', 'deadline', b'deadline', 'optional_config', b'optional_config', 'sdp', b'sdp']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_deadline', b'_deadline', 'caller_auth_entity', b'caller_auth_entity', 'caller_auth_metadata', b'caller_auth_metadata', 'deadline', b'deadline', 'must_auth_caller', b'must_auth_caller', 'optional_config', b'optional_config', 'sdp', b'sdp']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -522,11 +528,14 @@ class AnswerResponseInitStage(_message.Message):
     """
     DESCRIPTOR: _descriptor.Descriptor
     SDP_FIELD_NUMBER: _builtins.int
+    CAN_AUTH_CALLERS_FIELD_NUMBER: _builtins.int
     sdp: _builtins.str
+    can_auth_callers: _builtins.bool
+    'can_auth_callers tells the signaling server that this answerer can authenticate\n    callers itself, so it may receive callers the signaling server could not authenticate.\n    '
 
-    def __init__(self, *, sdp: _builtins.str=...) -> None:
+    def __init__(self, *, sdp: _builtins.str=..., can_auth_callers: _builtins.bool=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['sdp', b'sdp']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['can_auth_callers', b'can_auth_callers', 'sdp', b'sdp']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
