@@ -32,6 +32,7 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
           attestations: false
           verbose: true
+          skip-existing: true
 
       - name: Get Release URL
         id: get_release
