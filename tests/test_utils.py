@@ -1,4 +1,5 @@
 import asyncio
+from types import MappingProxyType
 
 import pytest
 from google.protobuf.json_format import ParseError
@@ -61,6 +62,18 @@ def test_primitive_to_value():
     v = b"viamtest"
     nv = primitive_to_value(v)
     assert nv == Value(string_value=v.decode())
+
+
+def test_primitive_to_value_tuples_and_mappings():
+    # A tuple encodes like a list, at any depth, as dict_to_struct already does
+    v = {"position": (1.5, 2.5), "nested": [("a", 1)]}
+    nv = primitive_to_value(v)
+    assert value_to_primitive(nv) == {"position": [1.5, 2.5], "nested": [["a", 1]]}
+
+    # Any Mapping encodes like a dict
+    v = MappingProxyType({"foo": "bar"})
+    nv = primitive_to_value(v)
+    assert nv == Value(struct_value=Struct(fields={"foo": Value(string_value="bar")}))
 
 
 def test_primitive_to_value_errors():
@@ -199,6 +212,12 @@ def test_dict_to_struct():
     expected["x"] = X()
     with pytest.raises(ValueError):
         _ = dict_to_struct(expected)
+
+
+def test_dict_to_struct_bytes():
+    # Bytes encode as a string, the same as primitive_to_value
+    struct = dict_to_struct({"data": b"viamtest", "chunks": [bytearray(b"ab"), b"cd"], "pair": (b"x", 1)})
+    assert struct_to_dict(struct) == {"data": "viamtest", "chunks": ["ab", "cd"], "pair": ["x", 1]}
 
 
 def test_struct_to_dict():
