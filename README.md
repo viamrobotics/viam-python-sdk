@@ -29,7 +29,7 @@ If you intend to use the [`MLModel` service](https://python.viam.dev/autoapi/via
 `pip install 'viam-sdk[mlmodel]'`
 
 You can also run this command on an existing Python SDK install to add support for the ML model service.
-See the [ML (machine learning) model service](https://docs.viam.com/data-ai/ai/deploy/) documentation for more information.
+See the [ML (machine learning) model service](https://docs.viam.com/vision/deploy-and-maintain/deploy-from-registry/) documentation for more information.
 
 ### Upgrading
 

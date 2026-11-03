@@ -17,7 +17,7 @@ class Switch(ComponentBase):
 
         from viam.components.switch import Switch
 
-    For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/>`_.
+    For more information, see `Switch component <https://docs.viam.com/reference/apis/components/switch/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -48,7 +48,7 @@ class Switch(ComponentBase):
         Returns:
             int: The current position of the switch within the range of available positions.
 
-        For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/Switch/#getposition>`_.
+        For more information, see `Switch component <https://docs.viam.com/reference/apis/components/switch/#getposition>`_.
         """
         ...
 
@@ -72,7 +72,7 @@ class Switch(ComponentBase):
         Args:
             position (int): The position of the switch within the range of available positions.
 
-        For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/#setposition>`_.
+        For more information, see `Switch component <https://docs.viam.com/reference/apis/components/switch/#setposition>`_.
         """
         ...
 
@@ -93,6 +93,6 @@ class Switch(ComponentBase):
             Tuple[int, Sequence[str]]: The number of available positions and their labels
 
 
-        For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/#getnumberofpositions>`_.
+        For more information, see `Switch component <https://docs.viam.com/reference/apis/components/switch/#getnumberofpositions>`_.
         """
         ...

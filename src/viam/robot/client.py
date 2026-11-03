@@ -112,7 +112,7 @@ class RobotClient:
         if __name__ == '__main__':
             asyncio.run(main())
 
-    For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+    For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
     """
 
     @dataclass
@@ -174,7 +174,7 @@ class RobotClient:
             Returns:
                 Self: the RobotClient.Options
 
-            For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+            For more information, see `Establish a connection <https://docs.viam.com/reference/apis/robot/#establish-a-connection>`_.
             """
             self = cls(**kwargs)
             dial_opts = DialOptions.with_api_key(api_key, api_key_id)
@@ -209,7 +209,7 @@ class RobotClient:
         Returns:
             Self: the RobotClient
 
-        For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+        For more information, see `Establish a connection <https://docs.viam.com/reference/apis/robot/#establish-a-connection>`_.
         """
         logging.setLevel(options.log_level)
         channel = await dial(address, options.dial_options)
@@ -242,7 +242,7 @@ class RobotClient:
         Returns:
             Self: the RobotClient
 
-        For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+        For more information, see `Establish a connection <https://docs.viam.com/reference/apis/robot/#establish-a-connection>`_.
         """
         logging.setLevel(options.log_level)
         return await cls._with_channel(channel, options, False)
@@ -329,7 +329,7 @@ class RobotClient:
 
             await machine.refresh()
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
@@ -510,7 +510,7 @@ class RobotClient:
         Returns:
             ComponentBase: The component
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         if name.type != RESOURCE_TYPE_COMPONENT:
             raise ValueError(f"ResourceName does not describe a component: {name}")
@@ -557,7 +557,7 @@ class RobotClient:
         Returns:
             ServiceBase: The service
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         if name.type != RESOURCE_TYPE_SERVICE:
             raise ValueError(f"ResourceName does not describe a service: {name}")
@@ -576,7 +576,7 @@ class RobotClient:
         Returns:
             List[viam.proto.common.ResourceName]: The list of resource names
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         with self._lock:
             return [r for r in self._resource_names]
@@ -598,7 +598,7 @@ class RobotClient:
 
             await machine.close()
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         LOGGER.debug("Closing RobotClient")
         if self._closed:
@@ -647,7 +647,7 @@ class RobotClient:
         Returns:
             List[viam.proto.robot.Operation]: The list of operations currently running on a given machine.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = GetOperationsRequest()
         response: GetOperationsResponse = await self._client.GetOperations(request)
@@ -664,7 +664,7 @@ class RobotClient:
         Args:
             id (str): ID of operation to cancel.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = CancelOperationRequest(id=id)
         await self._client.CancelOperation(request)
@@ -681,7 +681,7 @@ class RobotClient:
         Args:
             id (str): ID of operation to block on.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = BlockForOperationRequest(id=id)
         await self._client.BlockForOperation(request)
@@ -703,7 +703,7 @@ class RobotClient:
         Returns:
             List[viam.proto.robot.FrameSystemConfig]: The configuration of a given machine's frame system.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = FrameSystemConfigRequest(supplemental_transforms=additional_transforms)
         response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(request)
@@ -742,7 +742,7 @@ class RobotClient:
         Returns:
             PoseInFrame: The pose of the component and the reference frame it is expressed in.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = GetPoseRequest(
             component_name=component_name,
@@ -791,7 +791,7 @@ class RobotClient:
         Returns:
             PoseInFrame: The pose and the reference frame for the new destination.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = TransformPoseRequest(
             source=query,
@@ -821,7 +821,7 @@ class RobotClient:
         Returns:
             bytes: The point cloud data relative to the destination reference frame
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = TransformPCDRequest(point_cloud_pcd=point_cloud_pcd, source=source, destination=destination)
         response: TransformPCDResponse = await self._client.TransformPCD(request)
@@ -869,7 +869,7 @@ class RobotClient:
             extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources' ``stop`` methods,
                 keyed on the resource's ``ResourceName``.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
 
         ep: List[StopExtraParameters] = []
@@ -894,7 +894,7 @@ class RobotClient:
             message (str): The log message.
             stack (str): The stack information of the log.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         entry = LogEntry(
             level=level,
@@ -925,7 +925,7 @@ class RobotClient:
         Returns:
             viam.proto.robot.GetCloudMetadataResponse: App-related metadata.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
 
         request = GetCloudMetadataRequest()
@@ -949,7 +949,7 @@ class RobotClient:
               status Unavailable if server is unavailable, or if machine server is in the process of
               shutting down when response is ready.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = ShutdownRequest()
         try:
@@ -985,7 +985,7 @@ class RobotClient:
         Returns:
             viam.proto.robot.GetVersionResponse: Machine version related information.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
 
         request = GetVersionRequest()
@@ -1012,7 +1012,7 @@ class RobotClient:
         Returns:
             viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, the status of modules (List[ModuleStatus]), and the status of packages (List[PackageStatus]).
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
 
         request = GetMachineStatusRequest()
@@ -1037,7 +1037,7 @@ class RobotClient:
         Raises:
             GRPCError: If a module can't be found matching the provided ID or name.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
 
         id = id if id else ""
@@ -1076,7 +1076,7 @@ class RobotClient:
         Returns:
             UploadDataFromPathResponse: Response containing files_uploaded, files_failed, bytes_uploaded, bytes_total, and ids.
 
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
         """
         request = UploadDataFromPathRequest(
             path=path,

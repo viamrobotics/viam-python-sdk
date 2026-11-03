@@ -61,7 +61,7 @@ class ComponentBase(abc.ABC, ResourceBase):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Sequence[Geometry]:
         """
         Get all geometries associated with the component, in their current configuration, in the
-        `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
+        `frame <https://docs.viam.com/motion-planning/obstacles/overview/>`__ of the component.
 
         ::
 
