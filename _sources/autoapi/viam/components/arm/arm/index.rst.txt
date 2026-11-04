@@ -38,7 +38,7 @@ Module Contents
        # To use get_3d_models:
        from viam.components.arm import Mesh
 
-   For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
+   For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/>`_.
 
 
    .. py:type:: Properties
@@ -156,7 +156,7 @@ Module Contents
                 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
       :rtype: Pose
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getendposition>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getendposition>`_.
 
 
 
@@ -184,7 +184,7 @@ Module Contents
                    Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
       :type pose: Pose
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetoposition>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#movetoposition>`_.
 
 
 
@@ -213,7 +213,7 @@ Module Contents
       :param positions: The destination ``JointPositions`` for the arm.
       :type positions: JointPositions
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#movetojointpositions>`_.
 
 
 
@@ -267,7 +267,7 @@ Module Contents
          An empty ``positions`` list is passed through to the implementation
          unchanged; implementations must handle it, typically as a no-op.
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#movethroughjointpositions>`_.
 
 
 
@@ -340,7 +340,7 @@ Module Contents
                 and translational values (mm).
       :rtype: JointPositions
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getjointpositions>`_.
 
 
 
@@ -359,7 +359,7 @@ Module Contents
           # Stop all motion of the arm. It is assumed that the arm stops immediately.
           await my_arm.stop()
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#stop>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#stop>`_.
 
 
 
@@ -384,7 +384,7 @@ Module Contents
       :returns: Whether the arm is moving.
       :rtype: bool
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#ismoving>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#ismoving>`_.
 
 
 
@@ -423,7 +423,7 @@ Module Contents
                 If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getkinematics>`_.
 
 
 
@@ -453,7 +453,7 @@ Module Contents
 
       .. note:: Implementations with no models must return an empty mapping, not ``None``.
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#get3dmodels>`_.
 
 
 
@@ -480,7 +480,7 @@ Module Contents
       :param enabled_for: How long to stay in manual mode, in seconds. ``0`` means no time limit.
       :type enabled_for: int
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#setmanualmode>`_.
 
 
 
@@ -502,7 +502,7 @@ Module Contents
       :returns: Whether the arm is in manual mode.
       :rtype: bool
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getmanualmode>`_.
 
 
 
@@ -525,7 +525,7 @@ Module Contents
                 and whether it supports direct cartesian commands (``move_to_position``).
       :rtype: Properties
 
-      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getproperties>`_.
+      For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getproperties>`_.
 
 
 
@@ -573,7 +573,7 @@ Module Contents
 
 
       Get all geometries associated with the component, in their current configuration, in the
-      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
+      `frame <https://docs.viam.com/motion-planning/obstacles/overview/>`__ of the component.
 
       ::
 

@@ -30,7 +30,7 @@ Module Contents
 
        from viam.components.gripper import Gripper
 
-   For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+   For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
 
 
    .. py:attribute:: API
@@ -72,7 +72,7 @@ Module Contents
           # Open the gripper.
           await my_gripper.open()
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#open>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#open>`_.
 
 
 
@@ -94,7 +94,7 @@ Module Contents
       :returns: Indicates if the gripper grabbed something.
       :rtype: bool
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#grab>`_.
 
 
 
@@ -118,7 +118,7 @@ Module Contents
       :returns: see documentation on `HoldingStatus` for more information
       :rtype: HoldingStatus
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#grab>`_.
 
 
 
@@ -138,7 +138,7 @@ Module Contents
           # Stop the gripper.
           await my_gripper.stop()
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#stop>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#stop>`_.
 
 
 
@@ -161,7 +161,7 @@ Module Contents
       :returns: Whether the gripper is moving.
       :rtype: bool
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#is_moving>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#ismoving>`_.
 
 
 
@@ -199,7 +199,7 @@ Module Contents
                 If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#getkinematics>`_.
 
 
 
@@ -221,7 +221,7 @@ Module Contents
       :returns: The current input values of the gripper.
       :rtype: List[float]
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
 
 
 
@@ -243,7 +243,7 @@ Module Contents
       :param values: The input values to move the gripper to.
       :type values: List[float]
 
-      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
+      For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
 
 
 
@@ -291,7 +291,7 @@ Module Contents
 
 
       Get all geometries associated with the component, in their current configuration, in the
-      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
+      `frame <https://docs.viam.com/motion-planning/obstacles/overview/>`__ of the component.
 
       ::
 

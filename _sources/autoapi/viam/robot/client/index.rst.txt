@@ -72,7 +72,7 @@ Module Contents
        if __name__ == '__main__':
            asyncio.run(main())
 
-   For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+   For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
    .. py:class:: Options
@@ -153,7 +153,7 @@ Module Contents
          :returns: the RobotClient.Options
          :rtype: Self
 
-         For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+         For more information, see `Establish a connection <https://docs.viam.com/reference/apis/robot/#establish-a-connection>`_.
 
 
 
@@ -191,7 +191,7 @@ Module Contents
       :returns: the RobotClient
       :rtype: Self
 
-      For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+      For more information, see `Establish a connection <https://docs.viam.com/reference/apis/robot/#establish-a-connection>`_.
 
 
 
@@ -225,7 +225,7 @@ Module Contents
       :returns: the RobotClient
       :rtype: Self
 
-      For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+      For more information, see `Establish a connection <https://docs.viam.com/reference/apis/robot/#establish-a-connection>`_.
 
 
 
@@ -239,7 +239,7 @@ Module Contents
 
           await machine.refresh()
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -287,7 +287,7 @@ Module Contents
       :returns: The component
       :rtype: ComponentBase
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -331,7 +331,7 @@ Module Contents
       :returns: The service
       :rtype: ServiceBase
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -348,7 +348,7 @@ Module Contents
       :returns: The list of resource names
       :rtype: List[viam.proto.common.ResourceName]
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
    .. py:method:: close()
@@ -361,7 +361,7 @@ Module Contents
 
           await machine.close()
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -388,7 +388,7 @@ Module Contents
       :returns: The list of operations currently running on a given machine.
       :rtype: List[viam.proto.robot.Operation]
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -405,7 +405,7 @@ Module Contents
       :param id: ID of operation to cancel.
       :type id: str
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -423,7 +423,7 @@ Module Contents
       :param id: ID of operation to block on.
       :type id: str
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -442,7 +442,7 @@ Module Contents
       :returns: The configuration of a given machine's frame system.
       :rtype: List[viam.proto.robot.FrameSystemConfig]
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -477,7 +477,7 @@ Module Contents
       :returns: The pose of the component and the reference frame it is expressed in.
       :rtype: PoseInFrame
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -516,7 +516,7 @@ Module Contents
       :returns: The pose and the reference frame for the new destination.
       :rtype: PoseInFrame
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -543,7 +543,7 @@ Module Contents
       :returns: The point cloud data relative to the destination reference frame
       :rtype: bytes
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -581,7 +581,7 @@ Module Contents
                     keyed on the resource's ``ResourceName``.
       :type extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]]
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -604,7 +604,7 @@ Module Contents
       :param stack: The stack information of the log.
       :type stack: str
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -625,7 +625,7 @@ Module Contents
       :returns: App-related metadata.
       :rtype: viam.proto.robot.GetCloudMetadataResponse
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -644,7 +644,7 @@ Module Contents
           status Unavailable if server is unavailable, or if machine server is in the process of
           shutting down when response is ready.
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -664,7 +664,7 @@ Module Contents
       :returns: Machine version related information.
       :rtype: viam.proto.robot.GetVersionResponse
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -687,7 +687,7 @@ Module Contents
       :returns: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]), the revision of the config of the machine, the status of modules (List[ModuleStatus]), and the status of packages (List[PackageStatus]).
       :rtype: viam.proto.robot.GetMachineStatusResponse
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -708,7 +708,7 @@ Module Contents
 
       :raises GRPCError: If a module can't be found matching the provided ID or name.
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 
@@ -737,7 +737,7 @@ Module Contents
       :returns: Response containing files_uploaded, files_failed, bytes_uploaded, bytes_total, and ids.
       :rtype: UploadDataFromPathResponse
 
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+      For more information, see `Machine Management API <https://docs.viam.com/reference/apis/robot/>`_.
 
 
 

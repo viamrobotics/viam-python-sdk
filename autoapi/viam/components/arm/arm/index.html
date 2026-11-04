@@ -209,7 +209,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <span class="kn">from</span><span class="w"> </span><span class="nn">viam.components.arm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
 </pre></div>
 </div>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/">Arm component</a>.</p>
 <dl class="py type">
 <dt class="sig sig-object py" id="viam.components.arm.arm.Arm.Properties">
 <span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Properties</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetPropertiesResponse" title="viam.gen.common.v1.common_pb2.GetPropertiesResponse"><span class="pre">GetPropertiesResponse</span></a></span><a class="headerlink" href="#viam.components.arm.arm.Arm.Properties" title="Link to this definition"></a></dt>
@@ -326,7 +326,7 @@ Orientation is expressed as an orientation vector, which is represented by o_x, 
 <dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.arm.Pose" title="viam.components.arm.Pose">Pose</a></p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getendposition">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#getendposition">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -354,7 +354,7 @@ Location is expressed as distance, which is represented by x, y, and z coordinat
 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#movetoposition">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#movetoposition">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -383,7 +383,7 @@ Orientation is expressed as an orientation vector, which is represented by o_x, 
 <dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="../index.html#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <code class="docutils literal notranslate"><span class="pre">JointPositions</span></code> for the arm.</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#movetojointpositions">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -436,7 +436,7 @@ not both.</p>
 <p>An empty <code class="docutils literal notranslate"><span class="pre">positions</span></code> list is passed through to the implementation
 unchanged; implementations must handle it, typically as a no-op.</p>
 </div>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#movethroughjointpositions">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#movethroughjointpositions">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -514,7 +514,7 @@ and translational values (mm).</p>
 <dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#getjointpositions">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -531,7 +531,7 @@ and translational values (mm).</p>
 <span class="k">await</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#stop">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#stop">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -559,7 +559,7 @@ and translational values (mm).</p>
 <dd class="field-even"><p>bool</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#ismoving">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#ismoving">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -602,7 +602,7 @@ If available, a fourth [3] value provides the structured <code class="docutils l
 <dd class="field-odd"><p>Tuple[KinematicsFileFormat.ValueType, bytes]</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#getkinematics">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -637,7 +637,7 @@ by URDF filepath rather than by model name.</p>
 <p class="admonition-title">Note</p>
 <p>Implementations with no models must return an empty mapping, not <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </div>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#get3dmodels">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -665,7 +665,7 @@ by URDF filepath rather than by model name.</p>
 </ul>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#setmanualmode">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#setmanualmode">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -690,7 +690,7 @@ by URDF filepath rather than by model name.</p>
 <dd class="field-even"><p>bool</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getmanualmode">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#getmanualmode">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -716,7 +716,7 @@ and whether it supports direct cartesian commands (<code class="docutils literal
 <dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.arm.Arm.Properties" title="viam.components.arm.arm.Arm.Properties">Properties</a></p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getproperties">Arm component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/reference/apis/components/arm/#getproperties">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -771,7 +771,7 @@ and whether it supports direct cartesian commands (<code class="docutils literal
 <dt class="sig sig-object py" id="viam.components.arm.arm.Arm.get_geometries">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Sequence" title="viam.gen.app.data.v1.data_pb2.Sequence"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><span class="pre">viam.proto.common.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.arm.arm.Arm.get_geometries" title="Link to this definition"></a></dt>
 <dd><p>Get all geometries associated with the component, in their current configuration, in the
-<a class="reference external" href="https://docs.viam.com/operate/mobility/define-geometry/">frame</a> of the component.</p>
+<a class="reference external" href="https://docs.viam.com/motion-planning/obstacles/overview/">frame</a> of the component.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometries</span> <span class="o">=</span> <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_geometries</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">geometries</span><span class="p">:</span>

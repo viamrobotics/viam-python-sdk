@@ -267,7 +267,7 @@
 <span class="sd">            asyncio.run(main())</span>
 
 
-<span class="sd">    For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/&gt;`_.</span>
+<span class="sd">    For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DataClient.TabularData">
@@ -602,7 +602,7 @@
 <span class="sd">                - ``count`` (*int*): The count (number of entries).</span>
 <span class="sd">                - ``last`` (*str*): The last-returned page ID.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#tabulardatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
 
@@ -656,7 +656,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabysql&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#tabulardatabysql&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataBySQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">sql_query</span><span class="o">=</span><span class="n">sql_query</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataBySQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataBySQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -705,7 +705,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#tabulardatabymql&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">query</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">query</span>  <span class="c1"># type: ignore</span>
         <span class="n">data_source</span> <span class="o">=</span> <span class="n">TabularDataSource</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">tabular_data_source_type</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="o">=</span><span class="n">pipeline_id</span><span class="p">)</span>
@@ -769,7 +769,7 @@
 <span class="sd">                - ``time_synced`` (*datetime*): The time synced.</span>
 <span class="sd">                - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#getlatesttabulardata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetLatestTabularDataRequest</span><span class="p">(</span>
@@ -826,7 +826,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[TabularDataPoint]: The unified tabular data and metadata.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#exporttabulardata&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#exporttabulardata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">interval</span> <span class="o">=</span> <span class="n">CaptureInterval</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">))</span>
@@ -934,7 +934,7 @@
 <span class="sd">                - ``count`` (*int*): The count (number of entries).</span>
 <span class="sd">                - ``last`` (*str*): The last-returned page ID.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#binarydatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
@@ -1001,7 +1001,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[~viam.proto.app.data.BinaryData]: The binary data.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#binarydatabyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -1058,7 +1058,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#deletetabulardata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1094,7 +1094,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletebinarydatabyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#deletebinarydatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
@@ -1140,7 +1140,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletebinarydatabyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#deletebinarydatabyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteBinaryDataByIDsRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -1190,7 +1190,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#addtagstobinarydatabyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -1222,7 +1222,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no tags are provided.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#addtagstobinarydatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
@@ -1271,7 +1271,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of tags removed.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removetagsfrombinarydatabyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#removetagsfrombinarydatabyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveTagsFromBinaryDataByIDsRequest</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -1309,7 +1309,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of tags removed.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removetagsfrombinarydatabyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#removetagsfrombinarydatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
@@ -1337,7 +1337,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The list of tags.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tagsbyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#tagsbyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">TagsByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
@@ -1390,7 +1390,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The bounding box ID.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addboundingboxtoimagebyid&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#addboundingboxtoimagebyid&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_id</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -1462,7 +1462,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            N/A</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#updateboundingbox&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateBoundingBoxRequest</span><span class="p">(</span>
             <span class="n">binary_data_id</span><span class="o">=</span><span class="n">binary_id</span><span class="p">,</span>
@@ -1496,7 +1496,7 @@
 <span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
 <span class="sd">                list of strings.*</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#removeboundingboxfromimagebyid&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_id</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -1529,7 +1529,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The list of bounding box labels.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#boundingboxlabelsbyfilter&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#boundingboxlabelsbyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
@@ -1553,7 +1553,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The hostname of the federated database.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getdatabaseconnection&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#getdatabaseconnection&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetDatabaseConnectionRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDatabaseConnectionResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetDatabaseConnection</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1578,7 +1578,7 @@
 <span class="sd">                To find your organization ID, visit the organization settings page.</span>
 <span class="sd">            password (str): The password of the user.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#configuredatabaseuser&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ConfigureDatabaseUserRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ConfigureDatabaseUser</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1607,7 +1607,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createdataset&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#createdataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1636,7 +1636,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MergeDatasetsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_ids</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MergeDatasetsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">MergeDatasets</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1666,7 +1666,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            TSequence[Dataset]: The list of datasets.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#listdatasetsbyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByIDsRequest</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1697,7 +1697,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            TSequence[Dataset]: The list of datasets in the organization.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#listdatasetsbyorganizationid&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">dataset_type</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByOrganizationIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByOrganizationID</span><span class="p">(</span>
@@ -1728,7 +1728,7 @@
 <span class="sd">                - Select **Copy dataset ID**.</span>
 <span class="sd">            name (str): The new name of the dataset.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#renamedataset&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#renamedataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RenameDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">RenameDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1753,7 +1753,7 @@
 <span class="sd">                    - Click the **...** menu.</span>
 <span class="sd">                    - Select **Copy dataset ID**.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletedataset&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#deletedataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">DeleteDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1775,7 +1775,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The job ID of the export job.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#startsequencedatasetexport&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">StartSequenceDatasetExportRequest</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">StartSequenceDatasetExportResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">StartSequenceDatasetExport</span><span class="p">(</span>
@@ -1807,7 +1807,7 @@
 <span class="sd">                - created_at: When the job was created.</span>
 <span class="sd">                - completed_at: When the job completed (if applicable).</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#getsequencedatasetexport&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetSequenceDatasetExportRequest</span><span class="p">(</span><span class="n">job_id</span><span class="o">=</span><span class="n">job_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">GetSequenceDatasetExport</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
@@ -1848,7 +1848,7 @@
 <span class="sd">                - Click the **...** menu.</span>
 <span class="sd">                - Select **Copy dataset ID**.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#addbinarydatatodatasetbyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -1897,7 +1897,7 @@
 <span class="sd">                - Click the **...** menu.</span>
 <span class="sd">                - Select **Copy dataset ID**.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#removebinarydatafromdatasetbyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
@@ -1970,7 +1970,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The binary data ID of the uploaded data.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#binarydatacaptureupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
             <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
@@ -2061,7 +2061,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The file ID of the uploaded data.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tabulardatacaptureupload&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#tabulardatacaptureupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">):</span>
@@ -2159,7 +2159,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The binary data ID of the uploaded data.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#streamingdatacaptureupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">upload_metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
@@ -2244,7 +2244,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: Binary data ID of the new file.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#fileupload&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#fileupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
             <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
@@ -2310,7 +2310,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: Binary data ID of the new file.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#fileuploadfrompath&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">file_name</span> <span class="k">if</span> <span class="n">file_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">path</span><span class="o">.</span><span class="n">stem</span>
@@ -2528,7 +2528,7 @@
 <span class="sd">            index_spec (List[Dict[str, Any]]): The MongoDB index specification defined in JSON format.</span>
 <span class="sd">            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createindex&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#createindex&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">index_spec_bytes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">index_spec</span><span class="p">)]</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateIndexRequest</span><span class="p">(</span>
@@ -2559,7 +2559,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Index]: A list of indexes.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listindexes&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#listindexes&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListIndexesRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
@@ -2588,7 +2588,7 @@
 <span class="sd">            index_name (str): The name of the index to delete.</span>
 <span class="sd">            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deleteindex&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#deleteindex&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteIndexRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
@@ -2628,7 +2628,7 @@
 <span class="sd">                - ``signed_url`` (*str*): The signed URL for the binary data file.</span>
 <span class="sd">                - ``expires_at`` (*datetime*): The expiration time of the signed URL token.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#createbinarydatasignedurl&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateBinaryDataSignedURLRequest</span><span class="p">(</span><span class="n">binary_data_id</span><span class="o">=</span><span class="n">binary_data_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">expiration_minutes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2652,7 +2652,7 @@
 <span class="sd">            sequence_ids (List[str]): The IDs of the sequences to add to the dataset.</span>
 <span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#addsequencestodataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddSequencesToDatasetRequest</span><span class="p">(</span>
             <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
@@ -2676,7 +2676,7 @@
 <span class="sd">            sequence_ids (List[str]): The IDs of the sequences to remove from the dataset.</span>
 <span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#removesequencesfromdataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveSequencesFromDatasetRequest</span><span class="p">(</span>
             <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
@@ -2710,7 +2710,7 @@
 <span class="sd">                - The next page token (empty string if no more pages).</span>
 <span class="sd">                - The total count of sequences.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#sequencesbydatasetid&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">SequencesByDatasetIDRequest</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2747,7 +2747,7 @@
 <span class="sd">                - A list of binary data in the sequence.</span>
 <span class="sd">                - The next page token (empty string if no more pages).</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#getsequencebinarydata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetSequenceBinaryDataRequest</span><span class="p">(</span><span class="n">sequence_id</span><span class="o">=</span><span class="n">sequence_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2784,7 +2784,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The ID of the newly created sequence.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createsequence&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#createsequence&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateSequenceRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="n">resources</span><span class="p">)</span>
         <span class="n">request</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
@@ -2807,7 +2807,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence: The requested sequence.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getsequence&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#getsequence&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetSequenceRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetSequenceResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetSequence</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
@@ -2841,7 +2841,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If no updatable field is provided.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#updatesequence&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#updatesequence&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">paths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateSequenceRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
@@ -2872,7 +2872,7 @@
 <span class="sd">            id (str): The ID of the sequence to delete.</span>
 <span class="sd">            timeout (Optional[float]): An optional deadline for the call to complete in seconds.</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletesequence&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#deletesequence&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteSequenceRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteSequence</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
@@ -2900,7 +2900,7 @@
 <span class="sd">                - A list of sequences in the organization.</span>
 <span class="sd">                - The next page token (empty string if no more pages).</span>
 
-<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listsequences&gt;`_.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/reference/apis/data-client/#listsequences&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListSequencesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

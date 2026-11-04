@@ -56,7 +56,7 @@ Module Contents
            asyncio.run(main())
 
 
-   For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/>`_.
+   For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/>`_.
 
 
    .. py:class:: TabularData
@@ -413,7 +413,7 @@ Module Contents
                     - ``last`` (*str*): The last-returned page ID.
       :rtype: Tuple[List[TabularData], int, str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatabyfilter>`_.
 
 
 
@@ -440,7 +440,7 @@ Module Contents
       :returns: An array of decoded BSON data objects.
       :rtype: List[Dict[str, Union[ValueTypes, datetime]]]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabysql>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatabysql>`_.
 
 
 
@@ -483,7 +483,7 @@ Module Contents
       :returns: An array of decoded BSON data objects.
       :rtype: List[Dict[str, Union[ValueTypes, datetime]]]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatabymql>`_.
 
 
 
@@ -531,7 +531,7 @@ Module Contents
                     - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
       :rtype: Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getlatesttabulardata>`_.
 
 
 
@@ -573,7 +573,7 @@ Module Contents
       :returns: The unified tabular data and metadata.
       :rtype: List[TabularDataPoint]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#exporttabulardata>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#exporttabulardata>`_.
 
 
 
@@ -651,7 +651,7 @@ Module Contents
                     - ``last`` (*str*): The last-returned page ID.
       :rtype: Tuple[List[~viam.proto.app.data.BinaryData], int, str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#binarydatabyfilter>`_.
 
 
 
@@ -690,7 +690,7 @@ Module Contents
       :returns: The binary data.
       :rtype: List[~viam.proto.app.data.BinaryData]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#binarydatabyids>`_.
 
 
 
@@ -732,7 +732,7 @@ Module Contents
       :returns: The number of items deleted.
       :rtype: int
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletetabulardata>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletetabulardata>`_.
 
 
 
@@ -769,7 +769,7 @@ Module Contents
       :returns: The number of items deleted.
       :rtype: int
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletebinarydatabyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletebinarydatabyfilter>`_.
 
 
 
@@ -811,7 +811,7 @@ Module Contents
       :returns: The number of items deleted.
       :rtype: int
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletebinarydatabyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletebinarydatabyids>`_.
 
 
 
@@ -853,7 +853,7 @@ Module Contents
 
       :raises GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addtagstobinarydatabyids>`_.
 
 
 
@@ -878,7 +878,7 @@ Module Contents
 
       :raises GRPCError: If no tags are provided.
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addtagstobinarydatabyfilter>`_.
 
 
 
@@ -925,7 +925,7 @@ Module Contents
       :returns: The number of tags removed.
       :rtype: int
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removetagsfrombinarydatabyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removetagsfrombinarydatabyids>`_.
 
 
 
@@ -953,7 +953,7 @@ Module Contents
       :returns: The number of tags removed.
       :rtype: int
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removetagsfrombinarydatabyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removetagsfrombinarydatabyfilter>`_.
 
 
 
@@ -976,7 +976,7 @@ Module Contents
       :returns: The list of tags.
       :rtype: List[str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tagsbyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tagsbyfilter>`_.
 
 
 
@@ -1022,7 +1022,7 @@ Module Contents
       :returns: The bounding box ID.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addboundingboxtoimagebyid>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addboundingboxtoimagebyid>`_.
 
 
 
@@ -1067,7 +1067,7 @@ Module Contents
 
       :returns: N/A
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updateboundingboxtoimagebyid>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#updateboundingbox>`_.
 
 
 
@@ -1092,7 +1092,7 @@ Module Contents
                         list of strings.*
       :type binary_id: Union[~viam.proto.app.data.BinaryID, str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
 
 
 
@@ -1119,7 +1119,7 @@ Module Contents
       :returns: The list of bounding box labels.
       :rtype: List[str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#boundingboxlabelsbyfilter>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#boundingboxlabelsbyfilter>`_.
 
 
 
@@ -1140,7 +1140,7 @@ Module Contents
       :returns: The hostname of the federated database.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getdatabaseconnection>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getdatabaseconnection>`_.
 
 
 
@@ -1164,7 +1164,7 @@ Module Contents
       :param password: The password of the user.
       :type password: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#configuredatabaseuser>`_.
 
 
 
@@ -1194,7 +1194,7 @@ Module Contents
       :returns: The dataset ID of the created dataset.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createdataset>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createdataset>`_.
 
 
 
@@ -1224,7 +1224,7 @@ Module Contents
       :returns: The dataset ID of the created dataset.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/>`_.
 
 
 
@@ -1252,7 +1252,7 @@ Module Contents
       :returns: The list of datasets.
       :rtype: TSequence[Dataset]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listdatasetsbyids>`_.
 
 
 
@@ -1279,7 +1279,7 @@ Module Contents
       :returns: The list of datasets in the organization.
       :rtype: TSequence[Dataset]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listdatasetsbyorganizationid>`_.
 
 
 
@@ -1306,7 +1306,7 @@ Module Contents
       :param name: The new name of the dataset.
       :type name: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#renamedataset>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#renamedataset>`_.
 
 
 
@@ -1330,7 +1330,7 @@ Module Contents
                  - Select **Copy dataset ID**.
       :type id: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletedataset>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletedataset>`_.
 
 
 
@@ -1348,7 +1348,7 @@ Module Contents
       :returns: The job ID of the export job.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#startsequencedatasetexport>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#startsequencedatasetexport>`_.
 
 
 
@@ -1375,7 +1375,7 @@ Module Contents
                     - completed_at: When the job completed (if applicable).
       :rtype: GetSequenceDatasetExportResponse
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencedatasetexport>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getsequencedatasetexport>`_.
 
 
 
@@ -1416,7 +1416,7 @@ Module Contents
                          - Select **Copy dataset ID**.
       :type dataset_id: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
 
 
 
@@ -1459,7 +1459,7 @@ Module Contents
                          - Select **Copy dataset ID**.
       :type dataset_id: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
 
 
 
@@ -1521,7 +1521,7 @@ Module Contents
       :returns: The binary data ID of the uploaded data.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#binarydatacaptureupload>`_.
 
 
 
@@ -1582,7 +1582,7 @@ Module Contents
       :returns: The file ID of the uploaded data.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatacaptureupload>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#tabulardatacaptureupload>`_.
 
 
 
@@ -1638,7 +1638,7 @@ Module Contents
       :returns: The binary data ID of the uploaded data.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#streamingdatacaptureupload>`_.
 
 
 
@@ -1692,7 +1692,7 @@ Module Contents
       :returns: Binary data ID of the new file.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileupload>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#fileupload>`_.
 
 
 
@@ -1741,7 +1741,7 @@ Module Contents
       :returns: Binary data ID of the new file.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#fileuploadfrompath>`_.
 
 
 
@@ -1889,7 +1889,7 @@ Module Contents
       :param pipeline_name: The name of the pipeline if the collection type is PIPELINE_SINK.
       :type pipeline_name: Optional[str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createindex>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createindex>`_.
 
 
 
@@ -1910,7 +1910,7 @@ Module Contents
       :returns: A list of indexes.
       :rtype: List[Index]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listindexes>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listindexes>`_.
 
 
 
@@ -1930,7 +1930,7 @@ Module Contents
       :param pipeline_name: The name of the pipeline if the collection type is PIPELINE_SINK.
       :type pipeline_name: Optional[str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deleteindex>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deleteindex>`_.
 
 
 
@@ -1963,7 +1963,7 @@ Module Contents
                     - ``expires_at`` (*datetime*): The expiration time of the signed URL token.
       :rtype: Tuple[str, datetime]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createbinarydatasignedurl>`_.
 
 
 
@@ -1980,7 +1980,7 @@ Module Contents
       :param timeout: An optional deadline for the call to complete in seconds.
       :type timeout: Optional[float]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addsequencestodataset>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#addsequencestodataset>`_.
 
 
 
@@ -1997,7 +1997,7 @@ Module Contents
       :param timeout: An optional deadline for the call to complete in seconds.
       :type timeout: Optional[float]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removesequencesfromdataset>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#removesequencesfromdataset>`_.
 
 
 
@@ -2026,7 +2026,7 @@ Module Contents
                     - The total count of sequences.
       :rtype: Tuple[List[Sequence], str, int]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#sequencesbydatasetid>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#sequencesbydatasetid>`_.
 
 
 
@@ -2052,7 +2052,7 @@ Module Contents
                     - The next page token (empty string if no more pages).
       :rtype: Tuple[List[BinaryData], str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequencebinarydata>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getsequencebinarydata>`_.
 
 
 
@@ -2078,7 +2078,7 @@ Module Contents
       :returns: The ID of the newly created sequence.
       :rtype: str
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createsequence>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#createsequence>`_.
 
 
 
@@ -2096,7 +2096,7 @@ Module Contents
       :returns: The requested sequence.
       :rtype: Sequence
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getsequence>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#getsequence>`_.
 
 
 
@@ -2124,7 +2124,7 @@ Module Contents
 
       :raises ValueError: If no updatable field is provided.
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#updatesequence>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#updatesequence>`_.
 
 
 
@@ -2139,7 +2139,7 @@ Module Contents
       :param timeout: An optional deadline for the call to complete in seconds.
       :type timeout: Optional[float]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletesequence>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#deletesequence>`_.
 
 
 
@@ -2165,7 +2165,7 @@ Module Contents
                     - The next page token (empty string if no more pages).
       :rtype: Tuple[List[Sequence], str]
 
-      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listsequences>`_.
+      For more information, see `Data Client API <https://docs.viam.com/reference/apis/data-client/#listsequences>`_.
 
 
 
