@@ -65,7 +65,10 @@ class Request(_message.Message):
     HEADERS_FIELD_NUMBER: _builtins.int
     MESSAGE_FIELD_NUMBER: _builtins.int
     RST_STREAM_FIELD_NUMBER: _builtins.int
+    API_TOKEN_FIELD_NUMBER: _builtins.int
     rst_stream: _builtins.bool
+    api_token: _builtins.str
+    'api_token lets a client authenticate with the answerer over the PeerConnection when\n    the signaling server could not authenticate it. In the form `<api-key-id>:<api-key>`.\n    '
 
     @_builtins.property
     def stream(self) -> Global___Stream:
@@ -79,17 +82,17 @@ class Request(_message.Message):
     def message(self) -> Global___RequestMessage:
         ...
 
-    def __init__(self, *, stream: Global___Stream | None=..., headers: Global___RequestHeaders | None=..., message: Global___RequestMessage | None=..., rst_stream: _builtins.bool=...) -> None:
+    def __init__(self, *, stream: Global___Stream | None=..., headers: Global___RequestHeaders | None=..., message: Global___RequestMessage | None=..., rst_stream: _builtins.bool=..., api_token: _builtins.str=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['api_token', b'api_token', 'headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['api_token', b'api_token', 'headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-    _WhichOneofReturnType_type: _TypeAlias = _typing.Literal['headers', 'message', 'rst_stream']
+    _WhichOneofReturnType_type: _TypeAlias = _typing.Literal['headers', 'message', 'rst_stream', 'api_token']
     _WhichOneofArgType_type: _TypeAlias = _typing.Literal['type', b'type']
 
     def WhichOneof(self, oneof_group: _WhichOneofArgType_type) -> _WhichOneofReturnType_type | None:
