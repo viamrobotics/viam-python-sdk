@@ -1,6 +1,7 @@
 from abc import abstractmethod
+from collections.abc import Mapping
 from logging import Logger
-from typing import TYPE_CHECKING, Any, ClassVar, Mapping, Optional, Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Any, ClassVar, Protocol, runtime_checkable
 
 from typing_extensions import Self
 
@@ -73,7 +74,7 @@ class ResourceBase(Protocol):
 
     @abstractmethod
     async def do_command(
-        self, command: Mapping[str, "ValueTypes"], *, timeout: Optional[float] = None, **kwargs
+        self, command: Mapping[str, "ValueTypes"], *, timeout: float | None = None, **kwargs
     ) -> Mapping[str, "ValueTypes"]:
         """Send/Receive arbitrary commands to the Resource
 
@@ -94,7 +95,7 @@ class ResourceBase(Protocol):
         ...
 
     @abstractmethod
-    async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, "ValueTypes"]:
+    async def get_status(self, *, timeout: float | None = None, **kwargs) -> Mapping[str, "ValueTypes"]:
         """Get the current status of the Resource as a dictionary.
 
         ::
