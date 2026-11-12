@@ -4,6 +4,7 @@ from typing import Any, AsyncIterator, Dict, List, Mapping, Optional
 from grpclib.client import Channel
 
 from viam.components import KinematicsReturn
+from viam.errors import NotSupportedError
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -14,6 +15,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    KinematicModel,
     Mesh,
 )
 from viam.proto.component.arm import (
@@ -289,6 +291,27 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         if response.HasField("model"):
             return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath, response.model)
         return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
+
+    async def get_kinematic_model(
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicModel:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetKinematicsRequest(
+            name=self.name,
+            include_collision_meshes=include_collision_meshes,
+            include_visual_meshes=include_visual_meshes,
+            extra=dict_to_struct(extra),
+        )
+        response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
+        if not response.HasField("model"):
+            raise NotSupportedError(f"arm {self.name} sent no kinematic model, only the kinematics file that get_kinematics returns")
+        return response.model
 
     async def get_3d_models(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
