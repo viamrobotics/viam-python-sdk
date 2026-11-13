@@ -4,6 +4,8 @@ from typing import Any, Dict, Final, List, Optional
 
 from viam.components import KinematicsReturn
 from viam.components.component_base import ComponentBase
+from viam.errors import MethodNotImplementedError
+from viam.proto.common import KinematicModel
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 
@@ -153,7 +155,6 @@ class Gripper(ComponentBase):
         """
         ...
 
-    @abc.abstractmethod
     async def get_kinematics(
         self,
         *,
@@ -165,6 +166,9 @@ class Gripper(ComponentBase):
     ) -> KinematicsReturn:
         """
         Get the kinematics information associated with the gripper.
+
+        .. deprecated:: 0.86.0
+            Use ``get_kinematic_model``, which returns the typed model. A new gripper implements that method and leaves this one alone.
 
         ::
 
@@ -193,7 +197,49 @@ class Gripper(ComponentBase):
 
         For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/#getkinematics>`_.
         """
-        ...
+        raise MethodNotImplementedError("get_kinematics")
+
+    async def get_kinematic_model(
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicModel:
+        """
+        Get the kinematic model of the gripper: its links, joints with their limits, output frames and properties.
+        Lengths are in millimeters and angles in degrees.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            model = await my_gripper.get_kinematic_model()
+
+            for joint in model.joints:
+                print(joint.id, joint.limits.min, joint.limits.max, joint.limits.max_velocity)
+
+        A module implements this by returning the model it holds, which ``viam.kinematics.read_kinematic_model_file`` reads from a
+        kinematic model file. It may ignore the two flags and return every mesh, since the server drops the bytes a request did not
+        ask for and fills the deprecated file fields for a client that predates the model.
+
+        Args:
+            include_collision_meshes (bool): Include collision mesh bytes. Otherwise a collision mesh carries only its path and
+                content type.
+            include_visual_meshes (bool): Include visual mesh bytes. Otherwise a visual mesh carries only its path and content type.
+                With neither flag set a server sends every mesh whole, as it did before the flags existed, so set one to leave the
+                other out.
+
+        Raises:
+            NotSupportedError: If the gripper is served by a machine that predates the model and sent only the kinematics file, which
+                ``get_kinematics`` still returns.
+
+        Returns:
+            KinematicModel: The kinematic model of the gripper.
+        """
+        raise MethodNotImplementedError("get_kinematic_model")
 
     @abc.abstractmethod
     async def get_current_inputs(
