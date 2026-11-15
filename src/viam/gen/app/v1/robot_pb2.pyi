@@ -659,30 +659,39 @@ Global___AuthConfig: _TypeAlias = AuthConfig
 
 @_typing.final
 class UserPermission(_message.Message):
-    """A UserPermission describes a User and the permissions granted to
-    that user.
-    """
+    """A UserPermission describes the Users a set of permissions is granted to."""
     DESCRIPTOR: _descriptor.Descriptor
-    USER_FIELD_NUMBER: _builtins.int
+    USERS_FIELD_NUMBER: _builtins.int
     PERMISSIONS_FIELD_NUMBER: _builtins.int
+    USER_FIELD_NUMBER: _builtins.int
 
     @_builtins.property
-    def user(self) -> Global___User:
-        """user is the User this UserPermission applies to. A User can only be
-        listed in a single UserPermission for a set of UserPermissions.
+    def users(self) -> _containers.RepeatedCompositeFieldContainer[Global___User]:
+        """users are the Users these permissions apply to. A User can be listed in
+        only one UserPermission for a set of UserPermissions, counting both users
+        and user.
         """
 
     @_builtins.property
     def permissions(self) -> _containers.RepeatedCompositeFieldContainer[Global___Permission]:
-        ...
+        """permissions are the methods these Users may invoke, by resource. A User
+        named here with no permissions may invoke nothing.
+        """
 
-    def __init__(self, *, user: Global___User | None=..., permissions: _abc.Iterable[Global___Permission] | None=...) -> None:
+    @_builtins.property
+    def user(self) -> Global___User:
+        """user is a single User these permissions apply to. Superseded by users:
+        prefer users in new writers, and expect readers to ignore user when users
+        is set.
+        """
+
+    def __init__(self, *, users: _abc.Iterable[Global___User] | None=..., permissions: _abc.Iterable[Global___Permission] | None=..., user: Global___User | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['user', b'user']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['permissions', b'permissions', 'user', b'user']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['permissions', b'permissions', 'user', b'user', 'users', b'users']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...

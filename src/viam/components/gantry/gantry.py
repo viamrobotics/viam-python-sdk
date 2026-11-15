@@ -18,7 +18,7 @@ class Gantry(ComponentBase):
 
         from viam.components.gantry import Gantry
 
-    For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/>`_.
+    For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -40,7 +40,7 @@ class Gantry(ComponentBase):
         Returns:
             List[float]: A list of the position of the axes of the gantry in millimeters.
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getposition>`_.
+        For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/#getposition>`_.
         """
         ...
 
@@ -75,7 +75,7 @@ class Gantry(ComponentBase):
             positions (List[float]): A list of positions for the axes of the gantry to move to, in millimeters.
             speeds (List[float]): A list of speeds in millimeters per second for the gantry to move at respective to each axis.
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#movetoposition>`_.
+        For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/#movetoposition>`_.
         """
         ...
 
@@ -93,7 +93,7 @@ class Gantry(ComponentBase):
         Returns:
             bool: Whether the gantry has run the homing sequence successfully.
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#home>`_.
+        For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/#home>`_.
         """
 
     @abc.abstractmethod
@@ -111,7 +111,7 @@ class Gantry(ComponentBase):
         Returns:
             List[float]: A list of the lengths of the axes of the gantry in millimeters.
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getlengths>`_.
+        For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/#getlengths>`_.
         """
         ...
 
@@ -128,7 +128,7 @@ class Gantry(ComponentBase):
             # immediately.
             await my_gantry.stop()
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#stop>`_.
+        For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/#stop>`_.
         """
         ...
 
@@ -151,7 +151,7 @@ class Gantry(ComponentBase):
         Returns:
             bool: Whether the gantry is moving.
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#ismoving>`_.
+        For more information, see `Gantry component <https://docs.viam.com/reference/apis/components/gantry/#ismoving>`_.
         """
         ...
 
@@ -193,6 +193,6 @@ class Gantry(ComponentBase):
             If available, a third [2] value provides meshes keyed by URDF filepath.
             If available, a fourth [3] value provides the structured ``KinematicModel`` (links, joints, output frames, and properties).
 
-        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        For more information, see `Arm component <https://docs.viam.com/reference/apis/components/arm/#getkinematics>`_.
         """
         ...

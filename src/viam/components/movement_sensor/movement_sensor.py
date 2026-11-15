@@ -22,7 +22,7 @@ class MovementSensor(ComponentBase):
 
         from viam.components.movement_sensor import MovementSensor
 
-    For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/>`_.
+    For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -80,7 +80,7 @@ class MovementSensor(ComponentBase):
         Returns:
             Tuple[GeoPoint, float]: The current lat/long, along with the altitude in m
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getposition>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getposition>`_.
         """
         ...
 
@@ -99,7 +99,7 @@ class MovementSensor(ComponentBase):
         Returns:
             Vector3: The linear velocity in m/sec
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getlinearvelocity>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getlinearvelocity>`_.
         """
         ...
 
@@ -121,7 +121,7 @@ class MovementSensor(ComponentBase):
         Returns:
             Vector3: The angular velocity in degrees/sec
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getangularvelocity>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getangularvelocity>`_.
         """
         ...
 
@@ -145,7 +145,7 @@ class MovementSensor(ComponentBase):
         Returns:
             Vector3: The linear acceleration in m/sec^2
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getlinearacceleration>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getlinearacceleration>`_.
         """
         ...
 
@@ -164,7 +164,7 @@ class MovementSensor(ComponentBase):
         Returns:
             float: The compass heading in degrees
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getcompassheading>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getcompassheading>`_.
         """
         ...
 
@@ -183,7 +183,7 @@ class MovementSensor(ComponentBase):
         Returns:
             Orientation: The orientation
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getorientation>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getorientation>`_.
         """
         ...
 
@@ -202,7 +202,7 @@ class MovementSensor(ComponentBase):
         Returns:
             MovementSensor.Properties: The properties
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getproperties>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getproperties>`_.
         """
         ...
 
@@ -221,7 +221,7 @@ class MovementSensor(ComponentBase):
         Returns:
             MovementSensor.Accuracy: The accuracies of the movement sensor
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getaccuracy>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getaccuracy>`_.
         """
         ...
 
@@ -242,6 +242,6 @@ class MovementSensor(ComponentBase):
         Returns:
             Mapping[str, Any]: The readings for the MovementSensor. Can be of any type.
 
-        For more information, see `Movement Sensor component <https://docs.viam.com/dev/reference/apis/components/movement-sensor/#getreadings>`_.
+        For more information, see `Movement Sensor component <https://docs.viam.com/reference/apis/components/movement-sensor/#getreadings>`_.
         """
         ...

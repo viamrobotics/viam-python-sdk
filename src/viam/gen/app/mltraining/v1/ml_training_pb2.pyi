@@ -28,6 +28,8 @@ class _ModelTypeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_ModelType.V
     MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: _ModelType.ValueType
     MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: _ModelType.ValueType
     MODEL_TYPE_OBJECT_DETECTION: _ModelType.ValueType
+    MODEL_TYPE_ROBOT_POLICY: _ModelType.ValueType
+    'A policy that controls a robot.'
 
 class ModelType(_ModelType, metaclass=_ModelTypeEnumTypeWrapper):
     ...
@@ -35,6 +37,8 @@ MODEL_TYPE_UNSPECIFIED: ModelType.ValueType
 MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION: ModelType.ValueType
 MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: ModelType.ValueType
 MODEL_TYPE_OBJECT_DETECTION: ModelType.ValueType
+MODEL_TYPE_ROBOT_POLICY: ModelType.ValueType
+'A policy that controls a robot.'
 Global___ModelType: _TypeAlias = ModelType
 
 class _ModelFramework:

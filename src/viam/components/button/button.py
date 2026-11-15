@@ -17,7 +17,7 @@ class Button(ComponentBase):
 
         from viam.components.button import Button
 
-    For more information, see `Button component <https://docs.viam.com/dev/reference/apis/components/button/>` _.
+    For more information, see `Button component <https://docs.viam.com/reference/apis/components/button/>` _.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -36,6 +36,6 @@ class Button(ComponentBase):
             # Push the button
             await my_button.push()
 
-        For more information, see `Button component <https://docs.viam.com/dev/reference/apis/components/button/>` _.
+        For more information, see `Button component <https://docs.viam.com/reference/apis/components/button/>` _.
         """
         ...
