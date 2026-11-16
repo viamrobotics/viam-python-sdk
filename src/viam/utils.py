@@ -53,7 +53,7 @@ def primitive_to_value(v: ValueTypes) -> Value:
         return Value(number_value=float(v))
     if isinstance(v, str):
         return Value(string_value=v)
-    if isinstance(v, Dict):
+    if isinstance(v, Mapping):
         sv: Dict[str, Value] = {}
         for key, value in v.items():
             if not isinstance(key, str):
@@ -61,7 +61,7 @@ def primitive_to_value(v: ValueTypes) -> Value:
             sv[key] = primitive_to_value(value)
         struct = Struct(fields=sv)
         return Value(struct_value=struct)
-    if isinstance(v, List):
+    if isinstance(v, (list, tuple)):
         lv = []
         for vv in v:
             lv.append(primitive_to_value(vv))
@@ -125,9 +125,10 @@ def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
             return v
         if isinstance(v, SupportsFloat):
             return float(v)
-        if isinstance(v, SupportsBytes):
-            return bytes(v)
-        if isinstance(v, List):
+        if isinstance(v, (bytes, bytearray, SupportsBytes)):
+            # Struct has no bytes type; encode as a string, like primitive_to_value
+            return bytes(v).decode()
+        if isinstance(v, (list, tuple)):
             return [_convert(vv) for vv in v]
         if isinstance(v, Mapping):
             return {k: _convert(vv) for (k, vv) in v.items()}
