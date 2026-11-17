@@ -177,12 +177,12 @@ class TestModule:
             model = handler.models[0]
             assert model == "acme:demo:mysum"
 
-    def test_from_args_uses_socket_path_arg(self, monkeypatch: pytest.MonkeyPatch):
+    async def test_from_args_uses_socket_path_arg(self, monkeypatch: pytest.MonkeyPatch):
         monkeypatch.delenv("VIAM_MODULE_ADDRESS", raising=False)
         monkeypatch.setattr("sys.argv", ["module", "/tmp/arg.sock"])
         assert Module.from_args()._address == "/tmp/arg.sock"
 
-    def test_from_args_prefers_module_address_env(self, monkeypatch: pytest.MonkeyPatch):
+    async def test_from_args_prefers_module_address_env(self, monkeypatch: pytest.MonkeyPatch):
         monkeypatch.setenv("VIAM_MODULE_ADDRESS", "D:\\viam\\env.sock")
         monkeypatch.setattr("sys.argv", ["module", "/viam/arg.sock", "--log-level=debug"])
         assert Module.from_args()._address == "D:\\viam\\env.sock"
