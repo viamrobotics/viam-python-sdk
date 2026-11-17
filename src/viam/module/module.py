@@ -64,6 +64,7 @@ from .service import ModuleRPCService
 from .types import Stoppable
 
 NO_MODULE_PARENT = os.environ.get("VIAM_NO_MODULE_PARENT", "").lower() == "true"
+MODULE_ADDRESS_ENV_VAR = "VIAM_MODULE_ADDRESS"
 
 
 def _parse_module_args() -> argparse.Namespace:
@@ -71,10 +72,15 @@ def _parse_module_args() -> argparse.Namespace:
     Parse command-line args. Used by the various `Module` entrypoints.
     """
     p = argparse.ArgumentParser(description="Start this viam python module")
-    p.add_argument("socket_path", help="path where this module will serve a unix socket")
+    p.add_argument("socket_path", nargs="?", help="path where this module will serve a unix socket")
     p.add_argument("--log-level", type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
     p.add_argument("--tcp-mode", action="store_true")
-    return p.parse_known_args()[0]
+    args = p.parse_known_args()[0]
+    # viam-server passes the unprocessed address here; the positional arg may be a legacy "cleaned" Windows path
+    args.socket_path = os.environ.get(MODULE_ADDRESS_ENV_VAR) or args.socket_path
+    if not args.socket_path:
+        p.error(f"need socket path as command line argument or {MODULE_ADDRESS_ENV_VAR} environment variable")
+    return args
 
 
 class Module:
@@ -91,12 +97,13 @@ class Module:
     @classmethod
     def from_args(cls) -> Self:
         """Create a new Module with the args provided in the command line. The first argument after the command must be
-        the socket path. If the second argument after the command is "--log-level=debug", the Module's logger will be
+        the socket path, unless the ``VIAM_MODULE_ADDRESS`` environment variable is set, in which case it takes
+        precedence. If the second argument after the command is "--log-level=debug", the Module's logger will be
         DEBUG level. Otherwise, it will be INFO level. See LogLevel documentation in the RDK for more information on how
         to start modules with a "log-level" commandline argument.
 
         Raises:
-            Exception: If there is no socket path provided in the command line argument
+            Exception: If there is no socket path provided in the command line argument or environment
 
         Returns:
             Module: a new Module instance
