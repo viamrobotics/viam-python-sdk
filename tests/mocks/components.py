@@ -32,13 +32,14 @@ from viam.components.power_sensor import PowerSensor
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.switch import Switch
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import (
     AudioInfo,
     Capsule,
     Geometry,
     GeoPoint,
+    KinematicModel,
     Mesh,
     Orientation,
     Pose,
@@ -179,6 +180,24 @@ class MockArm(Arm):
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
+
+    async def get_kinematic_model(
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicModel:
+        model = getattr(self, "kinematic_model", None)
+        if model is None:
+            raise MethodNotImplementedError("get_kinematic_model")
+        self.include_collision_meshes = include_collision_meshes
+        self.include_visual_meshes = include_visual_meshes
+        self.extra = extra
+        self.timeout = timeout
+        return model
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
@@ -695,6 +714,24 @@ class MockGantry(Gantry):
         self.timeout = timeout
         return self.kinematics
 
+    async def get_kinematic_model(
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicModel:
+        model = getattr(self, "kinematic_model", None)
+        if model is None:
+            raise MethodNotImplementedError("get_kinematic_model")
+        self.include_collision_meshes = include_collision_meshes
+        self.include_visual_meshes = include_visual_meshes
+        self.extra = extra
+        self.timeout = timeout
+        return model
+
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
         self.timeout = timeout
@@ -784,6 +821,24 @@ class MockGripper(Gripper):
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
+
+    async def get_kinematic_model(
+        self,
+        *,
+        include_collision_meshes: bool = False,
+        include_visual_meshes: bool = False,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> KinematicModel:
+        model = getattr(self, "kinematic_model", None)
+        if model is None:
+            raise MethodNotImplementedError("get_kinematic_model")
+        self.include_collision_meshes = include_collision_meshes
+        self.include_visual_meshes = include_visual_meshes
+        self.extra = extra
+        self.timeout = timeout
+        return model
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

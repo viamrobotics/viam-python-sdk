@@ -1,5 +1,6 @@
 from grpclib.server import Stream
 
+from viam.kinematics import kinematics_response
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -126,22 +127,7 @@ class GantryRPCService(UnimplementedGantryServiceBase, ResourceRPCServiceBase[Ga
         assert request is not None
         gantry = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        kinematics = await gantry.get_kinematics(
-            include_collision_meshes=request.include_collision_meshes,
-            include_visual_meshes=request.include_visual_meshes,
-            extra=struct_to_dict(request.extra),
-            timeout=timeout,
-            metadata=stream.metadata,
-        )
-        model = None
-        if len(kinematics) == 2:
-            format, data = kinematics
-            meshes = {}
-        elif len(kinematics) == 3:
-            format, data, meshes = kinematics
-        else:
-            format, data, meshes, model = kinematics
-        response = GetKinematicsResponse(format=format, kinematics_data=data, meshes_by_urdf_filepath=meshes, model=model)
+        response = await kinematics_response(gantry, request, timeout=timeout, metadata=stream.metadata)
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
