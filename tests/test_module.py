@@ -157,6 +157,10 @@ class TestModule:
             req = ReadyRequest(parent_address=p_addr)
             resp = await module.ready(req)
             assert module._parent_address == p_addr
+
+            raw_addr = "D:\\viam\\parent.sock"
+            await module.ready(ReadyRequest(parent_address=p_addr, raw_parent_address=raw_addr))
+            assert module._parent_address == raw_addr
             assert len(resp.handlermap.handlers) == 2
 
             handler = resp.handlermap.handlers[0]

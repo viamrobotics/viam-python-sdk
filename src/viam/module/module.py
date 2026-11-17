@@ -270,7 +270,8 @@ class Module:
         await self.server.remove_resource(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
-        self._parent_address = request.parent_address
+        # parent_address is the legacy "cleaned" path, which breaks on Windows drives other than C:
+        self._parent_address = request.raw_parent_address or request.parent_address
         await self._connect_to_parent()
 
         svcname_to_models: Mapping[Tuple[str, API], List[Model]] = {}
