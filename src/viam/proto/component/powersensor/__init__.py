@@ -9,10 +9,14 @@ from ....gen.component.powersensor.v1.powersensor_grpc import (
     UnimplementedPowerSensorServiceBase,
 )
 from ....gen.component.powersensor.v1.powersensor_pb2 import (
+    GetBatteryPercentRequest,
+    GetBatteryPercentResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetVoltageRequest,
     GetVoltageResponse,
 )
@@ -21,10 +25,14 @@ __all__ = [
     "PowerSensorServiceBase",
     "PowerSensorServiceStub",
     "UnimplementedPowerSensorServiceBase",
+    "GetBatteryPercentRequest",
+    "GetBatteryPercentResponse",
     "GetCurrentRequest",
     "GetCurrentResponse",
     "GetPowerRequest",
     "GetPowerResponse",
+    "GetPropertiesRequest",
+    "GetPropertiesResponse",
     "GetVoltageRequest",
     "GetVoltageResponse",
 ]

@@ -25,6 +25,14 @@ class PowerSensorServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def GetBatteryPercent(self, stream: 'grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetBatteryPercentRequest, component.powersensor.v1.powersensor_pb2.GetBatteryPercentResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def GetProperties(self, stream: 'grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetPropertiesRequest, component.powersensor.v1.powersensor_pb2.GetPropertiesResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def GetReadings(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse]') -> None:
         pass
 
@@ -37,7 +45,7 @@ class PowerSensorServiceBase(abc.ABC):
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.powersensor.v1.PowerSensorService/GetVoltage': grpclib.const.Handler(self.GetVoltage, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetVoltageRequest, component.powersensor.v1.powersensor_pb2.GetVoltageResponse), '/viam.component.powersensor.v1.PowerSensorService/GetCurrent': grpclib.const.Handler(self.GetCurrent, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetCurrentRequest, component.powersensor.v1.powersensor_pb2.GetCurrentResponse), '/viam.component.powersensor.v1.PowerSensorService/GetPower': grpclib.const.Handler(self.GetPower, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetPowerRequest, component.powersensor.v1.powersensor_pb2.GetPowerResponse), '/viam.component.powersensor.v1.PowerSensorService/GetReadings': grpclib.const.Handler(self.GetReadings, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse), '/viam.component.powersensor.v1.PowerSensorService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.powersensor.v1.PowerSensorService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
+        return {'/viam.component.powersensor.v1.PowerSensorService/GetVoltage': grpclib.const.Handler(self.GetVoltage, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetVoltageRequest, component.powersensor.v1.powersensor_pb2.GetVoltageResponse), '/viam.component.powersensor.v1.PowerSensorService/GetCurrent': grpclib.const.Handler(self.GetCurrent, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetCurrentRequest, component.powersensor.v1.powersensor_pb2.GetCurrentResponse), '/viam.component.powersensor.v1.PowerSensorService/GetPower': grpclib.const.Handler(self.GetPower, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetPowerRequest, component.powersensor.v1.powersensor_pb2.GetPowerResponse), '/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent': grpclib.const.Handler(self.GetBatteryPercent, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetBatteryPercentRequest, component.powersensor.v1.powersensor_pb2.GetBatteryPercentResponse), '/viam.component.powersensor.v1.PowerSensorService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, component.powersensor.v1.powersensor_pb2.GetPropertiesRequest, component.powersensor.v1.powersensor_pb2.GetPropertiesResponse), '/viam.component.powersensor.v1.PowerSensorService/GetReadings': grpclib.const.Handler(self.GetReadings, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse), '/viam.component.powersensor.v1.PowerSensorService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.powersensor.v1.PowerSensorService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)}
 
 class UnimplementedPowerSensorServiceBase(PowerSensorServiceBase):
 
@@ -48,6 +56,12 @@ class UnimplementedPowerSensorServiceBase(PowerSensorServiceBase):
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def GetPower(self, stream: 'grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetPowerRequest, component.powersensor.v1.powersensor_pb2.GetPowerResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetBatteryPercent(self, stream: 'grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetBatteryPercentRequest, component.powersensor.v1.powersensor_pb2.GetBatteryPercentResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetProperties(self, stream: 'grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetPropertiesRequest, component.powersensor.v1.powersensor_pb2.GetPropertiesResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def GetReadings(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse]') -> None:
@@ -65,6 +79,8 @@ class PowerSensorServiceStub:
         self.GetVoltage = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetVoltage', component.powersensor.v1.powersensor_pb2.GetVoltageRequest, component.powersensor.v1.powersensor_pb2.GetVoltageResponse)
         self.GetCurrent = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetCurrent', component.powersensor.v1.powersensor_pb2.GetCurrentRequest, component.powersensor.v1.powersensor_pb2.GetCurrentResponse)
         self.GetPower = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetPower', component.powersensor.v1.powersensor_pb2.GetPowerRequest, component.powersensor.v1.powersensor_pb2.GetPowerResponse)
+        self.GetBatteryPercent = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetBatteryPercent', component.powersensor.v1.powersensor_pb2.GetBatteryPercentRequest, component.powersensor.v1.powersensor_pb2.GetBatteryPercentResponse)
+        self.GetProperties = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetProperties', component.powersensor.v1.powersensor_pb2.GetPropertiesRequest, component.powersensor.v1.powersensor_pb2.GetPropertiesResponse)
         self.GetReadings = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetReadings', common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
         self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.powersensor.v1.PowerSensorService/GetStatus', common.v1.common_pb2.GetStatusRequest, common.v1.common_pb2.GetStatusResponse)
