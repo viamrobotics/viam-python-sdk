@@ -1461,20 +1461,48 @@ class MaintenanceConfig(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     SENSOR_NAME_FIELD_NUMBER: _builtins.int
     MAINTENANCE_ALLOWED_KEY_FIELD_NUMBER: _builtins.int
+    FOLLOW_PART_FIELD_NUMBER: _builtins.int
     maintenance_allowed_key: _builtins.str
 
     @_builtins.property
     def sensor_name(self) -> _common_pb2.ResourceName:
         ...
 
-    def __init__(self, *, sensor_name: _common_pb2.ResourceName | None=..., maintenance_allowed_key: _builtins.str=...) -> None:
+    @_builtins.property
+    def follow_part(self) -> Global___FollowPartRef:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['sensor_name', b'sensor_name']
+
+    def __init__(self, *, sensor_name: _common_pb2.ResourceName | None=..., maintenance_allowed_key: _builtins.str=..., follow_part: Global___FollowPartRef | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['follow_part', b'follow_part', 'sensor_name', b'sensor_name']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['maintenance_allowed_key', b'maintenance_allowed_key', 'sensor_name', b'sensor_name']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['follow_part', b'follow_part', 'maintenance_allowed_key', b'maintenance_allowed_key', 'sensor_name', b'sensor_name']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___MaintenanceConfig: _TypeAlias = MaintenanceConfig
+
+@_typing.final
+class FollowPartRef(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ADDRESS_FIELD_NUMBER: _builtins.int
+    AUTH_FIELD_NUMBER: _builtins.int
+    address: _builtins.str
+
+    @_builtins.property
+    def auth(self) -> Global___RemoteAuth:
+        ...
+
+    def __init__(self, *, address: _builtins.str=..., auth: Global___RemoteAuth | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['auth', b'auth']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['address', b'address', 'auth', b'auth']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___FollowPartRef: _TypeAlias = FollowPartRef

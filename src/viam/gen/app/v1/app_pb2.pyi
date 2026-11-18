@@ -5800,6 +5800,7 @@ class Model(_message.Message):
     MARKDOWN_DOCUMENTATION_FIELD_NUMBER: _builtins.int
     DESCRIPTION_FIELD_NUMBER: _builtins.int
     SUPPORTED_HARDWARE_FIELD_NUMBER: _builtins.int
+    APIS_FIELD_NUMBER: _builtins.int
     api: _builtins.str
     'The colon-delimited-triplet of the api implemented by the model'
     model: _builtins.str
@@ -5813,13 +5814,19 @@ class Model(_message.Message):
     def supported_hardware(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """A list of supported hardware names"""
 
-    def __init__(self, *, api: _builtins.str=..., model: _builtins.str=..., markdown_documentation: _builtins.str | None=..., description: _builtins.str | None=..., supported_hardware: _abc.Iterable[_builtins.str] | None=...) -> None:
+    @_builtins.property
+    def apis(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """The full set of co-equal APIs this model serves. The `api` field is always one of these and is
+        retained for tooling that predates `apis`; new code should read `apis`.
+        """
+
+    def __init__(self, *, api: _builtins.str=..., model: _builtins.str=..., markdown_documentation: _builtins.str | None=..., description: _builtins.str | None=..., supported_hardware: _abc.Iterable[_builtins.str] | None=..., apis: _abc.Iterable[_builtins.str] | None=...) -> None:
         ...
     _HasFieldArgType: _TypeAlias = _typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'description', b'description', 'markdown_documentation', b'markdown_documentation']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'description', b'description', 'markdown_documentation', b'markdown_documentation', 'model', b'model', 'supported_hardware', b'supported_hardware']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'apis', b'apis', 'description', b'description', 'markdown_documentation', b'markdown_documentation', 'model', b'model', 'supported_hardware', b'supported_hardware']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
