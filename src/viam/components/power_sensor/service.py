@@ -10,10 +10,14 @@ from viam.proto.common import (
     GetStatusResponse,
 )
 from viam.proto.component.powersensor import (
+    GetBatteryPercentRequest,
+    GetBatteryPercentResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetVoltageRequest,
     GetVoltageResponse,
     PowerSensorServiceBase,
@@ -67,6 +71,26 @@ class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase[Power
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         power = await sensor.get_power(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetPowerResponse(watts=power)
+        await stream.send_message(response)
+
+    async def GetBatteryPercent(self, stream: Stream[GetBatteryPercentRequest, GetBatteryPercentResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        sensor = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        percent = await sensor.get_battery_percent(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetBatteryPercentResponse(percent=percent)
+        await stream.send_message(response)
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        sensor = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetPropertiesResponse(**properties.__dict__)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

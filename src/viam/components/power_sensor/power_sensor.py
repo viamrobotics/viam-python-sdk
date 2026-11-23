@@ -1,4 +1,5 @@
 import abc
+from dataclasses import dataclass
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from viam.components.component_base import ComponentBase
@@ -7,6 +8,10 @@ from viam.utils import SensorReading
 
 
 class PowerSensor(ComponentBase):
+    @dataclass
+    class Properties:
+        is_battery_percent_supported: bool
+
     """PowerSensor reports information about voltage, current and power.
 
     This acts as an abstract base class for any sensors that can provide data regarding voltage, current and/or power.
@@ -100,5 +105,44 @@ class PowerSensor(ComponentBase):
             amperes (float), is_ac (bool), and power in watts (float).
 
         For more information, see `Power Sensor component <https://docs.viam.com/reference/apis/components/power-sensor/#getreadings>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_battery_percent(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+        """Return the remaining battery charge, from 0 to 100.
+
+        ::
+
+            my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
+
+            # Get the remaining battery charge from the power sensor
+            percent = await my_power_sensor.get_battery_percent()
+            print("The battery charge remaining is", percent, "%")
+
+        Returns:
+            float: The remaining battery charge, from 0 to 100.
+
+        For more information, see `Power Sensor component
+        <https://docs.viam.com/reference/apis/components/power-sensor/#getbatterypercent>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties:
+        """Return a dictionary of the optional methods this power sensor supports.
+
+        ::
+
+            my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
+
+            # Get whether the power sensor supports GetBatteryPercent.
+            properties = await my_power_sensor.get_properties()
+
+        Returns:
+            PowerSensor.Properties: Map of optional properties to supported status.
+
+        For more information, see `Power Sensor component
+        <https://docs.viam.com/reference/apis/components/power-sensor/#getproperties>`_.
         """
         ...

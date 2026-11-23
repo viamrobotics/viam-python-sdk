@@ -1222,13 +1222,23 @@ class MockPoseTracker(PoseTracker):
 
 
 class MockPowerSensor(PowerSensor):
-    def __init__(self, name: str, voltage: float, current: float, is_ac: bool, power: float, readings: Mapping[str, float]):
+    def __init__(
+        self,
+        name: str,
+        voltage: float,
+        current: float,
+        is_ac: bool,
+        power: float,
+        readings: Mapping[str, float],
+        battery_percent: float = 0,
+    ):
         super().__init__(name)
         self.voltage = voltage
         self.current = current
         self.is_ac = is_ac
         self.power = power
         self.readings = readings
+        self.battery_percent = battery_percent
         self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
@@ -1254,6 +1264,18 @@ class MockPowerSensor(PowerSensor):
         self.extra = extra
         self.timeout = timeout
         return self.readings
+
+    async def get_battery_percent(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+        self.extra = extra
+        self.timeout = timeout
+        return self.battery_percent
+
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> PowerSensor.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return PowerSensor.Properties(is_battery_percent_supported=True)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
