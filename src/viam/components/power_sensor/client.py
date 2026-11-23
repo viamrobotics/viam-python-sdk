@@ -12,10 +12,14 @@ from viam.proto.common import (
     GetStatusResponse,
 )
 from viam.proto.component.powersensor import (
+    GetBatteryPercentRequest,
+    GetBatteryPercentResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetVoltageRequest,
     GetVoltageResponse,
     PowerSensorServiceStub,
@@ -79,6 +83,30 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout, metadata=md)
         return sensor_readings_value_to_native(response.readings)
+
+    async def get_battery_percent(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetBatteryPercentRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetBatteryPercentResponse = await self.client.GetBatteryPercent(request, timeout=timeout, metadata=md)
+        return response.percent
+
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> PowerSensor.Properties:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
+        return response
 
     async def do_command(
         self,

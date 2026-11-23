@@ -12,10 +12,14 @@ from viam.proto.common import (
     GetStatusResponse,
 )
 from viam.proto.component.powersensor import (
+    GetBatteryPercentRequest,
+    GetBatteryPercentResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetVoltageRequest,
     GetVoltageResponse,
     PowerSensorServiceStub,
@@ -31,12 +35,13 @@ AMPERES = 2.0
 WATTS = 1.0
 IS_AC = True
 READINGS = {"a": 1, "b": 2, "c": 3}
+BATTERY_PERCENT = 42.0
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 
 
 @pytest.fixture(scope="function")
 def power_sensor() -> PowerSensor:
-    return MockPowerSensor("power_sensor", VOLTS, AMPERES, IS_AC, WATTS, READINGS)
+    return MockPowerSensor("power_sensor", VOLTS, AMPERES, IS_AC, WATTS, READINGS, BATTERY_PERCENT)
 
 
 @pytest.fixture(scope="function")
@@ -78,6 +83,18 @@ class TestPowerSensor:
         assert value == READINGS
         assert power_sensor.extra == EXTRA_PARAMS
 
+    async def test_get_battery_percent(self, power_sensor: MockPowerSensor):
+        assert power_sensor.extra is None
+        percent = await power_sensor.get_battery_percent(extra=EXTRA_PARAMS)
+        assert percent == BATTERY_PERCENT
+        assert power_sensor.extra == EXTRA_PARAMS
+
+    async def test_get_properties(self, power_sensor: MockPowerSensor):
+        assert power_sensor.extra is None
+        properties = await power_sensor.get_properties(extra=EXTRA_PARAMS)
+        assert properties.is_battery_percent_supported is True
+        assert power_sensor.extra == EXTRA_PARAMS
+
     async def test_timeout(self, power_sensor: MockPowerSensor):
         assert power_sensor.timeout is None
 
@@ -92,6 +109,12 @@ class TestPowerSensor:
 
         await power_sensor.get_readings(timeout=8.90)
         assert power_sensor.timeout == expected_grpc_timeout(8.90)
+
+        await power_sensor.get_battery_percent(timeout=1.23)
+        assert power_sensor.timeout == expected_grpc_timeout(1.23)
+
+        await power_sensor.get_properties(timeout=4.56)
+        assert power_sensor.timeout == expected_grpc_timeout(4.56)
 
     async def test_do(self, power_sensor: PowerSensor):
         command = {"command": "args"}
@@ -143,6 +166,26 @@ class TestService:
             assert power_sensor.extra is None
             response: GetReadingsResponse = await client.GetReadings(request, timeout=8.90)
             assert sensor_readings_value_to_native(response.readings) == READINGS
+            assert power_sensor.extra == EXTRA_PARAMS
+            assert power_sensor.timeout == expected_grpc_timeout(8.90)
+
+    async def test_get_battery_percent(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorServiceStub(channel)
+            request = GetBatteryPercentRequest(name=power_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
+            assert power_sensor.extra is None
+            response: GetBatteryPercentResponse = await client.GetBatteryPercent(request, timeout=8.90)
+            assert response.percent == BATTERY_PERCENT
+            assert power_sensor.extra == EXTRA_PARAMS
+            assert power_sensor.timeout == expected_grpc_timeout(8.90)
+
+    async def test_get_properties(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorServiceStub(channel)
+            request = GetPropertiesRequest(name=power_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
+            assert power_sensor.extra is None
+            response: GetPropertiesResponse = await client.GetProperties(request, timeout=8.90)
+            assert response.is_battery_percent_supported is True
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == expected_grpc_timeout(8.90)
 
@@ -201,6 +244,24 @@ class TestClient:
             assert value == READINGS
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == expected_grpc_timeout(2.34)
+
+    async def test_get_battery_percent(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorClient(power_sensor.name, channel)
+            assert power_sensor.extra is None
+            percent = await client.get_battery_percent(extra=EXTRA_PARAMS, timeout=1.45)
+            assert percent == BATTERY_PERCENT
+            assert power_sensor.extra == EXTRA_PARAMS
+            assert power_sensor.timeout == expected_grpc_timeout(1.45)
+
+    async def test_get_properties(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorClient(power_sensor.name, channel)
+            assert power_sensor.extra is None
+            properties = await client.get_properties(extra=EXTRA_PARAMS, timeout=1.45)
+            assert properties.is_battery_percent_supported is True
+            assert power_sensor.extra == EXTRA_PARAMS
+            assert power_sensor.timeout == expected_grpc_timeout(1.45)
 
     async def test_do(self, power_sensor: PowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
