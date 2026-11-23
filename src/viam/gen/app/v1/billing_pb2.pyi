@@ -89,6 +89,7 @@ class _UsageCostTypeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_UsageCo
     USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: _UsageCostType.ValueType
     USAGE_COST_TYPE_PREMIUM_MODULE: _UsageCostType.ValueType
     USAGE_COST_TYPE_SIMULATION_COMPUTE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_AI_USAGE: _UsageCostType.ValueType
 
 class UsageCostType(_UsageCostType, metaclass=_UsageCostTypeEnumTypeWrapper):
     ...
@@ -121,6 +122,7 @@ USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE: UsageCostType.ValueType
 USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: UsageCostType.ValueType
 USAGE_COST_TYPE_PREMIUM_MODULE: UsageCostType.ValueType
 USAGE_COST_TYPE_SIMULATION_COMPUTE: UsageCostType.ValueType
+USAGE_COST_TYPE_AI_USAGE: UsageCostType.ValueType
 Global___UsageCostType: _TypeAlias = UsageCostType
 
 class _SourceType:
