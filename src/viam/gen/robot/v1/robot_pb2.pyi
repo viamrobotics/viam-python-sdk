@@ -1037,6 +1037,7 @@ class GetMachineStatusResponse(_message.Message):
     JOB_STATUSES_FIELD_NUMBER: _builtins.int
     MODULES_FIELD_NUMBER: _builtins.int
     PACKAGES_FIELD_NUMBER: _builtins.int
+    MAINTENANCE_STATUS_FIELD_NUMBER: _builtins.int
     state: Global___GetMachineStatusResponse.State.ValueType
 
     @_builtins.property
@@ -1059,17 +1060,37 @@ class GetMachineStatusResponse(_message.Message):
     def packages(self) -> _containers.RepeatedCompositeFieldContainer[Global___PackageStatus]:
         ...
 
-    def __init__(self, *, resources: _abc.Iterable[Global___ResourceStatus] | None=..., config: Global___ConfigStatus | None=..., state: Global___GetMachineStatusResponse.State.ValueType=..., job_statuses: _abc.Iterable[Global___JobStatus] | None=..., modules: _abc.Iterable[Global___ModuleStatus] | None=..., packages: _abc.Iterable[Global___PackageStatus] | None=...) -> None:
+    @_builtins.property
+    def maintenance_status(self) -> Global___MaintenanceStatus:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['config', b'config']
+
+    def __init__(self, *, resources: _abc.Iterable[Global___ResourceStatus] | None=..., config: Global___ConfigStatus | None=..., state: Global___GetMachineStatusResponse.State.ValueType=..., job_statuses: _abc.Iterable[Global___JobStatus] | None=..., modules: _abc.Iterable[Global___ModuleStatus] | None=..., packages: _abc.Iterable[Global___PackageStatus] | None=..., maintenance_status: Global___MaintenanceStatus | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'maintenance_status', b'maintenance_status']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'modules', b'modules', 'packages', b'packages', 'resources', b'resources', 'state', b'state']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'maintenance_status', b'maintenance_status', 'modules', b'modules', 'packages', b'packages', 'resources', b'resources', 'state', b'state']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___GetMachineStatusResponse: _TypeAlias = GetMachineStatusResponse
+
+@_typing.final
+class MaintenanceStatus(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    ALLOWED_FIELD_NUMBER: _builtins.int
+    REASON_FIELD_NUMBER: _builtins.int
+    allowed: _builtins.bool
+    reason: _builtins.str
+
+    def __init__(self, *, allowed: _builtins.bool=..., reason: _builtins.str=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['allowed', b'allowed', 'reason', b'reason']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___MaintenanceStatus: _TypeAlias = MaintenanceStatus
 
 @_typing.final
 class JobStatus(_message.Message):

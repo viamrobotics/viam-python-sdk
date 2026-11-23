@@ -136,3 +136,81 @@ class GetPowerResponse(_message.Message):
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
 Global___GetPowerResponse: _TypeAlias = GetPowerResponse
+
+@_typing.final
+class GetBatteryPercentRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of a power sensor'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetBatteryPercentRequest: _TypeAlias = GetBatteryPercentRequest
+
+@_typing.final
+class GetBatteryPercentResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PERCENT_FIELD_NUMBER: _builtins.int
+    percent: _builtins.float
+    'Remaining battery charge, from 0 to 100'
+
+    def __init__(self, *, percent: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['percent', b'percent']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetBatteryPercentResponse: _TypeAlias = GetBatteryPercentResponse
+
+@_typing.final
+class GetPropertiesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of a power sensor'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPropertiesRequest: _TypeAlias = GetPropertiesRequest
+
+@_typing.final
+class GetPropertiesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    IS_BATTERY_PERCENT_SUPPORTED_FIELD_NUMBER: _builtins.int
+    is_battery_percent_supported: _builtins.bool
+    'Whether the power sensor supports GetBatteryPercent'
+
+    def __init__(self, *, is_battery_percent_supported: _builtins.bool=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['is_battery_percent_supported', b'is_battery_percent_supported']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPropertiesResponse: _TypeAlias = GetPropertiesResponse
