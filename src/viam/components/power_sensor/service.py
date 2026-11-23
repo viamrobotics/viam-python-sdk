@@ -90,8 +90,7 @@ class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase[Power
         sensor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetPropertiesResponse(**properties.__dict__)
-        await stream.send_message(response)
+        await stream.send_message(properties)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()

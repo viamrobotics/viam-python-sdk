@@ -106,7 +106,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
-        return PowerSensor.Properties(is_battery_percent_supported=response.is_battery_percent_supported)
+        return response
 
     async def do_command(
         self,

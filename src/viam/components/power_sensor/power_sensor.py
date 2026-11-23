@@ -1,17 +1,13 @@
 import abc
-from dataclasses import dataclass
-from typing import Any, Dict, Final, Mapping, Optional, Tuple
+from typing import Any, Dict, Final, Mapping, Optional, Tuple, TypeAlias
 
 from viam.components.component_base import ComponentBase
+from viam.proto.component.powersensor import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.utils import SensorReading
 
 
 class PowerSensor(ComponentBase):
-    @dataclass
-    class Properties:
-        is_battery_percent_supported: bool
-
     """PowerSensor reports information about voltage, current and power.
 
     This acts as an abstract base class for any sensors that can provide data regarding voltage, current and/or power.
@@ -27,6 +23,8 @@ class PowerSensor(ComponentBase):
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "power_sensor"
     )
+
+    Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
     async def get_voltage(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]:
