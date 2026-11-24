@@ -157,6 +157,10 @@ class TestModule:
             req = ReadyRequest(parent_address=p_addr)
             resp = await module.ready(req)
             assert module._parent_address == p_addr
+
+            raw_addr = "D:\\viam\\parent.sock"
+            await module.ready(ReadyRequest(parent_address=p_addr, raw_parent_address=raw_addr))
+            assert module._parent_address == raw_addr
             assert len(resp.handlermap.handlers) == 2
 
             handler = resp.handlermap.handlers[0]
@@ -172,6 +176,25 @@ class TestModule:
             assert len(handler.models) == 1
             model = handler.models[0]
             assert model == "acme:demo:mysum"
+
+    async def test_from_args_uses_socket_path_arg(self, monkeypatch: pytest.MonkeyPatch):
+        monkeypatch.delenv("VIAM_MODULE_ADDRESS", raising=False)
+        monkeypatch.setattr("sys.argv", ["module", "/tmp/arg.sock"])
+        assert Module.from_args()._address == "/tmp/arg.sock"
+
+    async def test_from_args_prefers_module_address_env(self, monkeypatch: pytest.MonkeyPatch):
+        monkeypatch.setenv("VIAM_MODULE_ADDRESS", "D:\\viam\\env.sock")
+        monkeypatch.setattr("sys.argv", ["module", "/viam/arg.sock", "--log-level=debug"])
+        assert Module.from_args()._address == "D:\\viam\\env.sock"
+
+        monkeypatch.setattr("sys.argv", ["module"])
+        assert Module.from_args()._address == "D:\\viam\\env.sock"
+
+    def test_from_args_requires_address(self, monkeypatch: pytest.MonkeyPatch):
+        monkeypatch.delenv("VIAM_MODULE_ADDRESS", raising=False)
+        monkeypatch.setattr("sys.argv", ["module"])
+        with pytest.raises(SystemExit):
+            Module.from_args()
 
     async def test_add_model_from_registry(self):
         mod = Module("fake")
