@@ -59,7 +59,7 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
+            service = SERVICE.from_robot(robot=machine, name="builtin")  # replace SERVICE with the appropriate class
 
             my_command = {
               "cmnd": "dosomething",

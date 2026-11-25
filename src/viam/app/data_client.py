@@ -664,8 +664,8 @@ class DataClient:
                 resource_name="<RESOURCE-NAME>",
                 resource_api="<RESOURCE-API>",
                 method_name="<METHOD-NAME>",
-                start_time="<START_TIME>"
-                end_time="<END_TIME>"
+                start_time="<START_TIME>",
+                end_time="<END_TIME>",
                 additional_params="<ADDITIONAL_PARAMETERS>"
             )
 
@@ -1254,7 +1254,7 @@ class DataClient:
 
             bbox_id = await data_client.update_bounding_box_to_image_by_id(
                 binary_id="<YOUR-BINARY-DATA-ID>",
-                bbox_id="2"
+                bbox_id="2",
                 label="label",
                 x_min_normalized=0,
                 y_min_normalized=.1,
@@ -2159,7 +2159,7 @@ class DataClient:
             data_pipeline_id = await data_client.create_data_pipeline(
                 organization_id="<YOUR-ORGANIZATION-ID>",
                 name="<YOUR-PIPELINE-NAME>",
-                mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
+                mql_binary=["<YOUR-MQL-PIPELINE-AGGREGATION>"],
                 schedule="<YOUR-SCHEDULE>",
                 enable_backfill=False,
                 data_source_type=TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
