@@ -10,6 +10,7 @@ from google.protobuf import message as _message
 from google.protobuf import struct_pb2 as _struct_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
+from robot.v1 import robot_pb2 as _robot_pb2
 import builtins as _builtins
 import sys
 import typing as _typing
@@ -1171,6 +1172,9 @@ class AgentInfo(_message.Message):
     GIT_REVISION_FIELD_NUMBER: _builtins.int
     PLATFORM_FIELD_NUMBER: _builtins.int
     PLATFORM_TAGS_FIELD_NUMBER: _builtins.int
+    MODULE_VERSIONS_FIELD_NUMBER: _builtins.int
+    VIAM_SERVER_UPTIME_FIELD_NUMBER: _builtins.int
+    RECONFIGURE_BLOCKED_FIELD_NUMBER: _builtins.int
     host: _builtins.str
     os: _builtins.str
     'Will soon be deprecated, use platform instead'
@@ -1179,6 +1183,8 @@ class AgentInfo(_message.Message):
     git_revision: _builtins.str
     platform: _builtins.str
     'The platform the RDK is running on. For example linux/amd64'
+    reconfigure_blocked: _builtins.bool
+    'true while a pending reconfigure is being held back by the maintenance sensor;\n    false once that reconfigure is applied (or when nothing is pending)\n    '
 
     @_builtins.property
     def ips(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
@@ -1188,13 +1194,23 @@ class AgentInfo(_message.Message):
     def platform_tags(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional tags to further constrain which artifact is returned for modules."""
 
-    def __init__(self, *, host: _builtins.str=..., os: _builtins.str=..., ips: _abc.Iterable[_builtins.str] | None=..., version: _builtins.str=..., git_revision: _builtins.str=..., platform: _builtins.str | None=..., platform_tags: _abc.Iterable[_builtins.str] | None=...) -> None:
+    @_builtins.property
+    def module_versions(self) -> _containers.RepeatedCompositeFieldContainer[Global___ModuleVersionInfo]:
+        """modules in the applied config (registry and local) with their running version and status"""
+
+    @_builtins.property
+    def viam_server_uptime(self) -> _duration_pb2.Duration:
+        """how long this viam-server process has been running, measured with a monotonic clock;
+        app anchors it to the time the request is received
+        """
+
+    def __init__(self, *, host: _builtins.str=..., os: _builtins.str=..., ips: _abc.Iterable[_builtins.str] | None=..., version: _builtins.str=..., git_revision: _builtins.str=..., platform: _builtins.str | None=..., platform_tags: _abc.Iterable[_builtins.str] | None=..., module_versions: _abc.Iterable[Global___ModuleVersionInfo] | None=..., viam_server_uptime: _duration_pb2.Duration | None=..., reconfigure_blocked: _builtins.bool=...) -> None:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['_platform', b'_platform', 'platform', b'platform']
+    _HasFieldArgType: _TypeAlias = _typing.Literal['_platform', b'_platform', 'platform', b'platform', 'viam_server_uptime', b'viam_server_uptime']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['_platform', b'_platform', 'git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'os', b'os', 'platform', b'platform', 'platform_tags', b'platform_tags', 'version', b'version']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['_platform', b'_platform', 'git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'module_versions', b'module_versions', 'os', b'os', 'platform', b'platform', 'platform_tags', b'platform_tags', 'reconfigure_blocked', b'reconfigure_blocked', 'version', b'version', 'viam_server_uptime', b'viam_server_uptime']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -1204,6 +1220,47 @@ class AgentInfo(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType__platform) -> _WhichOneofReturnType__platform | None:
         ...
 Global___AgentInfo: _TypeAlias = AgentInfo
+
+@_typing.final
+class ModuleVersionInfo(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    MODULE_ID_FIELD_NUMBER: _builtins.int
+    MODULE_NAME_FIELD_NUMBER: _builtins.int
+    RUNNING_VERSION_FIELD_NUMBER: _builtins.int
+    RUNNING_FOR_FIELD_NUMBER: _builtins.int
+    STATE_FIELD_NUMBER: _builtins.int
+    CONSECUTIVE_FAILURES_FIELD_NUMBER: _builtins.int
+    READY_COUNT_FIELD_NUMBER: _builtins.int
+    module_id: _builtins.str
+    'registry module ID, e.g. "viam:realsense" (empty for local modules)'
+    module_name: _builtins.str
+    'module name from the machine config; unique within the part'
+    running_version: _builtins.str
+    'version currently running ("local" for local modules; empty if not running or unknown)'
+    state: _robot_pb2.ModuleStatus.State.ValueType
+    'current lifecycle state of the module process'
+    consecutive_failures: _builtins.int
+    'failures since the module was last ready'
+    ready_count: _builtins.int
+    'times the module has become ready since viam-server started, including the first start;\n    only goes up, and resets when viam-server restarts\n    '
+
+    @_builtins.property
+    def running_for(self) -> _duration_pb2.Duration:
+        """how long the running version has been ready, measured with a monotonic clock; app anchors it
+        to the time the request is received (unset if not running)
+        """
+
+    def __init__(self, *, module_id: _builtins.str=..., module_name: _builtins.str=..., running_version: _builtins.str=..., running_for: _duration_pb2.Duration | None=..., state: _robot_pb2.ModuleStatus.State.ValueType=..., consecutive_failures: _builtins.int=..., ready_count: _builtins.int=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['running_for', b'running_for']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['consecutive_failures', b'consecutive_failures', 'module_id', b'module_id', 'module_name', b'module_name', 'ready_count', b'ready_count', 'running_for', b'running_for', 'running_version', b'running_version', 'state', b'state']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___ModuleVersionInfo: _TypeAlias = ModuleVersionInfo
 
 @_typing.final
 class ConfigRequest(_message.Message):

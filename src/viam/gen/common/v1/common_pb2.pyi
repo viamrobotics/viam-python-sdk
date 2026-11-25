@@ -257,6 +257,26 @@ class Capsule(_message.Message):
 Global___Capsule: _TypeAlias = Capsule
 
 @_typing.final
+class Cylinder(_message.Message):
+    """Cylinder is a solid right circular cylinder, flat end caps included, whose axis is the local Z
+    axis of the geometry's center pose.
+    """
+    DESCRIPTOR: _descriptor.Descriptor
+    RADIUS_MM_FIELD_NUMBER: _builtins.int
+    LENGTH_MM_FIELD_NUMBER: _builtins.int
+    radius_mm: _builtins.float
+    length_mm: _builtins.float
+    "Full end-to-end length along the cylinder's axis."
+
+    def __init__(self, *, radius_mm: _builtins.float=..., length_mm: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['length_mm', b'length_mm', 'radius_mm', b'radius_mm']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___Cylinder: _TypeAlias = Cylinder
+
+@_typing.final
 class RectangularPrism(_message.Message):
     """RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
     These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
@@ -334,6 +354,7 @@ class Geometry(_message.Message):
     CAPSULE_FIELD_NUMBER: _builtins.int
     MESH_FIELD_NUMBER: _builtins.int
     POINTCLOUD_FIELD_NUMBER: _builtins.int
+    CYLINDER_FIELD_NUMBER: _builtins.int
     LABEL_FIELD_NUMBER: _builtins.int
     label: _builtins.str
     'Label of the geometry. If none supplied, will be an empty string.'
@@ -362,17 +383,21 @@ class Geometry(_message.Message):
     def pointcloud(self) -> Global___PointCloud:
         ...
 
-    def __init__(self, *, center: Global___Pose | None=..., sphere: Global___Sphere | None=..., box: Global___RectangularPrism | None=..., capsule: Global___Capsule | None=..., mesh: Global___Mesh | None=..., pointcloud: Global___PointCloud | None=..., label: _builtins.str=...) -> None:
+    @_builtins.property
+    def cylinder(self) -> Global___Cylinder:
         ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']
+
+    def __init__(self, *, center: Global___Pose | None=..., sphere: Global___Sphere | None=..., box: Global___RectangularPrism | None=..., capsule: Global___Capsule | None=..., mesh: Global___Mesh | None=..., pointcloud: Global___PointCloud | None=..., cylinder: Global___Cylinder | None=..., label: _builtins.str=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'cylinder', b'cylinder', 'geometry_type', b'geometry_type', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']
 
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'cylinder', b'cylinder', 'geometry_type', b'geometry_type', 'label', b'label', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
-    _WhichOneofReturnType_geometry_type: _TypeAlias = _typing.Literal['sphere', 'box', 'capsule', 'mesh', 'pointcloud']
+    _WhichOneofReturnType_geometry_type: _TypeAlias = _typing.Literal['sphere', 'box', 'capsule', 'mesh', 'pointcloud', 'cylinder']
     _WhichOneofArgType_geometry_type: _TypeAlias = _typing.Literal['geometry_type', b'geometry_type']
 
     def WhichOneof(self, oneof_group: _WhichOneofArgType_geometry_type) -> _WhichOneofReturnType_geometry_type | None:
