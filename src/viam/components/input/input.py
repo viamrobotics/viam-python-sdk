@@ -156,7 +156,7 @@ class Controller(ComponentBase):
 
             # Get the controller from the machine.
             my_controller = Controller.from_robot(
-                robot=machine, "my_controller")
+                robot=machine, name="my_controller")
 
             # Get the list of Controls provided by the controller.
             controls = await my_controller.get_controls()
@@ -183,7 +183,7 @@ class Controller(ComponentBase):
 
             # Get the controller from the machine.
             my_controller = Controller.from_robot(
-                robot=machine, "my_controller")
+                robot=machine, name="my_controller")
 
             # Get the most recent Event for each Control.
             recent_events = await my_controller.get_events()
@@ -247,7 +247,7 @@ class Controller(ComponentBase):
 
                 # Get your controller from the machine.
                 my_controller = Controller.from_robot(
-                    robot=machine, "my_controller")
+                    robot=machine, name="my_controller")
 
                 # Run the handleController function.
                 await handle_controller(my_controller)
@@ -279,7 +279,7 @@ class Controller(ComponentBase):
 
             # Get your controller from the machine.
             my_controller = Controller.from_robot(
-                robot=machine, "my_controller")
+                robot=machine, name="my_controller")
 
             # Define a "Button is Pressed" event for the control BUTTON_START.
             button_is_pressed_event = Event(

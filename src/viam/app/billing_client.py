@@ -38,7 +38,7 @@ class BillingClient:
 
         async def connect() -> ViamClient:
             # Replace <API-KEY> with your API key and <API-KEY-ID> with your API key ID
-            dial_options = DialOptions.with_api_key(<API-KEY>, <API-KEY-ID>)
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
             return await ViamClient.create_from_dial_options(dial_options)
 
 
@@ -74,7 +74,7 @@ class BillingClient:
 
         ::
 
-           usage = await billing_client.get_current_month_usage(<ORG-ID>)
+           usage = await billing_client.get_current_month_usage("<ORG-ID>")
 
         Args:
             org_id (str): the ID of the organization to request usage data for
@@ -92,7 +92,7 @@ class BillingClient:
 
         ::
 
-            await billing_client.get_invoice_pdf(<INVOICE-ID>, <ORG-ID>, "invoice.pdf")
+            await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "invoice.pdf")
 
         Args:
             invoice_id (str): the ID of the invoice being requested
@@ -113,7 +113,7 @@ class BillingClient:
 
         ::
 
-            summary = await billing_client.get_invoices_summary(<ORG-ID>)
+            summary = await billing_client.get_invoices_summary("<ORG-ID>")
 
         Args:
             org_id (str): the ID of the organization to request data for
@@ -161,11 +161,11 @@ class BillingClient:
         ::
 
             invoice_id = await billing_client.charge_organization(
-                <ORG-ID-TO-CHARGE>,
+                "<ORG-ID-TO-CHARGE>",
                 9.99,
                 0.70,
                 "A charge with tax.",
-                <ORG-ID-FOR-BRANDING>,
+                "<ORG-ID-FOR-BRANDING>",
                 True,
             )
 
