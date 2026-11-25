@@ -152,9 +152,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         assert request is not None
         gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.set_percent_open(
-            request.percent_open, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
-        )
+        await gripper.set_percent_open(request.percent_open, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(SetPercentOpenResponse())
 
     async def GetPercentOpen(self, stream: Stream[GetPercentOpenRequest, GetPercentOpenResponse]) -> None:

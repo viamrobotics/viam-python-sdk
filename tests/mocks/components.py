@@ -870,7 +870,9 @@ class MockGripper(Gripper):
         self.timeout = timeout
         return self.percent_open
 
-    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Gripper.Properties:
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Gripper.Properties:
         self.extra = extra
         self.timeout = timeout
         return Gripper.Properties(percent_open_supported=self.percent_open_supported)
