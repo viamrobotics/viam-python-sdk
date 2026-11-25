@@ -39,6 +39,14 @@ class Gripper(ComponentBase):
         is_holding_something: bool
         meta: Optional[Dict[str, Any]] = None
 
+    @dataclass
+    class Properties:
+        """
+        Properties describes the optional methods this gripper supports.
+        """
+
+        percent_open_supported: bool
+
     @abc.abstractmethod
     async def open(
         self,
@@ -291,3 +299,76 @@ class Gripper(ComponentBase):
         For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
         """
         ...
+
+    async def set_percent_open(
+        self,
+        percent_open: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        """
+        Set the gripper's opening to the given percentage.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            # Set the gripper to 50% open.
+            await my_gripper.set_percent_open(0.5)
+
+        Args:
+            percent_open (float): The opening to move to, from 0.0 (fully closed) to 1.0 (fully open).
+
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
+        """
+        raise MethodNotImplementedError("set_percent_open")
+
+    async def get_percent_open(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
+        """
+        Get the gripper's measured opening.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            # Get the gripper's measured opening.
+            percent_open = await my_gripper.get_percent_open()
+
+        Returns:
+            float: The measured opening, from 0.0 (fully closed) to 1.0 (fully open).
+
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
+        """
+        raise MethodNotImplementedError("get_percent_open")
+
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Properties:
+        """
+        Get the gripper's properties.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            # Get the gripper's properties.
+            properties = await my_gripper.get_properties()
+
+        Returns:
+            Gripper.Properties: Whether the gripper supports ``set_percent_open`` and ``get_percent_open``.
+
+        For more information, see `Gripper component <https://docs.viam.com/reference/apis/components/gripper/>`_.
+        """
+        raise MethodNotImplementedError("get_properties")

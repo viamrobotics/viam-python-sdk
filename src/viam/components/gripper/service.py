@@ -14,6 +14,10 @@ from viam.proto.common import (
 from viam.proto.component.gripper import (
     GetCurrentInputsRequest,
     GetCurrentInputsResponse,
+    GetPercentOpenRequest,
+    GetPercentOpenResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GoToInputsRequest,
     GoToInputsResponse,
     GrabRequest,
@@ -25,6 +29,8 @@ from viam.proto.component.gripper import (
     IsMovingResponse,
     OpenRequest,
     OpenResponse,
+    SetPercentOpenRequest,
+    SetPercentOpenResponse,
     StopRequest,
     StopResponse,
 )
@@ -140,3 +146,27 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gripper.go_to_inputs(list(request.values), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(GoToInputsResponse())
+
+    async def SetPercentOpen(self, stream: Stream[SetPercentOpenRequest, SetPercentOpenResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gripper = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await gripper.set_percent_open(request.percent_open, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await stream.send_message(SetPercentOpenResponse())
+
+    async def GetPercentOpen(self, stream: Stream[GetPercentOpenRequest, GetPercentOpenResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gripper = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        percent_open = await gripper.get_percent_open(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await stream.send_message(GetPercentOpenResponse(percent_open=percent_open))
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gripper = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await gripper.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await stream.send_message(GetPropertiesResponse(percent_open_supported=properties.percent_open_supported))

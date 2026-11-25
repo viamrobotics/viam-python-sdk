@@ -18,6 +18,10 @@ from viam.proto.common import (
 from viam.proto.component.gripper import (
     GetCurrentInputsRequest,
     GetCurrentInputsResponse,
+    GetPercentOpenRequest,
+    GetPercentOpenResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GoToInputsRequest,
     GrabRequest,
     GrabResponse,
@@ -25,6 +29,7 @@ from viam.proto.component.gripper import (
     IsMovingRequest,
     IsMovingResponse,
     OpenRequest,
+    SetPercentOpenRequest,
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
@@ -114,6 +119,22 @@ class TestGripper:
         await gripper.go_to_inputs(new_inputs, timeout=2.3)
         assert gripper.current_inputs == new_inputs
         assert gripper.timeout == expected_grpc_timeout(2.3)
+
+    async def test_set_percent_open(self, gripper: MockGripper):
+        await gripper.set_percent_open(0.5, timeout=1.23)
+        assert gripper.percent_open == 0.5
+        assert gripper.timeout == expected_grpc_timeout(1.23)
+
+    async def test_get_percent_open(self, gripper: MockGripper):
+        gripper.percent_open = 0.75
+        percent_open = await gripper.get_percent_open(timeout=1.5)
+        assert percent_open == 0.75
+        assert gripper.timeout == expected_grpc_timeout(1.5)
+
+    async def test_get_properties(self, gripper: MockGripper):
+        properties = await gripper.get_properties(timeout=4.56)
+        assert properties.percent_open_supported is True
+        assert gripper.timeout == expected_grpc_timeout(4.56)
 
 
 class TestService:
@@ -216,6 +237,31 @@ class TestService:
             assert gripper.current_inputs == new_inputs
             assert gripper.timeout == expected_grpc_timeout(2.3)
 
+    async def test_set_percent_open(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            request = SetPercentOpenRequest(name=gripper.name, percent_open=0.5)
+            await client.SetPercentOpen(request, timeout=1.23)
+            assert gripper.percent_open == 0.5
+            assert gripper.timeout == expected_grpc_timeout(1.23)
+
+    async def test_get_percent_open(self, gripper: MockGripper, service: GripperRPCService):
+        gripper.percent_open = 0.75
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            request = GetPercentOpenRequest(name=gripper.name)
+            response: GetPercentOpenResponse = await client.GetPercentOpen(request, timeout=1.5)
+            assert response.percent_open == 0.75
+            assert gripper.timeout == expected_grpc_timeout(1.5)
+
+    async def test_get_properties(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            request = GetPropertiesRequest(name=gripper.name)
+            response: GetPropertiesResponse = await client.GetProperties(request, timeout=4.56)
+            assert response.percent_open_supported is True
+            assert gripper.timeout == expected_grpc_timeout(4.56)
+
 
 class TestClient:
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):
@@ -311,3 +357,25 @@ class TestClient:
             await client.go_to_inputs(new_inputs, timeout=2.3)
             assert gripper.current_inputs == new_inputs
             assert gripper.timeout == expected_grpc_timeout(2.3)
+
+    async def test_set_percent_open(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            await client.set_percent_open(0.5, timeout=1.23)
+            assert gripper.percent_open == 0.5
+            assert gripper.timeout == expected_grpc_timeout(1.23)
+
+    async def test_get_percent_open(self, gripper: MockGripper, service: GripperRPCService):
+        gripper.percent_open = 0.75
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            percent_open = await client.get_percent_open(timeout=1.5)
+            assert percent_open == 0.75
+            assert gripper.timeout == expected_grpc_timeout(1.5)
+
+    async def test_get_properties(self, gripper: MockGripper, service: GripperRPCService):
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            properties = await client.get_properties(timeout=4.56)
+            assert properties.percent_open_supported is True
+            assert gripper.timeout == expected_grpc_timeout(4.56)
