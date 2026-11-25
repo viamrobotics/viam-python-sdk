@@ -90,11 +90,11 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> float:
+    ) -> Tuple[float, bool]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetBatteryPercentRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetBatteryPercentResponse = await self.client.GetBatteryPercent(request, timeout=timeout, metadata=md)
-        return response.percent
+        return response.percent, response.is_charging
 
     async def get_properties(
         self,

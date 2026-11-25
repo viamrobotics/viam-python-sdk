@@ -771,6 +771,8 @@ class MockGripper(Gripper):
         self.is_stopped = True
         self.timeout: Optional[float] = None
         self.current_inputs = [0.5, 0.7]
+        self.percent_open = 0.0
+        self.percent_open_supported = True
         super().__init__(name)
 
     async def open(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
@@ -855,6 +857,23 @@ class MockGripper(Gripper):
         self.current_inputs = values
         self.extra = extra
         self.timeout = timeout
+
+    async def set_percent_open(
+        self, percent_open: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
+        self.percent_open = percent_open
+        self.extra = extra
+        self.timeout = timeout
+
+    async def get_percent_open(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+        self.extra = extra
+        self.timeout = timeout
+        return self.percent_open
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Gripper.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return Gripper.Properties(percent_open_supported=self.percent_open_supported)
 
 
 class MockInputController(Controller):
@@ -1231,6 +1250,7 @@ class MockPowerSensor(PowerSensor):
         power: float,
         readings: Mapping[str, float],
         battery_percent: float = 0,
+        is_charging: bool = False,
     ):
         super().__init__(name)
         self.voltage = voltage
@@ -1239,6 +1259,7 @@ class MockPowerSensor(PowerSensor):
         self.power = power
         self.readings = readings
         self.battery_percent = battery_percent
+        self.is_charging = is_charging
         self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
@@ -1265,17 +1286,19 @@ class MockPowerSensor(PowerSensor):
         self.timeout = timeout
         return self.readings
 
-    async def get_battery_percent(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+    async def get_battery_percent(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[float, bool]:
         self.extra = extra
         self.timeout = timeout
-        return self.battery_percent
+        return (self.battery_percent, self.is_charging)
 
     async def get_properties(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> PowerSensor.Properties:
         self.extra = extra
         self.timeout = timeout
-        return PowerSensor.Properties(is_battery_percent_supported=True)
+        return PowerSensor.Properties(is_battery_percent_supported=True, is_charging_supported=True)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

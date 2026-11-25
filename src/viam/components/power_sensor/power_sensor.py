@@ -107,19 +107,22 @@ class PowerSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_battery_percent(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
-        """Return the remaining battery charge, from 0 to 100.
+    async def get_battery_percent(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[float, bool]:
+        """Return the remaining battery charge, from 0 to 100, and whether the battery is charging.
 
         ::
 
             my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
 
             # Get the remaining battery charge from the power sensor
-            percent = await my_power_sensor.get_battery_percent()
+            percent, is_charging = await my_power_sensor.get_battery_percent()
             print("The battery charge remaining is", percent, "%")
 
         Returns:
-            float: The remaining battery charge, from 0 to 100.
+            Tuple[float, bool]: A float representing the remaining battery charge, from 0 to 100. A bool indicating whether the battery
+            is charging; only meaningful when ``get_properties`` reports ``is_charging_supported``.
 
         For more information, see `Power Sensor component
         <https://docs.viam.com/reference/apis/components/power-sensor/#getbatterypercent>`_.

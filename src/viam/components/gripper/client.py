@@ -17,6 +17,10 @@ from viam.proto.common import (
 from viam.proto.component.gripper import (
     GetCurrentInputsRequest,
     GetCurrentInputsResponse,
+    GetPercentOpenRequest,
+    GetPercentOpenResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GoToInputsRequest,
     GrabRequest,
     GrabResponse,
@@ -26,6 +30,7 @@ from viam.proto.component.gripper import (
     IsMovingRequest,
     IsMovingResponse,
     OpenRequest,
+    SetPercentOpenRequest,
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
@@ -184,3 +189,39 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GoToInputsRequest(name=self.name, values=values, extra=dict_to_struct(extra))
         await self.client.GoToInputs(request, timeout=timeout, metadata=md)
+
+    async def set_percent_open(
+        self,
+        percent_open: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = SetPercentOpenRequest(name=self.name, percent_open=percent_open, extra=dict_to_struct(extra))
+        await self.client.SetPercentOpen(request, timeout=timeout, metadata=md)
+
+    async def get_percent_open(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetPercentOpenRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetPercentOpenResponse = await self.client.GetPercentOpen(request, timeout=timeout, metadata=md)
+        return response.percent_open
+
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Gripper.Properties:
+        md = kwargs.get("metadata", self.Metadata()).proto
+        request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
+        return Gripper.Properties(percent_open_supported=response.percent_open_supported)

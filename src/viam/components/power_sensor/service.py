@@ -79,8 +79,10 @@ class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase[Power
         name = request.name
         sensor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        percent = await sensor.get_battery_percent(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetBatteryPercentResponse(percent=percent)
+        percent, is_charging = await sensor.get_battery_percent(
+            extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+        )
+        response = GetBatteryPercentResponse(percent=percent, is_charging=is_charging)
         await stream.send_message(response)
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
