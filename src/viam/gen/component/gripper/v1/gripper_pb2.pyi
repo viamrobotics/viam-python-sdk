@@ -276,3 +276,116 @@ class GoToInputsResponse(_message.Message):
     def __init__(self) -> None:
         ...
 Global___GoToInputsResponse: _TypeAlias = GoToInputsResponse
+
+@_typing.final
+class SetPercentOpenRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    PERCENT_OPEN_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of a gripper'
+    percent_open: _builtins.float
+    'The opening to move to, from 0.0 (fully closed) to 1.0 (fully open)'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., percent_open: _builtins.float=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name', 'percent_open', b'percent_open']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___SetPercentOpenRequest: _TypeAlias = SetPercentOpenRequest
+
+@_typing.final
+class SetPercentOpenResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+Global___SetPercentOpenResponse: _TypeAlias = SetPercentOpenResponse
+
+@_typing.final
+class GetPercentOpenRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of a gripper'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPercentOpenRequest: _TypeAlias = GetPercentOpenRequest
+
+@_typing.final
+class GetPercentOpenResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PERCENT_OPEN_FIELD_NUMBER: _builtins.int
+    percent_open: _builtins.float
+    'The measured opening, from 0.0 (fully closed) to 1.0 (fully open)'
+
+    def __init__(self, *, percent_open: _builtins.float=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['percent_open', b'percent_open']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPercentOpenResponse: _TypeAlias = GetPercentOpenResponse
+
+@_typing.final
+class GetPropertiesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    NAME_FIELD_NUMBER: _builtins.int
+    EXTRA_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
+    'Name of a gripper'
+
+    @_builtins.property
+    def extra(self) -> _struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: _builtins.str=..., extra: _struct_pb2.Struct | None=...) -> None:
+        ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra']
+
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['extra', b'extra', 'name', b'name']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPropertiesRequest: _TypeAlias = GetPropertiesRequest
+
+@_typing.final
+class GetPropertiesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+    PERCENT_OPEN_SUPPORTED_FIELD_NUMBER: _builtins.int
+    percent_open_supported: _builtins.bool
+    'True if the gripper supports SetPercentOpen and GetPercentOpen. False for any gripper that\n    cannot measure its opening, such as vacuum and suction grippers; SetPercentOpen on these\n    falls back to Grab or Open.\n    '
+
+    def __init__(self, *, percent_open_supported: _builtins.bool=...) -> None:
+        ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['percent_open_supported', b'percent_open_supported']
+
+    def ClearField(self, field_name: _ClearFieldArgType) -> None:
+        ...
+Global___GetPropertiesResponse: _TypeAlias = GetPropertiesResponse

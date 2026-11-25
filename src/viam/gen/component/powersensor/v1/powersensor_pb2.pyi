@@ -165,12 +165,15 @@ Global___GetBatteryPercentRequest: _TypeAlias = GetBatteryPercentRequest
 class GetBatteryPercentResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     PERCENT_FIELD_NUMBER: _builtins.int
+    IS_CHARGING_FIELD_NUMBER: _builtins.int
     percent: _builtins.float
     'Remaining battery charge, from 0 to 100'
+    is_charging: _builtins.bool
+    'Whether the battery is charging. Only meaningful when GetProperties reports is_charging_supported.'
 
-    def __init__(self, *, percent: _builtins.float=...) -> None:
+    def __init__(self, *, percent: _builtins.float=..., is_charging: _builtins.bool=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['percent', b'percent']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['is_charging', b'is_charging', 'percent', b'percent']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
@@ -204,12 +207,15 @@ Global___GetPropertiesRequest: _TypeAlias = GetPropertiesRequest
 class GetPropertiesResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
     IS_BATTERY_PERCENT_SUPPORTED_FIELD_NUMBER: _builtins.int
+    IS_CHARGING_SUPPORTED_FIELD_NUMBER: _builtins.int
     is_battery_percent_supported: _builtins.bool
     'Whether the power sensor supports GetBatteryPercent'
+    is_charging_supported: _builtins.bool
+    'Whether GetBatteryPercent reports a meaningful is_charging'
 
-    def __init__(self, *, is_battery_percent_supported: _builtins.bool=...) -> None:
+    def __init__(self, *, is_battery_percent_supported: _builtins.bool=..., is_charging_supported: _builtins.bool=...) -> None:
         ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal['is_battery_percent_supported', b'is_battery_percent_supported']
+    _ClearFieldArgType: _TypeAlias = _typing.Literal['is_battery_percent_supported', b'is_battery_percent_supported', 'is_charging_supported', b'is_charging_supported']
 
     def ClearField(self, field_name: _ClearFieldArgType) -> None:
         ...
