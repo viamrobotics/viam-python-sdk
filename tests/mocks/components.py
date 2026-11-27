@@ -218,6 +218,8 @@ class MockArm(Arm):
         return Arm.Properties(support_manual_mode=False, support_cartesian_commands=True)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -262,6 +264,8 @@ class MockAudioIn(AudioIn):
         return self.properties
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -320,6 +324,8 @@ class MockAudioOut(AudioOut):
         return self.properties
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return command
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -409,6 +415,8 @@ class MockBase(Base):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -520,6 +528,8 @@ class MockBoard(Board):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -586,6 +596,8 @@ class MockCamera(Camera):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
@@ -641,6 +653,8 @@ class MockEncoder(Encoder):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -738,6 +752,8 @@ class MockGantry(Gantry):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -841,6 +857,8 @@ class MockGripper(Gripper):
         return model
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -926,6 +944,8 @@ class MockInputController(Controller):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1065,6 +1085,8 @@ class MockMotor(Motor):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1162,6 +1184,8 @@ class MockMovementSensor(MovementSensor):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1215,6 +1239,8 @@ class MockPoseTracker(PoseTracker):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1278,6 +1304,8 @@ class MockPowerSensor(PowerSensor):
         return PowerSensor.Properties(is_battery_percent_supported=True)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1305,6 +1333,8 @@ class MockSensor(Sensor):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1345,6 +1375,8 @@ class MockServo(Servo):
         return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1382,6 +1414,8 @@ class MockSwitch(Switch):
         self.position = position
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
@@ -1401,6 +1435,8 @@ class MockButton(Button):
         self.pushed = True
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        self.extra = kwargs.get("extra")
         return {"command": command}
 
     async def get_status(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
